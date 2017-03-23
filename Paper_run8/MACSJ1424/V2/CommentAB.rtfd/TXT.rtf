@@ -1,0 +1,94 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1187\cocoasubrtf400
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;\red85\green142\blue40;\red0\green61\blue204;\red0\green68\blue254;
+\red217\green11\blue0;\red0\green45\blue153;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww17840\viewh15200\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\f0\fs24 \cf2 1. Introduction\
+\cf0 \
+\cf2 p2 : The New IRAM Kids Array 2 [...] : This paragraph is oddly placed and break a little the nice scientific presentation made just before. Moreover it can not really be a motivation for this study. The problem of contamination from point sources is true for ALL SZ observations not just NIKA2.\
+Some link has been made \
+\cf3 Some link has been made between the paragraphs. Concerning point source contamination it has been rephrased to include other SZ observations, but it is specific to NIKA in the sense that we have two bands and resolved observations that allow source subtraction based on NIKA itself (in principle).\
+\cf2 \
+p2 , right column : style note (optional) : it is not necessary to quote the total number of cluster a particular study made, you are only interested by MACS J1423.\
+\cf4 Done\
+\cf0 \
+\cf2 p2 : "Background lensed and cluster members sub-millimeter galaxies are detected by Herschel" You imply that smg are either lensed background or cluster member but most of the background SMG are not lensed, just regular SGMs, only the one close to caustics are lensed.\
+\cf4 Done\
+\cf0 \
+\cf2 2.2 : curiosity : from where does the uncertainties on the brightness/compton conversion factors come from ?\
+\cf3 From the bandpasses and the beam solid angle\cf0 \
+\
+\cf2 2.3 : "The noise realizations were smoothed by the same 10 arcsec Gaussian filter as the one used for the cluster" -> used to display the cluster. Or else, you should introduce this smoothing before the legend of fig. 1 (took me a while to find it)\
+\cf4 Done\
+\cf2 \
+Table 1 : Strangly for RS1 at 1.4 GHz Vizier (VIII/65/nvss) give a position of 14:23:47.86 +24:04:39.9 with a flux of 8.0 +- 1.1 mJy, while NED gives 9.0 +- 1.3, and the NVSS catalog 8.0 +- 1.1, strange, strange...\
+\cf4 Yes I have seen that, maybe it is a reanalysis or something like that, and both are compatible. Here we used published work including all published values.\
+\cf0 \
+\cf2 Sources Tables : In general in tables, you should try to use the correct identifier of the sources, for example RS1 is NVSS J142347+240439, this is an unique identifier for this source, you can of course use a shortcut (RS1) throught the paper, but the original source must be listed at least once. As you will probably be the first to publish the Herschel sources, you HAVE to use an IAU compatible identifier http://cds.u-strasbg.fr/vizier/Dic/iau-spec.htx\
+\cf5 Not done yet for SMGs because we do not know how to do it.\
+\cf0 \
+\cf2 3.2 : "We then correct them for the filtering induced by the data reduction, which is of the order of 15 percent for point sources" -> This is in contradiction with (2.2) "The observed transfer function is flat and close to unity at scales that are smaller than the field of view"\
+\cf3 Even at small scales we have some filtering (~5%), and as soon as we reach the FOV the transfer function drops. Since point sources contain signal at all scales, we expect more than 5% filtering. In practice it is even a bit different because they are not masked specifically in the reduction, so we have a filtering value per source which depends on their location.\
+\cf0 \
+\cf2 3.2 : "For SMG02 and SMG05 sources, the 150 GHz data are not included in the fit because of strong contamination by the local tSZ signal." I would move this sentence to the next paragraph, otherwise it reads ' fit , stacking, fit again'.\
+\cf4 Changed\cf0 \
+\
+\cf2 3.2 : It is unclear what you used for the fit. Only SPIRE and PACS red ? or also the NIKA data (yes you can used non detection in your likelihood) ? If you use the actual NIKA photometry point to actually correct them, you are biasing the fit. If you are not using NIKA photometry, for all sources, then say it clearly. a plot measure vs expected could also be nice, although I am not so sure with those large uncertainties, maybe just compare the stacked values (expected vs measured).\
+\cf3 Now we use only 1mm in the fit and check that it is not completely stupid at 2mm (prediction versus measured). \
+\cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+\cf0 {{\NeXTGraphic Capture d’écran 2015-09-28 à 13.38.38.png \width16360 \height10040
+}�}\
+\
+{{\NeXTGraphic Capture d’écran 2015-09-28 à 13.37.31.png \width16260 \height10080
+}�}\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\cf0 \
+\
+\cf2 Table 4 : Tab 4 only present the extrapolated values of the fit. The value of the fit itself should be presented, beta_dust and T_dust. The SEDs in appendix could be nice too.\
+\cf3 It was the case at first but we decided not to put it because we do not care about the physics of the sources (e.g. the redshift is not fitted). They are just contaminant for us. If the AA referee say so, we can put a plot like this one:\
+\cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+\cf0 {{\NeXTGraphic Capture d’écran 2015-09-28 à 17.17.09.png \width19920 \height13760
+}�}\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\cf0 \
+\
+\
+\cf2 Figure 2 : Would it be possible to separate the radio and submm point source contribution to see which dominates at what distance (I expect the BCG to be the main contaminant but who knows...)\
+\cf3 The figure is too messy if we do this. But I can tell that the main contribution (on the profile) comes from the BCG with the sum of the radio and SMG contaminants (at least very near the BCG), basically it is RS1+ SMG05 = 0.7+0.4 mJy\
+\cf0 \
+\cf2 4 : I am not expert enough to comment there\
+\cf3 No problem, Gabriel is an Xray expert so he will tell us if something is not right.\
+\cf0 \
+\cf2 6.2 : The flux is measured to be Y^Planck_tot ... : I guess that you do not correct for the SMG contaminant there, right ?\
+\cf3 We use the y-map so it is already cleaned from contaminant (in principle)\
+\cf0 \
+\cf2 6.3.1 : M3 -- it seems that you could seems the (residual) central sources together with the profile. Would it be possible to fit the total central sources, not just the residuals ? And why do you change the slope of the profile, then it becomes difficult/impossible to compare it with M2. I would fix the slopes for M3 and add a M4 with the best point source subtraction + free slopes\
+\cf3 The idea here is to have M1 and M2 which we can compare directly with and without source subtraction. Then we release the constraint on the cluster core to see if we can tell something in the core when a central source is also fitted. We could add an M4 model and do as you say but it will get even more messy. Fitting a central source or the residual is similar we just add the two contributions at the end.\
+\cf0 \
+\cf2 Figure 5 : you could plot pressure profile times [1,5,10] in order to shift the different profile and have understandable figure\
+\cf3 If I understand correctly I do not think this is a good idea because we want to show how the constrain changes with different approaches. If we shift the profiles it will be misleading.\
+\cf0 \
+\cf2 Figure 7, left : Would it make sense to plot a differential density ? cm-3 / kpc it would be to distinguish between observations.\
+\cf6 You mean plot the derivative of the profile? We could but I think it is not that trivial to propagate errors, and I never seen this. Here we just check that we are performing well when doing a PSF deconvolution of XMM data with respect to the 0.5" angular resolution of Chandra.\
+\cf0 \
+\cf2 6.3.2 : "in agreement but slightly larger than the Planck" : would it be explained by the fact that Planck Y as not been corrected for the SMG contamination ?\
+\cf3 We used the y-map, so in principle it is separated from other component using HFI channels. In practice, the cluster is in a region where the SNR is not very high and some contaminant can be left over in the map (e.g. the radio source). Nevertheless, we are fully compatible with Planck within the large error bar.\
+\cf0 \
+\cf2 Figure 8 & discussion in 6.3.2 : You discuss the upper and lower limits given by M1, M2 and M3 alltogether.. Isn't it dominated by the fact that you fixed the slopes of the distribution, instead of the source contamination ?\
+\cf3 No because the parameter degeneracy allows to properly describe the model even if we fix some parameters. When we let the inner slope parameter free, the error bars slightly increase in the cluster core but it is still compatible with the previous model.\
+\cf0 \
+\cf2 7.1 : p14 "fitting jointly the NIKA and Planck data." Is that coming from the Y_tot from Planck ?\
+\cf3 Yes we use the Planck normalization of the flux. The constrain is weak but it helps breaking degeneracies inherent to NIKA (e.g. map zero level versus characteristic radius).\
+\cf0 \
+\cf2 7.2 : About the use of NOEMA for radio sources : It will be very challenging, because the expected fluxes are still faint, and you would need at least two bands to be able to compute a spectral index to confirm the nature of those sources. You could open up on new all sky radio surveys, as the EMU with ASKAP for the southern hemisphere, and/or SKA full sky surveys later on. The jVLA might also be planning a new all sky survey like the NVSS/FIRST, but deeper, in the northern hemisphere.\
+\cf3 We have discussed during the IRAM SZ workshop that NOEMA would be nice to detect radio sources at 150 GHz. At least we should be able to get a precise position and to know if indeed some radio sources are there. For now we leave it like this.\
+\cf0 \
+\cf2 At the end, what is the main contaminant for clusters ? Radio sources or SMGs ?\
+\cf3 It is difficult to answer cluster per cluster, but concerning cluster samples, my guess would be that radio sources are more dangerous (at 150 GHz) because they are correlated with cluster morphologies and are mostly near the core. In addition, we do not have a 90 GHz band to detect them. This is discussed in the penultimate paragraph.\
+\
+\cf0 \
+}

@@ -1,0 +1,96 @@
+%-----------------------------------------------------------------------
+%\documentclass[twocolumn,traditabstract,referee]{aa}  
+\documentclass[twocolumn,traditabstract]{aa}  
+%%%
+\usepackage[english]{babel}
+\usepackage{graphicx,amsmath}
+\usepackage{epstopdf}
+\usepackage{epsf,color}
+\usepackage[mathscr]{eucal}
+\usepackage{amsmath}
+\usepackage{amssymb,amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{txfonts}
+\usepackage{ dsfont }
+%%%
+\newcommand{\nico}[1]{\textcolor{blue}{#1}}
+%%%
+\def\intk#1{\displaystyle\int\frac{d^2k_{#1}}{(2\pi)^2}}
+\def\intr#1{\displaystyle\int d^2r_{#1}}
+\def\simlt{\lower.5ex\hbox{$\; \buildrel < \over \sim \;$}}
+\def\simgt{\lower.5ex\hbox{$\; \buildrel > \over \sim \;$}}
+\def\nika{\textit{NIKA}}
+%\def\NIKA2{\textit{NIKA 2}}
+\def\Skydip{\textit{Skydip}}
+%%%
+\bibpunct{(}{)}{;}{a}{}{,} % to follow the A&A style
+\bibliographystyle{aa} % style aa.bst
+%%%
+\begin{document}
+%%%
+%_______________________________________________________________________________
+\title{The NIKA data reduction primer}
+%\input{listeauthorsPipeline}
+\date{\today}
+\input{00_abstract}
+\titlerunning{running title tbd}
+\authorrunning{Nous}
+\keywords{keywords TBD}
+\maketitle
+
+\tableofcontents
+\newpage
+
+%______________________________________________________________________________
+\section{Introduction}
+\label{sec:introduction}
+\input{introduction}
+
+%______________________________________________________________________________
+%\section{The NIKA signal model}
+%\label{sec:signal_model}
+%\input{02_signal_model.tex}
+
+\section{TOI processing}
+\label{sec:toi_proc}
+\input{toi_processing.tex}
+
+\section{Instrumental parameters}
+\label{se:instr_params}
+\input{instr_params}
+
+%______________________________________________________________________________
+\section{Map projection}
+\label{sec:map_maker}
+\input{map_making.tex}
+
+%______________________________________________________________________________
+\section{Results}
+\label{sec:results}
+\input{results.tex}
+
+%______________________________________________________________________________
+\section{Robustness}
+\label{sec:robust}
+\input{validation.tex}
+
+
+%_______________________________________________________________________________
+\section{Conclusion}
+\label{sec:conclusion}
+\input{conclusion.tex}
+
+%_______________________________________________________________________________
+\begin{acknowledgements}
+We would like to thank the IRAM staff for their support during the campaign. 
+This work has been partially funded by the Foundation Nanoscience Grenoble, the ANR under the contracts "MKIDS" and "NIKA". 
+This work has been partially supported by the LabEx FOCUS ANR-11-LABX-0013. 
+This work has benefited from the support of the European Research Council Advanced Grant ORISTARS under the European Union's Seventh Framework Programme (Grant Agreement no. 291294).
+The NIKA dilution cryostat has been designed and built at the Institut N\'eel. In particular, we acknowledge the crucial contribution of the Cryogenics Group, and in particular Gregory Garde, Henri Rodenas, Jean Paul Leggeri, Philippe Camus. 
+R. A. would like to thank the ENIGMASS French LabEx for funding this work. 
+B. C. acknowledges support from the CNES post-doctoral fellowship program. 
+\end{acknowledgements}
+%________________________________________________________________________________
+\bibliography{biblio}
+\end{document}

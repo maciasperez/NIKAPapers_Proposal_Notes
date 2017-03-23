@@ -1,0 +1,220 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage{epsfig}
+\usepackage{latexsym}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{xcolor}
+
+%\topmargin=-3cm
+\topmargin=-1cm
+\oddsidemargin=-1cm
+\evensidemargin=-1cm
+\textwidth=17cm
+%\textheight=27cm
+\textheight=25cm
+\raggedbottom
+\sloppy
+
+\definecolor{Blue}{rgb}{0.,0.,1.}
+\definecolor{LightSkyBlue}{rgb}{0.691,0.827,1.}
+\definecolor{Red}{rgb}{1.,0.,0.}
+\definecolor{Green}{rgb}{0.,1.,0.}
+\definecolor{Purple}{rgb}{0.5, 0., 0.5}
+\definecolor{Try}{rgb}{0.15,0.,1}
+\definecolor{Black}{rgb}{0., 0., 0.}
+
+%To get DRAFT accross all pages
+\usepackage{draftcopy}
+%To replace ``DRAFT'' by ``ON GOING''
+%\draftcopyName{ON GOING}{150}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+\title{NIKA Pipeline output products, OpenPool2, Version0}
+\author{The NIKA collaboration and IRAM}
+
+\begin{document}
+\maketitle
+
+\abstract{This note describes the data products that the NIKA collaboration
+  provides to external observers for the second NIKA open time pool
+  observations in November 2014 for the version 0.  These products are the
+  calibrated maps.  Other products will be made available in later versions.}
+% [vA.1: clarify the clean TOI product, vB.0
+%   concerns OP2 Data release V0]}
+
+\section{Presentation}
+
+This version V0 of the NIKA second open pool products has been made by the
+NIKA team by the 5 December 2014.  It is distributed by IRAM. It follows the
+observing run by 2 weeks which were needed for the data processing.
+
+The products are described the following Sect.~\ref{sec:maps}.
+
+For each project, there are fits files containing the maps of each scan and
+combined scans of each object. The data processing has been oriented towards
+the diffuse emission.
+
+There are also illustrative pdf files. You will find that for each object,
+there is a directory that contains:
+
+- The fits files (RaDec2000 projection) for target sources
+
+- Figures: many pdf files were generated out of the fits files to get a quick
+look at them. Units in Jy/beam unless otherwise stated. A smoothing has been
+done with a Gaussian FWHM of 10 arcseconds (only for the figures). 
+
+{\sl JK} pdf are jackknife maps representing the half difference of a random split
+of scans in two halves.
+
+{\sl SNR} pdf is the signal-to-noise maps assuming Gaussian white noise.
+
+{\sl flux} pdf is the brightness map display
+
+{\sl stddev} pdf is the standard deviation map display
+
+{\sl time} pdf is the total integration time per 2 arcsecond square pixel.
+
+{\sl scan} pdf is a brightness display per scan
+
+
+The main beam calibration was done assuming a Gaussian main beam of 12.5 and
+18.5 arcseconds (FWHM). The primary calibrator is Uranus with fluxes of 43.0
+and 18.0~Jy.
+
+The main beam to full beam correction is by 1.56$\pm$0.10 at 1~mm and
+1.35$\pm$0.10 at 2~mm. It has not been applied to the maps.
+
+At this stage, the offline products cannot be used for scientific analysis as
+some photometric uncertainties are still there (mostly opacity effects). The
+point-source photometry may probably correct at the 20\% level at 1mm and 15\%
+level at 2mm. These products must just be used to evaluate the potential
+return of each observed source.
+
+We hope to deliver a final V1 version of the second NIKA open pool data
+products in several months including our best strategy of systematic removals.
+ 
+Contact your NIKA friend of project to give us your feedback. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Maps}\label{sec:maps}
+We provide maps as FITS files for all the individual scans and a combination
+of scans per source (one fits file per source and per wavelength). Combined
+maps and individual scan maps are named as \textcolor{blue}{{\tt
+    MAPS\_1mm\_source\_v1.fits}} and \textcolor{blue}{{\tt
+    MAPS\_2mm\_source\_v1.fits}}.  The signal map (surface brightness map
+(opacity corrected)), is provided in extension 0 of the FITS files then other
+extensions contain the standard deviation maps, and exposure time per pixel
+(hit map multiplied by the sample duration) and then all scans brightness,
+standard deviation maps.  More detailed information is given in the header. We
+highlight in the following the main issues concerning the map making:
+\begin{itemize}
+\item The standard coordinate system used is Ra.--Dec. (tangential projection:
+  RA---TAN, DEC--TAN).
+
+\item We use a nearest grid point projection with a pixel size of 2~arcsec
+  (this can be adjusted by request). 
+
+\item A predefined header for map projection can be used upon request if
+  provided by the observers
+
+\item Pixels of the maps that have not been sampled are set to 0 for the
+  flux maps and zero for the time per pixel maps. Pixels with less than two measurements are set to
+  0 for the standard deviation maps.
+% (see Tab.~\ref{tab:table_map})
+
+\item Zero level is set in all detectors timelines outside the source before
+  combining them.
+
+\item Timelines are weighted by the inverse variance of the noise, which is
+  computed outside the source.
+
+\item In the case of point source data, electronic and atmospheric
+  contributions to the data are decorrelated using the standard method
+  described in \cite{NIKA_abs_calib}. Basically, a common-mode timeline is
+  built by averaging all timelines and avoiding on-source detectors at any
+  sample.  The common-mode is first scaled to each detector and then
+  subtracted from the timelines using a simple regression procedure.
+
+\item For extended source data two decorrelation methods can be used. The
+  first of them minimizes the noise but removes large scale structures. It is
+  based on the same common-mode method described above but no masking the
+  source. The second one is based in an iterative procedure. First, a
+  simplified map is constructed using the former method so that the location
+  of the source can be infered. Then this information is used to mask the
+  source when computing the common-mode. This method preserves large scales
+  (up to the size of the array) but is noisier. Both methods are described in
+  \cite{NIKA_abs_calib}. For this release, the two released iterations (when
+  given) correspond to the latter method.
+
+\end{itemize}
+
+	% \begin{table}[ht]
+	% \begin{center}
+	% \begin{tabular}{|c|c|c|c|c|}
+        %  \hline
+	% Extension & Axis & Content & Units & Comment \\
+	% \hline
+	% 0 & 0 & Flux density & Jansky/beam & Opacity corrected \\
+	% 0 & 1 & Standard deviation & Jansky/beam & Estimated form the TOI \\
+	% 0 & 2 & Observing time per pixel & second & Same as hit map normalized by sampling frequency \\
+	% 1 &    & Info structure & -- & See Tab.~\ref{tab:info_map} \\
+	% \hline
+	% \end{tabular}
+	% \end{center}
+	% \caption{Map FITS files extension 0 }
+	% \label{tab:table_map}
+	% \end{table}
+
+	% \begin{table}[ht]
+	% \begin{center}
+	% \begin{tabular}{|c|c|c|c|}
+        %  \hline
+	% Structure row & Content & Units & Comment \\
+	% \hline
+        % 1 & Number of scan used & none & \\
+        % 2 & List of the scan used & none & Only one for individual scan maps \\
+        % 3 & List of the KIDs used & none & Labeled by the detector number (numdet) \\
+        % 4 & List of opacities of the given channel & none & Computed from skydips \\
+        % 5 & List of the integration times & second & \\
+        % 6 & Scan type & none & {\it e.g.} azimuth, elevation, lissajous \\
+	% \hline
+	% \end{tabular}
+	% \end{center}
+	% \caption{Map FITS files extension 1.}
+	% \label{tab:info_map}
+	% \end{table}
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Data delivery}
+
+The IMBFITS files and (the clean calibrated TOI Not Done Yet) are archived by
+IRAM and can be provided on request. Calibration products will be available on
+the NIKA wiki page: {\tt http://www.iram.es/IRAMES/mainWiki/NIKA/Main}
+
+The maps, associated figures and logfiles, are delivered to each project
+account under :
+
+/vis/xxx-14/observationData/nika 
+
+where xxx-14 is your project number.  Just after the run, the products of a
+preliminary offline reduction are provided as version v0. Then a clean version
+v1 (including calibration products) will be delivered within several
+months. Observers may contact their respective NIKA instrument friend of
+project for information regarding the offline processing ({\tt
+  http://www.iram.es/IRAMES/mainWiki/Continuum/PoolOrganization/2ndNIKApool}). Depending
+on feedbacks, a version v2 may be needed.
+ 
+
+%----------------------------------------------------------------------------------------
+\begin{thebibliography}{}
+   \bibitem{NIKA_abs_calib} Performance and calibration of the NIKA camera at
+     the IRAM 30 m telescope, A. Catalano et al., 2014, A\&A, 569
+   \bibitem{calvo_2012} Calvo, M., Roesch, M., D\'esert, F. X., et al., Improved mm-wave photometry for kinetic inductance detectors, 2013, A\&A, 551, L12
+\end{thebibliography}
+
+\end{document}

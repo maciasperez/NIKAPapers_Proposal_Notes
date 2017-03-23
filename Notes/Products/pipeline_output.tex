@@ -1,0 +1,622 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage{epsfig}
+\usepackage{latexsym}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{xcolor}
+
+%\topmargin=-3cm
+\topmargin=-1cm
+\oddsidemargin=-1cm
+\evensidemargin=-1cm
+\textwidth=17cm
+%\textheight=27cm
+\textheight=25cm
+\raggedbottom
+\sloppy
+
+\definecolor{Blue}{rgb}{0.,0.,1.}
+\definecolor{LightSkyBlue}{rgb}{0.691,0.827,1.}
+\definecolor{Red}{rgb}{1.,0.,0.}
+\definecolor{Green}{rgb}{0.,1.,0.}
+\definecolor{Purple}{rgb}{0.5, 0., 0.5}
+\definecolor{Try}{rgb}{0.15,0.,1}
+\definecolor{Black}{rgb}{0., 0., 0.}
+
+%To get DRAFT accross all pages
+\usepackage{draftcopy}
+%To replace ``DRAFT'' by ``ON GOING''
+%\draftcopyName{ON GOING}{150}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+\title{NIKA Pipeline output products VersionB.0}
+\author{The NIKA collaboration and IRAM}
+
+\begin{document}
+\maketitle
+
+\abstract{This note describes the data products that the NIKA collaboration
+  intends to provide to external observers for the first NIKA open time
+  observations in February 2014. These products are the calibrated Time
+  Ordered Information, the maps, calibration results (such as the measured
+  beam) and log files.  We also describe the NIKA data specifically produced
+  for the IRAM IMBFITS files. [vA.1: clarify the clean TOI product, vB.0
+  concerns OP2 Data release V0]}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Maps}
+We provide maps as FITS files for all the individual scans and a combination
+of scans per source. The latter is computed by excluding anomalous scans, for
+which we estimate the quality to be significantly poor and would reduce the
+quality of the final combined map. Individual scan files are named with
+respect to the observed source and the scan number as \textcolor{blue}{{\tt
+    IRAM\_MAP\_source\_scan\_1mm.fits}} and \textcolor{blue}{{\tt
+    IRAM\_MAP\_source\_scan\_2mm.fits}} ({\it e.g.} {\tt
+  IRAM\_MAP\_DR21OH\_20121120s0161\_2mm.fits}). Combined maps are named as
+\textcolor{blue}{{\tt IRAM\_MAP\_source\_combined\_1mm.fits}} and
+\textcolor{blue}{{\tt IRAM\_MAP\_source\_combined\_2mm.fits}} ({\it e.g.} {\tt
+  IRAM\_MAP\_DR21OH\_combined\_2mm.fits}).  Three maps are provided in
+extension 0 of the FITS files and ordered in the following order: surface
+brightness map (opacity corrected), standard deviation map, and exposure time
+per pixel (hit map normalized by sampling frequency).  The list of the
+detectors and the scans used to compute the maps are given in extension 1 of
+the FITS file for both individual scan maps and combined maps.  More detailed
+information is given in tables \ref{tab:table_map} and \ref{tab:info_map}. We
+highlight in the following the main issues concerning the map making:
+\begin{itemize}
+\item The standard coordinate system used is Ra.--Dec. (tangential projection:
+  RA---TAN, DEC--TAN) but Azimuth--Elevation maps are done for planets.
+
+\item We use a nearest grid point projection with a pixel size of 4~arcsec
+  (this can be adjusted by request). 
+
+\item A predefined header for map projection can be used upon request if
+  provided by the observers
+
+\item Pixels of the maps that have not been sampled are set to dNaN for the
+  flux maps and zero for the time per pixel maps (see
+  Tab.~\ref{tab:table_map}). Pixels with less than two measurements are set to
+  dNaN for the standard deviation maps.
+
+\item Zero level is set in all detectors timelines outside the source before
+  combining them.
+
+\item Timelines are weighted by the inverse variance of the noise, which is
+  computed outside the source.
+
+\item In the case of point source data, electronic and atmospheric
+  contributions to the data are decorrelated using the standard method
+  described in \cite{NIKA_abs_calib}. Basically, a common-mode timeline is
+  built by averaging all timelines and avoiding on-source detectors at any
+  sample.  The common-mode is first scaled to each detector and then
+  subtracted from the timelines using a simple regression procedure.
+
+\item For extended source data two decorrelation methods can be used. The
+  first of them minimizes the noise but removes large scale structures. It is
+  based on the same common-mode method described above but no masking the
+  source. The second one is based in an iterative procedure. First, a
+  simplified map is constructed using the former method so that the location
+  of the source can be infered. Then this information is used to mask the
+  source when computing the common-mode. This method preserves large scales
+  (up to the size of the array) but is noisier. Both methods are described in
+  \cite{NIKA_abs_calib}.
+
+\end{itemize}
+
+	\begin{table}[ht]
+	\begin{center}
+	\begin{tabular}{|c|c|c|c|c|}
+         \hline
+	Extension & Axis & Content & Units & Comment \\
+	\hline
+	0 & 0 & Flux density & Jansky/beam & Opacity corrected \\
+	0 & 1 & Standard deviation & Jansky/beam & Estimated form the TOI \\
+	0 & 2 & Observing time per pixel & second & Same as hit map normalized by sampling frequency \\
+	1 &    & Info structure & -- & See Tab.~\ref{tab:info_map} \\
+	\hline
+	\end{tabular}
+	\end{center}
+	\caption{Map FITS files extension 0 }
+	\label{tab:table_map}
+	\end{table}
+
+	\begin{table}[ht]
+	\begin{center}
+	\begin{tabular}{|c|c|c|c|}
+         \hline
+	Structure row & Content & Units & Comment \\
+	\hline
+        1 & Number of scan used & none & \\
+        2 & List of the scan used & none & Only one for individual scan maps \\
+        3 & List of the KIDs used & none & Labeled by the detector number (numdet) \\
+        4 & List of opacities of the given channel & none & Computed from skydips \\
+        5 & List of the integration times & second & \\
+        6 & Scan type & none & {\it e.g.} azimuth, elevation, lissajous \\
+	\hline
+	\end{tabular}
+	\end{center}
+	\caption{Map FITS files extension 1.}
+	\label{tab:info_map}
+	\end{table}
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Calibration results}
+The calibration procedure is described in \cite{NIKA_abs_calib}. The main outputs associated to this procedure are listed below.
+\subsection{Spectral bandpasses}
+The spectral bandpasses are given for both frequencies in \textcolor{blue}{{\tt NIKA\_bandpass.fits}}. The first extension contains the 1.25 mm channel and the second extension contains the 2.05 mm channel. For both wavelengths, we provide the sampled frequency in GHz, the corresponding NIKA bandpass transmission and error, and a typical atmospheric transmission model for 2 mm of precipitable water vapor above the telescope. Note that the NIKA bandpass transmission is measured using a Martin-Puplett Interferometer with a Rayleigh-Jeans spectrum. Hence, color corrections have to be computed using a Rayleigh-Jeans spectrum as reference.
+
+\subsection{Unit conversion coefficients}
+Unit conversion coefficients are given for both wavelengths in the file \textcolor{blue}{{\tt NIKA\_unit\_conversion.fits}}. The first extension contains the 1.25 mm channel and the second extension contains the 2.05 mm channel. The following conversion factors are provided by integrating the corresponding spectra over the NIKA bandpasses:
+	\begin{itemize}
+	\item K$_{\mathrm{CMB}}$ to K$_{\mathrm{RJ}}$ 
+	\item Compton parameter $y$ to K$_{\mathrm{CMB}}$
+	\item K$_{\mathrm{RJ}}$ to Jy/beam
+	\item Jy/beam to Jy/sr accounting for the main beam only
+	\end{itemize}
+	
+\subsection{Average beams}
+Maps of the strong point sources ({\it e.g.} planets), used by external observers for calibration/focus/pointing, will be used to measure the beam at 1.25 mm and 2.05 mm. This will be done for the total map (all detectors combined) and up to 60 arcsec. We will also compute the solid angle covered by the beam as a function of angular radius. These values are included in the FITS file named \textcolor{blue}{{\tt NIKA\_beam.fits}}. The explicit content of these files is given in Tab.~\ref{tab:beam}.
+	\begin{table}[ht]
+	\begin{center}
+	\begin{tabular}{|c|c|c|c|}
+         \hline
+	Structure row & Content & Units & Comment \\
+	\hline
+        1 & Angular radius & arcsec & \\
+        2 & Normalized beam response profile & none & To be trusted up to 60 arcsec \\
+        3 & Statistical error on the beam response & none &  \\
+        4 & Angular radius up to which the beam is integrated & arcsec & \\
+        5 & Angular coverage of the beam & arcsec$^2$ & To be trusted up to 60 arcsec \ \\
+        6 & Statistical error on the angular coverage & arcsec$^2$ & \\
+	\hline
+	\end{tabular}
+	\end{center}
+	\caption{Beam FITS files content.  Values in extension 0 and 1 are for the 1.25 mm and 2.05 mm channels, respectively.}
+	\label{tab:beam}
+	\end{table}
+
+\subsection{Focal plane: projection of the array in the sky}
+Main focal plane properties are given in the file \textcolor{blue}{{\tt NIKA\_focal\_plane.fits}}. Values in extension 0 and 1 are for the 1.25 mm and 2.05 mm channels, respectively. 
+The file includes:
+\begin{itemize}
+\item Position of the KIDs with respect to the telescope pencil beam in Nasmyth coordinates along the X axis.
+\item Position of the KIDs with respect to the telescope pencil beam in Nasmyth coordinates along the Y axis.
+\item An estimate of the beam FWHM fitted for all detectors with an elliptical gaussian beam.
+\item An estimate of the beam FWHM along the X axis, fitted for all detectors with an elliptical gaussian beam.
+\item An estimate of the beam FWHM along the Y axis, fitted for all detectors with an elliptical gaussian beam.
+\end{itemize}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{NIKA data for IMBFITS}
+A subset of the raw NIKA data is included in the NIKA IRAM IBMFITS files that
+contain also pointing and extra observation information. These NIKA data in
+extension {\sl Params}, include detector information in the form of parameters
+and flags for each detector. Important parameters are described here: in the
+header, $AF\_MOD$ or $BF\_MOD$ give the frequency (Hz) of the
+modulation. Table data contain: $NUMDET$, the KID official name, $Array$ (= 1
+or 2, for 1 and 2mm channels), $ACQ\_BOX$ (0 or 1, the electronic readout box
+index), $FREQUENCY$ the frequency (decaHz) of the tone, $WIDTH$ the width of
+the resonance (decaHz), $TYPE$ is (= 0 for non-existent KID (that should not
+happen as data are not transmitted, =1 for useable KIDs, =2 for OFF-resonance
+tones, $\ge 3$ KIDs with problems) and finally $K\_FLAG$ will contain another
+diagnosis (Flags per scan are similar to the definition given in the next
+section, Table~\ref{tab:table_flag}) .
+
+
+We also provide Raw Time Ordered Information (rTOI) including common data
+(sample number and MJD) and detector data. In terms of detector data, in
+extension {\sl IMBF-backendNIKAxmm} (with x = 1 or 2, per subscan), we include
+for each detector and for each sample the raw {\it in phase} ($I$) and {\it in
+  quadrature} ($Q$) values of the transmission of the detector and their
+derivatives ($dI$ and $dQ$), the transformed quantities $R$ and $PF$ in Hz
+that are an estimate of the change of the resonance frequency of the detector
+(the basic quantity needed to be projected on the sky), $Ftone$ which is the
+frequency of the KID tone, and $Fres$ that is an estimate of the resonance
+total frequency of the detector, which is linear with the total power but of
+lower accuracy, so it is used only for opacity corrections. Only data for
+valid detectors are included.
+
+Here is a summary description of the parameters of instrument that can be
+found in the the KidParams extension header:
+\begin{verbatim}
+946763122 /NOMEXP1		// to be ignored                                                                          
+          0 /NOMEXP2		// to be ignored                                                                          
+          8 /NOMEXP3		// to be ignored                                                                          
+          0 /NOMEXP4		// to be ignored                                                                          
+          0 /RETARD		// delay in synchro: obsolete (used only during NIKA technical runs 1 to 5)               
+         32 /DIV_KID		// Number of raw measurements (953.67Hz) which are averaged to give one acquisition sample
+				//  The acquisition frequency is given in Hz by f = 5e8 / 2^19 / DIV_KID
+         10 /TUNING_IP		 least significant bits of the IP number)
+; Beginning of A box. What follo
+-1062731299 /A_IP		
+       2611 /A_PORT		
+          2 /A_ETH		
+        616 /A_SYNTHE		
+          2 /A_CODE_HORLOGE	
+     524288 /A_MAXBIN		 
+          5 /A_NB_BANDE		
+         70 /A_TONE_BANDE	 edge
+  195500000 /A_F_BASE		 Hz)
+      10 000 /A_F_MOD		
+      95367 /A_F_BIN		
+         25 /A_ATT_INJ		
+          0 /A_ATT_MES		
+         15 /A_GAIN_DAC1	
+         15 /A_GAIN_DAC2
+         20 /A_GAIN_DAC3
+         35 /A_GAIN_DAC4
+         44 /A_GAIN_DAC5
+          6 /A_GAIN_TONE	//  The default level of an individual tone (0 to 8 linear; should not be used)
+				//----  acquisition of antenna parameters  -------------
+-1764302789 /C_IP		// IP number for mrt-lx1.iram.es
+      63405 /C_PORT		// The port of the daemon server running on mrt-lx1
+          4 /C_ETH		// acquisition code 4 = TCP Antenna 
+		
+				//----  Elvin server acquisition  -------------
+         -1 /D_IP
+       3000 /D_PORT		// Port for sami Elvin broadcast
+          3 /D_ETH		// acquisition code  3 = Reading Elvin broadcast
+
+				//----  MAP acquisition: cryostat temperatures   -------------
+         -2 /RET_ELV
+-1062731470 /E_IP		// IP number of the automat that controls the cryostat
+       6002 /E_PORT		// Readout port of the automat
+          5 /E_ETH		// The type of acquisition: 5 = MAP readout
+         69 /E_MAPINDEX_TBM	// index used to read the temperature of the mixing box
+         67 /E_MAPINDEX_T4K	// index used to read the temperature of the 4K stage
+
+
+NKCONF00=            946763122 /NOMEXP1     // to be ignored                                                                          
+NKCONF01=                    0 /NOMEXP2     // to be ignored                                                                          
+NKCONF02=                    8 /NOMEXP3     // to be ignored                                                                          
+NKCONF03=                    0 /NOMEXP4     // to be ignored                                                                          
+NKCONF04=                    0 /RETARD      // delay in synchro: obsolete (used only during NIKA technical runs 1 to 5)               
+NKCONF05=                   32 /DIV_KID     // Number of raw measurements (953.67Hz) which are averaged to give one acquisition sample
+//  The acquisition frequency is given in Hz by f = 5e8 / 2^19 / DIV_KID
+NKCONF06=                   10 /TUNING_IP      //  The number of the Acquisition Mac computer in charge of the tuning (only the 8 least significant bits of the IP number)
+What follows applies equally to the B box, ...
+
+NKCONF07=          -1062731299 /A_IP           //  The IP of the acquisition box for the A array (over 32 bits)                       
+NKCONF08=                 2611 /A_PORT         //  The connection port for the acquisition box                                   
+NKCONF09=                    2 /A_ETH          //  The type of connection with the box : 1=UDP  2=TCP                            
+NKCONF10=                  616 /A_SYNTHE       //  The synthesizer code associated to the box                                    
+NKCONF11=                    2 /A_CODE_HORLOGE //  The clock code for this box    : 0=internal_clock,  2 = external_clock (master), 3 = external_clock (slave)                                               
+NKCONF12=               524288 /A_MAXBIN       //  The total number of bins available to generate the individual KID frequencies: 2^18 for the NIKEL card
+NKCONF13=                    5 /A_NB_BANDE     //  The number of frequency bands :  5 for the NIKEL card                          2^18 for the NIKEL card
+NKCONF14=                   70 /A_TONE_BANDE   //  The total number of tones per band: 70 for the NIKEL card plus 10 NULLs at the
+NKCONF15=            195500000 /A_F_BASE       //  The base frequency of the synthesizer in units of 10 Hz (multiply by 10 to get Hz)
+NKCONF16=                10000 /A_F_MOD        //  The modulation frequency in Hz                                                
+NKCONF17=                95367 /A_F_BIN        //  The frequency per fbin in units of 0.01 Hz : 953.67Hz =   5e8 / 2^19          
+NKCONF18=                   25 /A_ATT_INJ      //  The injection attenuator level in dB                                          
+NKCONF19=                    0 /A_ATT_MES      //  0                                                                             
+NKCONF20=                   15 /A_GAIN_DAC1    //  Global output level of the signal for the 5 bands (linear scale from 0 to 128)
+NKCONF21=                   15 /A_GAIN_DAC2    
+NKCONF22=                   20 /A_GAIN_DAC3
+NKCONF23=                   35 /A_GAIN_DAC4
+NKCONF24=                   44 /A_GAIN_DAC5
+NKCONF25=                    6 /A_GAIN_TONE    //  The default level of an individual tone (0 to 8 linear; should not be used)
+NKCONF26=          -1062731298 /B_IP
+NKCONF27=                 2612 /B_PORT
+NKCONF28=                    2 /B_ETH
+NKCONF29=                  216 /B_SYNTHE
+NKCONF30=                    2 /B_CODE_HORLOGE
+NKCONF31=               524288 /B_MAXBIN
+NKCONF32=                    5 /B_NB_BANDE
+NKCONF33=                   70 /B_TONE_BANDE
+NKCONF34=            136300000 /B_F_BASE
+NKCONF35=                 5000 /B_F_MOD
+NKCONF36=                95367 /B_F_BIN
+NKCONF37=                   20 /B_ATT_INJ
+NKCONF38=                    0 /B_ATT_MES
+NKCONF39=                   20 /B_GAIN_DAC1
+NKCONF40=                   23 /B_GAIN_DAC2
+NKCONF41=                   20 /B_GAIN_DAC3
+NKCONF42=                   33 /B_GAIN_DAC4
+NKCONF43=                   50 /B_GAIN_DAC5
+NKCONF44=                    6 /B_GAIN_TONE
+NKCONF45=          -1764302789 /C_IP
+NKCONF46=                63405 /C_PORT
+NKCONF47=                    4 /C_ETH
+NKCONF48=                   -1 /D_IP
+NKCONF49=                 3000 /D_PORT
+NKCONF50=                    3 /D_ETH
+NKCONF51=                   -2 /RET_ELV
+NKCONF52=          -1062731470 /E_IP
+NKCONF53=                 6002 /E_PORT
+NKCONF54=                    5 /E_ETH
+NKCONF55=                   69 /E_MAPINDEX_TBM
+NKCONF56=                   67 /E_MAPINDEX_T4K
+NKCONF57=                   49 /E_MAPINDEX_PINJ
+EXTNAME = 'KidParams'          /
+\end{verbatim}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Clean Time Ordered Information}
+The Clean Time Ordered Information (cTOI) is provided for both wavelengths (1
+mm and 2\,mm) in FITS files named \textcolor{blue}{{\tt
+    iram30m-NIKAxmm-scan-clean\_imb.fits}} where {\tt scan} is scan defines
+the observed scan using {\tt year + month + day + s + scan number} and $x$ is
+1 or 2 ({\it e.g.} {\tt iram30m-NIKA2mm-20140223s8-clean\_imb.fits}). These
+clean TOI FITS files include both detector (extension CleanNIKAdata) and
+common data (extension KidParams) as given in Tab.~\ref{tab:table_toi}. They
+are written at the same place as for the raw fits files. Only valid detectors
+are retained (the number of valid detectors is written as NDET in the
+CleanNIKAdata extension header).  This is done within the NIKA analysis
+pipeline after point-source calibration and without any decorrelation nor
+filtering. Note that glitches are flagged and interpolated in order not to
+bias spectral properties of the timelines. Along with the calibrated
+brightness (Jy/beam) for each detector, we give a flag which means that only
+data with a flag equal to zero should be projected on maps.  The calibration
+of brightness involves the absolute calibration on Uranus, the opacity
+correction and the elevation-dependent beam efficiency correction. We then
+give the absolute RA-DEC instantaneous pointings of each detector (in
+degrees).  For planets, the system is Az-El centered on 0,0 (see the XXYYTYPE
+keyword). We also give a robust common mode to help with a quick look (by
+simply projecting brightness minus common mode). That common mode is computed
+as the average of the detectors far enough of a given detector (20 arcseconds)
+which are the most correlated with it (we take at least 10 of them). It is
+computed on a per subscan basis. The OTF, pointing, Lissajous scans can be
+used. The other types (skydip, track, focus) should not be used (to be
+improved).  In the IMBF-scan extension, we have added the NIKA measured zenith
+opacities at 1 and 2mm (NIKATAU1, NIKATAU2) as well as the median elevation
+(degree) of the scan. We have also insured the continuity of the samples
+across subscans in order to preserve power spectrum analyses. In the extension
+IMBF-antenna-s we have modified the DATE-OBS and DATE-END keywords to match
+the proper MJD of the start and end of each subscan. Not all scans could be
+processed for various reasons, the main one being the issue with recovering
+the pointing information during the February 2014 campaign.
+
+	\begin{table}[ht]
+	\begin{center}
+	\begin{tabular}{|c|c|c|c|}
+	 \hline
+	Structure row & Content & Units & Array type \\
+	\hline
+	1 &  Point-source calibrated detectors timelines & Jy/beam & $N_{\mathrm{KIDs}} \times N_{\mathrm{sample}}$ \\
+	2 & Flag timelines (see text and Tab.~\ref{tab:table_flag}) & none & $N_{\mathrm{KIDs}} \times N_{\mathrm{sample}}$ \\
+	3 &  R.A. detectors coordinates timelines in the sky & degree & $N_{\mathrm{KIDs}} \times N_{\mathrm{sample}}$ \\
+	4 &  Dec. detectors coordinates timelines in the sky & degree & $N_{\mathrm{KIDs}} \times N_{\mathrm{sample}}$ \\
+	5 & Sample index & none & $N_{\mathrm{sample}}$ \\
+	6 & Time & second & $N_{\mathrm{sample}}$ \\
+	7 & MJD & Day & $N_{\mathrm{sample}}$ \\
+	8 & LST & \textcolor{red}{?} & $N_{\mathrm{sample}}$ \\
+	9 & Elevation & radian & $N_{\mathrm{sample}}$ \\
+	10 & Paralactic angle & radian & $N_{\mathrm{sample}}$ \\
+	11 & Scan azimuth offset & arcsec & $N_{\mathrm{sample}}$ \\
+	12 & Scan elevation offset & arcsec & $N_{\mathrm{sample}}$ \\
+	13 & Subscan index & none & $N_{\mathrm{sample}}$ \\
+	\hline
+	\end{tabular}
+	\end{center}
+	\caption{Time Ordered Information FITS files content.  $N_{\mathrm{KIDs}}$ represents the total number of valid detectors and
+	$N_{\mathrm{sample}}$ the number of samples in the file.}
+	\label{tab:table_toi}
+	\end{table}
+	
+	
+	
+	We also provide overall flags that are computed by summing the powers
+        of two of all the type of flags as $\mathrm{Flag}_{\mathrm{Total}} =
+        \sum_i \mathrm{Flag}_i \times 2^i$, with $\mathrm{Flag}_i$ set to one
+        if flagged and zero otherwise. In this way, the overall flag value,
+        $\mathrm{Flag}_{\mathrm{Total}}$, can be expressed in a binary basis
+        such that digits correspond to individual flags values Valid data
+        samples have therefore an overall flag value of zero. The meaning of
+        the flag index $i$ is given in Tab.~\ref{tab:table_flag}. For example,
+        a data sample for a KID that is out of resonance and for which a
+        glitch has been flagged will have an overall flag value of
+        $\mathrm{Flag}_{\mathrm{Total}} = 2^0 + 2^3 = 9$. This is equivalent
+        to 0001001 in a binary basis, in which we identify the digit to the
+        corresponding flag according to Tab.~\ref{tab:table_flag}.
+	\begin{table}[ht]
+	\begin{center}
+	\begin{tabular}{|c|l|c|c|}
+	 \hline
+	Flag label $i$ & Flag power  & Flag type & Dependency \\
+	\hline
+	0 & 1 & Glitch in the reconstructed flux & KID and sample\\
+	1 & 2 & Off resonance tone & KID \\
+	2 & 4 & Saturated KID &  KID and sample \\
+	3 & 8 & Out of resonance KID & KID \\
+	4 & 16 & Resonance overlap &  KID \\
+	5 & 32 & Cross talking detector & KID \\
+	6 & 64 & Anomalous detector to be discarded & KID \\
+	7 & 128 & $RFdIdQ$ is not well computed & Sample \\
+	8 & 256 & Not a proper part of the scan & Sample (e.g approach slew in
+        Lissajous mode) \\
+	9 & 512 & Interpolated missing pointing data & Sample \\
+	10 & 1024 & KIDs tuning & Sample \\
+	11 & 2048 & Anomalous scan speed (e.g. between subscans, slews...)& Sample \\
+	12 & 4096 &  Frequency scanning & Sample \\
+	13 &  8192&  Frequency scanning blanking & Sample \\
+	14 & 16384 & FPGA frequency change & Sample \\
+	15 & 32768 & Tuning error & Sample \\
+	16 & 65536 &  Wrong resonance & Sample \\
+	17 & 131072 &  Lost resonance & Sample \\
+	18 & 262144 &  Scan status  & Sample \\
+	19 & 524288 &  Dilution Temperature Glitch  & Sample \\
+	20 & 1048576 &  Jump in the TOI  & Sample \\
+        21 & 2097152 & Common glitch to all kids of an array & Sample\\
+	
+	\hline
+	\end{tabular}
+	\end{center}
+	\caption{Description of the meaning of flags. See~\cite{calvo_2012} for
+          more details on the KIDs transfer function. The flag value of $2^i$
+          corresponds to the flag type given in the table (see text for more
+          details). Valid (to be projected on the map) data will have a total
+          flag value of zero.}
+	\label{tab:table_flag}
+	\end{table}	
+		
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Instrument performance}
+A summary of basic instrumental performance will be provided in the form of an ascii table.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Log file}
+For every scan, we produce a log file \textcolor{blue}{{\tt logfile\_scan.txt}} ({\it e.g.} {\tt logfile\_20121120s0162.txt}) that contains the list of parameters given in 
+Table \ref{tab:table_log}.  This file will also give the list of parameters used in the processing described above (see talbe \ref{tab:table_param}).
+\begin{table}[ht]
+	\begin{center}
+	\begin{tabular}{|c|c|c|}
+         \hline
+	Variable & Unit & Comment \\
+	\hline
+	Scan number & none & {\it e.g.} {\tt 20121120s0161} \\
+	Object & none & \\
+	$\tau_{\mathrm{1.25 mm}}$ & none & Measure with NIKA using skydips \\
+	$\tau_{\mathrm{2.05 mm}}$ & none & Measure with NIKA using skydips \\
+	Integration time & second & On-source time \\
+	Scan type & none & {\it e.g.} azimuth, elevation, lissajous \\
+	Mean elevation & radian & \\
+	Mean paratactic angle & radian & \\
+	Mean LST & I don't know & \\
+	Mean MJD  & I don't know & \\
+	R.A. pointing coordinates & degree -- arcmin -- arcsec & \\
+	Dec. pointing coordinates & degree -- hour -- second & \\
+	IRAM 30-m latitude & degree & \\
+	IRAM 30-m longitude & degree & \\
+	IRAM 30-m altitude & meters & \\
+	 \textcolor{red}{DIR} & & \\ 
+	 \textcolor{red}{FILE} & & \\
+	\textcolor{red}{OPERATOR} & &  \\
+	\textcolor{red}{OBSID} & &  \\
+	\textcolor{red}{PROJID} & &  \\
+	\textcolor{red}{AZ\_DEG} & &  \\
+	\textcolor{red}{EL\_DEG} & &  \\
+	\textcolor{red}{PARANGLE\_DEG} & &  \\
+	\textcolor{red}{DATE} & &  \\
+	\textcolor{red}{N\_OBS} & &  \\
+	\textcolor{red}{N\_OBSP} & &  \\
+	\textcolor{red}{OBSTYPE} & &  \\
+	\textcolor{red}{SYSOFF} & &  \\
+	\textcolor{red}{XOFFSET\_ARCSEC} & &  \\
+	\textcolor{red}{YOFFSET\_ARCSEC} & &  \\
+	\textcolor{red}{SWITCHMODE} & &  \\
+	\textcolor{red}{FOCUSX\_MM} & &  \\
+	\textcolor{red}{FOCUSY\_MM} & &  \\
+	\textcolor{red}{FOCUSZ\_MM} & &  \\
+	\textcolor{red}{PRESSURE\_HPA} & & \\ 
+	\textcolor{red}{TAMBIENT\_C} & &  \\
+	\textcolor{red}{REL\_HUMIDITY\_PERCENT} & &  \\
+	\textcolor{red}{WINDVEL\_MPERS} & &  \\
+	\textcolor{red}{TIPTAU225GHZ} & &  \\
+	\hline
+	\end{tabular}
+	\end{center}
+	\caption{Log file parameters.}
+	\label{tab:table_log}
+	\end{table}
+
+	\begin{table}[ht]
+	\begin{center}
+	\begin{tabular}{|c|c|c|}
+         \hline
+
+	Parameter & Unit & Comment \\
+	\hline
+	glitch\_width & sample & \\
+	glitch\_nsigma & none & \\
+	glitch\_iq & none & \\
+	decor\_method & none & \\
+	decor\_baseline & none & \\
+	decor\_kid\_dist & arcsec & \\
+	decor\_iq\_plane\_apply & none & \\
+	decor\_iq\_plane\_per\_subscan & none & \\
+	decor\_iq\_plane\_one\_mode & none &  \\
+	decor\_median\_width & sample & \\
+	decor\_source\_interpol\_d\_min & arcsec &  \\
+	decor\_full\_per\_subscan & none & \\
+	decor\_full\_d\_min & arcsec & \\
+	decor\_dual\_band\_per\_subscan & none & \\
+	decor\_dual\_band\_x\_calib & none & \\
+	decor\_dual\_band\_nsmooth\_temp & sample & \\
+	decor\_dual\_band\_fcut1 & Hz & \\
+	decor\_dual\_band\_fcut2 & Hz & \\
+	decor\_common\_mode\_per\_subscan & none & \\
+	decor\_common\_mode\_x\_calib & none &  \\
+	decor\_common\_mode\_nsmmoth & sample & \\
+	decor\_common\_mode\_d\_min & arcsec &  \\
+	decor\_common\_mode\_map\_guess1mm & none & \\
+	decor\_common\_mode\_map\_guess2mm & none & \\
+	decor\_common\_mode\_flag\_type & none & \\
+	decor\_common\_mode\_flag\_lim1mm & none & \\
+	decor\_common\_mode\_flag\_lim2mm & none & \\
+	decor\_common\_mode\_relob1mm & none & \\
+	decor\_common\_mode\_relob2mm & none & \\
+	filter\_apply & none & \\ 
+	filter\_width & sample &  \\ 
+	filter\_nsigma & none & \\ 
+	filter\_freq\_start & Hz &  \\ 
+	filter\_low\_cut1 & Hz &  \\ 
+	filter\_low\_cut2 & Hz &  \\ 
+	filter\_cos\_sin & none &  \\ 
+	filter\_pre & none &  \\ 
+	fit\_elevation & none &  \\ 
+	w8\_apply & none &  \\ 
+	w8\_dist\_off\_source & arcsec & \\ 
+	w8\_per\_subscan & none & \\ 
+	w8\_map\_guess1mm & none & \\ 
+	w8\_map\_guess2mm & none & \\ 
+	w8\_flag\_type & none &  \\ 
+	w8\_flag\_lim1mm & snr or Jy/beam & \\  
+	w8\_flag\_lim2mm & snr or Jy/beam &  \\ 
+	w8\_relob1mm & arcsec &  \\ 
+	w8\_relob2mm & arcsec &  \\ 
+	w8\_nsigma\_cut & none &  \\ 
+	zero\_level\_apply & none &  \\ 
+	zero\_level\_dist\_off\_source & arcsec &  \\ 
+	zero\_level\_map\_guess1mm & none &  \\ 
+	zero\_level\_map\_guess2mm & none &  \\ 
+	zero\_level\_flag\_type & none &  \\ 
+	zero\_level\_flag\_lim1mm & snr or Jy/beam &  \\ 
+	zero\_level\_flag\_lim2mm & snr or Jy/beam &  \\ 
+	zero\_level\_relob1mm & arcsec &  \\ 
+	zero\_level\_relob2mm & arcsec &  \\ 
+	map\_size\_x & arcsec &  \\ 
+	map\_size\_y & arcsec &  \\ 
+	map\_reso & arcsec &  \\ 
+	\hline
+	\end{tabular}
+	\end{center}
+	\caption{Processing parameters.}
+	\label{tab:table_param}
+	\end{table}
+
+\section{Data delivery}
+
+The IMBFITS files and the clean calibrated TOI are archived by IRAM and can be
+provided on request. Calibration products will be available on the NIKA wiki
+page: {\tt http://www.iram.es/IRAMES/mainWiki/NIKA/Main}
+
+The maps, associated figures and logfiles, are delivered to each project account under :
+
+/vis/xxx-13/observationData/nika 
+
+where xxx-13 is your project number.  During the run, the products of a
+preliminary offline reduction will be provided as version v0. Then a version
+v1 will be delivered within a month. Observers may contact their respective
+NIKA instrument friend of project for information regarding the offline
+processing ({\tt
+  http://www.iram.es/IRAMES/mainWiki/Continuum/PoolOrganization/1stNIKApool}). Depending
+on feedbacks, a version v2 may be needed.
+ 
+
+%----------------------------------------------------------------------------------------
+\begin{thebibliography}{}
+   \bibitem{NIKA_abs_calib} Performance and calibration of the NIKA camera at
+     the IRAM 30 m telescope, A. Catalano et al.,  arXiv:1402.0260.
+   \bibitem{calvo_2012} Calvo, M., Roesch, M., D\'esert, F. X., et al., Improved mm-wave photometry for kinetic inductance detectors, 2012, A\&A
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,287 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Thin Sectioned Essay
+% LaTeX Template
+% Version 1.0 (3/8/11)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original Author:
+% Nicolas Diaz (nsdiaz@uc.cl) with extensive modifications by:
+% Vel (vel@latextemplates.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[a4paper, 11pt]{article} % Font size (can be 10pt, 11pt or 12pt) and paper size (remove a4paper for US letter paper)
+
+\usepackage[protrusion=true,expansion=true]{microtype} % Better typography
+\usepackage{graphicx} % Required for including pictures
+\usepackage{wrapfig} % Allows in-line images
+
+\usepackage{mathpazo} % Use the Palatino font
+\usepackage[T1]{fontenc} % Required for accented characters
+\linespread{1.05} % Change line spacing here, Palatino benefits from a slight increase by default
+
+\makeatletter
+\renewcommand\@biblabel[1]{\textbf{#1.}} % Change the square brackets for each bibliography item from '[1]' to '1.'
+\renewcommand{\@listI}{\itemsep=0pt} % Reduce the space between items in the itemize and enumerate environments and the bibliography
+
+\renewcommand{\maketitle}{ % Customize the title - do not edit title and author name here, see the TITLE block below
+\begin{flushleft} % Right align
+{\LARGE\@title} % Increase the font size of the title
+
+\vspace{50pt} % Some vertical space between the title and author name
+
+{\large\@author} % Author name
+\\\@date % Date
+
+\vspace{40pt} % Some vertical space between the author block and abstract
+\end{flushleft}
+}
+
+%----------------------------------------------------------------------------------------
+%	TITLE
+%----------------------------------------------------------------------------------------
+
+\title{\textbf{NIKA2 research note}\\   
+\textsc{NIKA2 Commissioning results v1.0}} % Subtitle
+
+
+\author{NIKA2 team % Author
+\\{\textit{NIKA2 collaboration}}} % Institution
+
+\date{\today} % Date
+
+
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle % Print the title section
+
+%----------------------------------------------------------------------------------------
+%	ABSTRACT AND KEYWORDS
+%----------------------------------------------------------------------------------------
+
+%\renewcommand{\abstractname}{Summary} % Uncomment to change the name of the abstract to something else
+
+\begin{abstract}
+This notes describe the main results of the NIKA2 commissioning campaigns.
+\end{abstract}
+
+%\hspace*{3,6mm}\textit{Version:}  % Version
+
+\vspace{30pt} % Some vertical space between the abstract and first section
+
+%----------------------------------------------------------------------------------------
+%	ESSAY BODY
+%----------------------------------------------------------------------------------------
+
+%\tableofcontents
+
+\section{Introduction}
+
+\subsection{Commissioning goals}
+The main goal of the NIKA2 commissioning runs described below is to check the performance of the instrument and
+its stability with respect to the specifications described in Table \ref{nika2specs}.
+
+%\begin{table}[h]
+%\caption{Commissioning campaigns and dates}
+%\label{nika2specs}
+%\begin{tabular}{|c|c|c|s}
+%\hline 
+% FWHM &   &  \\
+%\hline  
+%\hline 
+%\end{tabular} 
+%\end{table} 
+
+
+
+\subsection{Commissioning runs}
+We had 9 commissioning runs for NIKA2 as described in Table~\ref{nika2runs}.
+
+%\begin{table}[h]
+%\caption{Commissioning campaigns, dates and general comment%
+%\label{nika2runs}
+%\begin{tabular}{|c|c|c|}
+%\hline 
+%RUN  &  Dates & General comments \\ 
+%\hline 
+%N2R1 &      xx  &  xx \\  
+ 
+%\hline 
+%\end{tabular} 
+%\end{table} 
+
+% ---------------------------------------
+\section{Bandpasses}
+What actually matters more than the ``central frequency'' that depends on many
+assumptions and definitions are the bandpasses. We should make available in a
+.fits file, clearly, our bandpasses to avoid future misunderstanding and propagation of
+false numbers. Official values should be 150 and 260~GHz. We should also clearly
+state that these measured bandpasses were done with the difference of two
+black-bodies, hence they include a $\nu^2$ RJ term.\\
+
+With these bandpasses and an official ATM spectrum, we expect an opacity ratio of
+XX between 1 and 2mm and see~\ref{se:opacities} for more details.
+
+% ---------------------------------------
+\section{sensitivities}
+
+\begin{figure}
+\begin{center}
+\includegraphics[clip, angle=0, scale = 0.5]{Figures/NEFD_HLS091828_20170226s415_FXDC0C1_GaussPhot.png}
+\caption{Kids Xcalib with fixed fwhm 12.5 and 18.5, HLS091828.}
+\label{fig:nefd_vs_t}
+\end{center}
+\end{figure}
+
+{\bf The specs/goals ``NEFD on X \% of pixels'' should be understood as : we have
+XX\% valid pixels, and with these pixels, we have an NEFD of YY. We should not
+discard some fraction of our pixels and estimate an NEFD on this subset.}\\
+
+HLS091828 is moderately fain source, expected to be below 100~mJy at 1mm and
+XX~mJy at 2mm {\bf check values in NIKA1 paper + use SED for predictions in
+  NIKA2's bands}. This source was chosen for its flux and its availability during
+Run9 for long integration. It has been observed for XX hours in total over three
+nights. These data can be used to derive the NEFD in several ways. One is to fit
+the evolution of the uncertainty on the flux of the source with the integration
+time. Another one is to produced jackknife maps with the data and to measure the
+uncertainty on the flux in the end, while estimating the time of
+integration. Fig.~\ref{fig:nefd_vs_t} shows the decrease of the uncertainty on
+the measured flux at the center of the map as a function of time. We either fit
+a power law or fix the power law to -0.5 and fit only the amplitude. Results are
+summarized in Tab.~\ref{tab:nefd}
+
+
+\begin{table}
+\begin{tabular}{|l|l|l|}
+\hline
+Array & Free power law & Fixed power law $t^{-0.5}$\\
+\hline
+A1 & $47.9$ mJy.s$^{-0.54}$ & $37.9$ mJy.s$^{1/2}$\\
+A2 & $5.2$ mJy.s$^{-0.51}$  & $4.8$ mJy.s$^{1/2}$\\
+A3 & $38.9$ mJy.s$^{-0.54}$ & $30.6$ mJy.s$^{1/2}$\\
+A1 \& A3 & $28.5$ mJy.s$^{-0.53}$ & $23.6$ mJy.s$^{1/2}$\\
+\hline
+\end{tabular}
+\end{table}
+
+
+% ---------------------------------------
+\section{Focal plane reconstruction}
+\label{se:fov}
+
+\begin{figure}
+\begin{center}
+\includegraphics[clip, angle=0, scale = 0.15]{Figures/FOV_A1.png}
+\includegraphics[clip, angle=0, scale = 0.15]{Figures/FOV_A2.png}
+\includegraphics[clip, angle=0, scale = 0.15]{Figures/FOV_A3.png}
+\caption{Nasmyth offsets of each array, from beammap 26s415 on 3C84.}
+\label{fig:fov}
+\end{center}
+\end{figure}
+
+\begin{table}
+\begin{tabular}{|l|l|l|}
+\hline
+Array & Number of valid kids & Fraction of all kids\\
+\hline
+A1 & 793 & 0.75\\
+A2 & 481 & 0.83\\
+A3 & 872 & 0.83\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{equation}
+FOV diameter = \sqrt{4 N_{tot. kids} * gridstep^2/\pi}
+\end{equation}
+
+The same definition applies to ``Effective FOV'' to avoid extra multiplication
+by the fraction of valid pixels
+
+\begin{equation}
+F\lambda = gridstep\times D(30m)/\lambda
+\end{equation}
+
+% ----------------------------------------
+\section{Opacity derivation}
+\label{se:opacities}
+
+
+\begin{figure}
+\begin{center}
+\includegraphics[clip, angle=0, scale =
+  0.5]{Figures/NEFD_vs_tau_20170226s415_FXDC0C1_Jy_common_mode_kids_out.png}
+\includegraphics[clip, angle=0, scale =
+  0.5]{Figures/tau1_tau2_20170226s415_FXDC0C1_GaussPhot_common_mode_kids_out.png}
+\caption{}
+\label{fig:fov}
+\end{center}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\includegraphics[clip, angle=0, scale = 0.5]{Figures/test_allskd_N2R9.jpg}
+\caption{}
+\label{fig:fov}
+\end{center}
+\end{figure}
+
+
+Note: most of this section is already on the wiki.
+\begin{itemize}
+\item Description of the method
+\item comparison to EMIR
+\end{itemize}
+
+%------------------------------------------
+\section{Beam pattern}
+
+%------------------------------------------
+\section{Calibration}
+
+\begin{figure}
+\begin{center}
+\includegraphics[clip, angle=0, scale = 0.4]{Figures/Calibrators_N2R9_20170226s415_FXDC0C1_GaussPhotFluxType_fixed_fwhm_gauss.png}
+\caption{Decorrelation mask: 100 or 60 arcsec, KID cross-calib with fixed fwhm
+  (12.5 and 18.5), then absolute photometry with the same fixed fwhm. Note:
+  NGC7027 not point like and not corrected for here. Error bars from NIKA2
+  measurements and abs. cal. uncertainties by JFL.}
+\label{fig:fov}
+\end{center}
+\end{figure}
+
+
+
+
+%------------------------------------------
+\section{Noise description: TOI and maps}
+
+%------------------------------------------
+\section{Dark tests}
+\input{dark_tests}
+%------------------------------------------
+\section{Summary of performance}
+
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY
+%----------------------------------------------------------------------------------------
+
+\bibliographystyle{unsrt}
+
+\bibliography{sample}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}

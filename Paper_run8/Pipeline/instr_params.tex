@@ -1,0 +1,129 @@
+
+
+A few tasks do not need to be done at each scan reduction. They involve
+instrument characterization, like the focal plane reconstruction and the
+calibration, telescope focus and pointing monitoring. They are presented in this
+section.
+
+\subsection{Focal plane reconstruction}
+
+Because of \nika's frequency multiplexing, we do not know {\it a priori} where
+kids point on the sky. To acquire such information, we raster scan a strong
+point source, typically a planet\footnote{\nico{ update with values of run8 ?} the
+  angular diameter of Uranus was 3.54~arcsec; if we compare it to the size of
+  the main beam (13.5 and 18.4~arcsec), the convolution of the corresponding
+  disk with a gaussian with 13.5 and 18.4~arcsec FWHM broaden our beam by only
+  0.17 and 0.12~arcsec at 1.25~mm and 2.14~mm respectively.}, to derive the
+pointing offsets of each kid w.r.t to the nominal pointing of the telescope. We
+proceed in the following way:
+
+\begin{enumerate}
+\item We apply a median filter of approximately 5~FWHM of width to the detector
+  timelines to subtract most of the atmospheric signal and the low frequency
+  correlated electronic noise while preserving most of the planet signal (less
+  than 1~\% lost at scales smaller than 2.5 x FWHM). These timelines are then
+  projected onto individual maps per detector.
+\item We discard kids that show ghost images at this stage to keep only well
+  behaved kids (see Sect.~\ref{se:doubles} for further details).
+\item We fit a Gaussian ellipse of each selected kid, look at the distribution
+  of all kids FWHMs, ellipticities, amplitudes and discard outlyers.
+\item With this selection of well behaved kids (the majority), we can make a
+  first combined map of the source. Indeed, the Gaussian amplitude of each
+  gaussian can be used as a proxy to relative calibration and the Gaussian peak
+  position is a good first estimate of the kid's pointing offsets w.r.t nominal
+  pointing coordinates.
+\item With the source combined map in hand, we can now improve the subtraction
+  of atmosphere and correlated noise by applying the point source common mode
+  subtraction described in Sect.~\ref{se:point_source_decorr}.
+\item We repeat the process of projecting these clean timelines onto indivicual
+  kid maps and fitting gaussian ellipses to derive the final pointing offsets
+  and beam parameters. The amplitude of the gaussian is our primary relative and
+  absolute calibration.
+\end{enumerate}
+
+\nico{ show plots : focal plane beam centroid positions, beam shapes and profiles
+  to show the absence of ringing with this common mode subtraction ?}
+
+This focal plane reconstruction and calibration needs to be done only once per
+instrument configuration (frequency tuning), and not before each scientific
+scan. In practice, we monitor these parameters about once a day during an
+obseration to acquire statistics, check their robustness and improve their
+relative precision. Once we have all kid pointing offsets, we choose one
+reference pixel near the center of the 2mm array (because quazars are usually
+brighter at 2mm than at 1mm) for the determination of the pointing model and for
+further pointing monitoring (see Sect.~\ref{se:pointing_cross}). We also choose
+a 1mm kid close to it for focus monitoring (see Sect.~\ref{se:focus}).
+
+%% \subsubsection{Ghost beams}
+%% 
+%% Some kids (\nico{ give fraction number}) also show ghost images of other kids and
+%% we introduce the mixing matrix $M$ to account for this effect. In practice, the
+%% raw timelines are therefore better described by
+%% 
+%% \begin{equation}
+%% d_k'(t) = M_{kk_1}d_{k_1}(t)
+%% \end{equation}
+
+\subsection{Pointing reconstruction}
+
+\nico{ Do we want to talk about holes in the data and pointing inpainting ? I'd
+  say no because it's not a feature of the pipeline, but if we think that yes we
+  should, here is the place.}
+
+\subsection{Pointing correction}
+\label{se:pointing_cross}
+
+Due to ambient temperature variations essentially, the telescope absolute
+pointing may vary by a few arcseconds compared to the pointing model. To correct
+for such effects, we periodically observe a bright quazar (or a planet) close to
+the science field that is going to be observed to determine the current pointing
+offsets that must be subtracted from our observation coordinates. We have two
+ways to perform such observation. For convenience and further reference, we name
+them after their IRAM operation command.
+
+\paragraph{Method 1: {\tt pointing\_track.}} The telescope scans the
+pointing source back and forth in azimuth, then back and forth in elevation. The
+pointing offsets can then be derived in two ways: first by fitting a Gaussian on
+the one-dimensional profiles of the source as seen in the timeline of the
+reference detector, second by fitting a Gaussian on the combined map of all
+kids. In each case, the atmosphere and correlated electronic noise are
+subtracted with the method described in Sect.~\ref{se:point_source_decorr}. In
+most cases, both determinations agree to sub-arcsecond precision, but when the
+opacity is large, the combined map has higher signal to noise. This makes it our
+reference method.
+
+\paragraph{Method 2: {\tt pointing\_liss.}} The TOI processing is the same as in the
+previous method but the this time, the telescope scans the source with a
+Lissajous pattern and fit the pointing parameters on the combined map.
+
+\nico{ comment on the relative precision of each method.}
+
+\subsection{Focus monitoring}
+\label{se:focus}
+
+Ambient temperature variations also impact the focusing of the telescope. About
+once every three hours, we therefore optimize the position of the secondary
+mirror. Here again we have two methods to do this
+
+\paragraph{Method 1: {\tt focus\_track.}} The telescope points to a planet or a
+bright point source and the secondary mirror is moved by $\pm 1$mm in steps. At
+each step, we determine the total flux that falls on the reference pixel and fit
+a parabola as a function of the mirror position. The position of the peak gives
+the optimal focus position. The subtraction of atmosphere and
+electronic correlated noise is done using kids far from the source \nico{ detail
+  further...}
+
+\paragraph{Method 2: {\tt focus\_liss.}} The telescope performs a Lissajou scan of
+the source for 5 different positions of the secondary mirror. Each scan is
+reduced separately and an elliptical Gaussian is fit for each one. We fit the amplitude
+of the Gaussian as a function of the mirror position with a parabola. The peak
+position provides the optimal focus position. The same can be done this time
+fitting the minimum of the FWHM as a function of the mirror position. Both
+results agree to a fraction of arcsec.
+
+\nico{ comment on the comparison of the two methods, pros and cons of each one}
+
+\subsection{Absolute calibration}
+
+This point is extensively discussed in \cite{catalano_2014}. We only briefly
+summarize the main lines here. \nico{ skydips, opacity corrections}

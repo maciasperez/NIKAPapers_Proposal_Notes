@@ -1,0 +1,161 @@
+
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}   % LaTeX, comprends les accents !
+\usepackage[T1]{fontenc}      % Police contenant les caractÃ¨res franÃ§ais
+\usepackage{geometry}         % DÃ©finir les marges
+\usepackage[francais]{babel}  % Placez ici une liste de langues, la
+                              % derniÃ¨re Ã©tant la langue principale
+\usepackage{graphicx}         % Inserer des images
+\usepackage{gensymb}
+\usepackage{color}
+
+\pagestyle{headings}          % Pour mettre des entÃªtes avec les titres
+                              % des sections en haut de page
+
+\title{\bf The NIKA polarization pipeline}           % Les paramÃ¨tres du titreÂ : titre, auteur, date
+\author{{\it The NIKA collaboration}}
+\date{\today}
+
+\setlength{\textwidth}{15.5cm}
+\setlength{\textheight}{23cm}
+\oddsidemargin +0.5cm                                          % Marges
+\evensidemargin +0.5cm
+\topmargin +0cm
+
+\begin{document}
+
+\maketitle                    % Faire un titre utilisant les donnÃ©es
+                              % passÃ©es Ã  \title, \author et \date
+\begin{figure}[!h]
+\centering
+\includegraphics[height=2cm,trim=0cm 0.1cm 0.1cm 0.1cm, clip=true]{Figures/nika_white_bg}
+\end{figure}
+\vspace*{0.5cm}
+
+\setcounter{page}{1}
+\setcounter{tocdepth}{1}
+
+\section{Work plan}
+
+\subsection{Nov. 18th}
+
+\begin{itemize}
+\item Alessia is looking at the lab data and trying to get consistent
+  estimates of the tranmission coefficients of the HWP $\alpha$ and $\beta$ and
+  the phase shift angle $\phi$. She will then put these parameters in the
+  simulation pipeline to determine the impact of these nuisance parameters if they
+  are ignored in the map-making. She will then see how to correct for them and set
+  constraints on the precision we need on their determination.
+\item Alessia will vary the scan speed, the HWP rotation frequency and the
+  sampling rate to determine the possible working points of the system that
+  minimize the template and the duration of observations
+\item These two items will lead to the definition of calibration actions we
+  will have to perform at Pico in January.
+\item Nico will continue analyzing the data taken during the Run Cryo and
+  maintain compatibility of the codes.
+\end{itemize}
+
+
+
+\subsection{Scan speed / HWP rotation frequency / Acquisision rate: TBD}
+
+The signal is contained in the frequency range allowed by the optical beam and
+the scanning frequency. We want it to be small compared to the HWP rotation
+frequency because... On the other hand, we do not want to scan too slowly to
+avoid too long integration time and the HWP rotation frequency impacts the
+acquisition rate.\\
+
+We need to determine the specifications to put on each of these parameters.
+
+
+\subsection{Instrumental polarization: TBD}
+
+Definition: Instrumental Polarization (IP) is the ability of the experimental setup to induce
+polarization from an unpolarized incoming signal before the modulation by HWP.\\
+
+How much can we tolerate ? How much can we correct for and how ? Propagation of
+errors with a fiducial Mueller matrix should give first estaimtes.\\
+
+We should distinguish between IP acting on the near field (namely the
+atmosphere) and IP acting on astronimcal signal. We may address both separately
+with skydips and OTF geometries on a planet at different elevations.\\
+
+What about a polarized background coming from the Nasmyth cabin and entering
+directly in the cryostat ?
+
+\subsection{HWP acquisition: TBD}
+
+The HWP rotation angle is not sampled at the same rate as the data rate. How is
+it done exactly ? How does it impact the measured signal ?
+
+\subsection{HWP modeling: TBD}
+
+For now, the simulation and analysis codes assume a perfect HWP. We should make
+this more physical.
+
+\subsection{Decorrelation / Atmosphere: TBD}
+
+Nov.~12th, 2013: the level of sky noise is arbitrary for now and has the same
+amplitude at 1 and 2mm. We should look at how it's actually calibrated in the
+temperature pipeline and reuse it.\\
+
+How does the atmosphere impact on the recovery of $S_0, S_1, S_2$ ? How do we
+decorrelate ?
+
+\subsection{Transfer function: TBD}
+
+Any processing applied to the data alters the incoming signal. In particular,
+the current polarizatin map making includes a linear template subtraction and a
+lowpass. How does it alter the signal ? (run simulations of various input skies,
+in particular power laws with known spectra).
+
+\subsection{Intesnsity and polarizaiton bands: TBD}
+
+The bands are not the same in intensity and polarization. for now, the
+simulation and analysis pipelines ignore this issue.
+
+
+\subsection{Template: TBD}
+
+Def: we call template any additional signal to the timelines that is due to the
+HWP. It should be a function of the HWP angle and should look at first order
+like a sum or harmonics of the HWP rotation frequency with slowly varying
+amplitudes.\\
+
+A piece of code can fit for this template and subtract it. For now it deals with
+one detector at a time. It could be improved by using several detectors at the
+same time (TBC).\\
+
+Can we go towards a model of this template with more physics in it to subtract
+it better ?
+
+
+\subsection{Astrometry: TBD}
+
+\subsubsection{Parallactic angle: TBD}
+Nov. 12th, 2013: As the elevation of the source changes, its polarization rotates too. For now,
+the simulation and the analysis codes do not account for this.
+
+\subsubsection{Calibration of the orientation:TBD}
+Nov. 12th, 2013: For now, we implicitely assme that the zero of the HWP angle coincides with the
+zero on the sky (sic!). How will we actually derive the phase of the HWP angle ?
+
+\subsection{Beams: TBD}
+Nov. 12th, 2013: For now, the simulation pipeline assumes that all kids have the same beam. This
+is to avoid to produce one map per different kid beam. A FICSbell approach could
+help improve the simulation.
+
+\subsection{Splitting grid: TBD}
+Nov. 12th, 2013: The splitting grid is assumed to be perfect for now.
+
+\subsection{Pixel aliasing: TBD}
+Nov. 12th, 2013: The diffuse component of the simulated sky is obtained by
+scanning a simulated pixelized map. If the pixels are not small enough compared
+to the sampling rate and scan speed, this induces artefacts in the timelines
+that hamper our ability to compare input/output. For now, the only solution is
+to simulate input maps with much small pixels but then comparison with output
+map with coarser resolution is not trivial.
+
+\end{document}
+

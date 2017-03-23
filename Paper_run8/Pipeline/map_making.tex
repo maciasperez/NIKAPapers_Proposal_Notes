@@ -1,0 +1,67 @@
+
+\nico{
+\begin{itemize}
+%\item we concentrate our efforts on timeline processing and pre-whitening and
+%  use a naive co-additive map making
+\item we are currently working on optimal map makers for our future deep field
+  integrations and with NIKA2 in perspective
+\item pointing accuray and monitoring
+\item Show transfer function and photometry reconstruction on point sources and
+  diffuse emission (simulations)
+\item Mention the difference between noise on TOIs and noise estimated on the
+  map background
+\end{itemize}
+}
+~\\
+
+The problem of map making has been extensively discussed in the literature, with
+pros and cons of various methods depending on the kind of signal the instrument
+is after and at what stage of the data processing the various sources of noise
+are addressed. As a side question, one could ask what exactly belongs to map
+making or to TOI processing, and to what extent the two overlap. In this work,
+we have put efforts in atmosphere and noise subtraction at the TOI level but
+this involved spatial information obtained from maps built in the early stages
+of the TOI processing. While different in principle from an integrated
+iterative map making {\it e.g.} \cite{sanepic}, this process does involve interations and
+exchange of information between time and map domains. This being said, in this
+section, we describe what goes beyond the standard TOI processing already
+presented in sect.~\ref{se:toi_proc} and how TOIs are combined into maps.
+
+The general map making equations reads:
+
+\begin{equation}
+d_t = A_{tp}S_p + n_t
+\end{equation}
+
+where $d$ is the vector that gathers all detector timelines, $S_p$ is the sky
+map considered as a vector and $A_{tp}$ is the pointing matrix that encodes the
+address of the observed pixel $p$ by a sample at time $t$. $n_t$ is the total
+noise vector. The maximum likelihood solution of this equations is ({\it e.g. }
+\cite{madmap}):
+
+\begin{equation}
+\hat{S} = \left(A^TN^{-1}A\right)^{-1}A^TN^{-1}d
+\label{eq:map_making}
+\end{equation}
+
+where $N$ is the full noise covariance matrix $<nn^T>$, whose size is
+$(N_{kids}\times N_{samples})^2$ elements. Rather than estimating this matrix
+and compute eq.~(\ref{eq:map_making}), we shall assume that after the TOI
+processing described in sect.~\ref{se:toi_proc}, the detector timelines are
+dominated by their own white noise and that they are independent of one
+another. $N$ therefore reduces to a diagonal matrix and its diagonal elements
+are simply the variance of each kid noise. Solving eq.~(\ref{eq:map_making})
+reduces to a co-addition of samples with optimal weighting by the inverse
+variance of the noise. Errors on the final map induced by this approximation are
+estimated via full Monte-Carlo simulations of the observation (see
+sect.~\ref{se:validation}).
+
+
+% In this work, rather than
+%determining the complete noise covariance matrix $N$, using it in this form and
+%then estimate how uncertainties propagate to the final map,
+%we... \nico{Generaliser l'equation en incluant un matrice F de filtrage et
+%  expliquer que notre approche ayant consiste a faire du pre-whitening des
+%  timelines, on se restreint ici a de la coaddition mais qu'on simule toute la
+%  chaine pour valider le processus et les erreurs induites. Revoir comment Eric
+%  amene ca aussi dans le papier Master.}

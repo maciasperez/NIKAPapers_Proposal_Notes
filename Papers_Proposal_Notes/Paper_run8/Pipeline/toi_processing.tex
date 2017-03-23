@@ -1,0 +1,69 @@
+
+%% \begin{itemize}
+%% \item list the contributions to kid timelines : signal, atmosphere noise,
+%%   electronic correlated noise, white noise
+%% \item Mention coupling between some kids (doubles) and plateau correction
+%% \item explain how we ``decorrelate''
+%% \item ...
+%% \end{itemize}
+%% ~\\
+
+At each time $t$, a kid data sample $d$ is the sum of astrophysical signal $s$ ,
+atmosphere emission $a$ , white noise $n$ and electronic noise $c$. Each of
+these components is weighted by its own calibration factor. The electronic noise
+is partially correlated.
+
+\begin{equation}
+d_k(t) = \alpha_k s(t) + \beta_k a(t) + \gamma_k c(t) + n(t)
+\label{eq:signal_model_1}
+\end{equation}
+
+The telescope diameter etc... place the far field at... hence, the atmospheric
+emission is seen by all detectors as a common signal.
+
+\subsection{Deglitching}
+
+The first operation involved in the TOI processing is the flagging and the
+correction of cosmic ray induced signal, often refered to as ``glitches''. For
+\nika, the rate of glitches is \nico{XXX}. Given the \nico{ XXX ms} time contant of
+kids and our sampling rate of 23.8~Hz, glitches behave like a single data sample
+in large excess compared to the neighbour samples. To detect such samples, we
+compare the value of each sample to the median of the TOI on the 200 \nico{ TBC}
+neighbour samples and flag it if the difference is larger than 6 \nico{ TBC} times
+the r.m.s. of these neighbour samples. We exclude the flagged samples to fit a
+straight baseline on the remaining samples and replace the flagged samples by
+the value of the fit while keeping the flag information in order not to project
+this fake value on maps.
+
+\subsection{Atmosphere and correlated noise subtraction}
+\label{se:point_source_decorr}
+
+To subtract the atmosphere and electronic noise contributions of
+eq.~(\ref{eq:signal_model_1}), we use the fact that they are not fixed in sky
+coordinates and that they dominate at low temporal frequencies. For each kid, we
+flag out samples when the kid is closer to the source than 3~FWHM's \nico{
+  TBC}. With the remaining samples, we can cross-calibrate all kids far from the
+source, {\it i.e.} on the atmosphere and the correlated electronic noise
+component to derive a single average timeline (hereafter refered to as ``common
+mode''). Each kid is then cross-calibrated on this common mode far from the
+planet and the latter is subtracted from the entire kid TOI. This process
+suppresses atmospheric noise and a significant fraction of the correlated
+electronic noise while preserving point source photometry, since in pratice, no
+filtering is applied (\nico{ give numbers from simulations and develop in the case
+  of decorrelation from blocks of kids}).
+
+This method is in principal suitable only for the observation of point sources
+with known positions. In practice, it works for undetected weak sources. Indeed,
+in this case, the source signal is subdominant compared to the common mode and
+it can be ignored during the decorrelation process. If after integration, the
+source shows up on the map, we can then determine its position and then repeat
+the process while flagging it out. If no source is detected, we can only place
+an upper limit on the source flux. The fraction of the flux potentially
+subtracted with the common mode can then be assessed via Monte-Carlo simulations
+(see Sect.~\ref{se:validation}). This method works also for sources that,
+although not point like, are small enough compared to our matrix (1.5~arcmin
+field of view \nico{ exact value TBC}). In this case, it is still possible to mask
+out samples that are on source and to use those out of the source to
+derive the common mode. \nico{ conlude on the other extrem case of diffuse
+  emission for which our instrument is indeed not optimal, but address how much
+  we can still recover (e.g. taurus, SZ)}.

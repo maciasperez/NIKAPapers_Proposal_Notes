@@ -1,0 +1,31 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{amsmath}
+
+\begin{document}
+On a : $m_{1} = T + P$  \\ 
+Rajoute la non linéarité : $ m = m_{1} + \varepsilon m_{1}^{2}$
+
+\begin{equation}
+\begin{split}
+m & = m_{1} +\varepsilon (T+P)^{2} \\
+& = m_{1} + \varepsilon(T+P)^{2}  \\
+ & =  m_{1} + \varepsilon(T^{2} + P^{2} + 2TP) \\
+ & = T + P + \varepsilon(T^{2} + P^{2} + 2TP) 
+\end{split}
+\end{equation}
+
+avec $\varepsilon \ll 1$ et $T = I, P = Q\cos(2\alpha) + U \sin(2\alpha)$
+
+\begin{equation}
+\begin{split}
+m & =  I + Q\cos(2\alpha) + U\sin(2\alpha) + \varepsilon [I^{2} +(Q\cos(2\alpha) + U\sin(2\alpha))^{2} + 2I(Q\cos(2\alpha) + U\sin(2\alpha))]\\
+& = I  + Q \cos(2\alpha) + U \sin(2\alpha) + \varepsilon [I^{2}  + (Q\cos(2\alpha))^{2} + (U \sin(2\alpha))^{2} + 2QU\cos(2\alpha)\sin(2\alpha) \\
+& + 2IQ\cos(2\alpha) + 2IU\sin(2\alpha)] \\
+& \simeq (I + \varepsilon I^{2}) + (Q + 2\varepsilon IQ) \cos(2\alpha) + (U + 2 \varepsilon IU) \sin(2\alpha)
+\end{split}
+\end{equation}
+
+\end{document}

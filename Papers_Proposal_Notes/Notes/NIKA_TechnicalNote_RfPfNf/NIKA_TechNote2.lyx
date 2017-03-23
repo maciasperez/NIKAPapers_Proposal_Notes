@@ -1,0 +1,1039 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass report
+\begin_preamble
+\usepackage{txfonts}
+\usepackage{bm}
+\end_preamble
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+The dual-band NIKA: Technical Note 2 v1.0, IRAM run 2011,2012,2013
+\end_layout
+
+\begin_layout Standard
+A.
+ Monfardini, A.
+ Benoit, M.
+ Calvo, Institut Néel (IN) MCBT, BP 166, 38042 Grenoble, France, 
+\end_layout
+
+\begin_layout Standard
+F.
+ X.
+ Désert, N.
+ Ponthieu, Institut de Planétologie et d'Astrophysique de Grenoble (IPAG),
+ BP 53, 38041 Grenoble, France
+\end_layout
+
+\begin_layout Standard
+A.
+ Sievers, IRAM, Granada, Spain
+\end_layout
+
+\begin_layout Standard
+Miscellaneous frequency and fits file information for the IRAM2011 run.
+\end_layout
+
+\begin_layout Standard
+Note 2 is an enlarged version of Note 1 with 1D polynomial fit added, FXD
+ 14 Jan 2014.
+\end_layout
+
+\begin_layout Chapter
+Frequencies
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:Frequencies"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Data acquisition rate is 
+\begin_inset Formula $f_{acq}=\frac{1.9\times10^{3}}{80}=23.75\,\mathrm{Hz}$
+\end_inset
+
+, hence one integration is 
+\begin_inset Formula $42.1053\ \mathrm{ms}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+To get the absolute frequency, Hz_per_bin= 
+\begin_inset Formula $\frac{498.074\times10^{6}}{2^{18}}=1900.0015\ \mathrm{Hz}$
+\end_inset
+
+ .
+ 
+\end_layout
+
+\begin_layout Standard
+If one uses the IDL routine read_camera_data, then the tone frequency of
+ each kid is available in kHz as kidpar.kid_freq [ Actually no, we must use
+ a separate output for the routine] .
+ Both 1 and 2 mm channels span a range of frequencies from 
+\begin_inset Formula $1.311$
+\end_inset
+
+ to 
+\begin_inset Formula $1.524\ \mathrm{GHz}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The so-called 
+\begin_inset Formula $RfdIdQ$
+\end_inset
+
+ (the first vector in the data for each kid) is the resonance central frequency
+ in units of Hz starting at zero at the beginning of each scan (by construction).
+ Thus, it is not the absolute frequency.
+ One can work out how the tone frequency is different from the central resonance
+ frequency by propagating from scan to scan the offsets obtained from the
+ last frequency sweep scan.
+ In more detail: 
+\begin_inset Formula $I$
+\end_inset
+
+ is the integration of 40 elementary measurements
+\begin_inset Formula 
+\[
+I=\sum_{j=0}^{39}i_{j}\ ,
+\]
+
+\end_inset
+
+with one elemetary measurement acquired at 
+\begin_inset Formula $0.950\ \mathrm{kHz}$
+\end_inset
+
+.
+ The modulation of the carrier frequency occurs with a step of 
+\begin_inset Formula $2\ \mathrm{kHz}$
+\end_inset
+
+ at this rate of 
+\begin_inset Formula $0.950\ \mathrm{kHz}$
+\end_inset
+
+ (the modulation period is thus 
+\begin_inset Formula $2.10526\ \mathrm{ms}$
+\end_inset
+
+).
+ The measured 
+\begin_inset Formula $dI$
+\end_inset
+
+ is the difference between the integration of 20 measurements in the high
+ frequency steps and the integration of the 20 measurements in the low frequency
+ steps:
+\begin_inset Formula 
+\[
+dI=\sum_{k=0}^{19}(i_{2k+1}-i_{2k})
+\]
+
+\end_inset
+
+So the derivative of 
+\begin_inset Formula $I$
+\end_inset
+
+ should be written as 
+\begin_inset Formula 
+\[
+\frac{\partial I}{\partial f}=2\frac{dI}{2\ \mathrm{kHz}}\ ,
+\]
+
+\end_inset
+
+and similarly for 
+\begin_inset Formula $Q$
+\end_inset
+
+ (beware with 
+\emph on
+YAFOT
+\emph default
+, yet another factor of two).
+ The 
+\begin_inset Formula $RfdIdQ$
+\end_inset
+
+ is obtained by integrating the following formula:
+\begin_inset Formula 
+\[
+\Delta RfdIdQ=\Delta f\ \frac{\Delta I.<dI>+\Delta Q.<dQ>}{<dI>^{2}+<dQ>^{2}}\ ,
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\Delta$
+\end_inset
+
+ represents the difference of measurements between one sample and the previous
+ sample and 
+\begin_inset Formula $<>$
+\end_inset
+
+ means that an average of the 100 values centered on the sample has been
+ computed and 
+\begin_inset Formula $\Delta f=1\ \mathrm{kHz}$
+\end_inset
+
+.
+ The averaging is done to limit the noise on the 
+\begin_inset Formula $dI$
+\end_inset
+
+ and 
+\begin_inset Formula $dQ$
+\end_inset
+
+ measurements.
+ This has limitations (see below) for quickly varying signals.
+\end_layout
+
+\begin_layout Chapter
+File Exchange format
+\end_layout
+
+\begin_layout Subsection*
+TOI
+\end_layout
+
+\begin_layout Standard
+Time ordered information (TOI) files containing the raw NIKA data or clean
+ data should be exchanged between the parties (IRAM, IN, Cardiff, ...).
+ We propose to stick to the format agreed with IRAM during the NIKA#3 October
+ 2011 run.
+ We can extend it if needed with flags and calibrations.
+ Files are split by wavelength, so we generate 2 files per scan.
+\end_layout
+
+\begin_layout Standard
+Primary header (extension 0) should contain a line stating the origin of
+ the data:
+\end_layout
+
+\begin_layout Description
+TELESCOP= 'IRAM 30m' / Telescope Name 
+\end_layout
+
+\begin_layout Description
+ORIGIN = 'IRAM ' / Organization or institution 
+\end_layout
+
+\begin_layout Description
+DATE = '2012-01-21T09:31:01' / file creation date (YYYY-MM-DDThh:mm:ss UT)
+\end_layout
+
+\begin_layout Description
+INSRUME = 'NIKA2011_IRAMOct_2mm' 
+\end_layout
+
+\begin_layout Standard
+Other coment or keyword lines can indicate the processing used.
+ For the present conversion I use the keyword N2I (NIKA to IRAM)
+\end_layout
+
+\begin_layout Description
+N2I = 'v8 ' / 'NIKA to IRAM conversion program version '
+\end_layout
+
+\begin_layout Description
+DATE = '2012-01-21T09:31:01' / file creation date (YYYY-MM-DDThh:mm:ss UT)
+\end_layout
+
+\begin_layout Description
+INTTIME = '0.0421053' / 'seconds per integration'
+\end_layout
+
+\begin_layout Description
+COMMENT raw data
+\end_layout
+
+\begin_layout Standard
+Secondary header (extension 1) should contain one line stating the name
+ of the extension and what is in the binary table in extension 1 
+\emph on
+e.g.
+\emph default
+: 
+\end_layout
+
+\begin_layout Description
+'EXTNAME', 'RawData', 'MJD, Sample, Raw R, I, Q, dI, dQ' 
+\end_layout
+
+\begin_layout Standard
+The data themselves are written as the R column, then the I column, and
+ so on.
+ In one fits column, we have 150 detectors per line (150 columns) and the
+ time samples increasing with the line number.
+ Thus a 2D array is embedded in one fits column.
+ MJD is a double.
+ Sample in long integer.
+ Data are single or double precision float.
+ Flag column can be added as byte.
+\end_layout
+
+\begin_layout Subsection*
+FPG
+\end_layout
+
+\begin_layout Standard
+The focal plane geometry should be described in fits binary table files
+ with the following format:
+\end_layout
+
+\begin_layout Standard
+One line per detector.
+ As many columns as needed.
+ For example,
+\end_layout
+
+\begin_layout Standard
+PixelNumber, Pixel_xindex, Pixel_yindex, x_arcsec, y_arcsec, FWHMmajor_arcsec,
+ FWHMminor_arcsec, BeamAngle_degree
+\end_layout
+
+\begin_layout Standard
+PixelNumber goes from 0 to 149 (one FPG file per channel).
+ Pixel_[x, y]index is an integer giving the association of a given sky beam
+ to a grid node.
+ [x,y]_arcsec are the sky beam position in Nasmyth coordinates (i.e.
+ after derotation from elevation).
+ FWHM[major,minor]_arcsec is the beam FWHM of the elliptical Gaussian fit
+ along with the beam orientation in degrees (anticlockwise from the x axis,
+ TBC).
+\end_layout
+
+\begin_layout Standard
+The header should contain the date and scan number from which the FPG has
+ been deduced.
+\end_layout
+
+\begin_layout Subsection*
+MAP
+\end_layout
+
+\begin_layout Standard
+Maps can be written in the usual primary extension (0) as cubes (NAXIS1
+ and NAXIS2 should be the x and y map coordinates, NAXIS3 being the number
+ of maps).
+ The header should describe the meaning of NAXIS3 and how the maps are ordered
+ (by scans, by detector, by [average, noise, weight] triplet, and so on.).
+ They share the same projection system which is described in the primary
+ header.
+\end_layout
+
+\begin_layout Chapter
+2D polynomial fit
+\end_layout
+
+\begin_layout Standard
+There are limitations to the on-line computation of the Response in frequency
+ as shown in Chap.~
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:Frequencies"
+
+\end_inset
+
+.
+ The averaging by 100 points can produce hysteresis effect whereas we would
+ like to go back to the same resonance frequency when the Kid is back to
+ the same 
+\begin_inset Formula $I,\ Q$
+\end_inset
+
+.
+ We have a new formulation that involves 2D polynomial fitting of 
+\begin_inset Formula 
+\[
+F=P(I,\ Q)
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $P$
+\end_inset
+
+ is a polynomial of the two measured quantity and 
+\begin_inset Formula $F$
+\end_inset
+
+ is the resonance frequency to be found.
+ The first derivative of that function yields the inverse of the 
+\begin_inset Formula $dI,\ dQ$
+\end_inset
+
+ measurements.
+ We minimize the quantity
+\begin_inset Formula 
+\[
+A=\sum_{t}\left[\left(\frac{\partial F}{\partial I}-\frac{dI\ \Delta f}{dI^{2}+dQ^{2}}\right)^{2}+\left(\frac{\partial F}{\partial Q}-\frac{dQ\ \Delta f}{dI^{2}+dQ^{2}}\right)^{2}\right](dI^{2}+dQ^{2})
+\]
+
+\end_inset
+
+for a given Kid and a given scan which yields the polynomial coefficients
+ and thus the resonance frequency up to a constant.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename Fig/RfPfMars_20111019_51_24.jpg
+	width 70page%
+	rotateAngle 90
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Polynomial fit to a scan on Mars for Kid 24
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename Fig/RfPfMars_20111019_51_154.jpg
+	width 70page%
+	rotateAngle 90
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Polynomial fit to a scan on Mars for Kid 154
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The figures show that the obtained new frequency (in blue in the upper left
+ panel) called 
+\begin_inset Formula $Pf$
+\end_inset
+
+ as a function of sample number is different in amplitude but usually closely
+ follows the initial frequency measurement (black in the upper left panel)
+ 
+\begin_inset Formula $Rf$
+\end_inset
+
+ (upper middle panel).
+ The white noise is barely affected (upper right panel).
+ Lower panels show the quality of the fit with a third-order polynomial
+ (black dots are the measurements, blue diamonds are the results of the
+ fit, contours represent constant value of the resonance frequency).
+ 
+\end_layout
+
+\begin_layout Chapter
+New 1D polynomial fit
+\end_layout
+
+\begin_layout Standard
+We show here a simplified version of the previous method.
+ It relies on 1D polynomial fit which is more robust than the 2D version
+ in principle.
+ It is also easier to implement in terms of algorithms.
+ The idea is to find how to "project" 
+\begin_inset Formula $I,$
+\end_inset
+
+
+\begin_inset Formula $Q$
+\end_inset
+
+ and 
+\begin_inset Formula $dI$
+\end_inset
+
+, 
+\begin_inset Formula $dQ$
+\end_inset
+
+ onto an axis in a way as linear as possible with frequency (itself assumed
+ linear with optical power).
+ For that, we study the expected physical 
+\begin_inset Formula $Z=I+jQ$
+\end_inset
+
+ complex dependency of a KID with frequency.
+ G.
+ J.
+ Grabovskij, L.
+ J.
+ Swenson et al (arXiv:0809.4919) have shown that 
+\begin_inset Formula 
+\begin{equation}
+Z=\frac{Z_{r}z_{1}}{Z_{r}z_{2}+z_{3}}\label{eq:circ1}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $z_{1}$
+\end_inset
+
+, 
+\begin_inset Formula $z_{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $z_{3}$
+\end_inset
+
+ are constant complexes, and 
+\begin_inset Formula $Z_{r}=\frac{1}{2}+j(f-f_{0})/w$
+\end_inset
+
+ where
+\begin_inset Formula $f_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $w$
+\end_inset
+
+ are constant real values in Hz.
+ The location of 
+\begin_inset Formula $Z$
+\end_inset
+
+ is on a circle (at least approximately when near the resonance).
+ The inverse of 
+\begin_inset Formula $Z$
+\end_inset
+
+ is a circle but we can normalize so as to have an infinite radius circle,
+ which can be expected to be linear with the KID frequency.
+ To simplify the solution of this inversion we proceed in two phases.
+ The first phase is to scale, translate, rotate and reverse the initial
+ circle so that it is identical to the reference circle which has 
+\begin_inset Formula $\frac{1}{2}$
+\end_inset
+
+ radius and is centered on 
+\begin_inset Formula $(\frac{1}{2},0)$
+\end_inset
+
+ in the complex plane, as defined by:
+\begin_inset Formula 
+\[
+Z_{ref}=\frac{1}{2}+\frac{1}{2}\cos\phi+j\sin\phi=\cos\frac{\phi}{2}\exp j\frac{\phi}{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The second phase consists in inverting that reference circle, as 
+\begin_inset Formula $\frac{1}{Z_{ref}}=Z_{res}$
+\end_inset
+
+ 
+\begin_inset Formula 
+\[
+Z_{res}=\frac{1}{\cos\frac{\phi}{2}}\exp-j\frac{\phi}{2}=1-j\tan\frac{\phi}{2}\,,
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+and 
+\begin_inset Formula $f=f_{0}+\frac{w}{2}\tan\frac{\phi}{2}$
+\end_inset
+
+.
+ The imaginary part of the inversion of the reference circle is just linearly
+ dependent on the frequency (assumption).
+ To calibrate this dependency (because the linearity is only approximate)
+ we must rely on the 
+\begin_inset Formula $dI$
+\end_inset
+
+, and 
+\begin_inset Formula $dQ$
+\end_inset
+
+ measurements.
+\end_layout
+
+\begin_layout Section
+Circle fit
+\end_layout
+
+\begin_layout Standard
+The first phase is best achieved with a circle fit to the data samples.
+ If 
+\begin_inset Formula $r$
+\end_inset
+
+ is the radius of the circle and 
+\begin_inset Formula $x_{c},\,y_{c}$
+\end_inset
+
+ its center and 
+\begin_inset Formula $\alpha=atan(\frac{y_{c}}{x_{c}})$
+\end_inset
+
+, then 
+\begin_inset Formula $Z$
+\end_inset
+
+ becomes 
+\begin_inset Formula $Z_{norm}$
+\end_inset
+
+ with 
+\begin_inset Formula $I_{norm}=-\frac{1}{2r}[(I-x_{c})cos\alpha+(Q-y_{c})sin\alpha]+\frac{1}{2}$
+\end_inset
+
+, and 
+\begin_inset Formula $Q_{norm}=\frac{1}{2r}[-(I-x_{c})sin\alpha+(Q-y_{c})cos\alpha]$
+\end_inset
+
+.
+ This is shown in Fig.
+\begin_inset space \thinspace{}
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:1dcircle1"
+
+\end_inset
+
+ where the top-left plot shows 
+\begin_inset Formula $Z$
+\end_inset
+
+ and the top-right plot shows 
+\begin_inset Formula $Z_{norm}$
+\end_inset
+
+.
+ This figure is made with a simple simulation using Eq.
+\begin_inset space \thinspace{}
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:circ1"
+
+\end_inset
+
+ and including some noise.
+ The bottom-left plot shows the inverse of 
+\begin_inset Formula $Z_{norm}$
+\end_inset
+
+.
+ The data points lie mostly along the imaginary line of abscissa 1 and of
+ ordinate 
+\begin_inset Formula $y_{3}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename Fig/Fig1_CircleStudy.pdf
+	width 70page%
+	rotateAngle 180
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:1dcircle1"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+1D Polynomial fit to a simulation of one KID.
+ Top-left: diamonds are individual 
+\begin_inset Formula $I,\,Q$
+\end_inset
+
+ points on a circle (blue curve).
+ Top-right: normalized circle transformation of the points into the reference
+ circle coordinates.
+ The resonance is reached at (1,0).
+ Bottom-left: complex inverse of the points in the previous complex plane.
+ Bottom-right: 1D polynomial fit (blue curve) to the derivative data points
+ corresponding to 
+\begin_inset Formula $dI,\,dQ$
+\end_inset
+
+ normalized and inverted.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+1D polynomial fit
+\end_layout
+
+\begin_layout Standard
+We need to calibrate 
+\begin_inset Formula $y_{3}$
+\end_inset
+
+ which is in principle proportional to 
+\begin_inset Formula $f-f_{0}$
+\end_inset
+
+.
+ The modulation technique does that for us for the derivative function.
+ Let us call 
+\begin_inset Formula $dI$
+\end_inset
+
+, and 
+\begin_inset Formula $dQ$
+\end_inset
+
+, the measured variations of the signal with a modulation of frequency of
+ 
+\begin_inset Formula $\Delta f$
+\end_inset
+
+.
+ The normalized variations are 
+\begin_inset Formula $dI_{norm}=-\frac{1}{2r}[dIcos\alpha+dQsin\alpha]$
+\end_inset
+
+, and 
+\begin_inset Formula $dQ_{norm}=\frac{1}{2r}[-dIsin\alpha+dQcos\alpha]$
+\end_inset
+
+.
+ The derivative of the inverse complex is 
+\begin_inset Formula $dZ_{res}=-dZ_{norm}/Z_{norm}^{2}$
+\end_inset
+
+.
+ We then take the imaginary part of that : 
+\begin_inset Formula $dy_{3}$
+\end_inset
+
+ and use it to calibrate 
+\begin_inset Formula $y_{3}$
+\end_inset
+
+ in this way: we fit 
+\begin_inset Formula $\frac{\Delta f}{dy_{3}}=R_{n}(y_{3})$
+\end_inset
+
+ where 
+\begin_inset Formula $R_{n}$
+\end_inset
+
+ is a polynomial function with a degree 
+\begin_inset Formula $n$
+\end_inset
+
+ (see bottom-right panel of Fig..
+\begin_inset space \thinspace{}
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:1dcircle1"
+
+\end_inset
+
+) which is easy to integrate into 
+\begin_inset Formula $P_{n+1}$
+\end_inset
+
+ (with 
+\begin_inset Formula $\dot{P}_{n+1}=R_{n}$
+\end_inset
+
+).
+ We then obtain the relative frequency of the kid from 
+\begin_inset Formula $y_{3}$
+\end_inset
+
+ only with 
+\begin_inset Formula $f-f_{0}=P_{n+1}(y_{3})$
+\end_inset
+
+ which is plotted in Fig.
+\begin_inset space \thinspace{}
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:1dcircle2"
+
+\end_inset
+
+ along with the residual of the fit.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename Fig/Fig2_CircleStudy.pdf
+	width 70page%
+	rotateAngle 180
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:1dcircle2"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Comparison between the KID simulation and the 1D polynomial retrieval.
+ Top plot: Relative KID frequency as a function of the phase 
+\begin_inset Formula $\phi$
+\end_inset
+
+ in the circle as deduced from the 1D polynomial fit (black curve) and from
+ the initial simulation (blue curve).
+ Bottom plot: residual frequency (black curve minus blue curve) as a function
+ of the same phase.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The method is robust if the polynomial fit is weighted.
+ Indeed the noise on the derivative measurement (
+\begin_inset Formula $\frac{\Delta f}{dy_{3}}$
+\end_inset
+
+) increases as the phase changes (see the bottom-right panel of Fig.
+\begin_inset space \thinspace{}
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:1dcircle1"
+
+\end_inset
+
+ where the flaring away from the zero phase is apparent).
+ The noise is proportional to the noise in 
+\begin_inset Formula $dy_{3}$
+\end_inset
+
+ divided by 
+\begin_inset Formula $dy_{3}^{2}$
+\end_inset
+
+.
+ The noise in 
+\begin_inset Formula $dy_{3}$
+\end_inset
+
+ is not constant.
+ It can be shown that it is inversely proportional to the distance of the
+ current 
+\begin_inset Formula $I,$
+\end_inset
+
+
+\begin_inset Formula $Q$
+\end_inset
+
+ point to the point in the circle which is opposite to the resonance point.
+ This noise model can also be used to show that the noise on the recovered
+ frequency is flaring as we go away from the resonance.
+ To a good approximation, the rms noise is proportional to 
+\begin_inset Formula $1+tan^{2}\frac{\phi}{2}=1+(\frac{2(f-f_{0})}{w})\text{²}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\end_body
+\end_document

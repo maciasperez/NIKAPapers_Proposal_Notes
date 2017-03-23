@@ -1,0 +1,185 @@
+%Prepared by    A. Catalano (catalano@lpsc.in2p3.fr), LPSC
+%                       N. Ponthieu (nicolas.ponthieu@obs.ujf-grenoble.fr) IPAG
+%			 M. Calvo (martino.calvo@grenoble.cnrs.fr)
+%Last version is from 2013 July 30th 
+%  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                                    
+%\documentclass[twocolumn,traditabstract,referee]{aa}
+\documentclass[twocolumn,traditabstract]{aa}
+
+\usepackage[english]{babel}
+\usepackage{graphicx,amsmath}
+\usepackage{epstopdf}
+\usepackage{epsf,color}
+\usepackage[mathscr]{eucal}
+\usepackage{amsmath}
+\usepackage{amssymb,amsfonts}
+\usepackage{natbib}
+\usepackage[breaklinks, colorlinks, citecolor=blue, linkcolor=MyBlue, urlcolor=RoyalPurple, colorlinks=true, linkcolor=blue, debug, baseurl=' ']{hyperref}
+\bibpunct{(}{)}{;}{a}{}{,} % to follow the A&A style
+
+
+\newcommand{\master}{{\small M{\tiny ASTER}}}
+\newcommand{\rv}{{\vec{r}}}
+\newcommand{\kv}{{\vec{k}}}
+\newcommand{\poker}{{\small P{\tiny OKER}}}
+\newcommand{\nico}[1]{\textcolor{magenta}{#1}}
+\def\intk#1{\displaystyle\int\frac{d^2k_{#1}}{(2\pi)^2}}
+\def\intr#1{\displaystyle\int d^2r_{#1}}
+\def\simlt{\lower.5ex\hbox{$\; \buildrel < \over \sim \;$}}
+\def\simgt{\lower.5ex\hbox{$\; \buildrel > \over \sim \;$}}
+\def\NIKA{\textit{NIKA}}
+\def\nika{\textit{NIKA}}
+\def\NIKAii{\textit{NIKA2}}
+\def\Skydip{\textit{Skydip}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\title{Performance and calibration of the NIKA camera at the IRAM~30~m telescope}
+
+\author{
+A.~Catalano$^1$,
+M.~Calvo$^2$,
+N.~Ponthieu$^3$,
+R.~Adam$^1$,
+A.~Adane$^4$,
+P.~Ade$^5$,
+P.~Andr\'e$^6$,
+A.~Beelen$^7$,
+B.~Belier$^8$,
+A.~Beno\^it$^2$,
+A.~Bideaud$^5$,
+N.~Billot$^9$,
+N.~Boudou$^2$,
+O.~Bourrion$^1$,
+G.~Coiffard$^4$,
+B.~Comis$^1$,
+A.~D'Addabbo$^{2,11}$,
+F.-X.~D\'esert$^3$,
+S.~Doyle$^5$,
+J.~Goupy$^2$,
+C.~Kramer$^9$,
+S.~Leclercq$^4$,
+J.~F.~Mac\'ias-P\'erez$^1$,
+J.~Martino$^7$,
+P.~Mauskopf$^{5,12}$,
+F.~Mayet$^1$,
+A.~Monfardini$^2$,
+F.~Pajot$^7$,
+E.~Pascale$^5$,
+L. Perotto$^1$,
+V.~Rev\'eret$^6$,
+L.~Rodriguez$^6$,
+G.~Savini$^{10}$,
+K.~Schuster$^4$,
+A.~Sievers$^9$,
+C.~Tucker$^5$,
+R.~Zylka$^4$}
+
+\institute{
+%$^1
+Laboratoire de Physique Subatomique et de Cosmologie,
+Universit\'e Grenoble Alpes, CNRS/IN2P3,
+  53, rue des Martyrs, Grenoble, France
+\and
+%$^2 -->2
+Institut N\'eel, CNRS and Universit\'e de Grenoble, France
+\and
+%$^3 -->3
+Institut de Plan\'etologie et d'Astrophysique de Grenoble (IPAG), CNRS and Universit\'e de
+Grenoble, France
+\and
+%$^4 -->4
+Institut de Radio Astronomie Millim\'etrique (IRAM), Grenoble, France
+\and
+%$^5 -->5
+Astronomy Instrumentation Group, University of Cardiff, UK
+\and
+%$^6 -->6
+Laboratoire AIM, CEA/IRFU, CNRS/INSU, Université Paris Diderot, CEA-Saclay, 91191 Gif-Sur-Yvette, France 
+\and
+%$^7 -->7
+Institut d'Astrophysique Spatiale (IAS), CNRS and Universit\'e Paris Sud, Orsay, France
+\and
+%$^8 -->8
+Institut d'Electronique Fondamentale (IEF), Universit\'e Paris Sud, Orsay, France
+\and
+%$^9  -->9
+Institut de Radio Astronomie Millim\'etrique (IRAM), Granada, Spain
+\and
+%$^10
+University College London, Department 
+of Physics and Astronomy, Gower Street, London WC1E 6BT, UK
+\and
+%$^11
+Universit\`a \textit{Sapienza} di Roma, Italy
+\and
+%$^12
+SESE and Physics, Arizona State University, Tempe, AZ, USA
+}
+
+\date{\today}
+
+\input{00_abstract}
+
+\keywords{}
+
+\authorrunning{NIKA coll.}
+\titlerunning{NIKA camera calibration and performance}
+
+\maketitle
+
+\newpage
+%\tableofcontents
+
+\section{Introduction} 
+\label{introduction}
+\input{01_introduction}
+
+\section{The \NIKA\ Instrument}
+\label{instr}
+\input{02_instrument}
+
+\section{Readout optimization procedure}
+\label{tuning}
+\input{03_tuning}
+
+\section{Field-of-view (FOV) properties and main beam characterization}
+\label{focal}
+\input{04_focal}
+
+\section{Data reduction}
+\label{dataprocessing}
+\input{05_toiproc}
+
+\section{Photometric calibration} 
+\label{abs_cal}
+\input{06_photcal}
+
+\section{Noise equivalent flux density (NEFD)}
+\label{se:nefd}
+\input{07_nefd}
+
+\section{NIKA observations}
+\label{obs}
+\input{08_skyobs}
+%\input{04bis_extsources}
+
+
+\section{Conclusion and perspectives} 
+\label{conclusion}
+\input{09_conclusion}
+
+\begin{acknowledgements}
+We would like to thank the IRAM staff for their support during the campaign. 
+This work has been partially funded by the Foundation Nanoscience Grenoble, the ANR under the contracts \textit{MKIDS} and \textit{NIKA}. 
+This work has been partially supported by the LabEx FOCUS ANR-11-LABX-0013. 
+This work has benefited from the support of the European Research Council Advanced Grant ORISTARS under the European Union's Seventh Framework Program (Grant Agreement no. 291294).
+The NIKA dilution cryostat was designed and built at the Institut N\'eel. We acknowledge the crucial contribution of the Cryogenics Group and, in particular, Gregory Garde, Henri Rodenas, and Jean Paul Leggeri. R. A. would like to thank the ENIGMASS French LabEx for funding this work. B. C. acknowledges support from the CNES post-doctoral fellowship program.
+\end{acknowledgements}
+
+\bibliographystyle{aa}
+\bibliography{nika5}
+
+
+\end{document}

@@ -66,7 +66,7 @@
 \begin{document}
 
 \maketitle % Print the title section
-
+\tableofcontents
 %----------------------------------------------------------------------------------------
 %	ABSTRACT AND KEYWORDS
 %----------------------------------------------------------------------------------------
@@ -149,33 +149,52 @@ XX between 1 and 2mm and see~\ref{se:opacities} for more details.
 XX\% valid pixels, and with these pixels, we have an NEFD of YY. We should not
 discard some fraction of our pixels and estimate an NEFD on this subset.}\\
 
-HLS091828 is moderately fain source, expected to be below 100~mJy at 1mm and
+HLS091828 is moderately faint source, expected to be below 100~mJy at 1mm and
 XX~mJy at 2mm {\bf check values in NIKA1 paper + use SED for predictions in
   NIKA2's bands}. This source was chosen for its flux and its availability during
 Run9 for long integration. It has been observed for XX hours in total over three
-nights. These data can be used to derive the NEFD in several ways. One is to fit
-the evolution of the uncertainty on the flux of the source with the integration
-time. Another one is to produced jackknife maps with the data and to measure the
-uncertainty on the flux in the end, while estimating the time of
-integration. Fig.~\ref{fig:nefd_vs_t} shows the decrease of the uncertainty on
-the measured flux at the center of the map as a function of time. We either fit
-a power law or fix the power law to -0.5 and fit only the amplitude. Results are
-summarized in Tab.~\ref{tab:nefd}
+nights.
 
+\subsection{Data processing}
+
+The data were decorrelated using the XXX method... The scans have been combined
+with standard inverse noise weighting. The noise in each map pixel is derived
+from the rms of the background corrected for the number of observations per
+pixel.
+
+\subsection{NEFD Methods 1 and 2: deep integration}
+These data can be used to derive the NEFD in several ways. One is to fit the
+evolution of the uncertainty on the flux of the source $\sigma_\phi$ with the
+integration time. Another one is to produce jackknife maps with the data and to
+measure the uncertainty on the flux in the end, while estimating the time of
+integration. Results are summarized in Tab.~\ref{tab:nefd}.
+
+Fig.~\ref{fig:nefd_vs_t} shows the decrease of the uncertainty on the measured
+flux at the center of the map as a function of time. We either fit a power law
+or fix the power law to -0.5 and fit only the amplitude. Uncertainties on these
+values have been estimated via a bootstrap method: we randomize the scans and
+derive the standard deviation of the average of $n$ scans for any $n$ between 1
+and the total number of scans. This gives us an estimate of the uncertainty on
+$\sigma_\phi$ for a time of integration corresponding to $n$ scans. Strictly
+speaking, all the scans do not have the exact same duration, but the difference
+is negligible here.
 
 \begin{table}
 \begin{tabular}{|l|l|l|}
 \hline
-Array & Free power law & Fixed power law $t^{-0.5}$\\
+Array & Free power law & Fixed power law $t^{-0.5}$ & Jackknife \\
 \hline
-A1 & $47.9$ mJy.s$^{-0.54}$ & $37.9$ mJy.s$^{1/2}$\\
-A2 & $5.2$ mJy.s$^{-0.51}$  & $4.8$ mJy.s$^{1/2}$\\
-A3 & $38.9$ mJy.s$^{-0.54}$ & $30.6$ mJy.s$^{1/2}$\\
-A1 \& A3 & $28.5$ mJy.s$^{-0.53}$ & $23.6$ mJy.s$^{1/2}$\\
+A1       & $47.9$ mJy.s$^{-0.54}$ & $37.9$ mJy.s$^{1/2}$  & XX mJy.s$^{1/2}$\\
+A2       & $5.2$  mJy.s$^{-0.51}$ & $4.8$  mJy.s$^{1/2}$  & XX mJy.s$^{1/2}$\\
+A3       & $38.9$ mJy.s$^{-0.54}$ & $30.6$ mJy.s$^{1/2}$  & XX mJy.s$^{1/2}$\\
+A1 \& A3 & $28.5$ mJy.s$^{-0.53}$ & $23.6$ mJy.s$^{1/2}$  & XX mJy.s$^{1/2}$\\
 \hline
 \end{tabular}
+\label{tab:nefd}
 \end{table}
 
+\subsection{NEFD Method 3: scan NEFD vs opacity and air mass}
+Juan ?
 
 % ---------------------------------------
 \section{Focal plane reconstruction}

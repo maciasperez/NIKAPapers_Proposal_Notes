@@ -139,7 +139,9 @@ XX between 1 and 2mm and see~\ref{se:opacities} for more details.
 
 \begin{figure}
 \begin{center}
-\includegraphics[clip, angle=0, scale = 0.5]{Figures/NEFD_HLS091828_20170226s415_FXDC0C1_GaussPhot.png}
+%\includegraphics[clip, angle=0, scale =
+%  0.5]{Figures/NEFD_HLS091828_20170226s415_FXDC0C1_GaussPhot.png}
+\includegraphics[clip, angle=0, scale = 0.5]{Figures/nefd_mpfit_HLS091828.eps}
 \caption{Kids Xcalib with fixed fwhm 12.5 and 18.5, HLS091828.}
 \label{fig:nefd_vs_t}
 \end{center}
@@ -179,15 +181,16 @@ $\sigma_\phi$ for a time of integration corresponding to $n$ scans. Strictly
 speaking, all the scans do not have the exact same duration, but the difference
 is negligible here.
 
+
 \begin{table}
-\begin{tabular}{|l|l|l|}
+\begin{tabular}{|l|l|l|l|l|}
 \hline
-Array & Free power law & Fixed power law $t^{-0.5}$ & Jackknife \\
+Array & Free power law & Fixed power law $t^{-0.5}$ & Jackknife & Tau and air mass\\
 \hline
-A1       & $47.9$ mJy.s$^{-0.54}$ & $37.9$ mJy.s$^{1/2}$  & XX mJy.s$^{1/2}$\\
-A2       & $5.2$  mJy.s$^{-0.51}$ & $4.8$  mJy.s$^{1/2}$  & XX mJy.s$^{1/2}$\\
-A3       & $38.9$ mJy.s$^{-0.54}$ & $30.6$ mJy.s$^{1/2}$  & XX mJy.s$^{1/2}$\\
-A1 \& A3 & $28.5$ mJy.s$^{-0.53}$ & $23.6$ mJy.s$^{1/2}$  & XX mJy.s$^{1/2}$\\
+A1       & $47.9$ mJy.s$^{-0.54}$ & $37.9$ mJy.s$^{1/2}$ & 35.6 mJy.s$^{1/2}$ & {\bf TBD}\\
+A2       & $5.2$  mJy.s$^{-0.51}$ & $4.8$  mJy.s$^{1/2}$ & 5.7  mJy.s$^{1/2}$ & {\bf TBD}\\
+A3       & $38.9$ mJy.s$^{-0.54}$ & $30.6$ mJy.s$^{1/2}$ & 30.4 mJy.s$^{1/2}$ & {\bf TBD}\\
+A1 \& A3 & $28.5$ mJy.s$^{-0.53}$ & $23.6$ mJy.s$^{1/2}$ & 22.4 mJy.s$^{1/2}$ & {\bf TBD}\\
 \hline
 \end{tabular}
 \label{tab:nefd}
@@ -237,32 +240,46 @@ F\lambda = gridstep\times D(30m)/\lambda
 \section{Opacity derivation}
 \label{se:opacities}
 
+For each kid $k$, $f_{tone}^k$ moves with the atmospheric load according to
 
-\begin{figure}
-\begin{center}
-\includegraphics[clip, angle=0, scale =
-  0.5]{Figures/NEFD_vs_tau_20170226s415_FXDC0C1_Jy_common_mode_kids_out.png}
-\includegraphics[clip, angle=0, scale =
-  0.5]{Figures/tau1_tau2_20170226s415_FXDC0C1_GaussPhot_common_mode_kids_out.png}
-\caption{}
-\label{fig:fov}
-\end{center}
-\end{figure}
+\begin{equation}
+f_{tone}^k = C_0^k + C_1^k T_{atm}[1-e^{-\tau/\sin\delta}]
+\end{equation}
+
+where $\delta$ is the elevation. The {\tt skydip} procedure consists in moving
+the telescope in elevation step by step and to monitor, for each kid, the
+evolution of $f_{tone}^k$ vs the air mass and to fit the opacity $\tau$ and
+$C_0^k$ and $C_1^k$. All the skydips (that were obtained under various opacity
+conditions) are analysed together to break the degeneracies between these
+parameters. The procedure has two steps. First, all the skydips are analysed
+individually to simply measure $f_{tone}^k$ for each stable elevation and fit
+simultaneously all the parameters. Error bars on $\tau$ are estimated by doing
+this procedure on blocks of 40 kids only and getting a dispersion on the
+resulting $\tau$ from the different blocks. Usually the dispersion comes out as
+$4\times 10^{-3}$ at 1mm and $1\times 10^{-3}$ at 2mm. Once the $\tau$ values
+are estimated for each skydip (as the average over the blocks), we compute
+(while fixing $\tau$) the $C_0$ and $C_1$ final values for each kid. We thus
+retrieve the coefficients of all the Kids even though some of them could not
+contribute to the tau determination.
+
+%% \begin{figure}
+%% \begin{center}
+%% \includegraphics[clip, angle=0, scale =
+%%   0.5]{Figures/NEFD_vs_tau_20170226s415_FXDC0C1_Jy_common_mode_kids_out.png}
+%% \includegraphics[clip, angle=0, scale =
+%%   0.5]{Figures/tau1_tau2_20170226s415_FXDC0C1_GaussPhot_common_mode_kids_out.png}
+%% \caption{}
+%% \label{fig:fov}
+%% \end{center}
+%% \end{figure}
 
 \begin{figure}
 \begin{center}
 \includegraphics[clip, angle=0, scale = 0.5]{Figures/test_allskd_N2R9.jpg}
-\caption{}
-\label{fig:fov}
+\caption{{\bf Fix me : improve plot quality and plot only the 3rd one.}}
+\label{fig:test_allskd_N2R9}
 \end{center}
 \end{figure}
-
-
-Note: most of this section is already on the wiki.
-\begin{itemize}
-\item Description of the method
-\item comparison to EMIR
-\end{itemize}
 
 %------------------------------------------
 \section{Beam pattern}

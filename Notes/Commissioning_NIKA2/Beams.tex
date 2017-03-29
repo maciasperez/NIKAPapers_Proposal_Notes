@@ -4,7 +4,6 @@
 %%
 
 %% [intro]
-TOTO
 
 The NIKA2 beam pattern mainly depends on the IRAM 30m telescope and NIKA2 internal optical system characteristics, whereas the detectors themselve might have an impact at sub-dominant level (through e.g. time constants or correlated noises). In this section, we characterize both the full beam pattern including error beams up to angular scales of 10 arcmin, and the main beam, which is modeled as an elliptical Gaussian.
 
@@ -33,10 +32,55 @@ The deep NIKA2 beam maps reveal some noticeable features, which are shown in Fig
 \end{center}
 \end{figure}
 
-
 We further quantify the relative level of the main beam, the first error beam and other features seen in the 2D beam pattern using radial cuts.
 
 [FIGURE JEAN-FRANCOIS]
+
+\begin{figure}
+\begin{center}
+\includegraphics[clip, angle=-90, scale =0.3]{Figures/Array_A1_dB.pdf}
+\includegraphics[clip, angle=-90, scale = 0.3]{Figures/Array_A2_dB.pdf}
+\includegraphics[clip, angle=-90, scale = 0.3]{Figures/Array_A3_dB.pdf}
+\caption{Two orthogonal cuts through the beam are shown in red and green and a best fit model made
+of three Gaussians is superimposed in black. These cuts were obtained from the high quality map of Uranus on 2017 January 25th.
+The main beam starts to depart from the first Gaussian at -12dB. }
+\label{fig:beam_dB3}
+\end{center}
+\end{figure}
+
+The Iram 30-m beam as seen with NIKA2 is shown in
+Fig. \ref{fig:beam_db} by means of two orthogonal cuts through Uranus
+from a high quality map obtained on 2017 January 25th in excellent conditions
+(low opacity $\tau_{225}=0.08$ and elevation $46^{\circ}$).
+A model made of three Gaussians centered on the source peak was best
+fit {\it by hand} to these cuts and the parameters are reported in
+Table \ref{tab:3gauss} [PEUT-ETRE AVANTAGEUSEMENT REPLACED PAR VALEURS DE FLORIAN].
+The main beam starts to depart from the first
+Gaussian at the level of about -12dB for the three arrays.
+We note that for the instrument EMIR on the radiotelescope,
+this departure is about -20dB (Kramer, Penalver and Greve 2013).
+From parameters in Table \ref{tab:3gauss}, one can estimate that
+the source incident power is split about equally between the main beam
+and the error beam at 1mm, and these fractions are 70\% and 30\% at 2mm, respectively.
+This modelling uses the central
+region   $180'' \times 180''$ in size with a uniform noise rms from
+a larger area of 8' x 5' on the sky scanned with the arrays. It is expected
+that the error beam extend beyond these limits.
+
+
+\begin{table}
+\centering 
+\caption[]{Model parameters of the three Gaussian beam.}
+\begin{tabular}{|l|l|l|l|l|l|l|}
+\hline
+               & \multicolumn{3}{c|}{A1 and A3} & \multicolumn{3}{c|}{A2}  \\
+\hline
+fwhm      & $11.25''$ & $45''$  & $250''$ & $17.75''$ & $56''$  & $420''$ \\
+amplitude & 0.984     & 0.015   & 0.0005   &  0.9875   & 0.011   &  0.0005\\
+\hline
+\end{tabular}
+\label{tab:3gauss}
+\end{table}
 
 
 \subsubsection{Beam profile}

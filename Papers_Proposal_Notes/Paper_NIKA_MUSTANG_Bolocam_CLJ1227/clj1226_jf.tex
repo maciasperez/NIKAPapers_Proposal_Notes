@@ -468,74 +468,26 @@ outer bins for the fitting procedure itself, we exclude the outer two points fro
 %%%                                                SOME FIGURES                                         %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{figure}[!h]
-  \centering
-  \includegraphics[width=0.5\textwidth]{NIKA_ml_deproj_figs/NIKA_Real_6_B_Real_3000S_500B_ML-YES_PP-YES_30W_contour.eps}
-  \caption{Non parametric pressure profile constraints with NIKA. Here, we used 6 bins, 3000 steps, 500 of which were
-    burn in. 30 walkers were used.}
-  \label{fig:nika_contours}
-\end{figure}
-\begin{figure}[!h]
-  \centering
-  \includegraphics[width=0.5\textwidth]{NIKA_ml_deproj_figs/MUSTANG_RB_6_B_2500S_500B_ML-NO_30W_contour.eps}
-  \caption{Non parametric pressure profile constraints with MUSTANG. Here, we used 6 bins, 3000 steps, 500 of which were
-    burn in. 30 walkers were used.}
-  \label{fig:mustang_contours}
-\end{figure}
-\begin{figure}[!h]
-  \centering
-  \includegraphics[width=0.5\textwidth]{NIKA_ml_deproj_figs/BOLOCAM_Real_6_B_Real_2500S_500B_ML-NO_PP-NO_30W_contour.eps}
-  \caption{Non parametric pressure profile constraints with Bolocam. Here, we used 6 bins, 3000 steps, 500 of which were
-    burn in. 30 walkers were used.}
-  \label{fig:bolocam_contours}
-\end{figure}
-
-
 %\subsection{Non-parametric Constraints}
 From the non-parametric chains, we determine a covariance matrix of the pressure bins for each dataset as:
 \begin{equation}
   \mathbf{N}_{i,j} = \langle d_i d_j \rangle - \langle d_i \rangle \langle d_j \rangle.
   \label{eqn:covariance}
 \end{equation}
-We report the correlation matrices in Table~\ref{tbl:nk_corr}.
 
-\begin{deluxetable*}{l|l|l}
-\tabletypesize{\footnotesize}
-\tablecolumns{10}
-\tablewidth{0pt} 
-\tablecaption{Correlation Matrices \label{tbl:nk_corr}}
-\tablehead{ 
-  \colhead{NIKA} & \colhead{MUSTANG} & \colhead{Bolocam} 
-}
-\startdata
-\begin{tabular}{cccccc}
- 1.0000  & -0.0452  &  0.0270  & -0.0158  &  0.0062  &  0.0042  \\
--0.0452  &  1.0000  & -0.0632  &  0.0401  & -0.0135  & -0.0096  \\
- 0.0270  & -0.0632  &  1.0000  & -0.0153  &  0.0056  &  0.0041  \\
--0.0158  &  0.0401  & -0.0153  &  1.0000  & -0.0025  & -0.0018  \\
- 0.0062  & -0.0135  &  0.0056  & -0.0025  &  1.0000  &  0.0005  \\
- 0.0042  & -0.0096  &  0.0041  & -0.0018  &  0.0005  &  1.0000  
-\end{tabular}
-&
-\begin{tabular}{ccccc}
- 1.0000  & -0.0752  &  0.0192  & -0.0081  &  0.0084  \\
--0.0752  &  1.0000  & -0.1249  &  0.0875  & -0.0159  \\
- 0.0192  & -0.1249  &  1.0000  & -0.0196  &  0.0121  \\
--0.0081  &  0.0875  & -0.0196  &  1.0000  & -0.0074  \\
- 0.0084  & -0.0159  &  0.0121  & -0.0074  &  1.0000  
-\end{tabular}
-&
-\begin{tabular}{cccc}
- 1.0000  & -0.0097  &  0.0051  & -0.0004 \\
--0.0097  &  1.0000  & -0.0134  &  0.0048 \\
- 0.0051  & -0.0134  &  1.0000  & -0.0007 \\
--0.0004  &  0.0048  & -0.0007  &  1.0000  
-\end{tabular}
- \enddata
- \tablecomments{The largest correlations (which are not auto-correlations), occur with immediate neighbors.
-   Within these, the largest is still less than 13\%, while most are closer to 5\%, and some even have
-   less than 1\% correlation.}
-\end{deluxetable*}
+We show the correlation matrices in Figure~\ref{fig:corr_matrices}. We notice
+    that any two adjacent bins are negatively correlated, and by extension, bins spaced 2 apart (e.g bins 1 and 3) are positively
+    correlated. The maximum amplitude of these correlations is 0.05, 0.13, and 0.05 for NIKA, MUSTANG, and Bolocam respectively.
+
+\begin{figure*}[h]
+  \centering
+  \includegraphics[width=0.33\textwidth]{NIKA_ml_deproj_figs/Real_Joint_gNFW_Real_11011111_2500S_500B_100W_NIKA_correlation_matrix_clim_bwr.eps}
+  \includegraphics[width=0.33\textwidth]{NIKA_ml_deproj_figs/Real_Joint_gNFW_Real_11011111_2500S_500B_100W_MUSTANG_correlation_matrix_clim_bwr.eps}
+  \includegraphics[width=0.33\textwidth]{NIKA_ml_deproj_figs/Real_Joint_gNFW_Real_11011111_2500S_500B_100W_Bolocam_correlation_matrix_clim_bwr.eps}
+  \caption{Left: NIKA correlation Matrix. Middle: MUSTANG correlation matrix. Right: Bolocam correlation matrix. The coloring is
+    scaled to make the magnitude of off-diagonal terms more apparent, and the range changes for each instrument.}
+  \label{fig:corr_matrices}
+\end{figure*}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -593,7 +545,8 @@ studies conclude that $R_{500} < 1000$ kpc.
 %$206_{-43}^{+57}$ kpc
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=0.5\textwidth]{NIKA_ml_deproj_figs/Real_Joint_gNFW_Real_11011111_2500S_500B_100W_gNFW_pressure.eps}
+%  \includegraphics[width=0.5\textwidth]{NIKA_ml_deproj_figs/Real_Joint_gNFW_Real_11011111_2500S_500B_100W_gNFW_pressure.eps}
+  \includegraphics[width=0.5\textwidth]{NIKA_ml_deproj_figs/Real_Joint_gNFW_Real_11011111_2500S_500B_100W_gNFW_pressure_w_NP_pts_v2.eps}
 %    Real_Joint_gNFW_Real_11011111_2500S_500B_100W_pressure.eps
   \caption{Non-parametric pressure profiles as determined via each dataset individually, and the gNFW (parametric)
     pressure profile as simultaneously fit to the non-parametric pressure profiles. The error bars are statistical,

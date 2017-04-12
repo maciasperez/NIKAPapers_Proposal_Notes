@@ -42,16 +42,16 @@
 %###############################################################################################
 \section{Introduction}\label{sec:Introduction}
 %Temperature is key for astro and cosmo
-The temperature and density are the key observable characteristics of the hot ionized gas in the intracluster medium (ICM) of galaxy clusters. X-ray observations have historically played a fundamental role in their measurement: the density is trivial to obtain from X-ray imaging, while the temperature can be derived from an isothermal model fit to the spectrum. Accurate gas temperatures are needed for a number of reasons. They are essential to infer cluster masses under the assumption of hydrostatic equilibrium \citep{Sarazin1988}; in turn, these masses can be used to infer constraints on cosmological parameters \citep[e.g.,][]{Allen2011}. The temperature structure yields information on the detailed physics of shock-heated gas in merging events, the nature of cold fronts, and the role of turbulence and gas sloshing \citep[see e.g.][for a review]{mar07}. In turn, such analyses provide insights into the physics of galaxy clusters, which is necessary to interpret the scaling relations between clusters masses and their primary observables \citep{Khedekar2013}.
+The temperature and density are the key observable characteristics of the hot ionized gas in the intracluster medium (ICM) of galaxy clusters. X-ray observations have historically played a fundamental role in their measurement: the density is trivial to obtain from X-ray imaging, while the temperature can be derived from an isothermal model fit to the spectrum. Accurate gas temperatures are needed for a number of reasons. They are essential to infer cluster masses under the assumption of hydrostatic equilibrium \citep{Sarazin1988}; in turn, these masses can be used to infer constraints on cosmological parameters \citep[e.g.,][]{Allen2011}. The temperature structure yields information on the detailed physics of shock-heated gas in merging events, the nature of cold fronts, and the role of turbulence and gas sloshing \citep[see, e.g.,][for a review]{mar07}. In turn, such analyses provide insights into the physics of galaxy clusters, which is necessary to interpret the scaling relations between clusters masses and their primary observables \citep{Khedekar2013}.
 
 %Difficulties in measurments
-However, the X-ray gas temperature measurement is potentially affected by two systematic effects. First, the X-ray emission is proportional to the square of the ICM electron density, such that spectroscopic temperatures are driven by the colder,  denser, regions along the line-of-sight, and are thus sensitive to gas clumping. What is measured is in fact a weighted mean temperature, where the weight is a non-linear combination of the temperature and density structure \citep[see e.g.][]{maz04,vik06b}. Numerical simulations support this view \citep[e.g.][]{Nagai2007,ras14}, but estimates of the magnitude of any bias due to this effect vary widely depending on the numerical scheme (e.g. smoothed particle hydrodynamics, adaptive mesh refinement) and the details  of the `sub-grid' physics (cooling, feedback, etc). Secondly, the spectroscopic temperatures depend directly on the energy calibration of X-ray observatories. For instance, X-ray temperatures obtained with \textit{Chandra} are generally higher than those measured by XMM-\textit{Newton}, by up to a factor of 15\% at 10~keV \citep[e.g.,][]{Mahdavi2013}.
+However, the X-ray gas temperature measurement is potentially affected by two systematic effects. First, the X-ray emission is proportional to the square of the ICM electron density, such that spectroscopic temperatures are driven by the colder,  denser, regions along the line-of-sight, and are thus sensitive to gas clumping. What is measured is in fact a weighted mean temperature, where the weight is a non-linear combination of the temperature and density structure \citep[see, e.g.,][]{maz04,vik06b}. Numerical simulations support this view \citep[e.g.,][]{Nagai2007,ras14}, but estimates of the magnitude of any bias due to this effect vary widely depending on the numerical scheme (e.g., smoothed particle hydrodynamics, adaptive mesh refinement) and the details of the `sub-grid' physics (cooling, feedback, etc). Secondly, the spectroscopic temperatures depend directly on the energy calibration of X-ray observatories. For instance, X-ray temperatures obtained with \textit{Chandra} are generally higher than those measured by XMM-\textit{Newton}, by up to a factor of 15\% at 10~keV \citep[e.g.,][]{Mahdavi2013}.
 
 %SZ can help
-The thermal Sunyaev-Zel'dovich \citep[tSZ,][]{Sunyaev1972} effect is related to the mean gas-mass-weighted temperature along the line-of-sight and the electron density, via the ideal gas law. The tSZ effect can thus be used to obtain an alternative estimate of the gas temperature, provided a measure of the density is available. Combination of the tSZ and X-ray observations can then in principle be used to decouple temperature and density in each individual measurement. {\bf Several groups have already attempted to extract the gas temperature distribution in one dimension using such method, complementing X-ray spectroscopic measurements. See for instance \cite{Nord2009,Basu2010,Eckert2013,Ruppin2016}.}
+The thermal Sunyaev-Zel'dovich \citep[tSZ,][]{Sunyaev1972} effect is related to the mean gas-mass-weighted temperature along the line-of-sight and the electron density, via the ideal gas law. The tSZ effect can thus be used to obtain an alternative estimate of the gas temperature, provided a measure of the density is available. Combination of the tSZ and X-ray observations can then in principle be used to decouple temperature and density in each individual measurement. {\bf Several groups have already attempted to extract the gas temperature distribution in one dimension using such method, complementing X-ray spectroscopic measurements. See for instance \cite{Pointecouteau2002,Kitayama2004,Nord2009,Basu2010,Eckert2013,Ruppin2016}.}
 
 %What we do and do not do here
-Here we use deep, resolved ($< 20\arcsec$) tSZ observations, combined with X-ray imaging, to measure the spatial distribution of the gas temperature toward the merging cluster \mbox{MACS~J0717.5+3745} at $z=0.55$, {\bf in two dimensions}. We have chosen \mbox{MACS~J0717.5+3745} because it is one of the very few objects for which sufficiently deep and resolved tSZ data are currently available \citep{Adam2016b}. The complex morphology of the cluster is the primary limiting factor to our analysis; however it allows us to explore a wide range of gas temperatures, which will not necessarily be accessible with more simple objects. {\bf The aim of this paper is thus to explore a new method to reconstruct the spatial distribution of the hot gas temperature in galaxy clusters, base on X-ray and tSZ imaging. We compare it to the classical X-ray spectroscopic technique using XMM-\textit{Newton} and \textit{Chandra} data, but as our results are limited by systematic effects, we do not aim at favoring one X-ray measurement over the other.}
+Here we use deep, resolved ($< 20\arcsec$) tSZ observations, combined with X-ray imaging, to measure the spatial distribution of the gas temperature toward the merging cluster \mbox{MACS~J0717.5+3745} at $z=0.55$, {\bf in two dimensions}. We have chosen \mbox{MACS~J0717.5+3745} because it is one of the very few objects for which sufficiently deep and resolved tSZ data are currently available \citep{Adam2016b}. The complex morphology of the cluster is the primary limiting factor to our analysis; however it allows us to explore a wide range of gas temperatures, which will not necessarily be accessible with more simple objects. {\bf The aim of this paper is thus to explore a new method to reconstruct the spatial distribution of the hot gas temperature in galaxy clusters, base on X-ray and tSZ imaging, using a test case cluster. We compare it to the classical X-ray spectroscopic technique using XMM-\textit{Newton} and \textit{Chandra} data, but as our results are limited by systematic effects, we do not aim at favoring one X-ray measurement over the other.}
 
 %Planck cosmology
 We assume a flat $\Lambda$CDM cosmology according to the latest {\it Planck} results \citep{Planck2015XIII} with $H_0 = 67.8$ km s$^{-1}$ Mpc$^{-1}$, $\Omega_M = 0.308$, and $\Omega_{\Lambda} = 0.692$. At the cluster's redshift, 1 arcsec corresponds to 6.6 kpc.
@@ -70,7 +70,7 @@ The New IRAM KIDs Array \citep[NIKA, see][]{Monfardini2011,Calvo2013,Adam2014,Ca
 %##########################                                     Method                                     ##########################
 %###############################################################################################
 \section{Temperature reconstruction}\label{sec:method}
-{\bf The method employed to recover the temperature of the gas from NIKA tSZ and XMM-\textit{Newton} X-ray imaging, $\bar{T}_{\rm gmw}$ is described below. We also discuss the X-ray spectroscopic temperature mapping in Section \ref{sec:Xray_spectroscopic_temperature_map}, which we use for comparison in Section \ref{sec:compT}.}
+{\bf The method employed to recover the temperature of the gas from NIKA tSZ and XMM-\textit{Newton} X-ray imaging, $\bar{T}_{\rm gmw}$, is described below. We also discuss the X-ray spectroscopic temperature mapping in Section \ref{sec:Xray_spectroscopic_temperature_map}, which we use for comparison in Section \ref{sec:compT}.}
 
 %========== Primary observables
 \subsection{Primary observables}
@@ -98,7 +98,7 @@ We use the XMM-\textit{Newton} X-ray surface brightness (equation \ref{eq:sx}) t
 	\ell_{\rm eff} = \frac{\left(\int n_e dl\right)^2}{\int n_e^2 dl}.
 \label{eq:l_eff}
 \end{equation}
-From Eq.~\ref{eq:sx}, the effective electron density along the line-of-sight is then given by
+From equation~\ref{eq:sx}, the effective electron density along the line-of-sight is then given by
 \begin{equation}
 	\bar{n}_e = \frac{1}{\ell_{\rm eff}} \int n_e dl = \frac{1}{\ell_{\rm eff}}\sqrt{\ell_{\rm eff} \frac{4 \pi \left(1+z\right)^4 S_{\rm X}}{\Lambda\left(T_e, Z\right)}}.
 \label{eq:pseudo_ne}
@@ -122,7 +122,7 @@ We can express the effective pressure along the line-of-sight directly from equa
 	\bar{P_e} = \frac{1}{\ell_{\rm eff}} \int P_e dl = \frac{m_e c^2}{\sigma_{\rm T}} \frac{y_{\rm tSZ}}{\ell_{\rm eff}}.
 \label{eq:pseudo_p}
 \end{equation}
-This quantity is straightforwardly obtained from the NIKA map accounting for relativistic corrections as detailed in \cite{Adam2016b}. As the temperature can be very high, the relativistic corrections are non negligible \citep{Pointecouteau1998,Itoh2003}, but the exact choice of the temperature map used to apply relativistic corrections has a negligible impact on our results (i.e., $\bar{T}_{\rm XMM}$, $\bar{T}_{\rm CXO}$ or $\bar{T}_{\rm gmw}$). The right panel of Figure \ref{fig:Input_maps} presents the $\bar{P}_e$ map in the case of model M1, {\bf thus $\propto \int P_e dl$, corrected} for kSZ and zero level (see Section \ref{sec:compT}). {\bf The pressure distribution also indicates that the cluster is disturbed. The morphology is similar to that of the density on large scales, but we observe strong differences at the substructure level, which indicate spatial variations of the temperature. We note in particular that the pressure peak is offset $\sim 30$ arcsec southeast with respect to the density peak.}
+This quantity is straightforwardly obtained from the NIKA map accounting for relativistic corrections as detailed in \cite{Adam2016b}. As the temperature can be very high, the relativistic corrections are non negligible \citep{Pointecouteau1998,Itoh2003}, but the exact choice of the temperature map used to apply relativistic corrections has a negligible impact on our results {\bf (i.e., the spectroscopic temperature maps from XMM-\textit{Newton}, from \textit{Chandra},  or $\bar{T}_{\rm gmw}$)}. The right panel of Figure \ref{fig:Input_maps} presents the $\bar{P}_e$ map in the case of model M1, {\bf thus $\propto \int P_e dl$, corrected} for kSZ and zero level (see Section \ref{sec:compT}). {\bf The pressure distribution also indicates that the cluster is disturbed. The morphology is similar to that of the density on large scales, but we observe strong differences at the substructure level, which indicate spatial variations of the temperature. We note in particular that the pressure peak is offset $\sim 30$ arcsec southeast with respect to the density peak.}
 
 \begin{figure*}[h]
 \centering
@@ -143,16 +143,16 @@ We propagate the noise arising from the tSZ map and the X-ray surface brightness
 
 \begin{figure*}[h]
 \centering
-\includegraphics[trim=0cm 0cm 2.3cm 0cm, clip=true, totalheight=6.1cm]{Figure/Thermo_TCXO.pdf}
-\includegraphics[trim=1.6cm 0cm 2.3cm 0cm, clip=true, totalheight=6.1cm]{Figure/Thermo_TXMM.pdf}
-\includegraphics[trim=1.6cm 0cm 0cm 0cm, clip=true, totalheight=6.1cm]{Figure/Thermo_TSZclean1.pdf}
+\includegraphics[trim=0cm 0cm 1.4cm 0cm, clip=true, totalheight=6.7cm]{Figure/Thermo_TCXO.pdf}
+\includegraphics[trim=1.6cm 0cm 1.4cm 0cm, clip=true, totalheight=6.7cm]{Figure/Thermo_TXMM.pdf}
+\includegraphics[trim=1.6cm 0cm 0cm 0cm, clip=true, totalheight=6.7cm]{Figure/Thermo_TSZclean1.pdf}
 \caption{\footnotesize{{\bf Left}: \textit{Chandra} derived spectroscopic temperature map, $\bar{T}_{\rm CXO}$. {\bf Middle}: XMM-\textit{Newton} derived spectroscopic temperature map, $\bar{T}_{\rm XMM}$. {\bf Right}: NIKA+XMM-\textit{Newton} imaging derived temperature map for model M1, $\bar{T}_{\rm gmw}$. This map is corrected for the zero level.}}
 \label{fig:T_maps}
 \end{figure*}
 
 %========== Spectro
 \subsection{X-ray spectroscopic temperature map}\label{sec:Xray_spectroscopic_temperature_map}
-{\bf The X-ray spectroscopic temperature maps from \textit{Chandra} ($\bar{T}_{\rm CXO}$) and XMM-\textit{Newton} ($\bar{T}_{\rm XMM}$) were produced using the wavelet filtering algorithm described in \cite{Bourdin2008}, as detailed in \cite{Adam2016b}. As the significance of wavelet coefficients partly depends on the photon count statistics, the effective resolution varies across the map, XMM-\textit{Newton} allowing a finer sampling than \textit{Chandra} due to the higher effective area. Note that the nature of the algorithm does not allow a direct calculation of the temperature map uncertainties. From jackknife resampling of the individual observations (each spanning $\sim 1/3$ of the total exposure time), we conservatively estimate statistical uncertainties of $\sim 14$\% for XMM-\textit{Newton} and $\sim 29$\% for \textit{Chandra}.}
+{\bf The X-ray spectroscopic temperature maps from \textit{Chandra} ($\bar{T}_{\rm CXO}$) and XMM-\textit{Newton} ($\bar{T}_{\rm XMM}$) were produced using the wavelet filtering algorithm described in \cite{Bourdin2008}, as detailed in \cite{Adam2016b}. As the significance of wavelet coefficients partly depends on the photon count statistics, the effective resolution varies across the map, XMM-\textit{Newton} allowing a finer sampling than \textit{Chandra} due to the higher effective area. We estimate the uncertainties per map pixel using a Monte Carlo approach.} \textcolor{red}{Do you want to discuss in more details the Monte Carlo approach?}
 
 %###############################################################################################
 %##########################                                       Results                                   ##########################
@@ -173,38 +173,32 @@ Figure \ref{fig:T_maps} shows the three temperature maps $\bar{T}_{\rm CXO}$, $\
 \label{fig:T_SZ_T_X_correlation}
 \end{figure*}
 
-Figure \ref{fig:T_SZ_T_X_correlation} shows the correlation between the maps shown in Figure \ref{fig:T_maps}. The temperature values are extracted in each 10 arcsec pixel, where the resolution of the $\bar{T}_{\rm gmw}$ map is 22 arcsec. We mask pixels where the tSZ signal-to-noise ratio is lower than 2 to avoid possible bouncing effects on the edge of the map due to the NIKA data processing.
+Figure \ref{fig:T_SZ_T_X_correlation} shows the correlation between the maps shown in Figure \ref{fig:T_maps}. The temperature values are extracted in each {\bf 20} arcsec pixel, where the resolution of the $\bar{T}_{\rm gmw}$ map is 22 arcsec. We mask pixels where the tSZ signal-to-noise ratio is lower than 2 to avoid possible bouncing effects on the edge of the map due to the NIKA data processing.
 
 Since the zero level of the tSZ map is unconstrained, we express the effective pressure map as $\bar{P}_e = \bar{P}_{\rm true} + \bar{P}_0$, where $\bar{P}_0$ is an unknown offset. Following equation \ref{eq:pseudo_tsz}, the gas-mass-weighted temperature can then be expressed with respect to the spectroscopic temperature, as
 \begin{equation}
 k_{\rm B} \bar{T}_{\rm gmw} = \alpha_{\rm gmw-X} \times k_{\rm B} \bar{T}_{\rm XMM/CXO} + {\beta}/{\bar{n_e}},
 \label{eq:TSZ_TX_regression}
 \end{equation}
-where $\alpha_{\rm gmw-X}$ is a cross-calibration term and $\beta$ gives a measurement of $\bar{P}_0$. For X-ray spectroscopic temperatures, we simply write $T_{\rm XMM} = \alpha_{\rm XMM-CXO} \times T_{\rm CXO}$. Table~\ref{tab:regression_coeff} gives the $\alpha $ coefficients obtained using a $\chi^2$ fit for the different $\ell_{\rm eff}$ models tested, and their dependence on the kSZ correction. The scatter, $\sigma$, is the standard deviation of the residual between the values and the best-fit relation. 
+where $\alpha_{\rm gmw-X}$ is a cross-calibration term and $\beta$ gives a measurement of $\bar{P}_0$. For X-ray spectroscopic temperatures, we simply write $\bar{T}_{\rm XMM} = \alpha_{\rm XMM-CXO} \times \bar{T}_{\rm CXO}$. 
 
-{\bf 
-\citep{Orear1982}
-
+{\bf We perform a linear regression between the pairs of temperature maps ($\bar{T}_{1,2} \equiv \bar{T}_{\rm XMM}, \bar{T}_{\rm CXO}, \bar{T}_{\rm gmw}$) accounting for error bars on both axis. To do so, we follow \cite{Orear1982} and define the following likelihood, $\mathscr{L}$, as
 \begin{equation}
-2 {\rm ln} \ \mathscr{L} = \sum_{i=1}^{N_{\rm pix}} \frac{\left(k_{\rm B} \bar{T}^{(i)}_{\rm gmw} - \alpha_{\rm gmw-X} \times k_{\rm B} \bar{T}^{(i)}_{\rm XMM/CXO} - {\beta}/{\bar{n_e}^{(i)}}\right)^2}{\left(\delta^{(i)}_{T_{\rm gmw}}\right)^2 + \left(\alpha \delta^{(i)}_{T_{\rm X}}\right)^2}
+2 \ {\rm ln} \ \mathscr{L} = \sum_{i=1}^{N_{\rm pix}} \frac{\left(k_{\rm B} \bar{T}^{(i)}_{1} - \alpha \ k_{\rm B} \bar{T}^{(i)}_{2} - {\beta}/{\bar{n_e}^{(i)}}\right)^2}{\left(\delta^{(i)}_{T_{1}}\right)^2 + \left(\alpha \ \delta^{(i)}_{T_{2}}\right)^2},
 \label{eq:chi2_def}
 \end{equation}
-
-\citep{Pratt2009}
-
+where $\delta_{T_{1,2}}$ represents the temperature maps uncertainties and $\beta$ is set to zero when the regression is performed between $\bar{T}_{\rm XMM}$ and $\bar{T}_{\rm CXO}$. The parameter space is sampled using Markov Chains, which we evolve according to the Metropolis-Hasting algorithm \citep{Chib1995}, as done in \cite{Adam2015}. We check that this method correctly reproduce the true posterior likelihood using Monte Carlo realizations. Following \citep{Pratt2009}, we compute the overall scatter as
 \begin{equation}
-\sigma_{\rm tot}^2 = \frac{\frac{1}{N_{\rm pix} - 2} \sum_i \frac{\left(k_{\rm B} \bar{T}^{(i)}_{\rm gmw} - \alpha_{\rm gmw-X} \times k_{\rm B} \bar{T}^{(i)}_{\rm XMM/CXO} - {\beta}/{\bar{n_e}^{(i)}}\right)^2}{\left(\delta^{(i)}_{T_{\rm gmw}}\right)^2 + \left(\alpha \delta^{(i)}_{T_{\rm X}}\right)^2}}{\frac{1}{N_{\rm pix}} \sum_i \frac{1}{\left(\delta^{(i)}_{T_{\rm gmw}}\right)^2 + \left(\alpha \delta^{(i)}_{T_{\rm X}}\right)^2}}
+\sigma_{\rm tot}^2 = \frac{\frac{1}{N_{\rm pix} - 2} \sum_i \frac{\left(k_{\rm B} \bar{T}^{(i)}_{1} - \alpha \times k_{\rm B} \bar{T}^{(i)}_{2} - {\beta}/{\bar{n_e}^{(i)}}\right)^2}{\left(\delta^{(i)}_{T_{1}}\right)^2 + \left(\alpha \delta^{(i)}_{T_{2}}\right)^2}}{\frac{1}{N_{\rm pix}} \sum_i \frac{1}{\left(\delta^{(i)}_{T_{1}}\right)^2 + \left(\alpha \delta^{(i)}_{T_{2}}\right)^2}},
 \label{eq:scatter_def}
 \end{equation}
+from which we extract the intrinsic scatter, $\sigma_{\rm int} = \sqrt{\sigma_{\rm tot}^2 - \sigma_{\rm stat}^2}$, accounting for the statistical scatter $\sigma_{\rm stat}$.}
 
-$\sigma_{\rm int} = \sqrt{\sigma_{\rm tot}^2 - \sigma_{\rm stat}^2}$
+Table~\ref{tab:regression_coeff} gives the $\alpha $ coefficients obtained for the different $\ell_{\rm eff}$ models tested, and their dependence on the kSZ correction. {\bf Figure \ref{fig:T_SZ_T_X_posterior} provides the posterior likelihood in the plane $\alpha_{\rm gmw-X}$--$\beta$ for all the regression performed between $\bar{T}_{\rm gmw}$ and $\bar{T}_{\rm XMM/CXO}$.}
 
-Metropolis-Hasting \citep{Chib1995}
-}
+The scatter of about 2 keV between $\bar{T}_{\rm CXO}$ and $\bar{T}_{\rm XMM}$ is dominated by statistical error. The scatters between $\bar{T}_{\rm gmw}$ and both X-ray temperatures are comparable. This is not compatible with the noise as propagated into the $T_{\rm gmw}$ map, and may be due to a number of factors, including the difference in angular resolution of the maps, or an intrinsic scatter between gas-mass-weighted and spectroscopic temperatures.
 
-The scatter of about 2 keV between $\bar{T}_{\rm CXO}$ and $\bar{T}_{\rm XMM}$ is dominated by statistical error, and also by the differences in the scales probed by the two maps. The scatters between $\bar{T}_{\rm gmw}$ and both X-ray temperatures are comparable. This is not compatible with the noise as propagated into the $T_{\rm gmw}$ map, and may be due to a number of factors, including spectroscopic temperature noise, the difference in angular resolution of the maps, or an intrinsic scatter between gas-mass-weighted and spectroscopic temperatures.
-
-The tSZ+X-ray imaging versus X-ray only cross-calibration is stable to within less than 10\%, depending on the choice of the $\ell_{\rm eff}$ model and the kSZ correction used, while the statistical uncertainties are 2\%. The cross-calibration coefficients also directly depend on the absolute calibration of the tSZ map, which is expected to be accurate within 7\%. Model M3b provides a lower limit on $\ell_{\rm eff}$, and therefore an upper limit on $\alpha_{\rm gmw-X}$.
+The tSZ+X-ray imaging versus X-ray only cross-calibration is stable to within less than 10\%, depending on the choice of the $\ell_{\rm eff}$ model and the kSZ correction used. The cross-calibration coefficients also directly depend on the absolute calibration of the tSZ map, which is expected to be accurate within 7\%. Model M3b provides a lower limit on $\ell_{\rm eff}$, and therefore an upper limit on $\alpha_{\rm gmw-X}$.
 
 \begin{table*}[]
 \caption{\footnotesize{Regression and {\bf intrinsic} scatter coefficients between the temperature maps. {\bf The central value is the median of the posterior likelihood and the errors are obtained by integrating the posterior likelihood within 90\% C.L. The posterior likelihood distribution is highly non Gaussian in the case of the scatter and error bars should be interpreted with caution.} $^{\star}$Model M3b gives a lower limit for $\ell_{\rm eff}$, and thus should be taken only as an upper limit for $\alpha$.}}
@@ -218,15 +212,15 @@ Slope / offset (mJy/Beam) / scatter (keV) & M1 & M2 & M3a & M3b$^{\star}$ \\
 \hline
  & \multicolumn{4}{c}{kSZ-uncorrected} \\
 \hline
-$\left( \alpha, \beta, \sigma \right)_{\rm gmw-XMM}$ & $\left(1.16_{-0.07}^{+0.08} , 1.11_{-0.10}^{+0.11} , 1.74_{-0.43}^{+0.31}\right)$ & $\left(1.06_{-0.07}^{+0.08} , 1.28_{-0.12}^{+0.13} , 1.38_{-0.43}^{+0.30}\right)$ & $\left(1.16_{-0.07}^{+0.08} , 1.19_{-0.12}^{+0.12} , 1.63_{-0.46}^{+0.32}\right)$ & $\left(1.75_{-0.12}^{+0.13} , 1.41_{-0.13}^{+0.14} , 2.97_{-0.51}^{+0.42}\right)$ \\
-$\left( \alpha, \beta, \sigma \right)_{\rm gmw-CXO}$ & $\left(0.92_{-0.07}^{+0.07} , 0.96_{-0.11}^{+0.11} , 1.80_{-0.55}^{+0.39}\right)$ & $\left(0.83_{-0.06}^{+0.07} , 1.12_{-0.12}^{+0.14} , 1.43_{-0.54}^{+0.37}\right)$ & $\left(0.90_{-0.07}^{+0.08} , 1.00_{-0.11}^{+0.12} , 2.50_{-0.35}^{+0.32}\right)$ & $\left(1.41_{-0.11}^{+0.13} , 1.26_{-0.14}^{+0.17} , 2.95_{-0.67}^{+0.53}\right)$ \\
+$\left( \alpha, \beta, \sigma_{\rm int} \right)_{\rm gmw-XMM}$ & $\left(1.11_{-0.07}^{+0.08} , 1.04_{-0.10}^{+0.10} , 1.43_{-0.62}^{+0.38}\right)$ & $\left(1.06_{-0.07}^{+0.07} , 1.28_{-0.12}^{+0.12} , 1.29_{-0.60}^{+0.35}\right)$ & $\left(1.15_{-0.08}^{+0.08} , 1.17_{-0.11}^{+0.12} , 1.59_{-0.55}^{+0.37}\right)$ & $\left(1.70_{-0.12}^{+0.13} , 1.36_{-0.14}^{+0.14} , 2.44_{-0.71}^{+0.50}\right)$ \\
+$\left( \alpha, \beta, \sigma_{\rm int} \right)_{\rm gmw-CXO}$ & $\left(0.90_{-0.07}^{+0.07} , 0.93_{-0.10}^{+0.11} , 1.59_{-0.78}^{+0.47}\right)$ & $\left(0.85_{-0.06}^{+0.07} , 1.12_{-0.12}^{+0.13} , 1.51_{-0.67}^{+0.41}\right)$ & $\left(0.90_{-0.07}^{+0.08} , 1.01_{-0.11}^{+0.12} , 2.51_{-0.40}^{+0.36}\right)$ & $\left(1.39_{-0.11}^{+0.14} , 1.23_{-0.13}^{+0.16} , 2.50_{-1.00}^{+0.64}\right)$ \\
 \hline
  & \multicolumn{4}{c}{kSZ-corrected} \\
 \hline
-$\left( \alpha, \beta, \sigma \right)_{\rm gmw-XMM}$ & $\left(1.12_{-0.07}^{+0.07} , 1.04_{-0.10}^{+0.11} , 0.00_{-0.00}^{+0.97}\right)$ & $\left(1.05_{-0.06}^{+0.07} , 1.24_{-0.11}^{+0.12} , 0.68_{-0.68}^{+0.47}\right)$ & $\left(1.17_{-0.07}^{+0.08} , 1.16_{-0.11}^{+0.13} , 1.49_{-0.54}^{+0.34}\right)$ & $\left(1.66_{-0.10}^{+0.11} , 1.29_{-0.12}^{+0.13} , 0.60_{-0.60}^{+0.97}\right)$ \\
-$\left( \alpha, \beta, \sigma \right)_{\rm gmw-CXO}$ & $\left(0.89_{-0.06}^{+0.07} , 0.91_{-0.10}^{+0.11} , 1.03_{-1.03}^{+0.53}\right)$ & $\left(0.82_{-0.06}^{+0.07} , 1.07_{-0.12}^{+0.14} , 1.04_{-1.04}^{+0.44}\right)$ & $\left(0.90_{-0.07}^{+0.07} , 0.98_{-0.11}^{+0.12} , 2.51_{-0.37}^{+0.31}\right)$ & $\left(1.31_{-0.10}^{+0.11} , 1.15_{-0.13}^{+0.14} , 1.39_{-1.39}^{+0.77}\right)$ \\
+$\left( \alpha, \beta, \sigma_{\rm int} \right)_{\rm gmw-XMM}$ & $\left(1.09_{-0.07}^{+0.07} , 1.00_{-0.09}^{+0.10} , 0.00_{-0.00}^{+0.56}\right)$ & $\left(1.04_{-0.07}^{+0.07} , 1.23_{-0.11}^{+0.12} , 0.00_{-0.00}^{+0.61}\right)$ & $\left(1.16_{-0.08}^{+0.08} , 1.17_{-0.11}^{+0.12} , 1.51_{-0.61}^{+0.37}\right)$ & $\left(1.63_{-0.11}^{+0.12} , 1.27_{-0.12}^{+0.13} , 0.00_{-0.00}^{+0.69}\right)$ \\
+$\left( \alpha, \beta, \sigma_{\rm int} \right)_{\rm gmw-CXO}$ & $\left(0.88_{-0.06}^{+0.07} , 0.89_{-0.09}^{+0.10} , 0.73_{-0.73}^{+0.71}\right)$ & $\left(0.83_{-0.06}^{+0.07} , 1.08_{-0.12}^{+0.12} , 0.82_{-0.82}^{+0.60}\right)$ & $\left(0.90_{-0.07}^{+0.08} , 1.00_{-0.11}^{+0.12} , 2.52_{-0.40}^{+0.35}\right)$ & $\left(1.31_{-0.10}^{+0.12} , 1.13_{-0.13}^{+0.14} , 0.60_{-0.60}^{+1.25}\right)$ \\
 \hline
-$\left( \alpha, \sigma \right)_{\rm XMM-CXO}$ & \multicolumn{4}{c}{$\left(0.86_{-0.03}^{+0.03} , 0.00_{-0.00}^{+0.00}\right)$} \\
+$\left( \alpha, \sigma_{\rm int} \right)_{\rm XMM-CXO}$ & \multicolumn{4}{c}{$\left(0.86_{-0.03}^{+0.03} , 0.00_{-0.00}^{+0.00}\right)$} \\
 \hline
 \end{tabular}
 }
@@ -238,7 +232,7 @@ $\left( \alpha, \sigma \right)_{\rm XMM-CXO}$ & \multicolumn{4}{c}{$\left(0.86_{
 \centering
 \includegraphics[width=0.49\textwidth]{Figure/Fit_Results_Likelihood_gmw-XMM.pdf}
 \includegraphics[width=0.49\textwidth]{Figure/Fit_Results_Likelihood_gmw-CXO.pdf}
-\caption{\footnotesize{ \bf Posterior likelihood (68 and 95\% C.L.) in the plane $\alpha$ -- $\beta$ (expressed in term of the zero level brightness of the NIKA map). {\bf Left:} tSZ+X-ray imaging versus XMM-\textit{Newton} spectroscopy. {\bf Right:} tSZ+X-ray imaging versus \textit{Chandra} spectroscopy. The red and green dots correspond to the case with and without the kSZ correction, respectively and the different models are provided with different dashed line as shown in the legend.}}
+\caption{\footnotesize{\bf Posterior likelihood (68 and 95\% C.L.) in the plane $\alpha$ -- $\beta$ (expressed in term of the zero level brightness of the NIKA map). {\bf Left:} tSZ+X-ray imaging versus XMM-\textit{Newton} spectroscopy. {\bf Right:} tSZ+X-ray imaging versus \textit{Chandra} spectroscopy. The red and green dots correspond to the case with and without the kSZ correction, respectively and the different models are provided with different dashed line as shown in the legend.}}
 \label{fig:T_SZ_T_X_posterior}
 \end{figure*}
 
@@ -254,9 +248,9 @@ Figure~\ref{fig:T_SZ_T_X_correlation} and Table~\ref{tab:regression_coeff} indic
 
 {\bf Among the main potential systematic effects, the gas clumpiness would tend to bias high the gas densities extracted from X-ray data and thus lower the measured $T_{\rm gmw}$ values. Such systematic effect could mimic a better agreement with $\bar{T}_{\rm XMM}$ than $\bar{T}_{\rm CXO}$. For instance, combining Planck tSZ \citep{Planck2015I} and XMM-\textit{Newton} observations, \citep{Tchernin2016} find this effect to be about 10\% in the cluster Abell 2142 within 1000 kpc from the center, and about 20\% at $R_{200}$. Numerical simulations \citep[e.g.,][]{Nagai2011,Zhuravleva2013,Vazza2013} suggest a factor of up to $\sim 40$\% at $R_{200}$, but with a rather large cluster-to-cluster scatter.}
 
-{\bf When dealing with multiphase plasma, X-ray spectroscopic temperatures are expected to underestimate the gas temperature \citep{maz04}. Thus, the gas-mass-weighted is expected to be larger than that obtained from XMM-\textit{Newton} and \textit{Chandra}, but it is not observed...}
+{\bf When dealing with multiphase plasma, X-ray spectroscopic temperatures are expected to underestimate the gas temperature by 10-20\% \citep{Mathiesen2001,maz04}. This is particularly important in the presence of strong temperature gradient when dealing with strong mergers such as \mbox{MACS~J0717.5+3745}. Thus, the gas-mass-weighted temperature is expected to be larger than that obtained from XMM-\textit{Newton} and \textit{Chandra}. We observe such difference when comparing $T_{\rm gmw}$ with the lower $\bar{T}_{\rm XMM}$ values, but not with $\bar{T}_{\rm CXO}$. However, this could be the result of many systematic effects discussed above (e.g., the gas clumpiness lowering $T_{\rm gmw}$) and will require a larger cluster sample to allow distinguishing multiphase plasma implications onto the temperature comparison we address in this paper.}
 
-We note that the noise in our $T_{\rm gmw}$ map is {\bf significantly lower} to that obtained from XMM-\textit{Newton} and \textit{Chandra}, but obtained with a factor of three smaller observing time. This illustrates the potential of resolved tSZ observations at intermediate to high redshifts, where X-ray spectroscopy becomes challenging, and which should be routinely provided by the up-coming generation of SZ instruments, MUSTANG2 \citep{Dicker2014} and NIKA2 \citep{Calvo2016,Comis2016}.
+We note that the noise in our $T_{\rm gmw}$ map is {\bf significantly lower, especially at high temperatures,} to that obtained from XMM-\textit{Newton} and \textit{Chandra}, but obtained with a factor of three smaller observing time. This illustrates the potential of resolved tSZ observations at intermediate to high redshifts, where X-ray spectroscopy becomes challenging, and which should be routinely provided by the up-coming generation of SZ instruments, MUSTANG2 \citep{Dicker2014} and NIKA2 \citep{Calvo2016,Comis2016}.
 
 %###############################################################################################
 %##########################                       ACKNOWLEDGEMENTS                        ##########################%###############################################################################################

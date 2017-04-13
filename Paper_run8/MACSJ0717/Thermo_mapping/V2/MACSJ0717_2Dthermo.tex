@@ -169,7 +169,7 @@ Figure \ref{fig:T_maps} shows the three temperature maps $\bar{T}_{\rm CXO}$, $\
 \includegraphics[width=0.33\textwidth]{Figure/Thermo_correlation_TXMM-TCXO.pdf}
 \includegraphics[width=0.33\textwidth]{Figure/Thermo_correlation_TXMM-TSZ_leff1.pdf}
 \includegraphics[width=0.33\textwidth]{Figure/Thermo_correlation_TCXO-TSZ_leff1.pdf}
-\caption{\footnotesize{Correlation between the temperature maps of Figure \ref{fig:T_maps} and residual. {\bf Left:} XMM-\textit{Newton} versus \textit{Chandra} spectroscopic temperatures. {\bf Middle:} tSZ+X-ray imaging (model M1) versus XMM-\textit{Newton} spectroscopy. {\bf Right:} tSZ+X-ray imaging (model M1) versus \textit{Chandra} spectroscopy. The red and green dots correspond to the case with and without the kSZ correction, respectively.}}
+\caption{\footnotesize{Correlation between the temperature maps of Figure \ref{fig:T_maps} and residual, $\chi^{(i)} = \frac{k_{\rm B} \bar{T}^{(i)}_{1} - \alpha \ k_{\rm B} \bar{T}^{(i)}_{2} - {\beta}/{\bar{n_e}^{(i)}}}{\sqrt{\left(\delta^{(i)}_{T_{1}}\right)^2 + \left(\alpha \ \delta^{(i)}_{T_{2}}\right)^2}}$. {\bf Left:} XMM-\textit{Newton} versus \textit{Chandra} spectroscopic temperatures. {\bf Middle:} tSZ+X-ray imaging (model M1) versus XMM-\textit{Newton} spectroscopy. {\bf Right:} tSZ+X-ray imaging (model M1) versus \textit{Chandra} spectroscopy. The red and green dots correspond to the case with and without the kSZ correction, respectively.}}
 \label{fig:T_SZ_T_X_correlation}
 \end{figure*}
 
@@ -189,16 +189,16 @@ where $\alpha_{\rm gmw-X}$ is a cross-calibration term and $\beta$ gives a measu
 \end{equation}
 where $\delta_{T_{1,2}}$ represents the temperature maps uncertainties and $\beta$ is set to zero when the regression is performed between $\bar{T}_{\rm XMM}$ and $\bar{T}_{\rm CXO}$. The parameter space is sampled using Markov Chains, which we evolve according to the Metropolis-Hasting algorithm \citep{Chib1995}, as done in \cite{Adam2015}. We check that this method correctly reproduce the true posterior likelihood using Monte Carlo realizations. Following \citep{Pratt2009}, we compute the overall scatter as
 \begin{equation}
-\sigma_{\rm tot}^2 = \frac{\frac{1}{N_{\rm pix} - 2} \sum_i \frac{\left(k_{\rm B} \bar{T}^{(i)}_{1} - \alpha \times k_{\rm B} \bar{T}^{(i)}_{2} - {\beta}/{\bar{n_e}^{(i)}}\right)^2}{\left(\delta^{(i)}_{T_{1}}\right)^2 + \left(\alpha \delta^{(i)}_{T_{2}}\right)^2}}{\frac{1}{N_{\rm pix}} \sum_i \frac{1}{\left(\delta^{(i)}_{T_{1}}\right)^2 + \left(\alpha \delta^{(i)}_{T_{2}}\right)^2}},
+\sigma_{\rm tot}^2 = \frac{\frac{1}{N_{\rm pix} - 2} \sum_i \frac{\left(k_{\rm B} \bar{T}^{(i)}_{1} - \alpha \ k_{\rm B} \bar{T}^{(i)}_{2} - {\beta}/{\bar{n_e}^{(i)}}\right)^2}{\left(\delta^{(i)}_{T_{1}}\right)^2 + \left(\alpha \ \delta^{(i)}_{T_{2}}\right)^2}}{\frac{1}{N_{\rm pix}} \sum_i \frac{1}{\left(\delta^{(i)}_{T_{1}}\right)^2 + \left(\alpha \ \delta^{(i)}_{T_{2}}\right)^2}},
 \label{eq:scatter_def}
 \end{equation}
 from which we extract the intrinsic scatter, $\sigma_{\rm int} = \sqrt{\sigma_{\rm tot}^2 - \sigma_{\rm stat}^2}$, accounting for the statistical scatter $\sigma_{\rm stat}$.}
 
-Table~\ref{tab:regression_coeff} gives the $\alpha $ coefficients obtained for the different $\ell_{\rm eff}$ models tested, and their dependence on the kSZ correction. {\bf Figure \ref{fig:T_SZ_T_X_posterior} provides the posterior likelihood in the plane $\alpha_{\rm gmw-X}$--$\beta$ for all the regression performed between $\bar{T}_{\rm gmw}$ and $\bar{T}_{\rm XMM/CXO}$.}
+Table~\ref{tab:regression_coeff} gives the $\alpha $ {\bf and $\beta$} coefficients {\bf and the intrinsic scatter}, obtained for the different $\ell_{\rm eff}$ models tested, and their dependence on the kSZ correction. {\bf Figure \ref{fig:T_SZ_T_X_posterior} provides the posterior likelihood in the plane $\alpha_{\rm gmw-X}$--$\beta$ for all the regression performed between $\bar{T}_{\rm gmw}$ and $\bar{T}_{\rm XMM/CXO}$.}
 
-The scatter of about 2 keV between $\bar{T}_{\rm CXO}$ and $\bar{T}_{\rm XMM}$ is dominated by statistical error. The scatters between $\bar{T}_{\rm gmw}$ and both X-ray temperatures are comparable. This is not compatible with the noise as propagated into the $T_{\rm gmw}$ map, and may be due to a number of factors, including the difference in angular resolution of the maps, or an intrinsic scatter between gas-mass-weighted and spectroscopic temperatures.
+The scatter of about 2 keV between $\bar{T}_{\rm CXO}$ and $\bar{T}_{\rm XMM}$ is dominated by statistical error. The scatters between $\bar{T}_{\rm gmw}$ and both X-ray temperatures are comparable, {\bf but slightly lower for $\bar{T}_{\rm XMM}$}. This is not compatible with the noise as propagated into the $T_{\rm gmw}$ map {\bf in most cases}, and may be due to a number of factors, including the difference in angular resolution of the maps, or an intrinsic scatter between gas-mass-weighted and spectroscopic temperatures.
 
-The tSZ+X-ray imaging versus X-ray only cross-calibration is stable to within less than 10\%, depending on the choice of the $\ell_{\rm eff}$ model and the kSZ correction used. The cross-calibration coefficients also directly depend on the absolute calibration of the tSZ map, which is expected to be accurate within 7\%. Model M3b provides a lower limit on $\ell_{\rm eff}$, and therefore an upper limit on $\alpha_{\rm gmw-X}$.
+The tSZ+X-ray imaging versus X-ray only cross-calibration is stable to within 10\%, depending on the choice of the $\ell_{\rm eff}$ model and the kSZ correction used. The cross-calibration coefficients also directly depend on the absolute calibration of the tSZ map, which is expected to be accurate within 7\%. Model M3b provides a lower limit on $\ell_{\rm eff}$, and therefore an upper limit on $\alpha_{\rm gmw-X}$.
 
 \begin{table*}[]
 \caption{\footnotesize{Regression and {\bf intrinsic} scatter coefficients between the temperature maps. {\bf The central value is the median of the posterior likelihood and the errors are obtained by integrating the posterior likelihood within 90\% C.L. The posterior likelihood distribution is highly non Gaussian in the case of the scatter and error bars should be interpreted with caution.} $^{\star}$Model M3b gives a lower limit for $\ell_{\rm eff}$, and thus should be taken only as an upper limit for $\alpha$.}}
@@ -255,6 +255,7 @@ We note that the noise in our $T_{\rm gmw}$ map is {\bf significantly lower, esp
 %###############################################################################################
 %##########################                       ACKNOWLEDGEMENTS                        ##########################%###############################################################################################
 \begin{acknowledgements}
+{\bf We are thankful to the anonymous referee for useful comments that helped improve the quality of the paper.}
 We would like to thank the IRAM staff for their support during the campaigns. 
 We thank Marco De Petris for useful comments.
 The NIKA dilution cryostat has been designed and built at the Institut N\'eel. In particular, we acknowledge the crucial contribution of the Cryogenics Group, and  in particular Gregory Garde, Henri Rodenas, Jean Paul Leggeri, Philippe Camus. 

@@ -82,11 +82,16 @@ This notes describe the main results of the NIKA2 commissioning campaigns.
 \vspace{30pt} % Some vertical space between the abstract and first section
 
 %----------------------------------------------------------------------------------------
+%
 %	ESSAY BODY
+%
 %----------------------------------------------------------------------------------------
-
 %\tableofcontents
 
+
+%----------------------------------------------------------------------------------------
+%	INRODUCTION
+%----------------------------------------------------------------------------------------
 \section{Introduction}
 
 \subsection{Commissioning goals}
@@ -133,152 +138,17 @@ N2R9     & 22       & 21-February-2017  & 28-February-2017 &                    
 \end{tabular} 
 \end{table} 
 
-% ---------------------------------------
+
+%----------------------------------------------------------------------------------------
+%	BANDPASSES
+%----------------------------------------------------------------------------------------
 \section{Bandpasses}
 \input{bandpasses.tex}
 
-% ---------------------------------------
-\section{sensitivities}
 
-\begin{figure}
-\begin{center}
-%\includegraphics[clip, angle=0, scale =
-%  0.5]{Figures/NEFD_HLS091828_20170226s415_FXDC0C1_GaussPhot.png}
-\includegraphics[clip, angle=0, scale = 0.5]{Figures/nefd_mpfit_HLS091828.eps}
-\caption{Kids Xcalib with fixed fwhm 12.5 and 18.5, HLS091828.}
-\label{fig:nefd_vs_t}
-\end{center}
-\end{figure}
-
-{\bf The specs/goals ``NEFD on X \% of pixels'' should be understood as : we have
-XX\% valid pixels, and with these pixels, we have an NEFD of YY. We should not
-discard some fraction of our pixels and estimate an NEFD on this subset.}\\
-
-HLS091828 is moderately faint source, expected to be below 100~mJy at 1mm and
-XX~mJy at 2mm {\bf check values in NIKA1 paper + use SED for predictions in
-  NIKA2's bands}. This source was chosen for its flux and its availability during
-Run9 for long integration. It has been observed for XX hours in total over three
-nights.
-
-\subsection{Data processing}
-
-The data were decorrelated using the XXX method... The scans have been combined
-with standard inverse noise weighting. The noise in each map pixel is derived
-from the rms of the background corrected for the number of observations per
-pixel.
-
-\subsection{NEFD Methods 1 and 2: deep integration}
-These data can be used to derive the NEFD in several ways. One is to fit the
-evolution of the uncertainty on the flux of the source $\sigma_\phi$ with the
-integration time. Another one is to produce jackknife maps with the data and to
-measure the uncertainty on the flux in the end, while estimating the time of
-integration. Results are summarized in Tab.~\ref{tab:nefd}.
-
-Fig.~\ref{fig:nefd_vs_t} shows the decrease of the uncertainty on the measured
-flux at the center of the map as a function of time. We either fit a power law
-or fix the power law to -0.5 and fit only the amplitude. Uncertainties on these
-values have been estimated via a bootstrap method: we randomize the scans and
-derive the standard deviation of the average of $n$ scans for any $n$ between 1
-and the total number of scans. This gives us an estimate of the uncertainty on
-$\sigma_\phi$ for a time of integration corresponding to $n$ scans. Strictly
-speaking, all the scans do not have the exact same duration, but the difference
-is negligible here.
-
-
-\begin{table}
-\begin{tabular}{|l|l|l|l|l|}
-\hline
-Array & Free power law & Fixed power law $t^{-0.5}$ & Jackknife & Instrument \\
-\hline
-A1       & $47.9$ mJy.s$^{-0.54}$ & $37.9$ mJy.s$^{1/2}$ & 35.6 mJy.s$^{1/2}$ & $33.3$ (5) mJy.s$^{1/2}$\\
-A2       & $5.2$  mJy.s$^{-0.51}$ & $4.8$  mJy.s$^{1/2}$ & 5.7  mJy.s$^{1/2}$ & $5.8$  (5) mJy.s$^{1/2}$\\
-A3       & $38.9$ mJy.s$^{-0.54}$ & $30.6$ mJy.s$^{1/2}$ & 30.4 mJy.s$^{1/2}$ & $28.4$ (4) mJy.s$^{1/2}$\\
-A1 \& A3 & $28.5$ mJy.s$^{-0.53}$ & $23.6$ mJy.s$^{1/2}$ & 22.4 mJy.s$^{1/2}$ & $21.1$ (3) mJy.s$^{1/2}$\\
-\hline
-\end{tabular}
-\label{tab:nefd}
-\end{table}
-       33.325263       5.2024647
-       28.397230       4.5723151
-       21.143376       4.1538804
-       5.7628233       3.3094792
-
-
-\begin{figure}
-\begin{center}
-\includegraphics[clip, angle=0, scale =0.8]{Figures/NEFDIndScans/nefd_tau_run22.pdf}
-\caption{Astronomer NEFD as a function of atmospheric background for the 1 (orange dots) and 2 (cyan dots) mm channels. We also show the expected NEFD evolution with atmospheric background (red and blue curves)}
-\label{fig:nefdvsbackground}
-\end{center}
-\end{figure}
-
-\subsection{NEFD Method 3: scan NEFD vs opacity and air mass}
-\begin{figure}
-\begin{center}
-\includegraphics[clip, angle=0, scale =0.8]{Figures/NEFDIndScans/nefd_evol_run22.pdf}
-\caption{Evolution of the measured instrument NEFD across scans for N2R9.}
-\label{fig:nefdvsscans}
-\end{center}
-\end{figure}
-
-\begin{figure}
-\begin{center}
-\includegraphics[clip, angle=0, scale =0.8]{Figures/NEFDIndScans/nefd_flux1mm_run22.pdf}
-\caption{Measured instrument NEFD as a function of the flux of the source.}
-\label{fig:nefdvsflux}
-\end{center}
-\end{figure}
-\begin{figure}
-\begin{center}
-\includegraphics[clip, angle=0, scale =0.8]{Figures/NEFDIndScans/hist_nefd_ref_run22.pdf}
-\caption{Histogram of the measured reference NEFD across the N2R9 for the 1 (right) and 2 (left) mm channels.}
-\label{fig:nefdhist}
-\end{center}
-\end{figure}
- 
-
-In this section we investigate the astronomer NEFD as a function of the atmospheric opacity and air mass. Figure~\ref{fig:nefdvsbackground} shows the measured NEFD, which we refer to as astronomer NEFD, for the 1 and 2 mm as a function of the measured atmospheric background in terms of $\tau/sin(El)$. The atmospheric opacity was computed as discussed in Section~\ref{se:opacities}. We observe that the increase of the astronomer NEFD is in agreement with what we would expect for background dominated sensitivity. We observe however some significant deviations from the curve. To investigate this issue we also show in Figure~\ref{fig:nefdvsscans} the evolution of the background corrected NEFD, hereafter instrument NEFD, across the N2R9 campaign for arrays A1 (blue), A3 (green) and A2 (cyan), and for the combination of A1 and A3 (red). We globally obseve stable NEFD across the run, with A1 sensitivity being worse than for A3. We also show the measured instrument NEFD as a function of the flux of the source in the 1 mm channel in Figure~\ref{fig:nefdvsflux}. We observe that the observed deviations in the instrument NEFD correspond mainly to the large flux source scans. This is more obvious in Figure~\ref{fig:nefdhist} where we present the histogram of the measured NEFD for 2 mm of pwv and at a elevation of 60 degrees, hereafter, reference NEFD, for the 1 and 2 mm channels.
-
-
-
-% ---------------------------------------
-\section{Focal plane reconstruction}
-\label{se:fov}
-
-\begin{figure}
-\begin{center}
-\includegraphics[clip, angle=0, scale = 0.15]{Figures/FOV_A1.png}
-\includegraphics[clip, angle=0, scale = 0.15]{Figures/FOV_A2.png}
-\includegraphics[clip, angle=0, scale = 0.15]{Figures/FOV_A3.png}
-\caption{Nasmyth offsets of each array, from beammap 26s415 on 3C84.}
-\label{fig:fov}
-\end{center}
-\end{figure}
-
-\begin{table}
-\begin{tabular}{|l|l|l|}
-\hline
-Array & Number of valid kids & Fraction of all kids\\
-\hline
-A1 & 793 & 0.75\\
-A2 & 481 & 0.83\\
-A3 & 872 & 0.83\\
-\hline
-\end{tabular}
-\end{table}
-
-\begin{equation}
-FOV diameter = \sqrt{4 N_{tot. kids} * gridstep^2/\pi}
-\end{equation}
-
-The same definition applies to ``Effective FOV'' to avoid extra multiplication
-by the fraction of valid pixels
-
-\begin{equation}
-F\lambda = gridstep\times D(30m)/\lambda
-\end{equation}
-
-% ----------------------------------------
+%----------------------------------------------------------------------------------------
+%	OPACITY
+%----------------------------------------------------------------------------------------
 \section{Opacity derivation}
 \label{se:opacities}
 
@@ -323,15 +193,70 @@ contribute to the tau determination.
 \end{center}
 \end{figure}
 
-%------------------------------------------
+
+%----------------------------------------------------------------------------------------
+%	FOCAL PLANE RECONSTRUCTION
+%----------------------------------------------------------------------------------------
+\section{Focal plane reconstruction}
+\label{se:fov}
+
+\begin{figure}
+\begin{center}
+\includegraphics[clip, angle=0, scale = 0.15]{Figures/FOV_A1.png}
+\includegraphics[clip, angle=0, scale = 0.15]{Figures/FOV_A2.png}
+\includegraphics[clip, angle=0, scale = 0.15]{Figures/FOV_A3.png}
+\caption{Nasmyth offsets of each array, from beammap 26s415 on 3C84.}
+\label{fig:fov}
+\end{center}
+\end{figure}
+
+\begin{table}
+\begin{tabular}{|l|l|l|}
+\hline
+Array & Number of valid kids & Fraction of all kids\\
+\hline
+A1 & 793 & 0.75\\
+A2 & 481 & 0.83\\
+A3 & 872 & 0.83\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{equation}
+FOV diameter = \sqrt{4 N_{tot. kids} * gridstep^2/\pi}
+\end{equation}
+
+The same definition applies to ``Effective FOV'' to avoid extra multiplication
+by the fraction of valid pixels
+
+\begin{equation}
+F\lambda = gridstep\times D(30m)/\lambda
+\end{equation}
+
+
+%----------------------------------------------------------------------------------------
+%	POINTING
+%----------------------------------------------------------------------------------------
+\section{Pointing accuracy}
+\label{se:pointing}
+% + RTA pointing estimate method
+% + pointing model
+% + pointing error (scan-to-scan scattering)
+
+
+%----------------------------------------------------------------------------------------
+%	BEAM PATTERN
+%----------------------------------------------------------------------------------------
 \section{Beam pattern}
+\label{se:beams}
 \input{Beams.tex}
 
 
-
-%------------------------------------------
+%----------------------------------------------------------------------------------------
+%	CALIBRATION
+%----------------------------------------------------------------------------------------
 \section{Calibration}
-
+\label{se:calibration}
 
 \input{Cal.tex}
 
@@ -368,8 +293,13 @@ contribute to the tau determination.
 \end{center}
 \end{figure}
 
-%------------------------------------------
+
+
+%----------------------------------------------------------------------------------------
+%	NOISE DESCRIPTION
+%----------------------------------------------------------------------------------------
 \section{Noise description: TOI and maps}
+\label{se:noise}
 
 \subsection{Dark detectors at 1 mm}
 %\begin{figure}
@@ -382,11 +312,28 @@ contribute to the tau determination.
 %\end{figure}
 
 
-%------------------------------------------
+%----------------------------------------------------------------------------------------
+%	DARK TESTS
+%----------------------------------------------------------------------------------------
 \subsection{Dark tests}
+\label{se:dark}
 \input{dark_tests}
-%------------------------------------------
+
+
+%----------------------------------------------------------------------------------------
+%	SENSITIVITIES
+%----------------------------------------------------------------------------------------
+\section{Sensitivities}
+\label{se:nefd}
+\input{NEFD}
+
+
+%----------------------------------------------------------------------------------------
+%	SUMMARY
+%----------------------------------------------------------------------------------------
 \section{Summary of performance}
+
+
 
 %----------------------------------------------------------------------------------------
 %	BIBLIOGRAPHY

@@ -1,0 +1,919 @@
+
+%                                                                 aa.dem
+% AA vers. 6.1, LaTeX class for Astronomy & Astrophysics
+% demonstration file
+%                                                 (c) Springer-Verlag HD
+%                                                revised by EDP Sciences
+%-----------------------------------------------------------------------
+%
+\documentclass[]{aa} %
+%\documentclass[referee]{aa} % for a referee version
+%\documentclass[onecolumn]{aa} % for a paper on 1 column
+%\documentclass[longauth]{aa} % for the long lists of affiliations
+%\documentclass[rnote]{aa} % for the research notes
+%\documentclass[letter]{aa} % for the letters
+%
+%\documentclass[structabstract]{aa}
+%\documentclass[traditabstract]{aa} % for the abstract without structuration
+                                   % (traditional abstract)
+%
+\usepackage{graphicx}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{txfonts}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{verbatim}
+\usepackage{bm}
+%\usepackage{natbib}
+%\usepackage{amsmath}
+%\usepackage{amsfonts}
+%\usepackage{amssymb}
+%\usepackage{MnSymbol}
+
+
+\newcommand{\figref}[1]{Fig.~\ref{#1}}
+\newcommand{\eqnref}[1]{Eq.~(\ref{#1})}
+
+
+\begin{document}
+%
+   \title{The NIKA2 millimetre camera at the 30-meters Pico Veleta telescope}
+
+%   \subtitle{I. Overviewing the $\kappa$-mechanism}
+
+
+\author
+{
+A first group (contributors to the writing of this paper, the order will be difficult to sort, we will do it together) and the NIKA2 core team.
+Old list (from Andrea 2014 paper):
+A.~Catalano$^1$,
+M.~Calvo$^2$,
+N.~Ponthieu$^3$,
+R.~Adam$^1$,
+A.~Adane$^4$,
+P.~Ade$^5$,
+P.~Andr\'e$^6$,
+A.~Beelen$^7$,
+A.~Beno\^it$^2$,
+A.~Bideaud$^5$,
+N.~Billot$^9$,
+O.~Bourrion$^1$,
+G.~Coiffard$^4$,
+B.~Comis$^1$,
+A.~D'Addabbo$^{2,11}$,
+M. De Petris$^11$, 
+F.-X.~D\'esert$^3$,
+S.~Doyle$^5$,
+J.~Goupy$^2$,
+C.~Kramer$^9$,
+S.~Leclercq$^4$,
+J.~F.~Mac\'ias-P\'erez$^1$,
+P.~Mauskopf$^8$,
+F.~Mayet$^1$,
+A.~Monfardini$^2$,
+F.~Pajot$^7$,
+E.~Pascale$^5$,
+L. Perotto$^1$,
+V.~Rev\'eret$^6$,
+A.~Ritacco$^3$,
+L.~Rodriguez$^6$,
+G.~Savini$^{10}$,
+K.~Schuster$^4$,
+A.~Sievers$^9$,
+C.~Tucker$^5$,
+R.~Zylka$^4$
+}
+
+
+         \institute
+	{
+%$^1
+Institut N\'eel, CNRS \& Universit\'{e} de Grenoble, BP 166, 38042 Grenoble, France
+\and
+%$^2
+Institut de Plan\'etologie et dAstrophysique de Grenoble (IPAG), CNRS and Universit\'e de
+Grenoble, BP 53, 38041 Grenoble, France
+\and
+%$^3 -->3
+Laboratoire de Physique Subatomique et de Cosmologie,
+Universit\'e de Grenoble,
+  CNRS, Institut Polytechnique de Grenoble, 
+  53, rue des Martyrs, Grenoble, France
+\and
+%$^4 -->4
+Institut de RadioAstronomie Millim\'etrique, 300 rue de la Piscine, 38406 Saint Martin d'H\`eres, France
+\and
+%$^5 -->5
+Cardiff School of Physics and Astronomy, Cardiff University, CF24 3AA, United Kingdom
+\and
+%$^6 -->6
+Laboratoire AIM, CEA/IRFU, CNRS/INSU, UniversitÈ Paris Diderot, CEA-Saclay, 91191 Gif-Sur-Yvette, France 
+\and
+%$^7 -->7
+Institut d'Astrophysique Spatiale (IAS), CNRS and Universit\'e Paris Sud, Orsay, France
+\and
+%$^8 -->8
+Arizona State Uniuversity (ASU), Phoenix, USA
+\and
+%$^9  -->9
+Institut de RadioAstronomie Millimetrique (IRAM), Granada, Spain
+\and
+%$^10
+University College London, Department 
+of Physics and Astronomy, Gower Street, London WC1E 6BT, UK
+\and
+%$^11
+Universit\`a "La Sapienza", p.le A. Moro, Roma, Italy
+             }
+
+    \authorrunning{Monfardini et. al.}
+
+   \date{Received December XX, XXXX; accepted XXX XX, XXXX}
+
+% \abstract{}{}{}{}{}
+% 5 {} token are mandatory
+
+  \abstract
+  % context heading (optional)
+  % {} leave it empty if necessary
+   {Millimetre-wave astronomy is today an indispensable tool for both general Astrophysics studies (e.g. star formation, galaxies morphology etc.) and Cosmology (e.g. CMB - Cosmic Microwave Background, high-redshift galaxies etc.). General purpose, large field-of-view instruments are needed to map the Sky at intermediate angular scales (e.g. angular resolution of the order of 10 arc-sec) not accessibles by interferometers (e.g. ALMA; NOEMA, ...) and space-borne surveys (Planck). In order to efficiently cover the bands ranging from 80 to 360 GHz, accessible from the ground, these instruments have to be installed on large optimised single-dish telescopes placed at high altitude on selected observing sites. In this framework, we have constructed and deployed a multi-tousands pixels dual-band (150GHz and 260GHz) camera (NIKA2) to image an instantaneous field-of-view of 6.5arc-min and map the linear polarisation at 260 GHz.}
+  % aims heading (mandatory)
+   {Provide a detailed description of NIKA2, in particular focussing on the cryogenics, the optics  and the focal planes based on Kinetic Inductance Detectors (KID). The focal planes are cooled down to the nominal 150mK operating temperature by means of an ad-hoc dilution refrigerator. 
+Present the performance measured on the Sky during the first commissioning runs that took place between October 2015 and January 2016 at the 30-meters IRAM telescope at Pico Veleta. The instrument will be offered to the astronomical community at the end of the scientific commissioning that is currently ongoing.}
+  % methods heading (mandatory)
+   {We have targeted a number of astronomical sources. Starting from primary and secondary calibrators allowing extracting beam-maps and photometric adjustment, we have then gone to extended sources and faint objects. Both internal (electronics) and on-the-sky calibrations are applied, and the methods are described briefly.}
+  % results heading (mandatory)
+   {NIKA2 has ben successfully deployed and technically commissioned, performing in-line with expectations. In particular, we demonstrate the photometric and imaging performance (primary and secondary calibrators) and the mapping of extendes sources (CasA, others). Besides that, we demonstrated the ability of NIKA2 of detecting faint sources at the mJy level.
+}
+  % conclusions heading (optional), leave it empty if necessary
+   {}
+
+
+   \keywords{Superconducting detectors --
+                mm-wave --
+                kinetic-inductance --
+                cosmic microwave background --
+                large arrays
+               }
+
+   \maketitle
+%
+%________________________________________________________________
+
+\section{Introduction}
+
+JUAN:
+
+Millimeter and sub-millimeter wavelength observations are at the forefront of cosmology and astrophysics.....  
+
+ALESSANDRO: 
+
+A number of instruments operate hundreds to thousands low-temeprature detectors for continuum mapping at millimetre and sub-millimetre frequencies. The most recent advancements in the domain are described in detail in the LTD16 proceedings (\cite{ltd16:2016}). The vast majority of these instruments, however, are designed and exceute well defined scientific programs, most likely related to the search of the primordial polarisation modes in the Cosmic Microwave Background (CMB). Very few general purpose tools, like the one described in this paper, are available to the general astronomical community. Among them, we cite Artemis on APEX, SCUBA-2 etc. Recently, the KID technology has demonstrated its competitiveness in real instrumentation working at millimetre wavelenghts. The pathfinder NIKA instrument,equipped with 356 pixels and two arrays, has demonstrated state-of-the art performance in terms of sensitivity, stability, dynamic range (\cite{Catalano2014, Monfardini2011, Adam2014}).
+
+Besides intrinsic scientific impact, NIKA2 represents the first real demonstration of competitive performance using thousands pixels Kinetic Inductance Detectors (KID (\cite{Day2003}, \cite{Doyle2010}) cameras operating at these wavelenghts. In the present paper we start by describing in some detail the overall instrument design, including cryogenics, focal planes, optics, readout electronics, quick-look data analysis software. We will also provide the results from the first commissioning runs at the Pico Veleta IRAM telescope. 
+
+%__________________________________________________________________
+
+\section{The Instrument}
+
+NIKA2 is a multi-purpose camera able to image the same portion of the Sky, i.e. 6.5 arc-min in diameter, simultaneously at 150 and 260 GHz, mapping at the same time the linear polarisation  at 260 GHz. To do that, and in order to preserve the angular resolution of the 30-meters telescope, it employs a total of 3,300 pixels split over three distinct arrays of KID. We describe in some detail, in this paragraph, the key subsystems of the instrument, including also preliminary laboratory characterisation of the detectors. 
+
+
+ \subsection{The cryostat}
+
+In order to ensure optimal operation of the detectors and optimally suppress the in-band stray-light, the focal plane arrays, and the last portion of the optics, is cooled down to a base temperature of around 150 mK by a 3He-4He dilution fridge. The dilution insert, developed in-house, is completely independent and compatible with any cryostat providing a stable 4K temperature input and suitable mechanical and fluids attach points. 
+
+\begin{figure}[h]
+   \centering
+   \includegraphics[width=.95\linewidth]{fig1_cryo.png}
+      \caption{(Color online) Cross-section of the NIKA2 instrument. The three arrays (150 GHz, 260 GHz-V and 260 GHz-H) are highlighted. The optical axis and the photons direction of propagation is shown as well. The overall lenght of the instrument is around 2.3 meters.}
+         \label{Cryostat}
+\end{figure}
+
+The cryostat itself has been entirely designed by our group. It makes use of two pulses-tubes Cryomech PT415, each delivering a cooling power of 1.35W at 4.2K (second stage) and several tens of Watts at 20-80K (first stage). The base temperature of these devices is of the order of 3K, largely sufficent to start the dilution process. The large cooling power available on the first pulses tubes stage allows to integrate in the cryostat a large part of the optics, and an efficient baffle placed at a temperature of around 50 K.
+
+The whole instrument includes more than 3000 individual mechanical pieces, for a total weight around 1.3 tons. The weight of the 150 mK stage is of the order of 80 kg, including few kg of HDPE (High Density PolyEthilene) low-conductance lenses. Radiation screens are placed at 1K (still), 4K (pulses tubes second stage), 30K and 80K (pulses tubes first stages).
+
+Selected inner parts, at each stage of temperature, are coated with a high emissivity mixture of black STYCAST 2850, SiC grains and carbon powder. This coating has demonstrated its effectiveness at millimeter wavelenghts in order to suppress unwanted reflections (\cite{Calvo2010}).
+
+The operation of the cryostat does not require cryogenic liquids, and is fully remotely controlled. The whole cool-down procedure lasts about five days. In particular, four days are required for pre-cooling the coldest stages at around 4 K. During the last 24 hours  the dilution is started, allowing further coolign down to base temperature. 
+
+
+ \subsection{The focal plane arrays}
+
+Each array is fabricated on a single 4'' High Resistivity Silicon wafer, on which a thin aluminium film (18nm) is deposited. The use thin superconducting films has a double advantage: first of all, it increases the kinetic inductance of the material, making the detectors more responsive. And second, it also increases its normal state resistivity. This makes it easier to match the free space impedance of the incoming wave to that of the LEKID meander, where the power is absorbed. The NIKA2 pixels are all based on the Hilbert fractal geometry (\cite{Roesch2012}). 
+
+For the 150 GHz band the array design is very similar to the one used previously in NIKA. The pixels are coupled to a Coplanar waveguide (CPW) readout line, with bondings across the line to suppress the spurious slotline modes which could arise (\cite{Goupy2016}). The distance between the pixels and the CPW is chosen in order to have optimal coupling conditions: these are achieved when the coupling merit factor, $Q_c$, is of the same order as the internal merit factor $Q_i$ observed under typical loading condition. Each pixel has a size of $2.3\times2.3\textrm{mm}^2$, resulting in a focal plane sampling of $\sim 0.7 F\lambda$. Considering the size of the focal plane, a total of 1020 KID are needed to fill the array. These are split over 4 different readout lines, and have resonance frequencies laying between 1.3 and 1.8 GHz.
+
+\begin{figure}[h]
+   \centering
+    \includegraphics[width=.95\linewidth]{CPWeMS.png}
+      \caption{(Color online) Left: a front-illuminated microstrip (MS) pixel for the 260 GHz band. The size is 2x2mm. Right: a back-illuminated coplanar waveguide (CPW) pixel for the 150 GHz band. The size is 2.3x2.3 mm. Both designs are based on Hilbert-shape absorbers/inductors.}
+         \label{Pixels}
+\end{figure}
+
+
+To optimize the optical coupling to the incoming radiation we have adopted for this band a back-illumination configuration, in which the light passes through the silicon wafer before reaching the pixels. The silicon can then act as a sort of anti-reflection layer. To further enhance this effect, we added a grid of perpendicular grooves on the bottom of the wafer, which thus has an effective dielectric constant which is in between that of vacuum and that silicon. The total thickness of the silicon and the depth of the grooves are chosen to optimize the anti-reflection layer effect. A superconducting lid is then placed $650\mu m$ after the detectors plane, acting as a $\lambda/4$ backshort. Thanks to this arrangement, a high and almost flat absorption efficiency is achieved over the whole 120 to 170 GHz band.
+
+In the case of the 260 GHz band, the pixel size is $2\times 2\mathrm{mm}^2$. This is the maximum size that can be adopted without degrading the telescope resolution, as it corresponds to a $1 F \lambda$ sampling of the focal plane. In order to fill the two 260 GHz arrays, a total of 1140 pixels are needed in each of them. The smaller pixels dimensions lead to slightly higher resonance frequencies (1.85-2.45 GHz). For this band we adopted a different approach, in which the detectors are coupled to a Microstrip (MS) readout line. This kind of feedline only supports one propagating mode, and is thus immune to the risk of spurious modes. Furthermore, the aluminium groundplane is located on the opposite side of the wafer with respect to the detectors, which reduces the cross-coupling between different pixels. The detectors are read out using 8 feedlines. A small aluminium loop is added around each pixel to tune their coupling to the readout line: the current in the loop partially screens the field associated to the pixel itself, making it possible to reach the high $Q_c$ ($\sim10000$) needed to meet the optimal coupling condition.
+
+\begin{figure}[h]
+   \centering
+    \includegraphics[width=.95\linewidth]{1mm_array.jpg}
+      \caption{(Color online) One of the 8-feedlines 260 GHz front-illuminated arrays after packaging. The number of pixels in this array is 1140.}
+         \label{Array}
+\end{figure}
+
+The change of feedline geometry and the slightly lower MUX factor ($\sim150$ instead of $\sim250$ KID per line) improve the overall cosmetics of the arrays. On the other hand, the Microstrip line implies that the back side of the Silicon wafer to be completely covered by an aluminium film, which acts as groundplane. This therefore limits the possible configurations that can be adopted for the optical coupling, as the light must forcefully reach the detectors from the front side and not through the wafer. The back-illumination strategy typical of the CPW case is therefore no longer viable. Nonetheless, it is possible to choose the thickness of the silicon wafer so that the aluminium on the back side also takes the role of $\lambda/4$ backshort. Thanks to it, we are once more able to get a very high absorption efficiency in the band 240 to 280 GHz. 
+
+
+%The coupling to the readout feedline is chosen to have an internal quality factor $Q_i$ similar to the coupling factor $Q_c$.  Each array is  the are determined by the optics 
+ \subsection{The cold optics}
+
+In this section we describe in some detail the internal optics. More details concerning the telescope cabin optics are given in par.~\ref{Laboratory tests}.
+
+NIKA2 is equipped with a reflective cold optics stage held at a temperature of around 50 K. The two shaped mirrors (M7 and M8) are mounted in a specially-designed low-reflectance (\cite{Calvo2010}) optical box. The stray-light suppression is further enhanced by a multi-stage baffle at 4 K.
+
+The refractive part of the NIKA2 cold optics is mounted at 1 K and at base temperature. A 30 centimeters diameter hot-pressed dichroic splits the 150 GHz (reflection) from the 260 GHz (transmission) bands first. A grid polarizer ensures then the separation of the two linear polarisations.  Please refer to fig.~\ref{Cryostat} for a cross-section of the internal optics.
+ 
+
+The filtering of unwanted (off-band) radiation is provided by a suitable stack of multi-mesh filters placed at all temperature stages. In particular, three IR-cut filters are installed at 300K, 100K and 50K. Low-pass filters, with decreasing cutoff frequencies, are mounted at 50K, 4K, 1K and at base temperature. Band-defining filters, custom-designed in order to optimally match the atmospheric characteristics, are installed at base temperature. 
+
+%POLARISATION FACILITIES (Andrea)
+In order to efficiently exploit the NIKA2 polarisation capabilities, a modulator is added when operating the instrument in "polarized mode". It consists of a multi-mesh hot-pressed Half-Wave-Plate (HWP) (\cite{Pisano2016}) mounted in front of the cryostat window. The modulator uses a stepping motor and is operated at mechanical frequencies of up to 2 Hz, corresponding to 8 Hz concerning polarisation modulation speed. As already explained, and in order to detect the totality of the photons, the modulated polarised signal is then projected onto the two 260 GHz arrays by the 45 deg. wire-grid polarizer at base temperature.  
+
+
+ \subsection{The readout electronics}
+
+One of the key advantages of the KID technology is the simplicity of the {\bf{cold electronics}} installed in the cryostat. In NIKA2, a number of detectors comprised between 150 and 250 is multiplexed on the same pair of coaxial lines providing the excitation and the readout. The excitation line is made by stainless steel cables running from 300 K down to base temperature. They are properly thermalised at each cryostat stage, and a fixed attenuation of 20dB is applied at 4 K in order to suppress the 300 K thermal noise. Each excitation line ends in an SMA connector (INput) and launched, through superconducting (Al) microbondings, on the silicon wafer holding the detectors. The approximate excitation power per pixel is usually of the order of 10 pW.
+
+On the readout side, further microbondings get the signal out of the focal plane, into a second SMA connector (OUTput) and through a superconducting (Nb) coaxial cable directly to the input of a low-noise cryogenics amplifier (LNA) operating at frequencies up to 2.5GHz. The noise temperature (en.wikipedia.org$/$wiki$/$Noise$\_$temperature) of the amplifier, hold at a physical temperature of around 8K in the cryostat, is between 2K and 5K.  The output of the amplifier goes up to 300K via stainless steel cables. 
+
+The cryogenics amplifiers for NIKA2 has been developed, fabricated and tested at the Yebes observatory and TTI Norte (www.ttinorte.es) company, both located in Spain. 
+
+NIKA2, i.e. 3,300 pixels, is equipped with a total of 20 pairs of lines, thus employing 20 cryogenics amplifiers (four for the 150GHz array and eight each for the 260GHz arrays). The polarisation of these amplifiers is provided by a custom electronics box remotely controlled and allowing optimising the individual biases according to the slightly different characteristics of the front-end high electrons mobility transistors (HEMT). 
+
+\begin{figure}
+\begin{center}
+\includegraphics[angle=-90,width=0.45\textwidth]{NIKA_crate}
+\caption{Overview of one array readout electronics crate.
+It is equipped with 4 (or 8) readout boards lodged in Advanced Mezzanine Card slots (NIKEL\_AMC), one central and clocking and synchronization board (CCSB) mounted on the MicroTCA Carrier Hub (MCH) and one 600\,W power supply.
+The crate allocated to the 150\,GHz channel uses 4 NIKEL\_AMC while the others use 8 NIKEL\_AMC boards.
+\label{crateFig}}
+\end{center}
+\end{figure}
+
+On the {\bf{warm electronics}} side, to instrument the three arrays a total of 20 electronic boards, named New Iram Kid ELectronic in Advanced Mezzanine Card format (NIKEL\_AMC), are required.
+As shown in fig.~\ref{crateFig}, these boards are distributed in three micro-Telecommunication Computing Architecture (MTCA) crates.
+A central module, composed of a commercially available Mezzanine Control Hub (MCH) and of custom made mezzanine boards, is used to distribute a Rubidium reference clock (CLK) and a pulse per second (PPS) provided by GPS receiver and to control the crate.
+This allows the whole instrumentation to be synchronous and to properly associate the data 
+samples with respect to the telescope pointing.
+This electronics is fully described in previous papers (\cite{Bourrion2012}, \cite{Bourrion2016}).
+%%%%%%%%%%%%%%%%
+
+%The NIKEL\_AMC features a radio-frequency (RF) part.
+%It uses the local oscillator (LO) input to perform the up-conversion of the baseband excitation signal and to achieve the down-conversion of the feed-line output signal (MEAS) before providing it to the baseband part for signal processing.
+%
+The NIKEL\_AMC relies on channelized Digital Down Conversion (DDC) and their associated digital sine and cosine signal generators to build the excitation signal and to process the returning signal at baseband.
+The baseband part of the readout heavily relies on Field Programmable Gate Arrays (FPGA), Analog to Digital and Digital to Analog Converters (ADC and DAC).
+It covers a bandwidth of 500\,MHz and can instrument up to 400 KID in this bandwidth.
+
+The transition from and to the baseband part is ensured by an integrated radio-frequency (RF) chain that uses the local oscillator (LO) input to perform up and down-conversions.
+To instrument the 150\,GHz array (resonances from 1.3\,GHz to 1.8\,GHz) and the 260\,GHz arrays (resonances from 1.9\,GHz to 2.4\,GHz), the used LO input frequency are respectively 1.3\,GHz and 1.9\,GHz.
+%It performs the up-conversion to build the feed-line excitation signal (EXC) and down-conversion.
+
+
+\subsection{Laboratory tests}
+\label{Laboratory tests}
+
+The NIKA2 arrays have been pre-characterised in laboratory in realistic conditions. In order to compensate the absence of the telescope optics, we have added an additional lens at the cryostat input window. This lens is creating an image fo the focal planes onto our "sky simulator" (SS), described in previous papers (\cite{Catalano2014}, \cite{Monfardini2011}). A warm source, moved in front of the SS by means of an x-y stage, allows beams shape and arrays geometry (e.g. pixel-per-pixel pointing) characterisations. The sensitivity is calculated by excecuting calibrated temperature sweeps of the SS, and measuring the S/N of the detected signal. A photometric model has been elaborated, based on ray-tracing simulations and assuming reasonable overall optics (filters, lenses) transmission. 
+
+\begin{figure}[h]
+   \centering
+    \includegraphics[width=.95\linewidth]{Fig3_noise.png}
+    \caption{(Color online) The noise spectrum, expressed in Hz/Hz$^{0.5}$, of a good pixel operating at 150 GHz. At the referring frequency $f=10 Hz$ the noise for this pixel is 0.9 Hz/Hz$^{0.5}$.}
+         \label{Fig3}
+\end{figure}
+
+The measurable quantity, proportional to the incoming power per pixel, is the shift in frequency of each resonance (pixel) (\cite{Swenson2010}). That's why our noise spectral densities are expressed in Hz/Hz$^{0.5}$, and the responsivities are measured in Hz/K. Using the SS, we have estimated average responsivities of 0.8 and 2 kHz/K at respectively 150 and 260 GHz. The average noise levels, for the two bands, are 1.5 and 3 Hz/Hz$^{0.5}$, resulting in NET (Noise Equivalent Temperature) of the order of 1.9 and 1.5 mK/Hz$^{0.5}$ per pixel at 150 and 260 GHz. These figures are in line with the expectations and the results obtained on NIKA. An example of raw noise spectrum taken on a pretty good pixel is shown in fig.~\ref{Fig3}. The excess noise appearing below 2 Hz is correlated among detectors, and due to common mode drifts of the readout electronics. It can thus be eliminated by applying a suitable decorrelation during data analysis. It is usually negligeable compared to Sky noise. 
+
+\begin{figure}[h]
+   \centering
+    \includegraphics[width=0.9\linewidth]{Fig4_spectra.png}
+      \caption{(Color online) NIKA2 spectral characerisation. Solid line (blue): 150 GHz array, FWHM: 126-170 GHz; dashed line (red): 260 GHz V, FWHM: 242-283 GHz; dashed-dotted line (green): 260 GHz V, FWHM: 235-281 GHz.}
+         \label{Fig4}
+\end{figure}
+
+The spectral characterisation of the arrays and the overall optical chain of NIKA2 has been achieved using a Martin-Puplett Interferometer (MpI) built in-house (\cite{Durand2008}). The two arrays operating at 260 GHz, each operating at a different polarisation, exhibit a slightly different spectral behaviour probably due to a tiny difference in the silicon wafer and/or Aluminium film thicknesses. The observed shift of the central frequency (265 GHz for V array versus 258 GHz for the H) can be explained by about 5 microns change in the substrate thickness.
+
+The rate of good (stable, sensitive) pixels on the three arrays is around 80\%. The best array exhibit 88\% of good pixels. The NIKA2 original specifications called for 50\% good pixels, with a goal of approaching as much as possible 90\%. During the NIKA2 lifetime, we plan to continue improving the cosmetics of the arrays. We think that the ultimate goal of 90\% over the the three arrays could be meet.
+
+The SS allows also a rough but significative estimation of the stray-light. By comparing measures acquired at several SS distances compared to the cryostat window, we fit an equivalent 15 K additional focal plane background. This is lower than the very best equivalent Sky temperature at Pico Veleta (30 K), and confirms that NIKA2 is not limited by the stray-light. In comparison, in NIKA we had estimated around 35 K additional background. 
+
+In summary, the overall performance of the instrument, mesured preliminarily in laboratory, is in line with the NIKA2 specifications, paving the way for the installation at the telescope described briefly in the next paragraph. 
+
+\subsection{The integration at the telescope}
+
+NIKA2 has been transported in pieces from the integration hall in Grenoble to the observatory on the end of September, 2015. Successful installation of the instrument took place in early October 2015 at the IRAM 30m telescope on Pico Veleta (Sierra Nevada, Spain). To prepare for this installation, the optics of the receiver cabin (M3, M4, M5 and M6) had been modified earlier in 2015 in order to allow increasing the telescope field-of-view up to the 6.5 arc-min covered by NIKA2. M3 is the Nasmyth mirror attached to the telescope elevation axis. M4 is a flat mirror that can be turned manually in order to feed the beam either to NIKA2 or to the eterodyne instruments. The M5 and M6 non-flat mirrors are dedicated to the NIKA2 camera. 
+
+\begin{figure}[h]
+   \centering
+    \includegraphics[width=.95\linewidth]{Fig5_cabin.jpg}
+      \caption{(Color online) A picture of the NIKA2 cryostat installed in the 30-meters telescope receivers cabin.}
+         \label{Fig5}
+\end{figure}
+
+The whole installation, including cabling, was completed in three days. The PT pipes, 60 meters long, run through a derotator stage in order to connect the heads in the receiver cabin (rotating in azimuth) and the compressors located in the telescope basement (fixed). A single 1 Giga-bit ethernet cable. The 40 connections (20 excitation lines, 20 readouts) between the NIKEL\_AMC electronics and the cryostat, on the other side ot the receivers cabin, are realised using 10 meters long coaxial cables. 
+
+The optical alignment has been achieved using two optical lasers. The first shooting from the center of the NIKA2 input window, through the telescope optics and reaching the vertex. The second laser is mounted on the telescope elevation axis, reaching then, through the M4, M5 and M6 mirrors, the NIKA2 window. In both cases, we have adjusted the cryostat position and tilt to achieve good alignment. Once the best laser alignment is found, NIKA2 is equipped with an automatic system of pneumatic actuators and position detectors able to adjust the cryostat height and tilt and keep it stable. 
+
+The first cryostat cooldown started immediately afterwards, and was achieved on October, 7th, 2015 after the nominal four days of pre-cooling and 12 hours of the 3He-4He mixture condensation. 
+
+
+%______________________________________________________________
+
+
+
+\section{The calibration procedures}
+
+The photometry is reconstructed down to the required few percent level thanks to three distinct procedures applied by default. First, we have implemented an electrical calibration acting directly on the KID and specific to NIKA and NIKA2 (par.~\ref{Internal detectors calibration}). Secondly, we measure, as any other instrument, a flat-field using known sources (par.~\ref{On-sky calibration}). Lastly, the atmosphere opacity correction is calculated in real time thanks to the large dynamics and linearity of the detectors (par.~\ref{Atmospheric attenuation correction}).
+
+\subsection{Internal detectors calibration}
+\label{Internal detectors calibration}
+When radiation is absorbed in a KID, it breaks part of the superconducting carriers (Cooper Pairs) and creates an excess of unbound electrons (quasi-particles). This changes the impedance of the film and shifts the resonance frequency $f_0$ of the illuminated KID to lower values.
+%[For small variations of the absorbed power, delta f_0 is directly proportional to $\delta P$.] 
+The standard way to readout a pixel is to excite it with a tone at $f_0$ and to monitor how the In-phase ($I$) and in-Quadrature ($Q$) components of the transmitted signal are modified by the changes in $f_0$. For NIKA2 we adopted a different strategy, already developed for NIKA. Instead of using an excitation at a fixed frequency, we rapidly modulate between two different readout tones, $f^+$ and $f^-$, just above and just below $f_0$. The tones are separated by $df=f^+-f^-$. This modulation technique allows to measure, for every acquired data sample, both the values of $I$ and $Q$ and the variation $dI$, $dQ$ that is induced by the chosen frequency shift $df$. When the optical power on the detectors changes by an amount $\Delta P_{opt}$, a variation $\Delta I$, $\Delta Q$ is observed between successive data samples. The $dI$, $dQ$ values can then be used as a calibration factor to associate to the observed $\Delta I$, $\Delta Q$ the corresponding change in the resonance frequency $\Delta f_0$, and thus measure $\Delta P_{opt}$. More details on the modulated readout technique can be found in \cite{Calvo2013} and \cite{Catalano2014}.
+
+The advantage of this solution is that the $dI$, $dQ$ values are evaluated for every data sample. If the load on the detectors change (e.g. due to variations in the atmospheric opacity), the exact shape of the resonance feature of each pixel will change, but since the calibration factor $dI$, $dQ$ is updated in real time it will take this effect into account. Its use thus strongly increases the photometric accuracy of the instrument.
+
+Furthermore, knowing both the $I$, $Q$ and the $dI$, $dQ$ values we can also estimate the current position of a KID resonance with respect to the position of the corresponding excitation tone. In the ideal situation, these two positions should coincide. In reality, changes in the background load can make the resonances drift by a large amount. Thanks to the modulated readout, when this happens the excitation tones can be rapidly re-tuned to keep track of the new resonance positions. This tuning procedure allows us to always readout the KID with optimally placed tones, which prevent any degradation in the sensitivity of the detectors.
+
+\subsection{On-sky calibration}
+\label{On-sky calibration}
+
+
+NICOLAS 0.5-1 page, 1-2 figures.
+
+\subsection{Atmospheric attenuation correction}
+\label{Atmospheric attenuation correction}
+
+The sky maps are corrected for the atmospheric contribution rescaling the observed signal by what that would be obtained in the absence of atmosphere. The corrected brightness is:
+
+\begin{equation}
+S^{Star} =  S^{Ground} \cdot e^{ x \tau_{scan}}.
+\end{equation}
+
+Where $\tau_{scan}$ is the opacity of the atmosphere and $x$ corresponds to the airmass at the elevation of the considered map\footnote{The airmass is the volume of air defined by its temperature and water vapor content. By assuming a homogeneous plane-parallel atmosphere, the relation between the airmass and the elevation of the telescope becomes $x = sec(\delta)$, where $\delta$ is the average elevation.}.
+In NIKA2, the opacity is measured via the elevation scan technique (skydip). This procedure was successfully tested in the NIKA pathfinder producing a low-level dispersion of the derived opacity at different elevations. The details of this technique and its agreement with the Atmospheric Transmission at Microwaves (ATM) model \cite{2001IEEE....49.1683C} are described in \cite{Catalano2014}. Briefly, the underlying idea is to replace the opacity delivered by the resident IRAM tau-meter that performs elevation scans continuously at a fixed azimuth at 225~GHz, with a direct measurement that uses the NIKA2 instrument itself as a tau-meter. Using this procedure we can directly derive an opacity integrated in the NIKA2 bandpasses and at the same position of the source in the considered map. 
+During a skydip, the telescope performs ten elevation steps from 19 to 65 degrees. For each step we acquire about twenty seconds of useful signal. The relation between the resonance frequency of each pixel and the airmass is given by the following equation:
+
+\begin{equation}\label{eq:skydip}
+S^{Ground}_{skydip} = C_0 + C_1 T_{atm}[1 - e^{- x \tau_{skydip}}].
+\end{equation}
+
+Where $F^{Ground}_{skydip}$ is the acquired signal which corresponds to the
+absolute value of the shift in the resonance frequency for each pixel, $C_0$ is the
+instrumental offset corresponding to the resonance frequency for the
+considered pixel at zero opacity, $C_1$ is the calibration conversion factor in
+$\mathrm{Hz/K}$, $T_{atm}$ is the equivalent temperature of the
+atmosphere, $\tau_{skydip}$ is the sky opacity during the skydip, and $x$ is the airmass.
+
+A skydip shows that the value of $tau$ is common between pixels of the same channel as expected. Coefficients  $C_0$, $C_1$ depend on the response of the detectors. Since the non-linearities of the KID frequency signal are negligible in the considered range of backgrounds, the coefficients can be applied to all the observing campaign to recover the opacity of the considered scan. This is
+obtained by inverting Eq \ref{eq:skydip} on the considered map. In Fig.~??? we present the evolution of the opacities for several map of the NIKA2 commissioning  in February-March 2016 compared to the IRAM tau-meter.
+
+%______________________________________________________________
+
+\section{Observations and performance}
+
+The first astronomical light has been achieved on the 7th October 2015. A first technical run followed immediately. Two more commissioning runs, for a total of about three weeks on Sky, have been carried out in November, 2015 and January, 2016. In this paragraph we summarize the main results obtained.
+
+\subsection{Beam maps and imaging quality}
+NICOLAS in charge of writing and collecting. Including primary and secondary calibrators. Number of pages and figures you need. 1-2 possible ? 
+
+\subsection{Noise and sensitivity}
+JUAN in charge of writing and collecting. Including faint sources. Number of pages and figures you need. 1-2 possible ? 
+
+\subsection{Extended sources mapping capabilities}
+WHO IN CHARGE ?? Contributions from many. Number of pages and figures you need. 1-2 possible ? 
+
+\subsection{Preliminary polarised maps}
+ALESSIA 
+
+\section{Conclusions and future plans}
+
+The NIKA2 instrument is permanently installed at the 30-meters telescope at Pico Veleta. In the present paper we have provided a general overwiew of the instrument, and given the first results obtained during the first three technical observing runs. The performance of the instrument are sufficiently good to satisfy the initial specifications already. Building on this base, NIKA2 is now allowed to enter the scientific commissioning phase. The goal is to open the instrument to the larger community during the Winter 2016/17. A more specific paper quoting final performance will be then be issued. 
+
+
+\begin{acknowledgements}
+We thank ..... 
+
+This work was supported by ANR (....), IRAM, EU (Philippe Andre), CNRS, LabEx FOCUS, R\&T CNES ....       
+\end{acknowledgements}
+
+\begin{thebibliography}{16}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+
+\bibitem[{LTD16 2016}]{ltd16:2016}
+Low Temperature Detectors 16 Proceedings 2016,  Journal of Low
+  Temperature Physics xxx
+
+\bibitem[{Monfardini {et~al.} 2011}]{Monfardini2011}
+Monfardini, A., Benoit, A., Bideaud, A., {et~al.} 2011, 
+The Astrophysical Journal Supplement 194, Issue 2, id. 24
+
+\bibitem[{Catalano {et~al.} 2014}]{Catalano2014}
+Catalano, A., Calvo, M., Ponthieu, N., {et~al.} 2014, 
+Astronomy \& Astrophysics 569, id.A9
+
+\bibitem[{Adam {et~al.} 2014}]{Adam2014}
+Adam, R., Comis, B., Mac\'ias-P\'erez, J.-F., {et~al.} 2014, 
+Astronomy \& Astrophysics 569, id.A66
+
+\bibitem[{Day {et~al.} 2003}]{Day2003}
+Day, P.~K., LeDuc, H.~G., Mazin, B.~A., Vayonakis, A., \& Zmuidzinas, J. 2003,
+  Nature, 425, 817
+
+\bibitem[{Doyle {et~al.} 2010}]{Doyle2010}
+Doyle, S., Mauskopf, P., Zhang, J., {et~al.} 2008{\natexlab{a}}, in Millimeter
+  and Submillimeter Detectors and Instrumentation for Astronomy IV, Proc. SPIE,
+  7020, 702009
+
+\bibitem[{Calvo {et~al.} 2010}]{Calvo2010}
+Calvo, M., Giordano, C., Battiston, R., {et~al.} 2010, 
+Experimental Astronomy 28, Issue 2-3, 185
+
+\bibitem[{Roesch {et~al.} 2012}]{Roesch2012}
+Roesch, M., Benoit, A., Bideaud, A., {et~al.} 2012, 
+ISSTT2011 Workshop, arXiv:1212.4585
+
+\bibitem[{Goupy {et~al.} 2016}]{Goupy2016}
+Goupy, J., Adane, A., Benoit, A., {et~al.} 2016, 
+Journal of Low Temperature Physics xxx, xxx, xxx
+
+\bibitem[{Pisano {et~al.} 2016}]{Pisano2016}
+Pisano, G., Xxx, X., Bbb, X., {et~al.} 2016, 
+In preparation
+
+\bibitem[{Bourrion {et~al.} 2012}]{Bourrion2012}
+Bourrion, O., Vescovi, C., Bouly, J.L., {et~al.} 2012, 
+Journal of Instrumentation 7, Issue 7, 7014, arXiv:1204.1415
+
+\bibitem[{Bourrion {et~al.} 2016}]{Bourrion2016}
+Bourrion, O., Benoit, A., Bouly, J.L., {et~al.} 2016, 
+Journal of Instrumentation, submitted, arXiv:1602.01288
+
+\bibitem[{Swenson {et~al.} 2010}]{Swenson2010}
+Swenson, L. J., Cruciani, A., Benoit, A., {et~al.} 2010, 
+Applied Physics Letters 96, Issue 26, id. 263511
+
+\bibitem[{Durand 2008}]{Durand2008}
+Durand, T., 2008, 
+PhD Thesis, Universit\' e de Grenoble
+
+\bibitem[{Calvo {et~al.} 2013}]{Calvo2013}
+Calvo, M., Roesch, M., D\'esert, F.-X., {et~al.} 2013, 
+Astronomy \& Astrophysics 551, id.L12
+
+\bibitem[{Pardo {et~al.} 2002}]{2001IEEE....49.1683C}
+Pardo J.~R., Cernicharo J., Serabyn E., 2002, 
+IEEE, 49, 1683 - 1694
+
+
+\end{thebibliography}
+
+%\bibliographystyle{aa}
+%\bibliography{biblio_NIKA2} 
+
+\end{document}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Examples for figures using graphicx
+A guide "Using Imported Graphics in LaTeX2e"  (Keith Reckdahl)
+is available on a lot of LaTeX public servers or ctan mirrors.
+The file is : epslatex.pdf
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%_____________________________________________________________
+%                 A figure as large as the width of the column
+%-------------------------------------------------------------
+   \begin{figure}
+   \centering
+   \includegraphics[width=\textwidth]{empty.eps}
+      \caption{Vibrational stability equation of state
+               $S_{\mathrm{vib}}(\lg e, \lg \rho)$.
+               $>0$ means vibrational stability.
+              }
+         \label{FigVibStab}
+   \end{figure}
+%
+%_____________________________________________________________
+%                                    One column rotated figure
+%-------------------------------------------------------------
+   \begin{figure}
+   \centering
+   \includegraphics[angle=-90,width=3cm]{empty.eps}
+      \caption{Vibrational stability equation of state
+               $S_{\mathrm{vib}}(\lg e, \lg \rho)$.
+               $>0$ means vibrational stability.
+              }
+         \label{FigVibStab}
+   \end{figure}
+%
+%_____________________________________________________________
+%                        Figure with caption on the right side
+%-------------------------------------------------------------
+   \begin{figure}
+   \centering
+   \includegraphics[width=3cm]{empty.eps}
+      \caption{Vibrational stability equation of state
+               $S_{\mathrm{vib}}(\lg e, \lg \rho)$.
+               $>0$ means vibrational stability.
+              }
+         \label{FigVibStab}
+   \end{figure}
+%
+%_____________________________________________________________
+%
+%_____________________________________________________________
+%                                Figure with a new BoundingBox
+%-------------------------------------------------------------
+   \begin{figure}
+   \centering
+   \includegraphics[bb=10 20 100 300,width=3cm,clip]{empty.eps}
+      \caption{Vibrational stability equation of state
+               $S_{\mathrm{vib}}(\lg e, \lg \rho)$.
+               $>0$ means vibrational stability.
+              }
+         \label{FigVibStab}
+   \end{figure}
+%
+%_____________________________________________________________
+%
+%_____________________________________________________________
+%                                      The "resizebox" command
+%-------------------------------------------------------------
+   \begin{figure}
+   \resizebox{\textwidth}{!}
+            {\includegraphics[bb=10 20 100 300,clip]{empty.eps}
+      \caption{Vibrational stability equation of state
+               $S_{\mathrm{vib}}(\lg e, \lg \rho)$.
+               $>0$ means vibrational stability.
+              }
+         \label{FigVibStab}
+   \end{figure}
+%
+%______________________________________________________________
+%
+%_____________________________________________________________
+%                                             Simple A&A Table
+%_____________________________________________________________
+%
+\begin{table}
+\caption{Nonlinear Model Results}             % title of Table
+\label{table:1}      % is used to refer this table in the text
+\centering                          % used for centering table
+\begin{tabular}{c c c c}        % centered columns (4 columns)
+\hline\hline                 % inserts double horizontal lines
+HJD & $E$ & Method\#2 & Method\#3 \\    % table heading
+\hline                        % inserts single horizontal line
+   1 & 50 & $-837$ & 970 \\      % inserting body of the table
+   2 & 47 & 877    & 230 \\
+   3 & 31 & 25     & 415 \\
+   4 & 35 & 144    & 2356 \\
+   5 & 45 & 300    & 556 \\
+\hline                                   %inserts single line
+\end{tabular}
+\end{table}
+%
+%_____________________________________________________________
+%                                             Two column Table
+%_____________________________________________________________
+%
+\begin{table*}
+\caption{Nonlinear Model Results}
+\label{table:1}
+\centering
+\begin{tabular}{c c c c l l l }     % 7 columns
+\hline\hline
+                      % To combine 4 columns into a single one
+HJD & $E$ & Method\#2 & \multicolumn{4}{c}{Method\#3}\\
+\hline
+   1 & 50 & $-837$ & 970 & 65 & 67 & 78\\
+   2 & 47 & 877    & 230 & 567& 55 & 78\\
+   3 & 31 & 25     & 415 & 567& 55 & 78\\
+   4 & 35 & 144    & 2356& 567& 55 & 78 \\
+   5 & 45 & 300    & 556 & 567& 55 & 78\\
+\hline
+\end{tabular}
+\end{table*}
+%
+%_____________________________________________________________
+%                                          Table with foonotes
+%-------------------------------------------------------------
+%
+\begin{table}
+\begin{minipage}[t]{\columnwidth}
+\caption{LHNW source catalogue.}
+\label{catalog}
+\centering
+\renewcommand{\footnoterule}{}  % to avoid a line before footnotes
+\begin{tabular}{lccccc}
+\hline \hline
+ID& RA     &  Dec    & {\it S/N} & Flux  \\
+~ &(J2000) & (J2000) &~    & [{\rm mJy}] \\
+\hline
+   LHJ10  &10:32:02.4  &     +58:80:09  &   8  &    97 $\pm$  15\\
+   LHJ10  &10:33:08.8  &     +58:80:30  &   5  &    80 $\pm$  16\\
+   LHJ10  &10:34:45.1  &     +57:47:33\footnote{Text of the footnote}
+                                               &   5  &    48 $\pm$  10\\
+   LHJ10  &10:32:49.7  &     +57:37:19  &   5  &    56 $\pm$  11\\
+   LHJ10  &10:33:52.1  &     +58:40:30\footnote{Text of the footnote}
+                                               &   4  &    55 $\pm$  14\\
+   LHJ10  &10:33:04.3  &     +57:36:37  &   4  &    55 $\pm$  14\\
+   LHJ10  &10:35:50.4  &     +57:30:05  &   4  &    49 $\pm$  11\\
+\hline
+\end{tabular}
+\end{minipage}
+\end{table}
+%
+%_____________________________________________________________
+%                                 A rotated Table in landscape
+%  In the preamble, use:   \usepackage{lscape}
+%-------------------------------------------------------------
+\begin{landscape}
+\begin{table*}
+\caption{Summary for ISOCAM sources with mid-IR excess
+(YSO candidates).}\label{YSOtable}
+\centering
+\begin{tabular}{crrlcl}
+\hline\hline
+ISO-L1551 & $F_{6.7}$~[mJy] & $\alpha_{6.7-14.3}$
+& YSO type$^{d}$ & Status & Comments\\
+\hline
+  \multicolumn{6}{c}{\it New YSO candidates}\\ % To combine 6 columns into a single one
+\hline
+  1 & 1.56 $\pm$ 0.47 & --    & Class II$^{c}$ & New & Mid\\
+  2 & 0.79:           & 0.97: & Class II ?     & New & \\
+  3 & 4.95 $\pm$ 0.68 & 3.18  & Class II / III & New & \\
+  5 & 1.44 $\pm$ 0.33 & 1.88  & Class II       & New & \\
+\hline
+  \multicolumn{6}{c}{\it Previously known YSOs} \\
+\hline
+  61 & 0.89 $\pm$ 0.58 & 1.77 & Class I & \object{HH 30} & Circumstellar disk\\
+  96 & 38.34 $\pm$ 0.71 & 37.5& Class II& MHO 5          & Spectral type\\
+\hline
+\end{tabular}
+\end{table*}
+\end{landscape}
+%
+%_____________________________________________________________
+%                              Table longer than a single page
+%  In the preamble, use:              \usepackage{longtable}
+%-------------------------------------------------------------
+%          All long tables have to be placed at the end, after
+%                                        \end{thebibliography}
+%
+% In the text, at the place where the large table should appear
+% add the command:
+\addtocounter{table}{1}
+% Tables counters will be well numbered.
+%
+\end{thebibliography}
+% If table 2
+\longtab{2}{
+\begin{longtable}{lllrrr}
+\caption{\label{kstars} Sample stars with absolute magnitude}\\
+\hline\hline
+Catalogue& $M_{V}$ & Spectral & Distance & Mode & Count Rate \\
+\hline
+\endfirsthead
+\caption{continued.}\\
+\hline\hline
+Catalogue& $M_{V}$ & Spectral & Distance & Mode & Count Rate \\
+\hline
+\endhead
+\hline
+\endfoot
+%%
+Gl 33    & 6.37 & K2 V & 7.46 & S & 0.043170\\
+Gl 66AB  & 6.26 & K2 V & 8.15 & S & 0.260478\\
+Gl 68    & 5.87 & K1 V & 7.47 & P & 0.026610\\
+         &      &      &      & H & 0.008686\\
+Gl 86
+\footnote{Source not included in the HRI catalog. See Sect.~5.4.2 for details.}
+         & 5.92 & K0 V & 10.91& S & 0.058230\\
+\end{longtable}
+}% End \longtab
+%
+%_____________________________________________________________
+%                              Table longer than a single page
+%                                             and in landscape
+%  In the preamble, use:       \usepackage{longtable,lscape}
+%-------------------------------------------------------------
+%          All long tables have to be placed at the end, after
+%                                        \end{thebibliography}
+%
+% In the text, at the place where the large table should appear
+% add the command:
+\addtocounter{table}{1}
+% Tables counters will be well numbered.
+%
+\end{thebibliography}
+% If table 2
+\longtabL{2}{
+\begin{landscape}
+\begin{longtable}{lllrrr}
+\caption{\label{kstars} Sample stars with absolute magnitude}\\
+\hline\hline
+Catalogue& $M_{V}$ & Spectral & Distance & Mode & Count Rate \\
+\hline
+\endfirsthead
+\caption{continued.}\\
+\hline\hline
+Catalogue& $M_{V}$ & Spectral & Distance & Mode & Count Rate \\
+\hline
+\endhead
+\hline
+\endfoot
+%%
+Gl 33    & 6.37 & K2 V & 7.46 & S & 0.043170\\
+Gl 66AB  & 6.26 & K2 V & 8.15 & S & 0.260478\\
+Gl 68    & 5.87 & K1 V & 7.47 & P & 0.026610\\
+         &      &      &      & H & 0.008686\\
+Gl 86
+\footnote{Source not included in the HRI catalog. See Sect.~5.4.2 for details.}
+         & 5.92 & K0 V & 10.91& S & 0.058230\\
+\end{longtable}
+\end{landscape}
+}% End \longtabL
+%
+% Online Material
+%_____________________________________________________________
+%        Online appendices have to be placed at the end, after
+%                                        \end{thebibliography}
+%-------------------------------------------------------------
+\end{thebibliography}
+
+\Online
+
+\begin{appendix} %First online appendix
+\section{Background galaxy number counts and shear noise-levels}
+Because the optical images used in this analysis...
+
+\begin{figure*}
+\centering
+\includegraphics[width=16.4cm,clip]{1787f24.ps}
+\caption{Plotted above...}
+\label{appfig}
+\end{figure*}
+
+Because the optical images...
+\end{appendix}
+
+\begin{appendix} %Second online appendix
+These studies, however, have faced...
+\end{appendix}
+
+\end{document}
+%
+%_____________________________________________________________
+%        Some tables or figures are in the printed version and
+%                      some are only in the electronic version
+%-------------------------------------------------------------
+%
+% Leave all the tables or figures in the text, at their right place
+% and use the commands \onlfig{}{} and \onltab{}{}. These elements
+% will be automatically placed at the end, in the section
+% Online material.
+
+\documentclass{aa}
+...
+\begin{document}
+text of the paper...
+\begin{figure*}%f1
+\includegraphics[width=10.9cm]{1787f01.eps}
+\caption{Shown in greyscale is a...}
+\label{cl12301}}
+\end{figure*}
+...
+from the intrinsic ellipticity distribution.
+% Figure 2 available electronically only
+\onlfig{2}{
+\begin{figure*}%f2
+\includegraphics[width=11.6cm]{1787f02.eps}
+\caption {Shown in greyscale...}
+\label{cl1018}
+\end{figure*}
+}
+
+% Figure 3 available electronically only
+\onlfig{3}{
+\begin{figure*}%f3
+\includegraphics[width=11.2cm]{1787f03.eps}
+\caption{Shown in panels...}
+\label{cl1059}
+\end{figure*}
+}
+
+\begin{figure*}%f4
+\includegraphics[width=10.9cm]{1787f04.eps}
+\caption{Shown in greyscale is...}
+\label{cl1232}}
+\end{figure*}
+
+\begin{table}%t1
+\caption{Complexes characterisation.}\label{starbursts}
+\centering
+\begin{tabular}{lccc}
+\hline \hline
+Complex & $F_{60}$ & 8.6 &  No. of  \\
+...
+\hline
+\end{tabular}
+\end{table}
+The second method produces...
+
+% Figure 5 available electronically only
+\onlfig{5}{
+\begin{figure*}%f5
+\includegraphics[width=11.2cm]{1787f05.eps}
+\caption{Shown in panels...}
+\label{cl1238}}
+\end{figure*}
+}
+
+As can be seen, in general the deeper...
+% Table 2 available electronically only
+\onltab{2}{
+\begin{table*}%t2
+\caption{List of the LMC stellar complexes...}\label{Properties}
+\centering
+\begin{tabular}{lccccccccc}
+\hline  \hline
+Stellar & RA & Dec & ...
+...
+\hline
+\end{tabular}
+\end{table*}
+}
+
+% Table 3 available electronically only
+\onltab{3}{
+\begin{table*}%t3
+\caption{List of the derived...}\label{IrasFluxes}
+\centering
+\begin{tabular}{lcccccccccc}
+\hline \hline
+Stellar & $f12$ & $L12$ &...
+...
+\hline
+\end{tabular}
+\end{table*}
+}
+%
+%-------------------------------------------------------------
+%     For the online material, table longer than a single page
+%                 In the preamble, use: \usepackage{longtable}
+%       or for landscape option: \usepackage{longtable,lscape}
+%-------------------------------------------------------------
+\documentclass{aa}
+\usepackage[varg]{txfonts}
+\usepackage{graphicx}
+\usepackage{longtable}
+
+\begin{document}
+text of the paper
+% Table will be print automatically at the end, in the section Online material.
+\onllongtab{3}{
+\begin{longtable}{lrcrrrrrrrrl}
+\caption{Line data and abundances ...}\\
+\hline
+\hline
+Def & mol & Ion & $\lambda$ & $\chi$ & $\log gf$ & N & e &  rad & $\delta$ & $\delta$
+red & References \\
+\hline
+\endfirsthead
+\caption{Continued.} \\
+\hline
+Def & mol & Ion & $\lambda$ & $\chi$ & $\log gf$ & B & C &  rad & $\delta$ & $\delta$
+red & References \\
+\hline
+\endhead
+\hline
+\endfoot
+\hline
+\endlastfoot
+A & CH & 1 &3638 & 0.002 & $-$2.551 &  &  &  & $-$150 & 150 &  Jorgensen et al. (1996) \\
+\end{longtable}
+}% End onllongtab
+
+% Or for landscape, large table:
+
+\onllongtabL{3}{
+\begin{landscape}
+\begin{longtable}{lrcrrrrrrrrl}
+...
+\end{longtable}
+\end{landscape}
+}% End onllongtabL

@@ -1,26 +1,53 @@
-\documentclass[iop,numberedappendix,apj]{emulateapj}
+\documentclass[twocolumn,traditabstract]{aa}  
+
+\usepackage{amsmath}
+\usepackage{fixltx2e}
+\usepackage[english]{babel}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{epsf,color}
+\usepackage[mathscr]{eucal}
+\usepackage{amsmath}
+\usepackage{amssymb,amsfonts}
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{txfonts}
+\usepackage{dsfont}
+\definecolor{Mygreen}{rgb}{0.75, 0.0, 0.0}
+\definecolor{Mypink}{rgb}{1.0, 0.0, 0.5}
+\definecolor{Myred}{rgb}{0.7, 0.0, 0.0}
+\usepackage[breaklinks, citecolor=blue, linkcolor=Myred, urlcolor=Myred, colorlinks=true, debug, baseurl=' ']{hyperref}
+\usepackage{float} 
+\usepackage{color}
+
+\bibpunct{(}{)}{;}{a}{}{,}
+\bibliographystyle{aa}
+
+\newfont{\gwpfont}{cmssq8 scaled 1000}
+\newcommand{\rexcess}{{\gwpfont REXCESS}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\documentclass[iop,numberedappendix,apj]{emulateapj}
 %\documentclass[iop,numberedappendix,apj]{aastex}
 %\documentclass{article}
 %\usepackage{emulateapj}
 %\pdfoutput=1
-\usepackage{color}
-\usepackage{amssymb}
+%\usepackage{color}
+%\usepackage{amssymb}
 %\PassOptionsToPackage{hyphens}{url}
-\usepackage{hyperref}
+%\usepackage{hyperref}
 %\usepackage{breakurl}
-\def\UrlBreaks{\do\/\do-}
-\usepackage{natbib}
-\usepackage{graphicx}
-\usepackage{epsfig}
+%\def\UrlBreaks{\do\/\do-}
+%\usepackage{natbib}
+%\usepackage{graphicx}
+%\usepackage{epsfig}
 %\usepackage[hyphens]{url}
 %\usepackage{csquotes}
 %\usepackage{lscape}
-\usepackage{afterpage}
-
-\usepackage[tbtags]{amsmath}
-\usepackage{hyperref,xcolor}
-\hypersetup{colorlinks,linkcolor={blue!50!black},citecolor={blue!50!black},urlcolor={blue!80!black}}
-\setlength{\tabcolsep}{0.04in} 
+%\usepackage{afterpage}
+%\usepackage[tbtags]{amsmath}
+%\usepackage{hyperref,xcolor}
+%\hypersetup{colorlinks,linkcolor={blue!50!black},citecolor={blue!50!black},urlcolor={blue!80!black}}
+%\setlength{\tabcolsep}{0.04in} 
 %\usepackage{epsfig}
 %\usepackage{fullpage}
 %\usepackage{hyperref}
@@ -38,47 +65,53 @@
 
 \newcommand{\quotes}[1]{``#1''}
 
-\slugcomment{}
-\shortauthors{Romero \etal}
-\shorttitle{Joint SZE Map Fitting with MUSTANG and Bolocam}
+%\slugcomment{}
+%\shortauthors{Romero \etal}
+%\shorttitle{Joint SZE Map Fitting with MUSTANG and Bolocam}
 %altaffilmark{#}
 
 \begin{document}
 
 \title{Joint Fitting of CLJ1226.9}
-\author{
+\input{list_of_authors}
+%%%%%%%%%%%%%%%%%%%%%%%%
+%\author{
 %  Order TBD ,
-  Charles E. Romero\altaffilmark{1,*},
-  Matthew McWilliam \altaffilmark{2,3},
-  Juan Macias-Perez \altaffilmark{3},
-  NIKA Collaboration \altaffilmark{4}
-} 
-\date{\today}
+%  Charles E. Romero\altaffilmark{1,*},
+%  Matthew McWilliam \altaffilmark{2,3},
+%  Juan Macias-Perez \altaffilmark{3},
+%  NIKA Collaboration \altaffilmark{4}
+%} 
+%\date{\today}
+\date{Received \today \ / Accepted --}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\altaffiltext{1}{Institut de Radioastronomie Millim\'{e}trique
-300 rue de la Piscine, Domaine Universitaire
-38406 Saint Martin d'H\`{e}res, France} 
-\altaffiltext{2}{Imperial College London, Kensington, London SW7 2AZ, UK}
-\altaffiltext{3}{Laboratoire de Physique Subatomique et Cosmologie 53 Avenue des Martyrs, 38000 Grenoble}
-\altaffiltext{4}{NIKA2 Collaboration}
-\altaffiltext{*}{Author contact: \email{romero@iram.fr}}
+%\altaffiltext{1}{Institut de Radioastronomie Millim\'{e}trique
+%300 rue de la Piscine, Domaine Universitaire
+%38406 Saint Martin d'H\`{e}res, France} 
+%\altaffiltext{2}{Imperial College London, Kensington, London SW7 2AZ, UK}
+%\altaffiltext{3}{Laboratoire de Physique Subatomique et Cosmologie 53 Avenue des Martyrs, 38000 Grenoble}
+%\altaffiltext{4}{NIKA2 Collaboration}
+%\altaffiltext{*}{Author contact: \email{romero@iram.fr}}
 %\begin{document}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{abstract}
-  We present non-parametric pressure profiles of galaxy clusters determined from SZ data from the
+%\begin{abstract}
+\abstract
+  {We present non-parametric pressure profiles of galaxy clusters determined from SZ data from the
   MUSTANG, NIKA, and Bolocam instruments. We note that, despite the differences in angular resolution,
   observing frequency, and observing strategies, there is generally good agreement. As expected from
   the effective transfer function of data processing, the ability to recover the pressure profile
   beyond the field of view of these instruments diminishes rapidly. The overlap in spatial sensitivity
   of these three datasets ensures consistency on scales $0.05 R_{500} < r < 2 R_{500}$. Given the
   weak constraints at the largest radii, we included a prior from Planck on the integrated
-  Compton Y parameter.
-\end{abstract}
+  Compton Y parameter.}
+%\end{abstract}
 
-\keywords{galaxy clusters: individual: CLJ1226.9+3352}
+\titlerunning{Non-parametric fitting with MUSTANG, NIKA, Bolocam, and Planck}
+\authorrunning{C. Romero, M. McWilliam, and the NIKA SZ team}
+\keywords{-- Galaxies: clusters: individual: CLJ1226.9+3352}
 
 \maketitle
 
@@ -87,7 +120,7 @@
 \label{sec:intro}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%\textcolor{red}{Trimming my own notes now.}
+%\textcolor{red}{Edit author list - add in Matthew McWilliam (again).}
 
 In recent years, Sunyaev Zel'dovich (SZ) effect observations have seen an increase in high resolution ($\theta \lesssim 30$\asecs)
 observations \citep[e.g.][]{mason2010,adam2014,kitayama2016}. These observations come from MUSTANG on the
@@ -168,16 +201,19 @@ centroid from ACCEPT \citep{cavagnolo2009} is at [RA,Dec] = [12:26:57.9,+33:32:4
 From X-ray data, \citet{mantz2010} find a scale radius $R_{500} = 1000$ kpc, which corresponds to
 $M_{500} = 12.0 \times 10^{14} M_{\odot}$.
 
-\begin{figure}[!h]
+\begin{figure*}[!h]
   \centering
-  \includegraphics[width=0.5\textwidth]{NIKA_ml_deproj_figs/CLJ1227_MUSTANG_NIKA_Bolocam_v2.eps}
-  \caption{Left: MUSTANG map; Middle: NIKA (2mm) map; Right: Bolocam map. In all three panels, the red contours are those
-    of MUSTANG, black contours of those of NIKA, and white contours are those of Bolocam. The contours are at arbitrary
-    flux values and do not account for varying level of map levels; e.g. MUSTANG contours away from the center will not
-    be significant due to lower weighting. The point source identified in \citet{adam2015} is subtracted in the MUSTANG
+%  \includegraphics[width=0.5\textwidth]{NIKA_ml_deproj_figs/CLJ1227_MUSTANG_NIKA_Bolocam_v2.eps}
+  \includegraphics[width=0.33\textwidth]{NIKA_ml_deproj_figs/MUSTANG_image_and_SNR_contours_v2.eps}
+  \includegraphics[width=0.33\textwidth]{NIKA_ml_deproj_figs/NIKA_image_and_SNR_contours_v2.eps}
+  \includegraphics[width=0.33\textwidth]{NIKA_ml_deproj_figs/BOLOCAM_image_and_SNR_contours_v2.eps}
+  \caption{Left: MUSTANG map; Middle: NIKA (2mm) map; Right: Bolocam map. In all three panels, the yellow contours are those
+    of MUSTANG, magenta contours of those of NIKA, and cyan contours are those of Bolocam. For MUSTANG and Bolocam, the contours
+    start at $(-)2\sigma$, with $1\sigma$ increments. For NIKA, the contours start at $(-)3\sigma$ with $2\sigma$ increments.
+    The point source identified in \citet{adam2015} is subtracted in the MUSTANG
     and NIKA maps.}
   \label{fig:clj1227_maps}
-\end{figure}
+\end{figure*}
 
 
 %and a scaling pressure, $P_{500} = 11.7$keV/cm$^{3}$.
@@ -187,25 +223,46 @@ $M_{500} = 12.0 \times 10^{14} M_{\odot}$.
 %\textcolor{red}{[I will do an analysis with the point source found in Korngut+2011. The question is if I already 
 %have the point source modelled (and to find it).}
 
-\begin{deluxetable}{llllll}
-\tabletypesize{\footnotesize}
-\tablecolumns{10}
-\tablewidth{0pt} 
-\tablecaption{observational properties. \label{tbl:cluster_obs}}
-\tablehead{ 
-  \colhead{Instrument} & \colhead{Freq.} & \colhead{$T_{obs}$} & \colhead{Noise} &
-  \colhead{FWHM} & \colhead{FOV} \\
-  \colhead{ } & \colhead{(GHz)} & \colhead{(hours)} & \colhead{(Compton y)} &
-  \colhead{(\asec)} & \colhead{(\amin)}
-}
-\startdata
-\textbf{NIKA}    & 150 & 7.2  & $12.5 \times 10^{-6}$ & 18  & 1.9 \\
-\textbf{MUSTANG} &  90 & 4.9  & $34.2 \times 10^{-6}$ & 9   & 0.7 \\
-\textbf{Bolocam} & 150 & 11.8 & $8.48 \times 10^{-6}$ & 58  &   8 \\
-\textbf{Planck}  & 100 & ??   & ??                   & 588 & 5000 ? 
-\enddata
-\tablecomments{Overview of the sensitivities achieved for each of the instruments used in this analysis.}
-\end{deluxetable}
+%\begin{deluxetable}{llllll}
+%\tabletypesize{\footnotesize}
+%\tablecolumns{10}
+%\tablewidth{0pt} 
+%\tablecaption{observational properties. \label{tbl:cluster_obs}}
+%\tablehead{ 
+%  \colhead{Instrument} & \colhead{Freq.} & \colhead{$T_{obs}$} & \colhead{Noise} &
+%  \colhead{FWHM} & \colhead{FOV} \\
+%  \colhead{ } & \colhead{(GHz)} & \colhead{(hours)} & \colhead{(Compton y)} &
+%  \colhead{(\asec)} & \colhead{(\amin)}
+%}
+%\startdata
+%\textbf{NIKA}    & 150 & 7.2  & $12.5 \times 10^{-6}$ & 18  & 1.9 \\
+%\textbf{MUSTANG} &  90 & 4.9  & $34.2 \times 10^{-6}$ & 9   & 0.7 \\
+%\textbf{Bolocam} & 150 & 11.8 & $8.48 \times 10^{-6}$ & 58  &   8 \\
+%\textbf{Planck}  & 100 & ??   & ??                   & 588 & 5000 ? 
+%\enddata
+%\tablecomments{Overview of the sensitivities achieved for each of the instruments used in this analysis.}
+%\end{deluxetable}
+
+\begin{table*}[]
+\caption{\footnotesize{Overview of the sensitivities achieved for each of the instruments used in this analysis.}}
+\begin{center}
+%\resizebox{\textwidth}{!} {
+\begin{tabular}{l|lllll}
+  \hline
+  \hline
+  Instrument & Freq. & $T_{obs}$ & Noise & FWHM & FOV \\
+   & (GHz) & (hours) & (Compton y) & (\asec) & (\amin) \\
+  \hline
+  \textbf{NIKA}    & 150 & 7.2  & $12.5 \times 10^{-6}$ & 18  & 1.9 \\
+  \textbf{MUSTANG} &  90 & 4.9  & $34.2 \times 10^{-6}$ & 9   & 0.7 \\
+  \textbf{Bolocam} & 150 & 11.8 & $8.48 \times 10^{-6}$ & 58  &   8 \\
+  \textbf{Planck}  & 100 & ??   & ??                   & 588 & 5000 ? \\
+  \hline
+\end{tabular}
+\end{center}
+\label{tbl:cluster_obs}
+\end{table*}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{NIKA Observations and Reduction}
@@ -298,10 +355,12 @@ The reduction and calibration is similar to that used for MUSTANG, and Bolocam a
 \subsection{Preprocessing}
 \label{sec:preprocessing}
 
+%PK location: [12:26:58.0,+33:32:59]
+
 A point source at $4.6\sigma$ significance in MUSTANG was reported in \citet{korngut2011}, but is not
 evident in the reprocessed MUSTANG data. A short VLA filler observation (VLA-12A-340, D-array, at 7 GHz) 
 was performed to follow up this potential source, but to a limit of $\sim 50 {\rm \mu Jy}$ nothing is seen.
-However, \citet{adam2015} find a point source at RA 12:12:00.01 and Dec +33:32:42 with a flux density of 
+However, \citet{adam2015} find a point source at RA 12:27:00.01 and Dec +33:32:42 with a flux density of 
 $6.8 \pm 0.7 \text{ (stat.)} \pm 1.0 \text{ (cal.)}$ mJy at 260 GHz and $1.9 \pm 0.2 \text{ (stat.)}$ at 150 GHz. 
 A point source at this location is fit to the MUSTANG data with a flux density of $0.36 \pm 0.11$ mJy
 \citep{romero2016}. We subtract this point source from the NIKA and MUSTANG maps.
@@ -360,7 +419,7 @@ These maps are then convolved with the respective beam and transfer function.
 We employ a maximum likelihood algorithm, and take our noise to be Gaussian such that our likelihood is given
 by:
 \begin{equation}
-  \mathcal{L} \ propto e^{-\chi^2 / 2} 
+  \mathcal{L} \propto e^{-\chi^2 / 2} 
   \label{eqn:likelihood}
 \end{equation}
 and $\chi^2$ is given by:
@@ -379,7 +438,7 @@ source estimates, are provided to allow for a more accurate noise estimation \ci
 %more appropriate constraints on fitted parameters.
 We calculate the two-dimensional power spectrum for noise maps of each dataset and find that the noise is consistent
 with white noise on the scales, for each dataset, which we wish to constrain the models.
-\textcolor{red}{Do we want a figure of these?}
+%\textcolor{red}{Do we want a figure of these?}
 
 We calculate the final probability of our models by applying priors as prescribed by Bayes' Theorem.
 %\begin{equation}
@@ -588,8 +647,8 @@ deviation in a central bin: $9 < r < 23$\asec. To test the potential for a point
 deviations, we add a point source to the virtual fits mentioned previously (Section~\ref{sec:robustness}).
 We run a suite of fits, where we place a point source over the radial range implied by MUSTANG and NIKA,
 and allow for different flux densities at 90 and 150 GHz. We find that a point source at a radius of 12\asecs
-with flux densities of 0.5 mJy and 1.4 mJy at 90 and 150 GHz can replicate similar deviations from a gNFW
-curve.
+with flux densities of 0.5 mJy and 1.4 mJy at 90 and 150 GHz roughly reproduces the observed deviations from
+a gNFW curve.
 
 %One of these two points is from the MUSTANG dataset, and the other
 %from NIKA. Given the spatial coincidence, we find these two points (of notably low pressure) to be indications
@@ -598,9 +657,17 @@ curve.
 %wavelengths (Section~\ref{sec:preprocessing}).
 Given the area enclosed for the MUSTANG and NIKA bins which
 show this low pressure, such a source would necessarily be $\gtrsim 0.5$ mJy at 90 GHz and 150 GHz.
-The sensitivity in the MUSTANG and NIKA maps are 0.1 and 0.2 mJy respectively. Given the positioning of such a
-point source, such a point source could be masked by the SZ signal in the NIKA map. However, MUSTANG's
-higher resolution and sensitivity should reveal such a point source above the SZ signal, and this is not seen.
+The sensitivity in the MUSTANG and NIKA maps are 0.1 and 0.2 mJy respectively. Such a point source,
+with its central location, could be masked by the SZ signal in the NIKA map. Indeed, in our simulated
+images (simulated cluster + point source), the surface brightness at the location of the point source
+is (1) still negative, and (2) not visually evident to host a point source (pertubation to the smooth
+surface brightness from the tSZ of the cluster).
+
+The location at 12\asecs is well matched to the point source found in \citet{korngut2011}. The potential
+existence of a point source at this location has already been investigated in the 260 GHz NIKA data
+\citep{adam2015}, as well as at lower frequencies and higher frequencies (Section~\ref{sec:preprocessing}).
+%\textcolor{red}{Add Herschel constraints??}
+
 %\textcolor{red}{Add what it would be at 150 GHz too.}
 %\textcolor{red}{Diffuse radio emission is not currently well supported by low frequency data.}
 
@@ -696,7 +763,7 @@ Technology Development Program, as well as the National Science Council of Taiwa
 \appendix
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{{\color{red}Analytic Integrals of Elliptically Symmetric Power Laws}}
+\subsection{Analytic Integrals of Elliptically Symmetric Power Laws}
 \label{sec:analytic_integrals}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -737,7 +804,7 @@ which is fine, as this must diverge in any case.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\bibliographystyle{apj}
+%\bibliographystyle{aa}
 \bibliography{mycluster}
 \label{references}
 

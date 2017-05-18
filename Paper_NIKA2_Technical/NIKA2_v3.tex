@@ -184,7 +184,7 @@ In order to ensure optimal operation of the detectors and optimally suppress the
 
 \begin{figure}[h]
    \centering
-   \includegraphics[width=.95\linewidth]{fig1_cryo.png}
+   \includegraphics[width=.95\linewidth]{Fig1_cryo.png}
       \caption{(Color online) Cross-section of the NIKA2 instrument. The three arrays (150 GHz, 260 GHz-V and 260 GHz-H) are highlighted. The optical axis and the photons direction of propagation is shown as well. The overall lenght of the instrument is around 2.3 meters.}
          \label{Cryostat}
 \end{figure}
@@ -298,7 +298,9 @@ The measurable quantity, proportional to the incoming power per pixel, is the sh
 
 \begin{figure}[h]
    \centering
-    \includegraphics[width=0.9\linewidth]{Fig4_spectra.png}
+%    \includegraphics[width=0.9\linewidth]{Fig4_spectra.png}
+    \includegraphics[width=0.9\linewidth]{atm_transmission.pdf}
+     
       \caption{(Color online) NIKA2 spectral characerisation. Solid line (blue): 150 GHz array, FWHM: 126-170 GHz; dashed line (red): 260 GHz V, FWHM: 242-283 GHz; dashed-dotted line (green): 260 GHz V, FWHM: 235-281 GHz.}
          \label{Fig4}
 \end{figure}
@@ -317,7 +319,7 @@ NIKA2 has been transported in pieces from the integration hall in Grenoble to th
 
 \begin{figure}[h]
    \centering
-    \includegraphics[width=.95\linewidth]{Fig5_cabin.jpg}
+%    \includegraphics[width=.95\linewidth]{Fig5_cabin.jpg}
       \caption{(Color online) A picture of the NIKA2 cryostat installed in the 30-meters telescope receivers cabin.}
          \label{Fig5}
 \end{figure}
@@ -347,11 +349,6 @@ The advantage of this solution is that the $dI$, $dQ$ values are evaluated for e
 
 Furthermore, knowing both the $I$, $Q$ and the $dI$, $dQ$ values we can also estimate the current position of a KID resonance with respect to the position of the corresponding excitation tone. In the ideal situation, these two positions should coincide. In reality, changes in the background load can make the resonances drift by a large amount. Thanks to the modulated readout, when this happens the excitation tones can be rapidly re-tuned to keep track of the new resonance positions. This tuning procedure allows us to always readout the KID with optimally placed tones, which prevent any degradation in the sensitivity of the detectors.
 
-\subsection{On-sky calibration}
-\label{On-sky calibration}
-
-
-NICOLAS 0.5-1 page, 1-2 figures.
 
 \subsection{Atmospheric attenuation correction}
 \label{Atmospheric attenuation correction}
@@ -386,17 +383,77 @@ obtained by inverting Eq \ref{eq:skydip} on the considered map. In Fig.~??? we p
 
 The first astronomical light has been achieved on the 7th October 2015. A first technical run followed immediately. Two more commissioning runs, for a total of about three weeks on Sky, have been carried out in November, 2015 and January, 2016. In this paragraph we summarize the main results obtained.
 
-\subsection{Beam maps and imaging quality}
-NICOLAS in charge of writing and collecting. Including primary and secondary calibrators. Number of pages and figures you need. 1-2 possible ? 
+\subsection{Focal plane reconstruction}
+\begin{figure*}[h]
+   \centering
+%    \includegraphics[width=0.9\linewidth]{Fig4_spectra.png}
+    \includegraphics[trim=0cm 12cm 4cm 4cm, clip=true,width=0.33\linewidth]{A1_fwhm_color_count.pdf}
+   \includegraphics[trim=0cm 12cm 4cm 4cm, clip=true,width=0.33\linewidth]{A3_fwhm_color_count.pdf}
+   \includegraphics[trim=0cm 12cm 4cm 4cm, clip=true,width=0.33\linewidth]{A2_fwhm_color_count.pdf}
+       
+      \caption{From left to right detector position for arrays A1, A3, and A2.}
+         \label{fig:focalplane}
+\end{figure*}
+
+Figure~\ref{fig:focalplane} the position of the array A1, A3 and A2 detectors in the NIKA2 FOV. For each detector the ellipse symbol size and ellipticity
+are proportional to the main beam FWHM and the ellipticity of the full beam assuming a 2D Gaussian. 
+
+\subsection{Beam pattern}
+
+\begin{figure}[h]
+   \centering
+    \includegraphics[width=0.9\linewidth]{Beams_features.pdf}
+     
+      \caption{Observed beam pattern.}
+         \label{fig:beampattern}
+\end{figure}
+
+We show in Figure~\ref{}
+
+\subsection{On-sky calibration}
+\label{On-sky calibration}
+
+\begin{figure}[h]
+   \centering
+    \includegraphics[angle=270,width=0.9\linewidth]{ratio_Ura_Nept.pdf}
+     
+      \caption{From top to bottom: primary calibrator relative flux for arrays A1, A2 and A3.}
+         \label{fig:calibaccuracy}
+\end{figure}
 
 \subsection{Noise and sensitivity}
-JUAN in charge of writing and collecting. Including faint sources. Number of pages and figures you need. 1-2 possible ? 
+We have investigated the noise properties and sensitivity of NIKA2 in various atmospheric conditions and for various types of sources including faint and bright ones.
+We find that the evolution of the noise is consistent with background noise limited detectors both at 150 and 260 GHz. Furthermore, we find that when averaging
+across scans the noise evolves consistently with the square root of the time of observation.
+The averaged observed sensitivity assuming 2 mm of water vapor 
+and at elevation of 60 degrees are 6 and 20 mJy.s$^{1/2}$ at 150 and 260 GHz, respectively. This corresponds to average mapping speed of 180 and 2000 arcmin$^2$/hr/mJy$^2$.
 
-\subsection{Extended sources mapping capabilities}
-WHO IN CHARGE ?? Contributions from many. Number of pages and figures you need. 1-2 possible ? 
 
-\subsection{Preliminary polarised maps}
-ALESSIA 
+\section{Compact and extended sources mapping capabilities}
+During commissioning and the science verification phase we have observed several compact and extended sources in order to check the NIKA2 mapping capabilities. Here we just concentrate in few sources to illustrate the main advantages of NIKA2 with respect to previous experiments.
+
+\subsection{Point and compact sources} 
+In Figure \ref{fig_compact_sources} we present maps of MWC349 (top) and the planet Pluto(bottom) at 150 (left) and 260 (righ) GHz.
+The contours represent the SNR, which reaches blablabla .
+We observe MWC349 and Pluto at the center of the maps and an extra source in the edge of the map. We find for MWC349 a flux of XXX Jy.
+
+\begin{figure*}[h]
+   \centering
+   \includegraphics[width=.95\linewidth]{MWC349_v0.jpeg}
+        \includegraphics[width=.45\linewidth]{Pluto_1mm_map_snrcont.pdf}
+    \includegraphics[width=.45\linewidth]{Pluto_1mm_map_snrcont.pdf}
+      \caption{Top: Maps at 150 (left) and 260 (right) GHz of MWC349. Bottom: Maps at 150 (left) and 260 (right) GHz of the planet Pluto. {\bf change for better images}. 
+         \label{fig_compact_sources}}
+\end{figure*}
+
+
+\subsection{Extended sources}
+{\bf WE NEED TO FIND A SOURCE}
+
+%WHO IN CHARGE ?? Contributions from many. Number of pages and figures you need. 1-2 possible ? 
+
+%\subsection{Preliminary polarised maps}
+%ALESSIA 
 
 \section{Conclusions and future plans}
 

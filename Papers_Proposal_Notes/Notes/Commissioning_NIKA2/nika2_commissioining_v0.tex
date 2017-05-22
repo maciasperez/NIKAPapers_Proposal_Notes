@@ -1,0 +1,411 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Thin Sectioned Essay
+% LaTeX Template
+% Version 1.0 (3/8/11)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original Author:
+% Nicolas Diaz (nsdiaz@uc.cl) with extensive modifications by:
+% Vel (vel@latextemplates.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[a4paper, 11pt]{article} % Font size (can be 10pt, 11pt or 12pt) and paper size (remove a4paper for US letter paper)
+
+\usepackage[protrusion=true,expansion=true]{microtype} % Better typography
+\usepackage{graphicx} % Required for including pictures
+\usepackage{wrapfig} % Allows in-line images
+
+\usepackage{mathpazo} % Use the Palatino font
+\usepackage[T1]{fontenc} % Required for accented characters
+\linespread{1.05} % Change line spacing here, Palatino benefits from a slight increase by default
+
+\makeatletter
+\renewcommand\@biblabel[1]{\textbf{#1.}} % Change the square brackets for each bibliography item from '[1]' to '1.'
+\renewcommand{\@listI}{\itemsep=0pt} % Reduce the space between items in the itemize and enumerate environments and the bibliography
+
+\renewcommand{\maketitle}{ % Customize the title - do not edit title and author name here, see the TITLE block below
+\begin{flushleft} % Right align
+{\LARGE\@title} % Increase the font size of the title
+
+\vspace{50pt} % Some vertical space between the title and author name
+
+{\large\@author} % Author name
+\\\@date % Date
+
+\vspace{40pt} % Some vertical space between the author block and abstract
+\end{flushleft}
+}
+
+%----------------------------------------------------------------------------------------
+%	TITLE
+%----------------------------------------------------------------------------------------
+
+\title{\textbf{NIKA2 research note}\\   
+\textsc{NIKA2 Commissioning results v1.0}} % Subtitle
+
+
+\author{NIKA2 team % Author
+\\{\textit{NIKA2 collaboration}}} % Institution
+
+\date{\today} % Date
+
+
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle % Print the title section
+\tableofcontents
+%----------------------------------------------------------------------------------------
+%	ABSTRACT AND KEYWORDS
+%----------------------------------------------------------------------------------------
+
+%\renewcommand{\abstractname}{Summary} % Uncomment to change the name of the abstract to something else
+
+\begin{abstract}
+This notes describe the main results of the NIKA2 commissioning campaigns.
+\end{abstract}
+
+%\hspace*{3,6mm}\textit{Version:}  % Version
+
+\vspace{30pt} % Some vertical space between the abstract and first section
+
+%----------------------------------------------------------------------------------------
+%	ESSAY BODY
+%----------------------------------------------------------------------------------------
+
+%\tableofcontents
+
+\section{Introduction}
+
+\subsection{Commissioning goals}
+The main goal of the NIKA2 commissioning runs described below is to check the performance of the instrument and its stability with respect to the specifications described in Table \ref{nika2specs}.
+
+%\begin{table}[h]
+%\caption{Commissioning campaigns and dates}
+%\label{nika2specs}
+%\begin{tabular}{|c|c|c|s}
+%\hline 
+% FWHM &   &  \\
+%\hline  
+%\hline 
+%\end{tabular} 
+%\end{table} 
+
+
+
+\subsection{Commissioning runs}
+We had 9 commissioning runs for NIKA2 as described in Table~\ref{nika2runs}.
+
+\begin{table}[h]
+\small
+\caption{Commissioning campaigns, dates and general comments.
+\label{nika2runs}}
+\begin{tabular}{|c|c|c|c|c|}
+\hline 
+RUN  & NIKA Run & Starting date    & End date         &  General comments \\
+\hline
+N2R1     & 13       & 29-October-2015   & 10-November-2015 & Not full instrumentation        \\
+N2R2     & 14       & 24-November-2015  & 02-December-2015 & 13 NIKEL boards working         \\
+N2R3     & 15       & 12-January-2016   & 01-February-2016 & 20 NIKEL boards                 \\
+N2R4     & 16       & 1-March-2016      & 15-March-2016    & 	                               \\
+Dark run & 17       & 4-May-2016        & 4-May-2016       & Dark tests with N2R4 conditions  \\
+\hline
+N2R5     & 18       & 16-September-2016 & 11-October-2016  & New dichroic, corrugated lenses, \\
+         &          &                   &                  &  new array 2 mm, new electronics \\
+N2R6     & 19       & 25-October-2016   & 1-November-2016  &                                  \\
+N2R7     & 20       & 6-December-2016   & 13-December-2016 & test external calibrator         \\
+N2R8     & 21       & 9-January-2017    & 13-January-2017  & replace array 1 lens by smooth on \\
+         &          & 23-January-2017   & 27-January-2017  & tests on the sky   \\
+N2R9     & 22       & 21-February-2017  & 28-February-2017 &                                   \\  
+\hline
+\end{tabular} 
+\end{table} 
+
+% ---------------------------------------
+\section{Bandpasses}
+\input{bandpasses.tex}
+
+% ---------------------------------------
+\section{sensitivities}
+
+\begin{figure}
+\begin{center}
+%\includegraphics[clip, angle=0, scale =
+%  0.5]{Figures/NEFD_HLS091828_20170226s415_FXDC0C1_GaussPhot.png}
+\includegraphics[clip, angle=0, scale = 1]{Figures/nefd_mpfit_HLS091828.eps}
+\caption{Kids Xcalib with fixed fwhm 12.5 and 18.5, HLS091828.}
+\label{fig:nefd_vs_t}
+\end{center}
+\end{figure}
+
+{\bf The specs/goals ``NEFD on X \% of pixels'' should be understood as : we have
+XX\% valid pixels, and with these pixels, we have an NEFD of YY. We should not
+discard some fraction of our pixels and estimate an NEFD on this subset.}\\
+
+HLS091828 is moderately faint source, expected to be below 100~mJy at 1mm and
+XX~mJy at 2mm {\bf check values in NIKA1 paper + use SED for predictions in
+  NIKA2's bands}. This source was chosen for its flux and its availability during
+Run9 for long integration. It has been observed for XX hours in total over three
+nights.
+
+\subsection{Data processing}
+
+The data were decorrelated using the {\tt common\_mode\_one\_block} method: for
+each KID $k$, we look for the kids that are most correlated to it and build a
+``common mode'' with them that we subtract from $k$, masking out the samples
+that are less then XX arcsec. The scans have been combined with standard inverse
+noise weighting. The noise in each map pixel is derived from the rms of the
+background corrected for the number of observations per pixel.
+
+\subsection{NEFD Methods 1 and 2: deep integration}
+These data can be used to derive the NEFD in several ways. One is to fit the
+evolution of the uncertainty on the flux of the source $\sigma_\phi$ with the
+integration time. Another one is to produce jackknife maps with the data and to
+measure the uncertainty on the flux in the end, while estimating the time of
+integration. Results are summarized in Tab.~\ref{tab:nefd}.
+
+Fig.~\ref{fig:nefd_vs_t} shows the decrease of the uncertainty on the measured
+flux at the center of the map as a function of time. We either fit a power law
+or fix the power law to -0.5 and fit only the amplitude. The displayed error
+bars are indicative. They have been estimated via a bootstrap method: we
+randomize the scans and derive the standard deviation of the average of $n$
+scans for any $n$ between 1 and the total number of scans. This gives us an
+estimate of the uncertainty on $\sigma_\phi$ for a time of integration
+corresponding to $n$ scans. Strictly speaking, all the scans do not have the
+exact same duration, but the difference is negligible here. The number of
+possible independents sets of $n$ scans is limited though, which correlates our
+error bars. This is why we take them as indicative only and why the displayed
+value of the $\chi^2$ should be taken at face value. Despite these caveats, the
+power law fit looks robuts and the consistency between both methods (and the
+third one described in Sec.~\ref{se:nefd_air_mass}) is good.
+
+
+\begin{table}
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+Array & Free power law & Fixed power law $t^{-0.5}$ & Jackknife & Instrument \\
+\hline
+A1       & $47.9$ mJy.s$^{-0.54}$ & $37.9$ mJy.s$^{1/2}$ & 35.6 mJy.s$^{1/2}$ & $33.3$ (5) mJy.s$^{1/2}$\\
+A2       & $5.2$  mJy.s$^{-0.51}$ & $4.8$  mJy.s$^{1/2}$ & 5.7  mJy.s$^{1/2}$ & $5.8$  (5) mJy.s$^{1/2}$\\
+A3       & $38.9$ mJy.s$^{-0.54}$ & $30.6$ mJy.s$^{1/2}$ & 30.4 mJy.s$^{1/2}$ & $28.4$ (4) mJy.s$^{1/2}$\\
+A1 \& A3 & $28.5$ mJy.s$^{-0.53}$ & $23.6$ mJy.s$^{1/2}$ & 22.4 mJy.s$^{1/2}$ & $21.1$ (3) mJy.s$^{1/2}$\\
+\hline
+\end{tabular}
+\label{tab:nefd}
+\end{table}
+       33.325263       5.2024647
+       28.397230       4.5723151
+       21.143376       4.1538804
+       5.7628233       3.3094792
+
+
+\begin{figure}
+\begin{center}
+\includegraphics[clip, angle=0, scale =0.8]{Figures/NEFDIndScans/nefd_tau_run22.pdf}
+\caption{Astronomer NEFD as a function of atmospheric background for the 1 (orange dots) and 2 (cyan dots) mm channels. We also show the expected NEFD evolution with atmospheric background (red and blue curves)}
+\label{fig:nefdvsbackground}
+\end{center}
+\end{figure}
+
+\subsection{NEFD Method 3: scan NEFD vs opacity and air mass}
+\begin{figure}
+\begin{center}
+\includegraphics[clip, angle=0, scale =0.8]{Figures/NEFDIndScans/nefd_evol_run22.pdf}
+\caption{Evolution of the measured instrument NEFD across scans for N2R9.}
+\label{fig:nefdvsscans}
+\end{center}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\includegraphics[clip, angle=0, scale =0.8]{Figures/NEFDIndScans/nefd_flux1mm_run22.pdf}
+\caption{Measured instrument NEFD as a function of the flux of the source.}
+\label{fig:nefdvsflux}
+\end{center}
+\end{figure}
+\begin{figure}
+\begin{center}
+\includegraphics[clip, angle=0, scale =0.8]{Figures/NEFDIndScans/hist_nefd_ref_run22.pdf}
+\caption{Histogram of the measured reference NEFD across the N2R9 for the 1 (right) and 2 (left) mm channels.}
+\label{fig:nefdhist}
+\end{center}
+\end{figure}
+ 
+
+In this section we investigate the astronomer NEFD as a function of the atmospheric opacity and air mass. Figure~\ref{fig:nefdvsbackground} shows the measured NEFD, which we refer to as astronomer NEFD, for the 1 and 2 mm as a function of the measured atmospheric background in terms of $\tau/sin(El)$. The atmospheric opacity was computed as discussed in Section~\ref{se:opacities}. We observe that the increase of the astronomer NEFD is in agreement with what we would expect for background dominated sensitivity. We observe however some significant deviations from the curve. To investigate this issue we also show in Figure~\ref{fig:nefdvsscans} the evolution of the background corrected NEFD, hereafter instrument NEFD, across the N2R9 campaign for arrays A1 (blue), A3 (green) and A2 (cyan), and for the combination of A1 and A3 (red). We globally obseve stable NEFD across the run, with A1 sensitivity being worse than for A3. We also show the measured instrument NEFD as a function of the flux of the source in the 1 mm channel in Figure~\ref{fig:nefdvsflux}. We observe that the observed deviations in the instrument NEFD correspond mainly to the large flux source scans. This is more obvious in Figure~\ref{fig:nefdhist} where we present the histogram of the measured NEFD for 2 mm of pwv and at a elevation of 60 degrees, hereafter, reference NEFD, for the 1 and 2 mm channels.
+
+
+
+% ---------------------------------------
+\section{Focal plane reconstruction}
+\label{se:fov}
+
+\begin{figure}
+\begin{center}
+\includegraphics[clip, angle=0, scale = 0.15]{Figures/FOV_A1.png}
+\includegraphics[clip, angle=0, scale = 0.15]{Figures/FOV_A2.png}
+\includegraphics[clip, angle=0, scale = 0.15]{Figures/FOV_A3.png}
+\caption{Nasmyth offsets of each array, from beammap 26s415 on 3C84.}
+\label{fig:fov}
+\end{center}
+\end{figure}
+
+\begin{table}
+\begin{tabular}{|l|l|l|}
+\hline
+Array & Number of valid kids & Fraction of all kids\\
+\hline
+A1 & 793 & 0.75\\
+A2 & 481 & 0.83\\
+A3 & 872 & 0.83\\
+\hline
+\end{tabular}
+\end{table}
+
+
+\begin{equation}
+FOV diameter = \sqrt{4 N_{tot. kids} * gridstep^2/\pi}
+\end{equation}
+
+The same definition applies to ``Effective FOV'' to avoid extra multiplication
+by the fraction of valid pixels
+
+\begin{equation}
+F\lambda = gridstep\times D(30m)/\lambda
+\end{equation}
+
+% ----------------------------------------
+\section{Opacity derivation}
+\label{se:opacities}
+
+For each kid $k$, $f_{tone}^k$ moves with the atmospheric load according to
+
+\begin{equation}
+f_{tone}^k = C_0^k + C_1^k T_{atm}[1-e^{-\tau/\sin\delta}]
+\end{equation}
+
+where $\delta$ is the elevation. The {\tt skydip} procedure consists in moving
+the telescope in elevation step by step and to monitor, for each kid, the
+evolution of $f_{tone}^k$ vs the air mass and to fit the opacity $\tau$ and
+$C_0^k$ and $C_1^k$. All the skydips (that were obtained under various opacity
+conditions) are analysed together to break the degeneracies between these
+parameters. The procedure has two steps. First, all the skydips are analysed
+individually to simply measure $f_{tone}^k$ for each stable elevation and fit
+simultaneously all the parameters. Error bars on $\tau$ are estimated by doing
+this procedure on blocks of 40 kids only and getting a dispersion on the
+resulting $\tau$ from the different blocks. Usually the dispersion comes out as
+$4\times 10^{-3}$ at 1mm and $1\times 10^{-3}$ at 2mm. Once the $\tau$ values
+are estimated for each skydip (as the average over the blocks), we compute
+(while fixing $\tau$) the $C_0$ and $C_1$ final values for each kid. We thus
+retrieve the coefficients of all the Kids even though some of them could not
+contribute to the tau determination.
+
+{\bf Need to add figures from Juan and Pablo and their comments to detail on the results}
+
+%% \begin{figure}
+%% \begin{center}
+%% \includegraphics[clip, angle=0, scale =
+%%   0.5]{Figures/NEFD_vs_tau_20170226s415_FXDC0C1_Jy_common_mode_kids_out.png}
+%% \includegraphics[clip, angle=0, scale =
+%%   0.5]{Figures/tau1_tau2_20170226s415_FXDC0C1_GaussPhot_common_mode_kids_out.png}
+%% \caption{}
+%% \label{fig:fov}
+%% \end{center}
+%% \end{figure}
+
+\begin{figure}
+\begin{center}
+\includegraphics[clip, angle=0, scale = 0.5]{Figures/test_allskd_N2R9.jpg}
+\caption{{\bf Fix me : improve plot quality and plot only the 3rd one.}}
+\label{fig:test_allskd_N2R9}
+\end{center}
+\end{figure}
+
+%------------------------------------------
+\section{Beam pattern}
+\input{Beams.tex}
+
+
+
+%------------------------------------------
+\section{Calibration}
+
+
+\input{Cal.tex}
+
+
+\begin{figure}
+\begin{center}
+\includegraphics[clip, angle=0, scale = 0.4]{Figures/Calibrators_N2R9_20170226s415_FXDC0C1_GaussPhotFluxType_fixed_fwhm_gauss.png}
+\caption{Decorrelation mask: 100 or 60 arcsec, KID cross-calib with fixed fwhm
+  (12.5 and 18.5), then absolute photometry with the same fixed fwhm. Note:
+  NGC7027 not point like and not corrected for here. Error bars from NIKA2
+  measurements and abs. cal. uncertainties by JFL.}
+\label{fig:fov}
+\end{center}
+\end{figure}
+
+
+\subsection{Calibration stability across the run}
+
+\begin{figure}
+\begin{center}
+\includegraphics[clip, angle=0, scale = 0.7]{Figures/FluxIndScans/flux_ratio_run22.pdf}
+\includegraphics[clip, angle=0, scale = 0.7]{Figures/FluxIndScans/flux_ap_ratio_run22.pdf}
+\caption{Ratio between the measured flux per scan and the averaged flux for all sources observed in N2R9. We considered both fixed FWHM (top) and aperture photometry fluxes for the 1 (red) and 2 (cyan) mm channels. }
+\label{fig:fluxvsscan}
+\end{center}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\includegraphics[clip, angle=0, scale = 0.7]{Figures/FluxIndScans/flux_ratio_rz_run22.pdf}
+\includegraphics[clip, angle=0, scale = 0.7]{Figures/FluxIndScans/flux_ap_ratio_rz_run22.pdf}
+\caption{Ratio between the measured flux per scan and the averaged flux as a function atmospheric backgroud for all sources observed in N2R9. We considered both fixed FWHM (top) and aperture photometry fluxes for the 1 (red) and 2 (cyan) mm channels. }
+\label{fig:fluxvsbackground}
+\end{center}
+\end{figure}
+
+%------------------------------------------
+\section{Noise description: TOI and maps}
+
+\subsection{Dark detectors at 1 mm}
+%\begin{figure}
+%\begin{center}
+%\includegraphics[clip, angle=0, scale = 0.7]{Figures/}
+%\includegraphics[clip, angle=0, scale = 0.7]{Figures/FluxIndScans/}
+%\caption{ Other stuff}
+%\label{fig:fluxvsbackground}
+%\end{center}
+%\end{figure}
+
+
+%------------------------------------------
+\subsection{Dark tests}
+\input{dark_tests}
+%------------------------------------------
+\section{Summary of performance}
+
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY
+%----------------------------------------------------------------------------------------
+
+\bibliographystyle{unsrt}
+
+\bibliography{sample}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}

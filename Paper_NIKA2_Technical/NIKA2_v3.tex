@@ -244,13 +244,15 @@ In order to efficiently exploit the NIKA2 polarisation capabilities, a modulator
 
  \subsection{The readout electronics}
 
-One of the key advantages of the KID technology is the simplicity of the {\bf{cold electronics}} installed in the cryostat. In NIKA2, a number of detectors comprised between 150 and 250 is multiplexed on the same pair of coaxial lines providing the excitation and the readout. The excitation line is made by stainless steel cables running from 300 K down to base temperature. They are properly thermalised at each cryostat stage, and a fixed attenuation of 20dB is applied at 4 K in order to suppress the 300 K thermal noise. Each excitation line ends in an SMA connector (INput) and launched, through superconducting (Al) microbondings, on the silicon wafer holding the detectors. The approximate excitation power per pixel is usually of the order of 10 pW.
+One of the key advantages of the KID technology is the simplicity of the {\bf{cold electronics}} installed in the cryostat.
+In NIKA2, a number of detectors comprised between 150 and 250 is instrumented by a single coaxial line providing at one end the excitation and the readout at the other end. The excitation line, composed of stainless steel cables, are running from 300\,K down to sub-Kelvin temperature. They are properly thermalised at each cryostat stage, and a fixed attenuation of 20\,dB is applied at the 4\,K stage in order to suppress the 300\,K thermal noise. Each excitation line ends in an SMA connector (EXCitation input) and connected, through superconducting (Al) microbondings, to the silicon wafer holding the detectors. The approximate excitation power per pixel is usually of the order of 10\,pW.
 
-On the readout side, further microbondings get the signal out of the focal plane, into a second SMA connector (OUTput) and through a superconducting (Nb) coaxial cable directly to the input of a low-noise cryogenics amplifier (LNA) operating at frequencies up to 2.5GHz. The noise temperature (en.wikipedia.org$/$wiki$/$Noise$\_$temperature) of the amplifier, hold at a physical temperature of around 8K in the cryostat, is between 2K and 5K.  The output of the amplifier goes up to 300K via stainless steel cables. 
+On the readout side, the same types of microbondings are used to transfer the signal out of the focal plane and to make it available on a second SMA connector (MEASurement output). Then a superconducting (Nb) coaxial cable is used to connect directly the measurement output to the input of a low-noise cryogenics amplifier (LNA). The amplified signal provided by the LNA is transfered through the remaining cryostat stages (up to 300\,K) via stainless steel cables. 
+The LNA, which operates at frequencies up to 2.5\,GHz, has  a noise temperature \textbf{(en.wikipedia.org$/$wiki$/$Noise$\_$temperature)} comprised between 2\,K and 5\,K is held at a physical temperature of about 8\,K.
 
-The cryogenics amplifiers for NIKA2 has been developed, fabricated and tested at the Yebes observatory and TTI Norte (www.ttinorte.es) company, both located in Spain. 
+The cryogenics amplifiers used by NIKA2 have been developed, fabricated and tested at the Yebes observatory and TTI Norte \textbf{(www.ttinorte.es)} company, both located in Spain. 
 
-NIKA2, i.e. 3,300 pixels, is equipped with a total of 20 pairs of lines, thus employing 20 cryogenics amplifiers (four for the 150GHz array and eight each for the 260GHz arrays). The polarisation of these amplifiers is provided by a custom electronics box remotely controlled and allowing optimising the individual biases according to the slightly different characteristics of the front-end high electrons mobility transistors (HEMT). 
+NIKA2 is composed by a total of 3,300 pixels and is equipped with a total of 20 feed-lines. Thus, NIKA2 employs 20 cryogenics amplifiers (four for the 150\,GHz array and eight each for the 260\,GHz arrays). The polarisation of these amplifiers is provided by a custom electronic box remotely controlled and allowing the optimizations of the individual biases according to the slightly different characteristics of the front-end high electrons mobility transistors (HEMT). 
 
 \begin{figure}
 \begin{center}
@@ -262,24 +264,23 @@ The crate allocated to the 150\,GHz channel uses 4 NIKEL\_AMC while the others u
 \end{center}
 \end{figure}
 
-On the {\bf{warm electronics}} side, to instrument the three arrays a total of 20 electronic boards, named New Iram Kid ELectronic in Advanced Mezzanine Card format (NIKEL\_AMC), are required.
-As shown in fig.~\ref{crateFig}, these boards are distributed in three micro-Telecommunication Computing Architecture (MTCA) crates.
+The \textbf{warm electronics} required to digitize and process the 3,300 pixel signals was specifically designed for that purpose.
+It is composed of 20 readout cards (one by feed-line) named New Iram Kid ELectronic in Advanced Mezzanine Card format (NIKEL\_AMC).
+As shown in fig.~\ref{crateFig}, the cards are distributed in three micro-Telecommunication Computing Architecture (MTCA) crates.
 A central module, composed of a commercially available Mezzanine Control Hub (MCH) and of custom made mezzanine boards, is used to distribute a Rubidium reference clock (CLK) and a pulse per second (PPS) provided by GPS receiver and to control the crate.
-This allows the whole instrumentation to be synchronous and to properly associate the data 
-samples with respect to the telescope pointing.
-This electronics is fully described in previous papers (\cite{Bourrion2012}, \cite{Bourrion2016}).
-%%%%%%%%%%%%%%%%
+This electronics is fully described in previous papers (\cite{Bourrion2012,Bourrion2016}).
 
-%The NIKEL\_AMC features a radio-frequency (RF) part.
-%It uses the local oscillator (LO) input to perform the up-conversion of the baseband excitation signal and to achieve the down-conversion of the feed-line output signal (MEAS) before providing it to the baseband part for signal processing.
-%
-The NIKEL\_AMC relies on channelized Digital Down Conversion (DDC) and their associated digital sine and cosine signal generators to build the excitation signal and to process the returning signal at baseband.
-The baseband part of the readout heavily relies on Field Programmable Gate Arrays (FPGA), Analog to Digital and Digital to Analog Converters (ADC and DAC).
-It covers a bandwidth of 500\,MHz and can instrument up to 400 KID in this bandwidth.
 
-The transition from and to the baseband part is ensured by an integrated radio-frequency (RF) chain that uses the local oscillator (LO) input to perform up and down-conversions.
+In summary, the NIKEL\_AMC is composed of two parts: the radio-frequency (RF) part and the digitization and processing part.
+The integrated RF part ensure the transition from and to the baseband part.
+It uses the local oscillator (LO) input to perform up and down-conversions.
 To instrument the 150\,GHz array (resonances from 1.3\,GHz to 1.8\,GHz) and the 260\,GHz arrays (resonances from 1.9\,GHz to 2.4\,GHz), the used LO input frequency are respectively 1.3\,GHz and 1.9\,GHz.
-%It performs the up-conversion to build the feed-line excitation signal (EXC) and down-conversion.
+features a radio-frequency (RF).
+The digitization and signal processing part, which is done at baseband, relies on channelized Digital Down Conversion (DDC) and their associated digital sine and cosine signal generators to build the excitation signal and to process the down-converted measurement signal.
+The processing heavily relies on Field Programmable Gate Arrays (FPGA) while the interfacing to and from the analog domain is achieved by 1\,GSPS Analog to Digital and Digital to Analog Converters (ADC and DAC).
+Finally, the electronics covers a bandwidth of 500\,MHz and can instrument up to 400 KID in this bandwidth. In NIKA2 about 140 KID per board are instrumented in the 150\,GHz channel and about 250 KID per board in the 260\,GHz channel.
+It must be noted that for implementation reasons (\cite{Bourrion2012,Bourrion2016}) the excitation signal, nomminally covering 500\,MHz is constructed by five DAC.
+
 
 
 \subsection{Laboratory tests}
@@ -524,11 +525,11 @@ In preparation
 
 \bibitem[{Bourrion {et~al.} 2012}]{Bourrion2012}
 Bourrion, O., Vescovi, C., Bouly, J.L., {et~al.} 2012, 
-Journal of Instrumentation 7, Issue 7, 7014, arXiv:1204.1415
+Journal of Instrumentation, vol 7, P07014, arXiv:1204.1415
 
 \bibitem[{Bourrion {et~al.} 2016}]{Bourrion2016}
 Bourrion, O., Benoit, A., Bouly, J.L., {et~al.} 2016, 
-Journal of Instrumentation, submitted, arXiv:1602.01288
+Journal of Instrumentation, vol. 11, P11001, arXiv:1602.01288
 
 \bibitem[{Swenson {et~al.} 2010}]{Swenson2010}
 Swenson, L. J., Cruciani, A., Benoit, A., {et~al.} 2010, 

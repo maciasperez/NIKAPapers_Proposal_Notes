@@ -99,14 +99,19 @@
 
 %\begin{abstract}
 \abstract
-  {We present non-parametric pressure profiles of galaxy clusters determined from SZ data from the
-  MUSTANG, NIKA, and Bolocam instruments. We note that, despite the differences in angular resolution,
-  observing frequency, and observing strategies, there is generally good agreement. As expected from
-  the effective transfer function of data processing, the ability to recover the pressure profile
-  beyond the field of view of these instruments diminishes rapidly. The overlap in spatial sensitivity
-  of these three datasets ensures consistency on scales $0.05 R_{500} < r < 2 R_{500}$. Given the
-  weak constraints at the largest radii, we included a prior from Planck on the integrated
-  Compton Y parameter.}
+    {We present non-parametric pressure profiles of a galaxy cluster, CLJ 1226.9+3352, as
+      determined from SZ data from the MUSTANG, NIKA, and Bolocam instruments.
+      We note that, despite the differences in angular resolution,
+      observing frequency, and observing strategies, there is generally good agreement.
+      Given that for a given instrument, constraints on the pressure profile
+      diminish rapidly beyond the field of view, the overlap in spatial sensitivity
+      of these three datasets is critical in checking for consistency between instruments,
+      and in the process provides continuous coverage over the radial scales
+      $0.05 R_{500} < r < 2 R_{500}$. Despite this coverage, with these instruments alone, we
+      still suffer from poor constraints at the largest radii, and therefore include a prior
+      from Planck on the integrated Compton Y parameter. Our non-parametric algorithm makes
+      use of logarithmic interpolation, which under the assumption of ellisoidal symmetry is
+      analytically integrable.}
 %\end{abstract}
 
 \titlerunning{Non-parametric fitting with MUSTANG, NIKA, Bolocam, and Planck}
@@ -363,11 +368,25 @@ We use the Planck frequency maps from 143 to 857~GHz to produce a Compton parame
 
 A point source at $4.6\sigma$ significance in MUSTANG was reported in \citet{korngut2011}, but is not
 evident in the reprocessed MUSTANG data. A short VLA filler observation (VLA-12A-340, D-array, at 7 GHz) 
-was performed to follow up this potential source, but to a limit of $\sim 50 {\rm \mu Jy}$ nothing is seen.
+was performed to follow up this potential source (at RA 12:26:58.0 and Dec +33:32:59),
+but to a limit of $\sim 50 {\rm \mu Jy}$ nothing is seen. At 500 $\mu$m, \emph{Herschel}-SPIRE has a
+point source sensitivity of $\sim 8$ mJy, and therefore does not truly constrain a potential point
+source at this location.
+
 However, \citet{adam2015} find a point source at RA 12:27:00.01 and Dec +33:32:42 with a flux density of 
-$6.8 \pm 0.7 \text{ (stat.)} \pm 1.0 \text{ (cal.)}$ mJy at 260 GHz and $1.9 \pm 0.2 \text{ (stat.)}$ at 150 GHz. 
+$6.8 \pm 0.7 \text{ (stat.)} \pm 1.0 \text{ (cal.)}$ mJy at 260 GHz and $1.9 \pm 0.2 \text{ (stat.)}$ at 150 GHz.
+At 500 $\mu$m, \emph{Herschel}-SPIRE finds a flux of $100 \pm 8$ mJy.
+\footnote{{http://irsa.ipac.caltech.edu/applications/Gator/}}
 A point source at this location is fit to the MUSTANG data with a flux density of $0.36 \pm 0.11$ mJy
 \citep{romero2016}. We subtract this point source from the NIKA and MUSTANG maps.
+
+%A point source at $4.6\sigma$ significance in MUSTANG was reported in \citet{korngut2011}, but is not
+%evident in the reprocessed MUSTANG data. A short VLA filler observation (VLA-12A-340, D-array, at 7 GHz) 
+%was performed to follow up this potential source, but to a limit of $\sim 50 {\rm \mu Jy}$ nothing is seen.
+%However, \citet{adam2015} find a point source at RA 12:27:00.01 and Dec +33:32:42 with a flux density of 
+%$6.8 \pm 0.7 \text{ (stat.)} \pm 1.0 \text{ (cal.)}$ mJy at 260 GHz and $1.9 \pm 0.2 \text{ (stat.)}$ at 150 GHz. 
+%A point source at this location is fit to the MUSTANG data with a flux density of $0.36 \pm 0.11$ mJy
+%\citep{romero2016}. We subtract this point source from the NIKA and MUSTANG maps.
 
 The mean level in the MUSTANG map is calculated as the mean within the inner arcminute MUSTANG noise map. 
 We subtract the mean level from the MUSTANG map before fitting a cluster model. The Bolocam map already has
@@ -484,7 +503,18 @@ Furthermore, the computationally expensive part of drawing a new walker has been
 %\label{sec:systematics}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\textcolor{red}{Talk about the Virtual fits! This is useful for later section too...}
+\textcolor{red}{
+  Our algorithm is first tested with mock cluster observations. We create mock observations by adding
+  a noise realization (created from jack-knifed timestreams) for each of the three maps to the
+  corresponding filtered map of a previously determined \citep{romero2017} gNFW profile. The fits to
+  our mock observations recover the input gNFW profile well; however, especially for the Bolocam
+  fits, the two outermost bins are biased high.}
+
+\textcolor{red}{We also compare our non-parametric fits with power-law interpolation (our default),
+  to non-parametric fits with uniform pressure. We find that the non-parametric fits with uniform
+  pressure are much more sensitive to the number of bins, as indeed, the transfer functions of the
+  various instruments, especially MUSTANG, substantially reduce the signal from extended (uniform)
+  structure.}
 
 Our non-parametric fits recover consistent pressure profiles given different starting positions and bin spacing.
 Additionally, we find that our pressure profiles are consistent with those produced when using uniform pressure
@@ -501,9 +531,8 @@ offset on the second-to-last bin as well. Therefore, it too is trimmed.
 
 We find that the use of 6 bins provides generally reliable results. Use of more bins results in larger error bars, while
 the use of few bins reduces resolution, thereby smoothing out interesting features revealed in our pressure profiles.
-The results of these fits are shown for NIKA, MUSTANG, and Bolocam in Figures~\ref{fig:nika_contours},
-\ref{fig:mustang_contours},
-and \ref{fig:bolocam_contours} respectively.
+%The results of these fits are shown for NIKA, MUSTANG, and Bolocam in
+%Figures~\ref{fig:nika_contours},\ref{fig:mustang_contours},and \ref{fig:bolocam_contours} respectively.
 
 \section{Non-parametric Results}
 \label{sec:np_res}

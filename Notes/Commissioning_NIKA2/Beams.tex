@@ -11,14 +11,139 @@ The NIKA2 beam pattern mainly depends on the IRAM 30m telescope and NIKA2 intern
 %% [Optimal Focus]
 %%________________________________________________________
 \subsection{Optimal focus}
+\label{sec:focus}
+
+Owing to the NIKA2 $6.5~\rm{arcmin}$ FOV, the focus is expected to
+slightly changes across the FOV, defining curved focal surfaces at the
+location of the three arrays. Therefore, beam patterns are expected to
+show some scatter across the FOV accordingly to the focal
+surfaces. Although all the detectors cannot be individually focalised,
+an optimal axial focus of the telescope can be found to maximize the
+number of detectors at the best focus and hence, maximize the
+resolution of the NIKA2 maps. This optimal z-focus setting is obtained
+in measuring the focus at the center of the arrays as described
+Sect.~\ref{sec:focus-meas} and apply a focus shift, which is primary
+predicted using Zemax simulation, and ultimately verified by measuring
+the focus surfaces, as decribed in Sect.~\ref{sec:focus-surf}.
+
 
 \subsubsection{Focus estimation}
+\label{sec:focus-meas}
 
-[DESCRIPTION NK-OTF-FOCUS + 1 FIG. D'EXEMPLE]
+The best axial focus in the central region of the arrays is estimated
+using the so-called 'focus$\_$OTF' PAKO script, which realises a
+series of five $1' \times 5'$ OTF scans at various values of
+the focus in $0.4~\rm{mm}$-steps around an a priori value $z_0$,
+namely $z \in \{-0.8, -0.4, 0, 0.4, 0.8\} + z_0$. Elliptical Gaussian
+fit on the reconstructed maps provide estimates of the flux and FWHM
+along minor- and major-axis for each focus. Then, parabolic fits are
+used to determine the best focus. We consider three estimates: i) the
+focus that maximizes the flux $\hat z_{\rm{flux}}$, ii) the focus that
+minimizes the geometrical FWHM, defined as the quadratic mean of
+$\rm{FWHM}_{\rm{major}}$ and $\rm{FWHM}_{\rm{minor}}$, $\hat
+z_{\rm{fwhm}}$ and iii) the focus that minimizes the beam ellipticity,
+defined as $\rm{FWHM}_{\rm{major}}/\rm{FWHM}_{\rm{minor}}$ , $\hat
+z_{\rm{ellipt}}$. Fig.~\ref{fig:focus-example} shows an example of
+axial focus measurement using a 'focus$\_$OTF' observation of Neptune
+during N2R10.
+
+\begin{figure}
+\begin{center}
+  \includegraphics[clip, angle=0, scale=0.25]{Figures/plot_20170419s143.png}
+\caption{Example of axial focus measurment using a 'focus$\_$OTF' observation of Neptune
+during N2R10 [PLACEHOLDER]}
+\label{fig:focus-example}
+\end{center}
+\end{figure}
+
 
 \subsubsection{Reconstruction of the focus surfaces}
+\label{sec:focus-surf}
 
-[DESCRIPTION BEAMMAP SEQUENCE + FIGS]
+\begin{figure}
+\begin{center}
+  \includegraphics[trim={0, 1cm, 0, 1cm}, clip, angle=0, scale=0.5]{Figures/fov_focus_mv_5.png}
+\caption{Focus surface of A1, A3 and A2 arrays from left to
+  right. From top to bottom, the focus estimates rely on
+  FWHM-minimization, amplitude-maximization of an elliptical
+  Gaussian of fixed FWHMs and amplitude-maximization of an elliptical
+  Gaussian.}
+\label{fig:focus-surfaces}
+\end{center}
+\end{figure}
+
+\emph{Method. } We measure NIKA2 focal surfaces by means of a sequence of five 'beam-map'
+scan observation of bright point-like sources, typically Planets,
+for various settings of the telescope axial focus around the
+optimal focus $z_{\rm{opt}}$. A beam-map scan consists of a deep-integrated
+$13.5' \times 7.8'$ OTF-scan observation comprizing $99$ sub-scans and
+with a scanning speed of $39''/s$ [TBC]. The z-focus is changed in step of
+$0.6~\rm{mm}$ to probe a large focus range for measuring even the
+extreme variation of the focus surfaces,
+namely $z \in \{-1.2, -0.6, 0, 0.6, 1.2 \} + z_{\rm{opt}}$.
+Each beam-map scans allow for $4''$-resolution individual maps per kid to
+be projected. Therefore, a series of five maps at various focus is
+available for each detector, from which the best focus is estimated as
+described in Sect.~\ref{sec:focus-meas}. The ensemble of the relative
+focus estimate per KIDs with respect to the best focus at the center
+of the array constitutes the focus surface. An accurate estimate of
+the center focus is obtained as the
+weighted average focus estimate of the KIDs lying in a $30''$ radius
+around the geometrical center of the array. This average does not
+induce any sizeable bias thanks to the flatness of the focus surface
+in the innermost regions. For robustness test, we consider three focus
+estimates: i) the focus that minimizes the geometrical FWHM of
+best-fitting the elliptical Gaussian, ii) the focus that maximizes the
+amplitude of the ellitical Gaussian, and iii) the focus that maximizes
+the amplitude of the best-fitting elliptical
+Gaussian of fixed FWHM (at $12''$ at $260~\rm{GHz}$ and $18''$ at
+$150~\rm{GHz}$). 
+
+\emph{Data selection. }
+During the three commissioning campaigns that occured after the change of A1
+lens (hence in the final NIKA2 optic configuration), nine out-of-focus
+beam-map scan sequences have been acquired, including incomplete
+sequences and sequences hindered by poor atmospheric conditions. We
+select sequences that i) comprises at least four scans, ii) have been
+observed at zenith opacity at $225~\rm{GHz}$ (as indicated by
+the IRAM taumeter) below 0.5 and iii) have a maximal central focus
+drift between the starting time and the end of the sequence of
+$0.5~\rm{mm}$. These criteria preserve five sequences from which focus
+surfaces can be reconstructed. Namely, we consider the sequences
+$20170226s415-419$, $20170419s133-137$, $20170420s113-117$,
+$20170421s160-164$ and $20170424s123-127$, which consist of obervations
+of the bright quasar '3C84' and Neptune.
+
+\emph{Results. }
+
+We present NIKA2 focus surfaces obtained from the inverse-variance
+weighted combination of the five reconstructed focus surfaces per
+arrays in Fig.~\ref{fig:focus-surfaces}.
+
+
+\emph{Stability across sequences. }
+[ADD A DESCRIPTION]
+
+\begin{figure}
+  %\begin{center}
+  \includegraphics[trim={-2cm, 2cm, 0, 2cm}, clip, angle=0, scale=0.1]{Figures/fov_focus_stability_check_D1.png}
+  \begin{center}
+  \includegraphics[trim={0, 2cm, 0, 2cm}, clip, angle=0, scale=0.5]{Figures/fov_focus_1D_Vband_5.png}
+  \end{center}
+\caption{}
+\label{fig:focus-stability-H}
+\end{figure}
+
+
+\begin{figure}  
+  \includegraphics[trim={-2cm, 2cm, 0, 2cm}, clip, angle=0, scale=0.1]{Figures/fov_focus_stability_check_D2.png}
+  \begin{center}
+  \includegraphics[trim={0, 2cm, 0, 2cm},clip, angle=0, scale=0.5]{Figures/fov_focus_1D_Hband_5.png}
+\caption{}
+\label{fig:focus-stability-V}
+\end{center}
+\end{figure}
+
 
 
 %% [Main beam]

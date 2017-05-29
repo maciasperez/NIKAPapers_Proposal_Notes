@@ -33,17 +33,19 @@ the focus surfaces, as decribed in Sect.~\ref{sec:focus-surf}.
 The best axial focus in the central region of the arrays is estimated
 using the so-called 'focus$\_$OTF' PAKO script, which realises a
 series of five $1' \times 5'$ OTF scans at various values of
-the focus in $0.4~\rm{mm}$-steps around an a priori value $z_0$,
+the focus in $0.4~\rm{mm}$-steps around an \emph{a priori} value $z_0$,
 namely $z \in \{-0.8, -0.4, 0, 0.4, 0.8\} + z_0$. Elliptical Gaussian
 fit on the reconstructed maps provide estimates of the flux and FWHM
 along minor- and major-axis for each focus. Then, parabolic fits are
-used to determine the best focus. We consider three estimates: i) the
-focus that maximizes the flux $\hat z_{\rm{flux}}$, ii) the focus that
+used to determine the best focus. We consider three estimates: i)
+$\hat z_{\rm{peak}}$ the focus that maximizes the estimated flux,
+which is the amplitude of the 2D Gaussian, 
+ii) $\hat z_{\rm{fwhm}}$ the focus that
 minimizes the geometrical FWHM, defined as the quadratic mean of
-$\rm{FWHM}_{\rm{major}}$ and $\rm{FWHM}_{\rm{minor}}$, $\hat
-z_{\rm{fwhm}}$ and iii) the focus that minimizes the beam ellipticity,
-defined as $\rm{FWHM}_{\rm{major}}/\rm{FWHM}_{\rm{minor}}$ , $\hat
-z_{\rm{ellipt}}$. Fig.~\ref{fig:focus-example} shows an example of
+$\rm{FWHM}_{\rm{major}}$ and $\rm{FWHM}_{\rm{minor}}$,  and iii)
+$\hat z_{\rm{ellipt}}$ the focus that minimizes the beam ellipticity,
+defined as $\rm{FWHM}_{\rm{major}}/\rm{FWHM}_{\rm{minor}}$.
+Fig.~\ref{fig:focus-example} shows an example of
 axial focus measurement using a 'focus$\_$OTF' observation of Neptune
 during N2R10.
 
@@ -73,7 +75,8 @@ during N2R10 [PLACEHOLDER]}
 \end{figure}
 
 \emph{Method. } We measure NIKA2 focal surfaces by means of a sequence of five 'beam-map'
-scan observation of bright point-like sources, typically Planets,
+scan observations of bright point-like sources, typically Planets or
+bright quasars,
 for various settings of the telescope axial focus around the
 optimal focus $z_{\rm{opt}}$. A beam-map scan consists of a deep-integrated
 $13.5' \times 7.8'$ OTF-scan observation comprizing $99$ sub-scans and
@@ -82,7 +85,12 @@ $0.6~\rm{mm}$ to probe a large focus range for measuring even the
 extreme variation of the focus surfaces,
 namely $z \in \{-1.2, -0.6, 0, 0.6, 1.2 \} + z_{\rm{opt}}$.
 Each beam-map scans allow for $4''$-resolution individual maps per kid to
-be projected. Therefore, a series of five maps at various focus is
+be projected. Before the projection, the correlated noise is mitigated
+from each KID timeline in subtrating out a common mode, which is obtained
+using, amongst the other detectors, those that correlates the most
+with this KID and that are located outside a radius of $90''$
+around the source centroid.
+Therefore, a series of five cleaned maps at various focus is
 available for each detector, from which the best focus is estimated as
 described in Sect.~\ref{sec:focus-meas}. The ensemble of the relative
 focus estimate per KIDs with respect to the best focus at the center
@@ -92,12 +100,20 @@ weighted average focus estimate of the KIDs lying in a $30''$ radius
 around the geometrical center of the array. This average does not
 induce any sizeable bias thanks to the flatness of the focus surface
 in the innermost regions. For robustness test, we consider three focus
-estimates: i) the focus that minimizes the geometrical FWHM of
-best-fitting the elliptical Gaussian, ii) the focus that maximizes the
-amplitude of the ellitical Gaussian, and iii) the focus that maximizes
-the amplitude of the best-fitting elliptical
-Gaussian of fixed FWHM (at $12''$ at $260~\rm{GHz}$ and $18''$ at
-$150~\rm{GHz}$). 
+estimates: the two first ones are the same as discussed in
+Sect.~\ref{sec:focus-meas} -- namely i) $\hat z_{\rm{fwhm}}$ the focus that
+minimizes the geometrical FWHM and ii) $\hat z_{\rm{peak}}$ the focus
+that maximizes the amplitude of the best-fitting ellitical Gaussian --
+whereas the third one is $\hat z_{\rm{flux}}$ the focus that maximizes
+the amplitude of the best-fitting elliptical Gaussian of fixed FWHM
+(at $12''$ at $260~\rm{GHz}$ and $18''$ at $150~\rm{GHz}$). The 
+comparison between the two amplitude-based estimators
+($\hat z_{\rm{peak}}$ and $\hat z_{\rm{flux}}$), will test the
+stability of the focus results against the exact choice of the beam fitting
+function. Since the ellipticity-based estimator $\hat z_{\rm{ellip}}$ is
+less sensitive to focus changes and yields larger uncertainties than the
+others, we do not use it for the focus surface reconstruction.     
+
 
 \emph{Data selection. }
 During the three commissioning campaigns that occured after the change of A1
@@ -110,27 +126,100 @@ the IRAM taumeter) below 0.5 and iii) have a maximal central focus
 drift between the starting time and the end of the sequence of
 $0.5~\rm{mm}$. These criteria preserve five sequences from which focus
 surfaces can be reconstructed. Namely, we consider the sequences
-$20170226s415-419$, $20170419s133-137$, $20170420s113-117$,
-$20170421s160-164$ and $20170424s123-127$, which consist of obervations
+$20170226s415\mbox{--}419$, $20170419s133\mbox{--}137$, $20170420s113\mbox{--}117$,
+$20170421s160\mbox{--}164$ and $20170424s123\mbox{--}127$, which consist of observations
 of the bright quasar '3C84' and Neptune.
 
 \emph{Results. }
+For each detector $k$ and each beam-map sequence $s$, we obtain for
+the array $a$, a focus measurement $z_k^{a, s} \pm \sigma_k^{a, s}$,
+where $\sigma_k^{a, s}$ is the $1\mbox{--}\sigma$ error of the least-square
+polynomial fit. The focus surface measurements per arrays obtained from the five
+beam-map sequences are combined using an inverse-variance weighting
+scheme to obtain the focus surface estimates 
+\begin{equation}
+\label{eq:mv_focus_surf}
+z_k^{(a)} = \left( \sigma_k^{(a)} \right)^2 \,  \sum_s \frac{z_k^{a,s}}{\left(\sigma_k^{a,s}\right)^2}\, \,  ,
+\end{equation}
+with uncertainties 
+\begin{equation}
+\label{eq:error_mv_focus_surf}
+\sigma_k^{(a)} = \left[ \sum_s \frac{1}{\left(\sigma_k^{a,s}\right)^2}\right]^{-1/2}\, .
+\end{equation}
 
-We present NIKA2 focus surfaces obtained from the inverse-variance
-weighted combination of the five reconstructed focus surfaces per
-arrays in Fig.~\ref{fig:focus-surfaces}.
 
+We present NIKA2 focus surfaces per arrays obtained as in
+Eq.~\ref{eq:mv_focus_surf} 
+%from the inverse-variance weighted combination of the five
+%reconstructed focus surfaces per arrays
+in Fig.~\ref{fig:focus-surfaces}.
+The three flavours of focus-estimators provide us with focus surfaces
+per arrays that are in good agreement with each others and that have a
+non-axisymetrical flatten bowl shape consistent with expectations from
+simulation [TBA, as discussed further below].
+The median defocus (that is the relative focus w.r.t. the center)
+across the detectors is of about
+$-0.1~\rm{mm}$ for the three arrays. Maximal defocus values of about
+$-0.6~\rm{mm}$ are found for detectors located in the outer top and
+left regions of the FOV. Finally, a fraction comprised between $20$
+and $30\%$ of the KIDs has a relative $z\le -0.2~\rm{mm}$.  
+
+We primarily estimate the uncertainty of the focus
+surface measurements using the standard deviation between the three
+estimators $z_k^{(a)}|_{\rm{fwhm}}$, $z_k^{(a)}|_{\rm{peak}}$ and
+$z_k^{(a)}|_{\rm{flux}}$. We found approximatively homogeneous
+standard deviation surfaces per arrays, which have median values across
+the FOV of about $0.03~\rm{mm}$.
+However, we cross-check this error estimate by forming the quadratic mean of
+the three inverse-variance error surfaces per arrays, which are defined in
+Eq.~\ref{eq:error_mv_focus_surf} and quoted
+$\sigma_k^{(a)}|_{\rm{fwhm}}$, $\sigma_k^{(a)}|_{\rm{peak}}$ and
+$\sigma_k^{(a)}|_{\rm{flux}}$. This provides us with more optimistic
+error surfaces per array, which do not show any clear pattern across
+the FOV and which have a median value across the detectors of about
+$0.015~\rm{mm}$.  
+
+
+[EXPAND THE DISCUSSION ON COMPARISON WITH SIMULATION]
 
 \emph{Stability across sequences. }
-[ADD A DESCRIPTION]
+By comparing the focus surface obtained from the five individual focus
+sequences, we test the stability of the NIKA2 focus surfaces across
+the time and the atmospheric conditions. In
+Figs.~\ref{fig:focus-stability-H}-\ref{fig:focus-stability-V}, we compare
+the defocus along two perpendicular diameters across the
+FOV. Although any direction would have been equivalent for this test, we choose to
+position the diameters along-with and perpendicular-to the KID geometrical
+grid to avoid the scatter due to KID non-alignement in any other
+direction. The scatter is further mitigated by considering
+four-detector-wide diameters as shown in upper the left corner of
+Figs.~\ref{fig:focus-stability-H}-\ref{fig:focus-stability-V}.
+
+[DEVELOP A LITTLE THE DISCUSSION HERE]
 
 \begin{figure}
   %\begin{center}
   \includegraphics[trim={-2cm, 2cm, 0, 2cm}, clip, angle=0, scale=0.1]{Figures/fov_focus_stability_check_D1.png}
   \begin{center}
-  \includegraphics[trim={0, 2cm, 0, 2cm}, clip, angle=0, scale=0.5]{Figures/fov_focus_1D_Vband_5.png}
+  \includegraphics[trim={0, 2cm, 0, 2cm}, clip, angle=0, scale=0.45]{Figures/fov_focus_1D_Vband_5.png}
   \end{center}
-\caption{}
+  \caption{Stability of the focus surface across the sequences. This
+    series of plot show the relative focus with respect to the center
+    (defocus) along the 'vertical diameter', that is a band of
+    four-detector width across the FOV, which is vertical with respect to
+    the detector geometrical grid, as illustrated by the plot in the
+    upper left corner. The datapoints show the defocus along the
+    'vertical diameter' estimated from the five focus sequences,
+    namely $20170226s415\mbox{--}419$ (sky blue),
+    $20170419s133\mbox{--}137$ (dark blue), $20170420s113\mbox{--}117$ (red),
+    $20170421s160\mbox{--}164$ (yellow) and $20170424s123\mbox{--}127$
+    (green), using the $z^{(a)}|_{\rm{fwhm}}$, $z^{(a)}|_{\rm{flux}}$ and
+    $z^{(a)}|_{\rm{peak}}$ estimators from top to bottom, and for A1, A3 and
+    A2 arrays from left to right. The black datapoints are the five-sequence combined defocus, as
+    presented in Fig.~\ref{fig:focus-surfaces}, taken along the
+    'vertical diameter', and the errorbars, the
+    five-sequence combined defocus errors along the 'vertical
+    diameter'.}
 \label{fig:focus-stability-H}
 \end{figure}
 
@@ -138,8 +227,13 @@ arrays in Fig.~\ref{fig:focus-surfaces}.
 \begin{figure}  
   \includegraphics[trim={-2cm, 2cm, 0, 2cm}, clip, angle=0, scale=0.1]{Figures/fov_focus_stability_check_D2.png}
   \begin{center}
-  \includegraphics[trim={0, 2cm, 0, 2cm},clip, angle=0, scale=0.5]{Figures/fov_focus_1D_Hband_5.png}
-\caption{}
+  \includegraphics[trim={0, 2cm, 0, 2cm},clip, angle=0, scale=0.45]{Figures/fov_focus_1D_Hband_5.png}
+  \caption{Stability of the focus surface across the sequences. Same
+    legend as in Fig.~\ref{fig:focus-stability-H}, but for the
+    detectors located in an 'horizontal diameter', i.e. a band of
+    four-detector width across the FOV, which is horizontal with respect to
+    the detector geometrical grid, as illustrated by the plot in the
+    upper left corner. }
 \label{fig:focus-stability-V}
 \end{center}
 \end{figure}

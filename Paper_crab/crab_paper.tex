@@ -1,4 +1,4 @@
-\documentclass[twocolumn,traditabstract]{aa}  
+\documentclass[twocolumn,traditabstract]{aa}
 \usepackage{fixltx2e}
 \usepackage[english]{babel}
 \usepackage{graphicx,amsmath}
@@ -31,6 +31,7 @@
 \def\intk#1{\displaystyle\int\frac{d^2k_{#1}}{(2\pi)^2}}
 \def\intr#1{\displaystyle\int d^2r_{#1}}
 \def\simlt{\lower.5ex\hbox{$\; \buildrel < \over \sim \;$}}
+\def\simgt{\lower.5ex\hbox{$\; \buildrel > \over \sim \;$}}
 \def\simgt{\lower.5ex\hbox{$\; \buildrel $\textgreater$ \over \sim \;$}}
 \def\NIKA{\textit{NIKA}}
 \def\NIKAd{\textit{NIKA2}}
@@ -44,20 +45,114 @@
 
 \begin{document}
 \title{Crab nebula polarization observations with NIKA: \\ implications for future CMB experiments}
+\author{A.~Ritacco \inst{\ref{LPSC}},\inst{\ref{IRAME}}\thanks{Corresponding author: Alessia Ritacco, \url{ritaccoa@iram.es}}
+\and  J.F.~Mac\'ias-P\'erez \inst{\ref{LPSC}}
+\and  N.~Ponthieu \inst{\ref{IPAG}}
+\and  R.~Adam \inst{\ref{LPSC},\ref{OCA}}
+\and  P.~Ade \inst{\ref{Cardiff}}
+\and  P.~Andr\'e \inst{\ref{CEA}}
+\and  A.~Beelen \inst{\ref{IAS}}
+\and  A.~Beno\^it \inst{\ref{Neel}}
+\and  A.~Bideaud \inst{\ref{Neel}}
+\and  N.~Billot \inst{\ref{IRAME}}
+\and  O.~Bourrion \inst{\ref{LPSC}}
+\and  M.~Calvo \inst{\ref{Neel}}
+\and  A.~Catalano \inst{\ref{LPSC}}
+\and  G.~Coiffard \inst{\ref{IRAMF}}
+\and  B.~Comis \inst{\ref{LPSC}}
+\and  A.~D'Addabbo \inst{\ref{Neel},\ref{Roma}}
+\and  F.-X.~D\'esert \inst{\ref{IPAG}}
+\and  S.~Doyle \inst{\ref{Cardiff}}
+\and  J.~Goupy \inst{\ref{Neel}}
+\and  C.~Kramer \inst{\ref{IRAME}}
+\and  G.~Lagache \inst{\ref{LAM}}
+\and  S.~Leclercq \inst{\ref{IRAMF}}
+\and  J.-F.~Lestrade \inst{\ref{LERMA}}
+\and  P.~Mauskopf \inst{\ref{Cardiff},\ref{Arizona}}
+\and  F.~Mayet \inst{\ref{LPSC}}
+\and  A.~Maury \inst{\ref{CEA}}
+\and  A.~Monfardini \inst{\ref{Neel}}
+\and  F.~Pajot \inst{\ref{IAS}}
+\and  E.~Pascale \inst{\ref{Cardiff}}
+\and  L.~Perotto \inst{\ref{LPSC}}
+\and  G.~Pisano \inst{\ref{Cardiff}}
+\and  M.~Rebolo-Iglesias\inst{\ref{LPSC}}
+\and  V.~Rev\'eret \inst{\ref{CEA}}
+\and  L.~Rodriguez \inst{\ref{CEA}}
+\and  C.~Romero \inst{\ref{IRAMF}}
+\and  H.~Roussel \inst{\ref{IAP}}
+\and  F.~Ruppin \inst{\ref{LPSC}}
+\and  K.~Schuster \inst{\ref{IRAMF}}
+\and  A.~Sievers \inst{\ref{IRAME}}
+\and  S.~Triqueneaux \inst{\ref{Neel}}
+\and  C.~Tucker \inst{\ref{Cardiff}}
+\and  R.~Zylka \inst{\ref{IRAMF}}}
+
+\institute{
+Laboratoire de Physique Subatomique et de Cosmologie, Universit\'e Grenoble Alpes, CNRS/IN2P3, 53, avenue des Martyrs, Grenoble, France
+  \label{LPSC}
+  \and
+  Laboratoire Lagrange, Universit\'e C\^ote d'Azur, Observatoire de la C\^ote d'Azur, CNRS, Blvd de l'Observatoire, CS 34229, 06304 Nice cedex 4, France
+  \label{OCA}
+  \and
+Institut de RadioAstronomie Millim\'etrique (IRAM), Grenoble, France
+  \label{IRAMF}
+\and
+Laboratoire AIM, CEA/IRFU, CNRS/INSU, Universit\'e Paris Diderot, CEA-Saclay, 91191 Gif-Sur-Yvette, France 
+  \label{CEA}
+\and
+Astronomy Instrumentation Group, University of Cardiff, UK
+  \label{Cardiff}
+\and
+Institut d'Astrophysique Spatiale (IAS), CNRS and Universit\'e Paris Sud, Orsay, France
+  \label{IAS}
+\and
+Institut N\'eel, CNRS and Universit\'e Grenoble Alpes, France
+  \label{Neel}
+\and
+Institut de RadioAstronomie Millim\'etrique (IRAM), Granada, Spain
+  \label{IRAME}
+\and
+Dipartimento di Fisica, Sapienza Universit\`a di Roma, Piazzale Aldo Moro 5, I-00185 Roma, Italy
+  \label{Roma}
+\and
+Univ. Grenoble Alpes, CNRS, IPAG, F-38000 Grenoble, France 
+  \label{IPAG}
+    \and
+Aix Marseille Universit\'e, CNRS, LAM (Laboratoire d'Astrophysique de Marseille) UMR 7326, 13388, Marseille, France
+  \label{LAM}
+\and
+School of Earth and Space Exploration and Department of Physics, Arizona State University, Tempe, AZ 85287
+  \label{Arizona}
+\and
+Universit\'e de Toulouse, UPS-OMP, Institut de Recherche en Astrophysique et Plan\'etologie (IRAP), Toulouse, France
+  \label{IRAP}
+\and
+CNRS, IRAP, 9 Av. colonel Roche, BP 44346, F-31028 Toulouse cedex 4, France 
+  \label{IRAP2}
+\and
+University College London, Department of Physics and Astronomy, Gower Street, London WC1E 6BT, UK
+  \label{UCL}
+\and  
+Institut d'Astrophysique de Paris, CNRS (UMR7095), 98 bis boulevard Arago, F-75014, Paris, France
+\label{IAP}
+\and
+LERMA, CNRS, Observatoire de Paris, 61 avenue de l'Observatoire, Paris, France
+  \label{LERMA}}
 %\input{listecoreteam.aa}
 %\input{listelabos.aa}
 \date{Received \today \ / Accepted --}
 	
-\abstract{The detection of the primordial CMB polarization B-modes constitutes
+\abstract{The detection of the primordial Cosmic Microwave Background (CMB) polarization B-modes constitutes
   one of the major challenges of modern cosmology. Their precise measurement
   requires an accurate determination of foreground contaminants as well as of the
   absolute calibration of the instrument in terms of cross polarization and
   absolute polarization angle reconstruction. We present here a study of the
-  Crab nebula, which is a well known polarization angle calibration source. The
-  Crab nebula is the most intense source in the microwave sky with an extension
-  of few arcminutes corresponding to the typical beamwidth of current CMB
+  Crab nebula, a supernova remnant, which is a well known calibration source. The
+  Crab nebula is the brightest source in the microwave sky with an extension
+  of few arcminutes corresponding to the typical beam-width of current CMB
   experiments. The Crab nebula exhibits a highly polarized synchrotron radiation
-  at radio and millimeter wavelengths.  We report in this paper high resolution
+  at radio and millimeter wavelengths. In addition to CMB measurements, it can be used as standard calibrator for any experiment which aims at measuring the polarization of the sky. We report in this paper high resolution
   (18$^{\prime\prime}$ FWHM) observations of the Crab nebula in intensity and
   polarization at 150 GHz with the \NIKA\ camera.  \NIKA, operated at the IRAM
   30 m telescope from 2012 to 2015, is a camera made of Lumped Element Kinetic
@@ -76,9 +171,9 @@
 \maketitle
 \begin{figure*}[h!]
   \centering
-     	  { \includegraphics[width=0.32\linewidth,keepaspectratio]{figures/Crab_I_map2_2mm.eps}}	
-	     { \includegraphics[width=0.32\linewidth,keepaspectratio]{figures/Crab_Q_map2_2mm.eps}}
-          { \includegraphics[width=0.32\linewidth,keepaspectratio]{figures/Crab_U_map2_2mm.eps}} 
+     	  { \includegraphics[width=0.32\linewidth,keepaspectratio]{figures/Crab_I_map2_2mm.pdf}}	
+	     { \includegraphics[width=0.32\linewidth,keepaspectratio]{figures/Crab_Q_map2_2mm.pdf}}
+          { \includegraphics[width=0.32\linewidth,keepaspectratio]{figures/Crab_U_map2_2mm.pdf}} 
            \caption{From left to right: Crab nebula Stokes $I$, $Q$ and, $U$
              maps obtained at 150 GHz with the \NIKA\ camera. Polarization
              vectors, indicating both the degree and the orientation, are
@@ -145,10 +240,10 @@ synchrotron component at radio and mm wavelengths and predict negligible
 variations in polarization fraction and angle in the frequency range of interest
 for CMB studies.
  
-Polarized observations of the Crab Nebula have been performed with the
+Observations of the polarization of the Crab Nebula have been performed with the
 \NIKA\ camera \citep{monfardini2010,catalano2014,monfardini2014} at the IRAM 30
 m telescope during the observational campaign of February, 2015. A first
-overview of the \NIKA\ Crab polarization observations was given in
+overview of the \NIKA\ Crab polarization observations, focusing on instrumental characterization of the polarization system, was given in
 \cite{2016JLTP..184..724R}. In this paper we go a step further in the analysis
 and combine the \NIKA\ observations with previous ones in order to trace the
 polarized SED of the Crab nebula. We use polarization observations from the WMAP
@@ -166,12 +261,12 @@ presents the Crab nebula SED in temperature and polarization; in
 Sec.~\ref{sec:conclusions} we present our conclusions.
  \begin{figure*}
 \centering
-\includegraphics[clip, angle=0, scale = 0.35]{figures/Crab_pol_deg2_2mm.eps}
+\includegraphics[clip, angle=0, scale = 0.35]{figures/Crab_pol_deg2_2mm.pdf}
 \includegraphics[clip, angle=0, scale = 0.5]{figures/pol_deg_vs_I_2mm.pdf}
-\includegraphics[clip, angle=0, scale = 0.35]{figures/Crab_angle2_2mm.eps}
+\includegraphics[clip, angle=0, scale = 0.35]{figures/Crab_angle2_2mm.pdf}
 \includegraphics[clip, angle=0, scale = 0.5]{figures/pol_angle_vs_I_2mm.pdf}
-\caption{{\it Top}: The left panel shows the noise bias uncorrected polarization
-  degree map $p$ of the Crab nebula. The right panel shows the noise bias
+\caption{{\it Top}: The left panel shows the polarization
+  degree map $p$ of the Crab nebula, uncorrected for noise bias. The right panel shows the noise bias
   corrected $p$ values as a function of total intensity map (Stokes $I$). The
   condition $P$ $\textgreater$ 5$\sigma_{P}$ is satisfied for those values. {\it
     Bottom}: on the left we present the polarization angle map $\psi$ of the
@@ -183,7 +278,7 @@ Sec.~\ref{sec:conclusions} we present our conclusions.
 \end{figure*}
  \begin{figure}
   \centering
-      {\includegraphics[width=0.75\linewidth,keepaspectratio]{figures/Crab_ipol2_2mm.eps}}
+      {\includegraphics[width=0.75\linewidth,keepaspectratio]{figures/Crab_ipol2_2mm.pdf}}
 \caption{\NIKA\ Polarization intensity map of the  Crab nebula at 150 GHz. The map shows high polarized emission reaching a value of 0.8 Jy beam$^{-1}$.}
 \label{crab_ipol_maps}		
   \end{figure}
@@ -193,15 +288,14 @@ Sec.~\ref{sec:conclusions} we present our conclusions.
 \subsection{\NIKA\ camera and polarization setup}\label{sec:nika camera}
 \NIKA\ is a dual band camera observing the sky in intensity and polarization at
 150 and 260 GHz with 18~arcsec and 12~arcsec FWHM resolution respectively. It
-has a FOV of 1.8$^{\prime}$ at both wavelengths. It has been operated at the
+has a FOV of 1.8$^{\prime}$ at both wavelengths. It was operated at the
 IRAM 30~m telescope between 2012 and 2015. A detailed description of the
 \NIKA\ camera can be found in \citet{monfardini2010, monfardini2011} and
 \citet{catalano2014}.
 
 In addition to perform intensity observations \NIKA\ was also a test bench for
-the polarization system of the final instrument \NIKAd, which was installed at
-the telescope in October, 2015 \citep{calvo2016,2016arXiv160508628C}. The
-polarization setup of \NIKA\ consists in continuously rotating a metal mesh half
+the polarization system of the final instrument \NIKAd\
+\citep{calvo2016,2016arXiv160508628C}, installed at the telescope in October, 2015. The polarization setup of \NIKA\ consists in continuously rotating a metal mesh half
 wave plate (HWP) followed by an analyzer, both at room temperature and
   placed in front of the entrance window of the cryostat. The KIDs are not
   intrinsically sensitive to polarization. The HWP rotates at 2.98 Hz which
@@ -209,7 +303,7 @@ wave plate (HWP) followed by an analyzer, both at room temperature and
   speed of 26.23 arcsec/s, this provides a quasi-simultaneous measure of $I$,
   $Q$ and $U$ per beam and places the polarization power far from the low
   frequency electronic noise and the atmosphere. \cite{ritacco2017} gives more
-details on the \NIKA\ polarization facilities and describes the performances of
+details on the \NIKA\ polarization capabilities and describes the performance of
 the instrument at the telescope.  \NIKA\ has provided the first polarization
 observations performed with Kinetic Inductance Detectors, which represent a
 suitable detector technology for the development of the next generation of CMB
@@ -223,17 +317,17 @@ Crab nebula polarization observations with the \NIKA\ camera were performed at
 the IRAM 30~m telescope in February, 2015. Fig.~\ref{crab_intensity_maps} shows
 the Stokes $I$, $Q$ and $U$ maps obtained by a co-addition of 16 maps
 of $8 \times 6$ arcminutes for a total observation time of $\sim$ 2.7 hours. The
-maps were performed in equatorial coordinates according to four different scan
+maps were performed in equatorial coordinates in four different scan
 directions: 0$^{\circ}$, 90$^{\circ}$, 120$^{\circ}$, 150$^{\circ}$. This
 allowed us to have the best covering of the source and to reduce filtering
 effects.
 
-To obtain the $I$, $Q$, and $U$ Crab nebula maps we have used a dedicated
+To obtain the $I$, $Q$, and $U$ Crab nebula maps, we have used a dedicated
 polarization data reduction pipeline \citep{ritacco2017}, which is an extension
 of the intensity \NIKA\ pipeline \citep{catalano2014,adam2013}. The main steps
 of the polarization pipeline are summarized below:
 \begin{enumerate}
-\item  Subtraction of the HWP induced parasitic signal, which is modulated at harmonics of the HWP rotation frequency and represents the most annoying noise contributing to the polarized signal. 
+\item  Subtraction of the HWP induced parasitic signal, which is modulated at harmonics of the HWP rotation frequency and represents the most tedious noise contributing to the polarized signal. 
 \item Reconstruction of the Stokes $I$, $Q$ and $U$ time ordered information (TOI) from the raw modulated data. This is achieved using a demodulation procedure consisting in a lock-in around the fourth harmonic of the HWP rotation frequency, where the polarization signal is located.
 \item Subtraction of the atmospheric emission in the demodulated TOIs using
   decorrelation algorithms. In polarization the HWP modulation reduces
@@ -241,20 +335,18 @@ of the polarization pipeline are summarized below:
   decorrelation methods can be used \citep{ritacco2017}. By contrast, in
   intensity the atmospheric emission fully dominates the signal and to recover
   the large angular scales we use the 260~GHz band as an atmosphere
-    dominated band like in \cite{adam2013}.
+  dominated band like in \cite{adam2013}.
 %In order to have a proper estimate of the polarization degree we need to have a proper reconstruction of the intensity map. For an extended source like the Crab nebula, with angular size larger than the \NIKA\ FoV, it is difficult to correctly estimate its intensity emission avoiding filtering effects due to noise decorrelation methods. A common mode decorrelation method consisting on a template reconstruction (to be subtracted) using only the pixels outside the source is usually used in \NIKA\ data analysis. Filtering effects can be encountered in regions where the number of pixels used for the template reconstruction is too low.
 %In order to avoid such an effect the Stokes $I$ map shown on the left panel of Fig.~\ref{crab_intensity_maps} has been obtained by using a decorrelation method called ``dual-band decorrelation''. Such a decorrelation algorithm has been developed for the reconstruction of the Sunyaev-Zel'dovich signal in galaxy clusters observations \citep{adam2013} taking advantage of \NIKA\ dual-band capabilities. The idea of this algorithm arises with the fact that the atmospheric emission is stronger at 260 GHz than at 150 GHz, as a consequence we can use 260 GHz observations as a ``template'' of the atmospheric emission to be subtracted to the 150 GHz observational data.
 
 
 \item Projection of the demodulated and decorrelated Stokes I, Q, and U TOIs into Stokes I, Q and U maps.
 
-\item Correction of the intensity to polarization leakage effect, which was
+\item Correction of the intensity-to-polarization-leakage-effect, which was
   identified on observations of unpolarized sources like the planet Uranus. For
   point sources the effect is about 3\% peak-to-peak but can be reduced to
-    less than 1\% \citep{ritacco2017} before projecting the maps.
-%, while for extended sources
-%  like the Crab nebula is of the order of 0.5 \% peak to peak. After correction
-%  the leakage effect in extended sources is negligible.
+    less than 1\% \citep{ritacco2017} before projecting the maps, while for extended sources like the Crab nebula is of the order of 0.5 \% peak to peak. 
+    %After correction the leakage effect in extended sources is negligible.
 
 
 
@@ -315,12 +407,12 @@ These definitions are not linear in $I$, $Q$ and $U$ and are noise biased.
   \sigma_{p} &=& \frac{\sqrt{Q^2\sigma_Q^2 + U^2\sigma_U^2 + p^4I^2\sigma_I^2}}{pI^2}.
   \label{p_true_degree}
  \end{eqnarray}
- Furthermore, the polarization angle in a high S/N regime can be approximated by Eq.~\ref{angledegree_polar} with uncertainty
+ Furthermore, the polarization angle in a high S/N regime can be approximated by Eq.~\ref{angledegree_polar} with the uncertainty
   \begin{eqnarray}\label{angle_uncertainty}
   \sigma_{\psi} = \frac{\sqrt{Q^2\sigma_Q^2 + U^2\sigma_U^2}}{2(pI)^2}.
   \end{eqnarray}
 
-The polarization degree $p$ spatial distribution of the Crab nebula without
+The spatial distribution map of the polarization degree $p$ of the Crab nebula without
 noise bias correction is presented on the top left panel of
 Fig.~\ref{fig:pol_degree}. The polarization reaches 35 \% of the intensity
 across the intensity peak and decreases when moving towards the edges of the
@@ -332,8 +424,8 @@ condition $I_{pol}=\sqrt{Q^2+U^2}$ $\textgreater$ 5 $\sigma_{I_{pol}}$. The
 distribution of the polarization degree appears highly dispersed around a mean
 value of 20\%.
 
-The bottom left panel of Fig.~\ref{fig:pol_degree} shows the polarization angle,
-$\psi$, spatial distribution.  We observe a relatively constant polarization
+The bottom left panel of Fig.~\ref{fig:pol_degree} shows the spatial distribution of polarization angle
+$\psi$.  We observe a relatively constant polarization
 angle, about 150 $^{\circ}$ represented here in equatorial coordinates, except
 for the northern region where the averaged angle is around $220^{\circ}$, and
 some inner regions with lower polarization angle.  These values are confirmed by
@@ -344,7 +436,7 @@ The sudden change of polarization angle on the northern region was already
 observed by the XPOL experiment at 90 GHz \citep{aumont2010}.  This together
 with the variation of the polarization fraction discussed above confirms the
 need of high angular resolution observations at low and high frequencies for a
-good understanding of the Crab polarized emission proprieties as well as
+good understanding of the Crab polarized emission properties as well as
   for the calibration of polarization experiments.
 
 We present in Fig.~\ref{crab_ipol_maps} the 150 GHz Crab polarization intensity
@@ -354,7 +446,7 @@ decreases towards the edges of the nebula.
 %The polarization intensity $P$ map, represented in Fig.~\ref{crab_ipol_maps}, exhibits a polarized emission peaked at 0.8 Jy beam$^{-1}$ and decreasing to 0.1 Jy beam$^{-1}$ on the extremities of the nebula. 
 
 \section{Total intensity and polarization fluxes}\label{sec:Polarization estimates in CMB experiments like beams}
-We compute the total intensity flux across the Crab nebula, which has an extension of about  4$^{\prime}$ as shown in Fig.~\ref{crab_intensity_maps}.
+We compute the total flux across the Crab nebula, which has an extension of about  4$^{\prime}$ as shown in Fig.~\ref{crab_intensity_maps}.
 We use standard aperture photometry techniques to calculate the flux as shown in Fig.~\ref{crab_integrated_flux}. We use as center position the center of the map. A zero level in the map, calculated as the mean of the signal measured on an external annular ring region 4$^\prime$ $\textless$  R $\textless$ 4.5$^\prime$, has been subtracted from the map. The total signal estimated is 204.4$\pm$7.9$\pm$10.2 Jy. The first uncertainty term accounts for statistical uncertainties computed from fluctuations of the signal at large radii. The second term corresponds to calibration errors estimated to $\simeq$ 5\% at 150 GHz. This absolute calibration error is obtained from the dispersion of the estimated flux of Uranus for observations collected during the same observational campaign \citep{ritacco2017}.
 
 \begin{figure}[h!]
@@ -479,8 +571,8 @@ I_{\nu} = A(\nu / 1 GHz)^{\beta}
 with spectral index $\beta$ = -0.296$\pm$0.06 \citep{baars1977absolute,macias2010}. Further, the Crab nebula is fading with time at a rate of $\alpha$ = 0.167$\pm$0.015 \% yr$^{-1}$ \citep{aller1985decrease}. 
 These results suggest a low frequency emission produced by particles accelerated by the same magnetic field. The direction of the polarization is therefore expected to be constant across frequencies while the polarization degree may vary. 
 
-We show in Fig.~\ref{crab_SED} the intensity flux of the Crab nebula as a function of frequency. The fluxes in the radio domain were taken from \cite{dmitrenko1970absolute} and \cite{1971IzVUZ..14..157V}. We also show microwave and mm wavelengths fluxes from \Archeops\ \citep{macias2007archeops}, \Planck\ \citep{2015arXiv150702058P}, WMAP \citep{2011ApJS..192...19W} and MAMBO \citep{2002A&A...386.1044B}. The measured \NIKA\ intensity flux at 150 GHz is shown in red.
-We also present in the figure the best-fit to the data computed by $\chi^2$-minimization using observations below 100 GHz (cyan line). The amplitude and spectral index found are: 
+We show in Fig.~\ref{crab_SED} the flux of the Crab nebula as a function of frequency. The fluxes in the radio domain were taken from \cite{dmitrenko1970absolute} and \cite{1971IzVUZ..14..157V}. We also show microwave and mm wavelengths fluxes from \Archeops\ \citep{macias2007archeops}, \Planck\ \citep{2015arXiv150702058P}, WMAP \citep{2011ApJS..192...19W} and MAMBO \citep{2002A&A...386.1044B}. The measured \NIKA\ intensity flux at 150 GHz is shown in red.
+We also present in the figure the best-fit model obtained assuming a power law as indicated by Eq.~\ref{eq:sync} to the data computed by $\chi^2$-minimization using observations below 100 GHz (cyan line). The amplitude and spectral index found are: 
 
 \begin{equation}
  A = 980.6 \pm 0.7  ,\quad \beta = -0.3151 \pm 0.0002. 
@@ -494,7 +586,7 @@ The \Planck\ data at 100, 143, 217 and 353 GHz are consistent with a much
 steeper SED with respect the lower frequency data suggesting an extra emission
 component in the Crab nebula. This emission could be due to a different
 population of relativistic electrons \citep{1965ARA&A...3..297G}. Notice that a
-break in the SED of the Crab Nebula is also found for frequencies above 3000~GHz
+break in the SED of the Crab Nebula is also found for frequencies above 1000~GHz
 \citep{macias2010}.  By contrast, the results obtained by {\it Archeops}, MAMBO
 and \NIKA\ do not seem to support such a low frequency break in the Crab nebula
 SED. However, to account for this break in the SED we assume a simple
@@ -513,12 +605,12 @@ We note that the \NIKA\ data is consistent with this model at the 2$\sigma$ leve
 
 
 \subsection{Polarization}
-The total intensity of the Crab nebula has been monitored along decades across a
+The total intensity of the Crab nebula has been monitored over decades across a
 large range of frequencies. By contrast the amount of polarization observations
 is really poor.  Recent results provided by
 \Planck\ \citep{2015arXiv150702058P}, \WMAP\ \citep{2011ApJS..192...19W} and
 XPOL \citep{aumont2010} together with \NIKA\ allow us to trace the Crab nebula
-polarization intensity SED as shown in Fig.~\ref{crab_SED_ipol}.  From the
+polarization flux SED as shown in Fig.~\ref{crab_SED_ipol}.  From the
 figure we observe that the data are not consistent with a single power law model
 as for intensity.  The \Planck\ data points show an oscillating behavior while
 the \WMAP\ ones are more consistent with a power law model. Furthermore, the
@@ -568,7 +660,7 @@ This result is in good agreement with the \WMAP\ best-fit model spectral index.
 \begin{figure}
   \centering
              { \includegraphics[width=1\linewidth,keepaspectratio]{figures/Crab_SED_ipol.pdf}}
-           \caption{Crab nebula polarization intensity SED as obtained from the \Planck\ \citep{2015arXiv150702058P}, \WMAP\ \citep{2011ApJS..192...19W} and \NIKA\ (this paper) data. The two best-fit models presented have been estimated using only WMAP data (blue line) or \Planck\ data only (black line).}
+           \caption{Crab nebula polarization flux SED as obtained from the \Planck\ \citep{2015arXiv150702058P}, \WMAP\ \citep{2011ApJS..192...19W} and \NIKA\ (this paper) data. The two best-fit models presented have been estimated using only WMAP data (blue line) or \Planck\ data only (black line).}
 \label{crab_SED_ipol}		
   \end{figure} 
  \noindent
@@ -606,24 +698,16 @@ allowed us to accurately map the spatial distribution of the polarization
 fraction and angle.  We find an averaged polarization angle of
 -87.15$\pm$0.04$\pm$1.8 within a region of 5$^\prime$ radius with respect to the
 central coordinates of the map R.A.: 05$^{h}$ 34$^{m}$ 31.09 s, Dec.:
-+22$^{\circ}$ 00$^{\prime}$ 39.9$^{\prime\prime}$.  This is consistent with
-previous measurements from \Planck, \WMAP, and XPOL.
++22$^{\circ}$ 00$^{\prime}$ 39.9$^{\prime\prime}$ (J2000).  This is consistent with
+previous measurements from \Planck, \WMAP, and XPOL/30 m.
+Using all available polarization data to date we conclude that the
+polarization angle of the Crab nebula is consistent with being constant with
+frequency, from 23 GHz to 217 GHz, at arcmin scales with a value of
+-88.1$^{\circ}$ $\pm$0.3 in Galactic coordinates.
 
-Using all available data in polarization to date we conclude that the
-polarization angle of the Crab nebula is consistent with being constant across
-frequencies, from 23 GHz to 217 GHz, at arcmin scales with a value of
--88.1$^{\circ}\pm$0.3 in Galactic coordinates.
+Moreover, we have characterized the intensity and polarization SED of the Crab nebula. In intensity, recent \Planck\ data show a break in the SED that could be explained by the existence of different populations of relativistic electrons. In polarization, we find that the data are overall consistent with a single power law spectrum as expected from synchrotron emission. However, we find some discrepancies between data sets, which will require further mm measurements at high resolution for a better understanding of the physics at play. Among future polarization experiments, \NIKAd, in particular \citep{calvo2016}, will add a measurement at 260~GHz.
 
-Moreover we have characterized the intensity and polarization SED of the Crab
-nebula. In intensity recent \Planck\ data show a break in the SED that
-  could be explained by the existence of different populations of
-relativistic electrons. In polarization we find that the data are overall
-consistent with a single power law spectrum as expected from synchrotron
-emission. However, we find some discrepancies between data sets, which will
-require further mm measurements at high resolution for a better understanding of
-the physics at play. Among future polarization experiments,
-  \NIKAd\ in particular \citep{calvo2016}, will add a
-  measurement at 260~GHz.
+\bibliography{bib_crab}
 
 \vspace{0.2cm}
  \begin{acknowledgements}
@@ -641,7 +725,7 @@ the FOCUS French LabEx doctoral fellowship program (A. R.).
 \end{acknowledgements}
 
 
-\bibliography{bib_crab.bib}
+
 
 
 \end{document}

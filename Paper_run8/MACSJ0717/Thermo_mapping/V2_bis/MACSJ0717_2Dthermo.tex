@@ -31,7 +31,7 @@
 \input{listeauthors}
 
 \date{Received \today \ / Accepted --}
-\abstract {We propose an alternative method to map the temperature distribution of the hot gas in galaxy clusters that uses resolved images of the thermal Sunyaev-Zel'dovich (tSZ) effect in combination with X-ray data. Application of the method to images from the New IRAM KIDs Array (NIKA) and XMM-\textit{Newton} allows us to measure the gas temperature and determine its spatial distribution in the merging cluster \mbox{MACS~J0717.5+3745}, at $z=0.55$.  Despite the complexity of the target cluster, we find a good morphological agreement between the temperature maps derived from X-ray spectroscopy only -- using XMM-\textit{Newton} ($T_{\rm XMM}$) and \textit{Chandra} ($T_{\rm CXO}$) -- and the new gas-mass-weighted tSZ+X-ray imaging method ($T_{\rm gmw}$). We correlate the temperatures from tSZ+X-ray imaging and those from X-ray spectroscopy {\bf alone. We find that $T_{\rm gmw}$ is higher than $T_{\rm XMM}$ and lower than $T_{\rm CXO}$, by $\sim 10\%$ in both cases.} Our results are limited by uncertainties in the geometry of the cluster gas and kinetic SZ contamination ($\sim 10\%$), and the absolute calibration of the tSZ map ($7\%$). Investigation using a larger sample of clusters would minimize these effects.}
+\abstract {We propose an alternative method to map the temperature distribution of the hot gas in galaxy clusters that uses resolved images of the thermal Sunyaev-Zel'dovich (tSZ) effect in combination with X-ray data. Application of the method to images from the New IRAM KIDs Array (NIKA) and XMM-\textit{Newton} allows us to measure the gas temperature and determine its spatial distribution in the merging cluster \mbox{MACS~J0717.5+3745}, at $z=0.55$.  Despite the complexity of the target cluster, we find a good morphological agreement between the temperature maps derived from X-ray spectroscopy only -- using XMM-\textit{Newton} ($T_{\rm XMM}$) and \textit{Chandra} ($T_{\rm CXO}$) -- and the new gas-mass-weighted tSZ+X-ray imaging method ($T_{\rm gmw}$). We correlate the temperatures from tSZ+X-ray imaging and those from X-ray spectroscopy alone. We find a good agreement between $T_{\rm gmw}$ and $T_{\rm XMM}$, while $T_{\rm CXO}$ is higher by $\sim 15\%$. Our results are limited by uncertainties in the geometry of the cluster gas and kinetic SZ contamination ($\sim 10\%$), and the absolute calibration of the tSZ map ($7\%$). Investigation using a larger sample of clusters would minimize these effects.}
 \titlerunning{Mapping the temperature in galaxy clusters using X-ray and tSZ imaging}
 \authorrunning{R. Adam, M. Arnaud, I. Bartalucci, et al.}
 \keywords{Techniques: high angular resolution -- Galaxies: clusters: individual: \mbox{MACS~J0717.5+3745}; intracluster medium -- X-rays: galaxies: clusters}
@@ -116,7 +116,7 @@ The internal structure of \mbox{MACS~J0717.5+3745} is increasingly refined from 
 The left panel of Figure \ref{fig:Input_maps} represents the $\bar{n}_e$ map in the case of model M1, thus $\propto \sqrt{\int n_e^2 dl}$. The cluster clearly exhibits a disturbed morphology. The gas roughly follows the four main substructures identified in the galaxy distribution \citep{Ma2009}.}
 
 %========== Pressure from tSZ
-\subsection{Thermal Sunyaev-Zel'dovich pressure mapping}
+\subsection{Thermal Sunyaev-Zel'dovich pressure mapping}\label{sec:Thermal_Sunyaev_Zeldovich_pressure_mapping}
 We can express the effective pressure along the line-of-sight directly from equation \ref{eq:dIsz}, as
 \begin{equation}
 	\bar{P_e} = \frac{1}{\ell_{\rm eff}} \int P_e dl = \frac{m_e c^2}{\sigma_{\rm T}} \frac{y_{\rm tSZ}}{\ell_{\rm eff}}.
@@ -177,9 +177,11 @@ Figure \ref{fig:T_maps} shows the three temperature maps $\bar{T}_{\rm CXO}$, $\
 \label{fig:T_SZ_T_X_correlation}
 \end{figure*}
 
-Figure \ref{fig:T_SZ_T_X_correlation} shows the correlation between the maps shown in Figure \ref{fig:T_maps}. The temperature values are extracted in each {\bf 20} arcsec pixel, where the resolution of the $\bar{T}_{\rm gmw}$ map is 22 arcsec. We mask pixels where the tSZ signal-to-noise ratio is lower than 2 to avoid possible bouncing effects on the edge of the map due to the NIKA data processing.
+Figure \ref{fig:T_SZ_T_X_correlation} shows the correlation between the maps shown in Figure \ref{fig:T_maps}, {\bf compared to the one-to-one correlation shown by the black dashed line}. The temperature values are extracted in each {\bf 20} arcsec pixel, where the resolution of the $\bar{T}_{\rm gmw}$ map is 22 arcsec. We mask pixels where the tSZ signal-to-noise ratio is lower than 2 to avoid possible bouncing effects on the edge of the map due to the NIKA data processing.
 
-The tSZ+X-ray imaging versus X-ray only {\bf cross-correlation} is stable to within 10\%, depending on the choice of the $\ell_{\rm eff}$ model and the kSZ correction used. The cross-calibration coefficients also directly depend on the absolute calibration of the tSZ map, which is expected to be accurate within 7\%. Model M3b provides a lower limit on $\ell_{\rm eff}$, and therefore an upper limit on $\alpha_{\rm gmw-X}$.
+{\bf As expected, we observe a good correlation between XMM-\textit{Newton} and \textit{Chandra} spectroscopic temperatures, but \textit{Chandra} temperatures are higher by about 15\%. The correlation between $\bar{T}_{\rm gmw}$ and XMM-\textit{Newton} spectroscopy is excellent. \textit{Chandra} spectroscopic temperatures are on overall lower than $\bar{T}_{\rm gmw}$. We note that the tSZ+X-ray error bars are significantly smaller than the X-ray spectroscopic ones, especially in low density and high temperature regions, despite the tSZ integration time that is lower by a factor of about 3.}
+
+The tSZ+X-ray imaging versus X-ray only {\bf cross-correlation} is stable to within 10\%, depending on the choice of the $\ell_{\rm eff}$ model and the kSZ correction used. {\bf Changing the NIKA map zero level within its uncertainty also leads to a change of about 10\% in the absolute level of the temperature.} The {\bf cross-correlation also directly depends} on the absolute calibration of the tSZ map, which is expected to be accurate within 7\%. Model M3b provides a lower limit on $\ell_{\rm eff}$, and therefore an upper limit on {\bf the $\bar{T}_{\rm gmw}$ map. The changes in the cross-correlation as a function of the considered systematic effects are illustrated in Appendix \ref{sec:appendix}.}
 
 %###############################################################################################
 %##########################                               CONCLUSION                               ##########################
@@ -212,4 +214,29 @@ E. P. acknowledges the support of the French Agence Nationale de la Recherche un
 
 \bibliography{biblio}
 
+%###############################################################################################
+%##########################                                   Appendix                                    ##########################%###############################################################################################
+{\bf 
+\appendix
+\section{Impact of the $\ell_{\rm eff}$ model on the cross-correlation}\label{sec:appendix}
+Figure \ref{fig:show_leff_effect} illustrates the evolution of the cross-correlation between the tSZ+X-ray temperatures and the X-ray spectroscopic ones, as a function of the various $\ell_{\rm eff}$ models considered in this paper, in the case of XMM-\textit{Newton} spectroscopic temperatures. Model M3b should be taken as a lower limit on $\ell_{\rm eff}$, and thus an upper limit on the tSZ+X-ray temperature.
+\begin{figure}[h]
+\includegraphics[width=0.24\textwidth]{Figure/Thermo_correlation_TXMM-TSZ_leff1.pdf}
+\includegraphics[width=0.24\textwidth]{Figure/Thermo_correlation_TXMM-TSZ_leff5.pdf}
+\includegraphics[width=0.24\textwidth]{Figure/Thermo_correlation_TXMM-TSZ_leff8.pdf}
+\includegraphics[width=0.24\textwidth]{Figure/Thermo_correlation_TXMM-TSZ_leff9.pdf} 
+\caption{\footnotesize{Impact of the gas density geometry model on the cross-correlation of the temperature maps. The models, $\ell_{\rm eff}$, are M1 (top left), M2 (top right), M3a (bottom left) and M3b (bottom right).}}
+\label{fig:show_leff_effect}
+\end{figure}
+
+\section{Impact of the NIKA map zero level on the cross-correlation}
+Figure \ref{fig:show_zl_effect} shows the impact of the NIKA map zero level on the cross-correlation between the tSZ+X-ray temperatures and the X-ray spectroscopic ones. The NIKA map zero level is estimated to $0.8 \pm 0.1$ mJy/beam (see Section \ref{sec:Thermal_Sunyaev_Zeldovich_pressure_mapping}). Here, we provide the correlation for upper (1.0 mJy/beam) and lower (0.6 mJy/beam) limits of the zero level, compared to the baseline value of 0.8 mJy/beam. The changes in the zero level result in an offset in the tSZ+X-ray temperature map, with some dependence on the temperature attributed to the gas density spatial variation.
+\begin{figure}[h]
+\includegraphics[width=0.28\textwidth]{Figure/Thermo_correlation_TXMM-TSZ_leff1_dd.pdf}
+\includegraphics[width=0.28\textwidth]{Figure/Thermo_correlation_TXMM-TSZ_leff1.pdf}
+\includegraphics[width=0.28\textwidth]{Figure/Thermo_correlation_TXMM-TSZ_leff1_uu.pdf}
+\caption{\footnotesize{Impact of the NIKA map zero level on the temperature cross-correlation, shown in the case of tSZ+X-ray imaging (model M1) versus XMM-\textit{Newton} spectroscopy. From top to bottom, the zero level is 0.6, 0.8 and 1.0 mJy/beam, which widely samples the systematic uncertainty in the NIKA map zero level.}}
+\label{fig:show_zl_effect}
+\end{figure}
+}
 \end{document}

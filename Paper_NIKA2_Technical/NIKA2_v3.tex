@@ -152,35 +152,43 @@ In order to ensure optimal operation of the detectors and optimally suppress the
          \label{Cryostat}
 \end{figure}
 
-The cryostat itself has been entirely designed by our group. It makes use of two pulses-tubes Cryomech PT415, each delivering a cooling power of 1.35 Watts at 4.2K (second stage) and several tens of Watts at 20-80K (first stage). The base temperature of these devices is of the order of 3K, largely sufficent to start the dilution process. The large cooling power available on the first pulses tubes stage allows to integrate in the cryostat a large part of the optics, and an efficient baffle placed at a temperature of around 50 K.
+The cryostat itself has been entirely designed by our group. It makes use of two pulses-tubes Cryomech PT415, each delivering a cooling power of 1.35 Watts at 4.2K (second stage) and several tens of Watts at 20-80K (first stage). The base temperature of these devices is of the order of 3K, largely sufficent to start the dilution process. The large cooling power available on the first pulses tubes stage allows to integrate in the cryostat a large part of the optics, and an efficient baffle placed at a temperature of around 50 K. Gas heat exchangers are adopted at both 4K and 20-80K to ensure good thermal contact avoiding a direct mechanocal contact between the vibrating cooling machines and the sensitive inner parts, i.e. detectors and electronics. 
 
 The whole instrument includes more than 3000 individual mechanical pieces, for a total weight around 1.3 tons. The weight of the 150 mK stage is of the order of 80 kg, including few kg of HDPE (High Density PolyEthilene) low-conductance lenses. Radiation screens are placed at 1K (still), 4K (pulses tubes second stage), 30K and 80K (pulses tubes first stages).
 
 Selected inner parts, at each stage of temperature, are coated with a high emissivity mixture of black STYCAST 2850, SiC grains and carbon powder. This coating has demonstrated its effectiveness at millimeter wavelenghts in order to suppress unwanted reflections (\cite{Calvo2010}).
 
-The operation of the cryostat does not require cryogenic liquids, and is fully remotely controlled. The whole cool-down procedure lasts about five days. In particular, four days are required for pre-cooling the coldest stages at around 4 K. During the last 24 hours  the dilution is started, allowing further coolign down to base temperature. 
+The operation of the cryostat does not require cryogenic liquids, and is fully remotely controlled. The whole cool-down procedure lasts about five days. In particular, four days are required for pre-cooling the coldest stages at around 4 K. During the last 24 hours, the dilution procedure is started, allowing further cooling down to base temperature. 
 
+ADD FIGURE WITH COOLDOWN AND STABILITY
+
+The system is designed for long observational runs, and has showed the needed stability of the base temperature over one to two month so far. 
 
  \subsection{The focal plane arrays}
 
 Each array is fabricated on a single 4 inches High Resistivity (HR) Silicon wafer, on which a thin aluminium film (18nm) is deposited by e-gun evaporation under High Vacuum conditions. The use thin superconducting films has a double advantage: first of all, it increases the kinetic inductance of the material, making the detectors more responsive. And second, it maximises its normal state resistivity. An almost perfect match of the LEKID meander to the free space impedance of the incoming wave is thus allowed, ensuring a quantum efficiency exceeding 80\%. The NIKA2 pixels are all based on the Hilbert fractal geometry (\cite{Roesch2012}). 
 
-In NIKA, we had adopted standard pixels coupled to a Coplanar waveguide (CPW) readout line, with bondings across the line to suppress the spurious slotline modes which could arise (\cite{Goupy2016}). To optimize the optical coupling to the incoming radiation we adopted a back-illumination configuration, in which the light passes through the silicon wafer before reaching the pixels. To attenuate the effect of  further enhance this effect, we added a grid of perpendicular grooves on the bottom of the wafer, which thus has an effective dielectric constant which is in between that of vacuum and that silicon. The total thickness of the silicon and the depth of the grooves are chosen to optimize the anti-reflection layer effect. A superconducting lid is then placed $650\mu m$ after the detectors plane, acting as a $\lambda/4$ backshort. 
+In NIKA, we had adopted standard pixels coupled to a Coplanar waveguide (CPW) readout line, with bondings across the line to suppress the spurious slotline modes which could arise . To optimize the optical coupling to the incoming radiation we adopted a back-illumination configuration, in which the light passes through the silicon wafer before reaching the pixels. To attenuate the refraction index mismatch, we added a grid of perpendicular grooves on the bottom of the wafer, resulting an effective dielectric constant which is in between that of vacuum and that silicon (\cite{Goupy2016}). The total thickness of the silicon and the depth of the grooves were chosen to optimize the anti-reflection effect of the machined layer. A superconducting lid is then placed at an optimised distance after the detectors plane, acting as a $\lambda/4$ backshort. 
 
 
-The same approach was originally planned for NIKA2. During the first phases of the detectors development, however, we realised the practical limitations of the CPW coupling approach. We then dediced to switch to different kind of transmission line, the microstrip, that by construction allows the propagation of only one clean mode. This mode shows an electric field oscillating between the strip line (feedline) and the underlying ground plane. 
+The same approach was originally planned for NIKA2. During the first phases of the detectors development, however, we realised the practical limitations of the CPW coupling approach, in particular considering the thousands bondings required to ensure the propagation of the main mode only. We then decided to study a different kind of transmission line, the microstrip, that by construction allows the propagation of only one clean mode. This mode shows an electric field oscillating, in the cold HR Silicon almost perfect dielectric, between the strip line (feedline) and the underlying ground plane. 
+
+\begin{figure}[h]
+   \centering
+    \includegraphics[width=.95\linewidth]{CPWvsMS.png}
+      \caption{(Color online) Left: CPW without bondings; center: CPW with bondings; right: microstrip.}
+         \label{CPWvsMS}
+\end{figure}
 
 The distance between the pixels and the CPW is chosen in order to have optimal coupling conditions: these are achieved when the coupling merit factor, $Q_c$, is of the same order as the internal merit factor $Q_i$ observed under typical loading condition. Each pixel has a size of $2.3\times2.3\textrm{mm}^2$, resulting in a focal plane sampling of $\sim 0.7 F\lambda$. Considering the size of the focal plane, a total of 1020 KID are needed to fill the array. These are split over 4 different readout lines, and have resonance frequencies laying between 1.3 and 1.8 GHz.
 
 \begin{figure}[h]
    \centering
     \includegraphics[width=.95\linewidth]{CPWeMS.png}
-      \caption{(Color online) Left: a front-illuminated microstrip (MS) pixel for the 260 GHz band. The size is 2x2mm. Right: a back-illuminated coplanar waveguide (CPW) pixel for the 150 GHz band. The size is 2.3x2.3 mm. Both designs are based on Hilbert-shape absorbers/inductors.}
+      \caption{(Color online) Left: a front-illuminated microstrip (MS) pixel for the 260 GHz band of NIKA2. The pixels size is 2x2mm. Right: a back-illuminated coplanar waveguide (CPW) pixel used for the 150 GHz band in NIKA. The pixels size was in that case 2.3x2.3 mm. Both designs are based on Hilbert-shape absorbers/inductors.}
          \label{Pixels}
 \end{figure}
 
-
-Thanks to this arrangement, a high and almost flat absorption efficiency is achieved over the whole 120 to 170 GHz band.
 
 In the case of the 260 GHz band, the pixel size is $2\times 2\mathrm{mm}^2$. This is the maximum size that can be adopted without degrading the telescope resolution, as it corresponds to a $1 F \lambda$ sampling of the focal plane. In order to fill the two 260 GHz arrays, a total of 1140 pixels are needed in each of them. The smaller pixels dimensions lead to slightly higher resonance frequencies (1.85-2.45 GHz). For this band we adopted a different approach, in which the detectors are coupled to a Microstrip (MS) readout line. This kind of feedline only supports one propagating mode, and is thus immune to the risk of spurious modes. Furthermore, the aluminium groundplane is located on the opposite side of the wafer with respect to the detectors, which reduces the cross-coupling between different pixels. The detectors are read out using 8 feedlines. A small aluminium loop is added around each pixel to tune their coupling to the readout line: the current in the loop partially screens the field associated to the pixel itself, making it possible to reach the high $Q_c$ ($\sim10000$) needed to meet the optimal coupling condition.
 

@@ -72,7 +72,7 @@
 
 \begin{document}
 
-\title{Joint Fitting of CLJ1226.9}
+\title{A Non-Parametric Reconstruction of the Electron Pressure Profile in CLJ1226.9}
 \input{list_of_authors}
 %%%%%%%%%%%%%%%%%%%%%%%%
 %\author{
@@ -99,14 +99,14 @@
 
 %\begin{abstract}
 \abstract
-    {We present non-parametric pressure profiles of a galaxy cluster, CLJ 1226.9+3352, as
-      determined from SZ data from the MUSTANG, NIKA, and Bolocam instruments.
-      We note that, despite the differences in angular resolution,
-      observing frequency, and observing strategies, there is generally good agreement.
-      Given that for a given instrument, constraints on the pressure profile
-      diminish rapidly beyond the field of view, the overlap in spatial sensitivity
-      of these three datasets is critical in checking for consistency between instruments,
-      and in the process provides continuous coverage over the radial scales
+    {We present the non-parametric pressure profiles of the galaxy cluster CLJ 1226.9+3352 as
+      determined from SZ data from the MUSTANG, NIKA, Bolocam, and Planck instruments.
+      These instruments all probe different angular scales. We use Planck to constrain the
+      total signal of the cluster, while we derive a non-parametric from each  other instrument
+      independently and find good agreement among our instruments. For a given instrument,
+      constraints on the pressure profile diminish rapidly beyond the field of view.
+      The overlap in spatial sensitivity of these three datasets is therefore critical in checking
+      for consistency between instruments, and in the process provides continuous coverage over the radial scales
       $0.05 R_{500} < r < 2 R_{500}$. Despite this coverage, with these instruments alone, we
       still suffer from poor constraints at the largest radii, and therefore include a prior
       from Planck on the integrated Compton Y parameter. Our non-parametric algorithm makes
@@ -131,7 +131,7 @@ In recent years, Sunyaev Zel'dovich (SZ) effect observations have seen an increa
 observations \citep[e.g.][]{mason2010,adam2014,kitayama2016}. These observations come from MUSTANG on the
 Robert C. Byrd Green Bank Telescope \citep[GBT][]{dicker2008}, NIKA on the IRAM 30-meter telescope \citep{monfardini2010},
 and ALMA, band 3 observations. However, all of these high resolution instruments have been limited in their ability to
-recover signal at large scales (beyond $\sim 45$'asecs for MUSTANG and ALMA, and $\sim 100$\asecs for NIKA). As galaxy clusters
+recover signal at large scales (beyond $\sim 45$\asecs for MUSTANG and ALMA, and $\sim 100$\asecs for NIKA). As galaxy clusters
 have characteristic radii, $R_{500} \gtrsim 3$\amin, SZ observations made with these instruments have not been able to recover the
 entire signal of the observed galaxy clusters. Therefore, observations from SZ instruments which recover SZ at larger scales
 such as Bolocam \citet{czakon2015} or Planck \citep{planck2013a} have been used in \citet{romero2015a} and \citet{adam2014} respectively.
@@ -140,8 +140,9 @@ These joint analyses have shown the ability to constrain the pressure profile of
 galaxy clusters over a large spatial range, often by assuming some parameterized pressure profile \citep[e.g.][]{romero2016,adam2014}.
 In \citet{romero2015a}, the difference in fitted pressure profiles with the addition of MUSTANG data was noted. In the case of
 \citet{romero2016,adam2014}, the pairs of instruments used did not have an overlap in scales of instrument sensitivity, so the
-addition of another instrument would not necessarily present any discrepancies. However, as new SZ instruments with sensitivity to
-a larger range of scales come online \citep{monfardini2014,dicker2014a}, there will be overlap, which for clusters observed with
+addition of another instrument would not necessarily present any discrepancies. However, as new SZ instruments like
+\citep[NIKA2][]{monfardini2014} and \citep[MUSTANG2][]{dicker2014a} with sensitivity to
+a larger range of scales come online, there will be overlap, which for clusters observed with
 multiple instruments, studies of the kinetic SZ effect, or relativistic corrections \citep{itoh1998} will be of significant interest and
 stand to benefit from the additional frequency coverage. To be sure of the results of these analyses, it will be critical to
 understand any systematics involved with individual instruments. Recent results combining Bolocam and Planck data \citep{sayers2016},
@@ -159,8 +160,9 @@ discrepancies between SZ constraints, as discussed previously, investigating the
 provide a viable route to this end. Independently, understanding pertubations within the cluster itself is also important in
 the context of using galaxy clusters as cosmological probes.
 
-Counts of galaxy clusters by mass and redshift serve to constrain cosmological parameters, notably $\Omega_{\Lambda}$,
-the amplitude of fluctuations, $\sigma_8$, and the equation of state of dark energy, $w$. Constraints on these
+Counts of galaxy clusters by mass and redshift serve to constrain cosmological parameters, notably the dark energy density
+($\Omega_{\Lambda}$), dark matter density ($\Omega_{dm}$), the amplitude of fluctuations ($\sigma_8$),
+and the equation of state of dark energy ($w$). Constraints on these
 parameters derived from galaxy cluster samples are generally limited by the accuracy of mass estimation of 
 galaxy clusters \citep[e.g.][]{hasselfield2013, reichardt2013}. Scaling relations which relate global (integrated) observables
 to the cluster mass are often employed. Currently, scaling relations as applied to observables over an intermediate radial
@@ -169,15 +171,23 @@ owing to the generally low cluster-to-cluster scatter in pressure profiles, foun
 within this radial range \citep[e.g.][]{borgani2004,nagai2007,arnaud2010,bonamente2012,planck2013a,sayers2013}.
 While the relative homogeneity of pressure profiles in the intermediate region is well evidenced, it remains important to
 develop methods to derive non-parametric pressure profiles of clusters so that physical deviations are not artificially
-smoothed by the adoption of a smooth parametric profile. 
+smoothed by the adoption of a given smooth parametric profile. 
 
 This paper is organized as follows. In Section~\ref{sec:obs} we review the NIKA, MUSTANG, and Bolocam observations and reduction. 
 In Section~\ref{sec:ml_deproj} we address the method used to non-parametrically fit pressure profiles to each of the data sets.
 %We present results from the joint fits in Section~\ref{sec:pp_constraints} and compare our results to X-ray derived pressures 
 %in Section~\ref{sec:xray_comp}. 
-Throughout this paper we assume a $\Lambda$CDM cosmology with $\Omega_m = 0.28$, $\Omega_{\lambda} = 0.72$, and $H_0 = 70$ 
-km s$^{-1}$ Mpc$^{-1}$, consistent with the 9-year \emph{Wilkinson Microwave Anisotropy Probe} (WMAP) results reported
-in \cite{hinshaw2013}.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Double checked - yes, Hinshaw+ 2013 numbers were used as a default [ between Oct. 2016 and April 2017 ]
+%Throughout this paper we assume a $\Lambda$CDM cosmology with $\Omega_m = 0.28$, $\Omega_{\lambda} = 0.72$, and $H_0 = 70$ 
+%km s$^{-1}$ Mpc$^{-1}$, consistent with the 9-year \emph{Wilkinson Microwave Anisotropy Probe} (WMAP) results reported
+%in \cite{hinshaw2013}. This cosmology is similar to that found in \citet{planck2016_cp}, and adopting a cosmology consistent
+%with \emph{Planck} does not significantly change our results.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% with results of P16cosmo, Planck+ 2016 cosmology has been used.
+Throughout this paper we assume a $\Lambda$CDM cosmology with $\Omega_m = 0.31$, $\Omega_{\lambda} = 0.69$, and $H_0 = 68$ 
+km s$^{-1}$ Mpc$^{-1}$, consistent with the cosmological parameters derived from the full \emph{Planck} mission
+\citep{planck2016_cp}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Observations and Data Reduction}
@@ -260,7 +270,7 @@ $M_{500} = 12.0 \times 10^{14} M_{\odot}$.
   \hline
   \textbf{NIKA}    & 150 & 7.2  & $12.5 \times 10^{-6}$ & 18  & 1.9 \\
   \textbf{MUSTANG} &  90 & 4.9  & $34.2 \times 10^{-6}$ & 9   & 0.7 \\
-  \textbf{Bolocam} & 150 & 11.8 & $8.48 \times 10^{-6}$ & 58  &   8 \\
+  \textbf{Bolocam} & 140 & 11.8 & $8.48 \times 10^{-6}$ & 58  &   8 \\
 %  \textbf{Planck}  & 100 & ??   & ??                   & 588 & 5000 ? \\
   \hline
 \end{tabular}
@@ -272,8 +282,14 @@ $M_{500} = 12.0 \times 10^{14} M_{\odot}$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{NIKA Observations and Reduction}
 \label{sec:nikaobs}
-We use in this paper NIKA camera observations of the cluster CLJ 1227, which were obtained at the IRAM 30 m telescope (Pico Veleta) in February 2014 and presented in \citet{adam2015}. NIKA \citep{monfardini2010,monfardini2014} was a dual band camera working at 150 and 260 GHz, and made of 253 Kinetic Inductance Detectors (KIDs) operating at 100 mK by using a closed cycle $^3$He-$^4$He dilution fridge. 
-Furthermore, with a sensitivity of 14 (35) mJy/beam.s$^{1/2}$ , a circular field-of-view (FOV) of 1.9$^{\prime}$ (1.8$^{\prime}$), and a resolution of 18.2$^{\prime \prime}$ (12.0$^{\prime \prime}$) at 150 (260) GHz NIKA was particularly well adapted to map the thermal Sunyaev-Zeldovich effect in such a high redshift cluster. NIKA conversion factors from mJy/beam to Compton parameter are $-10.9 \pm 0.8$ and $3.5\pm0.5$ at 150 and 260 GHz, respectively. A detailed description of the general performances of the camera can be found in \citet{catalano2014,adam2014}.
+We use in this paper NIKA camera observations of the cluster CLJ 1227, which were obtained at the IRAM 30 m telescope (Pico Veleta)
+in February 2014 and presented in \citet{adam2015}. NIKA \citep{monfardini2010,monfardini2014} was a dual band camera working at 150 and
+260 GHz, and consisted of 253 Kinetic Inductance Detectors (KIDs) operating at 100 mK by using a closed cycle $^3$He-$^4$He dilution fridge. 
+Furthermore, with a sensitivity of 14 (35) mJy/beam.s$^{1/2}$ , a circular field-of-view (FOV) of 1.9$^{\prime}$ (1.8$^{\prime}$), and a
+resolution of 18.2$^{\prime \prime}$ (12.0$^{\prime \prime}$) at 150 (260) GHz NIKA was particularly well adapted to map the thermal
+Sunyaev-Zeldovich effect in such a high redshift cluster. NIKA conversion factors from mJy/beam to Compton parameter are
+$-10.9 \pm 0.8$ and $3.5\pm0.5$ at 150 and 260 GHz, respectively. A detailed description of the general performances of the camera can
+be found in \citet{catalano2014,adam2014}.
 
 CLJ 1227 was mapped using on-the-fly raster scans
 %made of 19 constant either azimuth, or elevation, subs-cans of 6$^{\prime}$ length and separated by 10$^{\prime \prime}$.
@@ -285,7 +301,7 @@ error below 3$^{\prime \prime}$. Uranus was used as a primary calibrator with ov
 in the time domain the reconstructed cluster signal to a given signal-to-noise threshold. 
 The processed data were gridded into 2$^{\prime \prime}$ square pixels using inverse variance weighting and nearest grid projection.
 The transfer function of the processing procedure was computed using signal plus noise simulations as described in \citet{adam2015}.
-A full representation of the obtained transfer function is given in Figure 3 of \citet{adam2015} and it is used in this paper. Overall the transfer function is consistent with a constant value of 1 for angular scales scales smaller than the NIKA FOV and larger than the size of the NIKA beam. Using the 260~GHz NIKA map \citet{adam2015} identified a point source located 30$^{\prime \prime}$ southeast of the center of the cluster. The 150~GHz NIKA map, with the point source subtracted (Section~\ref{sec:preprocessing}) is shown in the middle panel
+A full representation of the obtained transfer function is given in Figure 3 of \citet{adam2015} and it is used in this paper. Overall the transfer function is consistent with a constant value of 1 for angular scales smaller than the NIKA FOV and larger than the size of the NIKA beam. Using the 260~GHz NIKA map \citet{adam2015} identified a point source located 30$^{\prime \prime}$ southeast of the center of the cluster. The 150~GHz NIKA map, with the point source subtracted (Section~\ref{sec:preprocessing}) is shown in the middle panel
 in Figure~\ref{fig:clj1227_maps}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -298,7 +314,8 @@ However, MUSTANG's instantaneous field of view (FOV) limits its sensitivity to s
 MUSTANG is a 64 pixel array of Transition Edge Sensor (TES) bolometers arranged in an $8 \times 8$ array
 located at the Gregorian focus on the 100 m GBT. Operating at 90 GHz (81--99~GHz),
 MUSTANG has an angular resolution of 9\asec and pixel spacing of 0.63$f \lambda$ resulting in a FOV
-of 42\asec. More detailed information about the instrument can be found in \citet{dicker2008}.
+of 42\asec. The conversion factor from mJy/beam to Compton parameter used is $\-2.5 \pm 0.2$.
+More detailed information about the instrument can be found in \citet{dicker2008}. 
 
 Our observations and data reduction are described in detail in \citet{romero2015a}, and we briefly review them
 here. Absolute flux calibrations are based on the planets Mars, Uranus, or Saturn, nebulae, or the star Betelgeuse 
@@ -306,7 +323,6 @@ here. Absolute flux calibrations are based on the planets Mars, Uranus, or Satur
 We fit and subtract a common mode template, polynomial, and sinusoid. Further data quality checks are calculated
 after this subtraction. The MUSTANG data map, with the point source subtracted (see Section~\ref{sec:preprocessing})
 is shown in the left panel in Figure~\ref{fig:clj1227_maps}.
-
 
 A transfer function was calculated in \citet{romero2016} when applied to white noise
 across an entire sky. We find that said transfer function does not fully reproduce the results of a simulated
@@ -336,7 +352,7 @@ Furthermore, the best fit profile shape parameters ($C_{500}$, $P_0$, and $\gamm
 To probe a wider range of scales we complement our MUSTANG data with SZ data from Bolocam \citep{glenn1998}. 
 Bolocam is a 144-element bolometer
 array on the Caltech Submillimeter Observatory (CSO) with a beam FWHM of 58\asecs at 140 GHz and circular FOV with 8\amins 
-diameter, which is well matched to the angular size of $R_{500}$ ($\sim 4$\amin) of the clusters in our sample. 
+diameter, which is well matched to the angular size of $R_{500}$ ($\sim 2$\amin) of the clusters in our sample. 
 
 Bolocam is a 144-element camera that was a facility instrument on the Caltech Submillimeter Observatory (CSO) from
 2003 until 2012. Its field of view is 8\amins in diameter, and at 140 GHz it has a resolution of 58\asecs FWHM
@@ -355,13 +371,21 @@ The reduction and calibration is similar to that used for MUSTANG, and Bolocam a
 %%% How was the transfer function calculated 
 
 \subsection{Planck integrated Compton parameter}
+\label{sec:picp}
+
 As in \citet{adam2015} we consider in the analysis the integrated Compton parameter of the cluster as measured using the Planck data.
-We use the Planck frequency maps from 143 to 857~GHz to produce a Compton parameter map as described in \citet{hurier2013} and \citet{planck2013ymap,2016A&A...594A..22P}. The resolution of this map is 7.5$^{\prime}$, limited by the lowest frequency Planck channel map used in the reconstruction. Using this map we compute the integrated Compton parameter up to a radial distant of 15$^{\prime}$ with respect to the center of the cluster. Uncertainties in the integrated Compton parameter are computed by integrating at random positions around the cluster. The uncertainties obtained has been also crossed checked using Planck half-ring half difference Compton parameters obtained as described in \citet{planck2013ymap,2016A&A...594A..22P}. We find $Y_{15^{\prime}} = (0.94 \pm 0.36) \times 10^{-3}$ arcmin$^2$. 
+We use the Planck frequency maps from 143 to 857~GHz to produce a Compton parameter map as described in \citet{hurier2013} and
+\citet{planck2013ymap,2016A&A...594A..22P}. The resolution of this map is 7.5$^{\prime}$, limited by the lowest frequency Planck channel
+map used in the reconstruction. Using this map we compute the integrated Compton parameter up to a radial distance of 15$^{\prime}$ with
+respect to the center of the cluster. Uncertainties in the integrated Compton parameter are computed by integrating at random positions
+around the cluster. The uncertainties obtained has been also crossed checked using Planck half-ring half difference Compton parameter
+map
+obtained as described in \citet{planck2013ymap,2016A&A...594A..22P}. We find $Y_{15^{\prime}} = (0.94 \pm 0.36) \times 10^{-3}$ arcmin$^2$. 
 
 %%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Pressure Profiles via Maximum Likelihood}
+\section{Non-parametric Pressure Profile Reconstruction via a Maximum Likelihood Analysis}
 \label{sec:ml_deproj}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -373,19 +397,18 @@ We use the Planck frequency maps from 143 to 857~GHz to produce a Compton parame
 
 %PK location: [12:26:58.0,+33:32:59]
 
-A point source at $4.6\sigma$ significance in MUSTANG was reported in \citet{korngut2011}, but is not
-evident in the reprocessed MUSTANG data. A short VLA filler observation (VLA-12A-340, D-array, at 7 GHz) 
-was performed to follow up this potential source (at RA 12:26:58.0 and Dec +33:32:59),
-but to a limit of $\sim 50 {\rm \mu Jy}$ nothing is seen. At 500 $\mu$m, \emph{Herschel}-SPIRE has a
-point source sensitivity of $\sim 8$ mJy, and therefore does not truly constrain a potential point
-source at this location.
+A point source at $4.6\sigma$ significance ($\sim 0.5$ mJy) in MUSTANG was reported in \citet{korngut2011}, but is not
+evident in the reprocessed MUSTANG data. A short VLA filler observation (VLA-12A-340, D-array, at 7 GHz) was performed
+to follow up this potential source (at RA 12:26:58.0 and Dec +33:32:59), but to a limit of $\sim 50 {\rm \mu Jy}$ nothing
+is seen. At 500 $\mu$m, \emph{Herschel}-SPIRE has a point source sensitivity of $\sim 8$ mJy, and therefore does not truly
+constrain a potential point source at this location.
 
-However, \citet{adam2015} find a point source at RA 12:27:00.01 and Dec +33:32:42 with a flux density of 
+In addition, \citet{adam2015} find a point source at RA 12:27:00.01 and Dec +33:32:42 with a flux density of 
 $6.8 \pm 0.7 \text{ (stat.)} \pm 1.0 \text{ (cal.)}$ mJy at 260 GHz and $1.9 \pm 0.2 \text{ (stat.)}$ at 150 GHz.
 At 500 $\mu$m, \emph{Herschel}-SPIRE finds a flux of $100 \pm 8$ mJy.
-\footnote{{http://irsa.ipac.caltech.edu/applications/Gator/}}
-A point source at this location is fit to the MUSTANG data with a flux density of $0.36 \pm 0.11$ mJy
-\citep{romero2016}. We subtract this point source from the NIKA and MUSTANG maps.
+\footnote{{http://irsa.ipac.caltech.edu/applications/Gator/}} A point source at this location is fit to the MUSTANG
+data with a flux density of $0.36 \pm 0.11$ mJy \citep{romero2016}.
+We subtract this point source from the NIKA and MUSTANG maps using the above flux density values.
 
 %A point source at $4.6\sigma$ significance in MUSTANG was reported in \citet{korngut2011}, but is not
 %evident in the reprocessed MUSTANG data. A short VLA filler observation (VLA-12A-340, D-array, at 7 GHz) 
@@ -398,9 +421,9 @@ A point source at this location is fit to the MUSTANG data with a flux density o
 The mean level in the MUSTANG map is calculated as the mean within the inner arcminute MUSTANG noise map. 
 We subtract the mean level from the MUSTANG map before fitting a cluster model. The Bolocam map already has
 a mean level subtracted.  The point source is faint enough to not be a concern for the Bolocam data given
-Bolocam's beam. No mean level is subtracted from NIKA.
+Bolocam's beam size. No mean level is subtracted from NIKA.
 
-\subsection{Non-Parametric Models}
+\subsection{Non-Parametric Pressure Profile Models}
 \label{sec:np_models}
 
 We employ a spherically symmetric pressure profile as our galaxy cluster model. Our fitting algorithm is applied
@@ -428,7 +451,7 @@ While a negative index indicates a rise in pressure with radius (atypical), this
 from shocks, for example. We also wish to minimise our restrictions on the power laws (between bins) so as to minimise
 induced correlations between bins. Therefore, we implement extensions to the canonical formuation that allow us to
 integrate within finite regions (spheres or shells that extend only to a finite radius). These extensions and
-reformulations of specific half integers and described in Section~\ref{sec:analytic_integrals}.
+reformulations of specific half integers are described in Appendix~\ref{sec:analytic_integrals}.
 
 The integrated profiles, calculated as the Compton y parameter:
 \begin{equation}
@@ -486,11 +509,12 @@ where the integral over solid angle taken within a given radius is generally ref
 Compton Y value ($Y_{cyl}$). We calculate $Y_{cyl}$ using the un-filtered Compton y profile (before convolution with
 an instrument's beam and transfer function). The prior on Y comes
 %\textcolor{red}{(Need to introduce this earlier / reference a section/equation.)}
-from Planck data \citep{planck2014}. In particular, we take the prior given in \citet{adam2015}:
+from Planck data \citep{planck2014} as discussed in Section~\ref{sec:picp}.
+In particular, we take the prior given in \citet{adam2015}:
 $Y_{cyl}(15$\amin$) = (0.94 \pm 0.36) \times 10^{-3} \text{arcmin}^2$.
 
 We employ the described probability function in a python Markov Chain Monte Carlo (MCMC) package, emcee \citep{foreman2013}.
-This MCMC package makes use of a variant of a Metropolis-Hastings (MH), in particular the ensemble sampling algorithm is
+This MCMC package makes use of a variant of a Metropolis-Hastings (MH) alogorithm, in particular the ensemble sampling algorithm is
 affine-invariant \citep{goodman2010}. The use of ensemble sampling, as opposed to a canonical single-point sampling, contributes
 to the notable advantage of this algorithm (within emcee) having a much shorter autocorrelation time than a standard MH algorithm.
 Furthermore, the computationally expensive part of drawing a new walker has been parallelized.
@@ -513,12 +537,13 @@ Furthermore, the computationally expensive part of drawing a new walker has been
 \textcolor{red}{
   Our algorithm is first tested with mock cluster observations. We create mock observations by adding
   a noise realization (created from jack-knifed timestreams) for each of the three maps to the
-  corresponding filtered map of a previously determined \citep{romero2017} gNFW profile. The fits to
+  corresponding filtered map of a previously determined \citep{romero2016} gNFW profile. The fits to
   our mock observations recover the input gNFW profile well; however, especially for the Bolocam
   fits, the two outermost bins are biased high.}
 
-\textcolor{red}{We also compare our non-parametric fits with power-law interpolation (our default),
-  to non-parametric fits with uniform pressure. We find that the non-parametric fits with uniform
+\textcolor{red}{We also compare our non-parametric fits with power-law interpolation between bins
+  (our default), to non-parametric fits with uniform pressure within a bin.
+  We find that the non-parametric fits with uniform
   pressure are much more sensitive to the number of bins, as indeed, the transfer functions of the
   various instruments, especially MUSTANG, substantially reduce the signal from extended (uniform)
   structure.}
@@ -541,18 +566,18 @@ the use of few bins reduces resolution, thereby smoothing out interesting featur
 %The results of these fits are shown for NIKA, MUSTANG, and Bolocam in
 %Figures~\ref{fig:nika_contours},\ref{fig:mustang_contours},and \ref{fig:bolocam_contours} respectively.
 
-\section{Non-parametric Results}
+\section{Non-Parametric Pressure Profile Results}
 \label{sec:np_res}
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=0.5\textwidth]{NIKA_ml_deproj_figs/Real_Joint_gNFW_Real_11011111_2500S_500B_100W_non_parametric_pressure.eps}
+%  \includegraphics[width=0.5\textwidth]{NIKA_ml_deproj_figs/Real_Joint_gNFW_Real_11011111_2500S_500B_100W_non_parametric_pressure.eps}
+  \includegraphics[width=0.5\textwidth]{NIKA_ml_deproj_figs/Real_Joint_gNFW_Real_11011111_2500S_500B_100W_non_parametric_pressure_p16cosmo.eps}
   %Real_Joint_gNFW_Real_11011111_2500S_500B_100W_pressure.eps
   \caption{Non-parametric pressure profiles as determined via each dataset individually, and the gNFW (parametric)
     pressure profile as simultaneously fit to the non-parametric pressure profiles. The error bars are statistical,
-    from the MCMC fits. The vertical dashed and dotted
-    lines correspond to the HWHM and FOV/2 (i.e. radial FOV), respectively; the coloring is also respective to each
-    instrument.}
+    from the MCMC fits. The vertical dashed and dotted lines correspond to the half width half maximum (HWHM) and
+    FOV/2 (i.e. radial FOV), respectively; the coloring is also respective to each instrument.}
   \label{fig:joint_pressure}
 \end{figure}
 
@@ -562,7 +587,8 @@ The Bolocam transfer function is provided as a two-dimensional transfer function
 artifacts at large radii ($r \gtrsim 1000$ kpc) for all plausible cluster models. While we find it important to include these
 outer bins for the fitting procedure itself, we exclude the outer two bins from further analysis. The results, after these
 exclusions, are tabulated in Table~\ref{tbl:nppp_res}.
-\input{table_nppp} % labelled as tbl:nppp_res
+%\input{table_nppp} % labelled as tbl:nppp_res
+\input{table_nppp_p16cosmo} % labelled as tbl:nppp_res
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -570,7 +596,7 @@ exclusions, are tabulated in Table~\ref{tbl:nppp_res}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\subsection{Non-parametric Constraints}
-From the non-parametric chains, we determine a covariance matrix of the pressure bins for each dataset as:
+From the monte carlo chains of the non-parametric fits, we determine the covariance matrix of the pressure bins for each dataset as:
 \begin{equation}
   \mathbf{N}_{i,j} = \langle d_i d_j \rangle - \langle d_i \rangle \langle d_j \rangle.
   \label{eqn:covariance}
@@ -630,30 +656,21 @@ covariance matrices from our non-parametric fits.
 
 \subsection{Parametric Constraints}
 
-%\textcolor{red}{We have constrained the gNFW parameters $P_0$, $\alpha$, $\beta$, and $\gamma$.}
-We find gNFW parameters of [$P_0$, $C_{500}$, $\beta$, and $\gamma$] =
-[$56.4_{-23.0}^{+21.2}$, $6.47_{-1.72}^{+1.89}$,$2.93_{-0.21}^{+0.26}$, and $0.17_{-0.12}^{+0.21}$].
-%[$42.3_{-12.5}^{+13.3}$, $4.85_{-1.05}^{+1.27}$ kpc, $3.12_{-0.25}^{+0.31}$, $0.12_{-0.09}^{+0.17}$].
-The power law slope $\gamma$ is within expected value range given previous gNFW constraints,
-on CLJ1226 as well as general cluster samples. However, our value of $\beta$ is less than expected;
-moreover, under hydrostratic equilibrium $\beta \le 3$ would indicate an unbounded mass at arbitrarily
-large radii. Similarly, $P_0$ and $C_{500}$ are larger than generally found.
-Given the degeneracy between $\beta$, $P_0$, and $C_{500}$, and shape of the pressure profile, these atypical
-values of $\beta$ and  $P_0$ appear to be driven by $C_{500}$ being pushed to larger values, where a large $C_{500}$
-value indicates that the scale radius (transition in pressure profile slopes) occurs are a relatively small radius.
-
-We also note that the value of $C_{500}$ itself may not be nearly as high if a smaller value of $R_{500}$
-is adopted (implying a smaller $M_{500}$ and $P_{500}$.) This may well be the case, as several other
-studies conclude that $R_{500} < 1000$ kpc.
-
+\begin{figure}[!h]
+  \centering
+%  \includegraphics[width=0.5\textwidth]{NIKA_ml_deproj_figs/Real_Joint_gNFW_Real_11011111_2500S_500B_100W_contour.eps}
+  \includegraphics[width=0.5\textwidth]{NIKA_ml_deproj_figs/Real_Joint_gNFW_Real_11011111_2500S_500B_100W_contour_p16cosmo.eps}
+  \caption{Parameter constraints, $P_0$, $r_p$, $\gamma$, and $\beta$. Recall that $C_{500} = r_p / R_{500}$.}
+  \label{fig:joint_constraints}
+\end{figure}
 %$206_{-43}^{+57}$ kpc
 \begin{figure}[!h]
   \centering
 %  \includegraphics[width=0.5\textwidth]{NIKA_ml_deproj_figs/Real_Joint_gNFW_Real_11011111_2500S_500B_100W_gNFW_pressure.eps}
   \includegraphics[width=0.5\textwidth]{NIKA_ml_deproj_figs/Real_Joint_gNFW_Real_11011111_2500S_500B_100W_gNFW_pressure_w_NP_pts_v2.eps}
 %    Real_Joint_gNFW_Real_11011111_2500S_500B_100W_pressure.eps
-  \caption{Non-parametric pressure profiles as determined via each dataset individually, and the gNFW (parametric)
-    pressure profile as simultaneously fit to the non-parametric pressure profiles. The error bars are statistical,
+  \caption{The gNFW (parametric) pressure profile as simultaneously fit to the non-parametric pressure profiles.
+    The error bars are statistical,
     from the MCMC fits. The vertical dashed and dotted
     lines correspond to the HWHM and FOV/2 (i.e. radial FOV), respectively; the coloring is also respective to each
     instrument. The MUSTANG and NIKA points that fall below the gNFW pressure profile (close to 0.1 $R_{500}$) are of
@@ -661,12 +678,32 @@ studies conclude that $R_{500} < 1000$ kpc.
   \label{fig:joint_pressure}
 \end{figure}
 
-\begin{figure}[!h]
-  \centering
-  \includegraphics[width=0.5\textwidth]{NIKA_ml_deproj_figs/Real_Joint_gNFW_Real_11011111_2500S_500B_100W_contour.eps}
-  \caption{Parameter constraints, $P_0$, $r_p$, $\gamma$, and $\beta$}
-  \label{fig:joint_constraints}
-\end{figure}
+%Non-parametric pressure profiles as determined via each dataset individually, and
+
+%\textcolor{red}{We have constrained the gNFW parameters $P_0$, $\alpha$, $\beta$, and $\gamma$.}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Hinshaw2013 Cosmology:
+We find gNFW parameters of [$P_0$, $C_{500}$, $\beta$, and $\gamma$] =
+[$56.4_{-23.0}^{+21.2}$, $6.47_{-1.72}^{+1.89}$,$2.93_{-0.21}^{+0.26}$, and $0.17_{-0.12}^{+0.21}$].
+%[$42.3_{-12.5}^{+13.3}$, $4.85_{-1.05}^{+1.27}$ kpc, $3.12_{-0.25}^{+0.31}$, $0.12_{-0.09}^{+0.17}$].
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Planck2016 Cosmology:
+We find gNFW parameters of [$P_0$, $C_{500}$, $\beta$, and $\gamma$] =
+[$49.7_{-24.9}^{+22.4}$, $5.89_{-1.78}^{+1.94}$,$2.98_{-0.23}^{+0.28}$, and $0.23_{-0.17}^{+0.30}$].
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+The power law slope $\gamma$ is within expected value range given previous gNFW constraints,
+on CLJ1226 as well as general cluster samples. However, our value of $\beta$ is less than expected;
+moreover, under hydrostratic equilibrium $\beta \le 3$ would indicate an unbounded mass at arbitrarily
+large radii. Similarly, $P_0$ and $C_{500}$ are larger than generally found.
+Given the degeneracy between $\beta$, $P_0$, and $C_{500}$, as shown in Figure~\ref{fig:joint_constraints},
+and shape of the pressure profile, these atypical
+values of $\beta$ and  $P_0$ appear to be driven by $C_{500}$ being pushed to larger values, where a large $C_{500}$
+value indicates that the scale radius (transition in pressure profile slopes) occurs are a relatively small radius.
+
+We also note that the value of $C_{500}$ itself may not be nearly as high if a smaller value of $R_{500}$
+is adopted (implying a smaller $M_{500}$ and $P_{500}$.) This may well be the case, as several other
+studies conclude that $R_{500} < 1000$ kpc \citep[e.g][]{rumsey2016,mroczkowski2009}.
+Figure~\ref{fig:joint_pressure} shows our gNFW fit and comparative gNFW profiles from the literature.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Discussion}
@@ -759,8 +796,9 @@ bin spacing. While the constraints of single-dish SZ observations beyond the FOV
 instrument are generally poor, we find that the inclusion of such a bin appears to improve
 the robustness of the pressure constraints within the FOV.
 
-We find consistency among the non-parametric fits individual instruments, and find that the
-non-parametric fits indicate a gNFW profile with a relatively small scale radius
+We have applied this algorithm to SZ observations of CLJ 1227 and
+find consistency among the non-parametric fits of the individual instruments. Furthermore,
+parametric best fits indicate a gNFW profile with a relatively small scale radius ($r_p$)
 ($r_p = R_{500}/C_{500}$). If left unconstrained, $\alpha$ tends towards large values, indicating
 a rapid transition at this scale radius between the inner and outer slope. A significant
 influence to this transition is the drop in fitted pressure, seen in both MUSTANG and NIKA
@@ -771,10 +809,10 @@ $3 \sigma$.
 
 Imperical investigations into the potential for point source contamination within this region
 indicate that such a point source would have to be $> 0.5$ mJy at both 90 and 150 GHz. This does
-not provide indication as to whether such a point source is a radio source or DSFG. However,
-given lower frequency data (VLA, $\sim 50 {\rm \mu Jy}$ at 7 GHz
+not provide indication as to whether such a point source is a radio source or dusty star-forming
+galaxy (DSFG). However, given lower frequency data (VLA, $\sim 50 {\rm \mu Jy}$ at 7 GHz
 SZA, 0.2 mJy sensitivity at 30 GHz) and higher frequency data
-(NIKA 1mm, and Herschel, ?) we find a point source to be an unlikely explanation. Therefore,
+(NIKA 1mm and Herschel) we find a point source to be an unlikely explanation. Therefore,
 we find that our data is consistent with a disturbance in the central regions of CLJ 1227.
 
 Given the ability to find deviations from a smooth (parameterized) pressure profile and
@@ -828,7 +866,8 @@ the FOCUS French LabEx doctoral fellowship program (A. R.).
 Given the use of the gamma and incomplete beta functions, it is important to recognize its limitations.
 Specifically, $\Gamma(x)$ is undefined for $x = -i, i \in \mathbb{N} \cup \{0\}$ (negative integers, including
 zero). Furthermore, $x = 0.5-i, i \in \mathbb{N} \cup \{0\}$ is also not calculable here! Finally, all incomplete
-beta functions are generally defined for $B(x,y)$ that $Re(x) > 0$ and $Re(y) > 0$. However, the relation:
+beta functions are generally defined for $B(x,y)$ that $Re(x) > 0$ and $Re(y) > 0$. However, the relation of the
+incomplete beta function ($I_x$):
 \begin{equation}
   I_x(a,b) = I_x(a+1,b) + \frac{x^a (1-x)^b}{a B(a,b)}
   \label{eqn:recibeta}

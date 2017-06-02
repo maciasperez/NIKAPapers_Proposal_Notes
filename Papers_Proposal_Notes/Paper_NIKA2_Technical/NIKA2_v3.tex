@@ -36,7 +36,7 @@
 
 \begin{document}
 %
-   \title{The NIKA2 millimetre camera at the 30-meters Pico Veleta telescope}
+   \title{The NIKA2 millimetre camera at the 30-meters IRAM telescope}
 
 %   \subtitle{I. Overviewing the $\kappa$-mechanism}
 
@@ -105,7 +105,7 @@ Present the performance measured on the Sky during the first commissioning runs 
   % methods heading (mandatory)
    {We have targeted a number of astronomical sources. Starting from primary and secondary calibrators allowing extracting beam-maps and photometric adjustment, we have then gone to extended sources and faint objects. Both internal (electronics) and on-the-sky calibrations are applied, and the methods are described briefly.}
   % results heading (mandatory)
-   {NIKA2 has ben successfully deployed and technically commissioned, performing in-line with expectations. In particular, we demonstrate the photometric and imaging performance (primary and secondary calibrators) and the mapping of extendes sources (CasA, others). Besides that, we demonstrated the ability of NIKA2 of detecting faint sources at the mJy level.
+   {NIKA2 has ben successfully deployed and technically commissioned, performing in-line with expectations. In particular, we demonstrate the photometric and imaging performance (primary and secondary calibrators) and the mapping of extendes sources (CasA, others). Besides that, we demonstrated the ability of NIKA2 of detecting faint sources at the mJy level. A first successful science verification run has been achieved in April 2017, focussing on the mapping of galaxies clusters via the SZ effect.
 }
   % conclusions heading (optional), leave it empty if necessary
    {}
@@ -138,46 +138,51 @@ Besides intrinsic scientific impact, NIKA2 represents the first real demonstrati
 
 \section{The Instrument}
 
-NIKA2 is a multi-purpose camera able to image the same portion of the Sky, i.e. 6.5 arc-min in diameter, simultaneously at 150 and 260 GHz, mapping at the same time the linear polarisation  at 260 GHz. To do that, and in order to preserve the angular resolution of the 30-meters telescope, it employs a total of around 3,000 pixels split over three distinct arrays of KID. We describe in some detail, in this paragraph, the key subsystems of the instrument, including also preliminary laboratory characterisation of the detectors. 
+NIKA2 is a multi-purpose camera able to image the same portion of the Sky, i.e. 6.5 arc-min in diameter, simultaneously at 150 and 260 GHz, mapping at the same time the linear polarisation  at 260 GHz. To do that, and in order to preserve the angular resolution of the 30-meters telescope, it employs a total of around 2,900 pixels split over three distinct arrays of KID. We describe in some detail, in this paragraph, the key subsystems of the instrument, including also preliminary laboratory characterisation of the detectors. Please refer to the bibliography for a more detailed description of each component. 
 
 
  \subsection{The cryostat}
 
-In order to ensure optimal operation of the detectors and optimally suppress the in-band stray-light, the focal plane arrays, and the last portion of the optics, is cooled down to a base temperature of around 150 mK by a 3He-4He dilution fridge. The dilution insert, developed in-house, is completely independent and compatible with any cryostat providing a stable 4K temperature input and suitable mechanical and fluids attach points. 
+In order to ensure optimal operation of the detectors and optimally suppress the in-band stray-light, the focal plane arrays, and the last portion of the optics, is cooled down to a base temperature of around 150 mK by a $^{3}He-^{4}He$ dilution fridge. The ad-hoc dilution insert is completely independent and compatible with any cryostat providing a stable 4K temperature input and suitable mechanical and fluids attach points. 
 
-The cryostat itself has been entirely designed by our group. It makes use of two pulses-tubes Cryomech PT415, each delivering a cooling power of 1.35 Watts at 4.2K (second stage) and several tens of Watts at 20-80K (first stage). The base temperature of these devices is of the order of 3K, largely sufficent to start the dilution process. The large cooling power available on the first pulses tubes stage allows to integrate in the cryostat a large part of the optics, and an efficient baffle placed at a temperature of around 50 K. Gas heat exchangers are adopted at both 4K and 20-80K to ensure good thermal contact avoiding a direct mechanocal contact between the vibrating cooling machines and the sensitive inner parts, i.e. detectors and electronics. 
+The cryostat itself has been entirely designed and realised by CNRS Grenoble. It employs two pulses-tubes Cryomech PT415, each delivering a cooling power of 1.35 Watts at 4.2K (second stage) and several tens of Watts at 30-70K (first stage). The base temperature of these machines is of the order of 3K, largely sufficent to start the dilution process. The large cooling power available on the pulses tubes first stages allows to integrate in the cryostat a large part of the optics, and an efficient baffle placed at a temperature of around 30K. Gas heat exchangers are adopted at both 4K and 30-80K to ensure good thermal contact avoiding a direct mechanocal contact between the vibrating cooling machines and the sensitive inner parts, i.e. detectors and electronics. An external mechanical regulation allows optimising the cooling power and at the same time minimising the shaking of the coldest parts. 
 
 \begin{figure}[h]
    \centering
-   \includegraphics[width=.95\linewidth]{NIKA2_cryoStages.pdf}
-      \caption{(Color online) Cross-section of the NIKA2 instrument showing the different cryogenics stages. The overall lenght of the instrument is around 2.3 meters. The weight is close to 1300 kg.}
+   \includegraphics[width=.95\linewidth]{NIKA2_cryoStages.png}
+      \caption{(Color online) Cross-section of the NIKA2 instrument illustrating the different cryogenics stages. The overall lenght of the instrument is around 2.3 meters. The weight is close to 1300 kg. The 150mK section includes the arrays, the dichroic, the polarizer and five HDPE lenses.}
          \label{Cryostat_cryo}
 \end{figure}
 
-The whole instrument includes more than 3000 individual mechanical pieces, for a total weight around 1.3 tons. The weight of the 150 mK stage is of the order of 80 kg, including few kg of HDPE (High Density PolyEthilene) low-conductance lenses. Radiation screens are placed at 1K (still), 4K (pulses tubes second stage), 30K and 80K (pulses tubes first stages).
+The whole instrument includes thousands mechanical pieces, properly assembled for a total weight around 1.3 tons. The weight of the 150 mK stage is of the order of 80 kg, including few kg of HDPE (High Density PolyEthilene) low-conductance lenses. Radiation screens are placed at 1K (still), 4K (pulses tubes second stage), 30K and 80K (pulses tubes first stages).
 
 Selected inner parts, at each stage of temperature, are coated with a high emissivity mixture of black STYCAST 2850, SiC grains and carbon powder. This coating has demonstrated its effectiveness at millimeter wavelenghts in order to suppress unwanted reflections (\cite{Calvo2010}).
 
-The operation of the cryostat does not require cryogenic liquids, and is fully remotely controlled. The whole cool-down procedure lasts about five days. In particular, four days are required for pre-cooling the coldest stages at around 4 K. During the last 24 hours, the dilution procedure is started, allowing further cooling down to base temperature. The system is designed for long observational runs, and has showed the needed stability of the base temperature over one to two month so far. The stability of the detectors temperature is better than 0.1 mK over the duration of a typical observational block (scan), i.e. 15 minutes. 
+Magnetic screening is added on each cryogenics stage, employing high permittivity materials down to 1K, and a pure Aluminium superconducting screen at the 150mK and enclosing the detectors. The screening is mostly dedicated to: a) suppress the Earth magnetic field and its variations, in the instrument reference frame, during telescope slews in azimuth; b) suppress the magnetic field variations induced by the antenna moving in elevation. 
+
+The operation of the cryostat does not require cryogenic liquids, and is fully remotely controlled. The whole cool-down procedure, largely automatised, lasts about five days. In particular, four days are required for the pre-cooling of the three coldest stages at around 4 K. During the last 24 hours, the dilution procedure is started, allowing further cooling down to base temperature. Two additional days before stable observations are usually foreseen in order to ensure the perfect thermalisation of all the low-thermal-conductance optics elements like the lenses, filters and black coatings. The system is designed for long observational runs, and has showed so far the needed stability of the base temperature over roughly one month. The stability of the detectors temperature is better than 0.1 mK over the duration of a typical observational block (scan), i.e. 15 minutes.
 
 
  \subsection{The focal plane arrays}
 
 Each array is fabricated on a single 4 inches High Resistivity (HR) Silicon wafer, on which a thin aluminium film (18nm) is deposited by e-gun evaporation under High Vacuum conditions. The use thin superconducting films has a double advantage: first of all, it increases the kinetic inductance of the material, making the detectors more responsive. And second, it maximises its normal state resistivity. An almost perfect match of the LEKID meander to the free space impedance of the incoming wave is thus allowed, ensuring a quantum efficiency exceeding 80\%. The NIKA2 pixels are all based on the Hilbert fractal geometry (\cite{Roesch2012}). 
 
-In NIKA, we had adopted standard pixels coupled to a Coplanar waveguide (CPW) readout line, with bondings across the line to suppress the spurious slotline modes which could arise . To optimize the optical coupling to the incoming radiation we adopted a back-illumination configuration, in which the light passes through the silicon wafer before reaching the pixels. To attenuate the refraction index mismatch, we added a grid of perpendicular grooves on the bottom of the wafer, resulting an effective dielectric constant which is in between that of vacuum and that silicon (\cite{Goupy2016}). The total thickness of the silicon and the depth of the grooves were chosen to optimize the anti-reflection effect of the machined layer. A superconducting lid is then placed at an optimised distance after the detectors plane, acting as a $\lambda/4$ backshort. 
+In NIKA, we had adopted standard pixels coupled to a Coplanar waveguide (CPW) readout line, with bondings across the central line to suppress the spurious slotline modes, asociated to a break of symmetry between the ground planes at each side of the line itself. To optimize the optical coupling to the incoming milimetre radiation, we had adopted a back-illumination configuration, in which the light passes through the silicon wafer before reaching the pixels. To attenuate the refraction index mismatch, we had added a grid of perpendicular grooves on the bottom of the wafer, resulting an effective dielectric constant which is in between that of vacuum and that silicon (\cite{Goupy2016}). The total thickness of the silicon and the depth of the grooves were chosen to optimize the anti-reflection effect of the machined layer. A superconducting lid is then placed at an optimised distance after the detectors plane, acting as a $\lambda/4$ backshort. 
 
+The same approach was originally planned for NIKA2. During the phase of the detectors development, however, we realised the practical limitations of the CPW coupling approach, in particular considering the thousands bondings required to ensure the exclusive propagation of the main mode. We then decided to study and test a different kind of transmission line, the microstrip (MS). This kind of feedline only supports one propagating mode, and is thus immune from the risk of spurious modes. Furthermore, the aluminium groundplane is located on the opposite side of the wafer with respect to the detectors, which might reduce the cross-coupling between different pixels.
 
-The same approach was originally planned for NIKA2. During the first phases of the detectors development, however, we realised the practical limitations of the CPW coupling approach, in particular considering the thousands bondings required to ensure the propagation of the main mode only. We then decided to study a different kind of transmission line, the microstrip, that by construction allows the propagation of only one clean mode. This mode shows an electric field oscillating, in the cold HR Silicon almost perfect dielectric, between the strip line (feedline) and the underlying ground plane. 
+This propagation mode shows an electric field oscillating, in the cold HR Silicon almost perfect dielectric, between the strip line (feedline) and the underlying ground plane (see figure  \ref{CPWvsMS}).
 
 \begin{figure}[h]
    \centering
     \includegraphics[width=.95\linewidth]{CPWvsMS.png}
-      \caption{(Color online) Left: CPW without bondings; center: CPW with bondings; right: microstrip.}
+      \caption{(Color online) Left: the CPW transmission line without across-the-line bondings, associated to strongly non-uniform performance of the detectors array. Center: the CPW, with bondings, configuration adopted in NIKA. Right: the microstrip (MS) configuration adopted in NIKA2, ensuring single-mode propagation and easiest implementation of very large arrays.}
          \label{CPWvsMS}
 \end{figure}
 
-The distance between the pixels and the CPW is chosen in order to have optimal coupling conditions: these are achieved when the coupling merit factor, $Q_c$, is of the same order as the internal merit factor $Q_i$ observed under typical loading condition. Each pixel has a size of $2.3\times2.3\textrm{mm}^2$, resulting in a focal plane sampling of $\sim 0.7 F\lambda$. Considering the size of the focal plane, a total of 1020 KID are needed to fill the array. These are split over 4 different readout lines, and have resonance frequencies laying between 1.3 and 1.8 GHz.
+In both cases, the distance between the pixels and the feedline is chosen in order to satisfy optimal coupling conditions: these are achieved when the coupling merit factor, $Q_c$, is of the same order as the internal merit factor $Q_i$ observed under typical loading condition. 
+
+For NIKA2, the 150 GHz channel is equipped with an array of 616 pixels, disposed to cover a circle with a 80mm diameter. Each pixel has a size of $2.8\times2.8\textrm{mm}^2$. This is the maximum size that can be adopted without degrading the telescope resolution, as it corresponds roughly to a $1 F \lambda$ sampling of the focal plane. The array is connected over four different readout lines, and shows resonance frequencies laying between 0.9 and 1.4 GHz.
 
 \begin{figure}[h]
    \centering
@@ -186,8 +191,9 @@ The distance between the pixels and the CPW is chosen in order to have optimal c
          \label{Pixels}
 \end{figure}
 
+In the case of the 260 GHz band, the pixel size is $2\times 2\mathrm{mm}^2$, again to ensure a similar sampling of the focal plane. In order to fill the two 260 GHz arrays, a total of 1140 pixels are needed in each of them. The smaller pixels dimensions compared to the 150 GHz band lead to slightly higher resonance frequencies that are now comprised between 1.9 and 2.4 GHz. 
 
-In the case of the 260 GHz band, the pixel size is $2\times 2\mathrm{mm}^2$. This is the maximum size that can be adopted without degrading the telescope resolution, as it corresponds to a $1 F \lambda$ sampling of the focal plane. In order to fill the two 260 GHz arrays, a total of 1140 pixels are needed in each of them. The smaller pixels dimensions lead to slightly higher resonance frequencies (1.85-2.45 GHz). For this band we adopted a different approach, in which the detectors are coupled to a Microstrip (MS) readout line. This kind of feedline only supports one propagating mode, and is thus immune to the risk of spurious modes. Furthermore, the aluminium groundplane is located on the opposite side of the wafer with respect to the detectors, which reduces the cross-coupling between different pixels. The detectors are read out using 8 feedlines. A small aluminium loop is added around each pixel to tune their coupling to the readout line: the current in the loop partially screens the field associated to the pixel itself, making it possible to reach the high $Q_c$ ($\sim10000$) needed to meet the optimal coupling condition.
+The detectors are read out using 8 feedlines. A small aluminium loop is added around each pixel to tune their coupling to the readout line: the current in the loop partially screens the field associated to the pixel itself, making it possible to reach the high $Q_c$ ($\sim10000$) needed to meet the optimal coupling condition.
 
 \begin{figure}[h]
    \centering

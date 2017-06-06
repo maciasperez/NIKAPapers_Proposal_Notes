@@ -148,17 +148,18 @@ stand to benefit from the additional frequency coverage. To be sure of the resul
 understand any systematics involved with individual instruments. Recent results combining Bolocam and Planck data \citep{sayers2016},
 which overlap in regions of sensitivity, show non-trivial changes from previous Bolocam-only results \citep{sayers2013}.
 
-Many SZ analyses thus far have focused on fitting a smooth pressure profile to their data; over a decade ago, the beta model
-\citep{cavaliere1978} was used. While a self-similar \citep{mroczkowski2009} and analytical pressure profile based on a
-polytropic equation of state \citep{bulbul2010} have been explored, the general Navaro-Frenk-and-White
-\citep[gNFW][]{nagai2007} has garnered the most traction, with a fairly canonical set of parameters coming from
-\citet{arnaud2010} (Hereafter, A10). While some SZ studies have attempted to deproject their data \citep[e.g.][]{sayers2013},
-and fit pressure profiles to their deprojected data, the publication of non parametric pressure profile constraints have
-been scarce. Investigating cluster pressure profiles non parametrically will show deviations from the smooth pressure profile,
-which could be cause either due to systematics or inherent physical pertubations. That is, if we wish to better understand
-discrepancies between SZ constraints, as discussed previously, investigating the non-parametric fits between instruments will
-provide a viable route to this end. Independently, understanding pertubations within the cluster itself is also important in
-the context of using galaxy clusters as cosmological probes.
+While some SZ studies have reconstructed non-parametric pressure profiles either through a maximum-likelihood approach
+\citep[e.g.][]{ruppin2017} or deprojection of their data \citep[e.g.][]{basu2010,sayers2013}, such studies appear far
+outnumbered by the SZ analyses which have fit a parametric (smooth) pressure profile to their data. Over a decade ago, the beta model
+\citep{cavaliere1978} was favored; more recently other parameterizations such as a self-similar \citep{mroczkowski2009} and
+analytical pressure profile based on a polytropic equation of state \citep{bulbul2010} have been explored. Yet, the
+generalized Navaro-Frenk-and-White \citep[gNFW][]{nagai2007} profile has garnered the most traction, with a fairly canonical
+set of parameters coming from \citet{arnaud2010} (Hereafter, A10).
+
+Investigating cluster pressure profiles non parametrically will show deviations from a smooth pressure profile.
+Without artificially smoothing our profiles, we are thus better positioned to understanding sources of systematic error
+of individual instruments as well as revealing any true departures from a smooth pressure profile. Departures from a
+smooth pressure profile may indicate a departure from hydrostatic equilibrium \citep{basu2010}.
 
 Counts of galaxy clusters by mass and redshift serve to constrain cosmological parameters, notably the dark energy density
 ($\Omega_{\Lambda}$), dark matter density ($\Omega_{dm}$), the amplitude of fluctuations ($\sigma_8$),
@@ -219,11 +220,11 @@ $M_{500} = 12.0 \times 10^{14} M_{\odot}$.
 \begin{figure*}[!h]
   \centering
 %  \includegraphics[width=0.5\textwidth]{NIKA_ml_deproj_figs/CLJ1227_MUSTANG_NIKA_Bolocam_v2.eps}
-  \includegraphics[width=0.33\textwidth]{NIKA_ml_deproj_figs/MUSTANG_image_and_SNR_contours_v2.eps}
-  \includegraphics[width=0.33\textwidth]{NIKA_ml_deproj_figs/NIKA_image_and_SNR_contours_v2.eps}
-  \includegraphics[width=0.33\textwidth]{NIKA_ml_deproj_figs/BOLOCAM_image_and_SNR_contours_v2.eps}
+  \includegraphics[width=0.33\textwidth]{NIKA_ml_deproj_figs/MUSTANG_image_and_SNR_contours_cbar.eps}
+  \includegraphics[width=0.33\textwidth]{NIKA_ml_deproj_figs/NIKA_image_and_SNR_contours_cbar.eps}
+  \includegraphics[width=0.33\textwidth]{NIKA_ml_deproj_figs/BOLOCAM_image_and_SNR_contours_cbar.eps}
   \caption{Left: MUSTANG map; Middle: NIKA (2mm) map; Right: Bolocam map. In all three panels, the yellow contours are those
-    of MUSTANG, magenta contours of those of NIKA, and cyan contours are those of Bolocam. For MUSTANG and Bolocam, the contours
+    of MUSTANG, magenta contours of those of NIKA, and orange contours are those of Bolocam. For MUSTANG and Bolocam, the contours
     start at $(-)2\sigma$, with $1\sigma$ increments. For NIKA, the contours start at $(-)3\sigma$ with $2\sigma$ increments.
     The point source identified in \citet{adam2015} is subtracted in the MUSTANG
     and NIKA maps.}
@@ -534,19 +535,27 @@ Furthermore, the computationally expensive part of drawing a new walker has been
 %\label{sec:systematics}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\textcolor{red}{
-  Our algorithm is first tested with mock cluster observations. We create mock observations by adding
-  a noise realization (created from jack-knifed timestreams) for each of the three maps to the
-  corresponding filtered map of a previously determined \citep{romero2016} gNFW profile. The fits to
-  our mock observations recover the input gNFW profile well; however, especially for the Bolocam
-  fits, the two outermost bins are biased high.}
+Our algorithm is first tested with mock cluster observations. We create mock observations by adding
+a noise realization (created from jack-knifed timestreams) for each of the three maps to the
+corresponding filtered map of a previously determined \citep{romero2016} gNFW profile. The fits to
+our mock observations recover the input gNFW profile well, as shown in Figure~\ref{fig:virt_robustness};
+however, especially for the Bolocam fits, the two outermost bins are biased high.
 
-\textcolor{red}{We also compare our non-parametric fits with power-law interpolation between bins
-  (our default), to non-parametric fits with uniform pressure within a bin.
-  We find that the non-parametric fits with uniform
-  pressure are much more sensitive to the number of bins, as indeed, the transfer functions of the
-  various instruments, especially MUSTANG, substantially reduce the signal from extended (uniform)
-  structure.}
+We also compare our non-parametric fits with power-law interpolation between bins (our default),
+to non-parametric fits with uniform pressure within a bin. We find that the non-parametric fits with uniform
+pressure are much more sensitive to the number of bins, as indeed, the transfer functions of the various
+instruments, especially MUSTANG, substantially reduce the signal from extended (uniform) structure.
+
+\begin{figure}[!h]
+  \centering
+%  \includegraphics[width=0.5\textwidth]{NIKA_ml_deproj_figs/Real_Joint_gNFW_Real_11011111_2500S_500B_100W_non_parametric_pressure.eps}
+  \includegraphics[width=0.5\textwidth]{NIKA_ml_deproj_figs/Virt_Joint_gNFW_Power_Virt_11011111_2500S_500B_100W_gNFW_pressure_w_NP_pts_p16cosmo_input_vs_output_v2.eps}
+  %Real_Joint_gNFW_Real_11011111_2500S_500B_100W_pressure.eps
+  \caption{Non-parametric pressure profiles as determined via each simulated observation individually,
+    and the gNFW (parametric) pressure profile as simultaneously fit to the non-parametric pressure profiles.
+    The error bars are statistical, from the MCMC fits.}
+  \label{fig:virt_robustness}
+\end{figure}
 
 Our non-parametric fits recover consistent pressure profiles given different starting positions and bin spacing.
 Additionally, we find that our pressure profiles are consistent with those produced when using uniform pressure

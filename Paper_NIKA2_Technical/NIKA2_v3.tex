@@ -276,7 +276,7 @@ It must be noted that for implementation reasons (\cite{Bourrion2012,Bourrion201
 \subsection{Laboratory tests}
 \label{Laboratory tests}
 
-The NIKA2 arrays have been pre-characterised in laboratory under realistic illumination conditions. In order to compensate the absence of the telescope optics, we have added an additional lens at the cryostat input window. This lens is creating an image fo the focal planes onto our "sky simulator", described in previous papers (\cite{Catalano2014}, \cite{Monfardini2011}). A warm source, moved in front of the SS by means of an x-y stage, allows beams shape and arrays geometry (e.g. pixel-per-pixel pointing) characterisations. The sensitivity is calculated by excecuting calibrated temperature sweeps of the sky simulator, and measuring the signal-to-noise ratio of the detected signal. A photometric model has been elaborated, based on ray-tracing simulations and assuming reasonable overall optics (filters, lenses) transmission. In particular, the overall transmission of the instrument, mainly determined by the lenses and the filters, lies around 35\%. On top of that, the quantum efficiency of the detectors, integrated in the band of interest, is comprised between 60\% (260 GHz arrays) and 80\% (150 GHz array). The frequency sweep of the four lines making up to 150 GHz array are shown in figure \label{VNA}.
+The NIKA2 arrays have been pre-characterised in laboratory under realistic illumination conditions. In order to compensate the absence of the telescope optics, we have added an additional lens at the cryostat input window. This lens is creating an image fo the focal planes onto our "sky simulator", described in previous papers (\cite{Catalano2014}, \cite{Monfardini2011}). A warm source, moved in front of the SS by means of an x-y stage, allows beams shape and arrays geometry (e.g. pixel-per-pixel pointing) characterisations. The sensitivity is calculated by excecuting calibrated temperature sweeps of the sky simulator, and measuring the signal-to-noise ratio of the detected signal. A photometric model has been elaborated, based on ray-tracing simulations and assuming reasonable overall optics (filters, lenses) transmission. In particular, the overall transmission of the instrument, mainly determined by the lenses and the filters, lies around 35\%. On top of that, the quantum efficiency of the detectors, integrated in the band of interest, is comprised between 60\% (260 GHz arrays) and 80\% (150 GHz array). The frequency sweep of the four lines making up to 150 GHz array are shown in figure \label{VNA}. The average number of identified resonances over the twenty feedlines exceeds 90\% when compared to the number of pixels implemented by design. For example, in the case of the 150 GHz array at least 580 beams are identified during laboratory tests, amounting more than 94\% of the total 616 implemented in the design. 
 
 \begin{figure}[h]
 \begin{center}
@@ -287,9 +287,21 @@ The NIKA2 arrays have been pre-characterised in laboratory under realistic illum
 \end{center}
 \end{figure}
 
-The measurable quantity, proportional to the incoming power per pixel, is the shift in frequency of each resonance (pixel) (\cite{Swenson2010}). That's why our noise spectral densities are expressed in Hz/Hz$^{0.5}$, and the responsivities are measured in Hz/K. Using the SS, we have estimated average responsivities of 1 and 2 kHz/K at respectively 150 and 260 GHz. The average noise levels, for the two bands, are 1 and 3 Hz/Hz$^{0.5}$, resulting in NET (Noise Equivalent Temperature) of the order of 1 and 1.5 mK/Hz$^{0.5}$ per pixel at 150 and 260 GHz. 
+The measurable quantity, proportional to the incoming power per pixel, is the shift in frequency of each resonance (pixel) (\cite{Swenson2010}). That's why our noise spectral densities are expressed in Hz/Hz$^{0.5}$, and the responsivities are measured in Hz/K. Using the SS, we have estimated average responsivities of 1 and 2 kHz/K at respectively 150 and 260 GHz. The average noise levels, for the two bands, are 1 and 3 Hz/Hz$^{0.5}$, resulting in NET (Noise Equivalent Temperature) of the order of 1 and 1.5 mK/Hz$^{0.5}$ per pixel at 150 and 260 GHz. These figures are calculated at a representative frequency of 5 Hz. 
 
-These figures are in line with the goals. An example of raw noise spectrum taken on a pretty good pixel is shown in fig.~\ref{Fig3}. The excess noise appearing below 2 Hz is correlated among detectors, and due to common mode drifts of the readout electronics. It can thus be eliminated by applying a suitable decorrelation during data analysis. It is usually negligeable compared to Sky noise. 
+\begin{figure}[h]
+\begin{center}
+   \centering
+    \includegraphics[width=1.05\linewidth]{Shift_f_260GHz.png}
+    \caption{(Color online) Sky simulator testing (blue: the Sky Simulator is cold; red: 300K background) on two typical resonances of the 260 GHz V array. The measured average responsivity, i.e. the shift in frequency per unit temperature background variation, is around 2 KHz for the 260 GHz arrays and 1KHz/K in the case, not illustrated in figure, of the 150 GHz.}
+         \label{Shift_f}
+\end{center}
+\end{figure}
+
+These figures are in line with the expectations. An example of Sky Simulator testing, allowing the measurement of the responsivity, is reported in figure \ref{Shift_f}. Noise spectra has been acquired as well in laboratory, with results then fully confirmed at the telescope, with NIKA2 observing the Sky. See the paragraph \ref{Noise and sensitivity} for a more detailed discussuin concerning the noise properties. 
+
+
+The spectral characterisation of the arrays and the overall optical chain of NIKA2 has been achieved using a Martin-Puplett Interferometer (MpI) built in-house (\cite{Durand2008}) and specifically dedicated to instruments characterisation. The two arrays operating at 260 GHz, mapping different polarisations, exhibit a slightly different spectral behaviour probably due to a tiny difference in the silicon wafer and/or Aluminium film thicknesses. The observed shift of the central frequency (265 GHz for V array versus 258 GHz for the H) can be explained by about 5 microns change in the substrate thickness.
 
 \begin{figure}[h]
    \centering
@@ -299,11 +311,7 @@ These figures are in line with the goals. An example of raw noise spectrum taken
          \label{Fig4}
 \end{figure}
 
-The spectral characterisation of the arrays and the overall optical chain of NIKA2 has been achieved using a Martin-Puplett Interferometer (MpI) built in-house (\cite{Durand2008}). The two arrays operating at 260 GHz, each operating at a different polarisation, exhibit a slightly different spectral behaviour probably due to a tiny difference in the silicon wafer and/or Aluminium film thicknesses. The observed shift of the central frequency (265 GHz for V array versus 258 GHz for the H) can be explained by about 5 microns change in the substrate thickness.
-
-The rate of good (stable, sensitive) pixels on the three arrays is around 80\%. The best array exhibit 88\% of good pixels. The NIKA2 original specifications called for 50\% good pixels, with a goal of approaching as much as possible 90\%. During the NIKA2 lifetime, we plan to continue improving the cosmetics of the arrays. We think that the ultimate goal of 90\% over the the three arrays could be meet.
-
-The SS allows also a rough but significative estimation of the stray-light. By comparing measures acquired at several SS distances compared to the cryostat window, we fit an equivalent 15 K additional focal plane background. This is lower than the very best equivalent Sky temperature at Pico Veleta (30 K), and confirms that NIKA2 is not limited by the stray-light. In comparison, in NIKA we had estimated around 35 K additional background. 
+The Sky Simulator allows also a rough but important estimation of the stray-light, before installing the instrument at the telescope. By comparing measures acquired at several simulator distances compared to the cryostat window, we fit an equivalent 15 K additional focal plane background. This is lower than the very best equivalent Sky temperature at Pico Veleta (20 K), and confirms that NIKA2 is not limited by the stray-light. In comparison, in NIKA we had estimated around 35 K additional background. 
 
 In summary, the overall performance of the instrument, mesured preliminarily in laboratory, is in line with the NIKA2 specifications, paving the way for the installation at the telescope described briefly in the next paragraph. 
 

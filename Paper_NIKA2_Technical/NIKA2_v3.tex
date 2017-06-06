@@ -37,6 +37,7 @@
 \begin{document}
 %
    \title{The NIKA2 millimetre camera at the 30-meter IRAM telescope}
+   \title{The NIKA2 millimetre camera: instrument description and first lights}
 
 %   \subtitle{I. Overviewing the $\kappa$-mechanism}
 
@@ -124,13 +125,15 @@ Present the performance measured on the Sky during the commissioning runs that t
 
 \section{Introduction}
 
-JUAN:
+In the last decades instrumental progress, and in particular the development of background limited detectors, has lead to a golden era of millimeter and sub-millimeter astronomy, and cosmology. On the one hand, Cosmic Microwave Background experiments -- the Planck satellite \cite{}, the Maxima \cite{}, Boomerang\cite{} and Archeops \cite{} balloons, and the ground-based ACT \cite{}, SPT \cite{} and PolarBear \cite{} -- had permitted high sensitivity intensity and polarisation measurements driving cosmology to an era of precision. On the other hand, high resolution ground-based experiments like MAMBO \cite{}, SCUBA \cite{}. SCUBAPOL \cite{}, and the Herschel satellite \cite{} has opened a new window for the study of galactic and extra-galactic sources mainly via their thermal dust emission. However, new scientific challenges are pushing current technology to its limit making necessary new instrumental developments. \\
 
-Millimeter and sub-millimeter wavelength observations are at the forefront of cosmology and astrophysics.....  
+Current cosmological concordance model \cite{} relies on the inflationary scenario \cite{}, which postulates a period of exponential expansion in the early universe. Although this inflationay model is very successful \cite{} there is to date no direct of proof of it. Such a direct proof could be obtained from the detection of the primordial CMB B modes in polarization \cite{}, which are produced by inflation primordial tensor perturbations. The primordial CMB B modes in polarization are expected to be very low in amplitude and therefore require a factor of 100 or more in sensitivity with respect to current instruments, which can only be obtained with arrays of 10000 of detectors or more. Furthermore, CMB experiments have been proved to be very efficient in detecting clusters of galaxies via the Sunyaev-Zeldovich (SZ) effect \cite{plancksz,actsz,sptsz} and have provided first cluster cosmological results \cite{planckpapers}. However, their poor resolution limit the cosmological interpretation of the data and in particular the study of the impact  of the complex physics in high redshift clusters \cite{planckcosmo}. The observation of these high redshift clusters requires high resolution ground-based instruments with a large field-of-view (FOV) fully sampled with few thousands background limited detectors. \\
 
-ALESSANDRO: 
+Submillimeter and millimeter extragalactic studies are mainly limited by the mapping speed of high resolution instruments and by an adequate spectral coverage. This is the case for example for the study of nearby galaxies which aims at separating the emission from different physical components like thermal dust, free-free and synchrotron in order to measure precisely the star formation rate in different environments and regions. Similarly, distant universe studies via deep surveys will benefit of large mapping speed permitting to cover large sky regions at confusion limit and so to detect hundreds of dust-obscured optically-faint galaxies during their major episodes of formation in the early universe. Furthermore, multi-wavelengths instruments would permit the reconstruction of the SED of the galaxies giving a complete view of star formation processes. The required large mapping speeds can only be obtained by increasing the number of detectors in the focal plane up to few thousands of them. \\
 
-A number of instruments operate hundreds to thousands low-temeprature detectors for continuum mapping at millimetre and sub-millimetre frequencies. The most recent advancements in the domain are described in detail in the LTD16 proceedings (\cite{ltd16:2016}). The vast majority of these instruments, however, are designed and exceute well defined scientific programs, most likely related to the search of the primordial polarisation modes in the Cosmic Microwave Background (CMB). Very few general purpose tools, like the one described in this paper, are available to the general astronomical community. Among them, we cite Artemis on APEX, SCUBA-2 etc. Recently, the KID technology has demonstrated its competitiveness in real instrumentation working at millimetre wavelenghts. The pathfinder NIKA instrument, equipped with 356\,pixels and two arrays, has demonstrated state-of-the art performance in terms of sensitivity, stability, dynamic range (\cite{Catalano2014, Monfardini2011, Adam2014}).
+
+
+A number of instruments operate hundreds to thousands low-temeprature detectors for continuum mapping at millimetre and sub-millimetre frequencies. The most recent advancements in the domain are described in detail in the LTD16 proceedings (\cite{ltd16:2016}). The vast majority of these instruments, however, are designed and exceute well defined scientific programs, most likely related to the search of the primordial polarisation modes in the Cosmic Microwave Background (CMB). Very fewc general purpose tools, like the one described in this paper, are available to the general astronomical community. Among them, we cite Artemis on APEX, SCUBA-2 etc. Recently, the KID technology has demonstrated its competitiveness in real instrumentation working at millimetre wavelenghts. The pathfinder NIKA instrument, equipped with 356 pixels and two arrays, has demonstrated state-of-the art performance in terms of sensitivity, stability, dynamic range (\cite{Catalano2014, Monfardini2011, Adam2014}).
 
 Besides intrinsic scientific impact, NIKA2 represents the first real demonstration of competitive performance using thousands pixels Kinetic Inductance Detectors (KID (\cite{Day2003}, \cite{Doyle2010}) cameras operating at these wavelenghts. In the present paper we start by describing in some detail the overall instrument design, including cryogenics, focal planes, optics, readout electronics, quick-look data analysis software. We will also provide the results from the first commissioning runs at the Pico Veleta IRAM telescope. 
 
@@ -358,6 +361,11 @@ Furthermore, knowing both the $I$, $Q$ and the $dI$, $dQ$ values we can also est
 \subsection{Atmospheric attenuation correction}
 \label{Atmospheric attenuation correction}
 
+\begin{figure}
+\includegraphics[scale=0.6]{./opacity_evol_run22.pdf}
+\caption{Atmospheric opacity as measured from the IRAM 225~GHz taumeter (cyan), and from the NIKA2 data at 150 (red) and 260 GHz (blue) during the February NIKA2 commissioning campaign. \label{fig:taumeas}}
+\end{figure}
+
 The sky maps are corrected for the atmospheric contribution rescaling the observed signal by what that would be obtained in the absence of atmosphere. The corrected brightness is:
 
 \begin{equation}
@@ -432,6 +440,14 @@ beam FWHM of the array A1, A3 and A2 KID using a beam-map scan of Neptune acquir
 
 
 \subsection{Beam pattern}
+We show in Figure~\ref{fig:beampattern}.  [JFL I suggest azimuthally averaged profile over half annuli, plotted on a dB scale ; I can do it] 
+[JFL, en fabrication] The telescope is characterised by its main beam and side lobes, or error beam.
+The main beam is approximatively gaussian and can be fitted as such
+while side lobes are more complexe and have been fitted with  three gaussians of increasing FWHM ($65'', 250'', 860''$ at 210~GHz)
+in Greve et al 1998 and Kramer et al 2013.  With the commissioning data, we have characterised 
+the beam in estimating its FWHM at 150 and 260~GHz,  its beam efficiency ($\sim 55$ \% at 1mm and $\sim 70$ \% at 2mm ; Main beam power / whole beam power over to rmax=250''; add formula),
+and  solid angles of true and gaussian beams (1.85 at 1mm and 1.35 at 2mm  out to $250''$; add formula), both are related and are found consistent.
+
 
 \begin{figure}[h]
    \centering
@@ -457,16 +473,55 @@ beam FWHM of the array A1, A3 and A2 KID using a beam-map scan of Neptune acquir
          \label{fig:beampattern}
 \end{figure}
 
-We show in Figure~\ref{}
 
 \subsection{On-sky calibration}
 \label{On-sky calibration}
+[JFL]
+The planets Uranus and Neptune  were used as the primary calibrators to set the Jansky scale of the instrument.
+Their flux densities at our conventional frequencies of 260~GHz and 150~GHz were adopted from the model in Moreno et al (...)
+and updated at the mid-date of each of the two sessions in using planet geocentric distance
+and viewing angle due to planetary oblateness provided by the JPL's HORIZONS Ephemeris.
+About ten observations of these two planets with integration time of $\sim 20$ minutes were carried out at each session  
+and resulted in high SNR maps with the main beam and side lobes apparent (e.g. Fig. \ref{fig:beampattern}).
+Their total flux density were measured
+from the maps both by gaussian fitting and aperture photometry within a radius of  $150''$ where cumulative flux density leveled off smoothly.
+Both types of photometry provided consistent results with differences at the level of less than a few \% for all observations.
+Line of sight opacities at 1 mm and 2mm derived from the data themselves as described
+in $\S\ref{Atmospheric attenuation correction}$ were used to correct for atmospheric attenuation.
+These final photometric measurements were compared to the reference
+flux densities in plotting their ratios in Fig. \ref{fig:calibaccuracy}.
+
+Over all, the flux density scale is stable at better than $7\%$ for all scans emcompassing
+two one week long periods separated by two months, and despite the fact that the instrument was warmed up between the two sessions. 
+As shown in Fig. \ref{fig:calibaccuracy}, the mean ratios for the three arrays is close to unity as expected since
+the planets were used to set the Jansky scale in average over all the observations early in the processing. It could be
+exactly unity in an iterative process [A DISCUTER]. It is noticeable
+%that atmospheric conditions were significantly better during the  first session than the second. We find
+that scatters around unity in Fig. \ref{fig:calibaccuracy}
+are about twice smaller in the first session in significantly better weather than in the second session ; precisely, relative stabilities
+are 3.6\%, 2.5\% and 2.9\% for arrays 1, 2, 3, respectively, for the first session with opacity $\tau_{1mm}$ between 0.05 and 0.3,
+and correspondingly  5.3\%, 6.7\% and 8.6\% for the second with  $\tau_{1mm}$ between 0.25 and 0.6.
+Hence, the main limitation in stability appears to be caused by residual atmospheric fluctuations in the processing. 
+
+Nonetheless, this stability is satisfactory and similar to the level achieved by other modern instruments, e.g. SCUBA2 (Dempsey et al 2012).
+The other limitation of the scale is absolute calibration that depends on the
+accuracy of the Moreno et al's model which is estimated to be 5\% in the millimeter wavelength range. Hence, in combining both limitations,
+the total uncertainty of calibration with NIKA2 is $10\%$ in mediocre atmospheric conditions and better than $10\%$ in fair condition. 
+
+[JFL, en fabrication ] The absolute calibration has been checked with observations of the three secondary calibrators MWC349, NGC7027 and CRL2688.
+Their flux densities are known from the literature (references + PdB monitoring for MWC349) and are stable at the .... level.
+Color corrections have been done. Aperture photometry vs gaussian fitting. Results.
+
 
 \begin{figure}[h]
    \centering
-    \includegraphics[angle=270,width=0.9\linewidth]{ratio_Ura_Nept.pdf}
-     
-      \caption{From top to bottom: primary calibrator relative flux for arrays A1, A2 and A3.}
+    \includegraphics[angle=0,width=1.0\linewidth]{Ura_Nept_r9_10.pdf}     
+    \caption{Comparison of  measured and reference flux densities of the primary calibrators Uranus (red) and Neptune (blue).
+       Their ratios are shown for the three arrays A1 (1mm), A2 (2mm), A3(1mm).
+      The mean ratio $\mu$ and relative scatter are provided for each array. The reference flux densities are from the Moreno et al ( ). 
+      Scan numbers are time ordered : 1 to 10 is during the period 23-28 february 2017 and 11 to 18
+      is during the  19-25 april 2017 period. Neptune was hardly visible at the telescope during the first session,
+      and Uranus was not visible during the session.}
          \label{fig:calibaccuracy}
 \end{figure}
 
@@ -477,13 +532,38 @@ across scans the noise evolves consistently with the square root of the time of 
 The averaged observed sensitivity assuming 2 mm of water vapor 
 and at elevation of 60 degrees are 6 and 20 mJy.s$^{1/2}$ at 150 and 260 GHz, respectively. This corresponds to average mapping speed of 180 and 2000 arcmin$^2$/hr/mJy$^2$.
 
+\subsection{Summary of performances}
+We present in Table~\ref{sumperf} a summary of the main characteristic and performance of the NIKA2 instrument for one of the commissioning campaigns. From this table we conclude that NIKA2 behaves better than the initial specifications \cite{ltd16:2016} and approaches goal performance some cases.
+
+
+\begin{table*}
+\caption{Summary of the main instrumental characteristic and performance of the NIKA2 instrument. \label{sumperf}}
+\begin{tabular}{|c|c|c|c|}
+\hline
+                          & Array 1 & Array3  & Array 2 \\
+\hline
+\hline
+
+Central Frequency [GHz]   &         &         &         \\
+Bandwidth         [GHz]   &   &     &       \\
+Beam efficiency   [\% ]   & 55  49    & 53        &     75  70\\
+Nummber of detectors      &         &         &         \\
+                          &         &         &         \\ 
+FWHM [arcsec]             &   11.2 11.18 0.24     &  11.2 11.08 0.34     &   17.7 17.33  0.07      
+\\ 
+Calibration errors []    &&& \\
+Pointing errors    [arcsec]    & $<3$ && \\
+\hline
+\end{tabular}
+\end{table*}
 
 \section{Compact and extended sources mapping capabilities}
-During commissioning and the science verification phase we have observed several compact and extended sources in order to check the NIKA2 mapping capabilities. Here we just concentrate in few sources to illustrate the main advantages of NIKA2 with respect to previous experiments.
+During commissioning and the science verification phase we have observed several compact and extended sources 
+in order to check the NIKA2 mapping capabilities. Here we just concentrate in few sources to illustrate the main advantages of NIKA2 with respect to previous experiments.
 
 \subsection{Point and compact sources} 
 In Figure \ref{fig_compact_sources} we present maps of MWC349 (top) and the planet Pluto(bottom) at 150 (left) and 260 (righ) GHz.
-The contours represent the SNR, which reaches blablabla .
+The contours represent the SNR, which  blablabla .
 We observe MWC349 and Pluto at the center of the maps and an extra source in the edge of the map. We find for MWC349 a flux of XXX Jy.
 
 \begin{figure*}[h]

@@ -343,7 +343,7 @@ The first cryostat cooldown started immediately afterwards, and was achieved aft
 
 \section{Measurement principle}
 
-The NIKA2 integrations on a particular source are split into single observational blocks names "scans". In each scan, the source is moved across the field-of-view, typically by constant-elevation sweeps defined "sub-scans". A peculiar scan, in which the elevation of the antenna is moved between 20 and 65 degrees, is named "skydip". The skydip allows measuring the effective atmosphere temperature, as explained in par \ref{Atmospheric attenuation correction}.
+The NIKA2 integrations on a particular source are split into single observational blocks names "scans". In each scan, the source is moved across the field-of-view, typically by constant-elevation sweeps defined "sub-scans". A peculiar scan, in which the elevation of the antenna is moved by large amounts, is named "skydip". The skydip allows measuring the effective atmosphere temperature, as explained in par \ref{Atmospheric attenuation correction}.
 
 The photometry can be reconstructed down to the required precision thanks to three distinct procedures that are applied during sky observations. First, we have implemented a real-time electrical calibration acting directly on the KID and specific to NIKA and NIKA2 (par.~\ref{Internal detectors calibration}). Second, KID measurements are dynamically adapted to the sky background.
 Third, the atmosphere opacity correction is calculated in real time thanks to the large dynamics and linearity of the detectors (par.~\ref{Atmospheric attenuation correction}).
@@ -373,32 +373,28 @@ The tuning procedure requires real-line synchronization of the NIKA2 camera with
 
 \begin{figure}
 \includegraphics[scale=0.55]{./opacity_evol_run22.pdf}
-\caption{Atmospheric opacity as measured from the IRAM 225~GHz taumeter (cyan), and from the NIKA2 data at 150 (red) and 260 GHz (blue) during the February NIKA2 commissioning campaign. \label{fig:taumeas}}
+\caption{Atmospheric opacity as measured from the IRAM 225\,GHz taumeter (cyan), and from the NIKA2 data at 150 (red) and 260\,GHz (blue) during the February NIKA2 commissioning campaign. \label{fig:taumeas}}
 \end{figure}
 
-The sky maps are corrected for the atmospheric contribution rescaling the observed signal by what that would be obtained in the absence of atmosphere. The corrected brightness is:
+The sky maps have of course to be corrected for the atmospheric absorption. The corrected brightness $S^{corrected}$ is:
 
 \begin{equation}
-S^{Star} =  S^{Ground} \cdot e^{ x \tau_{scan}}.
+S^{corrected} =  S^{ground} \cdot e^{ x \cdot \tau_{scan}}
 \end{equation}
 
-Where $\tau_{scan}$ is the opacity of the atmosphere and $x$ corresponds to the airmass at the elevation of the considered map\footnote{The airmass is the volume of air defined by its temperature and water vapor content. By assuming a homogeneous plane-parallel atmosphere, the relation between the airmass and the elevation of the telescope becomes $x = sec(\delta)$, where $\delta$ is the average elevation.}.
-In NIKA2, the opacity is measured via the elevation scan technique (skydip). This procedure was successfully tested in the NIKA pathfinder producing a low-level dispersion of the derived opacity at different elevations. The details of this technique and its agreement with the Atmospheric Transmission at Microwaves (ATM) model \cite{2001IEEE....49.1683C} are described in \cite{Catalano2014}. Briefly, the underlying idea is to replace the opacity delivered by the resident IRAM tau-meter that performs elevation scans continuously at a fixed azimuth at 225~GHz, with a direct measurement that uses the NIKA2 instrument itself as a tau-meter. Using this procedure we can directly derive an opacity integrated in the NIKA2 bandpasses and at the same position of the source in the considered map. 
-During a skydip, the telescope performs ten elevation steps from 19 to 65 degrees. For each step we acquire about twenty seconds of useful signal. The relation between the resonance frequency of each pixel and the airmass is given by the following equation:
+Where $\tau_{scan}$ is the average opacity of the atmosphere during the observation, and $x$ represents the airmass\footnote{The airmass is the volume of air defined by its temperature and water vapor content. By assuming a homogeneous plane-parallel atmosphere, the relation between the airmass and the elevation of the telescope is $x = sec(\delta)$, where $\delta$ is the average elevation.} at the considered elevation.
+In NIKA2, the opacity is measured via the skydip (elevation scan) technique. This procedure was successfully tested in NIKA, and produces a low dispersion of the derived opacity at different elevations. The details of this technique and its agreement with the Atmospheric Transmission at Microwaves (ATM) model (\cite{2001IEEE....49.1683C}) are described in \cite{Catalano2014}. The underlying idea is to replace the opacity, usually delivered by the resident IRAM tau-meter that performs elevation scans at a fixed azimuth and is operating at 225\,GHz, by a measurement that uses the NIKA2 instrument itself as a tau-meter. Using this procedure we can directly derive an opacity integrated in the NIKA2 very bandpasses and at the same position of the source in the considered map. 
+During a skydip, the telescope performs ten elevation steps in the range $\delta = 19\div65\,deg$. For each step we acquire about twenty seconds of useful signal. The relation between the resonance frequency of each pixel and the airmass is given by the following equation:
 
 \begin{equation}\label{eq:skydip}
-S^{Ground}_{skydip} = C_0 + C_1 T_{atm}[1 - e^{- x \tau_{skydip}}].
+S^{ground}_{skydip} = C_0 + C_1 \cdot T_{atm}[1 - e^{- x \cdot \tau_{skydip}}]
 \end{equation}
 
-Where $F^{Ground}_{skydip}$ is the acquired signal which corresponds to the
-absolute value of the shift in the resonance frequency for each pixel, $C_0$ is the
-instrumental offset corresponding to the resonance frequency for the
-considered pixel at zero opacity, $C_1$ is the calibration conversion factor in
-$\mathrm{Hz/K}$, $T_{atm}$ is the equivalent temperature of the
-atmosphere, $\tau_{skydip}$ is the sky opacity during the skydip, and $x$ is the airmass.
+Where $S^{ground}_{skydip}$ is the acquired signal which corresponds to the
+absolute value of the shift in the resonance frequency for each pixel. $C_0$ is a constant equal to the resonance frequency for the considered pixel at zero opacity. $C_1$ is the calibration conversion factor in $\mathrm{Hz/K}$, with $T_{atm}$ the equivalent temperature of the
+atmosphere. $\tau_{skydip}$ is the sky opacity during the skydip scan, and $x$ is the airmass.
 
-A skydip shows that the value of $tau$ is common between pixels of the same channel as expected. Coefficients  $C_0$, $C_1$ depend on the response of the detectors. Since the non-linearities of the KID frequency signal are negligible in the considered range of backgrounds, the coefficients can be applied to all the observing campaign to recover the opacity of the considered scan. This is
-obtained by inverting Eq \ref{eq:skydip} on the considered map. In Fig \ref{fig:taumeas} we present the evolution of the opacities for several scans of the NIKA2 commissioning  in February-March 2017 compared to the IRAM tau-meter.
+We observe that the fitted values of $\tau_{skydip}$ are, as expected, common between pixels of the same array. The coefficients  $C_0$, $C_1$ depend on the response of the detectors. Since the non-linearities of the KID frequency signal are negligible in the considered range of backgrounds, the coefficients can be applied to all the observing campaign to recover the opacity of the considered scan. This is obtained by inverting eq. \ref{eq:skydip} on the considered map. In Fig. \ref{fig:taumeas} we present the evolution of the opacities for several scans of the NIKA2 commissioning run held in February-March 2017 compared to the IRAM tau-meter.
 
 %______________________________________________________________
 

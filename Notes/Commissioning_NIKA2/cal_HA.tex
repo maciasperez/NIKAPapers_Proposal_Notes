@@ -1,0 +1,434 @@
+%
+%%
+%%
+%%
+%% [intro]
+
+The calibration of the instrument NIKA2 in its final configuration
+of January 24th 2017  is studied in this section  in using the 
+ primary calibrators, Uranus and Neptune, and secondary calibrators ; the two largest asteroids Ceres and Vesta, and the three
+planetary nebulae NGC7027, CRL2688, and MWC349.
+
+% HA 
+\subsection{NIKA2 Photometric System}
+
+Given an incident flux radiance $S_{\nu}$ (in units of $W/m^{2}/Hz$ or $Jy$), a
+KID response is given by: 
+\begin{equation}
+R = k \int_{0}^{+\infty} S_{\nu}
+\frac{T_{\nu}}{\left(\frac{\nu}{\nu_{0}}\right)^{2}} \Omega_{\nu} d\nu
+\end{equation}
+
+Where $T_{\nu}$ is the bandpass as measured, with $\nu_{0}$ the
+reference frequency of the bandpass, and the factor
+$\left(\frac{\nu}{\nu_{0}}\right)^2$ correcting for the black body
+used for the measurement. $\Omega_{\nu}$ is the KID
+solid angle on the sky.  
+
+Similarly when observing its primary calibrator, the KID response is:
+\begin{equation}
+R_{p} = k S_{\nu_{0}} \int_{0}^{+\infty} f_{\nu}
+\frac{T_{\nu}}{\left(\frac{\nu}{\nu_{0}}\right)^{2}} \Omega_{\nu} d\nu
+\end{equation}
+
+The NIKA2 pipeline quotes flux densities
+
+
+\subsection{Reference flux densities of the calibrators}
+
+% HA text:
+For the flux densities of Neptune we use the ESA model Version 5 from
+available at
+\href{https://www.cosmos.esa.int/web/herschel/calibrator-models}. For
+Uranus, we use the ESA model Version 4 available from the same
+source. 
+Both models provide the planet brightness temperature in the
+Rayleigh-Jeans approximation as a function of
+the frequency. The resulting flux is therefore:
+\begin{equation}
+S_{\nu} = \Omega \times \frac{2 \nu^{2} k T_{RJ}}{c^2}
+\end{equation}
+where $\Omega$ is the solid angle of the planet on the sky. Following
+Bendo et al. (2013) and correcting their equation 12 we have:
+\begin{equation}
+\Omega = \pi \frac{r_{e} r_{p-a}}{D^{2}} 
+\end{equation}
+where $r_{e}$ is the equatorial radius of the planet and $r_{p-a}$ is
+its apparent polar radius, and $D$ the distance to the
+planet. $r_{p-a}$ can be computed from the sub-observer latitude $\phi$
+(e.g. the latitude of the observed as seen from the planet in the
+planet equatorial reference frame) and $r_{p}$ the polar radius of the
+planet as:
+\begin{equation}
+r_{p-a} = \sqrt{r_{p}^2 \cos^{2}\phi + r_{e}^2 \sin^{2} \phi}
+\end{equation}
+All quantities to compute the planet flux are obtained from the NASA
+Horizons web site \href{}. 
+
+For Mars, we use the model of Belloche \&  Amri (2006) available at
+\href{http://www.lesia.obspm.fr/perso/emmanuel-lellouch/mars/index.php},
+with default parameters.
+
+ 
+The model spectra are linarly interpolated in log space at the
+reference frequencies of the NIKA2 bandpasses.
+
+
+
+
+
+
+% JFL text
+The planets Uranus and Neptune are standard calibrators for many instruments,
+{\it e.g.} PACS and SPIRES aboard Herschel and SCUBA2 at JCMT.
+Their flux densities over a large spectrum from centimeter wavelengths to optical
+are provided by the model of Moreno et al (1998) with an accuracy better than
+5\% at millimeter wavelengths (Moreno, private communication).
+This model provides flux densities for reference angular sizes $3.5''$
+and $2.3''$ of Uranus and Neptune, respectively. They have been updated for run 9
+with planetary distances at the reference date of 24th february 2017 with 
+the JPL ephemerides \footnote{https://ssd.jpl.nasa.gov/horizons.cgi}.
+%They were computed at the central frequencies of the bandpasses of
+%the three arrays (255.21 GHz, 151.58 GHz, 257.92 GHz).
+They have been computed at the conventional frequencies 150GHz for array 2 and 260GHz for arrays 1 and 2.
+
+The asteroids Ceres and Vesta have been modeled by Muller et al (2014) in accounting for 
+size, shape, spin-properties, albedo, and thermal properties and in adjusting to PACS, SPIRE and HIFI observations
+of Herschel with an accuracy of 5\%. 
+Thomas Mueller has tabulated flux densities at different wavelengths, in particular at 1300$\mu$m, every five days
+until 2020 \footnote{http://www.iram.es/IRAMES/mainWiki/Continuum/Calibrators}.
+We have used the prediction at  1300$\mu$m made for  23rd february 2017
+and extrapolated it  to the central frequencies of the arrays in using a Rayleigh-Jeans
+spectrum expected for Ceres and Vesta. Their flux densities in
+Table~\ref{tab:fluxPred} are for this date. Over the five days of  run 9 (february 23 - 28), the
+flux densities  at 1300$\mu$m  have decreased by  3\% 
+for Ceres and  by 6\%  for Vesta in Muller's tables but we have not corrected for this effect in our analysis below.  
+
+The secondary calibrator MWC349A is a young Be star, part of a stellar binary system, surrounded by a disk. Its radio
+continuum emission originates in an ionized bipolar outflow (Tafoya et al 2004).
+MWC349 has been monitored with the  Plateau de Bure interferometer
+and shown to be only slightly angularly resolved, making it a point source for the 30-metre telescope. We have adopted
+its flux densities from this monitoring \footnote{http://www.iram.fr/IRAMFR/IS/IS2012/presentations/krips-fluxcalibration.pdf}.
+The secondary calibrator CRL2688 is an Asympotic Giant Branch star. Its radio continuum emission is mostly from circumstellar dust and
+is somewhat extended  (Knapp et al 1994).
+Its flux densities at $850\mu$m  and $450\mu$m  have been stable at the 5\% level as monitored by SCUBA2 (Dempsey et al 2013).
+We have extrapolated their flux densities to the central frequencies
+of the arrays with a power law of index $\alpha=-2.47$ derived from these SCUBA2 measurements.
+The secondary calibrator NGC7027 is a young, dusty, carbon rich Planetary Nebula with an ionized core.
+It is extended in the continuum and molecular lines (Bieging et al 1991) and  is not a point source for the telescope.
+Its  most recent flux densities are reported at $1100\mu$m  and $2000\mu$m by Hoare et al (1992). It has been reported
+to decrease by $\sim$ 0.145 percent/yr in the optically thin part of its spectrum above  $6$ GHz from VLA
+observations (Zijlstra, van Hoof \& Perley 2008, and Hafez et al, 2008) that makes these flux densities uncertain by 3.6\%
+at present. Its SED from cm wavelengths to optical is also presented in Hafez, Y.A. et al (2008).
+The flux densities adopted at the central frequencies of the arrays for these three calibrators are in Table~\ref{tab:flux_cal_sec}.
+
+
+\begin{table}
+\centering
+\begin{tabular}{|l|r|r|r|r|r|r|}
+\hline
+NR$^{a}$  & JD$^{b}$ & $\Delta t$ $^{c}$ & $S_{\nu}$(260 GHz)  $^{d}$& $S_{\nu}$(150  GHz)$^{e}$  & $\Delta S_{\nu}/  S_{\nu} ^{f}$  \\
+\hline
+         & d  &  d        & Jy               & Jy                 &                                                                    \%  \\
+\hline
+         &    &            & \multicolumn{3}{|c|}{Uranus}\\
+\hline
+13 & 2457330.5 &  12 & 45.59 & 17.65 & -0.89\\
+14 & 2457354.5 &  8 & 44.44 & 17.21 & -1.07\\
+15 & 2457409.5 &  20 & 40.62 & 15.73 & -3.22\\
+16 & 2457455.5 &  14 & 38.27 & 14.82 & -1.16\\
+18 & 2457660.0 &  25 & 46.06 & 17.83 & +1.25\\
+19 & 2457690.0 &  7 & 46.09 & 17.85 & -0.32\\
+20 & 2457732.0 &  7 & 44.14 & 17.09 & -1.04\\
+21 & 2457764.5 &  4 & 41.82 & 16.19 & -0.69\\
+22 & 2457809.0 &  7 & 39.08 & 15.13 & -0.83\\
+23 & 2457865.0 &  7 & 37.96 & 14.70 & +0.14\\
+\hline
+         &    &            & \multicolumn{3}{|c|}{Neptune}\\
+\hline
+13 & 2457330.5 &  12 & 17.09 & 7.18 & -1.26\\
+14 & 2457354.5 &  8 & 16.64 & 6.99 & -0.92\\
+15 & 2457409.5 &  20 & 15.76 & 6.62 & -1.35\\
+16 & 2457455.5 &  14 & 15.55 & 6.53 & +0.19\\
+18 & 2457660.0 &  25 & 17.65 & 7.41 & -1.30\\
+19 & 2457690.0 &  7 & 17.24 & 7.24 & -0.68\\
+20 & 2457732.0 &  7 & 16.46 & 6.91 & -0.79\\
+21 & 2457764.5 &  4 & 15.92 & 6.68 & -0.34\\
+22 & 2457809.0 &  7 & 15.56 & 6.53 & -0.08\\
+23 & 2457865.0 &  7 & 15.89 & 6.67 & +0.57\\
+\hline
+         &    &            & \multicolumn{3}{|c|}{Mars}\\
+\hline
+13 & 2457330.5 &  12 & 146.19 & 48.30 & +7.75\\
+14 & 2457354.5 &  8 & 175.88 & 58.14 & +8.70\\
+15 & 2457409.5 &  20 & 319.71 & 105.62 & +27.68\\
+16 & 2457455.5 &  14 & 666.46 & 218.49 & +30.37\\
+18 & 2457660.0 &  25 & 597.17 & 199.44 & -21.61\\
+19 & 2457690.0 &  7 & 439.23 & 146.24 & -4.82\\
+20 & 2457732.0 &  7 & 311.78 & 103.98 & -4.89\\
+21 & 2457764.5 &  4 & 239.37 & 79.54 & -2.12\\
+22 & 2457809.0 &  7 & 174.99 & 57.94 & -4.94\\
+23 & 2457865.0 &  7 & 123.61 & 40.61 & -5.44\\
+\hline
+\end{tabular}
+\caption{NIKA2 Planet fluxes. a: Nika Run, b: Julian Date when the
+  model are computed, c: Run duration, d, e: total fluxes at 260 and
+  150 GHz, f: varition of the 150 GHz flux density over the duration
+  of the run}
+\label{tab:fluxPred}
+\end{table}
+
+
+
+\subsection{Aperture photometry}
+
+The calibrators were observed frequently during runs 9 and 10. These observations were beammaps for Uranus and Neptune
+as well as  sequences of 4 consecutive
+otf maps ($8' \times 5'$) as done for Ceres Vesta, NGC7027, CRL2688, and MWC349. All observations were processed 
+to produce intensity maps for the three arrays with the pipeline  in
+using kidpar
+{\it kidpar-best3files-FXDC0C1-GaussPhot} for the array geometry,
+the method {\it COMMON-MODE-ONE-BLOCK}  to remove
+ low frequency noise including atmosphere,
+sky projection AZEL, line-of-sight opacities, an {\it a priori} mask of $100''$ and no iteration in mapping.
+Note that the gain variation with elevation from EMIR implemented in the pipeline has not been used. 
+In addition to the fact that they  have flux densities accurately known from models,
+Uranus and Neptune are significantly stronger than the other calibrators, and  are the best sources to caracterize the
+instrument and calibrate its flux density  scale.
+
+The total flux densities of all observations of Uranus and Neptune during runs 9 and 10 were
+measured directly with aperture photometry over a large radius of 150'' to reach saturation level
+
+These measurements are of high quality over a broad range of observing conditions
+($33^{\circ}<$ elevations $<58^{\circ}$, and   $0.16 < \tau_{1mm} < 0.50$.
+An illustration of our aperture photometry is given in Fig.~\ref{fig:PhAp}.
+
+We emphasize that prior to summation of all the pixels within the aperture, the intensity of each pixel must be estimated
+from its brightness  given in Jy/beam in the map provided by the
+pipeline (beam stands  for the total beam including beam and side lobes).
+The brightness of each pixel must be multiplied by
+$dx \times dx / \Omega_{true}$ where  $dx$ is the pixel size ($1''$ in our processing)
+and $\Omega_{true}$  is the solid angle of the total beam, traditionally called true.
+We have computed the solid angle of the true beam :
+
+$$ \Omega_{true} (r_{max}) = \int_0^{2\pi} \int_0^{r_{max}} B(r) 2 \pi r dr$$
+
+\noindent where $B(r)$ is the radial profile of the azimuthally averaged brigthness over narrow annuli,  $dr$ in width, and normalised so that B(0)=1.
+We have used  $r_{max}=250''$ allowed by the size of the maps observed. Only a small fraction of the incident power is
+left in side lobes beyond, see Greve et al (1998) and Kramer et al (2013).
+This integral is derived from the general expression ({\it e.g.} Adam, 2016, \S 8.1.1.2 of his PhD thesis) for a
+brightness distribution assumed azimuthally symmetric.  The excess
+of the true beam relative to the Gaussian beam is $\Omega_{true} / 2 \pi (\sigma_{Gauss})^2$, with  $\sigma_{Gauss}$ derived from
+the $FWHM$ of each observation. These excesses have been 
+estimated  for all observations of Uranus and Neptune in runs 9 and 10 and their histogram are shown
+in Fig.~\ref{hist:excesses} (first row of plots). The mean
+ratios of solid angles between the true and gaussian beams are
+$1.87\pm0.16$  and $1.35\pm0.08$ at 1mm and 2mm, respectively. We note these ratios are consistent with
+the beam efficiencies (ratio of powers between main beam  and   total beam)
+of $\sim 55$ \% at $\lambda=1$mm ($1/1.87 \times 100$) and $\sim 70$ \% at $\lambda=2$mm ($1/1.35 \times 100$)
+found  within the same extent  of $250''$.
+The solid angle of the true beam we have determined at each wavelength will be required to convert from
+Jy/beam to Jy/pixel or Jy/str. We provide their distribution and mean values in Figure ~\ref{fig:Omega_arcsec2}. 
+The solid angle of the total beam is found to be  $\propto \lambda^{\gamma}$ with $\gamma \sim 1$ determined with these mean values
+at 1mm and 2mm.  
+
+Finally, we stress again that the gain curve of EMIR, although implemented in the pipeline, was not used for the processing.
+We have determined $FWHM$ and $\Omega_{true}$  for each observation, and this
+models, at least in part, any change in beam shape with elevation which is usually accounted
+for with the gain curve of the telescope. We have further investigated
+the excesses $\Omega_{true} / 2 \pi (\sigma_{Gauss})^2$ found in plotting them versus elevation
+and attenuation ($exp(-\tau/sin(elev)$) in Fig.~\ref{hist:excesses}.
+Over the range covered by the observations between 33$^{\circ}$ and 58$^{\circ}$, there is no correlation
+of these ratios with elevation  but  with  attenuation ; these ratios are about 15\% larger at 1mm and 11\%
+at 2mm for small attenuation ($exp(-\tau/sin(elev) > 0.8$. This effect is under investigation. 
+
+\begin{figure}
+\begin{center}
+  \includegraphics[clip, angle=0, scale=0.4]{Figures/Uranus_s308.pdf}
+  \caption{Aperture photometry of Uranus observation 20170227s308  on array 1, 2 and 3 from left to right.
+    The photometric curve in red saturates at about the radial distance of  $150''$. (Green curve is the SNR in individual annulus}
+\label{fig:PhAp}
+\end{center}
+\end{figure}
+
+
+
+
+
+
+\subsection{Stability of the flux density scale with the primary calibrators Uranus and Neptune }
+
+The inter-run stability of the flux density scale
+can be characterised with  the photometry of Uranus and Neptune of run 9 (february 2017) and run 10 (april 2017).
+We show the ratios between the measured flux densities
+and their reference values at 150 and 260 GHz in Fig.~\ref{fig:U_N_ratio}.  
+The resulting mean ratios $\mu$
+are close to unity for the three arrays as expected since
+the planets were used to set the Jansky scale in average over all the observations early in the processing. It is noticeable
+that scatters around unity in Fig. \ref{fig:calibaccuracy}
+are about twice smaller in the first session conducted in significantly better weather than during the second session ;
+precisely, stabilities for the first session
+are 3.6\%, 2.5\% and 2.9\% for arrays 1, 2, 3, respectively, with opacity $\tau_{1mm}$ between 0.05 and 0.3,
+and, correspondingly, for the second session, are  5.3\%, 6.7\% and 8.6\%  with  $\tau_{1mm}$ between 0.25 and 0.6.
+It is thought, at the moment, that limitations in stability are caused by residual atmospheric fluctuations
+in the astronomical signal and uncertainty in opacity corrections.
+
+Nonetheless, the flux density scale of NIKA2 is found to be highly stable and comparable to the level achieved
+by other modern instruments, e.g. SCUBA2 (Dempsey, 2013).
+The other limitation of the scale is absolute calibration that depends on the
+accuracy of the Moreno's model which is estimated to be 5\% in the millimeter wavelength range. Hence, in combining
+both limitations,
+the total uncertainty of calibration with NIKA2 is $10\%$ in mediocre atmospheric condition and better than $6\%$
+in fair condition.
+
+We have plotted the flux density ratios versus elevation, opacity and attenuation in  Fig.\ref{fig:ratio_vs_att} for Uranus and
+Neptune. No correlation is apparent. We stress that no gain curve was applied in processing the data but
+the solid angle of the total beam (true beam) was determined for each observation. This models any changes
+in the beam caused by telescope surface deformation and atmospheric conditions.
+
+
+Finally, correlations between flux density ratios of the three arrays are shown in Fig.~\ref{fig:U_N_corr}, separately
+for runs 9 and  10. Highest correlations are found between arrays 1 and 3.
+
+
+\begin{figure}
+\begin{center}
+  \includegraphics[clip,angle=-90, scale=0.6]{Figures/TG_hist_runs_9_10.pdf}
+  \caption{Solid angle excesses between the true and  gaussian beams for all
+   observations of Uranus and Neptune during runs 9 and 10.}
+\label{hist:excesses}
+\end{center}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+  \includegraphics[clip,angle=0, scale=0.5]{Figures/Omega_arcsec2.png}
+  \caption{Solid angles of the  true  beams for the three arrays determined
+    with Uranus and Neptune during runs 9 and 10. $<\Omega_{1,2,3}>$ in plots are mean values.}
+\label{fig:Omega_arcsec2}
+\end{center}
+\end{figure}
+
+
+
+
+\begin{figure}
+\begin{center}
+  \includegraphics[clip, angle=-90, scale=0.6]{Figures/Ura_Nept_r9_10.pdf}
+  \caption{Stability of the flux density scale with the primary calibrators Uranus (red) and Neptune (blue) :
+    ratios between their measured and reference flux densities during run 9 and 10.
+    Mean ratio $\mu$ and scatter are provided for each array.
+    Observation numbers are time ordered : 1 to 10 are 23-28 february 2017 and 11 to 18 are 19-25 april 2017.
+    Neptune was hardly visible at the telescope during run 9, and Uranus was not visible during run 10.
+    Observations are beammaps (22 minutes) or sequence of 4 consecutive 4 minute long otfs (16 miunutes) that are
+    comparable in integration times.}
+\label{fig:U_N_ratio}
+\end{center}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+  \includegraphics[clip, angle=-90, scale=0.6]{Figures/Ura_Nep_ratio_vs_elev_tau_attenuation_r9_r10.pdf}
+  \caption{Flux density ratios versus elevation, opacity, and attenuation ($exp(-\tau/sin(elev)$) for Uranus and Neptune.
+    No correlation is apparent with attenuation.}
+\label{fig:ratio_vs_att}
+\end{center}
+\end{figure}
+
+
+\begin{figure}
+%\begin{center}                                                                                                                                               
+  \includegraphics[clip, angle=0, scale=0.55]{Figures/Corr_r9.png}
+  \includegraphics[clip, angle=0, scale=0.55]{Figures/Corr_r10.png}  
+  \caption{Correlation plots for the flux density ratios between  the three arrays
+    shown separately for run 9 (fair atmospheric condition) and run 10 (mediocre condition).
+    Correlation coefficients $\rho$ are given.}
+\label{fig:U_N_corr}
+%\end{center}                                                                                                                                                 
+\end{figure}
+
+\subsection{Stability of the flux density scale with three secondary calibrators }
+
+\begin{table}
+\centering
+\label{tab:fluxPred}
+\caption[]{Reference flux densities of calibrators.}
+\begin{tabular}{|l|c|c|c|}
+\hline
+\multicolumn{1}{|c}{}  & \multicolumn{2}{|c|}{flux  densities (Jy)}  \\
+\hline
+         &    A1 \& A3  &  A2     \\
+         &  260GHz    & 150GHz   \\
+\hline
+MWC349   &   2.03    &  1.49    \\
+NGC7027  &   3.61   &  4.42   \\
+CRL2688  &   3.03   &  0.83  \\
+\hline
+\end{tabular}
+\label{tab:flux_cal_sec}
+\end{table}
+
+We have extended this  analysis to all the secondary calibrators NGC7027, MWC349, CRL2688
+observed during run 9. As for the planets, the observations were processed with the pipeline including line-of-sight opacity.
+Aperture photometry was carried out and the solid angle $\Omega_{true}$  estimated from each map.
+Four observations of secondary calibrators were discarded because
+aperture photometry failed to converge. The remaining 34 observations  provided flux densities on the three
+arrays that were compared to their reference flux densities given in Table~\ref{tab:flux_cal_sec}.
+Their  ratios  were plotted in Fig.~\ref{fig:ratio_cal_sec} in time order.
+All measured flux densities of CRL2688 were too low  at 1mm and 2mm, and its reference flux densities in Table \ref{tab:flux_cal_sec}  had to be decreased
+by 10\% at 1mm and 25\%  at 2mm to yield the ratios shown in the Figure. 
+All measured flux densities of NGC7027 at 1mm were also too low and its reference flux density had to be decreased by 15\% at 1mm.
+All measured flux densities of MWC349 were too high  at 1mm and its reference flux density had to be increased by 5\% at 1mm.
+
+Overall, scatters in the flux density scales of the three arrays with secondary calibrators
+are larger than with the stronger planets Uranus and Neptune. They are
+14\% for array A1, 7\% for array A2, and 18\% for array A3, during run 9. It is thought that in our treatment with
+aperture photometry the solid angle $\Omega_{true}$
+estimated from each map is more uncertain because secondary calibrators are fainter than the planets.
+
+We have plotted the flux density ratios versus elevation, opacity and attenuation in  Fig.\ref{fig:corr_cal_sec} for three
+secondary calibrator.
+A slight correlation with attenuation may be apparent ; flux densities tend to be  10-15\% higher for low attenuation $> 0.8$,
+unlike for Uranus and Neptune. It is under investigation.
+
+Color-correction have not been done yet for the secondary calibrators with their spectral indices $\alpha$ different from $\alpha=1.6$ for
+the primary calibrators Uranus and Neptune.
+
+
+\begin{figure}
+\begin{center}
+  \includegraphics[clip, angle=-90, scale=0.6]{Figures/Flux_vs_index_r9_cal_sec.pdf}
+  \caption{Stability of the flux density scale with the secondary calibrators  MWC349 (brown), NGC7027 (purple)  and CRL2688 (green) :
+    ratios between their measured and reference flux densities during run 9. Mean ratio $\mu$ and scatter are provided for each array.
+    Scan numbers are time ordered. Each observation is a sequence of 4 consecutive 4 minute long otfs (total integration is 16 minutes).}
+\label{fig:ratio_cal_sec}
+\end{center}
+\end{figure}
+
+
+\begin{figure}
+\begin{center}
+  \includegraphics[clip, angle=-90, scale=0.6]{Figures/Ratio_vs_elev_tau_attenuation_r9_cal_sec.pdf}
+  \caption{Flux density ratios versus elevation, opacity, and attenuation ($exp(-\tau/sin(elev)$) for the three secondary
+    calibrators. A slight correlation 
+     with attenuation may be apparent ; flux densities tend to be  10-15\% higher for low attenuation $> 0.8$.}
+\label{fig:corr_cal_sec}
+\end{center}
+\end{figure}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

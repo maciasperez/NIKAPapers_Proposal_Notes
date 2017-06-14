@@ -16,13 +16,15 @@ The planets Uranus and Neptune are standard calibrators for many instruments,
 {\it e.g.} PACS and SPIRES aboard Herschel and SCUBA2 at JCMT.
 Their flux densities over a large spectrum from centimeter wavelengths to optical
 are provided by the model of Moreno et al (1998) with an accuracy better than
-5\% at millimeter wavelengths (Moreno, private communication). This model provides
-flux densities for reference angular sizes $3.5''$
-and $2.3''$ of Uranus and Neptune, respectively. They have been updated for run 9
+5\% at millimeter wavelengths (Moreno, private communication).
+%This model provides flux densities for reference angular sizes $3.5''$
+%and $2.3''$ of Uranus and Neptune, respectively.
+They have been updated for runs 9 and 10
 with planetary distances at the reference date of 24th february 2017 with 
 the JPL ephemerides \footnote{https://ssd.jpl.nasa.gov/horizons.cgi}.
-They were computed at the central frequencies of the bandpasses of
-the three arrays (255.21 GHz, 151.58 GHz, 257.92 GHz).
+%They were computed at the central frequencies of the bandpasses of
+%the three arrays (255.21 GHz, 151.58 GHz, 257.92 GHz).}
+
 
 The asteroids Ceres and Vesta have been modeled by Muller et al (2014) in accounting for 
 size, shape, spin-properties, albedo, and thermal properties and in adjusting to PACS, SPIRE and HIFI observations
@@ -58,10 +60,10 @@ The flux densities adopted at the central frequencies of the arrays for these th
 \begin{table}
 \centering
 \label{tab:fluxPred}
-\caption[]{Reference flux densities of calibrators at central frequencies of arrays.}
+\caption[]{OBSOLETE : Reference flux densities of calibrators at central frequencies of arrays.}
 \begin{tabular}{|l|c|c|c|}
 \hline
-\multicolumn{1}{|c}{}  & \multicolumn{3}{|c|}{flux densities (Jy)}  \\
+\multicolumn{1}{|c}{}  & \multicolumn{3}{|c|}{flux  densities (Jy)}  \\
 \hline
          &    A1      &  A2   &   A3    \\
          &  255GHz    & 152GHz  &  258GHz \\
@@ -77,7 +79,6 @@ CRL2688  &   3.03   &  0.83 &   3.03  \\
 \end{tabular}
 %\label{tab:fluxPred}
 \end{table}
-
 
 \subsection{Aperture photometry}
 
@@ -95,13 +96,16 @@ In addition to the fact that they  have flux densities accurately known from mod
 Uranus and Neptune are significantly stronger than the other calibrators, and  are the best sources to caracterize the
 instrument and calibrate its flux density  scale.
 
-The total flux densities of all twenty eight observations of Uranus and Neptune during run 9 were
-measured directly with aperture photometry over a large radius of 150'' to reach saturation level in including the most significant part of the
-error beam of the telescope. These flux densities from all twenty eight individual observations are in Table~\ref{tab:fluxAp} ; each observation
-is either a 4 minute long  otf $8' \times 5'$ in size (o) or  a 20 minute long beammap (b). These measurements are of high quality
-over a broad range of observing conditions
-($33^{\circ}<$ elevations $<58^{\circ}$, and   $0.16 < \tau_{1mm} < 0.50$, see details in  Table~\ref{tab:fluxAp}). An illustration of
-our aperture photometry is given in Fig.~\ref{fig:PhAp}.
+The total flux densities of  Uranus and Neptune during runs 9  and 10 were
+measured directly with aperture photometry over a large radius of 150''
+to reach saturation level in including the most significant part of the
+error beam of the telescope.
+%These flux densities from all twenty eight individual observations are in Table~\ref{tab:fluxAp} ; each observation
+%is either a 4 minute long  otf $8' \times 5'$ in size (o) or  a 20 minute long beammap (b).
+These measurements are of high quality over a broad range of observing conditions
+($33^{\circ}<$ elevations $<58^{\circ}$, and   $0.16 < \tau_{1mm} < 0.50$
+%, see details in  Table~\ref{tab:fluxAp}).
+An illustration of our aperture photometry is given in Fig.~\ref{fig:PhAp}.
 
 We emphasize that prior to summation of all the pixels within the aperture, the intensity of each pixel must be estimated
 from its brightness  given in Jy/beam in the map provided by the
@@ -118,18 +122,17 @@ brightness distribution assumed azimuthally symmetric.  The excess
 of the true beam relative to the Gaussian beam is $\Omega_{true} / 2 \pi (\sigma_{Gauss})^2$, with  $\sigma_{Gauss}$ derived from
 the $FWHM$ of each observation. These excesses have been 
 estimated  for all 28 observations of Uranus and Neptune in run 9 and are shown in Fig.~\ref{hist:excesses}.
-
-%Their means and rms :  
-%???  $1.72 \pm 0.12 $, $ 1.33 \pm 0.04$, and $1.68\pm 0.13$  SHOULD BE 1.5 - 1.6 at 1mm ???   for arrays A1, A2 and A3, respectively. 
-%These excesses were 1.34 and 1.28 at 1mm and 2mm, respectively, for NIKA (Adam 2016).
-%These excesses reflect the fraction of the
-%source power that goes into the side lobes of the telescope.
+Their means and rms   are $1.90 \pm 0.16 $, $ 1.40 \pm 0.06$, and $1.84\pm 0.17$ for arrays A1, A2 and A3, respectively. 
+These excesses reflect the source power that goes into the side lobes of the telescope.
 
 The determination of $FWHM$ and $\Omega_{true}$  for each observation
-makes the resulting photometry relative.
+have modelled any change in beam shape with elevation as usually accounted for the gain curve (e.g. EMIR).
 
 
-\subsection{Relative photometry of Uranus and Neptune}
+
+
+
+\subsection {Stability of the flux density scale with  Uranus and Neptune}
 
 To caracterize our relative photometry of Uranus and Neptune, we show in Fig.~\ref{fig:U_N_ratio} the ratio between these measured flux densities
 and their reference values given in Table~\label{tab:fluxPred}.
@@ -144,63 +147,61 @@ We recall that the gain curve of EMIR implemented in the pipeline was not used f
 that the lack of correlation with elevation is due to
 the limited range of elevations  between 33$^{\circ}$ and 58$^{\circ}$ covered by these observations.
 
-Finally, in Fig.~\ref{fig:U_N_corr},  we find that the flux density
-variations are correlated between the three arrays.
+Finally, in Fig.~\ref{fig:U_N_corr},  we find that the flux density variations are correlated between the three arrays.
 
-\begin{table}
-%\centering
-\label{tab:fluxAp}
-\caption[]{Measured flux densities of primary calibrators.}
-\begin{tabular}{|l|l|r|c|c|c|c|c|c|}
-\hline
-\multicolumn{1}{|c}{} & \multicolumn{1}{|c}{observation} & \multicolumn{1}{|c}{}  & \multicolumn{1}{|c}{elev. } &  \multicolumn{1}{|c}{$\tau_{1mm} $}  &  \multicolumn{1}{|c}{$\tau_{2mm} $ } & \multicolumn{3}{|c|}{flux densities (Jy)}  \\
-\hline
-          &              &         &  ($^{\circ}$)   &      &      &              A1              &                         A2   &                       A3    \\
-\hline
- Uranus   & 20170223s46  & b  & 37.9 & 0.48 & 0.31 & $     35.74 \pm        1.18$  & $     16.78 \pm        0.27$ & $     37.80 \pm       0.97$  \\
- Neptune  & 20170224s177 & b   & 39.2 & 0.50 & 0.34 & $     16.05 \pm        0.93$  & $      7.41 \pm        0.17$ & $     17.20 \pm       0.78$  \\
- Uranus   & 20170225s222 & b   & 35.9 & 0.28 & 0.18 & $     38.34 \pm        0.74$  & $     16.69 \pm        0.23$ & $     39.02 \pm       0.63$  \\
- Uranus   & 20170225s266 & o   & 57.1 & 0.28 & 0.18 & $     36.44 \pm        1.17$  & $     16.08 \pm        0.34$ & $     37.57 \pm       0.96$  \\
- Uranus   & 20170225s267 & o &  57.5 & 0.28 & 0.19 & $     40.98 \pm        1.23$  & $     16.94 \pm        0.34$ & $     42.14 \pm       1.04$  \\
- Uranus   & 20170225s268 & o &  57.9 & 0.28 & 0.18 & $     38.47 \pm        1.20$  & $     17.16 \pm        0.45$ & $     39.85 \pm       1.03$  \\
- Uranus   & 20170225s269 & o &  58.2 & 0.28 & 0.19 & $     37.54 \pm        1.22$  & $     16.83 \pm        0.39$ & $     41.45 \pm       1.10$  \\
- Uranus   & 20170227s304 & o &  58.8 & 0.14 & 0.12 & $     38.33 \pm        0.93$  & $     16.66 \pm        0.33$ & $     39.85 \pm       0.82$  \\
- Uranus   & 20170227s305 & o &  58.5 & 0.15 & 0.12 & $     36.23 \pm        0.89$  & $     15.97 \pm        0.32$ & $     38.48 \pm       0.78$  \\
- Uranus   & 20170227s306 & o &  58.1 & 0.16 & 0.13 & $     35.69 \pm        0.92$  & $     15.89 \pm        0.38$ & $     36.63 \pm       0.79$  \\
- Uranus   & 20170227s307 & o & 57.7 & 0.16 & 0.13 & $     36.64 \pm        0.96$  & $     16.13 \pm        0.35$ & $     36.56 \pm       0.86$  \\
- Uranus   & 20170227s308 & b & 56.1 & 0.17 & 0.14 & $     36.88 \pm        0.61$  & $     16.35 \pm        0.24$ & $     38.55 \pm       0.52$  \\
- Uranus   & 20170227s315 & o & 53.0 & 0.18 & 0.14 & $     39.36 \pm        0.99$  & $     16.89 \pm        0.32$ & $     39.47 \pm       0.88$  \\
- Uranus   & 20170227s316 & o & 52.4 & 0.19 & 0.14 & $     37.25 \pm        1.03$  & $     16.82 \pm        0.32$ & $     39.87 \pm       0.90$  \\
- Uranus   & 20170227s317 & o & 51.9 & 0.19 & 0.14 & $     39.47 \pm        1.14$  & $     16.70 \pm        0.34$ & $     40.03 \pm       0.99$  \\
- Uranus   & 20170227s318 & o & 51.3 & 0.19 & 0.15 & $     36.49 \pm        1.06$  & $     16.58 \pm        0.32$ & $     39.27 \pm       0.92$  \\
- Uranus   & 20170227s321 & o & 48.5 & 0.19 & 0.15 & $     36.05 \pm        1.09$  & $     16.64 \pm        0.35$ & $     38.75 \pm       1.00$  \\
- Uranus   & 20170227s322 & o & 47.9 & 0.20 & 0.15 & $     35.11 \pm        1.04$  & $     16.30 \pm        0.33$ & $     37.42 \pm       0.93$  \\
- Uranus   & 20170227s323 & o & 47.2 & 0.19 & 0.14 & $     35.90 \pm        1.08$  & $     16.02 \pm        0.34$ & $     37.93 \pm       1.02$  \\
- Uranus   & 20170227s324 & o & 46.6 & 0.18 & 0.14 & $     35.05 \pm        1.04$  & $     16.05 \pm        0.32$ & $     36.96 \pm       0.93$  \\
- Uranus   & 20170227s352 & o & 39.0 & 0.24 & 0.18 & $     38.91 \pm        1.35$  & $     17.18 \pm        0.37$ & $     40.20 \pm       1.12$  \\
- Uranus   & 20170227s353 & o & 38.3 & 0.24 & 0.18 & $     38.21 \pm        1.27$  & $     16.99 \pm        0.38$ & $     39.32 \pm       1.06$  \\
- Uranus   & 20170227s354 & o & 37.6 & 0.23 & 0.17 & $     38.90 \pm        1.35$  & $     17.25 \pm        0.41$ & $     39.45 \pm       1.10$  \\
- Uranus   & 20170227s355 & o & 36.9 & 0.23 & 0.17 & $     38.49 \pm        1.36$  & $     16.66 \pm        0.33$ & $     38.80 \pm       1.11$  \\
- Uranus   & 20170227s356 & o & 36.1 & 0.23 & 0.17 & $     36.09 \pm        1.35$  & $     17.13 \pm        0.36$ & $     37.73 \pm       1.14$  \\
- Uranus   & 20170227s357 & o & 35.4 & 0.23 & 0.17 & $     37.17 \pm        1.36$  & $     16.66 \pm        0.38$ & $     37.29 \pm       1.13$  \\
- Uranus   & 20170227s358 & o & 34.6 & 0.23 & 0.17 & $     36.70 \pm        1.30$  & $     16.69 \pm        0.41$ & $     38.33 \pm       1.15$  \\
- Uranus   & 20170227s359 & o & 33.9 & 0.22 & 0.17 & $     35.43 \pm        1.21$  & $     16.60 \pm        0.42$ & $     36.60 \pm       1.04$  \\
-\hline
-\end{tabular}
-%\begin{tablenotes}
-b : beammap \filbreak
-o : 4 $\times$ otf
+%\begin{table}
+%%\centering
+%\label{tab:fluxAp}
+%\caption[]{OBSOLETE (NON CONVENTIONAL FREQUENCY) : Measured flux densities of primary calibrators.}
+%\begin{tabular}{|l|l|r|c|c|c|c|c|c|}
+%\hline
+%\multicolumn{1}{|c}{} & \multicolumn{1}{|c}{observation} & \multicolumn{1}{|c}{}  & \multicolumn{1}{|c}{elev. } &  \multicolumn{1}{|c}{$\tau_{1mm} $}  &  \multicolumn{1}{|c}{$\tau_{2mm} $ } & \multicolumn{3}{|c|}{flux densities (Jy)}  \\
+%\hline
+%          &              &         &  ($^{\circ}$)   &      &      &              A1              &                         A2   &          %             A3    \\
+%\hline
+% Uranus   & 20170223s46  & b  & 37.9 & 0.48 & 0.31 & $     35.74 \pm        1.18$  & $     16.78 \pm        0.27$ & $     37.80 \pm       0.%97$  \\
+% Neptune  & 20170224s177 & b   & 39.2 & 0.50 & 0.34 & $     16.05 \pm        0.93$  & $      7.41 \pm        0.17$ & $     17.20 \pm       0%.78$  \\
+% Uranus   & 20170225s222 & b   & 35.9 & 0.28 & 0.18 & $     38.34 \pm        0.74$  & $     16.69 \pm        0.23$ & $     39.02 \pm       0%.63$  \\
+% Uranus   & 20170225s266 & o   & 57.1 & 0.28 & 0.18 & $     36.44 \pm        1.17$  & $     16.08 \pm        0.34$ & $     37.57 \pm       0%.96$  \\
+%% Uranus   & 20170225s267 & o &  57.5 & 0.28 & 0.19 & $     40.98 \pm        1.23$  & $     16.94 \pm        0.34$ & $     42.14 \pm       1.04$  \\
+% Uranus   & 20170225s268 & o &  57.9 & 0.28 & 0.18 & $     38.47 \pm        1.20$  & $     17.16 \pm        0.45$ & $     39.85 \pm       1.03$  \\
+% Uranus   & 20170225s269 & o &  58.2 & 0.28 & 0.19 & $     37.54 \pm        1.22$  & $     16.83 \pm        0.39$ & $     41.45 \pm       1.10$  \\
+% Uranus   & 20170227s304 & o &  58.8 & 0.14 & 0.12 & $     38.33 \pm        0.93$  & $     16.66 \pm        0.33$ & $     39.85 \pm       0.82$  \\
+% Uranus   & 20170227s305 & o &  58.5 & 0.15 & 0.12 & $     36.23 \pm        0.89$  & $     15.97 \pm        0.32$ & $     38.48 \pm       0.78$  \\
+% Uranus   & 20170227s306 & o &  58.1 & 0.16 & 0.13 & $     35.69 \pm        0.92$  & $     15.89 \pm        0.38$ & $     36.63 \pm       0.79$  \\
+% Uranus   & 20170227s307 & o & 57.7 & 0.16 & 0.13 & $     36.64 \pm        0.96$  & $     16.13 \pm        0.35$ & $     36.56 \pm       0.86$  \\
+% Uranus   & 20170227s308 & b & 56.1 & 0.17 & 0.14 & $     36.88 \pm        0.61$  & $     16.35 \pm        0.24$ & $     38.55 \pm       0.52$  \\
+% Uranus   & 20170227s315 & o & 53.0 & 0.18 & 0.14 & $     39.36 \pm        0.99$  & $     16.89 \pm        0.32$ & $     39.47 \pm       0.88$  \\
+% Uranus   & 20170227s316 & o & 52.4 & 0.19 & 0.14 & $     37.25 \pm        1.03$  & $     16.82 \pm        0.32$ & $     39.87 \pm       0.90$  \\
+% Uranus   & 20170227s317 & o & 51.9 & 0.19 & 0.14 & $     39.47 \pm        1.14$  & $     16.70 \pm        0.34$ & $     40.03 \pm       0.99$  \\
+% Uranus   & 20170227s318 & o & 51.3 & 0.19 & 0.15 & $     36.49 \pm        1.06$  & $     16.58 \pm        0.32$ & $     39.27 \pm       0.92$  \\
+% Uranus   & 20170227s321 & o & 48.5 & 0.19 & 0.15 & $     36.05 \pm        1.09$  & $     16.64 \pm        0.35$ & $     38.75 \pm       1.00$  \\
+% Uranus   & 20170227s322 & o & 47.9 & 0.20 & 0.15 & $     35.11 \pm        1.04$  & $     16.30 \pm        0.33$ & $     37.42 \pm       0.93$  \\
+% Uranus   & 20170227s323 & o & 47.2 & 0.19 & 0.14 & $     35.90 \pm        1.08$  & $     16.02 \pm        0.34$ & $     37.93 \pm       1.02$  \\
+% Uranus   & 20170227s324 & o & 46.6 & 0.18 & 0.14 & $     35.05 \pm        1.04$  & $     16.05 \pm        0.32$ & $     36.96 \pm       0.93$  \\
+% Uranus   & 20170227s352 & o & 39.0 & 0.24 & 0.18 & $     38.91 \pm        1.35$  & $     17.18 \pm        0.37$ & $     40.20 \pm       1.12$  \\
+% Uranus   & 20170227s353 & o & 38.3 & 0.24 & 0.18 & $     38.21 \pm        1.27$  & $     16.99 \pm        0.38$ & $     39.32 \pm       1.06$  \\
+% Uranus   & 20170227s354 & o & 37.6 & 0.23 & 0.17 & $     38.90 \pm        1.35$  & $     17.25 \pm        0.41$ & $     39.45 \pm       1.10$  \\
+% Uranus   & 20170227s355 & o & 36.9 & 0.23 & 0.17 & $     38.49 \pm        1.36$  & $     16.66 \pm        0.33$ & $     38.80 \pm       1.11$  \\
+% Uranus   & 20170227s356 & o & 36.1 & 0.23 & 0.17 & $     36.09 \pm        1.35$  & $     17.13 \pm        0.36$ & $     37.73 \pm       1.14$  \\
+% Uranus   & 20170227s357 & o & 35.4 & 0.23 & 0.17 & $     37.17 \pm        1.36$  & $     16.66 \pm        0.38$ & $     37.29 \pm       1.13$  \\
+% Uranus   & 20170227s358 & o & 34.6 & 0.23 & 0.17 & $     36.70 \pm        1.30$  & $     16.69 \pm        0.41$ & $     38.33 \pm       1.15$  \\
+% Uranus   & 20170227s359 & o & 33.9 & 0.22 & 0.17 & $     35.43 \pm        1.21$  & $     16.60 \pm        0.42$ & $     36.60 \pm       1.04$  \\
+%\hline
+%\end{tabular}
+%%\begin{tablenotes}
+%b : beammap \filbreak
+%o : 4 $\times$ otf
 %\end{tablenotes}
 %\label{tab:fluxAp}
-\end{table}
+%\end{table}
 
 \begin{figure}
 \begin{center}
   \includegraphics[clip, angle=0, scale=0.4]{Figures/Uranus_s308.pdf}
   \caption{Aperture photometry of Uranus observation 20170227s308  on array 1, 2 and 3 from top to bottom.
-    The photometric curve in red saturates at about the radial distance of $150''$ from the
-    source brightness center with a precision of a small fraction of Jy. (Green curve is the SNR in individual annulus but can be ignored for this
-  presentation; GREEN CURVE WILL BE DELETED FOR VERSION DRAFT, IF FIGURE STAYS)}
+    The photometric curve in red saturates at about the radial distance of $150''$.
+    (Green curve is the SNR in individual annulus)}
 \label{fig:PhAp}
 \end{center}
 \end{figure}
@@ -209,7 +210,7 @@ o : 4 $\times$ otf
 \begin{center}
   \includegraphics[clip, angle=-90, scale=0.6]{Figures/TG_hist_Ura_Nep_run9_28scan.pdf}
   \caption{Histogram of the excesses in solid angle between the true beam and the Gaussian beam for all
-   observations of Uranus and Neptune during run 9.}
+   observations of Uranus and Neptune during runs 9 and 10.}
 \label{hist:excesses}
 \end{center}
 \end{figure}
@@ -217,8 +218,8 @@ o : 4 $\times$ otf
 \begin{figure}
 \begin{center}
   \includegraphics[clip, angle=-90, scale=0.6]{Figures/Ura_Nep_ratio_index_elev_airmass.pdf}
-  \caption{Ratios between measured and reference flux densities for all observations of Uranus and Neptune during run 9.
-    Red is for Uranus and Green is for Neptune.  (DATA FILE : cal-single-obs-AZEL.dat)}
+  \caption{Ratios between measured and reference flux densities for all observations of Uranus and Neptune during runs 9 and 10.
+    Red is for Uranus and blue is for Neptune.  (DATA FILE : cal-single-obs-AZEL.dat)}
 \label{fig:U_N_ratio}
 \end{center}
 \end{figure}

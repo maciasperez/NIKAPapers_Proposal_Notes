@@ -74,21 +74,21 @@ power to ADU.
 By virtue of the conservation of specific intensity in a telescope,
 equation~\ref{eq:basicphot} can be rewritten as:
 \begin{equation}
-R(\theta, \phi, \sec z, mm_{H_{2}O}) = G_{k} A_{pupil}\Omega_{s}\int_{0}^{+\infty} I(\nu)
+R(\theta, \phi, \sec z, mm_{H_{2}O}) = G_{k} A_{p}\Omega_{s}\int_{0}^{+\infty} I(\nu)
 \frac{T'(\nu)}{\left(\frac{\nu}{\nu_{0}}\right)^{2}} e^{\left(-\sec z
-  . \tau(\nu,  mm_{H_{2}O})\right)} \Omega_{beam} (\theta, \phi, \nu)  d\nu 
+  . \tau(\nu,  mm_{H_{2}O})\right)} \Omega_{b} (\theta, \phi, \nu)  d\nu 
 \label{eq:basicphot2}
 \end{equation}
 where:
 \begin{itemize}
-\item $A_{pupil}$ is the area of the entrance pupil ({\it i.e.} the
+\item $A_{p}$ is the area of the entrance pupil ({\it i.e.} the
   dish collecting area).
 \item $\Omega_{s}$ is the solid angle of the source seen from the
   entrance pupil.
-\item $\Omega_{beam}(\theta, \phi, \nu)$ is the fraction of source signal
-  illuminating the KID. It has no units and it is thus normalized so that:
+\item $\Omega_{b}(\theta, \phi, \nu)$ is the fraction of source signal
+  illuminating the KID. It is thus normalized so that:
 \begin{equation}
-\int\int_{4\pi} \Omega_{beam}(\theta, \phi, \nu) \sin \theta d\theta
+\int\int_{4\pi} \Omega_{b}(\theta, \phi, \nu) \sin \theta d\theta
 d\phi = 1 
 \label{eq:omegabdef}
 \end{equation}
@@ -160,10 +160,10 @@ effective zenith opacity $\tau_{eff}$
 used. 
 Equation~\ref{eq:basicphot2} becomes under this assumption: 
 \begin{equation}
-R(\theta, \phi, \sec z, mm_{H_{2}O}) \simeq G_{k}  A_{pupil}\Omega_{s} e^{\left(-\sec z
+R(\theta, \phi, \sec z, mm_{H_{2}O}) \simeq G_{k}  A_{p}\Omega_{s} e^{\left(-\sec z
   . \tau_{eff}(mm_{H_{2}O})\right)} \int_{0}^{+\infty} I(\nu)
 \frac{T'(\nu)}{\left(\frac{\nu}{\nu_{0}}\right)^{2}} T_{atm}(\nu)
-\Omega_{beam} (\theta, \phi, \nu) d\nu 
+\Omega_{b} (\theta, \phi, \nu) d\nu 
 \label{eq:basicphot3}
 \end{equation}
 where $T_{atm}(\nu)$ is the transmission of the atmosphere at zenith,
@@ -172,22 +172,22 @@ plot figure~\ref{fig:nueff}, we derive that this approximation
 is valid below the percent level for $\tau_{225GHz} < 0.35$
 
 The dependance on elevation and opacity can be corrected as shown in
-section~\ref{se:skydip}, so that a response outside of atmosphere (in
+section~\ref{se:opacities}, so that a response outside of atmosphere (in
 terms of airmass, but not in terms of transmission) can be derived:
 \begin{equation}
-R(\theta, \phi) \simeq G_{k}  A_{pupil}\Omega_{s} \int_{0}^{+\infty} I(\nu)
-\frac{T'(\nu)}{\left(\frac{\nu}{\nu_{0}}\right)^{2}} T_{atm}(\nu) \Omega_{beam} (\theta, \phi, \nu)  d\nu 
+R(\theta, \phi) \simeq G_{k}  A_{p}\Omega_{s} \int_{0}^{+\infty} I(\nu)
+\frac{T'(\nu)}{\left(\frac{\nu}{\nu_{0}}\right)^{2}} T_{atm}(\nu) \Omega_{b} (\theta, \phi, \nu)  d\nu 
 \label{eq:basicphot4}
 \end{equation}
 Equation~\ref{eq:basicphot4} is the main photometric equation.
 
-Because both $A_{pupil}$ and $ \Omega_{beam} $ are not known with good
+Because both $A_{p}$ and $ \Omega_{b} $ are not known with good
 accuracy, it is not possible to compute all the terms of
 eq.~\ref{eq:basicphot4} from first principles, and a practical way of
 calibrating the system must be used: it is done by observing a primary
 calibrator.
 
-\subsection{Beammap of a calibrator}
+\subsubsection{Beammap of a calibrator}
 
 A primary calibrator is a source whose spectral irradiance is
 known. For NIKA2, we use two planets as primary calibrators, Uranus
@@ -210,8 +210,8 @@ arbitrarily to be: $\nu_{0} = 150$~GHz for the 2mm array and $\nu_{0}
 
 Equation~\ref{eq:basicphot4} becomes:
 \begin{equation}
-R(\theta, \phi) \simeq G_{k}  A_{pupil}  S_{c} (\nu_{0}) \int_{0}^{+\infty} f(\frac{\nu}{\nu_{0}})  
-\frac{T'(\nu)}{\left(\frac{\nu}{\nu_{0}}\right)^{2}} T_{atm}(\nu) \Omega_{beam} (\theta, \phi, \nu)  d\nu 
+R(\theta, \phi) \simeq G_{k}  A_{p}  S_{c} (\nu_{0}) \int_{0}^{+\infty} f(\frac{\nu}{\nu_{0}})  
+\frac{T'(\nu)}{\left(\frac{\nu}{\nu_{0}}\right)^{2}} T_{atm}(\nu) \Omega_{b} (\theta, \phi, \nu)  d\nu 
 \label{eq:basicphot5}
 \end{equation}
 
@@ -224,14 +224,14 @@ With this in hand, we can write the equation of a beammap using a
 single KID with eq~\ref{eq:basicphot3}. At each position ($\theta,
 \phi$) on the beam map we have:
 \begin{equation}
-R_{c}(\theta, \phi) =  G_{k} A_{pupil} S_{c} (\nu_{0})  \int_{0}^{+\infty}
+R_{c}(\theta, \phi) =  G_{k} A_{p} S_{c} (\nu_{0})  \int_{0}^{+\infty}
 f(\frac{\nu}{\nu_{0}}) \Omega_{b}(\nu_{0}, \theta \times \frac{\nu}{\nu_{0}},
 \phi) \frac{T'(\nu)}{\left(\frac{\nu}{\nu_{0}}\right)^{2}}
 T_{atm}(\nu) d\nu
 \label{eq:beammap}
 \end{equation}
 
-\subsection{Calibration in FWHM$_{0}$ beam}
+\subsubsection{Calibration in FWHM$_{0}$ beam}
 
 This map is fitted with au gaussian of fixed width: FWHM$_{0}$ (we
 recall that $2 \sqrt{2\ln{2}} \sigma_{0} =  FWHM_{0}$).
@@ -243,11 +243,11 @@ where $\epsilon(\theta, \phi)$ are the residuals of the fit.
 
 Assuming that the fit is not biased, we have:
 \begin{equation} 
-\int\int R_{c}(\theta, \phi) d\theta d\phi = A_{c}
+\int\int R_{c}(\theta, \phi) \sin \theta d\theta d\phi = A_{c}
 \end{equation}
 because errors average out so that:
 \begin{equation} 
-\int\int \epsilon (\theta, \phi) d\theta d\phi = 0
+\int\int \epsilon (\theta, \phi) \sin \theta d\theta d\phi = 0
 \end{equation}
 But we also know that integral of the beammap should give the power
 emitted by the source. Therefore we form the map:
@@ -261,7 +261,7 @@ that the choice of the reference frequency is arbitrary, it is a
 convention. By construction, integrating over the map we have:
 
 \begin{equation}
-\int\int M_{c}(\theta, \phi) d\theta d\phi = S_{c}(\nu_{0})
+\int\int M_{c}(\theta, \phi) \sin \theta d\theta d\phi = S_{c}(\nu_{0})
 \end{equation}
 
 
@@ -269,7 +269,7 @@ convention. By construction, integrating over the map we have:
 Similarly, a point source with spectral irradiance $S_{s}(\nu)$ will
 generate a response at position $(\theta, \phi)$
 \begin{equation}
-R_{s}(\theta, \phi) =  G_{k} A_{pupil}  \int_{0}^{+\infty}
+R_{s}(\theta, \phi) =  G_{k} A_{p}  \int_{0}^{+\infty}
 S_{s}(\nu) \Omega_{b}(\nu_{0}, \theta \times \frac{\nu}{\nu_{0}},
 \phi) \frac{T'(\nu)}{\left(\frac{\nu}{\nu_{0}}\right)^{2}}
 T_{atm}(\nu) d\nu
@@ -287,7 +287,7 @@ e^{-\frac{\theta^{2}}{2\sigma_{0}^{2}}}  + \epsilon(\theta, \phi)
 
 The quoted flux for the source is then:
 \begin{equation}
-S(\nu_{0}) =  S_{c} (\nu_{0})  \times \frac{A_{s}}{A_{c}}
+S_{q}(\nu_{0}) =  S_{c} (\nu_{0})  \times \frac{A_{s}}{A_{c}}
 \end{equation}
 
 In other words, the quoted flux is the flux that should have the
@@ -305,7 +305,7 @@ If we have a single point source in M, we have when we fit a gaussian
 of fixed width:
 \begin{equation}
 \int \int M_{s}(\theta, \phi) \sin \theta d\theta d\phi = A_{s}  S_{c} (\nu_{0}) /
-A_{c} = S(\nu_{0})
+A_{c} = S_{q}(\nu_{0})
 \end{equation}
 
 
@@ -313,32 +313,32 @@ Note that the quoted flux {\em is not} the flux of the source at the
 reference frequency. In order to find the flux of the source at the
 reference frequency, a color correction has to be applied
 \begin{equation}
-S_{s}(\nu_{0}) = S(\nu_{0})  C_{s}
+S_{s}(\nu_{0}) = S_{q}(\nu_{0})  C_{s}
 \end{equation}
 
-\subsection{Color correction for point sources measured with fixed
+\subsubsection{Color correction for point sources measured with fixed
   gaussian fit}
 
 
 When a source is measured 
 \begin{equation} 
-C_{s} = S_{s} (\nu_{0}) / S(\nu_{0}) = S_{s}(\nu_0) / S_{c} (\nu_{0})  \times \frac{A_{c}}{A_{s}}
+C_{s} = S_{s} (\nu_{0}) / S_{q}(\nu_{0}) = S_{s}(\nu_0) / S_{c} (\nu_{0})  \times \frac{A_{c}}{A_{s}}
 \end{equation}
 
 
 \begin{equation} 
 C_{s} = S_{s}(\nu_{0}) / S_{c} (\nu_{0})  \times \frac{\int \int
-M_{c}(\theta, \phi) \sin \theta d\theta d\phi }{\int \int
-M_{s}(\theta, \phi) \sin \theta d\theta d\phi }
+R_{c}(\theta, \phi) \sin \theta d\theta d\phi }{\int \int
+R_{s}(\theta, \phi) \sin \theta d\theta d\phi }
 \end{equation}
 
 \begin{equation}
 C_{s} = S_{s}(\nu_{0}) / S_{c} (\nu_{0})  \times \frac{
-  \int\int G_{k} A_{pupil} S_{c}(\nu_{0})\int_{0}^{+\infty} f(\frac{\nu}{\nu_{0}}) \Omega_{b}(\nu_{0}, \theta \times \frac{\nu}{\nu_{0}},
+  \int\int G_{k} A_{p} S_{c}(\nu_{0})\int_{0}^{+\infty} f(\frac{\nu}{\nu_{0}}) \Omega_{b}(\nu_{0}, \theta \times \frac{\nu}{\nu_{0}},
 \phi) \frac{T'(\nu)}{\left(\frac{\nu}{\nu_{0}}\right)^{2}} 
 T_{atm}(\nu) d\nu \sin \theta d\theta d\phi}
 {\int \int G_{k}
-A_{pupil} \int_{0}^{+\infty} S_{s}(\nu) \Omega_{b}(\nu_{0}, \theta \times \frac{\nu}{\nu_{0}},
+A_{p} \int_{0}^{+\infty} S_{s}(\nu) \Omega_{b}(\nu_{0}, \theta \times \frac{\nu}{\nu_{0}},
 \phi) \frac{T'(\nu)}{\left(\frac{\nu}{\nu_{0}}\right)^{2}} 
 T_{atm}(\nu) d\nu \sin \theta d\theta d\phi
 }
@@ -375,8 +375,12 @@ T_{atm}(\nu) d\nu
 \end{equation}
 
 
+\subsubsection{Calibration for aperture photometry}
 
-\subsection{Calibration in surface brightness}
+For aperture photometry, the map calibrated in Jy / $FWHM_{0}$ must be
+converted in a map in Jy / pixel. 
+
+\subsubsection{Calibration in surface brightness}
 
 
 

@@ -73,6 +73,7 @@ ENTRY
     chapter
     edition
     editor
+    eprint
     howpublished
     institution
     journal
@@ -125,6 +126,27 @@ FUNCTION {output.nonnull}
   s
 }
 
+FUNCTION {output.nonnull.nocomma}
+{'s :=
+  output.state mid.sentence =
+    { write$ }
+    { output.state after.block =
+        { ". " *  write$
+          newline$
+%          "\newblock " write$
+        }
+        { output.state before.all =
+            'write$
+            { ", " * write$ }
+          if$
+        }
+      if$
+      mid.sentence 'output.state :=
+    }
+  if$
+  s
+}
+
 FUNCTION {output}
 { duplicate$ empty$
     'pop$
@@ -137,6 +159,15 @@ FUNCTION {output.check}
   duplicate$ empty$
     { pop$ "empty " t * " in " * cite$ * warning$ }
     'output.nonnull
+  if$
+}
+
+FUNCTION {output.check.nocomma}
+{ 't :=
+  duplicate$ empty$
+   % { pop$ "empty " t * " in " * cite$ * warning$ }
+     'pop$
+    'output.nonnull.nocomma
   if$
 }
 
@@ -384,6 +415,15 @@ MACRO {toplas} {"ACM Trans. Prog. Lang. Syst."}
 MACRO {tcs} {"Theoretical Comput. Sci."}
 
 INTEGERS { nameptr namesleft numnames }
+
+ 
+FUNCTION {format.eprint}
+{ eprint empty$
+{ "" }
+{ ", \eprint{" * eprint * "}" }    
+if$
+}
+
 
 FUNCTION {format.names}
 { 's :=
@@ -1057,6 +1097,10 @@ FUNCTION {article}
 { output.bibitem
   format.authors "author" output.check
   author format.key output
+  %% FIXME: start hack to include title
+  format.title "title" output.check
+  title format.key output
+  %% FIXME: end hack to include title
 %%%%%  name.or.dash
   format.date "year" output.check
   date.block
@@ -1071,6 +1115,7 @@ FUNCTION {article}
   if$
   format.journal.pages
   format.note output
+  format.eprint "eprint" output.check.nocomma
   fin.entry
 }
 
@@ -1079,7 +1124,7 @@ FUNCTION {book}
   author empty$
     { format.editors "author and editor" output.check
       editor format.key output
-%%%%%      name.or.dash
+%%%%%      name.or.dashs
     }
     { format.authors output.nonnull
 %%%%%      name.or.dash
@@ -1329,6 +1374,7 @@ FUNCTION {unpublished}
   date.block
 %  format.title "title" output.check
   format.note "note" output.check
+  format.eprint output
   fin.entry
 }
 
@@ -1620,6 +1666,22 @@ FUNCTION {begin.bib}
     'skip$
     { preamble$ write$ newline$ }
   if$
+
+  "\def\eprinttmppp@#1arXiv:@{#1}"
+ write$ newline$
+ "\providecommand{\arxivlink[1]}{\href{http://arxiv.org/abs/#1}{arXiv:#1}}"
+ write$ newline$
+ "\def\eprinttmp@#1arXiv:#2 [#3]#4@{\ifthenelse{\equal{#3}{x}}{\ifthenelse{"
+ write$ newline$
+ "\equal{#1}{}}{\arxivlink{\eprinttmppp@#2@}}{\arxivlink{#1}}}{\arxivlink{#2} [#3]}}"
+ write$ newline$
+ "\providecommand{\eprintlink}[1]{\eprinttmp@#1arXiv: [x]@}"
+ write$ newline$
+ "\providecommand{\eprint}[1]{\eprintlink{#1}}"
+ write$ newline$
+ "\providecommand{\adsurl}[1]{\href{#1}{ADS}}"
+ write$ newline$
+ 
   "\begin{thebibliography}{" number.label int.to.str$ * "}" *
   write$ newline$
   "\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi"
@@ -1641,4 +1703,5 @@ EXECUTE {end.bib}
 %% End of customized bst file
 %%
 %% End of file `apj.bst'.
+
 

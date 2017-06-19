@@ -223,8 +223,8 @@ $M_{500} = 12.0 \times 10^{14} M_{\odot}$.
   \includegraphics[width=0.33\textwidth]{NIKA_ml_deproj_figs/MUSTANG_image_and_SNR_contours_cbar.eps}
   \includegraphics[width=0.33\textwidth]{NIKA_ml_deproj_figs/NIKA_image_and_SNR_contours_cbar.eps}
   \includegraphics[width=0.33\textwidth]{NIKA_ml_deproj_figs/BOLOCAM_image_and_SNR_contours_cbar.eps}
-  \caption{Left: MUSTANG map; Middle: NIKA (2mm) map; Right: Bolocam map. In all three panels, the yellow contours are those
-    of MUSTANG, magenta contours of those of NIKA, and orange contours are those of Bolocam. For MUSTANG and Bolocam, the contours
+  \caption{Left: MUSTANG map; Middle: NIKA (2mm) map; Right: Bolocam map. In all three panels, the red contours are those
+    of MUSTANG, magenta contours of those of NIKA, and white contours are those of Bolocam. For MUSTANG and Bolocam, the contours
     start at $(-)2\sigma$, with $1\sigma$ increments. For NIKA, the contours start at $(-)3\sigma$ with $2\sigma$ increments.
     The point source identified in \citet{adam2015} is subtracted in the MUSTANG
     and NIKA maps.}
@@ -676,7 +676,7 @@ covariance matrices from our non-parametric fits.
   \centering
 %  \includegraphics[width=0.5\textwidth]{NIKA_ml_deproj_figs/Real_Joint_gNFW_Real_11011111_2500S_500B_100W_contour.eps}
   \includegraphics[width=0.5\textwidth]{NIKA_ml_deproj_figs/Real_Joint_gNFW_Real_11011111_2500S_500B_100W_contour_p16cosmo.eps}
-  \caption{Parameter constraints, $P_0$, $r_p$, $\gamma$, and $\beta$. Recall that $C_{500} = r_p / R_{500}$.}
+  \caption{Parameter constraints for our gNFW model: $P_0$, $r_p$, $\gamma$, and $\beta$. Recall that $C_{500} = r_p / R_{500}$.}
   \label{fig:joint_constraints}
 \end{figure}
 %$206_{-43}^{+57}$ kpc
@@ -801,46 +801,46 @@ CLJ 1227 is disturbed. In particular, our non-parametric fits give an indication
 from a gNFW profile is marked by a pressure drop at a cluster-centric radius of $\sim 14$\asecs
 ($\sim 100$ kpc), where MUSTANG data is critical to determining the location of this pressure deviation.
 
-
 \section{Conclusions}
 \label{sec:conclusions}
 
 We developed an algorithm to determine a non-parametric pressure profile for galaxy clusters.
 This method is of particular utility to SZ observations, where the filtering effects from data
 processing favor model fitting, as opposed to deriving non-parametric pressure profiles via
-geometric deprojection. Our fitting algorithm is robust with respect to input parameters and
-bin spacing. While the constraints of single-dish SZ observations beyond the FOV for a given
-instrument are generally poor, we find that the inclusion of such a bin appears to improve
-the robustness of the pressure constraints within the FOV.
+geometric deprojection. Our fitting algorithm is robust with respect to input parameters,
+bin spacing, and instrumental setup specifics. While the constraints of single-dish SZ observations
+beyond the FOV for a given instrument are generally poor, we find that the inclusion of such a bin
+appears to improve the robustness of the pressure constraints within the FOV.
 
 We have applied this algorithm to SZ observations of CLJ 1227 and
 find consistency among the non-parametric fits of the individual instruments. Furthermore,
 parametric best fits indicate a gNFW profile with a relatively small scale radius ($r_p$)
 ($r_p = R_{500}/C_{500}$). If left unconstrained, $\alpha$ tends towards large values, indicating
-a rapid transition at this scale radius between the inner and outer slope. A significant
-influence to this transition is the drop in fitted pressure, seen in both MUSTANG and NIKA
-fits. NIKA is only able to indicate that this drop occurs within the innermost bin, $r < 17$\asec,
-while MUSTANG is able to localize it to $9 < r < 23$\asec. While this drop is only at the
-$\gtrsim 2.5 \sigma$ deviation in MUSTANG and NIKA data, the combined data drop is seen at over
-$3 \sigma$.
+a rapid transition at this scale radius between the inner and outer slope. This rapid transition
+is consistent across all three instruments, where NIKA is most sensitive to this transition
+region and indeed NIKA data alone favors a rapid transition. This rapid transition is nominally
+quicker with the addition of MUSTANG data due to the drop in recovered pressure at a radius,
+$9$\asecs $< r < 23$\asec.
 
-Imperical investigations into the potential for point source contamination within this region
-indicate that such a point source would have to be $> 0.5$ mJy at both 90 and 150 GHz. This does
-not provide indication as to whether such a point source is a radio source or dusty star-forming
-galaxy (DSFG). However, given lower frequency data (VLA, $\sim 50 {\rm \mu Jy}$ at 7 GHz
-SZA, 0.2 mJy sensitivity at 30 GHz) and higher frequency data
-(NIKA 1mm and Herschel) we find a point source to be an unlikely explanation. Therefore,
-we find that our data is consistent with a disturbance in the central regions of CLJ 1227.
+Imperical investigations into potential point source contamination within this region ($9$\asec $< r < 23$\asec)
+indicate that such a point source would have to be $\sim 0.5$ mJy at 90 GHz. A point source is not detected in lower frequency data
+(VLA: $\sim 50 {\rm \mu Jy}$ at 7 GHz and SZA: 0.2 mJy sensitivity at 30 GHz). Nor is a point source (in this region) detected
+in higher frequency data (NIKA 1mm and Herschel). Therefore, we find a point source to be an unlikely explanation for
+the dip in MUSTANG pressure between $9$\asecs $< r < 23$\asec.
 
-Given the ability to find deviations from a smooth (parameterized) pressure profile and
-subsequent flexibility in the application of a non-parametric pressure profile, we believe that
-such an approach will become more widespread in future SZ studies. The use of (ellipsoidal) shells
-of pressure, with a power-law dependence, allows for a continuous pressure profile distribution
-to be analysed. However, such an approach could also be modified to allow for shock modelling
-(allow for discontinuities) as well. Finally, this approach also allows for some estimation of
-the pressure profile at very large radii, although such an estimation is highly dependent on the
-transfer function (i.e. how the raw SZ data is filtered). This is an area of potential improvement,
-which could come from either how the raw SZ data is filtered, or similarly, how the data is modelled.
+Our non-parametric fits of the pressure profile of CLJ 1227 are consistent with a smooth (parameterized) pressure profile.
+Yet, we have the advantage that deviations from a parameterized pressure profile will be more evident, localized, and
+allow for easier investigation of potential contamination or deviations from hydrostatic equilibrium. In its current implementation,
+this approach is relatively intuitive, robust, and fast (due to the analytic integration). While a spherical cluster was assumed
+for this analysis, the approach already allows for an ellipsoidal geometry. We also foresee the potential to extend this approach
+to include analysis of slices within an ellipse, which will prove useful for investigating shocks. While our estimation of outer
+pressure bins may be influenced by the mean level in a map, or a poorly constrained transfer function, we see that the inner bins
+remain largely unaffected.
+
+%Finally, this approach also allows for some estimation of
+%the pressure profile at very large radii, although such an estimation is highly dependent on the
+%transfer function (i.e. how the raw SZ data is filtered). This is an area of potential improvement,
+%which could come from either how the raw SZ data is filtered, or similarly, how the data is modelled.
 
 \section*{Acknowledgements}
 
@@ -865,7 +865,7 @@ the ANR under the contracts ``MKIDS'', ``NIKA'' and ANR-15-CE31-0017.
 This work has benefited from the support of the European Research Council Advanced Grant ORISTARS 
 under the European Union's Seventh Framework Programme (Grant Agreement no. 291294).
 We acknowledge fundings from the ENIGMASS French LabEx (R. A. and F. R.), 
-the CNES post-doctoral fellowship program (R. A.),  the CNES doctoral fellowship program (A. R.) and 
+the CNES post-doctoral fellowship program (R. A.), the CNES doctoral fellowship program (A. R.) and 
 the FOCUS French LabEx doctoral fellowship program (A. R.).
 
 
@@ -880,10 +880,109 @@ the FOCUS French LabEx doctoral fellowship program (A. R.).
 \label{sec:analytic_integrals}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Given the use of the gamma and incomplete beta functions, it is important to recognize its limitations.
-Specifically, $\Gamma(x)$ is undefined for $x = -i, i \in \mathbb{N} \cup \{0\}$ (negative integers, including
-zero). Furthermore, $x = 0.5-i, i \in \mathbb{N} \cup \{0\}$ is also not calculable here! Finally, all incomplete
-beta functions are generally defined for $B(x,y)$ that $Re(x) > 0$ and $Re(y) > 0$. However, the relation of the
+In our non-parametric pressure bin analysis, we assume that the pressure distribution is elliptically symmetric
+with the following behavior:
+\begin{equation}
+  \epsilon(x,y,z) = \epsilon_i (\frac{x^2}{a^2}+\frac{y^2}{b^2}+\frac{z^2}{c^2})^{-P},
+\end{equation}
+where $\epsilon_i$ is a normalization for the pressure within bin $i$;
+$a$, $b$, and $c$ are the ellipsoidal scalings of their respective axes,
+with the $z$-axis being along the line of sight, and $-2P$ is the slope of the pressure profile. We define an
+elliptical radius, $r_e = (\frac{x^2}{a^2}+\frac{y^2}{b^2}+\frac{z^2}{c^2})^{1/2}$.
+A pressure bin can be in one of three cases: (C1) a sphere of finite extent, (C2) a shell of
+finite extent, and (C3) a shell of infinite extent. We use these markers (C1, C2, and C3) as superscripts
+when writing definitions per case. The pressure distribution can be rewritten as follows:
+%\begin{align}
+%  \epsilon_{C1}(r_e) = \epsilon_i (r_e^2)^{-P} &: r_e^2 \leq 1 \\
+%  \epsilon_{C1}(r_e) = 0                      &: r_e^2 > 1 \\
+%  \epsilon_{C2}(r_e) = 0                      &: r_e^2 < 1 \\
+%  \epsilon_{C2}(r_e) = \epsilon_i (r_e^2)^{-P} &: 1 \leq r_e^2 \leq R_i^2 \\
+%  \epsilon_{C2}(r_e) = 0                      &: r_e^2 > R^2 \\
+%  \epsilon_{C3}(r_e) = 0                      &: r_e^2 < R^2 \\
+%  \epsilon_{C3}(r_e) = \epsilon_i (r_e^2)^{-P} &: R_i^2 \leq r_e^2, 
+%\end{align}
+
+\begin{align}
+  \epsilon^{\text{C1}}(r_e) &= \begin{cases}
+    \epsilon_i (r_e^2)^{-P} &: r_e^2 \leq 1 \\
+                        0 &: r_e^2 > 1,
+    \end{cases}
+  \label{eqn:case1_shell} \\
+  \epsilon^{\text{C2}}(r_e) &= \begin{cases}
+                         0 &: r_e^2 < 1 \\
+    \epsilon_i (r_e^2)^{-P} &: 1 \leq r_e^2 \leq R_i^2 \\
+                         0 &: r_e^2 > R^2, \text{ and}
+    \end{cases}
+  \label{eqn:case2_shell} \\
+  \epsilon^{\text{C3}}(r_e) &= \begin{cases}
+                        0 &: r_e^2 < R^2 \\
+    \epsilon_i (r_e^2)^{-P} &: R_i^2 \leq r_e^2, 
+    \end{cases}
+  \label{eqn:case3_shell} 
+\end{align}
+
+%\begin{align}
+%  \text{Case 1} & \epsilon(r_e) = \epsilon_i (r_e^2)^{-P} &: r_e^2 \leq 1 \\
+%                & \epsilon(r_e) = 0                      &: r_e^2 > 1 \\
+%  \text{Case 2} & \epsilon(r_e) = 0                      &: r_e^2 < 1 \\
+%                & \epsilon(r_e) = \epsilon_i (r_e^2)^{-P} &: 1 \leq r_e^2 \leq R_i^2 \\
+%                & \epsilon(r_e) = 0                      &: r_e^2 > R^2 \\
+%  \text{Case 3} & \epsilon(r_e) = 0                      &: r_e^2 < R^2 \\
+%                & \epsilon(r_e) = \epsilon_i (r_e^2)^{-P} &: R_i^2 \leq r_e^2, 
+%\end{align}
+where $R_i > 1$ is a boundary radius (the outer boundary in Case 2). Given a cluster profile with more than 3 bins, we end
+up with many bins in Case 2, in which case we rescale $a$, $b$, $c$, and subsequently $R_i$ each time to properly normalize
+each bin.
+
+Let us define
+\begin{equation}
+  \kappa = \sqrt{\pi}\epsilon_i c \frac{\Gamma(P-0.5)}{\Gamma(P)}A^{1-2P},
+\end{equation}
+where $A^2 = (x^2 / a^2) + (y^2 / b^2)$.
+While the integration of each bin will share this expression, the actual values may change depending on $a$, $b$, and $c$ used for
+each bin (as above, when multiple bins fall into Case 2). We write the  integration of $\epsilon(r_e)$ along the line of sight as:
+\begin{equation}
+  I = \int_{-z_0}^{z_0} \epsilon(r_e^2) dz.
+  \label{eqn:los_int_setup}
+\end{equation}
+Over the three cases, the solutions are as follows:
+%%% CASE 1
+\begin{equation}
+  I^{\text{C1}} = \left\{
+  \begin{array}{lr}
+    \kappa (1-I_{A^2}(P-0.5,0.5)) &: A^2 \leq 1 \\
+    0 &: A^2 > 1
+  \end{array}
+  \right.
+  \label{eqn:case1_int}
+\end{equation}
+%%% CASE 2
+\begin{equation}
+  I^{\text{C2}} = \left\{
+  \begin{array}{lr}
+    \kappa (I_{A^2}(P-0.5,0.5)-I_{A^2/R^2}(P-0.5,0.5)) &: A^2 < 1 \\
+    \kappa (1-I_{A^2/R^2}(P-0.5,0.5)) &: 1 \leq A^2 \leq R^2 \\
+    0 &: R^2 \leq A^2
+  \end{array}
+  \right.
+\end{equation}
+%%% CASE 3
+\begin{equation}
+  I^{\text{C3}} = \left\{
+  \begin{array}{lr}
+    \kappa (I_{A^2/R^2}(P-0.5,0.5)) &: A^2 \leq R^2 \\
+    \kappa &: A^2 > R^2
+  \end{array}
+  \right.
+\end{equation}
+
+Here, $I_{A^2}$, or $I_{A^2/R^2}$ is the incomplete beta function, often denoted as $I_x(a,b)$. For the discussion of
+the gamma and incomplete beta function (below), $x$, $y$, $a$, and $b$ serve as dummy variables. Given our use of
+the gamma and incomplete beta functions, it is important to recognize their limitations.
+Specifically, $\Gamma(a)$ is undefined for $a = -j, j \in \mathbb{N} \cup \{0\}$ (negative integers, including
+zero). Our incomplete beta function, having $a = P -0.5$ and $b = 0.5$ suffers from undefined values
+for $P = 0.5-j, j \in \mathbb{N} \cup \{0\}$ as well as $P = -j, j \in \mathbb{N} \cup \{0\}$. Finally, all incomplete
+beta functions are generally defined for $B(a,b)$ that $Re(a) > 0$ and $Re(b) > 0$. However, the relation of the
 incomplete beta function ($I_x$):
 \begin{equation}
   I_x(a,b) = I_x(a+1,b) + \frac{x^a (1-x)^b}{a B(a,b)}
@@ -891,11 +990,12 @@ incomplete beta function ($I_x$):
 \end{equation}
 allows us to extend our function into the negative domain (for $a$, which we take as $P-0.5$). 
 
-To deal with the limitation, generally seen as: $2*x-2 = -i, i \in \mathbb{N} \cup \{0\}$, we derive another approach, from:
+To deal with the limitation, generally seen as: $2*y-2 = -j, j \in \mathbb{N} \cup \{0\}$, we derive another approach.
+From Equation~\ref{eqn:los_int_setup}, we can substitute variables ($t = z / (cA)$) to arrive at:
 \begin{align}
-  I &= 2 \epsilon_0 A^{-2P} \int_{0}^{t_0}(1+t^2)^{-P} c A dt \text{ and now adopt } t^2 = \frac{u}{1-u} \\
-    &= 2 \epsilon_0 A^{-2P} \int_{0}^{\theta_0}(1+\tan^2(\theta))^{-P} \sec^2(\theta) d\theta \\
-    &= 2 \epsilon_0 A^{-2P} \int_{0}^{\theta_0}\cos^{2P-2}(\theta) d\theta
+  I &= 2 \epsilon_i A^{-2P} \int_{0}^{t_0}(1+t^2)^{-P} c A dt \text{ and now adopt } t^2 = \frac{u}{1-u} \\
+    &= 2 \epsilon_i A^{-2P} \int_{0}^{\theta_0}(1+\tan^2(\theta))^{-P} \sec^2(\theta) d\theta \\
+    &= 2 \epsilon_i A^{-2P} \int_{0}^{\theta_0}\cos^{2P-2}(\theta) d\theta
 \end{align}
 
 This must then be extended, and is done so with the relation:
@@ -903,14 +1003,14 @@ This must then be extended, and is done so with the relation:
   \int \cos^{n-2}(\theta) d\theta = \frac{n}{n-1}\int \cos^n(\theta)d\theta - \frac{1}{n-1}\cos^{n-1}(\theta)\sin(\theta) 
   \label{eqn:cosext}
 \end{equation}
-Given our values of interest/applicability ($2*x-2 = -i, i \in \mathbb{N} \cup \{0\}$), this extension is perfectly
+Given our values of interest/applicability ($2y-2 = -j, j \in \mathbb{N} \cup \{0\}$), this extension is perfectly
 applicable, and we will end in nice functions; either:
 \begin{align*}
   \int \cos^n(\theta)d\theta &= \tan(\theta) \text{ for } n=-2 \text{ or: } \\
   \int \cos^n(\theta)d\theta &= \ln \vert \sec(\theta) + \tan(\theta) \vert \text{ for } n=-1
 \end{align*}
 
-The \textbf{only} place where this analytic integration fails is for $p < 0.5$ \textbf{when} integrating out to infinity,
+The \textbf{only} place where this analytic integration fails is for $P < 0.5$ \textbf{when} integrating out to infinity,
 which is fine, as this must diverge in any case. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

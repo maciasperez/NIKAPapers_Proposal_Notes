@@ -288,9 +288,9 @@ in February 2014 and presented in \citet{adam2015}. NIKA \citep{monfardini2010,m
 260 GHz, and consisted of 253 Kinetic Inductance Detectors (KIDs) operating at 100 mK by using a closed cycle $^3$He-$^4$He dilution fridge. 
 Furthermore, with a sensitivity of 14 (35) mJy/beam.s$^{1/2}$ , a circular field-of-view (FOV) of 1.9$^{\prime}$ (1.8$^{\prime}$), and a
 resolution of 18.2$^{\prime \prime}$ (12.0$^{\prime \prime}$) at 150 (260) GHz NIKA was particularly well adapted to map the thermal
-Sunyaev-Zeldovich effect in such a high redshift cluster. NIKA conversion factors from mJy/beam to Compton parameter are
-$-10.9 \pm 0.8$ and $3.5\pm0.5$ at 150 and 260 GHz, respectively. A detailed description of the general performances of the camera can
-be found in \citet{catalano2014,adam2014}.
+Sunyaev-Zeldovich effect in such a high redshift cluster. Including calibration and bandpass uncertainties, the NIKA conversion
+factors from mJy/beam to Compton parameter are $-10.9 \pm 0.8$ and $3.5\pm0.5$ at 150 and 260 GHz, respectively.
+A detailed description of the general performances of the camera can be found in \citet{catalano2014,adam2014}.
 
 CLJ 1227 was mapped using on-the-fly raster scans
 %made of 19 constant either azimuth, or elevation, subs-cans of 6$^{\prime}$ length and separated by 10$^{\prime \prime}$.
@@ -302,8 +302,11 @@ error below 3$^{\prime \prime}$. Uranus was used as a primary calibrator with ov
 in the time domain the reconstructed cluster signal to a given signal-to-noise threshold. 
 The processed data were gridded into 2$^{\prime \prime}$ square pixels using inverse variance weighting and nearest grid projection.
 The transfer function of the processing procedure was computed using signal plus noise simulations as described in \citet{adam2015}.
-A full representation of the obtained transfer function is given in Figure 3 of \citet{adam2015} and it is used in this paper. Overall the transfer function is consistent with a constant value of 1 for angular scales smaller than the NIKA FOV and larger than the size of the NIKA beam. Using the 260~GHz NIKA map \citet{adam2015} identified a point source located 30$^{\prime \prime}$ southeast of the center of the cluster. The 150~GHz NIKA map, with the point source subtracted (Section~\ref{sec:preprocessing}) is shown in the middle panel
-in Figure~\ref{fig:clj1227_maps}.
+A full representation of the obtained transfer function is given in Figure 3 of \citet{adam2015} and it is used in this paper.
+Overall the transfer function is consistent with a constant value of 1 for angular scales smaller than the NIKA FOV and larger
+than the size of the NIKA beam. Using the 260~GHz NIKA map \citet{adam2015} identified a point source located 30$^{\prime \prime}$
+southeast of the center of the cluster. The 150~GHz NIKA map, with the point source subtracted (Section~\ref{sec:preprocessing})
+is shown in the middle panel in Figure~\ref{fig:clj1227_maps}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{MUSTANG Observations and Reduction}
@@ -315,7 +318,7 @@ However, MUSTANG's instantaneous field of view (FOV) limits its sensitivity to s
 MUSTANG is a 64 pixel array of Transition Edge Sensor (TES) bolometers arranged in an $8 \times 8$ array
 located at the Gregorian focus on the 100 m GBT. Operating at 90 GHz (81--99~GHz),
 MUSTANG has an angular resolution of 9\asec and pixel spacing of 0.63$f \lambda$ resulting in a FOV
-of 42\asec. The conversion factor from mJy/beam to Compton parameter used is $\-2.5 \pm 0.2$.
+of 42\asec. The conversion factor from Jy/beam to Compton parameter used is $\-2.50$.
 More detailed information about the instrument can be found in \citet{dicker2008}. 
 
 Our observations and data reduction are described in detail in \citet{romero2015a}, and we briefly review them
@@ -325,22 +328,23 @@ We fit and subtract a common mode template, polynomial, and sinusoid. Further da
 after this subtraction. The MUSTANG data map, with the point source subtracted (see Section~\ref{sec:preprocessing})
 is shown in the left panel in Figure~\ref{fig:clj1227_maps}.
 
-A transfer function was calculated in \citet{romero2016} when applied to white noise
-across an entire sky. We find that said transfer function does not fully reproduce the results of a simulated
-cluster observation. Therefore, we refine the the transfer function by filtering a cluster model based on a strictly
+%A transfer function was calculated in \citet{romero2016} when applied to white noise
+%across an entire sky. We find that said transfer function does not fully reproduce the results of a simulated
+%cluster observation.
+We refine the the transfer function found in  \citet{romero2016} by filtering a cluster model using a strictly
 \citetalias{arnaud2010} profile (a gNFW profile with parameters
-$[\alpha,\beta,\gamma,C_{500},P_0]=[1.05,5.49,0.31,1.18,8.42 P_{500}]$) through the standard MUSTANG pipeline and calculate
-the transfer function. The principle difference between this new transfer function and the former transfer function
+$[\alpha,\beta,\gamma,C_{500},P_0]=[1.05,5.49,0.31,1.18,8.42 P_{500}]$) through the standard MUSTANG pipeline.
+The resultant transfer function is then merged with the previous transfer function (calculated on white noise).
+The principle difference between this new transfer function and the former transfer function
 occurs at scales larger than the FOV (wavenumbers smaller than $\sim0.025$ inverse arcseconds).
+We check the robustness of the transfer functions to the standard pipeline acrorss a range of cluster models
+(gNFW profiles with varying parameters) and find agreement, principally of the peak amplitude, within 10\%.
 
-%We verify the results of the transfer functions to the standard pipeline and find agreement,
-%principally of the peak amplitude, within 10\%. To further
-We verify the fidelity of the new transfer function by reproduce the analysis performed in \citet{romero2016} for CLJ1227,
+Moreover, we verify the fidelity of the new transfer function by reproduce the analysis performed in \citet{romero2016} for CLJ1227,
 with the use of the new transfer function in place of the standard MUSTANG filtering procedure.
 In general, we find good agreement for the constraints on pressure profiles. More specifically, cluster models with
 $0.5 < C_{500} < 3.3$ are well reproduced with fitted amplitudes that are within 10\% of those found in \citet{romero2016}.
 Furthermore, the best fit profile shape parameters ($C_{500}$, $P_0$, and $\gamma$) are within $\sim10$\% agreement as well.
-
 
 %%% How was the transfer function calculated 
 %Maybe it just needs some words.\footnote{MUSTANG data is publicaly available at 
@@ -354,6 +358,8 @@ To probe a wider range of scales we complement our MUSTANG data with SZ data fro
 Bolocam is a 144-element bolometer
 array on the Caltech Submillimeter Observatory (CSO) with a beam FWHM of 58\asecs at 140 GHz and circular FOV with 8\amins 
 diameter, which is well matched to the angular size of $R_{500}$ ($\sim 2$\amin) of the clusters in our sample. 
+Bolocam's conversion factor to Compton y from $\mu$K$_{CMB}$ is reported as $-3.69 \times 10^{-7}$, with the relativistic
+corrections taken into account.
 
 Bolocam is a 144-element camera that was a facility instrument on the Caltech Submillimeter Observatory (CSO) from
 2003 until 2012. Its field of view is 8\amins in diameter, and at 140 GHz it has a resolution of 58\asecs FWHM
@@ -376,12 +382,12 @@ The reduction and calibration is similar to that used for MUSTANG, and Bolocam a
 
 As in \citet{adam2015} we consider in the analysis the integrated Compton parameter of the cluster as measured using the Planck data.
 We use the Planck frequency maps from 143 to 857~GHz to produce a Compton parameter map as described in \citet{hurier2013} and
-\citet{planck2013ymap,2016A&A...594A..22P}. The resolution of this map is 7.5$^{\prime}$, limited by the lowest frequency Planck channel
+\citet{planck2013ymap,planck2016_tsz}. The resolution of this map is 7.5$^{\prime}$, limited by the lowest frequency Planck channel
 map used in the reconstruction. Using this map we compute the integrated Compton parameter up to a radial distance of 15$^{\prime}$ with
 respect to the center of the cluster. Uncertainties in the integrated Compton parameter are computed by integrating at random positions
 around the cluster. The uncertainties obtained has been also crossed checked using Planck half-ring half difference Compton parameter
 map
-obtained as described in \citet{planck2013ymap,2016A&A...594A..22P}. We find $Y_{15^{\prime}} = (0.94 \pm 0.36) \times 10^{-3}$ arcmin$^2$. 
+obtained as described in \citet{planck2013ymap,planck2016_tsz}. We find $Y_{15^{\prime}} = (0.94 \pm 0.36) \times 10^{-3}$ arcmin$^2$. 
 
 %%%%%%%%%%%
 
@@ -581,7 +587,8 @@ the use of few bins reduces resolution, thereby smoothing out interesting featur
 \begin{figure}[!h]
   \centering
 %  \includegraphics[width=0.5\textwidth]{NIKA_ml_deproj_figs/Real_Joint_gNFW_Real_11011111_2500S_500B_100W_non_parametric_pressure.eps}
-  \includegraphics[width=0.5\textwidth]{NIKA_ml_deproj_figs/Real_Joint_gNFW_Real_11011111_2500S_500B_100W_non_parametric_pressure_p16cosmo.eps}
+  \includegraphics[width=0.5\textwidth]{NIKA_ml_deproj_figs/Real_Joint_gNFW_Power_Real_11011111_2500S_500B_100W_non_parametric_pressure_p16cosmo.eps}
+%  \includegraphics[width=0.5\textwidth]{NIKA_ml_deproj_figs/Real_Joint_gNFW_Real_11011111_2500S_500B_100W_non_parametric_pressure_p16cosmo.eps}
   %Real_Joint_gNFW_Real_11011111_2500S_500B_100W_pressure.eps
   \caption{Non-parametric pressure profiles as determined via each dataset individually, and the gNFW (parametric)
     pressure profile as simultaneously fit to the non-parametric pressure profiles. The error bars are statistical,
@@ -676,7 +683,8 @@ covariance matrices from our non-parametric fits.
 \begin{figure}[!h]
   \centering
 %  \includegraphics[width=0.5\textwidth]{NIKA_ml_deproj_figs/Real_Joint_gNFW_Real_11011111_2500S_500B_100W_gNFW_pressure.eps}
-  \includegraphics[width=0.5\textwidth]{NIKA_ml_deproj_figs/Real_Joint_gNFW_Real_11011111_2500S_500B_100W_gNFW_pressure_w_NP_pts_v2.eps}
+%  \includegraphics[width=0.5\textwidth]{NIKA_ml_deproj_figs/Real_Joint_gNFW_Real_11011111_2500S_500B_100W_gNFW_pressure_w_NP_pts_v2.eps}
+  \includegraphics[width=0.5\textwidth]{NIKA_ml_deproj_figs/Real_Joint_gNFW_Power_Real_11011111_2500S_500B_100W_gNFW_pressure_w_NP_pts_v2_p16cosmo.eps}
 %    Real_Joint_gNFW_Real_11011111_2500S_500B_100W_pressure.eps
   \caption{The gNFW (parametric) pressure profile as simultaneously fit to the non-parametric pressure profiles.
     The error bars are statistical,

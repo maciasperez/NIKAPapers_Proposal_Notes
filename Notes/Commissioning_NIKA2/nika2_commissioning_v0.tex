@@ -25,6 +25,8 @@
 \usepackage[protrusion=true,expansion=true]{microtype} % Better typography
 \usepackage{graphicx} % Required for including pictures
 \usepackage{wrapfig} % Allows in-line images
+\usepackage{tablefootnote} % to display footnotes in tables
+\usepackage{threeparttable}
 
 \usepackage{mathpazo} % Use the Palatino font
 \usepackage[T1]{fontenc} % Required for accented characters
@@ -96,19 +98,36 @@ This notes describe the main results of the NIKA2 commissioning campaigns.
 \section{Introduction}
 
 \subsection{Commissioning goals}
-The main goal of the NIKA2 commissioning runs described below is to check the performance of the instrument and its stability with respect to the specifications described in Table \ref{nika2specs}.
+The main goal of the NIKA2 commissioning runs described below is to characterize the instrument and check its performances with respect to the specifications described in Table \ref{nika2specs}. We also characterize the performance stability against various observing conditions and assess the precision with which the performance parameter are measured.
 
-%\begin{table}[h]
-%\caption{Commissioning campaigns and dates}
-%\label{nika2specs}
-%\begin{tabular}{|c|c|c|s}
-%\hline 
-% FWHM &   &  \\
-%\hline  
-%\hline 
-%\end{tabular} 
-%\end{table} 
 
+\begin{table}[h]
+\caption{Main characteristics defining the expected performances of NIKA2. Each parameter are associated with two values: the first one indicates the \emph{specifications}, i.e. the requirements to be met by the instrument, while the second bracketed one gives the \emph{goals}, i. e. the values targeted by the collaboration.}
+\label{nika2specs}
+\begin{threeparttable}
+\begin{tabular}{|r|c|c|}
+  \hline
+  \hline
+Reference Wavelength  [mm]  &  1.2 & 2.0  \\
+Reference Frequency  [GHz]  &  260 & 150  \\
+\hline  
+\hline
+FOV diameter [arcmin]       &  5 (6.5)    &  5 (6.5)   \\
+Pixel size in beam sampling unit [F$\lambda$]  &  0.9 (0.6)   &   0.9 (0.6)  \\
+FWHM  [arcsec]              &  12 (10)   &  18 (16) \\
+Fraction of valid detectors [$\%$] &  50 (90)   &  50 (90) \\
+NEFD\tnote{a}\hspace{1mm}   [$\rm{mJy} \cdot \rm{s}^{1/2}/\rm{beam}$]  &  30 (15)   &  20 (10) \\
+\hline
+NEFD [$\rm{mJy} \cdot \rm{s}^{1/2}/\rm{beam}$] goal on $90\%$ of the pixels  &  15  & 10 \\
+NEFD [$\rm{mJy} \cdot \rm{s}^{1/2}/\rm{beam}$] specification on $50\%$ of the pixels  &  30  &  20  \\
+\hline
+\end{tabular}
+\begin{tablenotes}
+  \item[(a)] NEFD in typical IRAM good sky opacity condition: 2mm pwv, $60^o$ elevation
+%  \tablefoottext{a}{NEFD in typical IRAM good sky opacity condition: 2mm pwv, $60^o$ elevation}
+\end{tablenotes}
+\end{threeparttable}
+\end{table} 
 
 
 \subsection{Commissioning runs}
@@ -300,7 +319,8 @@ contribute to the tau determination.
 %	SUMMARY
 %----------------------------------------------------------------------------------------
 \section{Summary of performance}
-
+\label{se:summary}
+\input{Summary}
 
 
 %----------------------------------------------------------------------------------------

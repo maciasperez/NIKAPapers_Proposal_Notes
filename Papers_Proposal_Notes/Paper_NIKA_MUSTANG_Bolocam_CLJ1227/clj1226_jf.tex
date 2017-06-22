@@ -98,20 +98,36 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\begin{abstract}
+%%% TO-DO: 20 JUNE 2017:
+%%% MAKE THE INCLUSION OF PLANCK SOUND MORE POSITIVE
+%%% END the abstract with the range covered.
+%%% Mention deviation/gNFW
+%%% Double check noise
+
+%%% MASK THE MUSTANG MAP.
+
 \abstract
     {We present the non-parametric pressure profiles of the galaxy cluster CLJ 1226.9+3352 as
       determined from SZ data from the MUSTANG, NIKA, Bolocam, and Planck instruments.
-      These instruments all probe different angular scales. We use Planck to constrain the
-      total signal of the cluster, while we derive a non-parametric from each  other instrument
-      independently and find good agreement among our instruments. For a given instrument,
+      These instruments all probe different angular scales. Given the ability of Planck to
+      constrain the total signal,
+      we include a prior on the integrated Compton Y parameter as determined by Planck.
+      Our non-parametric algorithm makes use of logarithmic interpolation, which under the assumption
+      of ellisoidal symmetry is analytically integrable.
+      For MUSTANG, NIKA, and Bolocam we derive a non-parametric pressure profile 
+      independently and find good agreement among our instruments. In particular, we find
+      that the non-parametric profiles are consistent with a fitted gNFW profile.
+      For a given instrument,
       constraints on the pressure profile diminish rapidly beyond the field of view.
       The overlap in spatial sensitivity of these three datasets is therefore critical in checking
-      for consistency between instruments, and in the process provides continuous coverage over the radial scales
-      $0.05 R_{500} < r < 2 R_{500}$. Despite this coverage, with these instruments alone, we
-      still suffer from poor constraints at the largest radii, and therefore include a prior
-      from Planck on the integrated Compton Y parameter. Our non-parametric algorithm makes
-      use of logarithmic interpolation, which under the assumption of ellisoidal symmetry is
-      analytically integrable.}
+      for consistency between instruments. Our analysis of CLJ 1226.9+3352 
+      covers a large radial range: $0.05 R_{500} < r < 2 R_{500}$ provides a wider range of sensitivity
+      than is typical of SZ studies thus far.}
+%      , and in the process provides continuous coverage over the radial scales
+%      $0.05 R_{500} < r < 2 R_{500}$. Given the ability of Planck to constrain the total signal,
+%      we include a prior on the integrated Compton Y parameter as determined by Planck.
+%      Our non-parametric algorithm makes use of logarithmic interpolation, which under the assumption
+%      of ellisoidal symmetry is analytically integrable.}
 %\end{abstract}
 
 \titlerunning{Non-parametric fitting with MUSTANG, NIKA, Bolocam, and Planck}
@@ -126,6 +142,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\textcolor{red}{Edit author list - add in Matthew McWilliam (again).}
+
 
 In recent years, Sunyaev Zel'dovich (SZ) effect observations have seen an increase in high resolution ($\theta \lesssim 30$\asecs)
 observations \citep[e.g.][]{mason2010,adam2014,kitayama2016}. These observations come from MUSTANG on the
@@ -700,8 +717,8 @@ covariance matrices from our non-parametric fits.
 %\textcolor{red}{We have constrained the gNFW parameters $P_0$, $\alpha$, $\beta$, and $\gamma$.}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Hinshaw2013 Cosmology:
-We find gNFW parameters of [$P_0$, $C_{500}$, $\beta$, and $\gamma$] =
-[$56.4_{-23.0}^{+21.2}$, $6.47_{-1.72}^{+1.89}$,$2.93_{-0.21}^{+0.26}$, and $0.17_{-0.12}^{+0.21}$].
+%We find gNFW parameters of [$P_0$, $C_{500}$, $\beta$, and $\gamma$] =
+%[$56.4_{-23.0}^{+21.2}$, $6.47_{-1.72}^{+1.89}$,$2.93_{-0.21}^{+0.26}$, and $0.17_{-0.12}^{+0.21}$].
 %[$42.3_{-12.5}^{+13.3}$, $4.85_{-1.05}^{+1.27}$ kpc, $3.12_{-0.25}^{+0.31}$, $0.12_{-0.09}^{+0.17}$].
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Planck2016 Cosmology:
@@ -736,8 +753,10 @@ SZ observations of individual clusters become more commonplace.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-We find generally good agreement in our non-parametric fits
-between MUSTANG, NIKA, and Bolocam. The fitted gNFW profile reinforces this claim, as all but two points
+While our estimation of outer pressure bins may be influenced by the mean level in a map, or a poorly constrained
+transfer function, we see that the inner bins remain largely unaffected (Section~\ref{sec:robustness}).
+We find generally good agreement in our non-parametric fits between MUSTANG, NIKA, and Bolocam.
+The fitted gNFW profile reinforces this claim, as all but two points
 lie within $2.5\sigma$ of the fitted curve. The inner point that falls below the gNFW profile comes from
 MUSTANG fits, and is only $\sim 2\sigma$ discrepant from the gNFW profile.
 %While neither of their individual deviations is greater than $3\sigma$, their combined
@@ -812,8 +831,9 @@ bin spacing, and instrumental setup specifics. While the constraints of single-d
 beyond the FOV for a given instrument are generally poor, we find that the inclusion of such a bin
 appears to improve the robustness of the pressure constraints within the FOV.
 
-We have applied this algorithm to SZ observations of CLJ 1227 and
-find consistency among the non-parametric fits of the individual instruments. Furthermore,
+We have applied this algorithm to SZ observations of CLJ 1227 from MUSTANG, NIKA, and Bolocam.
+In doing so, we cover a radial range $0.05 R_{500} < r < 2 R_{500}$ with continuous sensitivity
+and find consistency among the non-parametric fits of the individual instruments. Furthermore,
 parametric best fits indicate a gNFW profile with a relatively small scale radius ($r_p$)
 ($r_p = R_{500}/C_{500}$). If left unconstrained, $\alpha$ tends towards large values, indicating
 a rapid transition at this scale radius between the inner and outer slope. This rapid transition
@@ -833,14 +853,7 @@ Yet, we have the advantage that deviations from a parameterized pressure profile
 allow for easier investigation of potential contamination or deviations from hydrostatic equilibrium. In its current implementation,
 this approach is relatively intuitive, robust, and fast (due to the analytic integration). While a spherical cluster was assumed
 for this analysis, the approach already allows for an ellipsoidal geometry. We also foresee the potential to extend this approach
-to include analysis of slices within an ellipse, which will prove useful for investigating shocks. While our estimation of outer
-pressure bins may be influenced by the mean level in a map, or a poorly constrained transfer function, we see that the inner bins
-remain largely unaffected.
-
-%Finally, this approach also allows for some estimation of
-%the pressure profile at very large radii, although such an estimation is highly dependent on the
-%transfer function (i.e. how the raw SZ data is filtered). This is an area of potential improvement,
-%which could come from either how the raw SZ data is filtered, or similarly, how the data is modelled.
+to include analysis of slices within an ellipse, which will prove useful for investigating shocks.
 
 \section*{Acknowledgements}
 

@@ -1,137 +1,137 @@
 ;; Calculating the Planck's pol angles in Ra,Dec coordinates
 ;; 30 GHz
-glon = 184.543
-glat = -5.782
-I = 344.23 ;; Jy
-sigmaI = 0.27
-p = 7.10/100.
-sigma = 0.33/100.
-alpha = -89.26
-sigma_alpha = 0.25 + 0.50
-q = p*I*cos(2.d0*alpha*!dtor)
-sigma_q= sqrt((I*sigma+p*sigmaI)^2*(cos(2.d0*alpha*!dtor))^2 + (p*I*2.d0*sin(2.d0*alpha*!dtor)*sigma_alpha*!dtor)^2)
-u = p*I*sin(2.d0*alpha*!dtor)
-sigma_u= sqrt((I*sigma+p*sigmaI)^2*(sin(2.d0*alpha*!dtor))^2 + (p*I*2.d0*cos(2.d0*alpha*!dtor)*sigma_alpha*!dtor)^2)
-qu_gal2eq, glon, glat, q, u, q_out, u_out
-alpha_deg = 0.5*atan(u_out,q_out)*!radeg 
-sigma_alpha_deg = 0.5d0/(q_out^2+u_out^2)*sqrt( q_out^2*sigma_u^2 + u_out^2*sigma_q^2)*!radeg
-print, 'polarization angle in radec coordinates at 30 GHz'
-print, alpha_deg+180.d0
-print, '+-', sigma_alpha_deg
+;; glon = 184.543
+;; glat = -5.782
+;; I = 344.23 ;; Jy
+;; sigmaI = 0.27
+;; p = 7.10/100.
+;; sigma = 0.33/100.
+;; alpha = -89.26
+;; sigma_alpha = 0.25 + 0.50
+;; q = p*I*cos(2.d0*alpha*!dtor)
+;; sigma_q= sqrt((I*sigma+p*sigmaI)^2*(cos(2.d0*alpha*!dtor))^2 + (p*I*2.d0*sin(2.d0*alpha*!dtor)*sigma_alpha*!dtor)^2)
+;; u = p*I*sin(2.d0*alpha*!dtor)
+;; sigma_u= sqrt((I*sigma+p*sigmaI)^2*(sin(2.d0*alpha*!dtor))^2 + (p*I*2.d0*cos(2.d0*alpha*!dtor)*sigma_alpha*!dtor)^2)
+;; qu_gal2eq, glon, glat, q, u, q_out, u_out
+;; alpha_deg = 0.5*atan(u_out,q_out)*!radeg 
+;; sigma_alpha_deg = 0.5d0/(q_out^2+u_out^2)*sqrt( q_out^2*sigma_u^2 + u_out^2*sigma_q^2)*!radeg
+;; print, 'polarization angle in radec coordinates at 30 GHz'
+;; print, alpha_deg+180.d0
+;; print, '+-', sigma_alpha_deg
 
-;; 44 GHz
-I = 292.68 ;; Jy
-sigmaI = 0.23
-p = 6.51/100.
-sigma = 0.51/100.
-alpha = -88.65
-sigma_alpha = 0.79 + 0.50
-q = p*I*cos(2.d0*alpha*!dtor)
-u = p*I*sin(2.d0*alpha*!dtor)
-qu_gal2eq, glon, glat, q, u, q_out, u_out
-qu2alpha, q_out, u_out, alphadeg
-sigma_q= sqrt((I*sigma+p*sigmaI)^2*(cos(2.d0*alpha*!dtor))^2 + (p*I*2.d0*sin(2.d0*alpha*!dtor)*sigma_alpha*!dtor)^2)
-sigma_u= sqrt((I*sigma+p*sigmaI)^2*(sin(2.d0*alpha*!dtor))^2 + (p*I*2.d0*cos(2.d0*alpha*!dtor)*sigma_alpha*!dtor)^2)
-sigma_alpha_deg = 0.5d0/(q_out^2+u_out^2)*sqrt( q_out^2*sigma_u^2 + u_out^2*sigma_q^2)*!radeg
-print, 'polarization angle in radec coordinates at 44 GHz'
-print, alphadeg+180.d0
-print, '+-', sigma_alpha_deg
-
-
-;; 70 GHz
-I = 259.99 ;; Jy
-sigmaI = 0.11
-p = 7.9/100.
-sigma = 0.32/100.
-alpha = -87.49
-sigma_alpha = 1.33 + 0.50
-q = p*I*cos(2.d0*alpha*!dtor)
-u = p*I*sin(2.d0*alpha*!dtor)
-qu_gal2eq, glon, glat, q, u, q_out, u_out
-qu2alpha, q_out, u_out, alphadeg
-sigma_q= sqrt((I*sigma+p*sigmaI)^2*(cos(2.d0*alpha*!dtor))^2 + (p*I*2.d0*sin(2.d0*alpha*!dtor)*sigma_alpha*!dtor)^2)
-sigma_u= sqrt((I*sigma+p*sigmaI)^2*(sin(2.d0*alpha*!dtor))^2 + (p*I*2.d0*cos(2.d0*alpha*!dtor)*sigma_alpha*!dtor)^2)
-sigma_alpha_deg = 0.5d0/(q_out^2+u_out^2)*sqrt( q_out^2*sigma_u^2 + u_out^2*sigma_q^2)*!radeg
-print, 'polarization angle in radec coordinates at 70 GHz'
-print, alphadeg+180.d0
-print, '+-', sigma_alpha_deg
+;; ;; 44 GHz
+;; I = 292.68 ;; Jy
+;; sigmaI = 0.23
+;; p = 6.51/100.
+;; sigma = 0.51/100.
+;; alpha = -88.65
+;; sigma_alpha = 0.79 + 0.50
+;; q = p*I*cos(2.d0*alpha*!dtor)
+;; u = p*I*sin(2.d0*alpha*!dtor)
+;; qu_gal2eq, glon, glat, q, u, q_out, u_out
+;; qu2alpha, q_out, u_out, alphadeg
+;; sigma_q= sqrt((I*sigma+p*sigmaI)^2*(cos(2.d0*alpha*!dtor))^2 + (p*I*2.d0*sin(2.d0*alpha*!dtor)*sigma_alpha*!dtor)^2)
+;; sigma_u= sqrt((I*sigma+p*sigmaI)^2*(sin(2.d0*alpha*!dtor))^2 + (p*I*2.d0*cos(2.d0*alpha*!dtor)*sigma_alpha*!dtor)^2)
+;; sigma_alpha_deg = 0.5d0/(q_out^2+u_out^2)*sqrt( q_out^2*sigma_u^2 + u_out^2*sigma_q^2)*!radeg
+;; print, 'polarization angle in radec coordinates at 44 GHz'
+;; print, alphadeg+180.d0
+;; print, '+-', sigma_alpha_deg
 
 
-
-;; 100 GHz
-I = 215.16 ;; Jy
-sigmaI = 0.06
-p = 7.22/100.
-sigma = 0.06/100.
-alpha = -87.59
-sigma_alpha = 0.26 + 0.62
-q = p*I*cos(2.d0*alpha*!dtor)
-u = p*I*sin(2.d0*alpha*!dtor)
-qu_gal2eq, glon, glat, q, u, q_out, u_out
-qu2alpha, q_out, u_out, alphadeg
-sigma_q= sqrt((I*sigma+p*sigmaI)^2*(cos(2.d0*alpha*!dtor))^2 + (p*I*2.d0*sin(2.d0*alpha*!dtor)*sigma_alpha*!dtor)^2)
-sigma_u= sqrt((I*sigma+p*sigmaI)^2*(sin(2.d0*alpha*!dtor))^2 + (p*I*2.d0*cos(2.d0*alpha*!dtor)*sigma_alpha*!dtor)^2)
-sigma_alpha_deg = 0.5d0/(q_out^2+u_out^2)*sqrt( q_out^2*sigma_u^2 + u_out^2*sigma_q^2)*!radeg
-print, 'polarization angle in radec coordinates at 100 GHz'
-print, alphadeg+180.d0
-print, '+-', sigma_alpha_deg
-
-
-;; 143 GHz
-I = 167.10 ;; Jy
-sigmaI = 0.04
-p = 7.19/100.
-sigma = 0.05/100.
-alpha = -87.03
-sigma_alpha = 0.35 + 0.62
-q = p*I*cos(2.d0*alpha*!dtor)
-u = p*I*sin(2.d0*alpha*!dtor)
-qu_gal2eq, glon, glat, q, u, q_out, u_out
-qu2alpha, q_out, u_out, alphadeg
-sigma_q= sqrt((I*sigma+p*sigmaI)^2*(cos(2.d0*alpha*!dtor))^2 + (p*I*2.d0*sin(2.d0*alpha*!dtor)*sigma_alpha*!dtor)^2)
-sigma_u= sqrt((I*sigma+p*sigmaI)^2*(sin(2.d0*alpha*!dtor))^2 + (p*I*2.d0*cos(2.d0*alpha*!dtor)*sigma_alpha*!dtor)^2)
-sigma_alpha_deg = 0.5d0/(q_out^2+u_out^2)*sqrt( q_out^2*sigma_u^2 + u_out^2*sigma_q^2)*!radeg
-print, 'polarization angle in radec coordinates at 143 GHz'
-print, alphadeg+180.d0
-print, '+-', sigma_alpha_deg
+;; ;; 70 GHz
+;; I = 259.99 ;; Jy
+;; sigmaI = 0.11
+;; p = 7.9/100.
+;; sigma = 0.32/100.
+;; alpha = -87.49
+;; sigma_alpha = 1.33 + 0.50
+;; q = p*I*cos(2.d0*alpha*!dtor)
+;; u = p*I*sin(2.d0*alpha*!dtor)
+;; qu_gal2eq, glon, glat, q, u, q_out, u_out
+;; qu2alpha, q_out, u_out, alphadeg
+;; sigma_q= sqrt((I*sigma+p*sigmaI)^2*(cos(2.d0*alpha*!dtor))^2 + (p*I*2.d0*sin(2.d0*alpha*!dtor)*sigma_alpha*!dtor)^2)
+;; sigma_u= sqrt((I*sigma+p*sigmaI)^2*(sin(2.d0*alpha*!dtor))^2 + (p*I*2.d0*cos(2.d0*alpha*!dtor)*sigma_alpha*!dtor)^2)
+;; sigma_alpha_deg = 0.5d0/(q_out^2+u_out^2)*sqrt( q_out^2*sigma_u^2 + u_out^2*sigma_q^2)*!radeg
+;; print, 'polarization angle in radec coordinates at 70 GHz'
+;; print, alphadeg+180.d0
+;; print, '+-', sigma_alpha_deg
 
 
-;; 217 GHz
-I = 124.21 ;; Jy
-sigmaI = 0.04
-p = 8.12/100.
-sigma = 0.06/100.
-alpha = -88.84
-sigma_alpha = 0.55 + 0.62
-q = p*I*cos(2.d0*alpha*!dtor)
-u = p*I*sin(2.d0*alpha*!dtor)
-qu_gal2eq, glon, glat, q, u, q_out, u_out
-qu2alpha, q_out, u_out, alphadeg
-sigma_q= sqrt((I*sigma+p*sigmaI)^2*(cos(2.d0*alpha*!dtor))^2 + (p*I*2.d0*sin(2.d0*alpha*!dtor)*sigma_alpha*!dtor)^2)
-sigma_u= sqrt((I*sigma+p*sigmaI)^2*(sin(2.d0*alpha*!dtor))^2 + (p*I*2.d0*cos(2.d0*alpha*!dtor)*sigma_alpha*!dtor)^2)
-sigma_alpha_deg = 0.5d0/(q_out^2+u_out^2)*sqrt( q_out^2*sigma_u^2 + u_out^2*sigma_q^2)*!radeg
-print, 'polarization angle in radec coordinates at 217 GHz'
-print, alphadeg+180.d0
-print, '+-', sigma_alpha_deg
+
+;; ;; 100 GHz
+;; I = 215.16 ;; Jy
+;; sigmaI = 0.06
+;; p = 7.22/100.
+;; sigma = 0.06/100.
+;; alpha = -87.59
+;; sigma_alpha = 0.26 + 0.62
+;; q = p*I*cos(2.d0*alpha*!dtor)
+;; u = p*I*sin(2.d0*alpha*!dtor)
+;; qu_gal2eq, glon, glat, q, u, q_out, u_out
+;; qu2alpha, q_out, u_out, alphadeg
+;; sigma_q= sqrt((I*sigma+p*sigmaI)^2*(cos(2.d0*alpha*!dtor))^2 + (p*I*2.d0*sin(2.d0*alpha*!dtor)*sigma_alpha*!dtor)^2)
+;; sigma_u= sqrt((I*sigma+p*sigmaI)^2*(sin(2.d0*alpha*!dtor))^2 + (p*I*2.d0*cos(2.d0*alpha*!dtor)*sigma_alpha*!dtor)^2)
+;; sigma_alpha_deg = 0.5d0/(q_out^2+u_out^2)*sqrt( q_out^2*sigma_u^2 + u_out^2*sigma_q^2)*!radeg
+;; print, 'polarization angle in radec coordinates at 100 GHz'
+;; print, alphadeg+180.d0
+;; print, '+-', sigma_alpha_deg
 
 
-;; 353 GHz
-I = 82.17 ;; Jy
-sigmaI = 0.67
-p = 12.02/100.
-sigma = 0.23/100.
-alpha = -85.16
-sigma_alpha = 1.93 + 0.62
-q = p*I*cos(2.d0*alpha*!dtor)
-u = p*I*sin(2.d0*alpha*!dtor)
-qu_gal2eq, glon, glat, q, u, q_out, u_out
-qu2alpha, q_out, u_out, alphadeg
-sigma_q= sqrt((I*sigma+p*sigmaI)^2*(cos(2.d0*alpha*!dtor))^2 + (p*I*2.d0*sin(2.d0*alpha*!dtor)*sigma_alpha*!dtor)^2)
-sigma_u= sqrt((I*sigma+p*sigmaI)^2*(sin(2.d0*alpha*!dtor))^2 + (p*I*2.d0*cos(2.d0*alpha*!dtor)*sigma_alpha*!dtor)^2)
-sigma_alpha_deg = 0.5d0/(q_out^2+u_out^2)*sqrt( q_out^2*sigma_u^2 + u_out^2*sigma_q^2)*!radeg
-print, 'polarization angle in radec coordinates at 353 GHz'
-print, alphadeg+180.d0
-print, '+-', sigma_alpha_deg
+;; ;; 143 GHz
+;; I = 167.10 ;; Jy
+;; sigmaI = 0.04
+;; p = 7.19/100.
+;; sigma = 0.05/100.
+;; alpha = -87.03
+;; sigma_alpha = 0.35 + 0.62
+;; q = p*I*cos(2.d0*alpha*!dtor)
+;; u = p*I*sin(2.d0*alpha*!dtor)
+;; qu_gal2eq, glon, glat, q, u, q_out, u_out
+;; qu2alpha, q_out, u_out, alphadeg
+;; sigma_q= sqrt((I*sigma+p*sigmaI)^2*(cos(2.d0*alpha*!dtor))^2 + (p*I*2.d0*sin(2.d0*alpha*!dtor)*sigma_alpha*!dtor)^2)
+;; sigma_u= sqrt((I*sigma+p*sigmaI)^2*(sin(2.d0*alpha*!dtor))^2 + (p*I*2.d0*cos(2.d0*alpha*!dtor)*sigma_alpha*!dtor)^2)
+;; sigma_alpha_deg = 0.5d0/(q_out^2+u_out^2)*sqrt( q_out^2*sigma_u^2 + u_out^2*sigma_q^2)*!radeg
+;; print, 'polarization angle in radec coordinates at 143 GHz'
+;; print, alphadeg+180.d0
+;; print, '+-', sigma_alpha_deg
+
+
+;; ;; 217 GHz
+;; I = 124.21 ;; Jy
+;; sigmaI = 0.04
+;; p = 8.12/100.
+;; sigma = 0.06/100.
+;; alpha = -88.84
+;; sigma_alpha = 0.55 + 0.62
+;; q = p*I*cos(2.d0*alpha*!dtor)
+;; u = p*I*sin(2.d0*alpha*!dtor)
+;; qu_gal2eq, glon, glat, q, u, q_out, u_out
+;; qu2alpha, q_out, u_out, alphadeg
+;; sigma_q= sqrt((I*sigma+p*sigmaI)^2*(cos(2.d0*alpha*!dtor))^2 + (p*I*2.d0*sin(2.d0*alpha*!dtor)*sigma_alpha*!dtor)^2)
+;; sigma_u= sqrt((I*sigma+p*sigmaI)^2*(sin(2.d0*alpha*!dtor))^2 + (p*I*2.d0*cos(2.d0*alpha*!dtor)*sigma_alpha*!dtor)^2)
+;; sigma_alpha_deg = 0.5d0/(q_out^2+u_out^2)*sqrt( q_out^2*sigma_u^2 + u_out^2*sigma_q^2)*!radeg
+;; print, 'polarization angle in radec coordinates at 217 GHz'
+;; print, alphadeg+180.d0
+;; print, '+-', sigma_alpha_deg
+
+
+;; ;; 353 GHz
+;; I = 82.17 ;; Jy
+;; sigmaI = 0.67
+;; p = 12.02/100.
+;; sigma = 0.23/100.
+;; alpha = -85.16
+;; sigma_alpha = 1.93 + 0.62
+;; q = p*I*cos(2.d0*alpha*!dtor)
+;; u = p*I*sin(2.d0*alpha*!dtor)
+;; qu_gal2eq, glon, glat, q, u, q_out, u_out
+;; qu2alpha, q_out, u_out, alphadeg
+;; sigma_q= sqrt((I*sigma+p*sigmaI)^2*(cos(2.d0*alpha*!dtor))^2 + (p*I*2.d0*sin(2.d0*alpha*!dtor)*sigma_alpha*!dtor)^2)
+;; sigma_u= sqrt((I*sigma+p*sigmaI)^2*(sin(2.d0*alpha*!dtor))^2 + (p*I*2.d0*cos(2.d0*alpha*!dtor)*sigma_alpha*!dtor)^2)
+;; sigma_alpha_deg = 0.5d0/(q_out^2+u_out^2)*sqrt( q_out^2*sigma_u^2 + u_out^2*sigma_q^2)*!radeg
+;; print, 'polarization angle in radec coordinates at 353 GHz'
+;; print, alphadeg+180.d0
+;; print, '+-', sigma_alpha_deg
 
 
 
@@ -145,7 +145,23 @@ map_u_2mm = map_2mm[*,*,2]
 map_i_2mm_stddev = map_2mm_stddev[*,*,0]
 map_q_2mm_stddev = map_2mm_stddev[*,*,1]
 map_u_2mm_stddev = map_2mm_stddev[*,*,2]
+
+sxaddpar, head_2mm, "ctype1", "RA---TAN"
+sxaddpar, head_2mm, "ctype2", "DEC--TAN"
+create_coo2, head_2mm, ramap, decmap, /silent
 extast,head_2mm,astr
+ad2xy, ramap, decmap, astr, xmap, ymap
+;; small region around the pulsar to compare to Xpol
+crpix1 = sxpar( header, "CRPIX1")
+crpix2 = sxpar( header, "CRPIX2")
+reso = astr.cdelt[1]*3600.0x3
+w = where( sqrt( (xmap-crpix1)^2 + (ymap-crpix2)^2)*reso lt 10., nw) & print, nw
+print, "q pulsar: ", total( map_q_2mm[w])
+print, "u pulsar: ", total( map_u_2mm[w])
+print, "angle pulsar: ", 0.5*atan( total( map_u_2mm[w]), total( map_q_2mm[w]))*!radeg + 180.
+
+stop
+
 
 longobj = sxpar(head_2mm,'crval1') 
 latobj = sxpar(head_2mm,'crval2') 
@@ -159,7 +175,7 @@ x = lindgen(nx)#replicate(1., ny)
 y = replicate(1,nx)#lindgen(ny)
 reso = astr.cdelt[1]*3600.0
 omega_pix = reso*reso
-corr = 1.28
+corr = 1.33
 omega_b = 2*!pi*[18.2*!fwhm2sigma]^2*corr
 col_cor = 1.05
 
@@ -168,22 +184,46 @@ astr.ctype[1] = "DEC--TAN"
 ad2xy, longobj,latobj, astr, x1, y1
 xy2ad, x, y, astr, a, d
 gcirc,2,longobj,latobj,a,d,dis
-qu_eq2gal,a,d,map_q_2mm, map_u_2mm, Qgal_2mm,Ugal_2mm
-qu_eq2gal,a,d,map_q_2mm_stddev, map_u_2mm_stddev, Qgal_2mm_stddev,Ugal_2mm_stddev
+nk_qu_eq2gal,a,d,map_q_2mm, map_u_2mm, Qgal_2mm,Ugal_2mm, $
+             map_q_2mm_stddev^2, map_u_2mm_stddev^2, $
+             qgal_2mm_var, ugal_2mm_var
 
-w = where(dis/60. le 5 and abs(map_q_2mm/map_q_2mm_stddev) gt 3 and abs(map_u_2mm/map_u_2mm_stddev) gt 3, comp=w1 , nw)
+Qgal_2mm_stddev = sqrt(qgal_2mm_var)
+Ugal_2mm_stddev = sqrt(ugal_2mm_var)
+
+;; ATTENTION, ici le where est sur des cartes en radec
+w = where(dis/60. le 5 and abs(map_q_2mm/map_q_2mm_stddev) gt 3 or abs(map_u_2mm/map_u_2mm_stddev) gt 3, comp=w1 , nw)
+;; ICI en coordonnees galactiques
+;; w = where( (abs(Qgal_2mm/Qgal_2mm_stddev) gt 3 or abs(Ugal_2mm/Ugal_2mm_stddev) gt 3))
+           
+;; ATTENTION, map_i_2mm est toujours en RADEC
 tot_i_2mm = total(map_i_2mm[w])*(omega_pix/omega_b )*col_cor 
 tot_q_gal_2mm = total(Qgal_2mm[w])*col_cor*(omega_pix/omega_b)
 tot_u_gal_2mm = total(Ugal_2mm[w])*col_cor*(omega_pix/omega_b)
 tot_i_2mm_sigma2 = total((map_i_2mm_stddev[w])^2)*col_cor*(omega_pix/omega_b)^2
 tot_q_gal_2mm_sigma2 = total((Qgal_2mm_stddev[w])^2)*col_cor*(omega_pix/omega_b)^2
 tot_u_gal_2mm_sigma2 = total((Ugal_2mm_stddev[w])^2)*col_cor*(omega_pix/omega_b)^2
+
+;; RADEC *********************************
+tot_i_2mm = total(map_i_2mm[w])*(omega_pix/omega_b )*col_cor 
+tot_q_2mm = total(map_q_2mm[w])*col_cor*(omega_pix/omega_b)
+tot_u_2mm = total(map_u_2mm[w])*col_cor*(omega_pix/omega_b)
+tot_i_2mm_sigma2 = total((map_i_2mm_stddev[w])^2)*col_cor*(omega_pix/omega_b)^2
+tot_q_2mm_sigma2 = total((map_q_2mm_stddev[w])^2)*col_cor*(omega_pix/omega_b)^2
+tot_u_2mm_sigma2 = total((map_u_2mm_stddev[w])^2)*col_cor*(omega_pix/omega_b)^2
+psi = 0.5*atan(tot_u_2mm, tot_q_2mm)*!radeg
+print, psi+180.
+;; ***************************************
+
 sigma_psi = 0.5/(tot_q_gal_2mm^2 + tot_u_gal_2mm^2)*sqrt(tot_q_gal_2mm^2*tot_q_gal_2mm_sigma2 + tot_u_gal_2mm^2*tot_u_gal_2mm_sigma2)*!radeg
 print, 'angle in galactic coordinates in 5 arcminutes and > 3 sigma'
 psi = 0.5*atan(-tot_u_gal_2mm, tot_q_gal_2mm)*!radeg
 print,  psi
 print, sigma_psi
 print, 'intensity', tot_i_2mm, sqrt(tot_i_2mm_sigma2)
+print, 'Q flux', tot_q_gal_2mm, sqrt(tot_q_gal_2mm_sigma2)
+print, 'U flux', tot_u_gal_2mm, sqrt(tot_u_gal_2mm_sigma2)
+
 
 p2mm = sqrt(tot_q_gal_2mm^2+tot_u_gal_2mm^2 - tot_q_gal_2mm_sigma2 - tot_q_gal_2mm_sigma2)/tot_i_2mm
 errp2mm = sqrt(tot_q_gal_2mm^2*tot_q_gal_2mm_sigma2+tot_u_gal_2mm^2*tot_u_gal_2mm_sigma2 + p2mm^4*tot_i_2mm^2*tot_i_2mm_sigma2)/(p2mm*tot_i_2mm^2)
@@ -193,6 +233,118 @@ ip_err = sqrt(tot_q_gal_2mm^2*tot_q_gal_2mm_sigma2+tot_u_gal_2mm^2*tot_u_gal_2mm
 print, 'pol intensity'
 print, ip, ip_err
 
+w = where(dis/60. le 5 and abs(map_q_2mm/map_q_2mm_stddev) gt 2 and abs(map_u_2mm/map_u_2mm_stddev) gt 2, comp=w1 , nw)
+tot_i_2mm = total(map_i_2mm[w])*(omega_pix/omega_b )*col_cor 
+tot_q_gal_2mm = total(Qgal_2mm[w])*col_cor*(omega_pix/omega_b)
+tot_u_gal_2mm = total(Ugal_2mm[w])*col_cor*(omega_pix/omega_b)
+tot_i_2mm_sigma2 = total((map_i_2mm_stddev[w])^2)*col_cor*(omega_pix/omega_b)^2
+tot_q_gal_2mm_sigma2 = total((Qgal_2mm_stddev[w])^2)*col_cor*(omega_pix/omega_b)^2
+tot_u_gal_2mm_sigma2 = total((Ugal_2mm_stddev[w])^2)*col_cor*(omega_pix/omega_b)^2
+sigma_psi = 0.5/(tot_q_gal_2mm^2 + tot_u_gal_2mm^2)*sqrt(tot_q_gal_2mm^2*tot_q_gal_2mm_sigma2 + tot_u_gal_2mm^2*tot_u_gal_2mm_sigma2)*!radeg
+print, 'angle in galactic coordinates in 5 arcminutes and > 2 sigma'
+psi = 0.5*atan(-tot_u_gal_2mm, tot_q_gal_2mm)*!radeg
+print,  psi
+print, sigma_psi
+print, 'intensity', tot_i_2mm, sqrt(tot_i_2mm_sigma2)
+print, 'Q flux', tot_q_gal_2mm, sqrt(tot_q_gal_2mm_sigma2)
+print, 'U flux', tot_u_gal_2mm, sqrt(tot_u_gal_2mm_sigma2)
+
+
+p2mm = sqrt(tot_q_gal_2mm^2+tot_u_gal_2mm^2 - tot_q_gal_2mm_sigma2 - tot_q_gal_2mm_sigma2)/tot_i_2mm
+errp2mm = sqrt(tot_q_gal_2mm^2*tot_q_gal_2mm_sigma2+tot_u_gal_2mm^2*tot_u_gal_2mm_sigma2 + p2mm^4*tot_i_2mm^2*tot_i_2mm_sigma2)/(p2mm*tot_i_2mm^2)
+print, 'pol deg', p2mm, errp2mm
+ip   = sqrt(tot_q_gal_2mm^2 + tot_u_gal_2mm^2 - tot_q_gal_2mm_sigma2 - tot_u_gal_2mm_sigma2)
+ip_err = sqrt(tot_q_gal_2mm^2*tot_q_gal_2mm_sigma2+tot_u_gal_2mm^2*tot_u_gal_2mm_sigma2)/(ip)
+print, 'pol intensity'
+print, ip, ip_err
+
+w = where(dis/60. le 5 and abs(map_q_2mm/map_q_2mm_stddev) gt 1 and abs(map_u_2mm/map_u_2mm_stddev) gt 1, comp=w1 , nw)
+tot_i_2mm = total(map_i_2mm[w])*(omega_pix/omega_b )*col_cor 
+tot_q_gal_2mm = total(Qgal_2mm[w])*col_cor*(omega_pix/omega_b)
+tot_u_gal_2mm = total(Ugal_2mm[w])*col_cor*(omega_pix/omega_b)
+tot_i_2mm_sigma2 = total((map_i_2mm_stddev[w])^2)*col_cor*(omega_pix/omega_b)^2
+tot_q_gal_2mm_sigma2 = total((Qgal_2mm_stddev[w])^2)*col_cor*(omega_pix/omega_b)^2
+tot_u_gal_2mm_sigma2 = total((Ugal_2mm_stddev[w])^2)*col_cor*(omega_pix/omega_b)^2
+sigma_psi = 0.5/(tot_q_gal_2mm^2 + tot_u_gal_2mm^2)*sqrt(tot_q_gal_2mm^2*tot_q_gal_2mm_sigma2 + tot_u_gal_2mm^2*tot_u_gal_2mm_sigma2)*!radeg
+print, 'angle in galactic coordinates in 5 arcminutes and > 1 sigma'
+psi = 0.5*atan(-tot_u_gal_2mm, tot_q_gal_2mm)*!radeg
+print,  psi
+print, sigma_psi
+print, 'intensity', tot_i_2mm, sqrt(tot_i_2mm_sigma2)
+print, 'Q flux', tot_q_gal_2mm, sqrt(tot_q_gal_2mm_sigma2)
+print, 'U flux', tot_u_gal_2mm, sqrt(tot_u_gal_2mm_sigma2)
+
+
+p2mm = sqrt(tot_q_gal_2mm^2+tot_u_gal_2mm^2 - tot_q_gal_2mm_sigma2 - tot_u_gal_2mm_sigma2)/tot_i_2mm
+errp2mm = sqrt(tot_q_gal_2mm^2*tot_q_gal_2mm_sigma2+tot_u_gal_2mm^2*tot_u_gal_2mm_sigma2 + p2mm^4*tot_i_2mm^2*tot_i_2mm_sigma2)/(p2mm*tot_i_2mm^2)
+print, 'pol deg', p2mm, errp2mm
+ip   = sqrt(tot_q_gal_2mm^2 + tot_u_gal_2mm^2 - tot_q_gal_2mm_sigma2 - tot_u_gal_2mm_sigma2)
+ip_err = sqrt(tot_q_gal_2mm^2*tot_q_gal_2mm_sigma2+tot_u_gal_2mm^2*tot_u_gal_2mm_sigma2)/(ip)
+print, 'pol intensity'
+print, ip, ip_err
+
+
+
+print, 'values where r < 250'
+w = where(dis le 250,comp=w1, nw)
+tot_i_2mm = total(map_i_2mm[w])*(omega_pix/omega_b )*col_cor 
+tot_q_gal_2mm = total(Qgal_2mm[w])*col_cor*(omega_pix/omega_b)
+tot_u_gal_2mm = total(Ugal_2mm[w])*col_cor*(omega_pix/omega_b)
+tot_i_2mm_sigma2 = total((map_i_2mm_stddev[w])^2)*col_cor*(omega_pix/omega_b)^2
+tot_q_gal_2mm_sigma2 = total((Qgal_2mm_stddev[w])^2)*col_cor*(omega_pix/omega_b)^2
+tot_u_gal_2mm_sigma2 = total((Ugal_2mm_stddev[w])^2)*col_cor*(omega_pix/omega_b)^2
+sigma_psi = 0.5/(tot_q_gal_2mm^2 + tot_u_gal_2mm^2)*sqrt(tot_q_gal_2mm^2*tot_q_gal_2mm_sigma2 + tot_u_gal_2mm^2*tot_u_gal_2mm_sigma2)*!radeg
+print, 'angle in galactic coordinates where r < 250 arcsec'
+psi = 0.5*atan(-tot_u_gal_2mm, tot_q_gal_2mm)*!radeg
+print,  psi
+print, sigma_psi
+print, 'intensity', tot_i_2mm, sqrt(tot_i_2mm_sigma2)
+print, 'Q flux', tot_q_gal_2mm, sqrt(tot_q_gal_2mm_sigma2)
+print, 'U flux', tot_u_gal_2mm, sqrt(tot_u_gal_2mm_sigma2)
+
+p2mm = sqrt(tot_q_gal_2mm^2+tot_u_gal_2mm^2 - tot_q_gal_2mm_sigma2 - tot_u_gal_2mm_sigma2)/tot_i_2mm
+errp2mm = sqrt(tot_q_gal_2mm^2*tot_q_gal_2mm_sigma2+tot_u_gal_2mm^2*tot_u_gal_2mm_sigma2 + p2mm^4*tot_i_2mm^2*tot_i_2mm_sigma2)/(p2mm*tot_i_2mm^2)
+print, 'pol deg', p2mm, errp2mm
+ip   = sqrt(tot_q_gal_2mm^2 + tot_u_gal_2mm^2 - tot_q_gal_2mm_sigma2 - tot_u_gal_2mm_sigma2)
+ip_err = sqrt(tot_q_gal_2mm^2*tot_q_gal_2mm_sigma2+tot_u_gal_2mm^2*tot_u_gal_2mm_sigma2)/(ip)
+print, 'pol intensity'
+print, ip, ip_err
+
+print, 'values where I > 0.5 Jy/beam'
+w = where(map_i_2mm gt 0.5,comp=w1, nw)
+tot_i_2mm = total(map_i_2mm[w])*(omega_pix/omega_b )*col_cor 
+tot_q_gal_2mm = total(Qgal_2mm[w])*col_cor*(omega_pix/omega_b)
+tot_u_gal_2mm = total(Ugal_2mm[w])*col_cor*(omega_pix/omega_b)
+tot_i_2mm_sigma2 = total((map_i_2mm_stddev[w])^2)*col_cor*(omega_pix/omega_b)^2
+tot_q_gal_2mm_sigma2 = total((Qgal_2mm_stddev[w])^2)*col_cor*(omega_pix/omega_b)^2
+tot_u_gal_2mm_sigma2 = total((Ugal_2mm_stddev[w])^2)*col_cor*(omega_pix/omega_b)^2
+sigma_psi = 0.5/(tot_q_gal_2mm^2 + tot_u_gal_2mm^2)*sqrt(tot_q_gal_2mm^2*tot_q_gal_2mm_sigma2 + tot_u_gal_2mm^2*tot_u_gal_2mm_sigma2)*!radeg
+print, 'angle in galactic coordinates where I > 0.5 Jy/beam'
+psi = 0.5*atan(-tot_u_gal_2mm, tot_q_gal_2mm)*!radeg
+print,  psi
+print, sigma_psi
+print, 'intensity', tot_i_2mm, sqrt(tot_i_2mm_sigma2)
+print, 'Q flux', tot_q_gal_2mm, sqrt(tot_q_gal_2mm_sigma2)
+print, 'U flux', tot_u_gal_2mm, sqrt(tot_u_gal_2mm_sigma2)
+
+p2mm = sqrt(tot_q_gal_2mm^2+tot_u_gal_2mm^2 - tot_q_gal_2mm_sigma2 - tot_u_gal_2mm_sigma2)/tot_i_2mm
+errp2mm = sqrt(tot_q_gal_2mm^2*tot_q_gal_2mm_sigma2+tot_u_gal_2mm^2*tot_u_gal_2mm_sigma2 + p2mm^4*tot_i_2mm^2*tot_i_2mm_sigma2)/(p2mm*tot_i_2mm^2)
+print, 'pol deg', p2mm, errp2mm
+ip   = sqrt(tot_q_gal_2mm^2 + tot_u_gal_2mm^2 - tot_q_gal_2mm_sigma2 - tot_u_gal_2mm_sigma2)
+ip_err = sqrt(tot_q_gal_2mm^2*tot_q_gal_2mm_sigma2+tot_u_gal_2mm^2*tot_u_gal_2mm_sigma2)/(ip)
+print, 'pol intensity'
+print, ip, ip_err
+
+
+
+
+
+
+
+
+
+stop
+
 s = size(map_i_2mm)
 nx = s[1]
 ny = s[2]
@@ -200,6 +352,8 @@ p_2mm_sim   = dblarr(1000)
 psi_2mm_sim = dblarr(1000)
 
 
+
+stop
 for i=0, 999 do begin
    q_sim = p2mm[0]*map_i_2mm*cos(2.d0*(-87)*!dtor)+randomn(seed, nx, ny)*Qgal_2mm_stddev
    u_sim = p2mm[0]*map_i_2mm*sin(2.d0*(-87)*!dtor)+randomn(seed, nx, ny)*Ugal_2mm_stddev

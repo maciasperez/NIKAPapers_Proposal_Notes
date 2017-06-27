@@ -6,7 +6,8 @@
 %% [intro]
 %%________________________________________________________
 
-The NIKA2 beam pattern mainly depends on the IRAM 30m telescope and NIKA2 internal optical system characteristics, whereas the detectors themselve might have an impact at sub-dominant level (through e.g. time constants or correlated noises). In this section, first we reconstruct the focus surfaces and present the optimal focus, then we characterize both the main beam, which is modeled as an elliptical Gaussian, and the full beam pattern including error beams up to angular scales of 10 arcmin. 
+The NIKA2 beam pattern mainly depends on the IRAM 30m telescope and NIKA2 internal optical system characteristics, whereas the detectors themselve might have an impact at sub-dominant level (through e.g. time constants or correlated noises). In this section, first we reconstruct the focus surfaces and present the optimal focus, then we characterize both the main beam, which is modeled as an elliptical Gaussian, and the full beam pattern including error beams up to angular scales of 10 arcmin.
+
 
 %% [Optimal Focus]
 %%________________________________________________________
@@ -259,63 +260,18 @@ Figs.~\ref{fig:focus-stability-H}-\ref{fig:focus-stability-V}.
 \label{fig:Y_focus}
 \end{figure*}
 
-%% [Main beam]
-%%________________________________________________________
-\subsection{Main beam}
-
-For NIKA2 main beam characterization, we use \emph{Run9} OTF scans of bright point sources, including primary and secondary calibrators. Namely, we consider scans of Uranus, Neptune, 3C273, 3C84, 0316+413, Vesta and MWC349, whereas we avoid CRL2688 and NGC7027, which are slighltly extended. We perform a conservative data selection from the observing conditions by demanding average elevations $\rm{el} \ge 20Â°$, zenith opacities as estimated by NIKA2 in the 1mm band $\tau_{1\rm{mm}} \le 0.4$, reasonable lateral focus settings $x, y \le 0.5$mm. After selection cuts, our data set includes 130 OTF scans, which consists of a representative sub-sample of a typical NIKA2 observation campaign.    
-
-  
-We consider different methods for the main beam characterization: i) Gaussian fits of the beam profile to benefit from the signal-over-noise increase after azimuthally averaging the signal, ii) Elliptical Gaussian fits of the beam map for a better 2D modeling. Cross-checking the outputs from these complementary methods is an important robustess test of our results.   
-
-
-\subsubsection{profile-based analysis}
-
-[JEAN-FRANCOIS]
-
-\subsubsection{map-based analysis}
-
-NIKA2 main beam two-dimensionnal distribution is modeled using an elliptical Gaussian. We characterize NIKA2 resolution by giving the \emph{FWHM}, defined as
-\begin{equation}
-  FWHM = 2 \sqrt{2\ln {2}} \sqrt{\sigma_x\sigma_y},
-\end{equation}
-where $\sigma_x$ and $\sigma_y$ are the Gaussian standard deviation along minor- and major-axis. To avoid the side lobes contamination, we use masked versions of the beam map, in which an annulus of inner radius $r_{\rm{in}}$ and outter radius $r_{\rm{out}}$ is cut out. Whereas $r_{\rm{out}}$ is conservately set to be $100 arcsec$, $r_{\rm{in}}$ can vary to provide the best 2D Gaussian fit. We checked a posteriori that $r_{\rm{in}}$ distributes as $7 \pm 1.5$ arcsec at 1mm and $13 \pm 4$ arcsec at 2mm, in agreement with settings defined in the profile-based analysis.   
-
-Figure~\ref{fig:fwhm_map} shows FWHM distributions obtained from the elliptical Gaussian fit method.
-
-
-\begin{figure}
-\begin{center}
-  \includegraphics[clip, angle=0, scale=0.7]{Figures/Main_Beam_FWHM_N2R9_10.pdf}
-\caption{Distribution of the main beam FWHM estimates using 2D
-  Gaussian fits on N2R9 and N2R10 OTF scans of brigth point sources}
-\label{fig:fwhm_map}
-\end{center}
-\end{figure}
-
-
-The FWHM estimates using the profile-based and map-based methods are gathered in Tab.~\ref{tab:fwhm}. 
-\begin{table}
-  \caption[]{FWHM of the NIKA2 main beam in arcsec.}
-  \centering
-  \begin{tabular}{|l|l|l|l|l|}
-    \hline
-    Array & profile-based method & map-based method \\
-    \hline
-    A1       & [TBC] & $11.0 \pm 0.3$ \\
-    A3       & [TBC] & $10.9 \pm 0.3$ \\
-    A1 \& A3 & [TBC] & $11.0 \pm 0.2$ \\
-    A2       & [TBC] & $17.8 \pm 0.2$ \\
-    \hline
-  \end{tabular}
-  \label{tab:fwhm}
-\end{table}
-
 
 
 %% [Full beam pattern]
 %%________________________________________________________
 \subsection{Full beam pattern}
+\label{se:fullbeam}
+
+\subsubsection{Data sets}
+\label{se:beammap_set}
+
+The characterization of the IRAM 30-m beam pattern observed through NIKA2 detectors is mainly based on observations of strong compact sources, such as planets including Uranus, Neptune and Mars, and bright quasars. We generally use beam-map scans, which we recall, are deep-integration raster-scan observations that consist of 99 sub-scans placed at intervals of $4.8''$ to cover a total of $13.5' \times 7.8'$. Most of our beam-related analysis are beased on the same set of beam-map scans as previously selected to perform the average FOV reconstruction. The set comprises nine beam-map scans that distribute as one from N2R8, '20170125s243', two from N2R9, '20170224s177' and '20170226s415' and six from N2R10, which are '20170226s425', '20170227s84', '20170419s133', '20170420s113', '20170424s116', '20170424s123'. 
+
 
 \subsubsection{Deep beam maps}
 We present the two-dimensional distribution of the beam in Fig.~\ref{fig:beam}. We primary use a map obtained from a combination of deep observations of strong point sources collected during \emph{NIKA2-run8} and \emph{run9}. Namely, we use 'beammap' OTF scans of Uranus (scan id '20170125s223' and '20170125s243'),  Neptune ('20170224s177') and the bright quasar 3C84 ('20170226s415'). However, we checked the stability of our results on single scan maps, combinations of scans for a single source, and combinations of shallower scans but spanning a large range of scanning direction. The data processing includes a mitigation of the correlated noise, which mainly originates from the atmosphere.  We primarly use a subtraction of a common mode estimated from the most correlated detectors (the so-called 'cm one block' method). However, other methods are tested for assessing the immunity of our results to noise residuals.
@@ -339,11 +295,12 @@ The deep NIKA2 beam maps reveal some noticeable features, which are shown in Fig
 \end{center}
 \end{figure}
 
-We further quantify the relative level of the main beam, the first error beam and other features seen in the 2D beam pattern using radial cuts.
 
-[FIGURE JEAN-FRANCOIS]
+To gain a first impression of the structure of the Iram 30-m beam as seen with NIKA2, we use radial cuts to evidence the relative level of the main beam, the first error beam and other features seen in the 2D beam pattern using radial cuts. NIKA2 full beam is shown in Fig. \ref{fig:beam_db} by means of two orthogonal cuts through Uranus
+from a high quality map obtained on 2017 January 25th in excellent conditions
+(low opacity $\tau_{225}=0.08$ and elevation $46^{\circ}$).
 
-\begin{figure}
+\begin{figure}[h]
 \begin{center}
 \includegraphics[clip, angle=-90, scale =0.3]{Figures/Array_A1_dB.pdf}
 \includegraphics[clip, angle=-90, scale = 0.3]{Figures/Array_A2_dB.pdf}
@@ -355,42 +312,44 @@ The main beam starts to depart from the first Gaussian at -12dB. }
 \end{center}
 \end{figure}
 
-The Iram 30-m beam as seen with NIKA2 is shown in
-Fig. \ref{fig:beam_db} by means of two orthogonal cuts through Uranus
-from a high quality map obtained on 2017 January 25th in excellent conditions
-(low opacity $\tau_{225}=0.08$ and elevation $46^{\circ}$).
 A model made of three Gaussians centered on the source peak was best
-fit {\it by hand} to these cuts and the parameters are reported in
-Table \ref{tab:3gauss} [PEUT-ETRE AVANTAGEUSEMENT REPLACED PAR VALEURS DE FLORIAN].
-The main beam starts to depart from the first
+fit {\it by hand} to these cuts.
+%the parameters are reported in Table \ref{tab:3gauss} [PEUT-ETRE
+%AVANTAGEUSEMENT REPLACED PAR VALEURS DE FLORIAN].
+We observe that the main beam starts to depart from the first
 Gaussian at the level of about -12dB for the three arrays.
 We note that for the instrument EMIR on the radiotelescope,
 this departure is about -20dB (Kramer, Penalver and Greve 2013).
-From parameters in Table \ref{tab:3gauss}, one can estimate that
-the source incident power is split about equally between the main beam
-and the error beam at 1mm, and these fractions are 70\% and 30\% at 2mm, respectively.
-This modelling uses the central
-region   $180'' \times 180''$ in size with a uniform noise rms from
-a larger area of 8' x 5' on the sky scanned with the arrays. It is expected
-that the error beam extend beyond these limits.
+The precise characterization of the full beam structure is discussed
+in Sect.~\ref{se:fullbeam_prof}.  
+
+%From parameters in Table \ref{tab:3gauss}, one can estimate that
+%the source incident power is split about equally between the main beam
+%and the error beam at 1mm, and these fractions are 70\% and 30\% at 2mm, respectively.
+%This modelling uses the central
+%region   $180'' \times 180''$ in size with a uniform noise rms from
+%a larger area of 8' x 5' on the sky scanned with the arrays. It is expected
+%that the error beam extend beyond these limits.
 
 
-\begin{table}
-\centering 
-\caption[]{Model parameters of the three Gaussian beam.}
-\begin{tabular}{|l|l|l|l|l|l|l|}
-\hline
-               & \multicolumn{3}{c|}{A1 and A3} & \multicolumn{3}{c|}{A2}  \\
-\hline
-fwhm      & $11.25''$ & $45''$  & $250''$ & $17.75''$ & $56''$  & $420''$ \\
-amplitude & 0.984     & 0.015   & 0.0005   &  0.9875   & 0.011   &  0.0005\\
-\hline
-\end{tabular}
-\label{tab:3gauss}
-\end{table}
+%\begin{table}
+%\centering 
+%\caption[]{Model parameters of the three Gaussian beam.}
+%\begin{tabular}{|l|l|l|l|l|l|l|}
+%\hline
+%               & \multicolumn{3}{c|}{A1 and A3} & \multicolumn{3}{c|}{A2}  \\
+%\hline
+%fwhm      & $11.25''$ & $45''$  & $250''$ & $17.75''$ & $56''$  & $420''$ \\
+%amplitude & 0.984     & 0.015   & 0.0005   &  0.9875   & 0.011   &  0.0005\\
+%\hline
+%\end{tabular}
+%\label{tab:3gauss}
+%\end{table}
 
 
 \subsubsection{Beam profile}
+\label{se:fullbeam_prof}
+
 
 \begin{figure*}[h!]
 \centering
@@ -404,7 +363,109 @@ amplitude & 0.984     & 0.015   & 0.0005   &  0.9875   & 0.011   &  0.0005\\
 \end{figure*}
 
 
-\subsubsection{Beam efficiency}
+
+%% [Main beam]
+%%________________________________________________________
+\subsection{Main beam}
+
+We define NIKA2 main beam as the principal Gaussian (of the smaller FWHM)
+that encloses most of the meassured source flux. The principal-power,
+smaller-FWHM Gaussian fitted function within the three-Gaussian model,
+as discussed in Sect.~\ref{se:fullbeam_prof}, provides us with a first
+estimate of the main beam, which is given in Table~\ref{tab:fwhm}. However,
+this estimate could be biased toward the lower-FWHM values due to
+degeneracies between the three-Gaussian model parameters. To ensure
+obtaining robust main beam FWHM estimates, we devise two alternative dedicated
+methods, which both resort to masking the side lobes: i) Gaussian
+fits of the beam profile to benefit from the signal-over-noise
+increase after azimuthally averaging the signal, ii) Elliptical
+Gaussian fits of the beam map for a better 2D modeling. Cross-checking
+the outputs from these complementary methods is an important robustess
+test of our results.
+
+We also consider different data sets acquired during \emph{N2R8}, \emph{N2R9}
+and \emph{N2R10}: i) a series of $8' \times 5'$ OTF
+scans of primary and secondary calibrators, ii) beam-map scans of
+Planets.
+
+Table~\ref{tab:fwhm} gathers the main beam FWHM results obtained using the three
+discussed methods and two datasets.  
+
+
+\subsubsection{Sidelobe-masked Profile-based analysis}
+
+[JEAN-FRANCOIS]
+
+\subsubsection{Sidelobe-masked Map-based analysis}
+
+\paragraph{Method description}
+
+NIKA2 main beam two-dimensionnal distribution is modeled using an elliptical Gaussian. We characterize NIKA2 resolution by giving the \emph{FWHM}, defined as
+\begin{equation}
+  FWHM = 2 \sqrt{2\ln {2}} \sqrt{\sigma_x\sigma_y},
+\end{equation}
+where $\sigma_x$ and $\sigma_y$ are the Gaussian standard deviation along minor- and major-axis. To avoid the side lobes contamination, we use masked versions of the beam map, in which an annulus of inner radius $r_{\rm{in}}$ and outter radius $r_{\rm{out}}$ is cut out. Whereas $r_{\rm{out}}$ is conservately set to be $100 arcsec$, $r_{\rm{in}}$ is let free to vary around a central value about $8'$ for A1 and A3 and about $12'$ for A2 to provide the best 2D Gaussian fit.  
+
+\paragraph{Estimates using $8' \times 5'$ OTF scans}
+
+We select \emph{N2R9} and \emph{N2R10} $8' \times 5'$ OTF scans of
+bright point sources, including primary and secondary
+calibrators. Namely, we consider scans of Uranus, Neptune, 3C273,
+3C84, 0316+413, Vesta and MWC349, whereas we avoid CRL2688 and
+NGC7027, which are slightly extended. Conservative data selection
+criteria with respect to observing conditions are applied: average
+elevations $\rm{el} \ge 20°$, zenith opacities as estimated by
+NIKA2 in the 1mm band $\tau_{1\rm{mm}} \le 0.4$, reasonable lateral
+focus settings $x, y \le 0.5$mm. After selection cuts, our data set
+includes 130 OTF scans acquired during \emph{N2R9}, which consists of
+a representative sub-sample of a typical NIKA2 observation campaign,
+as well as XXX scans of \emph{N2R10}. 
+
+Figure~\ref{fig:fwhm_map} shows FWHM distributions obtained in using
+the elliptical Gaussian fit method from the selected set of $8' \times 5'$ OTF scans.
+We checked a posteriori that $r_{\rm{in}}$ distributes as $7 \pm 1.5$ arcsec at 1mm and $13 \pm 4$ arcsec at 2mm, in agreement with settings defined in the profile-based analysis.
+
+
+\begin{figure}
+\begin{center}
+  \includegraphics[clip, angle=0, scale=0.7]{Figures/Main_Beam_FWHM_N2R9_10.pdf}
+\caption{Distribution of the main beam FWHM estimates using 2D
+  Gaussian fits on N2R9 and N2R10 $8' \times 5'$ OTF scans of brigth point sources}
+\label{fig:fwhm_map}
+\end{center}
+\end{figure}
+
+\paragraph{Estimates using beam-map scans}
+
+The elliptical Gaussian model is best fit to sidelobe-masked beam-maps from the scan selection described in Sect.~\ref{se:beammap_set}. Sidelobe masks are defined by a fixed $r_{\rm{out}}$ of $100 arcsec$ and a $r_{\rm{in}}$ that freely varies from $8'$ to $9'$ for the $260~\rm{GHz}$-arrays, and from $10'$ to $14'$ for the $150~\rm{GHz}$ array. We checked, hovewer, that we obtain consistent results but larger dispersion when using annulus masks of fixed $r_{\rm{in}}$ of $8.5'$ and $12'$ at $260$ and $150~\rm{GHz}$ respectively. The median main beam FWHM and the rms error estimate, as obtained from the nine beam-maps, are given in Table~\ref{tab:fwhm}.       
+
+
+
+\begin{table}[h]
+  \caption[]{FWHM of the NIKA2 main beam in arcsec.}
+  \centering
+  \begin{threeparttable}
+  \begin{tabular}{|r|c|c|c|c|}
+    \hline
+    Array & A1 &  A3 & A1 $\&$ A3 &  A2  \\
+    \hline
+    \hline
+    Three-Gaussian model G1\tnote{a}    &  $10.8 \pm 0.2$  &  $10.8 \pm 0.2$  &  $10.8 \pm 0.3$  &  $17.2 \pm 0.05$  \\
+    Sidelobe-masked profile-based       &    &    &    &   \\
+    Sidelobe-masked map-based OTF       & $11.0 \pm 0.3$  &  $10.9 \pm 0.2$  &  $11.0 \pm 0.2$  &  $17.8 \pm 0.2$ \\ 
+    Sidelobe-masked map-based beam-map  & $$   & $$   &  $$  &  $$ \\ 
+    \hline
+  \end{tabular}
+  \begin{tablenotes}
+  \item[(a)] Median FWHM of the first (lowest-FWHM) Gaussian function
+    within the Three-Gaussian model fitted from the beam-map scan selection 
+  \end{tablenotes}
+  \end{threeparttable}
+  \label{tab:fwhm}
+\end{table}
+
+
+\subsection{Beam efficiency}
 
 
 %% [STABILITY]

@@ -430,6 +430,19 @@ We observe global good agreement between the IRAM tau-meter opacity, used for co
 The first NIKA2 astronomical light was achieved in October 2015. A first technical run followed immediately after. A number of commissioning runs have then been carried out between November, 2015 and April, 2017. Since September, 2016 the instrumental configuration has been fully stable after replacing the 2mm array, the dichroic, and the smooth lenses by anti-reflection ones.
 In this paragraph we summarize the main results obtained for the characterization of the instrument performance. A detailed description of the instrumental performance and of the data analysis pipeline will be given in forthcoming papers. We stress however that the experience in the use of NIKA2 by external astronomers might lead, in the best case, to further optimization lof the instrument performances. The experience that will be accumulated in the future might eventually allow us to pinpoint subtle problems that have not been evidenced during the commissioning. 
 
+\section{Data processing at the telescope}
+
+Astrophysical observations are carried out in scans, which typically last for few minutes up to 20 minutes at most.
+The NIKA2 data for each scan are recorded in a file that is named using the date and time of the observation, and
+the source name. The NIKA2 data are sampled at 23.8418 Hz. For each sample and for each KID, the in-phase (I), the quadrature
+(q) and their derivatives (dI, dQ) of the transfer function of the feed-line and the pixel are recorded.
+Some extra information like scan number, sub-scan number, and telescope pointing information are also included. \\
+
+Data processing is needed during telescope observations to ensure the scientific quality of the acquired data.
+We have developed two sets of tools for real-time and quick-look analysis. The real time tools run on a specific multi-processor acquisition computer and monitor the KID time ordered data, the overall behavior of the instrument, and decode telescope messages as discussed in Section~\ref{Sky background matching}. \\
+
+The quick-look analysis software is run at the end of each scan by the observer to obtain an early feedback. The execution time is typically 1 minute. It includes both map making capacities and analysis of the produced maps, in terms of photometry, sensitivity, but also calibration. Indeed, it is used to monitor the pointing of the telescope and its focus (about once every two hours in normal observing conditions) and to give the required instructions to correct for their drifts. This quick-look software has been used extensively during the commissioning. It shares a lot of common tools with the off-line processing pipeline that is used to construct the final and optimal sky maps (see \cite{ponthieu} for more details).
+
 \subsection{Field of view reconstruction}
 
 \begin{figure*}[h]
@@ -481,7 +494,7 @@ The maps are consistent with a 2D gaussian main beam of FWHM $11.5^{\prime \prim
 The color lines in Figure~\ref{fig:beampattern} show the side lobes and error beams are complex. In the 260 GHz maps (A1mmH, A1mmV, and combined A1mmH-A1mmV) we clearly observed a diffraction ring at a radius of about 100$^{\prime \prime}$ and at -30 dB. The diffraction ring and its spokes are presumably caused by radial and azimuthal panel buckling (see Figure 4 in \cite{greve1998}. The perpendicular green lines shown in the A2mm map correspond to the diffraction pattern caused by the quadrupod secondary support structure. In the same map the yellow arrows point to four symmetrical spokes of the errorbeams. The pink ellipse show spikes in this maps. Finally, we observe in the A1mmV map some spikes of unknown origin and that are pointed by yellow arrows in the figure.
 
 Comparing the 2D gaussian main beam fit to the full beam pattern measurement up to a radius of
-$250''$, we compute the beam efficiencies defined as the ratio of power between the main beam and this full beam. We find $\sim 55$ \% and $\sim 70$ \% at 260 and 150~GHz, respectively.
+$250''$, we compute the beam efficiencies defined as the ratio of power between the main beam and this full beam. We find $\sim 55$ \% and $\sim 75$ \% at 260 and 150~GHz, respectively.
 These main beam efficiencies are consistent with the ratio of the solid angles between the total and  the gaussian approximation to the main beam, which are 1.85 and 1.35 when computed to the same angular extent.
 Heterodyne observations of the lunar edge and of the forward beam efficiency derived from skydips show that a significant fraction of the full beam is received from beyond a radius of 250$^{\prime \prime}$. This is not considered here.
 
@@ -493,11 +506,13 @@ Their reference flux densities were obtained from the model in \cite{moreno2010}
 and updated at the mid-date of each session of observations. 
 We use the planet geocentric distance
 and viewing angle as provided by the JPL's HORIZONS Ephemeris\footnote{See https:\/\/ssd.jpl.nasa.gov\/horizons.cgi} to account for planetary oblateness. 
-By convention flux density are given at 150 and 260~GHz for the 2mm and 1.25 mm channels, respectively. Notice that the chosen frequencies are close to the central frequencies of the NIKA2 channels, which are given in Table~\ref{sumperf}. \\
+By convention flux densities are given at 150 and 260~GHz for the 2mm and 1.25 mm channels, respectively. Notice that the chosen frequencies are close to the central frequencies of the NIKA2 channels, which are given in Table~\ref{sumperf}. \\
 
-Various observations of Uranus and Neptune with integration times of $\sim 20$ minutes were carried out during each commissioning session resulting in high SNR maps (e.g. Fig. \ref{fig:beampattern}). Their total flux densities were measured from the maps both by fitting a fixed FWHM (12.5$^{\prime \prime}$ and 18$^{\prime \prime}$ for the 260 and 150 GHz channels, respectively) 2D gaussian to the planet emission, and by aperture photometry within a radius of  $150''$ where cumulative flux density leveled off smoothly. We find consistent results between the two estimates, with differences below 2 \%. In both cases the obtained fluxes were corrected for atmospheric absorption using the atmospheric line-of-sight opacity for the two NIKA2 channels, which was computed as described in \ref{Atmospheric attenuation correction}. \\
+Various observations of Uranus and Neptune with integration times of $\sim 20$ minutes were carried out during each commissioning session resulting in high SNR maps (e.g. Fig. \ref{fig:beampattern}). Their total flux densities were measured from the maps 
+%both by fitting a fixed FWHM (12.5$^{\prime \prime}$ and 18$^{\prime \prime}$ for the 260 and 150 GHz channels, respectively) 2D gaussian to the planet emission, and 
+by aperture photometry within a radius of  $150''$ where cumulative flux density leveled off smoothly. We find consistent results between the two estimates, with differences below 2 \%. In both cases the obtained fluxes were corrected for atmospheric absorption using the atmospheric line-of-sight opacity for the two NIKA2 channels, which was computed as described in \ref{Atmospheric attenuation correction}. \\
 
-The ratios between the fluxes for each individual planet observation and the reference planet flux for the three NIKA2 arrays are shown in Figure~\ref{fig:calibaccuracy} for the February and April 2017 commissioning campaigns.  The mean ratios for the three arrays are close to unity as expected since the planets were used to set the Jansky scale in the processing. Overall, the flux density scale is stable at better than $7\%$ for all observations acquired during two weeks  separated by two months, and despite the fact that the instrument was warmed up between the two sessions. It is noticeable that scatter around unity in Fig. \ref{fig:calibaccuracy}
+The ratios between the fluxes for each individual planet observation and the reference planet flux for the three NIKA2 arrays are shown in Figure~\ref{fig:calibaccuracy} for the February and April 2017 commissioning campaigns.  The mean ratios for the three arrays are close to unity as expected since the planets were used to set the Jansky scale in the off-line processing. Overall, the flux density scale is stable at better than $7\%$ for all observations acquired during two weeks  separated by two months, and despite the fact that the instrument was warmed up between the two sessions. It is noticeable that scatter around unity in Fig. \ref{fig:calibaccuracy}
 is about twice smaller in the first session conducted in significantly better weather conditions.
 Precisely, stabilities for the February commissioning week the flux rms is 3.6\%, 2.5\% and 2.9\% for arrays 1, 2, 3, respectively, with atmospheric opacity at 260 GHz between 0.05 and 0.3.
 Correspondingly, for the April campaign, we find  5.3\%, 6.7\% and 8.6\%  with atmospheric opacity at 260~GHz between 0.25 and 0.6. It is thought that, at the moment, limitations in stability are caused by residual atmospheric fluctuations in the astronomical signal and uncertainty in opacity corrections. 

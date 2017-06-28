@@ -178,6 +178,7 @@ N2R11  & 24       &  8-June-2017   & 13-June-2017  &  polarization commissioning
 \section{Opacity derivation}
 \label{se:opacities}
 \input{Opacities}
+\input{Opacity_checks}
 
 
 
@@ -209,9 +210,16 @@ N2R11  & 24       &  8-June-2017   & 13-June-2017  &  polarization commissioning
 \section{Calibration}
 \label{se:calibration}
 
+% NIKA2 Photometric System
+% Reference flux densities of the calibrators
 \input{photometry_HA.tex}
+
+% Aperture photometry
+% Stability of the flux density scale with the primary calibrators Uranus and Neptune
+% Stability of the flux density scale with three secondary calibrators 
 \input{cal_JFL.tex}
 
+% Fig Nico
 \begin{figure}
 \begin{center}
 \includegraphics[clip, angle=0, scale = 0.4]{Figures/Calibrators_N2R9_20170226s415_FXDC0C1_GaussPhotFluxType_fixed_fwhm_gauss.png}
@@ -223,26 +231,11 @@ N2R11  & 24       &  8-June-2017   & 13-June-2017  &  polarization commissioning
 \end{center}
 \end{figure}
 
+% Calibration stability across the run
+\input{Calib_stability.tex}
 
-\subsection{Calibration stability across the run}
-
-\begin{figure}
-\begin{center}
-\includegraphics[clip, angle=0, scale = 0.7]{Figures/FluxIndScans/flux_ratio_run22.pdf}
-\includegraphics[clip, angle=0, scale = 0.7]{Figures/FluxIndScans/flux_ap_ratio_run22.pdf}
-\caption{Ratio between the measured flux per scan and the averaged flux for all sources observed in N2R9. We considered both fixed FWHM (top) and aperture photometry fluxes for the 1 (red) and 2 (cyan) mm channels. }
-\label{fig:fluxvsscan}
-\end{center}
-\end{figure}
-
-\begin{figure}
-\begin{center}
-\includegraphics[clip, angle=0, scale = 0.7]{Figures/FluxIndScans/flux_ratio_rz_run22.pdf}
-\includegraphics[clip, angle=0, scale = 0.7]{Figures/FluxIndScans/flux_ap_ratio_rz_run22.pdf}
-\caption{Ratio between the measured flux per scan and the averaged flux as a function atmospheric backgroud for all sources observed in N2R9. We considered both fixed FWHM (top) and aperture photometry fluxes for the 1 (red) and 2 (cyan) mm channels. }
-\label{fig:fluxvsbackground}
-\end{center}
-\end{figure}
+% Flat Fields
+\input{Flat_fields.tex}
 
 
 

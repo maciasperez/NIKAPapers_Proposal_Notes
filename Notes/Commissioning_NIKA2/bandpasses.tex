@@ -1,9 +1,24 @@
+%\begin{figure}[ht] % Inline image example
+%\begin{center}
+%\includegraphics[width=0.9\textwidth]{Figures/SpectralBands/atm_transmission.pdf}
+%\caption{Spectral transmission of the the three NIKA2 arrays as a function of frequency in GHz. For illustration we also plot the ATM atmospheric model for different values of pwv. \label{spectralband}}
+%\end{center}
+%\end{figure}
+
+
 \begin{figure}[ht] % Inline image example
 \begin{center}
-\includegraphics[width=0.9\textwidth]{Figures/SpectralBands/atm_transmission.pdf}
-\caption{Spectral transmission of the the three NIKA2 arrays as a function of frequency in GHz. For illustration we also plot the ATM atmospheric model for different values of pwv. \label{spectralband}}
+\includegraphics[width=0.9\textwidth]{Figures/SpectralBands/bandpasses_nika2.png}
+\caption{Relative system response of the the three NIKA2 arrays as a
+  function of frequency. For illustration we also plot the ATM model
+  atmospheric transmission for different values of precipitable water
+  vapor. The spectra of ESA4 model of Uranus and ESA5 model of
+  Neptune in the frequency range are overplotted with arbitrary
+  normalization}
+ \label{spectralband1}
 \end{center}
 \end{figure}
+
 
 
 \begin{figure}[ht] % Inline image example
@@ -16,22 +31,74 @@
 
 
 The NIKA2 spectral bands were measured in the laboratory using a Martin Pupplet interferometer.
-Both arrays and filter bands were considered in the measurements. Theser were obtained from the difference of two black-bodies, hence they include a a $\nu^2$ RJ term. During the commissioning in Run 5 array 2 was replaced. The new array has a different spectral transmission. Figure shows the spectral transmissions for the three arrays. Notice that array A2 was replaced by a new on in N2R5 and that the spectral transmissions are not the same (red and cyan lines in the figure).
+Both arrays and filter bands were considered in the
+measurements. These were obtained from the difference of two
+black-bodies, hence they include a a $\nu^2$ RJ term. During the
+commissioning in Run 5 array 2 was replaced. The new array has a
+different spectral transmission. Figure~\ref{spectralband1} shows the
+relative spectral response for the three arrays (corrected of the RJ
+term). Notice that array A2 was replaced by a new on in N2R5 and that
+the spectral transmissions are not the same (green and red lines in the
+figure). 
 
+
+%\begin{table}[h]
+%\caption{Spectral transmission characteristics for the NIKA2 arrays.%
+%\label{nika2runs}}
+%\begin{tabular}{|c|c|c|c|c|}
+%\hline 
+ % &     A1  &  A3 &  A2 2015 & A2 2016 \\ 
+%\hline 
+%Central Frequency [GHz] &   255.5  & 257.8   &   147.7  & 151.6 \\  
+%Bandwidth [GHz]         &   47.8   & 45,7    &   41.8   & 42.1 \\
+%\hline 
+%\end{tabular} 
+%\end{table} 
 
 \begin{table}[h]
-\caption{Spectral transmission characteristics for the NIKA2 arrays.%
-\label{nika2runs}}
-\begin{tabular}{|c|c|c|c|c|}
+\caption{Effective frequencies (for Uranus) and bandwidth of the NIKA2 bands for
+  various atmospheric conditions and elevation.}
+\label{tab:bandwidths}
+\begin{tabular}{|l|l|r|r|r|r|r|r|}
 \hline 
-  &     A1  &  A3 &  A2 2015 & A2 2016 \\ 
-\hline 
-Central Frequency [GHz] &   255.5  & 257.8   &   147.7  & 151.6 \\  
-Bandwidth [GHz]         &   47.8   & 45,7    &   41.8   & 42.1 \\
-\hline 
-\end{tabular} 
-\end{table} 
-
+\multirow{3}{*}{Water vapor} & \multirow{3}{*}{Elevation} & \multicolumn{2}{|c|}{1mmH} & \multicolumn{2}{|c|}{1mmV} & \multicolumn{2}{|c|}{2mm} \\
+ & & $\nu_eff$ & $\Delta \nu$  & $\nu_eff$ & $\Delta \nu$  & $\nu_eff$ & $\Delta \nu$ \\
+ & & (GHz) & (GHz)  & (GHz)  & (GHz)   & (GHz)  & (GHz)  \\
+\hline
+\multicolumn{2}{|c|}{No atmosphere} & 254.71 & 49.21 & 257.39 & 48.05 & 150.93 & 40.72 \\
+\hline
+\multirow{4}{*}{1 mm H2O $\rightarrow \tau_{225}=$0.067} & 90 deg &  254.46 & 48.72 & 257.12 & 47.95 & 150.93 & 39.71 \\
+ & 60 deg & 254.42 & 48.68 & 257.08 & 47.93 & 150.92 & 39.60 \\
+ & 40 deg & 254.33 & 48.57 & 256.98 & 47.89 & 150.88 & 39.32 \\
+ & 20 deg & 254.00 & 48.21 & 256.62 & 47.77 & 150.75 & 38.45 \\
+\hline
+\multirow{4}{*}{2 mm H2O $\rightarrow \tau_{225}=$0.120} & 90 deg &  254.26 & 48.74 & 256.91 & 48.06 & 150.64 & 39.34 \\
+ & 60 deg & 254.20 & 48.70 & 256.84 & 48.07 & 150.60 & 39.19 \\
+ & 40 deg & 254.02 & 48.60 & 256.65 & 48.08 & 150.48 & 38.80 \\
+ & 20 deg & 253.43 & 48.30 & 256.01 & 47.93 & 150.13 & 37.62 \\
+\hline
+\multirow{4}{*}{3 mm H2O $\rightarrow \tau_{225}=$0.173} & 90 deg &  254.06 & 48.76 & 256.70 & 48.19 & 150.39 & 39.03 \\
+ & 60 deg & 253.97 & 48.73 & 256.60 & 48.21 & 150.32 & 38.84 \\
+ & 40 deg & 253.71 & 48.65 & 256.33 & 48.28 & 150.14 & 38.35 \\
+ & 20 deg & 252.86 & 48.41 & 255.40 & 47.86 & 149.60 & 36.94 \\
+\hline
+\multirow{4}{*}{5 mm H2O $\rightarrow \tau_{225}=$0.278} & 90 deg &  253.67 & 48.82 & 256.28 & 48.45 & 149.96 & 38.47 \\
+ & 60 deg & 253.51 & 48.81 & 256.11 & 48.44 & 149.84 & 38.22 \\
+ & 40 deg & 253.10 & 48.77 & 255.68 & 48.26 & 149.54 & 37.58 \\
+ & 20 deg & 251.74 & 48.67 & 254.20 & 47.75 & 148.68 & 35.82 \\
+\hline
+\multirow{4}{*}{8 mm H2O $\rightarrow \tau_{225}=$0.437} & 90 deg &  253.08 & 48.94 & 255.66 & 48.42 & 149.38 & 37.76 \\
+ & 60 deg & 252.84 & 48.93 & 255.39 & 48.35 & 149.20 & 37.42 \\
+ & 40 deg & 252.21 & 48.94 & 254.71 & 48.16 & 148.77 & 36.64 \\
+ & 20 deg & 250.12 & 49.38 & 252.43 & 47.91 & 147.52 & 34.57 \\
+\hline
+\multirow{4}{*}{10 mm H2O $\rightarrow \tau_{225}=$0.542} & 90 deg &  252.70 & 49.00 & 255.24 & 48.38 & 149.04 & 37.34 \\
+ & 60 deg & 252.39 & 49.01 & 254.92 & 48.29 & 148.82 & 36.97 \\
+ & 40 deg & 251.62 & 49.11 & 254.08 & 48.13 & 148.31 & 36.12 \\
+ & 20 deg & 249.07 & 49.75 & 251.28 & 48.24 & 146.85 & 33.93 \\
+\hline
+\end{tabular}
+\end{table}
 
 %What actually matters more than the ``central frequency'' that depends on many
 %assumptions and definitions are the bandpasses. We should make available in a
@@ -40,5 +107,33 @@ Bandwidth [GHz]         &   47.8   & 45,7    &   41.8   & 42.1 \\
 %state that these measured bandpasses were done with the difference of two
 %black-bodies, hence they include a $\nu^2$ RJ term.\\
 
-Using the NIKA2 bandpasses for N2R9, we can integrate the ATM atmospheric model to compute the expected ratio between the atmospheric opacity for the two NIKA2 channels. This shown in Figure~\ref{thopacities} where we present the atmospheric opacity ratio of the 2 and 1 mm channels as a function of the opacity for the 1 mm one.
+The total system response is the multiplication of the atmospheric
+transmission with the relative system response. To derive the
+atmospheric transmission, we use GILDAS ATM 2009 model, computed for
+the IRAM 30m, with 'midlatwinter' conditions. We select in the model
+grid an atmosphere with T=268.3 K and a pressure of 703.5 hPa. The
+effective frequency of the passband is defined by:
+\begin{equation}
+\nu_{eff}( \sec z, mm_{H_{2}O}) = \frac{ \int_{0}^{+\infty} S_{\nu}
+  T_{\nu}(\sec z, mm_{H_{2}O}) \nu d\nu } { \int_{0}^{+\infty} S_{\nu} T_{\nu} d\nu}
+\label{eq:nueff0}
+\end{equation}
+where $T_{\nu}$ is the total system response, $S_{\nu}$ is the source
+spectrum. Table~\ref{tab:bandwidths} list this effective frequency,
+computed for Uranus spectrum (ESA4 model), for different atmospheric
+water vapor content and different elevations. 
+Table~\ref{tab:bandwidth} also list the bandwidth, defined as:
+\begin{equation}
+\Delta\nu = \int_{0}^{+\infty} \frac{T_{\nu}}{Max(T_{\nu})}
+d\nu
+\end{equation}
+where the $Max((T_{\nu})$ ensure the RSR span the whole 0.0 to 1.0 range.
+From Table~\ref{tab:bandwidth}, we see that the 2mm band is somewhat
+sensitive to the atmospheric conditions, especially at low elevation.
+
+
+{\bf Can we be more specific about what was computed next ? Is it the
+  opacity weighted by the band ? Or the resultant opacity ?}
+
+Using the NIKA2 bandpasses for N2R9, we can integrate the ATM atmospheric model to compute the expected ration between the atmospheric opacity for the two NIKA2 channels. This shown in Figure~\ref{thopacities} where we present the atmospheric opacity ratio of the 2 and 1 mm channels as a function of the opacity for the 1 mm one.
 

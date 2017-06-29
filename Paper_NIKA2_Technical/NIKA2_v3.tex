@@ -394,7 +394,7 @@ The tuning procedure requires real-line synchronization of the NIKA2 camera with
 \label{Atmospheric attenuation correction}
 
 
-The sky maps have of course to be corrected for the atmospheric absorption. The corrected brightness $S^{corrected}$ is:
+The sky maps have to be corrected for the atmospheric absorption. The corrected brightness $S^{corrected}$ is:
 \begin{equation}\label{eq:opa}
 S^{corrected} =  S^{ground} \cdot e^{ x \cdot \tau_{scan}}
 \end{equation}
@@ -412,37 +412,21 @@ observation, and $x$ represents the airmass\footnote{By assuming a
   \label{fig:taumeas}}
 \end{figure}
 
-In NIKA2, the opacity is measured via a total-power technique, which
-was successfully tested with NIKA. The details of this technique and
-its agreement with the Atmospheric Transmission at Microwaves (ATM)
-model (\cite{2001IEEE....49.1683C}) are described in
-\cite{Catalano2014}. The underlying idea is to replace the opacity,
-usually delivered by the resident IRAM tau-meter that performs
-elevation scans at a fixed azimuth and is operating at 225\,GHz, by a
-measurement that uses the NIKA2 instrument itself as a tau-meter.
-Using this procedure we can directly derive an opacity integrated in
-the NIKA2 very bandpasses and in the same line-of-sight of the source
-in the considered map. First, we have to calibrate the relationship
-between total power and opacity. We do that with a classical skydip
-measurement where the telescope performs eleven elevation steps in the
-range $\delta = 19\div65\,\mathrm{deg}$, regularly spaced in airmass. For each
-step, we acquire about twenty seconds of useful signal.
-The relation between each detector resonance frequency and
-the airmass is given by the following equation:
+%BELOW NICOLAS VERSION
+NIKA2 has the ability to compute the opacity directly along the line of sight, integrated in NIKA2's very bandpasses and independently of the IRAM tau meter. The procedure was successfully tested with NIKA and is described in detail in \cite{Catalano2014}. Indeed, the resonance frequency of a kid is related to the airmass and the opacity like
 \begin{equation}\label{eq:skydip}
-f^{ground}_{skydip} = c_0 - c_1 \cdot T_{atm}[1 - e^{- x \cdot \tau_{skydip}}],
+f^{ground}_{skydip} = c_0 - c_1 \cdot T_{atm}[1 - e^{- x \cdot \tau}],
+\label{eq:tau}
 \end{equation}
-where $f^{ground}_{skydip}$ is the acquired signal which corresponds
-to the absolute value of the resonance frequency of each detector.
-$c_0$ is a constant equal to the resonance frequency for the
-considered detector at zero opacity. $c_1$ is the calibration
-conversion factor in $\mathrm{Hz/K}$, with $T_{atm}$ the equivalent
-temperature of the atmosphere (taken as a constant at $270\,\mathrm{K}$).
-$\tau_{skydip}$ is the sky zenith opacity during the skydip scan, and
-$x$ is the current airmass. Several skydips under different weather
-conditions are usually solved simultaneously (with the same $c_0$ and
-$c_1$ coefficients but different $\tau_{skydip}$ values) in order to
-break the natural degeneracy between the opacity and the response.
+where $f^{ground}_{skydip}$ is the acquired signal which corresponds to the absolute value of the resonance frequency of each detector, $c_0$ is a constant equal to the resonance frequency for the considered detector at zero opacity, $c_1$ is the calibration conversion factor in $\mathrm{Hz/K}$ and with $T_{atm}$ the equivalent temperature of the atmosphere (taken as a constant at $270\,\mathrm{K}$).  $\tau_{skydip}$ is the sky zenith opacity and $x$ is the airmass. $c_0$ and $c_1$ are constant in time within a cooldown cycle and depend on each KID. Once they are known, eq.~(\ref{eq:tau}) can be inverted to determine $\tau$. The determination fo $c_0$ and $c_1$ is achieved via a specific scan, nicknamed \emph{Skydips}. For such a scan, the telescope performs eleven elevation steps in the range $\delta = 19\div65\,\mathrm{deg}$, regularly spaced in airmass. For each step, we acquire about twenty seconds of useful signal. Several skydips under different weather conditions (hence different $\tau$) are solved simultaneously in order to break the natural degeneracy between the opacity and the response.
+%END OF NICOLAS VERSION
+
+% BELOW ORIGINAL FROM XAVIER
+%In NIKA2, the opacity is measured via a total-power technique, which was successfully tested with NIKA. The details of this technique and its agreement with the Atmospheric Transmission at Microwaves (ATM) model (\cite{2001IEEE....49.1683C}) are described in \cite{Catalano2014}. The underlying idea is to replace the opacity, usually delivered by the resident IRAM tau-meter that performs elevation scans at a fixed azimuth and is operating at 225\,GHz, by a measurement that uses the NIKA2 instrument itself as a tau-meter Using this procedure we can directly derive an opacity integrated in the NIKA2 very bandpasses and in the same line-of-sight of the source in the considered map. First, we have to calibrate the relationship between total power and opacity. We do that with a classical skydip measurement where the telescope performs eleven elevation steps in the range $\delta = 19\div65\,\mathrm{deg}$, regularly spaced in airmass. For each step, we acquire about twenty seconds of useful signal. The relation between each detector resonance frequency and the airmass is given by the following equation:
+%\begin{equation}\label{eq:skydip}
+%f^{ground}_{skydip} = c_0 - c_1 \cdot T_{atm}[1 - e^{- x \cdot \tau_{skydip}}],
+%\end{equation}
+%where $f^{ground}_{skydip}$ is the acquired signal which corresponds to the absolute value of the resonance frequency of each detector. $c_0$ is a constant equal to the resonance frequency for the considered detector at zero opacity. $c_1$ is the calibration conversion factor in $\mathrm{Hz/K}$, with $T_{atm}$ the equivalent temperature of the atmosphere (taken as a constant at $270\,\mathrm{K}$). $\tau_{skydip}$ is the sky zenith opacity during the skydip scan, and $x$ is the current airmass. Several skydips under different weather conditions are usually solved simultaneously (with the same $c_0$ and $c_1$ coefficients but different $\tau_{skydip}$ values) in order to break the natural degeneracy between the opacity and the response.
 
 We observe that the fitted values of $\tau_{skydip}$ are, as expected,
 common between different detectors of the same array. The coefficients
@@ -759,7 +743,7 @@ These results illustrate the high sensitivity of NIKA2, in particular at 2mm. fo
 The NIKA2 instrument is permanently installed at the 30-meters IRAM telescope since September, 2015. A first technical upgrade was achieved in September, 2016. During this upgrade, we replaced the dichroic, changed the 150\,GHz array and replaced most of the smooth lenses by anti-reflecting-coated ones. A number of commissioning observational runs have been achieved since the first light, i.e. October, 2015. In the present paper we have provided a general overview of the instrument, and shown the main results obtained during the commissioning campaigns. 
 
 The performance of the instrument, in terms of sensitivity, surpasses the ambitious goals at 150\,GHz, and approaches the goals themselves at 260\,GHz. In both channels, the sensitivity and general performance are much better than the specifications. 
-Building on this base, NIKA2 has been opened, in April 2017, to science verification observations. We are preparing a first scientific publication centred on high-quality mapping of the high-redshift (z = 0.58) galaxy cluster PSZ2 G144.83+25.11 via the SZ effect (\cite{Ruppin2017}). The instrument is going to be offered, under IRAM responsibility, to the larger community during the 2017/18 winter semester. At the same time, we are entering a phase of commissioning of the polarization module of NIKA2. 
+Building on this base, NIKA2 has been opened, in April 2017, to science verification observations. We are preparing a first scientific publication centred on high-quality mapping of the high-redshift (z = 0.58) galaxy cluster PSZ2 G144.83+25.11 via the SZ effect (\cite{Ruppin2017}). The instrument is going to be offered, under IRAM responsibility, to the larger community during the 2017/18 winter semester. In parallel, we have entered a phase of commissioning of the polarization module of NIKA2. 
 
 NIKA2, thanks to its versatile design and to the KID technology adopted, will be upgraded during its lifetime. Among the possible upgrades that we are considering: widening the 260\,GHz channels band in order to match the "1\,mm atmospheric window", adding a third band, reducing the pixels size, adding a polarised channel at 150\,GHz, increase the illumination of the primary mirror and others. 
 
@@ -769,9 +753,10 @@ NIKA2, thanks to its versatile design and to the KID technology adopted, will be
 
 
 \begin{acknowledgements}
-We would like to thank the whole IRAM Granada staff for their outstanding support during the campaigns.
-NAMES. 
-We acknowledge the crucial contributions of the technological groups in N\'eel and LPSC, and in particular: C. Geraci, J. Menu, E. Perbet, S. Roni, S. Roudier, J.-L. Bouly, J. Bouvier, G. Bosson, C. Li, N. Ponchant, D. Tourres, C. Vescovi .... G. Garde, H. Rodenas, E. Barria, G. Bres, G. Donnier-Valentin, O. Exshaw, M. Grollier, C. Hoarau, A. Gerardin, G. Pont, P. Chantib, T. Gandit, O. Tissot, P.F. Sibeud, A.J. Vialle, C. Guttin, J.L. Mocellin, .
+We would like to thank the IRAM team in Spain for their work to lead NIKA2 to a success, in particular Gregorio Galvez, Dave John, Hans Ungerechts, Salvador Sanchez, Pablo Mellado, Alessia Ritacco, Miguel Munoz, Francesco Pierfederici, Juan Penalver.
+
+We acknowledge the crucial contributions of the technological groups in N\'eel and LPSC, and in particular: E. Barria, G. Bosson, J.-L. Bouly, J. Bouvier, G. Bres, P. Chantib, G. Donnier-Valentin,  O. Exshaw, T. Gandit, G. Garde, C. Geraci, A. Gerardin, C. Guttin, C. Hoarau, M. Grollier, C. Li, J. Menu, J.L. Mocellin, E. Perbet, N. Ponchant, G. Pont, H. Rodenas, S. Roni, S. Roudier, J.P. Scordilis, O. Tissot, D. Tourres, C. Vescovi, A.J. Vialle. 
+
 We enjoy frequent fundamental Physics discussions, concerning superconducting devices, with Florence Levy-Bertrand, Olivier Dupr\'e, Thierry Klein, Olivier Buisson and others at the Institut N\'eel.
 
 This work has been partially funded by the LabEx FOCUS ANR-11-LABX-0013 and 

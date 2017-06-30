@@ -1,5 +1,15 @@
 \section{Methods of signal reconstruction}
-One of the most difficult challenges of operationg a KID is to convert the $I(t)$ and $Q(t)$ values to an absorbed optical power or shift in resonant frequency as a function of time $\delta f_{0} \propto \delta P_{opt}$. In this section, we will see how to adress this problem by using a new modulated readout technique and then by using two different signal reconstruction methods : RfdIdQ and Cf.
+
+{\bf Unlike the resistance of bolometers that can be directly measured to return
+  a signal proportionnal to the incicent power, the monitoring of the evolution
+  of the resistance of a KID requires a more complex readout scheme.}
+
+One of the most difficult challenges of operationg a KID is to convert the
+$I(t)$ and $Q(t)$ values to an absorbed optical power or shift in resonant
+frequency as a function of time $\delta f_{0} \propto \delta P_{opt}$. In this
+section, we will see how to adress this problem by using a new modulated readout
+technique and then by using two different signal reconstruction methods : RfdIdQ
+and Cf.
 
 \subsection{Modulated readout technique}
 An innovative readout technique has been developed to monitor the change of the signal $\frac{dI}{df}$,$\frac{dQ}{df}$ by using a known frequency shift. This scheme allows continuous simultaneous tracking of KID resonant frequency which change proportionally to the absorbed optical power. To do so, the standart excitation of the detectors which uses a fixed tone is replaced by a new excitation based on two different frequencies. In fact, in order to generate two tones, we modulate the local oscillator signal between two values, separated by $\delta f_{LO} \simeq 1$ kHz, and obtain $f_{+} = f_{0} + \frac{\delta f_{LO}}{2}$ and $f_{-} = f_{0} - \frac{\delta f_{LO}}{2}$ with $f_{0}$ the detector resonant frequency.\\
@@ -23,24 +33,39 @@ and the differential values are :
 	\label{circle-iq}
 \end{figure}
 
-Fig. \ref{circle-iq} shows a typical KID resonance circle. Thanks to this modulation technique, we obtain four quantities : I, Q and their variation $\delta I$, $\delta Q$.\\
-In this paper, I(t) and Q(t) are sampled at 22 Hz, they are the mean values of sub-sample i(t) and q(t) on $N_{m}$ = 40 points at 880 Hz. dI(t) and dQ(t) are the mean values of the difference between the data measured at $f_{-}$ and $f_{+}$. Then we have :
+Fig. \ref{circle-iq} shows a typical KID resonance circle. Thanks to this
+modulation technique, we obtain four quantities : I, Q and their variation
+$\delta I$, $\delta Q$.\\ In this paper, I(t) and Q(t) are sampled at 22 Hz,
+they are the mean values of sub-sample i(t) and q(t) on $N_{m}$ = 40 points at
+880 Hz. \di(t) and dQ(t) are the mean values of the difference between the data
+measured at $f_{-}$ and $f_{+}$. Then we have :
 
-\begin{equation}
-I = \sum^{N_{m}=40}_{p=1} i_{p}
-\end{equation}
+%% \begin{equation}
+%% I = \sum^{N_{m}=40}_{p=1} i_{p}
+%% \end{equation}
+%% 
+%% \begin{equation}
+%% Q = \sum^{N_{m}=40}_{p=1} q_{p}
+%% \end{equation}
+%% 
+%% \begin{equation}
+%% dI = \sum^{N_{m}/2=20}_{p=1} i_{2p} - i_{2p-1}
+%% \end{equation}
+%% 
+%% \begin{equation}
+%% dQ = \sum^{N_{m}/2=20}_{p=1} q_{2p} - q_{2p-1}
+%% \end{equation}
 
-\begin{equation}
-Q = \sum^{N_{m}=40}_{p=1} q_{p}
-\end{equation}
+\begin{eqnarray}
+I  &=& \sum^{N_{m}=40}_{p=1} i_{p}\\
+%\label{eq:i}
+Q  &=& \sum^{N_{m}=40}_{p=1} q_{p}\\
+%\label{eq:q}
+dI &=& \sum^{N_{m}/2=20}_{p=1} i_{2p} - i_{2p-1}\\
+dQ &=& \sum^{N_{m}/2=20}_{p=1} q_{2p} - q_{2p-1}
+\end{eqnarray}
 
-\begin{equation}
-dI = \sum^{N_{m}/2=20}_{p=1} i_{2p} - i_{2p-1}
-\end{equation}
-
-\begin{equation}
-dQ = \sum^{N_{m}/2=20}_{p=1} q_{2p} - q_{2p-1}
-\end{equation}
+% on voit les equations \ref{eq:i}, \ref{eq:q}.\\
 
 As shown in the next paragraph, these quantities are used to reconstruct the resonance frequency and so the optical power absorbed by the detector.
 

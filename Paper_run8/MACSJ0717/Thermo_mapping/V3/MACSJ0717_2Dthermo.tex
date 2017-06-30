@@ -138,7 +138,7 @@ From equation~\ref{eq:sx}, the \ccor{average} density along the line-of-sight is
 This quantity is straightforwardly obtained from the NIKA map accounting for relativistic corrections as detailed in \cite{Adam2016b}. As the temperature can be very high, the relativistic corrections are non negligible \citep{Pointecouteau1998,Itoh2003}, but the exact choice of the temperature map used to apply relativistic corrections has a negligible impact on our results \ccor{(i.e., the spectroscopic temperature maps from XMM-\textit{Newton}, from \textit{Chandra}, or $\TSZ$)}. 
 
 %========== Temperature
-\subsection{Gas-mass-weighted temperature mapping}
+\subsection{Gas-mass-weighted temperature mapping}\label{sec:Gas_mass_weighted_temperature_mapping}
 The tSZ+X-ray imaging temperature map, \ccor{$\TSZ$}, is obtained by combining the effective density and pressure: 
 \begin{equation}
 	k_{\rm B} \TSZ 
@@ -307,25 +307,6 @@ E. P. acknowledges the support of the French Agence Nationale de la Recherche un
 \ccor{In the algorithm developed by \citet{Bourdin2008}, the X-ray photons are arranged in a 3D `event cube' $(j,k,e)$ where $(j,k)$ are the sky coordinates and $e$ is the energy. We generated mock observation event cubes for both XMM-{\it Newton} and {\it Chandra} where the energy coordinate $e$ of each pixel was modelled by the spectrum of the best-fitting temperature from the maps described in Sect.~\ref{sec:results}. The appropriate response function, Galactic absorption value, and redshift were folded in during this procedure. Each model spectrum was normalised to match the surface brightness in each pixel, estimated producing a wavelet cleaned, background subtracted and exposure corrected image in the $[0.3-2.5]$ keV band. }
 
 \ccor{We obtained a Monte Carlo realisation of the spectrum in each pixel to produce a new mock observation event cube. We then applied the same background subtraction procedure and wavelet filtering algorithm to this mock observation event cube, producing a new, randomised temperature map in the same way as for the real data. We did this 100 times, and took the range encompassing 68\% of the Monte Carlo realisations as the uncertainty in the temperature map.}
-%
-%
-%
-%The background was modelled using the  same 'background cube' used for the real observation. We then obtained a Monte Carlo realisation  
-%
-%
-%We generated mock observations for both \xmm\ and \chandra. 
-%Using the best-fitting temperature map described in Sect.~\ref{sec:results}, a model event cube was produced, where each pixel is 
-%
-%
-%\begin{itemize}
-%\item a new event cube is produced, where for each position $(j,k)$ a Poissonian realization of a single-temperature spectrum\footnote{The spectrum is produced using an APEC model \citep{smith2001}. } fills the $e$ elements. 
-%         The temperature is fixed for each pixel accordingly to the original spectroscopic temperature map. The appropriate response function, absorption galactic value, and redshift are folded in during this procedure;
-%\item we normalize the spectrum at each position to match the surface brightness estimated producing a wavelet cleaned, background subtracted and exposure corrected image in the $[0.3-2.5]$ keV band;
-%\item the background, instrumental plus sky, is added using the same "background cube" produced from the real observation. See \cite{Adam2016b} for background creation details.     
-%\end{itemize}
-%We obtain $100$ temperature map realizations applying the wavelet filtering algorithm, using the same criteria as for the original map, to the mock event cubes. 
-%
-%The spatial extent of the original temperature maps, approximately a circular region which diameter is $\sim 3.8$ arcmin, is limited by the signal-to-background ratio threshold. Beyond this region the mock cube contains only the background, thus creating a non-physical edge which may introduce artifacts during the wavelet filtering. The region we are interested in, see Fig. \ref{fig:T_maps},  is a sub-grid of the original temperature maps, which borders both for \textit{Chandra} and XMM-\textit{Newton} are typically $\sim 2.5$ arcmin away from this edge. For this reason, this effect does not impact our results.}
 
 %========== Fit
 \section{Correlation between the temperature maps}\label{append:correlation}
@@ -341,6 +322,6 @@ where $\delta_{T_{1,2}}$ represents the temperature map uncertainties, and $\bet
 \end{equation}
 from which we extracted the intrinsic scatter, $\sigma_{\rm int} = \sqrt{\sigma_{\rm tot}^2 - \sigma_{\rm stat}^2}$, accounting for the statistical scatter $\sigma_{\rm stat}$.}
 
-\ccor{We also checked that our posterior likelihoods were consistent with the distribution of best-fitting values obtained when fitting independently our 100 Monte Carlo map realisations ($\TX$ and $\TSZ$). Nevertheless, we stress that this fitting method does not fully account for the nature of the data themselves. Indeed the recovery of the X-ray spectroscopic temperature maps implies pixel-to-pixel correlations, which depend on the photon count statistics, and thus on the sky coordinate and cluster regions. The tSZ signal is also correlated in the NIKA data, but in a different way, due to beam effects, and the noise is spatially correlated. We thus expect that the $\TX$ and $\TSZ$ map pixels do not contain the exact same sky information. These complexities, inherent to the data, are not fully accounted for in our fit. This could lead to small displacements of the best-fit values that we recover, as well as a slight underestimation of the error contours. However, our baseline pixel size of 20 arcsec allows to mitigate these effects.}
+\ccor{We also checked that our posterior likelihoods were consistent with the distribution of best-fitting values obtained when fitting independently our 100 Monte Carlo map realisations ($\TX$ and $\TSZ$, see Appendix~\ref{append:Txerror} and Section~\ref{sec:Gas_mass_weighted_temperature_mapping}). Nevertheless, we stress that this fitting method does not fully account for the nature of the data themselves. Indeed the recovery of the X-ray spectroscopic temperature maps implies pixel-to-pixel correlations, which depend on the photon count statistics, and thus on the sky coordinate and cluster regions. The tSZ signal is also correlated in the NIKA data, but in a different way, due to beam effects, and the noise is spatially correlated. We thus expect that the $\TX$ and $\TSZ$ map pixels do not contain the exact same sky information. These complexities, inherent to the data, are not fully accounted for in our fit. This could lead to small displacements of the best-fit values that we recover, as well as a slight underestimation of the error contours. However, our baseline pixel size of 20 arcsec allows to mitigate these effects.}
 
 \end{document}

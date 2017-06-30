@@ -377,7 +377,7 @@ The standard way to readout a pixel is to excite it with a tone at $f_t$ and to 
 
 The advantage of this solution is that the $dI$, $dQ$ values are evaluated for every data sample. If the load on the detectors changes (e.g. due to variations in the atmospheric opacity), the exact shape of the resonance feature of each pixel will change. However, since the calibration factor $dI$, $dQ$ is updated in real time, this effect is taken automatically into account. The photometric accuracy of the instrument, through the KID linearity in terms of $f_r$, is thus strongly improved.
 
-Furthermore, knowing both the $I$, $Q$ and the $dI$, $dQ$ values we can also estimate the difference between $f_r$ and $f_t$. In the ideal situation, these two frequencies should coincide. In reality, changes in the background load can make the resonances drift by a large amount. In such case, the modulated readout allow to rapidly readjust $f_t$ to the instantaneous value of $f_r$. This ensures an optimal frequency bias and prevents any degradation in the sensitivity of the detectors. This returning is scheduled, as discussed in more detail in Section \ref{Sky background matching}, between different scans or sub-scans and does not affect the data taken during the proper integration.
+Furthermore, knowing both the $I$, $Q$ and the $dI$, $dQ$ values we can also estimate the difference between $f_r$ and $f_t$. In the ideal situation, these two frequencies should coincide. In reality, changes in the background load can make the resonances drift by a large amount. In such case, the modulated readout allow to rapidly readjust $f_t$ to the instantaneous value of $f_r$. This ensures an optimal frequency bias and prevents any degradation in the sensitivity of the detectors. This returning is scheduled, as discussed in more detail in Sec.~\ref{Sky background matching}, between different scans or sub-scans and does not affect the data taken during the proper integration.
 
 \subsection{Sky background matching}
 \label{Sky background matching}
@@ -396,7 +396,7 @@ The sky maps have to be corrected for the atmospheric absorption. The corrected 
 \begin{equation}\label{eq:opa}
 S^{corrected} =  S^{ground} \cdot e^{ x \cdot \tau_{scan}}
 \end{equation}
-Where $\tau_{scan}$ is the zenith opacity of the atmosphere during the
+Where $\tau_{scan}$ is the zenith opacity, for each band, of the atmosphere during the
 observation, and $x$ represents the airmass\footnote{By assuming a
   homogeneous plane-parallel atmosphere, the relation between the
   airmass and the elevation of the telescope is taken as $x =
@@ -411,12 +411,12 @@ observation, and $x$ represents the airmass\footnote{By assuming a
 \end{figure}
 
 %BELOW NICOLAS VERSION
-NIKA2 has the ability to compute the opacity directly along the line of sight, integrated in NIKA2's very bandpasses and independently of the IRAM tau meter. The procedure was successfully tested with NIKA and is described in detail in \cite{Catalano2014}. Indeed, the resonance frequency of a kid is related to the airmass and the opacity like
+NIKA2 has the ability to compute the opacity directly along the line of sight, integrated in NIKA2's exact bandpasses and independently of the IRAM tau-meter operating at 225~GHz. The procedure was successfully tested with NIKA and is described in detail in \cite{Catalano2014}. Indeed, the resonance frequency of each detector is related to the airmass and the opacity as in the following:
 \begin{equation}\label{eq:skydip}
-f^{ground}_{skydip} = c_0 - c_1 \cdot T_{atm}[1 - e^{- x \cdot \tau}],
+f^{i}_{r} = c^{i}_0 - c^{i}_1 \cdot T_{atm}[1 - e^{- x(t) \cdot \tau (t)}],  i = 1 ... N
 \label{eq:tau}
 \end{equation}
-where $f^{ground}_{skydip}$ is the acquired signal which corresponds to the absolute value of the resonance frequency of each detector, $c_0$ is a constant equal to the resonance frequency for the considered detector at zero opacity, $c_1$ is the calibration conversion factor in $\mathrm{Hz/K}$ and with $T_{atm}$ the equivalent temperature of the atmosphere (taken as a constant at $270\,\mathrm{K}$).  $\tau_{skydip}$ is the sky zenith opacity and $x$ is the airmass. $c_0$ and $c_1$ are constant in time within a cooldown cycle and depend on each KID. Once they are known, eq.~(\ref{eq:tau}) can be inverted to determine $\tau$. The determination fo $c_0$ and $c_1$ is achieved via a specific scan, nicknamed \emph{Skydips}. For such a scan, the telescope performs eleven elevation steps in the range $\delta = 19\div65\,\mathrm{deg}$, regularly spaced in airmass. For each step, we acquire about twenty seconds of useful signal. Several skydips under different weather conditions (hence different $\tau$) are solved simultaneously in order to break the natural degeneracy between the opacity and the response.
+where $f^{i}$ is the measurable absolute value of the $i_{th}$ detector resonance frequency (Sec.~\ref{Internal detectors calibration}), $c^{i}_0$ is a constant equal to the resonance frequency at zero opacity, $c^{i}_1$ is the calibration conversion factor in $\mathrm{kHz/K}$ and with $T_{atm}$ we refer to the equivalent temperature of the atmosphere (taken as a constant at $270\,\mathrm{K}$). $\tau$ is the sky zenith opacity, function of time. N is the number of useful detectors in the considered array. $c^{i}_0$ and $c^{i}_1$ are expected to be constant in time within at least a cooldown cycle. Once they are known, Eq.~(\ref{eq:tau}) can be inverted to determine $\tau$ at the corrisponding time. The determination of the constants $c^{i}_0$ and $c^{i}_1$ is achieved via a specific scan, nicknamed \emph{skydip}. For such a scan, the telescope performs eleven elevation steps in the range $\delta = 19\div65\,\mathrm{deg}$, regularly spaced in airmass. For each step, we acquire about twenty seconds of time traces to reduce the error in the determination of $f^{i}_{r}$. Several skydips under different weather conditions (hence different $\tau$) are solved simultaneously in order to break the natural degeneracy between the opacity and the responsivity.
 %END OF NICOLAS VERSION
 
 % BELOW ORIGINAL FROM XAVIER
@@ -426,29 +426,7 @@ where $f^{ground}_{skydip}$ is the acquired signal which corresponds to the abso
 %\end{equation}
 %where $f^{ground}_{skydip}$ is the acquired signal which corresponds to the absolute value of the resonance frequency of each detector. $c_0$ is a constant equal to the resonance frequency for the considered detector at zero opacity. $c_1$ is the calibration conversion factor in $\mathrm{Hz/K}$, with $T_{atm}$ the equivalent temperature of the atmosphere (taken as a constant at $270\,\mathrm{K}$). $\tau_{skydip}$ is the sky zenith opacity during the skydip scan, and $x$ is the current airmass. Several skydips under different weather conditions are usually solved simultaneously (with the same $c_0$ and $c_1$ coefficients but different $\tau_{skydip}$ values) in order to break the natural degeneracy between the opacity and the response.
 
-We observe that the fitted values of $\tau_{skydip}$ are, as expected,
-common between different detectors of the same array. The coefficients
-$c_0$, $c_1$ depend on the response of the detectors and are constant,
-within the fit errors, on very long time scales, within a cooldown
-cycle. Since the non-linearity of the KID resonance frequency signal with power
-is considered negligible in the range of observed backgrounds, the
-coefficients can be applied to the whole observing campaign in order
-to recover the opacity of each scan. This is obtained by inverting
-Eq.~\ref{eq:skydip} with the observed resonance frequencies, solving
-for $e^{x \cdot\ \tau_{scan}}$ and then applying it to
-Eq.~\ref{eq:opa}. In Fig.~\ref{fig:taumeas} we present the evolution
-of the opacities for several scans of the NIKA2 commissioning run held
-in February-March 2017 compared to the IRAM tau-meter.
-
-We observe a global good agreement between the IRAM tau-meter opacity,
-used for comparison but not adopted for the actual correction, and the
-NIKA2 reconstructed opacities which show less internal dispersion. We
-find an average opacity ratio between the 150~GHz and 260~GHz NIKA2
-derived opacities of about 0.6, consistent with model expectation and
-NIKA2 bandpasses. Notice however that the 260~GHz-to-150~GHz opacity
-ratio varies significantly for opacities (at 150~GHz) below $0.2$. This effect
-might come from an O$_2$ line which becomes saturated but this is still
-under investigation.
+We observe that the fitted values $\tau_{skydip}$ are, as expected, common between different detectors of the same array. By comparing the results of different skydips, we have verified experimentally that the coefficients $c^{i}_0$, $c^{i}_1$ are stable, within the fit errors, on very long time scales within a cooldown cycle. The coefficients can thus be applied to the whole observing campaign in order to recover the opacity of each scan. In Fig.~\ref{fig:taumeas} we present the evolution of the opacities for several scans of the NIKA2 commissioning run held in February 2017 compared to the IRAM tau-meter. We observe a global trend agreement between the IRAM tau-meter opacity at 225~GHz and the NIKA2 values. These latter show however a smaller dispersion. We find an average ratio between the 150~GHz and the 260~GHz NIKA2 derived opacities of about 0.6, consistent with model expectations. Notice however that the 150~GHz-to-260~GHz opacity ratio varies significantly for opacities (at 150~GHz) below $0.2$. This effect is likely to be linked to an O$_2$ atmospheric line which becomes saturated. This point is, however, still under investigation.
 %______________________________________________________________
 
 \section{Observations and performance}

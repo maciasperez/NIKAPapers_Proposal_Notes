@@ -140,7 +140,7 @@ A second key subject is represented by the study of \textbf{nearby galaxies} whi
 
 On the cosmological side, existing CMB experiments have been proved to be very efficient in detecting clusters of galaxies via the \textbf{Sunyaev-Zel\textquoteright dovich (SZ) effect} (\cite{plancksz2,actsz,sptsz}) and have provided best cluster cosmological results to date (\cite{plancksp2,plancknc2}). However, their poor angular resolution limit the cosmological interpretation of the data and in particular the study of the impact of the complex intra cluster medium (ICM) physics, which may bias the observable to cluster mass scaling relation (\cite{plancknc2}). This bias might be of particular importance for high-redshift, i.e. early stage, clusters. 
 
-Similarly, distant universe studies via \textbf{deep surveys} will benefit from larger instantaneous field-of-view and spectral extend to cover sky regions at the confusion limit. This results in detecting dust-obscured optically-faint galaxies during their major episodes of star-formation in the early universe. 
+Similarly, distant universe studies via \textbf{deep surveys} will benefit from larger instantaneous field-of-view and spectral extend to cover sky regions at the confusion limit. This results in detecting dust-obscured optically-faint galaxies during their major episodes of star-formation in the early universe (\cite{Bethermin2017}, \cite{Geach2017}). 
 
 NIKA2 and the IRAM 30-meters telescope represent today ideal tools to address these scientific questions, and many others. The fundamental characteristics of NIKA2 are dual color and polarisation capabilities, high sensitivity, high angular resolution and an instantaneous field-of-view of 6.5 arc-minutes. Besides the intrinsic scientific impact, NIKA2 represents the first demonstration of competitive performance using thousands pixels Kinetic Inductance Detectors (KID (\cite{Day2003}, \cite{Doyle2010}) cameras operating at millimetre or sub-millimetre wavelenghts.
 
@@ -439,14 +439,12 @@ We stress that the experience in the use of NIKA2 by external astronomers might 
 Astrophysical observations are carried out in scans, which typically last for few minutes up to 20 minutes at most.
 %The NIKA2 data for each scan are recorded in a file that is named using the date and time of the observation, and
 %the source name. 
-The NIKA2 data are sampled at 23.8418 Hz. For each sample and for each KID, the in-phase (I), the quadrature
-(q) and their derivatives (dI, dQ) of the transfer function of the feed-line and the pixel are recorded.
-Some extra information like scan number, sub-scan number, and telescope pointing information are also included. \\
+The NIKA2 data in intensity are sampled at 23.8418~Hz. In polarimetric mode, the sampling is running at twice this frequency, i.e. 47.6836~Hz. For each sample and for each KID, the In-phase (I), the Quadrature (Q) and their derivatives (dI, dQ) of the transfer function of the feed-line and the pixel are recorded. Some extra information like scan number, sub-scan number, and telescope pointing information are also included. \\
 
 Data processing is needed during telescope observations to ensure the scientific quality of the acquired data.
 We have developed two sets of tools for real-time and quick-look analysis. The real time tools run on a specific multi-processor acquisition computer and monitor the KID time ordered data, the overall behavior of the instrument, and decode telescope messages as discussed in Section~\ref{Sky background matching}. \\
 
-The quick-look analysis software is run at the end of each scan by the observer to obtain an early feedback. The execution time is typically 1 minute. It includes both map making capacities and analysis of the produced maps, in terms of photometry, sensitivity, but also calibration. Indeed, it is used to monitor the pointing of the telescope and its focus (about once every two hours in normal observing conditions) and to give the required instructions to correct for their drifts. This quick-look software has been used extensively during the commissioning. It shares a lot of common tools with the off-line processing pipeline that is used to construct the final and optimal sky maps (see~\cite{ponthieu} for more details).
+The quick-look analysis software is run at the end of each scan by the observer to obtain an early feedback. The execution time is typically of the order of one minute. It includes both map making capacities and analysis of the produced maps, in terms of photometry, sensitivity and calibration. Indeed, it is used to monitor the pointing of the telescope and its focus (about once every two hours in normal observing conditions) and to give the required instructions to correct for their drifts. This quick-look software has been used extensively during the commissioning. It shares a number of common tools with the off-line processing pipeline that is used to construct the final and optimal sky maps (\cite{pipeline}).
 
 \subsection{Field of view reconstruction}
 
@@ -456,18 +454,18 @@ The quick-look analysis software is run at the end of each scan by the observer 
     \includegraphics[trim=2cm 12cm 5cm 3cm, clip=true,width=0.33\linewidth]{A1_fwhm_valid.pdf}
    \includegraphics[trim=2cm 12cm 5cm 3cm, clip=true,width=0.33\linewidth]{A3_fwhm_valid.pdf}
    \includegraphics[trim=2cm 12cm 5cm 3cm, clip=true,width=0.33\linewidth]{A2_fwhm_valid.pdf}       
-      \caption{From left to right, detectors positions for arrays A1, A3, and A2. The three plots show the detectors that have seen the sky and passed the quality criteria for at least two focal plane reconstructions during Run10: 952, 961, and 553 for A1, A3 and A2, respectively. The outer dash-line circle corresponds to the nominal FOV of 6.5$\prime$.
+      \caption{From left to right, detectors positions for arrays A1, A3, and A2. The three plots show the detectors that have seen the sky and passed the quality criteria for at least two focal plane reconstructions during Run10: 952, 961, and 553 for A1, A3 and A2, respectively. The outer dash-line circle corresponds to the nominal Field-of-View (FoV) of 6.5~arc-minutes.
          \label{fig:focalplane}}
 \end{figure*}
 
 
-The reconstruction of the position of the detectors in the FOV is mainly based on observations of planets including Uranus, Neptune and Mars. We generally perform deep-integration azimuth raster-scan observations at constant elevation. A total of 99 subscans are taken by changing elevation of 4.8 $^{\prime \prime}$. Overall the full size of these scans, which we call {\it beam-maps}, is $780^{\prime \prime} \times 470^{\prime \prime}$. We produce a map of the source for each KID with a resolution of 4$^{\prime \prime}$. These maps are used to derive the KID position on the FOV, the properties of the beam pattern (FWHM and ellipticity) per KID, and the detector inter-calibration. 
+The reconstruction of the position of the detectors in the Field-of-View (FoV) is mainly based on observations of planets, and in particular Uranus, Neptune and Mars. We generally perform deep-integration azimuth raster-scan observations at constant elevation. A total of 99 subscans are taken by changing elevation in steps of 4.8$^{\prime \prime}$. The overall footprint of these scans, which we call {\it beam-maps}, is $780^{\prime \prime} \times 470^{\prime \prime}$. We produce a map of the source for each KID with a projected angular resolution of 4$^{\prime \prime}$. These maps are used to derive the KID position on the FoV, the properties of the beam pattern (FWHM and ellipticity) per KID, and the detector inter-calibration. 
 
-Figure~\ref{fig:focalplane} shows the position of the detectors in the NIKA2 FOV for the two 260~GHz arrays (A1 and A3), and for the 150~GHz array (A2). For each detector the ellipse symbol size and ellipticity are proportional to the main beam FWHM and ellipticity, as derived from a fit to a 2D elliptical Gaussian. To isolate the main beam contribution to the total beam, the
+Figure~\ref{fig:focalplane} shows the position of the detectors in the NIKA2 FoV for the two 260~GHz arrays (A1 and A3), and for the 150~GHz array (A2). For each detector the ellipse symbol size and ellipticity are proportional to the main beam FWHM and ellipticity, as derived from a fit to a 2D elliptical Gaussian. To isolate the main beam contribution to the total beam, the
 side lodes are masked out using annulus masks centered on the peak signal, of $50\arcsec$ external radius and of internal radius of $9\arcsec$ at $260~\rm{GHz}$ and $14\arcsec$ at $150~\rm{GHz}$. Elliptical 2-D Gaussian fits on the masked individual maps provide two orthogonal-direction FWHMs, which are geometrically
 combined to obtain the main beam FWHM. Figure~\ref{fig:focalplane_histo} shows the distribution of the main
-beam FWHMs of the arrays A1, A3 and A2 using a beam-map scan of Neptune acquired during the April 2017 commissioning campaign and for average weather conditions. We also show in red the best Gaussian fit to histogram data. We find an average main beam FWHM of $10.9\arcsec$ at $260~\rm{GHz}$ and $17.5\arcsec$ at $150~\rm{GHz}$ in agreement with the main beam estimates from the deep beam map presented in Fig.~\ref{fig:beampattern}. The observed dispersion of about $0.6\arcsec$ is expected from the optics desing and its associated field distortions across the 6.5 arcmin FOV. In particular, these distortions lead to an optimal focus,
-determined by the position of the M2 mirror, that is shifted by 0.2~\rm{mm} between the center and the outer edge of the FOV.
+beam FWHMs of the arrays A1, A3 and A2 using a beam-map scan of Neptune acquired during the April 2017 commissioning campaign and for average weather conditions. We also show in red the best Gaussian fit to histogram data. We find an average main beam FWHM of $10.9\arcsec$ at $260~\rm{GHz}$ and $17.5\arcsec$ at $150~\rm{GHz}$ in agreement with the main beam estimates from the deep beam map presented in Fig.~\ref{fig:beampattern}. The observed dispersion of about $0.6\arcsec$ is expected from the optics desing and its associated field distortions across the 6.5~arc-minutes FoV. In particular, these distortions lead to an optimal focus,
+determined by the position of the M2 mirror, that is shifted by 0.2~\rm{mm} between the center and the outer edge of the FoV.
 %and it is partly due to slight changes of the best focus across the NIKA2 FOV, which are of the order of -0.2~\rm{mm} at 2$^{\prime}$ %from the FOV cen
  
 \begin{figure*}[h]
@@ -481,6 +479,9 @@ determined by the position of the M2 mirror, that is shifted by 0.2~\rm{mm} betw
 \end{figure*}
 
 \subsection{Antenna diagram}
+\label{Antenna diagram}
+
+Using the {\it beam-map} planet observations discussed above we have also characterized the combined telescope and detectors beam pattern. We show in Figure~\ref{fig:beampattern} the beam pattern as obtained from the optical instrument and telescope response to Uranus for arrays A1, A3, the combination of A1 and A3 (260~GHz), and A2 (150~GHz). The telescope beam is characterized by its main beam, side lobes, and error beams. The main beam is well described by a 2D gaussian, while the error beams are more complex and have been fitted to the superposition of three gaussians of increasing FWHM (65$^{\prime \prime}$, 250$^{\prime \prime}$ and 860$^{\prime \prime}$ at 210 GHz) in \cite{greve1998,kramer2013} using observations of the lunar edge with single pixel heterodyne receivers to construct beam profiles.
 
 \begin{figure}[h]
    \centering
@@ -490,20 +491,15 @@ determined by the position of the M2 mirror, that is shifted by 0.2~\rm{mm} betw
         beam maps of arrays A1 and A3, the
         combination of the 260 GHz arrays (A1\&A3) and the 150~GHz array
         (A2) are shown in decibel. These $10^{\prime} \times 10^{\prime}$ maps, have been constructed from
-        the normalized combination of four long OTF scans of bright point
+        the normalized combination of four relatively long scans of bright point
         sources. Details on the structures present in the maps are given in the text.}
          \label{fig:beampattern}
 \end{figure}
 
-Using the {\it beam-map} planet observations discussed above we have also characterized the combined telescope and detectors beam pattern. We show in Figure~\ref{fig:beampattern} the beam pattern as obtained from the optical instrument and telescope response to Uranus for arrays A1, A3, the combination of A1 and A3, and A2. The telescope beam is characterized by its main beam, side lobes, and error beams. The main beam is well described by a 2D gaussian, while the error beams are more complex and have been fitted to the superposition of three gaussians of increasing FWHM (65$^{\prime \prime}$, 250$^{\prime \prime}$ and 860$^{\prime \prime}$ at 210 GHz) in \cite{greve1998,kramer2013} using observations of the lunar edge with single pixel heterodyne receivers to construct beam profiles.
+The maps are consistent with a 2D gaussian main beam of FWHM $11.3^{\prime \prime} \pm 0.2^{\prime \prime}$, $11.2^{\prime \prime} \pm 0.2^{\prime \prime}$, and $17.7^{\prime \prime} \pm 0.1^{\prime \prime}$, for A1, A3 and A2 arrays, respectively. These results are consistent with the mean FWHM of the main beam of individual KIDs shown in Figure~\ref{fig:focalplane_histo} and are presented in Table~\ref{sumperf}. The color lines in Figure~\ref{fig:beampattern} show the pretty complex side lobes and error beams. In the 260 GHz maps (A1, A3, and combined A1 \& A3) we clearly observed a diffraction ring at a radius of about 100$^{\prime \prime}$ and at -30 dB. The diffraction ring and its spokes are presumably caused by radial and azimuthal panel buckling (\cite{greve1998}). The perpendicular green lines shown in the A2 (150~GHz) map correspond to the diffraction pattern caused by the quadrupod structure supporting M2. In the same map the yellow arrows point to four symmetrical spokes of the errorbeams. The pink ellipse show spikes in this maps. We observe, in the A3 map in Fig.~\ref{fig:beampattern}, some spikes of unknown origin.
 
-The maps are consistent with a 2D gaussian main beam of FWHM $11.3^{\prime \prime} \pm 0.2^{\prime \prime}$, $11.2^{\prime \prime} \pm 0.2^{\prime \prime}$, and $17.7^{\prime \prime} \pm 0.1^{\prime \prime}$, for A1, A3 and A2 arrays, respectively. These results are consistent with the mean FWHM of the main beam of individual KIDs shown in Figure~\ref{fig:focalplane_histo} and are presented in
-Table~\ref{sumperf}.
-The color lines in Figure~\ref{fig:beampattern} show the side lobes and error beams are complex. In the 260 GHz maps (A1, A3, and combined A1 \& A3) we clearly observed a diffraction ring at a radius of about 100$^{\prime \prime}$ and at -30 dB. The diffraction ring and its spokes are presumably caused by radial and azimuthal panel buckling (see Figure 4 in \cite{greve1998}. The perpendicular green lines shown in the A2mm map correspond to the diffraction pattern caused by the quadrupod secondary support structure. In the same map the yellow arrows point to four symmetrical spokes of the errorbeams. The pink ellipse show spikes in this maps. Finally, we observe in the A3 map some spikes of unknown origin and that are pointed by yellow arrows in the figure.
-
-Comparing the 2D gaussian main beam fit to the full beam pattern measurement up to a radius of
-$250''$, we compute the beam efficiencies defined as the ratio of power between the main beam and this full beam. We find $\sim 55$ \% and $\sim 75$ \% for the 260 and 150~GHz channels, respectively.
-Heterodyne observations of the lunar edge and of the forward beam efficiency derived from skydips show that a significant fraction of the full beam is received from beyond a radius of 250$^{\prime \prime}$. This is not considered here.
+Comparing the 2D gaussian main beam fit to the full beam pattern measurement up to a radius of $250''$, we compute the beam efficiencies defined as the ratio of power between the main beam and this full beam. We find $\sim 55$ \% and $\sim 75$ \% for the 260 and 150~GHz channels, respectively.
+Heterodyne observations of the lunar edge and of the forward beam efficiency derived from skydips show that a significant fraction of the full beam is received from beyond a radius of 250$^{\prime \prime}$. This fraction is not considered here.
 
 \subsection{On-sky calibration}
 \label{On-sky calibration}
@@ -512,16 +508,16 @@ The planets Uranus and Neptune  were used as the primary calibrators to set the 
 Their reference flux densities were obtained from the model in \cite{moreno2010}
 and updated at the mid-date of each session of observations. 
 We use the planet geocentric distance
-and viewing angle as provided by the JPL's HORIZONS Ephemeris\footnote{See https:\/\/ssd.jpl.nasa.gov\/horizons.cgi} to account for planetary oblateness. 
+and viewing angle as provided by the JPL's HORIZONS Ephemeris\footnote{See http://ssd.jpl.nasa.gov/horizons.cgi} to account for planetary oblateness. 
 By convention flux densities are given at frequencies 150 and 260~GHz for the 150 and 260 channels, respectively. Notice that the chosen frequencies are close to the peak frequencies for each channel, which were discussed in Sect.~\ref{Laboratory tests} . \\
 
 Various observations of Uranus and Neptune with integration times of $\sim 20$ minutes were carried out during each commissioning session resulting in high SNR maps (e.g. Fig. \ref{fig:beampattern}). Their total flux densities were measured from the maps 
 %both by fitting a fixed FWHM (12.5$^{\prime \prime}$ and 18$^{\prime \prime}$ for the 260 and 150 GHz channels, respectively) 2D gaussian to the planet emission, and 
 by aperture photometry within a radius of  $150^{\prime \prime}$ where cumulative flux density leveled off smoothly. We find consistent results between the two estimates, with differences below 2 \%. In both cases the obtained fluxes were corrected for atmospheric absorption using the atmospheric line-of-sight opacity for the two NIKA2 channels, which was computed as described in \ref{Atmospheric attenuation correction}. \\
 
-The ratios between the fluxes for each individual planet observation and the reference planet flux for the three NIKA2 arrays are shown in Figure~\ref{fig:calibaccuracy} for the February and April 2017 commissioning campaigns.  The mean ratios for the three arrays are close to unity as expected since the planets were used to set the Jansky scale in the off-line processing. Overall, the flux density scale is stable at better than $7\%$ for all observations acquired during two weeks  separated by two months, and despite the fact that the instrument was warmed up between the two sessions. It is noticeable that scatter around unity in Fig. \ref{fig:calibaccuracy}
+The ratios between the fluxes for each individual planet observation and the reference planet flux for the three NIKA2 arrays are shown in Figure~\ref{fig:calibaccuracy} for the February and April 2017 commissioning campaigns.  The mean ratios for the three arrays are close to unity as expected since the planets were used to set the Jansky scale in the off-line processing. Overall, the flux density scale is stable at better than $7\%$ for all observations acquired during two weeks  separated by two months, and despite the fact that the instrument was warmed up between the two sessions. It is noticeable that scatter around unity in Fig.~\ref{fig:calibaccuracy}
 is about twice smaller in the first session conducted in significantly better weather conditions.
-Precisely, stabilities for the February commissioning week the flux rms is 3.6\%, 2.5\% and 2.9\% for arrays 1, 2, 3, respectively, with atmospheric opacity at 260 GHz between 0.05 and 0.3.
+Precisely, stabilities for the February commissioning week the flux rms is 3.6\%, 2.5\% and 2.9\% for arrays A1, A2 and A3, respectively, with atmospheric opacity at 260~GHz between 0.05 and 0.3.
 Correspondingly, for the April campaign, we find  5.3\%, 6.7\% and 8.6\%  with atmospheric opacity at 260~GHz between 0.25 and 0.6. It is thought that, at the moment, limitations in stability are caused by residual atmospheric fluctuations in the astronomical signal and uncertainty in opacity corrections. 
 
 Nonetheless, the flux density scale of NIKA2 is found to be highly stable and comparable to the level achieved
@@ -532,11 +528,10 @@ by other modern instruments, e.g. SCUBA2 (Dempsey, 2013). The other limitation o
    \centering
     \includegraphics[angle=270,width=1.0\linewidth]{Ura_Nept_r9_10.pdf}     
     \caption{Comparison of  measured and reference flux densities of the primary calibrators Uranus (red) and Neptune (blue).
-       Their ratios are shown for the three arrays A1, A2, and A3.
+       Their ratios are shown for the three arrays A1 (260~GHz-H), A2 (150~GHz), and A3 (260~GHz-V).
       The mean ratio $\mu$ and relative scatter are provided for each array. The reference flux densities are from \cite{moreno2010}. 
-      Scan numbers are time ordered : 1 to 10 is during the period 23-28 February 2017 and 11 to 18
-      is during the  19-25 april 2017 period. Neptune was hardly visible at the telescope during the first session,
-      and Uranus was not visible during the session.}
+      Scan numbers are time ordered : 1 to 10 refer the period 23-28 February 2017 and 11 to 18
+      to the 19-25 april 2017 period.}
          \label{fig:calibaccuracy}
 \end{figure}
 
@@ -568,17 +563,14 @@ by other modern instruments, e.g. SCUBA2 (Dempsey, 2013). The other limitation o
 We have investigated the noise properties and sensitivity of NIKA2 in various atmospheric conditions and for various types of sources including faint and bright ones. For each observation scan the raw data were corrected for atmospheric fluctuations, which are seen as a common mode by all or most of the detectors. These corrected data are then projected into maps.   \\
 
 Figure~\ref{fig:noisespec} shows an example, in good weather conditions $\tau_{260 GHz} < 0.3$, of the power spectrum of the NIKA2 time ordered data before (black) and after (blue) subtraction of the atmospheric fluctuations.
-We observe than even in the case of good weather conditions the signal is dominated atmospheric fluctuations, in particular at small frequencies, giving a 1/f-like spectrum. After atmospheric subtraction the spectrum is more white with some filtering at low frequencies and residual 1/f-like noise, which translates into residual correlated noise in the maps. A detailed study of this residual correlated noise both in the time-ordered-data and maps will be given in companion papers \cite{commissioning,pipeline}. \\
+We observe than even in the case of good weather conditions the signal is dominated atmospheric fluctuations, in particular at small frequencies, giving a 1/f-like spectrum. After atmospheric subtraction and proper filtering, the spectrum is flatter. A residual $1/f^x$ noise is left, with $x \approx 0.2$ which translates into residual correlated noise in the maps. A detailed study of this residual correlated noise both in the time-ordered-data and maps will be given in the companion papers \cite{commissioning,pipeline}.\\
 
 The NEFD (Noise Equivalent Flux Density) is routinely estimated on those maps for each individual scan. We define the NEFD from the standard deviation of the noise in the maps, $\sigma_{M}$, the observing time, $t_{obs}$, and the franction of valid detectors, $\epsilon$: $\sigma = NEFD / \sqrt{t_{obs} \time \epsilon}$. This definition of the NEFD is consistent with the definition of mapping speed, $m_{s} = S \times t_{obs} \times \sigma_{M}^{2}$, where $S$ is the surface of the observed sky area. Combining these two equations we obtain 
 $m_{s} = \epsilon FOV / NEFD^2$.
-From our analysis we find that the measured NEFD per scan are consistent with being background dominated both for the 150 and 260 GHz NIKA2 channels. We observe some residual correlated noise in the per scan maps mainly due to residual atmospheric contamination. However, when averaging across scans the noise evolves consistently with the square root of the time of observation over more than 3 hours of observations. We achieved sensitivities at 2mm pwv and 60 deg. elevation of 6 and 20 mJy$\cdot\textrm{s}^{1/2}$ at 150 and 260~GHz, respectively. This corresponds to average mapping speeds of 222 and 1885 arcmin$^2$/hr/mJy$^2$. 
-
+From our analysis we find that the measured NEFD per scan are consistent with being background dominated both for the 150 and 260 GHz NIKA2 channels. We observe some residual correlated noise in the per scan maps mainly due to residual atmospheric contamination. However, when averaging across scans the noise evolves consistently with the square root of the time of observation over more than 3 hours of observations. We achieved sensitivities, for 2mm pwv and elevation $\delta = 60 \textrm{degrees}$ of 6 and 20 mJy$\cdot\textrm{s}^{1/2}$ at 150 and 260~GHz, respectively. This corresponds to average mapping speeds of 222 and 1885 arcmin$^2$/hr/mJy$^2$. The announced gain of one order of magnitude mapping speed compared to the previous generation instruments at the 30-meters telescope (NIKA and GISMO) is thus comfortably achieved. 
 
 \subsection{Summary of performances}
-We present in Table~\ref{sumperf} a summary of the main characteristics and performance of the NIKA2 instrument for the February commissioning campaign. 
-From this table we conclude that NIKA2 behaves better than the initial specifications (see \cite{Calvo2016}) and approaches goal performance in some cases. 
-
+We present in Table~\ref{sumperf} a summary of the main characteristics and performance of the NIKA2 instrument for the February commissioning campaign. From this table we conclude that NIKA2 behaves better than the initial specifications. In particular we had preliminarily estimated, in our paper \cite{Calvo2016}), NEFD values around 10 and 25 mJy$\cdot\textrm{s}^{1/2}$ at respectively 150 and 260~GHz.
 
 \begin{table*}[t]
   \centering
@@ -586,7 +578,7 @@ From this table we conclude that NIKA2 behaves better than the initial specifica
   \begin{tabular}{|c|c|c|c|c|}
     \hline
 	Channel & \multicolumn{3}{|c|}{260 GHz} & 150 GHz \\
-            & \multicolumn{3}{|c|}{1.25 mm}     &  2 mm \\ 
+            & \multicolumn{3}{|c|}{1.15 mm}     &  2 mm \\ 
     \hline
     Arrays & A1 & A3  & A1\&3 & A2 \\
     \hline
@@ -619,7 +611,7 @@ From this table we conclude that NIKA2 behaves better than the initial specifica
     \tablefoottext{1}{Number of detectors that are valid at least for two different beammap scans.}
 %     \tablefoottext{2}{Number of valid detectors times the area on the sky per detector.}
     \tablefoottext{2}{Ratio between the main beam power and the total beam power up to a radius of 250$^{\prime \prime}$}
-   \tablefoottext{3}{Achieved NEFD for 2mm pwv and 60 deg. elevation during the February 2017 observation campaign.}   
+   \tablefoottext{3}{Achieved NEFD for 2mm pwv and $\delta = 60 \textrm{degrees}$ during the February 2017 observation campaign.}   
    \tablefoottext{4}{Achieved mapping speed for 2mm pwv and 60 deg. elevation during the February 2017 observation campaign.}   
   }
 \end{table*}
@@ -672,10 +664,9 @@ the SO1 source might correspond to  KMH2014 J203310.31+404118.72 (\cite{Kryukova
 From these observations we conclude that the large FOV and high sensitivity of NIKA2 translate into a large mapping speed that allows us to cover a large sky area with the possibility of observing, or/and discovering, various sources simultaneously. \\
 
 
-We carried out observations of the Pluto and Charon planetary system to test the NIKA2 capabilities for detecting faint sources. 
-During these observations the atmospheric opacity was stable, about 0.2 at 225~GHz.
-The maps are shown in the bottom panel of Figure~\ref{fig_compact_sources}. For this paper, we concentrate only on the central region of the maps where we observe a significant detection of the Pluton and Charon planetary system. To illustrate this, we have also superposed to the image signal-to-noise ratio contours at values of 5, 7 and 10. The fluxes and uncertainties of the Pluto and Charon system for the three NIKA2 array observations are given in Table~\ref{fluxtab}. In a observation time of 1.44 hours we reach 1 and 0.3 mJy (1-$\sigma$) at 1.25 and 2 mm, respectively.
-These results illustrate the high sensitivity of NIKA2, in particular at 2mm. for which mJy sources can be detected in less than 1 hour.
+We carried out observations of the Pluto and Charon planetary system to test the NIKA2 capabilities for detecting faint sources. During these observations the atmospheric opacity was stable, about 0.25 at 260~GHz.
+The maps are shown in the bottom panel of Figure~\ref{fig_compact_sources}. For this paper, we concentrate only on the central region of the maps where we observe a significant detection of the Pluton and Charon planetary system. To illustrate this, we have also superposed to the image signal-to-noise ratio contours at values of 5, 7 and 10. The fluxes and uncertainties of the Pluto and Charon system for the three NIKA2 array observations are given in Table~\ref{fluxtab}. In a observation time of 1.44 hours we reach 1 and 0.3 mJy (1-$\sigma$) at 260~GHz (1.15~mm) and 150~GHz (2~mm), respectively.
+These results illustrate the high sensitivity of NIKA2, in particular at 150~GHz, for which mJy sources can be detected in less than one hour.
 
 
 
@@ -690,10 +681,6 @@ These results illustrate the high sensitivity of NIKA2, in particular at 2mm. fo
 %   \caption{K3-50A place holder}. 
 %   \label{fig:k3-%
 %\end{figure*}
-
-
-
-
 
 \section{Conclusions and future plans}
 

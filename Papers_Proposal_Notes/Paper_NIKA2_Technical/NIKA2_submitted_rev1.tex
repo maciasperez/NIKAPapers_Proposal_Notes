@@ -1,0 +1,783 @@
+%                                                                 aa.dem
+% AA vers. 6.1, LaTeX class for Astronomy & Astrophysics
+% demonstration file
+%                                                 (c) Springer-Verlag HD
+%                                                revised by EDP Sciences
+%-----------------------------------------------------------------------
+%
+\documentclass[]{aa} %
+%\documentclass[referee]{aa} % for a referee version
+%\documentclass[onecolumn]{aa} % for a paper on 1 column
+%\documentclass[longauth]{aa} % for the long lists of affiliations
+%\documentclass[rnote]{aa} % for the research notes
+%\documentclass[letter]{aa} % for the letters
+%
+%\documentclass[structabstract]{aa}
+%\documentclass[traditabstract]{aa} % for the abstract without structuration
+                                   % (traditional abstract)
+%
+\usepackage{graphicx}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{txfonts}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{verbatim}
+\usepackage{bm}
+%\usepackage{natbib}
+%\usepackage{amsmath}
+%\usepackage{amsfonts}
+%\usepackage{amssymb}
+%\usepackage{MnSymbol}
+
+
+\newcommand{\figref}[1]{Fig.~\ref{#1}}
+\newcommand{\eqnref}[1]{Eq.~(\ref{#1})}
+
+
+\begin{document}
+
+%
+%  \title{The NIKA2 large field-of-view millimetre continuum camera}
+   \title{The NIKA2 large field-of-view millimeter continuum camera for the 30-m IRAM telescope}
+
+%   \subtitle{I. Overviewing the $\kappa$-mechanism}
+
+
+\author
+{
+R.~Adam \inst{\ref{OCA}}
+\and A.~Adane \inst{\ref{USTHB}}
+\and  P.A.R.~Ade \inst{\ref{Cardiff}}
+\and  P.~Andr\'e \inst{\ref{CEA}}
+\and  A.~Andrianasolo \inst{\ref{IPAG}} %
+\and  H.~Aussel \inst{\ref{CEA}}
+\and  A.~Beelen \inst{\ref{LAM}}
+\and  A.~Beno\^it \inst{\ref{Neel}}
+\and  A.~Bideaud \inst{\ref{Neel}}
+\and  N.~Billot \inst{\ref{IRAME}}
+\and  O.~Bourrion \inst{\ref{LPSC}}
+\and  A.~Bracco \inst{\ref{CEA}} %
+\and  M.~Calvo \inst{\ref{Neel}}
+\and  A.~Catalano \inst{\ref{LPSC}}
+\and  G.~Coiffard \inst{\ref{IRAMF}} %
+\and  B.~Comis \inst{\ref{LPSC}}
+\and  M. De Petris \inst{\ref{Roma}} %
+\and  F.-X.~D\'esert \inst{\ref{IPAG}}
+\and  S.~Doyle \inst{\ref{Cardiff}}
+\and  E.F.C.~Driessen \inst{\ref{IRAMF}}
+\and  R.~Evans \inst{\ref{Cardiff}} %
+\and  J.~Goupy \inst{\ref{Neel}}
+\and  C.~Kramer \inst{\ref{IRAME}}
+\and  G.~Lagache \inst{\ref{LAM}}
+\and  S.~Leclercq \inst{\ref{IRAMF}}
+\and  J.-P.~Leggeri \inst{\ref{Neel}} %
+\and  J.-F.~Lestrade \inst{\ref{LERMA}}
+\and  J.F.~Mac\'ias-P\'erez \inst{\ref{LPSC}}
+\and  P.~Mauskopf \inst{\ref{Arizona}}
+\and  F.~Mayet \inst{\ref{LPSC}}
+\and  A.~Maury \inst{\ref{CEA}}  %
+\and  A.~Monfardini \inst{\ref{Neel}}\thanks{Corresponding author, e-mail: alessandro.monfardini@neel.cnrs.fr} 
+\and S.~Navarro \inst{\ref{IRAME}} %
+%\and  F.~Pajot \inst{\ref{IAS}}
+\and  E.~Pascale \inst{\ref{Cardiff}}
+\and  L.~Perotto \inst{\ref{LPSC}}
+\and  G.~Pisano \inst{\ref{Cardiff}}
+\and  N.~Ponthieu \inst{\ref{IPAG}}
+%\and  M.~Rebolo-Iglesias\inst{\ref{LPSC}}
+\and  V.~Rev\'eret \inst{\ref{CEA}}
+\and  A.~Rigby \inst{\ref{Cardiff}} %
+\and A.~Ritacco \inst{\ref{IRAME}}
+%\and  L.~Rodriguez \inst{\ref{CEA}}
+\and  C.~Romero \inst{\ref{IRAMF}}
+\and  H.~Roussel \inst{\ref{IAP}}
+\and  F.~Ruppin \inst{\ref{LPSC}}
+\and  K.~Schuster \inst{\ref{IRAMF}}
+\and  A.~Sievers \inst{\ref{IRAME}}
+\and  S.~Triqueneaux \inst{\ref{Neel}}
+\and  C.~Tucker \inst{\ref{Cardiff}}
+\and  R.~Zylka \inst{\ref{IRAMF}}
+}
+
+
+         \institute
+	{
+%1
+Laboratoire Lagrange, Universit\'e et Observatoire de la C\^ote d'Azur, CNRS, Blvd de l'Observatoire, F-06304 Nice, France\label{OCA}
+\and
+%2
+University of Sciences and Technology Houari Boumediene (U.S.T.H.B.), BP 32 El Alia, Bab Ezzouar 16111, Algiers, Algeria \label{USTHB}
+\and
+%3
+Astronomy Instrumentation Group, University of Cardiff, United Kindgom\label{Cardiff}
+\and
+%4
+Laboratoire AIM, CEA/IRFU, CNRS/INSU, Universit\'e Paris Diderot, CEA-Saclay, 91191 Gif-Sur-Yvette, France\label{CEA}
+\and
+%5
+Institut de Plan\'etologie et Astrophysique de Grenoble (IPAG), UGA \& CNRS, BP 53, F-38041 Grenoble, France\label{IPAG}
+\and
+%6
+Aix Marseille Universit\'e, CNRS, LAM (Laboratoire d'Astrophysique de Marseille), F-13388 Marseille, France \label{LAM}
+\and
+%7
+Institut N\'eel, CNRS and Universit\'e Grenoble Alpes (UGA), 25 av. des Martyrs, F-38042 Grenoble, France \label{Neel}
+\and
+%8
+Institut de RadioAstronomie Millim\'etrique (IRAM), Granada, Spain \label{IRAME}
+\and
+%9
+Laboratoire de Physique Subatomique et de Cosmologie, Universit\'e Grenoble Alpes, CNRS, 53, av. des Martyrs, Grenoble, France\label{LPSC}
+\and
+%10
+Institut de RadioAstronomie Millim\'etrique (IRAM), Grenoble, France \label{IRAMF}
+\and
+%11
+Dipartimento di Fisica, Universit\`a di Roma La Sapienza, Piazzale Aldo Moro 5, I-00185 Roma, Italy \label{Roma}
+\and 
+LERMA, CNRS, Observatoire de Paris, 61 avenue de l'Observatoire, Paris, France \label{LERMA}
+%Institut d'Astrophysique Spatiale (IAS), CNRS and Universit\'e Paris Sud, Orsay, France
+%\label{IAS}
+\and
+School of Earth and Space Exploration and Department of Physics, Arizona State University, Tempe, AZ 85287 \label{Arizona}
+%Universit\'e de Toulouse, UPS-OMP, Institut de Recherche en Astrophysique et Plan\'etologie (IRAP), Toulouse, France \label{IRAP}
+%\and
+%CNRS, IRAP, 9 Av. colonel Roche, BP 44346, F-31028 Toulouse cedex 4, France \label{IRAP2}
+%\and
+%University College London, Department of Physics and Astronomy, Gower Street, London WC1E 6BT, UK \label{UCL}
+\and 
+Institut d'Astrophysique de Paris, CNRS (UMR7095), 98 bis boulevard Arago, F-75014 Paris, France \label{IAP}
+             }
+
+    \authorrunning{Adam et. al.}
+
+   \date{Received December XX, XXXX; accepted XXX XX, XXXX}
+
+% \abstract{}{}{}{}{}
+% 5 {} token are mandatory
+
+  \abstract
+  % context heading (optional)
+  % {} leave it empty if necessary
+   {Millimetre-wave continuum astronomy is today an indispensable tool for both general astrophysics studies (e.g. star formation and galaxies morphology) and cosmology (e.g. CMB - Cosmic Microwave Background and high-redshift galaxies). General purpose, large field-of-view instruments are needed to map the sky at intermediate angular scales not accessibles by the high-resolution interferometers (e.g. AAA/2017/31503LMA in Chile, NOEMA in the French Alps) and by the coarse angular resolution space-borne or ground-based surveys (e.g. Planck, ACT, SPT). These instruments have to be installed at the focal plane of the largest single-dish telescopes, which are placed at high altitude on selected dry observing sites. In this context, we have constructed and deployed a multi-thousand pixel dual-band (150\,GHz and\,260 GHz, respectively 2\,mm and 1.15\,mm wavelengths) camera to image an instantaneous field-of-view of 6.5\,arcminutes and configurable to map the linear polarisation at 260\,GHz.}
+  % aims heading (mandatory)
+   {First, we are providing a detailed description of this instrument, named NIKA2 (New IRAM KID Arrays 2), in particular focussing on the cryogenics, the optics, the focal plane arrays based on Kinetic Inductance Detectors (KID) and the readout electronics. The focal planes and part of the optics are cooled down to the nominal 150\,mK operating temperature by means of an ad-hoc dilution refrigerator. 
+Secondly, we are presenting the performance measured on the sky during the commissioning runs that took place between October 2015 and April 2017 at the 30-meter IRAM (Institut of Millimetric Radio Astronomy) telescope at Pico Veleta, near Granada (Spain).}
+  % methods heading (mandatory)
+   {We have targeted a number of astronomical sources. Starting from primary and secondary calibrators, which allowed us to extract beam-maps and optimal photometric adjustment. We have then gone to extended sources and faint objects. Both internal (electronic) and on-the-sky calibrations are applied. The general methods are described in the present paper.}
+  % results heading (mandatory)
+   {NIKA2 has been successfully deployed and commissioned, performing in-line with the ambitious expectations. In particular, NIKA2 exhibits FWHM angular resolutions of 10.9 and 17.5 arc-seconds at respectively 260 and 150\,GHz. The NEFD (noise equivalent flux densities) demonstrated on the maps are, at these two respective frequencies, 20 and 6 mJy $\cdot\textrm{s}^{1/2}$. A first successful science verification run has been achieved in April 2017. The instrument will be offered to the astronomical community during the coming winter and will remain available for at least the next ten years.}
+  % conclusions heading (optional), leave it empty if necessary
+  {}
+
+
+   \keywords{Superconducting detectors --
+                mm-wave --
+                kinetic-inductance --
+                cosmic microwave background --
+                large arrays
+               }
+
+   \maketitle
+%
+%________________________________________________________________
+
+\section{Introduction}
+
+In the past decades progress of astronomical instruments, in particular the development of large arrays of background-limited detectors, has led to a golden era of millimeter and sub-millimeter continuum astronomy. A number of instruments operate today hundreds to thousands of very sensitive pixels. The vast majority of these instruments, however, are designed to execute well defined scientific programs, most likely related to the search of the primordial polarisation modes in the Cosmic Microwave Background (CMB). Few general purpose platforms, like the one described in this paper, are currently available to the general astronomical community. Among them, we cite for example Artemis (\cite{Reveret2014}) and LABOCA (\cite{Siringo2009}) on APEX (Chile), SCUBA2 (\cite{Holland2013}) on JCMT (Hawaii), AzTEC (\cite{Chavez-Dagostino2016}) on the LMT (Mexico), MUSTANG2 (\cite{Dicker2014}) on GBT (USA), HAWC+ (\cite{Staguhn2016}) on-board SOFIA. These cameras are all based on the classical bolometric detection principle, so far the best approach for this application. In the past ten years, the Kinetic Inductance Detectors (KID) concurrent technology has demonstrated its competitiveness. For example, the pathfinder NIKA instrument at the IRAM 30-meters telescope, equipped with 356 pixels split over two arrays, has demonstrated state-of-the art performance in terms of sensitivity, stability and dynamic range (\cite{Monfardini2010, Monfardini2011, Catalano2014, Adam2014}). The most recent advancements in the instrumental domain are described in detail in the LTD16 (Low Temperature Detectors 16) workshop proceedings \footnote{LTD16, Grenoble, July $20-24^{th}$ 2015,  Journal of Low Temperature Physics 184, numbers 1/2 and 3/4, 2016.}. 
+
+%The high angular resolution ground-based continuum cameras and the Herschel satellite have opened a new window for the study of Galactic and extra-galactic sources mainly via their thermal dust emission. 
+%On the other hand, Cosmic Microwave Background (CMB) observations, i.e. the Planck satellite, the balloons and the ground-based instruments, permitted high sensitivity intensity and polarisation measurements driving cosmology to an era of precision. \\
+
+%Current cosmological concordance model \cite{} relies on the inflationary scenario \cite{}, which postulates a period of exponential expansion in the early %universe. Although this inflationay model is very successful \cite{} there is to date no direct of proof of it. Such a direct proof could be obtained from %the detection of the primordial CMB B modes in polarization \cite{}, which are produced by inflation primordial tensor perturbations. The primordial CMB B %modes in polarization are expected to be very low in amplitude and therefore require a factor of 100 or more in sensitivity with respect to current %instruments, which can only be obtained with arrays of 10000 of detectors or more. Furthermore,
+
+%CMB experiments have been proved to be very efficient in detecting clusters of galaxies via the Sunyaev-Zeldovich (SZ) effect \cite{plancksz,actsz,sptsz} and have provided best cluster cosmological results to date \cite{planckpapers}. However, their poor angular resolution limit the cosmological interpretation of the data and in particular the study of the impact of the complex intra cluster medium (ICM) physics, which may bias the observable to cluster mass scaling relation \cite{planckcosmo}. This bias might be of particular importance for high redshift clusters as they are at an early stage. The observation of these high redshift clusters requires high resolution ground-based instruments with a large field-of-view (FOV) that is fully sampled with few thousands background limited detectors. \\
+
+Despite the spectacular progression of the technology, sub-millimeter and millimeter studies are often limited by the mapping speed of high resolution instruments and their spectral coverage. 
+
+Concerning \textbf{Galactic studies}, deep millimeter and sub-millimeter observations at high angular resolution, in intensity and in polarization, are needed to better understand how star formation proceeds in the interstellar medium (ISM). Solar-type stars form within regions of cold gas in the ISM. These molecular clouds are characterized by an intricate filamentary structure of matter, which hosts the progenitors of stars, i.e. pre-stellar and proto-stellar cores (\cite{Andre2010}, \cite{Konyves2015}, \cite{Bracco2017}).
+
+A second key subject is represented by the study of \textbf{nearby galaxies} which aims at separating physical components by dissentangling the emission (e.g. thermal dust, free-free, or synchrotron). This allows one to measure precisely the star formation rate in different environments and regions. 
+
+On the cosmological side, existing CMB experiments have proven to be very efficient in detecting clusters of galaxies via the \textbf{Sunyaev-Zel\textquoteright dovich (SZ) effect} (\cite{plancksz2,actsz,sptsz}) and have provided best cluster cosmological results to date (\cite{plancksp2,plancknc2}). However, their poor angular resolution limits the cosmological interpretation of the data and in particular the study of the complex intra cluster medium (ICM) physics, which may bias the observable to cluster mass scaling relation (\cite{plancknc2}). This bias might be of particular importance for high-redshift, i.e. early stage, galaxy clusters. 
+
+Similarly, distant universe studies via \textbf{deep surveys} will benefit from a large instantaneous field-of-view and spectral extend to cover sky regions at the confusion limit. This results in detecting dust-obscured optically-faint galaxies during their major episodes of star-formation in the early universe (\cite{Bethermin2017}, \cite{Geach2017}). 
+
+NIKA2 and the IRAM 30-meter telescope represent today ideal tools to address these scientific questions, and many others. The fundamental characteristics of NIKA2 are dual color and polarisation capabilities, high sensitivity, high angular resolution and an instantaneous field-of-view of 6.5 arc-minutes. Besides the intrinsic scientific impact, NIKA2 represents the first demonstration of competitive performance using thousands pixels Kinetic Inductance Detectors (KID (\cite{Day2003}, \cite{Doyle2010}) cameras operating at millimetre or sub-millimetre wavelenghts.
+
+%The observation of these high redshift clusters requires high resolution ground-based instruments with a large field-of-view (FOV) that is fully sampled with few thousands background limited detectors. 
+%Furthermore, multi-wavelengths instruments like NIKA2 permit the reconstruction of the SED of the galaxies giving a complete view of star formation processes. 
+%The required large mapping speeds can only be obtained by increasing the number of detectors in the focal plane up to few thousands of them. \\
+%The Planck \cite{} and Herschel \cite{} satellite data have revealed a new paradigm for star formation within the Galaxy. Prostar and pre-stellar cores would form primarily on matter filaments \cite{}, whose growth would  be triggered by the Galactic magnetic field \cite{}. Millimeter and submillimeter high resolution and high sensitivity observations in intensity and polarization are needed to better understand the interplay between the matter and the magnetic field, and how it affects star formation. These observations would require multi-wavelenght instruments with thousands of detectors to ensure both large mapping speeds and large field-of-views, and so fulfill the gap between the scales proved by Planck and Herschel and those proved by existing ground-based large telescopes.\\
+
+In Section \ref{The NIKA2 Instrument} we describe the overall instrument design, including cryogenics, focal planes, optics and readout electronics. In Section \ref{Measurement principle} we discuss the observing methods, insisting in particular on the photometric calibration procedures. We will then, in Sections \ref{Observations and performance} and \ref{Illustration of NIKA2 mapping capabilities}, present the results from the intensity commissioning runs at the 30-meters telescope. 
+
+%__________________________________________________________________
+
+\section{The NIKA2 Instrument}
+\label{The NIKA2 Instrument}
+
+NIKA2 is a multi-purpose tool able to simultaneously image a field-of-view of 6.5\,arcminutes at 150 and 260\,GHz. When run in "polarimetric mode", it maps as well the linear polarisation  at 260\,GHz. In order not to degrade the native angular resolution of the 30-meter telescope, and at the same time cover a large field-of-view, it employs a total of around 2,900\,detectors split over three distinct monolithic arrays of KID. We describe in this Section the main instrument sub-systems and the in-laboratory characterisation procedures.
+
+ \subsection{The cryostat}
+
+In order to ensure optimal operation of the detectors and minimize the in-band parasitic radiation, the focal plane arrays, and the last portion of the optics, are cooled down to a base temperature of around 150\,mK by means of a dilution fridge. The home-made dilution insert is completely independent and compatible with any cryostat providing a stable 4\,K temperature input and suitable mechanical and fluids attach points. We stress that no recycling is needed, the hold time being in principle infinite. The dilution, and the rest of the cryostat, has been entirely designed and realised by CNRS Grenoble. NIKA2 employs two Cryomech PT415 pulses-tubes, each delivering a cooling power of 1.35\,W at the reference temperature of 4.2\,K (second stage) and several tens of Watt at 30-70\,K (first stage). The base temperature of these machines is of the order of 3\,K, largely sufficient to start the isotopic dilution process. The large cooling power available on the pulses tubes first stages allows the integration of a part of the optics baffles at temperatures comprised between 4 and 30\,K within the cryostat. A cross-section of the cryostat is shown in Fig.~\ref{Cryostat_cryo} to illustrate the different cryogenic stages.
+
+Gas heat exchangers are adopted at both pulse tubes stages to ensure good thermal contact, avoiding at the same time a direct mechanical contact between the vibrating cooling machines and the sensitive inner components, i.e. detectors and cold electronics. An external mechanical regulation of the pulses-tube positions allows the optimisation of the cooling power and at the same time the minimisation of the shaking of the coldest components. 
+
+\begin{figure}[h]
+   \centering
+   \includegraphics[width=.95\linewidth]{NIKA2_cryoStages.png}
+      \caption{(Color online) Cross-section of the NIKA2 instrument illustrating the different cryogenics stages. The total weight of the cryostat is close to 1,300\,kg. The 150\,mK section includes the arrays, the dichroic, the polarizer and five High Density PolyEthilene (HDPE) lenses.}
+         \label{Cryostat_cryo}
+\end{figure}
+
+The whole instrument is made of thousands mechanical pieces, assembled for a total weight of around 1.3\,tons. The weight of the 150\,mK stage is of the order of 100\,kg, including several kg of High Density PolyEthilene (HDPE) low-conductance lenses. Radiation screens are placed at 1\,K (still), 4-8\,K (pulses tubes second stages), 30\,K and 70\,K (pulse tube first stages).
+
+Selected inner parts, at each stage of temperature, are coated with a high emissivity mixture of black STYCAST 2850, SiC grains and carbon powder. This coating has demonstrated its effectiveness at millimeter wavelengths in order to suppress unwanted reflections (\cite{Calvo2010}).
+
+Following the experience accumulated with NIKA, magnetic shielding is added on each cryogenic stage, employing high permittivity materials down to 1\,K, and a pure aluminium superconducting screen cooled to 150\,mK and enclosing the detectors. The screening is needed in order to suppress: a) the Earth's magnetic field and its variations, in the instrument reference frame, during the telescope slews in azimuth; b) the magnetic field variations induced by the antenna moving in elevation. 
+
+The operation of NIKA2 does not require external cryogenic liquids. Of course the helium isotopic mixture is condensed into liquid when the system is cold, but it remains in a closed circuit. The cryostat and related sub-systems are fully remotely controlled. The whole cool-down procedure, largely automated, lasts about five days. Four days are required for the pre-cooling and thermalisation of the three coldest stages (see Fig.~\ref{Cryostat_cryo}) at around 4\,K. During the last 24 hours, the dilution procedure is started, allowing the further cooling down to base temperature. Two additional days before stable observations are usually foreseen in order to ensure the perfect thermalisation of all the low-thermal-conductance optics elements like the lenses, filters and baffle coating. The system is designed for continuous operations and long observational runs. So far the base temperature has shown the required stability over roughly one month, with no sign of degradation in performance. The stability of the detectors temperature is better than 0.1\,mK RMS over the duration of a typical observational block (scan), i.e. roughly 15\,min. This is largely within the specifications, also considering the weak sensitivity of KID detectors to variations of the base temperature. 
+
+
+ \subsection{The focal plane arrays}
+
+Each array is fabricated on a single 4-inch high-resistivity silicon wafer, on which an aluminium film (t = 18\,nm) is deposited by e-beam evaporation under ultra-high vacuum conditions. The use of thin superconducting films has a double advantage. First, it increases the kinetic inductance of the strip, making the detectors more responsive. And second, it maximises its normal state resistivity. An almost perfect match of the LEKID (Lumped Element Kinetic Inductance Detector) meander to the free space impedance of the incoming wave is thus possible, ensuring a quantum efficiency exceeding 90\% at the peak. The NIKA2 pixels are all based on the Hilbert fractal geometry that we proposed some years ago (\cite{Roesch2012}). 
+
+In NIKA, we adopted standard pixels coupled to a co-planar waveguide (CPW) readout line, with wire-bondings across the central line to suppress the spurious slotline mode. Purely microfabricated bridges were developed as well. The slotline mode is associated to a symmetry-breaking between the ground planes on both sides of the center strip. To optimize the optical coupling to the incoming milimeter radiation, we adopted a back-illumination configuration, in which the light passes through the silicon wafer before reaching the pixels. To attenuate the refraction index mismatch, we micro-machined a grid of perpendicular grooves on the back-side of the wafer, resulting in an effective dielectric constant which is in between vacuum and silicon (\cite{Goupy2016}). The total thickness of the silicon wafer, and the depth of the grooves, were chosen to optimize the anti-reflection effect. A superconducting lid was then set at an optimised distance behind the detector plane, acting at the first order as a $\lambda/4$ backshort. 
+
+The same approach was originally planned for NIKA2. During the phase of the detectors development, however, we realised the practical limitations of the CPW coupling approach, in particular considering the thousands of bondings required to ensure the exclusive propagation of the CPW mode. We then decided to study and optimise a different kind of transmission line, the microstrip (MS). This kind of feedline only supports one propagating mode, and is thus immune from the risk of spurious modes. Furthermore, the aluminium ground plane is located on the opposite side of the wafer with respect to the detectors. This might reduce the still poorly understood residual electro-magnetic cross-coupling between resonators (pixels).
+
+The MS propagation mode shows an electric field oscillating in the dielectric substrate, between the strip line (feedline) and the underlying ground plane. This is illustrated in Fig.~\ref{CPWvsMS}. The main drawback of the MS coupling lies in the fact that it forces, at least for dual-polarisation imaging applications, front-illuminating the detectors. It is thus more adapt for relatively narrow-band (e.g. $\Delta f / f  \leq 30 \%$) applications. This is however perfectly compatible with the NIKA2 goals.  
+
+\begin{figure}[h]
+   \centering
+    \includegraphics[width=.95\linewidth]{CPWvsMS.png}
+      \caption{Schematic cut through a KID substrate. In grey, the high-resistance silicon wafer, while in black the aluminium films are represented. The green arrows illustrate the direction of the electric field. \underline{Left:} the co-planar waveguide (CPW) transmission line without across-the-line bondings, associated to strongly non-uniform performance of the detector array. \underline{Center:} CPW with across-the-line bondings, configuration adopted in NIKA. \underline{Right:} the microstrip (MS) configuration adopted in NIKA2, ensuring single-mode propagation and easiest implementation of very large arrays.}
+         \label{CPWvsMS}
+\end{figure}
+
+In both cases (CPW and MS), the distance between the pixels and the feedline is chosen in order to satisfy optimal coupling conditions. These are achieved when the coupling quality factor, $Q_c$, is of the same order as the internal quality factor $Q_i$ observed under typical loading conditions. In the case of NIKA2, we found an optimum at $Q_c\sim10,000$. A metal loop is added around each MS-coupled pixel to shield them from the feedline and achieve the wanted coupling without compromising the compactness of the pixel packaging (see Fig.~\ref{Pixels}). 
+
+In NIKA2, the 150\,GHz channel is equipped with an array of 616\,pixels, arranged to cover a 78\,mm diameter circle. Each pixel has a size of $2.8\times2.8\textrm{\,mm}^2$. This is the maximum pixel size that can be adopted without significantly degrading the theoretical telescope resolution, as it corresponds roughly to a $1 F \lambda$ sampling of the focal plane. The array is connected over four different readout lines, and shows resonance frequencies between 0.9 and 1.4\,GHz. The thickness of the silicon substrate is around 150\,microns, to ensure a maximal optical absorption at 150\,GHz. 
+
+\begin{figure}[h]
+   \centering
+ %   \includegraphics[width=.95\linewidth]{CPWeMS.png}
+  	\includegraphics[width=.95\linewidth]{fig3_AB.png}
+     \caption{\underline{Left:} a front-illuminated microstrip (MS) pixel for the 260\,GHz band of NIKA2. The pixel size is $2\times2\textrm{\,mm}^2$. \underline{Right:} a back-illuminated coplanar waveguide (CPW) pixel used for the 150 GHz band in NIKA. The pixel size was in that case $2.3\times2.3\textrm{\,mm}^2$. Both designs are based on Hilbert-shape absorbers/inductors.}
+         \label{Pixels}
+\end{figure}
+
+In the case of the 260\,GHz band detectors, the pixel size is $2\times 2\mathrm{\,mm}^2$, to ensure a comparable $1 F \lambda$ sampling of the focal plane. In order to fill the two 260\,GHz arrays, a total of 1,140 pixels are needed in each of them. The smaller pixel dimensions compared to the 150\,GHz band lead to slightly higher resonance frequencies that are lie between 1.9 and 2.4\,GHz. Each of the 260\,GHz arrays is connected over eight different readout lines. The thickness of the substrate is 260\,microns, which maximizes the optical absorption at 260\,GHz. A picture of one of the actual 260\,GHz arrays mounted in NIKA2 is shown in Fig.~\ref{Array}.
+
+\begin{figure}[h]
+   \centering
+    \includegraphics[width=.95\linewidth]{1mm_array.jpg}
+      \caption{(Color online) One of the 260\,GHz NIKA2 arrays after packaging. The number of pixels designed for this array is 1,140, connected via eight feed-lines and 16 SMA (SubMiniature version A) connectors to the external circuit. The front of the wafer is in evidence in the present picture.}
+         \label{Array}
+\end{figure}
+
+We show in Fig.~\ref{Cryostat} an illustration of the positioning of the three arrays in the NIKA2 cryostat.
+ 
+\begin{figure}[h]
+   \centering
+   \includegraphics[width=.95\linewidth]{Fig1_cryo.png}
+      \caption{(Color online) Cross-section of the NIKA2 instrument illustrating the position of the three detector arrays (150\,GHz, 260\,GHz-V and 260\,GHz-H). The optical axis and the photon direction of propagation is shown as well.}
+         \label{Cryostat}
+\end{figure}
+
+
+ \subsection{The cold optics}
+
+In this Section we describe the internal (cooled) optics. More details concerning the telescope interface (room temperature) mirrors are given in Section~\ref{The integration at the telescope}.
+
+NIKA2 is equipped with a reflective cold optics stage held at a temperature of around 30\,K. The two shaped mirrors (M7 and M8) are mounted in a specifically-designed low-reflectance optical box in the cryostat nose. The stray-light suppression is further enhanced by a multi-stage baffle at 4\,K. The cold aperture stops, at a temperature of 150\,mK, are conservatively designed to be conjugated to the inner 27.5 meters of the primary mirror M1.
+
+The refractive elements of the NIKA2 cold optics are mounted at 1\,K and at the base temperature. The HDPE lenses, except for those placed in front of the 260\,GHz arrays, are anti-reflecting-coated. The coating is realised by a custom machining of the surfaces. A 30-centimeter diameter air-gap dichroic splits the 150\,GHz (reflection) from the 260\,GHz (transmission) beams. This dichroic, ensuring that it is flatter relative to the standard hot-pressed ones, was developed in Cardiff specifically for NIKA2. A grid polarizer ensures then the separation of the two linear polarisations on the 260\,GHz channel (V and H, see Fig.~\ref{Cryostat}). Please refer to Fig.~\ref{Cryostat_optics} for a schematic cross-section of the inner optics.
+
+\begin{figure}[h]
+   \centering
+   \includegraphics[width=.95\linewidth]{NIKA2_optics.pdf}
+      \caption{(Color online) Cross-section of the NIKA2 instrument illustrating the cold optics and the main elements and surfaces described in the text. The cold mirrors M7 and M8 are mounted in the cryostat "nose" on the left side of the figure.}
+         \label{Cryostat_optics}
+\end{figure}
+
+The filtering of unwanted (off-band) radiation is provided by a suitable stack of multi-mesh filters placed at all temperature stages. In particular, three infrared-blocking filters are installed at 300\,K, 70\,K and 30\,K. Multi-mesh low-pass filters, with decreasing cutoff frequencies, are mounted at 30\,K, 4\,K, 1\,K and the base temperature. Band-defining filters, custom-designed to optimally match the atmospheric windows (see Fig.~\ref{Fig4}), are installed at the base temperature. 
+
+%POLARISATION FACILITIES (Andrea)
+To exploit the NIKA2 polarisation capabilities, a modulator is added when operating the instrument in "polarimetric mode". It consists of a multi-mesh hot-pressed half-wave-plate (HWP) (\cite{Pisano2008}) mounted, at room temperature, in front of the cryostat window. The modulator uses a stepping motor and is operated at mechanical frequencies of up to 3\,Hz, corresponding to a maximum of 12\,Hz on the effective polarisation modulation frequency. A similar setup was successfully used on NIKA (\cite{Ritacco2017}). In order to detect all the photons, the modulated polarised signal is then split onto the two 260\,GHz arrays by the 45 degree wire-grid polarizer described above.  
+
+
+ \subsection{The readout electronics}
+ \label{The readout electronics}
+
+One of the key advantages of the KID technology is the simplicity of the {\bf{cold electronics}} installed in the cryostat.
+In NIKA2, each block of around 150 detectors is connected to single coaxial line providing at one end the excitation, and the readout at the other end. The excitation lines, composed of stainless steel cables, are running from 300\,K down to sub-Kelvin temperature. They are properly thermalised at each cryostat stage, and a fixed attenuation of 20\,dB is applied at 4\,K in order to suppress the room temperature thermal noise. Each excitation line ends with a SMA (SubMiniature version A) connector (EXCitation input) and an ad-hoc launcher connected, through superconducting (aluminium) microbondings, to the silicon wafer holding the detectors. The approximative excitation power per resonator is typically of the order of 10\,pW.
+
+On the readout side, the same types of microbondings are used to transfer the signal out of the focal plane and to make it available on a second SMA connector (MEASurement output). Then a superconducting (Nb) coaxial cable is used to connect directly the measurement output to the input of a cryogenic low-noise amplifier (LNA). The amplified signal provided by the LNA is transferred through the remaining cryostat stages (up to 300\,K) via stainless steel coaxial cables. The LNAs, which operate at frequencies up to 3\,GHz, show noise temperatures comprised between 2\,K and 5\,K and are held at a physical temperature of about 8\,K. That means that the input amplifier noise is equivalent to the thermal Johnson noise of a 50-Ohm load placed between 2\,K and 5\,K . The cryogenic amplifiers used in NIKA2 were developed, fabricated and tested at the Yebes observatory and TTI Norte company, both located in Spain. The specifications of the amplifiers have been elaborated by the NIKA2 group. In total, NIKA2 is composed of about 2,900 pixels and is equipped with twenty feed-lines. Thus, it employs twenty cryogenics amplifiers (four for the 150\,GHz array and eight for each of the 260\,GHz arrays). The polarisation of the LNA stages is provided by a custom electronics box remotely controlled and allowing the optimizations of the biases according to the slightly different characteristics of the front-end high electrons mobility transistors (HEMT). 
+
+\begin{figure}
+\begin{center}
+\includegraphics[angle=0,width=0.45\textwidth]{NIKA_crate}
+\caption{Overview of one array readout electronics crate.
+It is equipped with 4 (or 8) readout boards lodged in advanced mezzanine card slots (NIKEL\_AMC), one central and clocking and synchronization board (CCSB) mounted on the MicroTCA Carrier Hub (MCH) and one 600\,W power supply.
+The crate allocated to the 150\,GHz channel uses 4 NIKEL\_AMC boards while the others use 8 NIKEL\_AMC boards. The actual power consumption is around 500\,W per crate for 8 boards and 300\,W for 4 boards. The weight of each crate is around 12 kg.
+\label{crateFig}}
+\end{center}
+\end{figure}
+
+The \textbf{warm electronics} required to digitize and process the 2,900 pixels signals were specifically designed for that purpose.
+It is composed of twenty readout cards (one per feed-line) named New Iram Kid ELectronic in Advanced Mezzanine Aard format (NIKEL\_AMC).
+As shown in Fig.~\ref{crateFig}, the cards are distributed in three micro-Telecommunication Computing Architecture (MTCA) crates.
+A central module, composed of a commercially available Mezzanine Control Hub (MCH) and of custom made mezzanine boards, is used to distribute a 10\,MHz rubidium reference clock (CLK) and a pulse per second (PPS) signal provided by a GPS receiver and to control the crate. The synchronisation between the boards, and the different crates, is ensured by these common reference signals. The electronics is fully described in previous papers (\cite{Bourrion2012,Bourrion2016}).
+
+In summary, the NIKEL\_AMC is composed of two parts: the radio-frequency (RF) part and the digitization and processing section.
+The integrated RF part ensures the transition from and to the baseband part.
+It uses the local oscillator (LO) input to perform up and down-conversions.
+To instrument the 150\,GHz array (resonances from 0.9\,GHz to 1.4\,GHz) and the 260\,GHz arrays (resonances from 1.9\,GHz to 2.4\,GHz), the used LO input frequency are respectively 0.9\,GHz and 1.9\,GHz. The digitization and signal processing, which is done at baseband, relies on channelized digital down conversion (DDC) and their associated digital sine and cosine signal generators and processors.
+The processing heavily relies on field programmable gate arrays (FPGA) while the interfacing to and from the analog domain is achieved by 1\,GSPS analog to digital and digital to analog converters (ADC and DAC, respectively).
+The electronics covers a bandwidth of 500\,MHz and handle up to 400\,KIDs in this bandwidth. In NIKA2 about 150 KIDs per board are instrumented, leaving room for placing a number of dark and/or off-resonance excitation tones, and allowing for future developments of the instrument. 
+It must be noted that for implementation reasons (\cite{Bourrion2012,Bourrion2016}) the excitation signal, nominally covering 500\,MHz, is constructed by five DAC, each spanning 100\,MHz.
+
+\subsection{Laboratory tests}
+\label{Laboratory tests}
+
+NIKA2 has been pre-characterised in the laboratory under realistic conditions. In order to compensate the absence of the telescope optics, we have added a corrective lens at the cryostat input window. This lens is creating an image of the focal planes onto our "sky simulator", as described in previous papers (\cite{Catalano2014}, \cite{Monfardini2011}). A sub-beam-sized, i.e. point-like, warm source, moved in front of the sky simulator by means of an x-y stage, allows beams shape and array geometry (e.g. pixel-per-pixel pointing) characterisation. The sensitivity is calculated by executing calibrated temperature sweeps of the sky simulator, and measuring the signal-to-noise ratio. A photometric model has been developed, based on ray-tracing simulations. The overall transmission of the instrument, mainly determined by the lenses and the filters, lies around 35\%. The filters have been individually characterised in Cardiff, while the lens transmission has been measured at IRAM Grenoble. On top of that, the quantum efficiency of the detectors, integrated in the band of interest and calculated from ab-initio electro-magnetic simulations, is between 60\% (260\,GHz arrays) and 80\% (150\,GHz array). The 3-D electro-magnetic simulations, for the Hilbert design adopted in NIKA2, are confirmed by millimeter-wave vector analyser measurements (\cite{Roesch2012}).
+
+The frequency sweep of the four lines connected to the 150\,GHz array are shown in figure \ref{VNA}. The number of identified resonances over the twenty feedlines exceeds 90\% when compared to the number of pixels implemented by design. 
+
+\begin{figure}[h]
+\begin{center}
+   \centering
+    \includegraphics[width=1.0\linewidth]{VNA_scans_150GHz.png}
+    \caption{(Color online) Resonance sweep for the four feedlines of the 150\,GHz array. The lines 1,2,3,4 are respectively shown in blue, red, cyan and green. The y-axis represents the transmission of the feedline (parameter S21) and is expressed in dB. Each dip corresponds to a resonance/pixel. At least 94\% of the 616 pixels are identified with a resonance and are thus sensitive to incoming radiation.}
+         \label{VNA}
+\end{center}
+\end{figure}
+
+The measurable quantity, proportional to the incoming power per pixel, is the shift in frequency of each resonance (pixel) (\cite{Swenson2010}). This is the reason why our noise spectral densities are expressed in Hz/Hz$^{0.5}$, and the \textit{Rayleigh-Jeans} responsivities are given in kHz/K. By sweeping the temperature of the sky simulator, we have estimated average responsivities around 1 and 2\,kHz/K at respectively 150 and 260\,GHz. The array-averaged frequency noise levels, for the two bands, are about 1 and 3\,Hz/Hz$^{0.5}$, resulting in NET (noise equivalent temperature) of the order of 1 and 1.5\,mK/Hz$^{0.5}$ per pixel at 150 and 260\,GHz respectively. These figures are calculated at a representative sampling frequency of 5\,Hz. An example measurement based on the sky simulator, and determination of the responsivity, is reported in Fig.~\ref{Shift_f}. 
+
+\begin{figure}[h]
+\begin{center}
+   \centering
+    \includegraphics[width=1.0\linewidth]{260GHz-H_sky.png}
+    \caption{(Color online) Responsivity estimation using the sky simulator. \underline{Top panel:} frequency sweep of a portion of one particular feedline operating at 260\,GHz. \underline{Bottom panel:} zoom on three typical resonances. In both panels we plot the S21 transmission parameter (dB) against the frequency. Blue lines: cold sky simulator ($T_{SS} \sim 80\,K$). Red lines: 300\,K background. The measured average responsivity, i.e. the shift in frequency per unit temperature background variation, is around 2\,kHz/K for the 260\,GHz arrays and 1\,kHz/K in the case of the 150\,GHz array.}
+         \label{Shift_f}
+\end{center}
+\end{figure}
+
+Noise spectra recorded in laboratory have been fully confirmed with NIKA2 when operating at the telescope. Please refer to the Section~\ref{Noise and sensitivity} for a more detailed discussion concerning the noise properties. 
+
+The spectral characterisation of the arrays and the overall optical chain of NIKA2 (Fig.~\ref{Fig4}) has been achieved in the Grenoble lab using a Martin-Puplett Interferometer (MpI) built in-house (\cite{Durand2008}) and specifically dedicated to instruments characterisation.
+The band transmission in Fig.~\ref{Fig4} was measured using a Rayleigh-Jeans spectrum source.
+The two arrays operating at 260\,GHz, mapping different polarisations, exhibit a slightly different spectral behaviour probably due to a tiny difference in the silicon wafer and/or Aluminium film thicknesses. The observed shift of the peak frequency, 265\,GHz for the V (A1) array versus 258\,GHz of the H (A3), can be explained by about 5\,microns change in the substrate thickness. The so-called "1\,mm atmospheric window" is not completely filled. This was designed, for the first generation of detectors, in order to ensure robustness against average atmospheric conditions and optimise the overall observing efficiency. A possible future upgrade of NIKA2, oriented toward even better sensitivity in very good atmospheric conditions, would be straightforward. 
+
+\begin{figure}[h]
+   \centering
+%    \includegraphics[width=0.9\linewidth]{Fig4_spectra.png}
+    \includegraphics[width=1.0\linewidth]{atm_transmission.pdf}
+      \caption{(Color online) NIKA2 spectral characterisation for the two 260 GHz arrays, H (A1, blue) and V (A3, green) measured in the NIKA2 cryostat, and for the 150\,GHz array (A2, red) measured in a test cryostat equipped with exact copies of the NIKA2 band-defining filters. The band transmissions are not corrected for Rayleigh-Jeans spectrum of the input source. We also show for comparison the atmospheric transmission (\cite{Pardo2002}) assuming 2\,mm of precipitable water vapor (PWV), i.e. very good conditions, and 6\,mm PWV, i.e. average conditions.
+         \label{Fig4}}
+\end{figure}
+
+The sky simulator enabled also a rough but crucial estimation of the parasitic radiation. By comparing measurements obtained at several sky simulator distances with respect to the cryostat window, we determined an equivalent 15\,K additional focal plane background due to the ambient temperature stray radiation. This is lower than the very best equivalent sky temperature at Pico Veleta ($\approx 20\,\textrm{K}$), and confirms that NIKA2 is not significantly affected by this effect. In comparison, in NIKA we had estimated around 35\,K additional background, slighly limiting the performance. 
+In summary, the overall performance of the instrument, measured preliminarily in laboratory, is in line with the NIKA2 specifications, paving the way for the installation at the telescope described briefly in the next Section. 
+
+
+\subsection{The integration at the telescope}
+\label{The integration at the telescope}
+
+NIKA2 has been transported from the Grenoble integration hall to the observatory on the end of September, 2015. Successful installation of the instrument took place in early October 2015 at the IRAM 30-meter telescope on Pico Veleta (Sierra Nevada, Spain). To prepare this installation, the optics of the receiver cabin (M3, M4, M5 and M6) had been modified in order to increase the telescope field-of-view up to the 6.5\,arcminutes covered by NIKA2. M3 is the Nasmyth mirror attached to the telescope elevation axis. M4 is a flat mirror that can be turned manually in order to feed the beam either to NIKA2 or to heterodyne spectroscopic instruments (\cite{Carter2012}, \cite{Schuster2004}). The M5 and M6 curved mirrors are dedicated to the NIKA2 camera. The configuration of the optics in the cabin, for an elevation $\delta = 0~\textrm{degrees}$, is drawn in Fig.~\ref{figCabin}. Not shown nor discussed, M1 and M2 are respectively the telescope primary mirror and its sub-reflector. 
+
+\begin{figure}[h]
+   \centering
+    \includegraphics[width=.85\linewidth]{figCabin.png}
+      \caption{(Color online) \underline{Left:} Isometric view of the cabin optics scheme, illustrating the mirrors M3, M4, M5 and M6. The ideal case in which the elevation angle is zero degrees is shown. \underline{Right:} Top view of the cabin optics feeding NIKA2.}
+         \label{figCabin}
+\end{figure}
+
+The whole installation, including the cabling of the instrument, was completed in about three days. The pulse-tube pipes, which are 60 meters long, run through a derotator stage in order to connect the heads in the receiver cabin (rotating in azimuth) and the compressors located in the telescope basement (fixed). A single 1 Giga-bit ethernet cable ensures the communication to and from the NIKA2 instrument. The forty radio-frequency connections (twenty excitation lines, twenty readouts) between the NIKEL\_AMC electronics and the cryostat, located on opposite sides of the receivers cabin, are realised using 10-meter long coaxial cables exhibiting around 2~dB signal loss at 2~GHz. This is acceptable, considering that the signal is pre-amplified by about 30~dB by the LNAs. 
+
+The optical alignment between the instrument and the telescope optics has been achieved using two red lasers. The first was set shooting perpendicularly from the center of the NIKA2 input window, through the telescope optics and reaching the vertex and M2. The second laser was mounted on the telescope elevation axis at the M3 position, reaching then, through the M4, M5 and M6 mirrors, the NIKA2 window. In both cases, we have adjusted the cryostat position and tilt. NIKA2 is equipped with an automatic system of pneumatic actuators and position detectors able to adjust the cryostat height and tilt and to keep it stable down to few tens of microns precision. 
+
+\begin{figure}[h]
+   \centering
+    \includegraphics[width=.85\linewidth]{NIKA2cryo.jpg}
+      \caption{(Color online) A picture of the NIKA2 cryostat installed in the 30-meters telescope receivers cabin. Picture taken in October, 2015.}
+         \label{Fig5}
+\end{figure}
+
+The first cryostat cooldown started immediately after the installation, and was achieved after the nominal four days dedicated to pre-cooling, followed by less than 24 hours during which the helium isotopes mixture is condensed in the so-called "mixing chamber". The first-light tests demonstrated that all the detectors were functional and exhibited responsivity and noise in line with the laboratory measurements presented in the previous Section. 
+
+%______________________________________________________________
+
+\section{Measurement principle}
+\label{Measurement principle}
+
+At the telescope, the NIKA2 acquisitions on a given source are split into single observational blocks named "scans". In each scan, the source is moved across the field-of-view, typically by constant-elevation pointing sweeps defined as "sub-scans". A particular scan, in which the elevation of the antenna is moved by large amounts, is named "skydip". The skydip allows us to measure the effective atmosphere temperature and calibrating the sky opacity corrections, as explained in Section~\ref{Atmospheric attenuation correction}.
+
+The photometry can be reconstructed down to the required precision thanks to three distinct procedures that are applied during sky observations. First, we have implemented a real-time electrical calibration acting directly on the KID that is specific to NIKA and NIKA2 (Sect.~\ref{Internal detectors calibration}). Second, KID measurements are dynamically adapted to the sky background (Sect.~\ref{Sky background matching}). Third, the atmosphere opacity correction is calculated in real time thanks to the large dynamic range and linearity of the detectors (Sect.~\ref{Atmospheric attenuation correction}).
+
+
+
+\subsection{Internal electrical detector calibration}
+\label{Internal detectors calibration}
+
+When radiation is absorbed in a KID, it breaks part of the superconducting carriers (Cooper pairs) and creates a non-thermal excess of unbound electrons (quasi-particles). This changes the impedance of the film and shifts the resonance frequency $f_r$ of the KID to lower values.
+%[For small variations of the absorbed power, delta f_0 is directly proportional to $\delta P$.] 
+The standard way to read a pixel (resonator) is to excite it with a tone at a frequency $f_t$ and monitor how the in-phase ($I$) and in-Quadrature ($Q$) components of the transmitted signal are modified by the changes in its resonance frequency $f_r$. For NIKA2 we adopted the strategy already developed and tested in NIKA. Instead of using an excitation at a fixed frequency $f_t$, we rapidly ($f_{mod} \approx 500\,Hz$) modulate between two different readout tones, $f_t^+$ and $f_t^-$, ideally placed just above and just below $f_r$. The tones are separated by $df=f_t^+-f_t^-$, much smaller than the resonance width. This modulation technique allows us to measure, for every data sample, both the values of $I$ and $Q$ and the variation $dI$, $dQ$ that is induced by the chosen frequency shift $df$. When the optical power on the detectors changes by an amount $\Delta P_{opt}$, a variation $\Delta I$, $\Delta Q$ is observed between successive data samples, which are acquired at a rate $f_{sampling} = 24\div48\,Hz \ll  f_{mod} $. The $dI$, $dQ$ values can then be used as a calibration factor to associate to the observed $\Delta I$, $\Delta Q$ the corresponding change in the resonance frequency $\Delta f_r$, and thus measure $\Delta P_{opt}$. A full description of the modulated readout technique is provided in \cite{Calvo2013}.
+
+The advantage of this solution is that the $dI$, $dQ$ values are evaluated for every data sample. If the load on the detectors changes (e.g. due to variations in the atmosphere opacity), the exact shape of the resonance feature of each pixel will change. However, since the calibration factor $dI$, $dQ$ is updated in real time, this effect is taken automatically into account. The photometric accuracy of the instrument, through the KID linearity in terms of $f_r$, is thus strongly improved.
+
+Furthermore, knowing both the $I$, $Q$ and the $dI$, $dQ$ values we can also estimate the difference between $f_r$ and $f_t$. In the ideal situation, these two frequencies should coincide. In reality, changes in the background load can make the resonances drift by a large amount. In such case, the modulated readout allows us to rapidly readjust $f_t$ to the instantaneous value of $f_r$. This ensures an optimal frequency bias and prevents any degradation in the sensitivity of the detectors. This returning is scheduled, as discussed in more detail in Sect.~\ref{Sky background matching}, between different scans or sub-scans and does not affect the data taken during the proper integration.
+
+\subsection{Sky background matching}
+\label{Sky background matching}
+
+During ground-based observations, the radiation load per pixel is variable. The atmosphere induces spatial variations, for different pointing elevation, to which temporal changes, due to opacity fluctuations, add up. The KID tone-frequency load-matching procedure, which we call "tuning", is performed in a specifically dedicated sub-scan at the beginning of each scan and in the lapse of time between two subsequent scans. The tuning procedure is usually performed as a two-step process. First, a common shift is applied to all KIDs in order to match the instantaneous average sky background. Second, the KIDs are individually adjusted by fine-tuning their position. The two steps, depending on the weather conditions, can be executed separately. The versatility of the tuning procedure allows us to keep track of the KID resonance positions even under variable observing conditions, or when the elevation is changed strongly, for example during skydips. The complete tuning, including a verification of the correct frequencies adjustment, is completed in less than 2 seconds. 
+
+The tuning procedure requires real-time synchronization of the NIKA2 camera with the telescope control system. This is achieved by directly receiving and interpreting the telescope status messages. These messages are broadcast by the telescope server, over the NIKA2 private network, at a rate of 8\,Hz. The interpreted messages (e.g. begin and end of scans and sub-scans) are recorded in the NIKA2 raw data files. In addition, off-line accurate ($< 0.1~ \textrm{msec}$) synchronization of the telescope attitude file and the NIKA2 raw data is obtained by monitoring the PPS (Pulse Per Second) signal. This signal, as mentioned in Sect.~\ref{The readout electronics}, is generated by the telescope control system and shared by all the instruments.
+
+
+%______________________________________________________________
+\subsection{Atmospheric attenuation correction}
+\label{Atmospheric attenuation correction}
+
+
+The sky maps have to be corrected for the atmospheric absorption. The corrected brightness $S^{corrected}$ is:
+\begin{equation}\label{eq:opa}
+S^{corrected} =  S^{ground} \cdot e^{ x \cdot \tau_{scan}}
+\end{equation}
+where $\tau_{scan}$ is the zenith opacity, for each band, of the atmosphere during the
+observation, and $x$ represents the airmass\footnote{By assuming a
+  homogeneous plane-parallel atmosphere, the relation between the
+  airmass and the elevation of the telescope is taken as $x =
+  csc(\delta)=1/sin(\delta)$, where $\delta$ is the average
+  elevation.} at the considered elevation.
+
+\begin{figure}
+\includegraphics[scale=0.55]{./opacity_evol_run22.pdf}
+\caption{(Color online) Atmospheric opacity as measured from the IRAM 225\,GHz taumeter (cyan), and from the NIKA2 data at 150 (red) and 260\,GHz (blue) during the February 2017 NIKA2 commissioning campaign. We stress the fact that the IRAM 225\,GHz taumeter data is not used for the atmospheric correction and is plotted here just for comparison.
+  \label{fig:taumeas}}
+\end{figure}
+
+%BELOW NICOLAS VERSION
+NIKA2 has the ability to compute the opacity directly along the line of sight, integrated in NIKA2's exact bandpasses and independently of the IRAM tau-meter operating at 225~GHz. The procedure was successfully tested with NIKA and is described in detail in \cite{Catalano2014}. Indeed, the resonance frequency of each detector is related to the airmass and the opacity as in the following:
+\begin{equation}\label{eq:skydip}
+f^{i}_{r} = c^{i}_0 - c^{i}_1 \cdot T_{atm}[1 - e^{- x \cdot \tau}],  i = 1 ... N
+\label{eq:tau}
+\end{equation}
+where $f^{i}_{r}$ is the measurable absolute value of the $i_{th}$ detector resonance frequency (Sect.~\ref{Internal detectors calibration}), $c^{i}_0$ is a constant equal to the resonance frequency at zero opacity, $c^{i}_1$ is the calibration conversion factor in $\mathrm{kHz/K}$ and with $T_{atm}$ we refer to the equivalent temperature of the atmosphere (taken as a constant at $270\,\mathrm{K}$). $\tau$ is the sky zenith opacity, function of time. N is the number of useful detectors in the considered array. 
+
+The coefficients $c^{i}_0$ and $c^{i}_1$ are expected to be constant in time within at least a cooldown cycle. Once they are known, Eq.~(\ref{eq:tau}) can be inverted to determine $\tau$ at the corrisponding time. The determination of the constants $c^{i}_0$ and $c^{i}_1$ is achieved via a specific scan, nicknamed \emph{skydip}. For such a scan, the telescope performs eleven elevation steps in the range $\delta = 19\div65\,\mathrm{deg}$, regularly spaced in airmass. For each step, we acquire about twenty seconds of time traces to reduce the error in the determination of $f^{i}_{r}$. Several skydips under different weather conditions (hence different $\tau$) are solved simultaneously in order to break the natural degeneracy between the opacity and the responsivity.
+%END OF NICOLAS VERSION
+
+% BELOW ORIGINAL FROM XAVIER
+%In NIKA2, the opacity is measured via a total-power technique, which was successfully tested with NIKA. The details of this technique and its agreement with the Atmospheric Transmission at Microwaves (ATM) model (\cite{2001IEEE....49.1683C}) are described in \cite{Catalano2014}. The underlying idea is to replace the opacity, usually delivered by the resident IRAM tau-meter that performs elevation scans at a fixed azimuth and is operating at 225\,GHz, by a measurement that uses the NIKA2 instrument itself as a tau-meter Using this procedure we can directly derive an opacity integrated in the NIKA2 very bandpasses and in the same line-of-sight of the source in the considered map. First, we have to calibrate the relationship between total power and opacity. We do that with a classical skydip measurement where the telescope performs eleven elevation steps in the range $\delta = 19\div65\,\mathrm{deg}$, regularly spaced in airmass. For each step, we acquire about twenty seconds of useful signal. The relation between each detector resonance frequency and the airmass is given by the following equation:
+%\begin{equation}\label{eq:skydip}
+%f^{ground}_{skydip} = c_0 - c_1 \cdot T_{atm}[1 - e^{- x \cdot \tau_{skydip}}],
+%\end{equation}
+%where $f^{ground}_{skydip}$ is the acquired signal which corresponds to the absolute value of the resonance frequency of each detector. $c_0$ is a constant equal to the resonance frequency for the considered detector at zero opacity. $c_1$ is the calibration conversion factor in $\mathrm{Hz/K}$, with $T_{atm}$ the equivalent temperature of the atmosphere (taken as a constant at $270\,\mathrm{K}$). $\tau_{skydip}$ is the sky zenith opacity during the skydip scan, and $x$ is the current airmass. Several skydips under different weather conditions are usually solved simultaneously (with the same $c_0$ and $c_1$ coefficients but different $\tau_{skydip}$ values) in order to break the natural degeneracy between the opacity and the response.
+
+We observe that the skydip-fitted $\tau$ values are, as expected, common between different detectors of the same array. By comparing the results of different skydips, we have verified experimentally that the coefficients $c^{i}_0$, $c^{i}_1$ are stable, within the fit errors, on very long time scales within a cooldown cycle. The coefficients can thus be applied to the whole observing campaign in order to recover the opacity of each scan. In Fig.~\ref{fig:taumeas} we present the evolution of the NIKA2 in-band opacities for several scans of the commissioning run held in February 2017. These are compared to the IRAM tau-meter lectures. We observe a global trend agreement between the IRAM tau-meter suggested opacity (225~GHz) and the NIKA2 values. These latter show, however, a smaller dispersion. We find an average ratio between the 150~GHz and the 260~GHz NIKA2 derived opacities of about 0.6, consistent with model expectations. We notice however that the 150~GHz-to-260~GHz opacity ratio varies significantly for opacities (at 150~GHz) below $0.2$. This effect is likely to be linked to an O$_2$ atmospheric line which becomes saturated. This point is, however, still under investigation.
+%______________________________________________________________
+
+\section{Observations and performance}
+\label{Observations and performance}
+
+The first NIKA2 astronomical light was achieved in October 2015. A first technical run immediately followed. A number of commissioning runs have then been carried out between November, 2015 and April, 2017. The commissioning observations were carried out periodically and without affecting significantly the routine observations scheduled at the telescope. Since September, 2016 the instrumental configuration has been fully stable after replacing the 150~GHz array, the dichroic, and the smooth lenses by anti-reflection ones.
+In this paragraph we summarize the first results obtained for the characterization of the instrument performance. More in-depth details concerning the data analysis pipeline and the commissioning results will be given in forthcoming papers (\cite{pipeline} and \cite{commissioning}). The commissioning of the polarisation channel is on-going, and results will also be the object of a future paper. 
+
+We stress that the experience from the use of NIKA2 by external astronomers might lead, in the best case, to further optimization of the instrument performance. The experience that will be accumulated in the future might eventually allow us to pinpoint subtle problems that have not been evidenced during the commissioning. 
+
+\subsection{Data processing at the telescope}
+\label{Data processing at the telescope}
+
+Astrophysical observations are carried out in scans, which typically last for few minutes up to 20 minutes at most.
+%The NIKA2 data for each scan are recorded in a file that is named using the date and time of the observation, and
+%the source name. 
+The NIKA2 data in intensity are sampled at 23.8418~Hz. In polarimetric mode, the sampling is running at twice this frequency, i.e. 47.6836~Hz. For each sample and for each KID, the In-phase (I), the Quadrature (Q) and their derivatives (dI, dQ) of the transfer function of the feed-line and the pixel are recorded. Some extra information like scan number, sub-scan number, and telescope pointing information are also included. \\
+
+Data processing is needed during telescope observations to ensure the scientific quality of the acquired data.
+We have developed two sets of tools for real-time and quick-look analysis. The real time tools run on a dedicated multi-processor acquisition computer and monitor the KID time ordered data, the overall behavior of the instrument, and decode telescope messages as discussed in Section~\ref{Sky background matching}. \\
+
+The quick-look analysis software is run at the end of each scan by the observer to obtain early feedback. The execution time is typically of the order of one minute. It includes both map making capacities and analysis of the produced maps, in terms of photometry, sensitivity and calibration. Indeed, it is used to monitor the pointing of the telescope and its focus (about once every two hours in normal observing conditions) and to give the required instructions to correct for their drifts. This quick-look software has been used extensively during the commissioning. It shares a number of common tools with the off-line processing pipeline that is used to construct the final and optimal sky maps (\cite{pipeline}).
+
+\subsection{Field of view reconstruction}
+\label{Field of view reconstruction}
+
+The reconstruction of the position of the detectors in the Field-of-View (FoV) is mainly based on observations of planets, and in particular Uranus, Neptune and Mars. We generally perform deep-integration azimuth raster-scan observations at constant elevation. A total of 99 subscans are taken by changing elevation in steps of 4.8$^{\prime \prime}$. The overall footprint of these scans, which we call {\it beam-maps}, is $780^{\prime \prime} \times 470^{\prime \prime}$. We produce a map of the source for each KID with a projected angular resolution of 4$^{\prime \prime}$. These maps are used to derive the KID position on the FoV, the properties of the beam pattern (FWHM and ellipticity) per KID, and the detector inter-calibration. 
+
+\begin{figure}[h]
+   \centering
+%    \includegraphics[width=0.9\linewidth]{Fig4_spectra.png}
+    \includegraphics[trim=2cm 12cm 4.6cm 4.3cm, clip=true,width=0.78\linewidth]{A1_fwhm_valid.pdf}
+   \includegraphics[trim=2cm 12cm 4.6cm 4.3cm, clip=true,width=0.78\linewidth]{A3_fwhm_valid.pdf}
+   \includegraphics[trim=2cm 12cm 4.6cm 4.3cm, clip=true,width=0.78\linewidth]{A2_fwhm_valid.pdf}       
+      \caption{From top to bottom, detectors positions for arrays A1 (260~GHz-H), A3 (260~GHz-V), and A2 (150~GHz). The three plots show the detectors that have seen the sky and passed the quality criteria for at least two focal plane reconstructions during Run10: 952, 961, and 553 for A1, A3 and A2, respectively. The outer dashed line circle corresponds to the nominal Field-of-View (FoV) of 6.5~arc-minutes.
+         \label{fig:focalplane}}
+\end{figure}
+
+Figure~\ref{fig:focalplane} shows the position of the detectors in the NIKA2 FoV for the two 260~GHz arrays (A1 and A3), and for the 150~GHz array (A2). For each detector the ellipse symbol size and ellipticity are proportional to the main beam FWHM and ellipticity, as derived from a fit to a 2D elliptical Gaussian. To isolate the main beam contribution to the total beam, the sidelobes are masked out using annulus masks centered on the peak signal, of $50\arcsec$ external radius and of internal radius of $9\arcsec$ at $260~\rm{GHz}$ and $14\arcsec$ at $150~\rm{GHz}$. Elliptical 2-D Gaussian fits on the masked maps of each detector (individually) provide two orthogonal-direction FWHMs, which are geometrically combined to obtain the main beam FWHM. Figure~\ref{fig:focalplane_histo} shows the distribution of the main beam FWHMs of the arrays A1, A3 and A2 using a beam-map scan of Neptune acquired during the April 2017 commissioning campaign and for average weather conditions. We also show in red the best Gaussian fit to histogram data. We find an average main beam FWHM of $10.9\arcsec$ at $260~\rm{GHz}$ and $17.5\arcsec$ at $150~\rm{GHz}$ in agreement with the main beam estimates from the deep beam map presented in Fig.~\ref{fig:beampattern}. The observed dispersion of about $0.6\arcsec$ is expected from the optics desing and its associated field distortions across the 6.5~arc-minutes FoV. In particular, these distortions lead to an optimal focus, determined by the position of the M2 mirror, that is shifted by 0.2~\rm{mm} between the center and the outer edge of the FoV.
+%and it is partly due to slight changes of the best focus across the NIKA2 FOV, which are of the order of -0.2~\rm{mm} at 2$^{\prime}$ %from the FOV cen
+ 
+\begin{figure}[h]
+  \centering
+  \includegraphics[clip=true,width=0.68\linewidth]{plot_histo_A1_fwhm_20170424s123.pdf}
+  \includegraphics[clip=true,width=0.68\linewidth]{plot_histo_A3_fwhm_20170424s123.pdf}
+  \includegraphics[clip=true,width=0.68\linewidth]{plot_histo_A2_fwhm_20170424s123.pdf}
+  
+\caption{(Color online) From top to bottom, main beam FWHM distribution of all valid KID detectors of arrays A1, A3, and A2. The main beam FWHM is the geometrical combination of the two-orthogonal FWHM estimates obtained from an elliptical Gaussian fit on side-lobe masked individual maps per KID (see text). The red curves show a Gaussian fit to the histogram data.}
+  \label{fig:focalplane_histo}
+\end{figure}
+
+\subsection{Antenna diagram}
+\label{Antenna diagram}
+
+
+To probe the extended beam patterning, we use the same observations as above, and produce a map with all usable detectors. We show in Figure~\ref{fig:beampattern} the beam pattern as obtained from the optical instrument and telescope response to Uranus for arrays A1, A3, the combination of A1 and A3 (260~GHz), and A2 (150~GHz). The telescope beam is characterized by its main beam, side lobes, and error beams. The main beam is well described by a 2D Gaussian, while the error beams are more complex and have been fitted to the superposition of three Gaussians of increasing FWHM (65$^{\prime \prime}$, 250$^{\prime \prime}$ and 860$^{\prime \prime}$ at 210 GHz) in \cite{greve1998,kramer2013} using observations of the lunar edge with single pixel heterodyne receivers to construct beam profiles.
+
+\begin{figure}[h]
+   \centering
+    \includegraphics[width=1.00\linewidth]{Beams_features.pdf}  
+      \caption{(Color online) Measured beam pattern. From upper left to lower right, beam maps of arrays A1 and A3, the combination of the 260 GHz arrays (A1\&A3) and the 150~GHz array (A2) are shown in decibel. These $10^{\prime} \times 10^{\prime}$ maps, have been constructed from the normalized combination of four relatively long scans of bright point sources. Details on the structures present in the maps are given in the text.}
+         \label{fig:beampattern}
+\end{figure}
+
+The maps are consistent with a 2D gaussian main beam of FWHM $11.3^{\prime \prime} \pm 0.2^{\prime \prime}$, $11.2^{\prime \prime} \pm 0.2^{\prime \prime}$, and $17.7^{\prime \prime} \pm 0.1^{\prime \prime}$, for A1, A3 and A2 arrays, respectively. These results are consistent with the mean FWHM of the main beam of individual KIDs shown in Figure~\ref{fig:focalplane_histo} and are presented in Table~\ref{sumperf}. The color lines in Figure~\ref{fig:beampattern} show the pretty complex sidelobes and error beams. In the 260 GHz maps (A1, A3, and combined A1 \& A3) we clearly observe a diffraction ring at a radius of about 100$^{\prime \prime}$ and at -30 dB. The diffraction ring and its spokes are presumably caused by radial and azimuthal panel buckling (\cite{greve1998}). The perpendicular green lines shown in the A2 (150~GHz) map correspond to the diffraction pattern caused by the quadrapod structure supporting M2. In the same map the yellow arrows point to four symmetrical spokes of the errorbeams. The pink ellipse show spikes in the A2 map. We observe, in the A3 map in Fig.~\ref{fig:beampattern}, some spikes of unknown origin.
+
+Comparing the 2D gaussian main beam fit to the full beam pattern measurement up to a radius of $250''$, we compute the beam efficiencies defined as the ratio of power between the main beam and this full beam. We find beam efficiencies of $\sim 55$ \% and $\sim 75$ \% for the 260 and 150~GHz channels, respectively.
+Heterodyne observations of the lunar edge and of the forward beam efficiency derived from skydips show that a significant fraction of the full beam is received from beyond a radius of 250$^{\prime \prime}$. This fraction is not considered here.
+
+\subsection{On-sky calibration}
+\label{On-sky calibration}
+
+The planets Uranus and Neptune were used as the primary calibrators. Their reference flux densities were obtained from the model in \cite{moreno2010, Bendo2013} 
+%\footnote{See https://ftp.sciops.esa.int/pub/hsc-calibration/PlanetaryModels/ESA4}
+and updated at the mid-date of each session of observations. We use the planet geocentric distance and viewing angle to account for planetary oblateness as provided by the JPL's HORIZONS Ephemeris\footnote{https://ssd.jpl.nasa.gov/horizons.cgi}. By convention flux densities are given at reference frequencies 150 and 260~GHz for the two channels, respectively. Notice that the reference frequencies are close to the peak frequencies for each channel, which were discussed in Sect.~\ref{Laboratory tests} .
+%These frequencies are close to the central frequencies of the NIKA2 channels, which are given in Table~\ref{sumperf}. 
+
+Various observations of Uranus and Neptune with integration times of $\sim 20$ minutes were carried out during each commissioning session resulting in high SNR maps (e.g. Fig. \ref{fig:beampattern}). These observations of strong sources with relatively long integration times were planned to minimize statistical noise in order to determine the level of systematics that caracterises the stability of the scale. Their total flux densities were measured from the maps by aperture photometry within a radius of $150''$ where cumulative flux density leveled off smoothly. For this photometry, we used  the solid angle of the beam of the telescope that we could determine for each observation with these strong sources  in using their radial brightness profile computed at the maximum extent $r_{max}=250''$. The beam solid angle  was found to be slightly variable, as expected since no telescope gain dependence on elevation was yet implemented for the processing of the NIKA2 observations, but also because atmospheric conditions might have had an impact. The obtained fluxes were corrected for atmospheric absorption using the atmospheric line-of-sight opacity for the two NIKA2 channels, which was computed as described in \ref{Atmospheric attenuation correction}.
+
+The ratios between the fluxes for each individual planet observation and the reference planet flux density for the three NIKA2 arrays are shown in Figure~\ref{fig:calibaccuracy} for the February and April 2017 commissioning campaigns.  The mean ratios for the three arrays are close to unity as expected since the planets were used to set the calibration factors in the off-line processing. Overall, the flux density scale is stable at better than $7\%$ for all observations acquired during the two one-week runs (separated by two months) and despite the fact that the instrument was warmed up in between the two sessions. It is noticeable that the scatter around unity in Fig.~\ref{fig:calibaccuracy} is about twice smaller in the first (February) session, which was conducted in significantly better weather conditions.%OK
+
+More precisely, we quantify the stabilities for the February commissioning week via the relative flux rms and find values of 3.6\%, 2.5\% and 2.9\% for arrays A1, A2 and A3, respectively, with atmospheric opacity at 260~GHz between 0.05 and 0.3. Correspondingly, for the April campaign, we find 5.3\%, 6.7\% and 8.6\%  with atmospheric opacity at 260~GHz between 0.25 and 0.6. It is thought that, at the moment, limitations in stability are caused by residual atmospheric fluctuations and uncertainty in opacity corrections.%OK
+
+Nonetheless, the flux density scale of NIKA2 is found to be highly stable and comparable to the level achieved by other modern instruments like SCUBA2 (\cite{Dempsey2013}). The other limitation of the scale is absolute calibration that depends on the accuracy of the \cite{moreno2010,Bendo2013} model which is estimated to be 5\% in the millimeter wavelength range. Hence, in combining both limitations, the total uncertainty of calibration with NIKA2 is $10\%$ in mediocre atmospheric condition and better than $6\%$ in fair conditions ($\tau_{260 GHz} <0.3$). %OK
+
+% OLD CHARLES
+%The planets Uranus and Neptune were used as the primary calibrators to set the Jansky scale of the instrument. Their reference flux densities were obtained from the model in \cite{moreno2010} and updated at the mid-date of each session of observations. We use the planet geocentric distance and viewing angle as provided by the JPL's HORIZONS Ephemeris\footnote{See http://ssd.jpl.nasa.gov/horizons.cgi} to account for planetary oblateness. By convention flux densities are given at reference frequencies 150 and 260~GHz for the 150 and 260 GHz channels, respectively. Notice that the reference frequencies are close to the peak frequencies for each channel, which were discussed in Sect.~\ref{Laboratory tests} . \\
+%Various observations of Uranus and Neptune with integration times of $\sim 20$ minutes were carried out during each commissioning session resulting in high SNR maps (e.g. Fig. \ref{fig:beampattern}). Their total flux densities were measured from the maps 
+%both by fitting a fixed FWHM (12.5$^{\prime \prime}$ and 18$^{\prime \prime}$ for the 260 and 150 GHz channels, respectively) 2D gaussian to the planet emission, and by aperture photometry within a radius of  $150^{\prime \prime}$ where cumulative flux density levels off smoothly. We find consistent results between the two estimates, with differences below 2 \%. In both cases the obtained fluxes were corrected for atmospheric absorption using the atmospheric line-of-sight opacity for the two NIKA2 channels, which was computed as described in \ref{Atmospheric attenuation correction}. \\
+%The ratios between the fluxes for each individual planet observation and the reference planet flux for the three NIKA2 arrays are shown in Figure~\ref{fig:calibaccuracy} for the February and April 2017 commissioning campaigns. The mean ratios for the three arrays are close to unity as expected since the planets were used to set the Jansky scale in the off-line processing. Overall, the flux density scale is stable at better than $7\%$ for all observations acquired during the two one-week runs (separated by two months) and despite the fact that the instrument was warmed up in between the two sessions. It is noticeable that the scatter around unity in Fig.~\ref{fig:calibaccuracy} is about twice smaller in the first (February) session, which was conducted in significantly better weather conditions.
+%More precisely, we quantify the stabilities for the February commissioning week via the relative flux rms and find values of 3.6\%, 2.5\% and 2.9\% for arrays A1, A2 and A3, respectively, with atmospheric opacity at 260~GHz between 0.05 and 0.3. Correspondingly, for the April campaign, we find 5.3\%, 6.7\% and 8.6\%  with atmospheric opacity at 260~GHz between 0.25 and 0.6. It is thought that, at the moment, limitations in stability are caused by residual atmospheric fluctuations and uncertainty in opacity corrections. 
+%Nonetheless, the flux density scale of NIKA2 is found to be highly stable and comparable to the level achieved by other modern instruments, e.g. SCUBA2 (\cite{Dempsey2013}). The other limitation of the scale is absolute calibration that depends on the accuracy of the \cite{moreno2010} model which is estimated to be 5\% in the millimeter wavelength range. Hence, in combining both limitations, the total uncertainty of calibration with NIKA2 is $10\%$ in mediocre atmospheric condition and better than $6\%$ in fair conditions ($\tau_{260 GHz} <0.3$). 
+
+%\begin{figure}[h]
+%   \centering
+%    \includegraphics[angle=270,width=1.10\linewidth]{Ura_Nept_r9_10.pdf}     
+%    \caption{(Color online) Comparison of  measured and reference flux densities of the primary calibrators Uranus (red) and Neptune (blue). Their ratios are shown for the three arrays A1 (260~GHz-H), A2 (150~GHz), and A3 (260~GHz-V). The mean ratio $\mu$ and relative scatter are provided for each array. The reference flux densities are from \cite{moreno2010}. The scan numbers are time-ordered: 1 to 10 refer the period 23-28 February 2017 and 11 to 18 to the 19-25 april 2017 period.}
+%         \label{fig:calibaccuracy}
+%\end{figure}
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[angle=270,width=1.0\linewidth]{Ura_Nept_r9_10.pdf}
+\caption{(Color online) Comparison of measured and reference flux densities of the primary calibrators Uranus (red) and Neptune (blue). Their ratios are shown for the three arrays A1 (260~GHz-H), A2 (150~GHz), A3 (260~GHz-V). The mean ratio $\mu$ and relative scatter are provided for each array. The reference flux densities are from \cite{moreno2010,Bendo2013}. The scan numbers are time-ordered: 1 to 10 refer the period 23-28 February 2017 (fair weather) and 11 to 18 to the 19-25 april 2017 period (mediocre weather).}
+\label{fig:calibaccuracy}
+\end{figure}
+
+
+\begin{figure}[h]
+   \centering
+    \includegraphics[trim=1cm 4cm 2cm 12cm, clip=true,width=0.85\linewidth]{A1_noise_spec.pdf}     
+       \includegraphics[trim=1cm 4cm 2cm 12cm, clip=true,width=0.85\linewidth]{A2_noise_spec.pdf}     
+   \includegraphics[trim=1cm 4cm 2cm 12cm, clip=true,width=0.85\linewidth]{A3_noise_spec.pdf}     
+    \caption{(Color online) From top to bottom power spectra of the NIKA2 time ordered data before (black) and after (blue) subtraction of atmospheric fluctuations, which show-up at frequencies below 1 Hz.}
+         \label{fig:noisespec}
+\end{figure}
+
+
+\begin{figure}[h]
+   \centering(
+   \includegraphics[width=.75\linewidth]{MWC349_1mm_map_snrcont.pdf}
+    \includegraphics[width=.75\linewidth]{MWC349_2mm_map_snrcont.pdf} 
+%        \includegraphics[width=.75\linewidth]{Pluto_1mm_map_snrcont.pdf}
+%    \includegraphics[width=.75\linewidth]{Pluto_2mm_map_snrcont.pdf}
+      \caption{(Color online) Maps at 260~GHz (top) and 150~GHz (bottom) centered in MWC349. Details on the observed sources are given in the text. The contours in these maps indicate signal-to-noise ratios of 5, 7 and 10. The FWHM are given in the lower left corners.
+         \label{fig_compact_sources1}}
+\end{figure}
+
+\begin{figure}[h]
+   \centering(
+%   \includegraphics[width=.75\linewidth]{MWC349_1mm_map_snrcont.pdf}
+%    \includegraphics[width=.75\linewidth]{MWC349_2mm_map_snrcont.pdf} 
+        \includegraphics[width=.75\linewidth]{Pluto_1mm_map_snrcont.pdf}
+    \includegraphics[width=.75\linewidth]{Pluto_2mm_map_snrcont.pdf}
+      \caption{(Color online) Maps at 260~GHz (top) and 150~GHz (bottom) of the Pluto and Charon planetary system. The contours in these maps indicate signal-to-noise ratios of 5, 7 and 10. The FWHM are given in the lower left corners.
+         \label{fig_compact_sources2}}
+\end{figure}
+
+
+
+
+\subsection{Noise and sensitivity}
+\label{Noise and sensitivity}
+
+We have investigated the noise properties and sensitivity of NIKA2 in various atmospheric conditions and for various types of sources including faint and bright ones. For each observation scan the raw data were corrected for atmospheric fluctuations, which are seen as a common mode by all or most of the detectors. These corrected data are then projected into maps.
+
+Figure~\ref{fig:noisespec} shows an example, in good weather conditions $\tau_{260 GHz} < 0.3$, of the power spectrum of the NIKA2 time ordered data before (black) and after (blue) subtraction of the atmospheric fluctuations.
+We observe that even in the case of good weather conditions the signal is dominated atmospheric fluctuations, in particular at small frequencies, giving a 1/f-like spectrum. After atmospheric subtraction and proper filtering, the spectrum is flatter. A detailed study of the residual correlated noise, in both the time-ordered-data and maps, will be given in the companion papers \cite{commissioning,pipeline}.
+
+%(Noise Equivalent Flux Density)
+The NEFD is routinely estimated on those maps for each individual scan. We calculate the NEFD from the standard deviation of the noise in the maps, $\sigma_{M}$, the observing time, $t_{obs}$, and the franction of valid detectors, $\epsilon$: $\sigma_{M} = NEFD / \sqrt{t_{obs} \cdot \epsilon}$. This definition of the NEFD is consistent with the definition of mapping speed, $m_{s} = S \cdot t_{obs} \cdot \sigma_{M}^{2}$, where $S$ is the surface of the observed sky area. Combining these two equations we obtain 
+$m_{s} = \epsilon \cdot FOV / NEFD^2$.
+From our analysis we find that the measured NEFDs per scan are consistent with being background dominated both for the 150 and 260~GHz NIKA2 channels. We observe some residual correlated noise in the per scan maps mainly due to residual atmospheric contamination. However, when averaging across scans the noise evolves consistently with the square root of the time of observation over more than 3 hours of observations. We achieved average sensitivities, extrapolated at $\tau = 0$,  
+%for 2mm PWV and elevation $\delta = 60^{\circ}$
+%\textrm{degrees}$ (Edit by Charles Romero - $^{\circ}$ should look better than the text ``degrees'' 
+of 6 and 20 mJy$\cdot\textrm{s}^{1/2}$ at 150 and 260~GHz, respectively. This corresponds to average mapping speeds of 222 and 1885 arcmin$^2$/hr/mJy$^2$.
+%The announced gain of one order of magnitude mapping speed compared to the previous generation instruments at the 30-meter telescope (NIKA and GISMO) is thus comfortably achieved. 
+We have thus surpassed the forecast of an order of magnitude mapping speed over the previous generation of instruments at the 30-meter telescpe (i.e. NIKA and GISMO).
+
+\subsection{Summary of performances}
+We present in Table~\ref{sumperf} a summary of the main characteristics and performance of the NIKA2 instrument for the February commissioning campaign. From this table we conclude that NIKA2 behaves better than the initial specifications. In particular we had preliminarily estimated, in our paper \cite{Calvo2016}), NEFD values around 10 and 25 mJy$\cdot\textrm{s}^{1/2}$ at respectively 150 and 260~GHz.
+
+\begin{table*}[t]
+  \centering
+  \caption{Summary of the principle characteristics and performance of the NIKA2 instrument. \label{sumperf}}
+  \begin{tabular}{|c|c|c|c|c|}
+    \hline
+	Channel & \multicolumn{3}{|c|}{260 GHz} & 150 GHz \\
+            & \multicolumn{3}{|c|}{1.15 mm}     &  2 mm \\ 
+    \hline
+    Arrays & A1 & A3  & A1\&3 & A2 \\
+    \hline
+%    \hline
+%    Central Frequency [GHz]\tablefootmark{1}   &     252.5    &    254.5     &     &   148.7      \\
+%    Bandwidth         [GHz]\tablefootmark{2}   &     16.8     &     15.8     &     &    42.4      \\
+%    \hline
+    Number of designed detectors       & 1140      &  1140    &    &    616      \\
+    Number of valid detectors\tablefootmark{1}     &  952      &   961    &   &    553      \\ 
+    \hline
+    FOV diameter [arcmin]     &   6.5              &  6.5              &   6.5        &    6.5        \\
+    FWHM [arcsec]             &   $11.3 \pm 0.2$   &  $11.2 \pm 0.2$  &   $11.2 \pm 0.1$           &  $17.7 \pm 0.1$ \\      
+    Beam efficiency\tablefootmark{2} [\% ]   & $55 \pm 5$  &  $53 \pm 5$  &  $60 \pm 6$        &     $75 \pm 5$ \\
+    \hline 
+    rms calibration error [\%]            & 4.5  & 6.6  &   & 5 \\
+    \hline
+    Model absolute calibration uncertainty [\%] &  \multicolumn{4}{|c|}{5} \\
+    \hline
+    RMS pointing error    [arcsec]    & \multicolumn{4}{|c|}{$<3$} \\
+    \hline
+%    NEFD [mJy.s$^{1/2}$] \tablefootmark{6}           & 33   & 28   & 21 (17)  & 6 (5) \\
+    NEFD [mJy.s$^{1/2}$] \tablefootmark{3}           &    &     & 20      & 6  \\
+%    Mapping speed [arcmin$^2$/h/mJy$^2$] \tablefootmark{7} & 302  & 454  & 775 (1184)  & 7542 (10861) \\
+    Mapping speed [arcmin$^2$/h/mJy$^2$] \tablefootmark{4} &   &   & 222  & 1885 \\
+    \hline 
+  \end{tabular}
+  \tablefoot{
+%   \tablefoottext{1}{$\nu_{center} = \int d \nu \ \nu \  H (\nu) $, where $H(\nu)$ is the spectral transmission.}
+%   \tablefoottext{2}{$\Delta \nu  = \int d \nu H(\nu)$.}
+    \tablefoottext{1}{Number of detectors that are valid at least for two different beammap scans.}
+%     \tablefoottext{2}{Number of valid detectors times the area on the sky per detector.}
+    \tablefoottext{2}{Ratio between the main beam power and the total beam power up to a radius of 250$^{\prime \prime}$}
+   \tablefoottext{3}{Achieved NEFD during the February 2017 observation campaign.}   
+   \tablefoottext{4}{Achieved mapping speed during the February 2017 observation campaign.}   
+  }
+\end{table*}
+
+
+\section{Illustration of NIKA2 mapping capabilities}
+\label{Illustration of NIKA2 mapping capabilities}
+
+\begin{table*}
+  \centering
+  \caption{NIKA2 measured flux for a selection of sources. Statistical and calibration uncertainties are given. \label{fluxtab}}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+Source         & Observing time [hours]\tablefootmark{a} &  A1 Flux [mJy]  & A3 Flux [mJy] & 260~GHz Flux [mJy]  &  150~GHz Flux [mJy] \\
+\hline
+\hline
+MWC349         & 3.44    &  1994$\pm$1.2$\pm$140 & 2048$\pm$1$\pm$143 & 2027$\pm$1$\pm$142 & 1389.5$\pm$0.2$\pm$97\\
+SO1 (20h33$^{\prime}$10.416$^{\prime \prime}$, +40$^{\circ}$41$^{\prime}$15$^{\prime \prime}$ & 3.44 &&& 78$\pm$1$\pm$7&29.7$\pm$0.3$\pm$2 \\
+SO2 (20h33$^{\prime}$11.928$^{\prime\prime}$, +40$^{\circ}$41$^{\prime}$44$^{\prime \prime}$& 3.44&&&396$\pm$1$\pm$28&93.8$\pm$0.4$\pm$7 \\
+%[KMH2014] J203310.31+404118.72 -- Young Stellar Object  & 3.44  &                   & & &\\
+%uniidentified   & 3.44   
+%20h32mn45.343sec, 40deg39'35'', 2.1559 +- 0.0005, 1.4066 +- 0.0001
+%20h33mn10.416sec, 40deg41'15'', 0.0784 +- 0.0011, 0.0297 +- 0.0003
+%20h33mn11.928sec, 40deg41'44'', 0.3962 +- 0.0013, 0.0938 +- 0.0004
+\hline
+Pluto-Charon     & 1.44  & 15.8$\pm$1.6$\pm$1.1   & 15.4$\pm$1.2$\pm$1.1 &  15.5$\pm$1.0$\pm$1.1 & 4.8$\pm$0.2$\pm$0.3 \\
+\hline
+\end{tabular}
+  \tablefoot{
+    \tablefoottext{a}{Observing time is on-source time excluding time for slewing, pointing and focussing} 
+}
+\end{table*}
+
+% IDL> print, '1 mm:    ', flux_1mm, sigma_flux_1mm
+% 1 mm:           2.0272281   0.00083581837
+% IDL> print, '1 mm i1: ', flux_i1, sigma_flux_i1
+% 1 mm i1:        1.9948098    0.0012757250
+% IDL> print, '1 mm i3: ', flux_i3 , sigma_flux_i3
+% 1 mm i3:        2.0480568   0.00099119380
+% IDL> print, '2 mm:    ', flux_2mm,sigma_flux_2mm
+% 2 mm:           1.3895481   0.00023865736
+
+During commissioning and the science verification phase we have observed several compact and extended sources in order to check the NIKA2 mapping capabilities. Here we just concentrate on two sources to illustrate the main advantages of NIKA2 with respect to previous experiments. A more detailed description of the sources observed will be given in companion papers (\cite{commissioning,pipeline}).
+
+We present in Figure~\ref{fig_compact_sources1}, 260 (top) and 150 (bottom) GHz NIKA2 maps of the star system MWC349, which is a well known secondary calibrator at millimeter wavelengths. MWC349 was systematically observed at different elevations and in different weather conditions during the February and April 2017 commissioning campaigns to monitor the stability of the calibration. In the figure, we present the averaged map obtained using all scans taken during the February campaign for a total integration time of 3.44 hours. We clearly observe MWC349 in the center of the two maps with high significance. The measured MWC349 fluxes are given in Table~\ref{fluxtab}. We observe two other sources at the edges of the maps, which we refer to as SO1 and SO2. Details on the position and fluxes of the sources are given in Table~\ref{fluxtab}. The SO2 source corresponds most probably to the radio-millimeter source BGPS G079.721+00.427, which was detected by Bolocam in their Galactic plane survey (\cite{Rosolowsky2010}). In the Bolocam observations the SO1 and SO2 sources can not be distinguished from each other. Furthermore, the SO1 source might correspond to  KMH2014 J203310.31+404118.72 (\cite{Kryukova2014}), a young stellar object, but the identification is not sufficiently secure.
+From these observations we conclude that the large FOV and high sensitivity of NIKA2 translate into a large mapping speed that allows us to cover a large sky area with the possibility of observing, or/and discovering, various sources simultaneously. 
+
+%We carried out observations of the Pluto and Charon planetary system to test the NIKA2 capabilities for detecting faint sources.
+To test the ability of NIKA2 to detect faint sources, we performed a concerted series of observations on Pluto and Charon.
+During these observations the atmospheric opacity was stable: about 0.25 at 260~GHz. The maps are shown in Figure~\ref{fig_compact_sources2}. For this paper, we concentrate only on the central region of the maps where we observe a significant detection of the Pluton and Charon planetary system. To illustrate this, we have also superimposed to the image signal-to-noise ratio contours at values of 5, 7 and 10. The fluxes and uncertainties of the Pluto and Charon system for the three NIKA2 array observations are given in Table~\ref{fluxtab}. With an observation time of 1.44 hours we reach 1 and 0.3 mJy (1-$\sigma$) at 260~GHz (1.15~mm) and 150~GHz (2~mm), respectively.
+
+These results illustrate the high sensitivity of NIKA2, for which mJy sources can be detected in less than one hour.
+
+
+%\subsection{Extended sources}
+%{\bf WE NEED TO FIND A SOURCE: why not this one (Fig.~\ref{fig:k3-50a}) (with improved display obviously
+%?}
+%
+%
+%\begin{figure*}[h]
+%   \centering
+%   \includegraphics[width=.95\linewidth]{K3-50A.png}
+%   \caption{K3-50A place holder}. 
+%   \label{fig:k3-%
+%\end{figure*}
+
+\section{Conclusions and future plans}
+
+The NIKA2 instrument is permanently installed at the 30-meter IRAM telescope since September, 2015. A first technical upgrade was achieved in September 2016. During this upgrade, we replaced the dichroic, changed the 150\,GHz array and replaced most of the smooth lenses by anti-reflecting-coated ones. A number of commissioning observational runs have been achieved since the first light, i.e. October, 2015. In the present paper we have provided a general overview of the instrument, and shown the main results obtained during the commissioning campaigns. 
+
+The performance of the instrument, in terms of sensitivity, surpasses the ambitious goals at 150\,GHz, and approaches the goals themselves at 260\,GHz. In both channels, the sensitivity and general performance are much better than the specifications. 
+Building on this base, NIKA2 has been opened, in April 2017, to science verification observations. We are preparing a first purely astrophysical publication centred on high-quality mapping of the high-redshift (z = 0.58) galaxy cluster PSZ2 G144.83+25.11 via the SZ effect (\cite{Ruppin2017}). The instrument is going to be offered, under IRAM responsibility, to a larger community during the 2017/18 winter semester. In parallel, we have entered a phase of commissioning of the polarisation module of NIKA2 following the work performed in NIKA (\cite{Ritacco2017}). 
+
+NIKA2, thanks to its versatile design and to the KID technology adopted, will be upgraded during its lifetime. There are several possible upgrades that we are considering: widening the 260\,GHz channels band in order to match the "1\,mm atmospheric window" in very good observing conditions, adding a third band, reducing the pixels size, adding a polarised channel at 150\,GHz, increase the illumination of the primary mirror and others. 
+
+%(NEFD$_{goal}^{150GHz}$\,=\,10\,mJy$\cdot\textrm{s}^{1/2}$ per beam)
+%(NEFD$_{goal}^{260GHz}$\,=\,15\,mJy$\cdot\textrm{s}^{1/2}$ per beam)
+%NEFD$_{spec}^{150GHz}$\,=\,20\,mJy$\cdot\textrm{s}^{1/2}$ and %NEFD$_{spec}^{260GHz}$\,=\,30\,mJy$\cdot\textrm{s}^{1/2}$ per beam in both cases.
+
+
+\begin{acknowledgements}
+We would like to thank the IRAM team in Spain for their work to lead NIKA2 to a success, in particular Gregorio Galvez, Dave John, Hans Ungerechts, Salvador Sanchez, Pablo Mellado, Miguel Mu\~noz, Francesco Pierfederici, Juan Pe\~nalver. On top of that, we also would like to thank the remaining IRAM Granada staff for the outstanding support before, during and after the observations. In particular, we thank the telescope operators and the logistics and administration groups. We acknowledge the crucial contributions of the technological groups in N\'eel, LPSC and IRAM Grenoble, and in particular: A. Barbier, E. Barria, D. Billon-Pierron, G. Bosson, J.-L. Bouly, J. Bouvier, G. Bres, P. Chantib, G. Donnier-Valentin,  O. Exshaw, T. Gandit, G. Garde, C. Geraci, A. Gerardin, C. Guttin, C. Hoarau, M. Grollier, C. Li, J. Menu, J.L. Mocellin, E. Perbet, N. Ponchant, G. Pont, H. Rodenas, S. Roni, S. Roudier, J.P. Scordilis, O. Tissot, D. Tourres, C. Vescovi, A.J. Vialle. Your technical and scientific skills, and human qualities, represent our main boost.  The NIKA2 contracts have been administrated by the laboratories involved. We acknowledge the contribution of P. Poirier, M. Berard, C. Bartoli, D. Magrez, F. Vidale among others. We enjoy frequent fundamental physics discussions, concerning superconducting devices, with Florence Levy-Bertrand, Olivier Dupr\'e, Thierry Klein, Olivier Buisson and other collegues at the Institut N\'eel. This work has been mainly funded by the ANR under the contracts "MKIDS", "NIKA", ANR-15-CE31-0017 and LabEx "FOCUS" ANR-11-LABX-0013. NIKA2 has benefited from the support of the European Research Council Advanced Grant ORISTARS under the European Union's Seventh Framework Programme (Grant Agreement no. 291294). We acknowledge fundings from the ENIGMASS French LabEx, the CNES post-doctoral fellowship program, the CNES doctoral fellowship program and the FOCUS French LabEx doctoral fellowship program.
+
+\end{acknowledgements}
+
+
+%
+%Biblio
+%
+\input{biblio}
+
+%\bibliographystyle{aa}
+%\bibliography{biblio_NIKA2} 
+
+\end{document}
+
+
+

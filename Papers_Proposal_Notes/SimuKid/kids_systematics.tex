@@ -17,14 +17,14 @@ Fig.\ref{planet} represents the reconstructed signal with different incoming flu
 \label{planet}
 \end{figure}
 
-In order to derive the KID non-linearity, we do a gaussian fit of the outcoming signal, to be able to plot the incoming flux as a function of the outcoming flux. This function is then fitted by :
+In order to derive the KID non-linearity, we do a gaussian fit of the outcoming signal, to be able to plot the incoming flux as a function of the outcoming flux. This function is then fitted by a parabola :
 
 \begin{equation}
-\phi_{out} = \phi_{in} + \varepsilon \phi_{in}^{2} ,
+\phi_{out} = \alpha (\phi_{in} + \frac{\varepsilon}{\alpha}  \phi_{in}^{2}) ,
 \label{fit_NL}
 \end{equation}
 
-with $\varepsilon$ the non-linearity coefficient.\\
+with $\varepsilon$ the non-linearity coefficient. The coefficient $\alpha$ is not fixed, but will be absorbed by the calibration.\\
 The results of this fit on the KID non-linearity are shown in the next part.
 
 \subsubsection{KIDs non-linearity}
@@ -38,15 +38,53 @@ The KIDs linearity has been demonstrated, over a large power range, in laborator
 	\label{KID-lin}
 \end{figure}
 
+\subsubsection{Scanning strategy : EPIC, PLANCK}
+A key factor in the design of space experiments is the scanning strategy of the instrument, as it will play a role in the systematics effect that comes from the instrument. Here, we present different simulation of scanning strategies such as the ones used in EPIC and PLANCK (REF).
+
+\paragraph{EPIC}
+\paragraph{PLANCK}
+
+\subsubsection{Planet}
+With an EPIC scanning strategy, we simulate the passage of a planet over a detector, so that we can derive its non-linearity coefficient \eps. Fig.\ref{nl-planet} shows the output signal, reconstructed by Rf and Cf, as a function of the input signal at different fluxes. We can see that at higher fluxes the model becomes non-linear, especially for signals reconstructed by the Rf method. 
+
 \begin{figure}[h]
-	\includegraphics[scale=0.53]{Figures/epsilon.eps}
-	\caption{KID non-linearity coefficient $\varepsilon$ as a function of number of points per $FWHM$. $\varepsilon$ was determined by using method 1 and method 2, for incoming fluxes between $1.10^{2}$ and $5.10^{4}$ AU.}
-	\label{results_epsilon}
+\center
+	\includegraphics[scale=0.5]{Figures/nl-planet.eps}
+	\caption{Output flux as a function of Input flux in Jy. The input signal corresponds to a planet. Blue : Rf reconstruction method, Red : Cf reconstruction method. Solid lines correspond to an input signal going from 0 to 5 Jy. Cross correspond to an input signal going from 0 to 0.5 Jy.}
+	\label{epsilon-planet}
 \end{figure}
 
-Fig.\ref{results_epsilon} shows the non-linearity coefficient $\varepsilon$ derived, with the model described by Eq.\ref{fit_NL}, for different incoming flux. We can see that the non-linearity coefficients found by method 2 are lower than those found by method 1. Plus, the first method has shown that it is limited for incoming flux higher than $10^{4}$ as the signal is not perfectly reconstructed, whereas limite de la method 2.... To conclude, the second method is better than the first one which already reconstructed the signal very well.\\
+Fig.\ref{nl-planet} represents the non-linearity coefficient as a function of the flux and the number of points per beam...
 
-Now that we have derived the non-linearity coefficient $\varepsilon$, we will see how to 
+\begin{figure}[h]
+\center
+	\includegraphics[scale=0.5]{Figures/epsilon-planet.eps}
+	\caption{KID}
+	\label{epsilon-planet}
+\end{figure}
+
+\subsubsection{Planet and Dipole}
+
+\begin{figure}[h]
+\center
+	\includegraphics[scale=0.5]{Figures/nl-planet-dipole.eps}
+	\caption{Output flux as a function of Input flux in Jy. The input signal corresponds to a planet plus a dipole. Blue : Rf reconstruction method, Red : Cf reconstruction method. Solid lines correspond to an input signal going from 0 to 5 Jy. Cross correspond to an input signal going from 0 to 0.5 Jy.}
+	\label{nl-planet-dipole}
+\end{figure}
+
+\subsubsection{Planet and HWP template}
+\subsubsection{All}
+
+
+%\begin{figure}[h]
+%	\includegraphics[scale=0.53]{Figures/epsilon.eps}
+%	\caption{KID non-linearity coefficient $\varepsilon$ as a function of number of points per $FWHM$. $\varepsilon$ was determined by using method 1 and method 2, for incoming fluxes between $1.10^{2}$ and $5.10^{4}$ AU.}
+%	\label{results_epsilon}
+%\end{figure}
+
+%Fig.\ref{results_epsilon} shows the non-linearity coefficient $\varepsilon$ derived, with the model described by Eq.\ref{fit_NL}, for different incoming flux. We can see that the non-linearity coefficients found by method 2 are lower than those found by method 1. Plus, the first method has shown that it is limited for incoming flux higher than $10^{4}$ as the signal is not perfectly reconstructed, whereas limite de la method 2.... To conclude, the second method is better than the first one which already reconstructed the signal very well.\\
+%
+%Now that we have derived the non-linearity coefficient $\varepsilon$, we will see how to 
 
 
 \subsection{Application to CMB maps and power spectra estimations}

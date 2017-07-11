@@ -195,8 +195,8 @@ primordial (tensor perturbations) gravitational waves
 \citep{polnarev1985polarization, 1997PhRvL..78.2054S} arising from the
 inflationary epoch \citep{PhysRevD.23.347, linde1982new} and by gravitational
 lensing of the $E-$modes (\cite{ade2015planck} and refs. therein).  The
-detection of the primordial $B-$modes {\bf would set tight constraints on
-  Inflation models} and constitutes one of the most ambitious goals of modern
+detection of the primordial $B-$modes would set tight constraints on
+  Inflation models and constitutes one of the most ambitious goals of modern
 observational cosmology.
 
 Recently, \citet{bicepplanck2015,bicep2016} set a 95\% upper limit for the
@@ -340,11 +340,22 @@ of the polarization pipeline are summarized below:
   procedure consisting in a lock-in around the fourth harmonic of the HWP rotation frequency, where the polarization signal is located.
 \item Subtraction of the atmospheric emission in the demodulated TOIs using
   decorrelation algorithms. In polarization, the HWP modulation reduces
-  significantly the atmospheric contamination. However, simple common mode
-  decorrelation methods can be used \citep{ritacco2017}. By contrast, in
+  significantly the atmospheric contamination and there is no need to
+    further decorrelate the $Q$ and $U$ TOI's from residual atmosphere. By contrast, in
   intensity the atmospheric emission fully dominates the signal and to recover
   the large angular scales we use the 260~GHz band as an atmosphere
-  dominated band like in \cite{adam2013}.
+  dominated band like in \cite{adam2013}.  This decorrelation impacts the
+    reconstructed Stokes maps via a transfer function. We have estimated this function
+    with simulated observations of diffuse emission that were passed through the
+    data reduction pipeline, with the exact same scanning, sample flagging and data
+    processing as real data. We found that the power spectrum of the output maps
+    match that of the input one to better than 1\% (resp.~5\%) on scales smaller
+    (resp.~larger) than $\sim 1'$. The impact of the data processing is thus
+    negligible compared to uncertainties on absolute calibration on small
+    scales, and its moderate effect on large angular scales is further reduced
+    with the subtraction of a zero level for the photometry (see below). In the
+    following, we therefore neglect this transfer function.
+
 %In order to have a proper estimate of the polarization degree we need to have a proper reconstruction of the intensity map. For an extended source like the Crab nebula, with angular size larger than the \NIKA\ FoV, it is difficult to correctly estimate its intensity emission avoiding filtering effects due to noise decorrelation methods. A common mode decorrelation method consisting in a template reconstruction (to be subtracted) using only the pixels outside the source is usually used in \NIKA\ data analysis. Filtering effects can be encountered in regions where the number of pixels used for the template reconstruction is too low.
 %In order to avoid such an effect the Stokes $I$ map shown on the left panel of Fig.~\ref{crab_intensity_maps} has been obtained by using a decorrelation method called ``dual-band decorrelation''. Such a decorrelation algorithm has been developed for the reconstruction of the Sunyaev-Zel'dovich signal in galaxy clusters observations \citep{adam2013} taking advantage of \NIKA\ dual-band capabilities. The idea of this algorithm arises with the fact that the atmospheric emission is stronger at 260 GHz than at 150 GHz, as a consequence we can use 260 GHz observations as a ``template'' of the atmospheric emission to be subtracted to the 150 GHz observational data.
 
@@ -464,8 +475,16 @@ decreases towards the edges of the nebula.
 %The polarization intensity $P$ map, represented in Fig.~\ref{crab_ipol_maps}, exhibits a polarized emission peaked at 0.8 Jy beam$^{-1}$ and decreasing to 0.1 Jy beam$^{-1}$ on the extremities of the nebula. 
 
 \section{Total intensity and polarization fluxes}\label{sec:Polarization estimates in CMB experiments like beams}
-We compute the total flux across the Crab nebula, which has an extent of about  5$^{\prime}$x7$^{\prime}$ as shown in Fig.~\ref{crab_intensity_maps}.
-We use standard aperture photometry techniques to calculate the flux as shown in Fig.~\ref{crab_integrated_flux}. We use as center position the center of the map. A zero level in the map, calculated as the mean of the signal measured on an external annular ring region (see bottom panel of Fig.~\ref{crab_integrated_flux}) of radius 4$^\prime$ $\textless$  R $\textless$ 4.5$^\prime$, has been subtracted from the map. The total signal estimated is 204.4$\pm$7.9$\pm$10.2 Jy. The first uncertainty term accounts for statistical uncertainties computed from fluctuations of the signal at large radii. 
+We compute the total flux across the Crab nebula, which has an extent of about
+5$^{\prime}$x7$^{\prime}$ as shown in Fig.~\ref{crab_intensity_maps}.  We use
+standard aperture photometry techniques to calculate the flux as shown in
+Fig.~\ref{crab_integrated_flux}. We use as center position the center of the
+map. A zero level in the map, calculated as the mean of the signal measured on
+an external annular ring region (see bottom panel of
+Fig.~\ref{crab_integrated_flux}) of radius 4$^\prime$ $\textless$ R $\textless$
+4.5$^\prime$, has been subtracted from the map. The total signal estimated is
+204.4$\pm$7.9$\pm$10.2 Jy. The first uncertainty term accounts for statistical
+uncertainties computed from fluctuations of the signal at large radii.
 
 We use Uranus for absolute point source flux calibration. The flux of the planet is estimated from a frequency dependent model of the planet brightness temperature as described in \cite{moreno2010}. 
 This model is integrated over the \NIKA\ bandpasses for each channel, and it is assumed to be accurate at the 5\% level. The final absolute calibration factor is obtained by fitting the amplitude of a Gaussian function of fixed angular size on the reconstructed maps of Uranus, which represents the main beam. For the polarization observational campaign of February 2015 this uncertainty is estimated to be 5\% for the \NIKA\ 2.05 mm channel (150 GHz) \citep{ritacco2017}. 
@@ -475,12 +494,19 @@ Finally, the overall calibration error is estimated to be about 10\%, by conside
 
 The polarization efficiency factor estimated across the \NIKA\ 2.05 mm spectral band and reported in \cite{ritacco2017} is $\rho_{pol}$ = 0.9941 $\pm$ 0.0002. This very small efficiency lost of 0.6 \% has a very small impact on the estimation of the polarization fluxes and the calibration error itself. 
 
-
 \begin{figure}[h!]
   \centering
-     { \includegraphics[width=0.7\linewidth,keepaspectratio]{figures/Crab_integrated_flux_2mm.pdf}
-     	\includegraphics[width=0.8\linewidth,keepaspectratio]{figures/Crab_I_map2_2mm_ring.pdf}}
-     \caption{Cumulative flux of the Crab nebula (top) obtained at 150 GHz over 4$^{\prime}$ from the center obtained by aperture photometry. The flux has been corrected by a zero level in the map, which corresponds to the mean of the signal calculated in an annular ring as indicated by the white circles on the map (bottom) and by the blue dotted lines on the top. The green dotted line represents the uncertainties measured at large radii.}
+  \includegraphics[width=0.7\linewidth,keepaspectratio]{figures/Crab_transfer_func.eps}
+  \includegraphics[width=0.7\linewidth,keepaspectratio]{figures/Crab_integrated_flux_2mm.pdf}
+  \includegraphics[width=0.8\linewidth,keepaspectratio]{figures/Crab_I_map2_2mm_ring.pdf}
+     \caption{Top: Transfer function of the intensity data processing. Middle:
+       Cumulative flux of the Crab nebula (top) obtained at 150 GHz over
+       4$^{\prime}$ from the center obtained by aperture photometry. The flux
+       has been corrected by a zero level in the map, which corresponds to the
+       mean of the signal calculated in an annular ring as indicated by the
+       white circles on the map (bottom) and by the blue dotted lines on the
+       top. The green dotted line represents the uncertainties measured at large
+       radii.}
 \label{crab_integrated_flux}
 \end{figure}
 
@@ -506,24 +532,23 @@ Notice that the \Planck\ satellite FWHMs are: 33$^{\prime}$, 24$^{\prime}$, 14$^
 %% if we do not consider significant regions. Although all the polarization angles
 %% estimated are in agreement with each other due to the systematic error, we
 %% consider as reliable only those estimated in high S/N ratio regions.
-
-{\bf As stated in \ref{sec:pol_properties}, we use simple Gaussian estimators in
+\textcolor{red}{As stated in \ref{sec:pol_properties}, we use simple Gaussian estimators in
   this work that are unbiased only at high S/N ratio. This adds an additional
   uncertainty on the determination of the degree of polarization $p$ and on the
   angle $\psi$ when the SNR is not larger than $\sim 3\sigma$. While we can
   delimit regions of the map as a function of their SNR to give reliable results
   per pixel, the determination of average quantities over the entire map is more
-  delicate. This is what we must do though to simulate what an experiment with
-  an arcmin beam would see in terms of $Q$ and $U$. Intensity does not suffer
+  delicate. Intensity does not suffer
   from this limitation, so the average flux of the source can safely be
   integrated over all pixels. Taking the entire map and
   averaging it over Gaussian beams of 5$^{\prime}$ and 7$^{\prime}$ FWHM, we
   find $\psi = -83.6912 \pm 0.0004^{\circ}$ and $\psi = -83.6491 \pm 0.0004^{\circ}$
-  respectively, while we find $-88.15 \pm 0.8$ if we consider only pixels with a
-  $I_{pol}$ SNR larger than 3 (XXX PLEASE CONFIRM IT IS 3 XXX). In terms of
-  degree of polarization, we find $p = XXX\%$ if we take all the pixels to average $Q$ and $U$ over our
-  fiducial beams, and $p = 6.93 \pm 0.06\%$ is we restrict our estimation of $Q$
-  and $U$ to pixels with an $I_{pol}$ SNR larger than 3.}
+  respectively, while we find $-87.15 \pm 0.04$ and $-87.14 \pm 0.07$ if we consider only pixels with a
+  $I_{pol}$ SNR larger than 3. In terms of
+  polarization degree, we find $p = 8.1 \pm 5x10^{-5}\%$ and $p = 7.5 \pm 4x10^{-5}\%$ if we take all the pixels to average $Q$ and $U$ over our
+  fiducial beams of 5$^{\prime}$ and 7$^{\prime}$, respectively, and $p = 6.96 \pm 0.02\%$ and $p = 6.93 \pm 0.06\%$ if we restrict our estimation of $Q$
+  and $U$ to pixels with an $I_{pol}$ SNR larger than 3. 
+  It thus seems that an additional uncertainty at a level of 1$\%$ should be considered to account for the different method used to estimate the polarization degree. However, it is important to notice that the values estimated without any constraint on the SNR are not corrected for the bias introduced by the noise. This could explain the differences observed on $\psi$ and $p$.}
 
 %To compare with the \Planck\ satellite we estimate the values in two regions of $7^{\prime}$ and $5^{\prime}$ width corresponding to the beam widths of the \Planck\ frequency channels at 143 and 217 GHz, respectively. 
 %Further, two other regions are defined at high S/N ratio: where $P$ $\textgreater$ $3\sigma_P$ and  where $P$ $\textgreater$ 0.2 Jy. 

@@ -491,6 +491,8 @@ obtained as described in \citet{planck2013ymap,planck2016_tsz}. We find $Y_{Cyl,
 %\label{sec:ml_overview}
 
 We perform non-parametric fits of the pressure profile of CLJ 1227 on MUSTANG, NIKA, and Bolocam data maps independently.
+The filtering effects incurred from data processing of these instruments favors forward modelling pressure profiles and
+performing fits over trying to do a geometric deprojection, for example with Abel transforms \citep[e.g.][]{basu2010}.
 Before fitting the pressure profiles (Section~\ref{sec:preprocessing}),
 we remove a point source from the MUSTANG and NIKA maps based on previous works
 \citep{adam2015,romero2017}. Additionally, we ensure that a mean level has been removed in the MUSTANG and BOLOCAM maps. 
@@ -869,7 +871,7 @@ covariance matrices from our non-parametric fits.
     The error bars are statistical, from the MCMC fits.
     %The vertical dashed and dotted lines correspond to the HWHM and FOV/2 (i.e. radial FOV), respectively;
     The non-parametric symbol-to-instrument association remains the same as in Figure~\ref{fig:nppps}.
-    The MUSTANG point that falls below the gNFW pressure profile (close to 0.1 $R_{500}$) is of
+    The MUSTANG point that falls well ($\sim-2.8\sigma$) below the gNFW pressure profile (close to 0.1 $R_{500}$) is of
     note and discussed in Section~\ref{sec:discussion}.}
   \label{fig:joint_pressure}
 \end{figure}
@@ -978,7 +980,10 @@ propose that CLJ 1227 is the early stages of a head-on merger.
 This merger scenario could still be consistent with our findings, as a merger affecting the central pressure should indeed
 increase the pressure there. Provided that the system is not in equilibrium, and in particular, that increased gas pressure
 has not propogated to the outer extent of the cluster, then this scenario would be consistent with the cluster pressure profiles
-that we have reconstructed (both the non-parametric and subsequent parametric profiles).
+that we have reconstructed (both the non-parametric and subsequent parametric profiles). An approach of determining non-parametric
+profiles, such as that presented here, will be useful for a more accurate analysis of pressure fluctuations \citep[e.g.][]{khatri2016}.
+
+
 %In particular, our non-parametric fits give an indication that the departure
 %from a gNFW profile is marked by a pressure drop at a cluster-centric radius of $\sim 12$\asecs
 %($\sim 100$ kpc), where MUSTANG data is critical to determining the location of this pressure deviation.
@@ -991,7 +996,7 @@ that we have reconstructed (both the non-parametric and subsequent parametric pr
 
 We developped an algorithm to determine a non-parametric pressure profile for galaxy clusters.
 This method is of particular utility to SZ observations, where the filtering effects from data
-processing favor model fitting, as opposed to deriving non-parametric pressure profiles via
+processing favor fitting forward modelled pressure profiles, as opposed to deriving non-parametric pressure profiles via
 geometric deprojection. Our fitting algorithm is robust with respect to input parameters,
 bin spacing, and instrumental setup specifics. While the constraints of single-dish SZ observations
 beyond the FOV for a given instrument are poor, we find that the inclusion of such a bin

@@ -764,10 +764,9 @@ from \citet{romero2017}, and our output model is fit as prescribed in Section~\r
   \includegraphics[width=0.5\textwidth]{NIKA_ml_deproj_figs/Real_Joint_gNFW_Power_Real_11011111_2500S_500B_100W_non_parametric_pressure_p16cosmo.eps}
 %  \includegraphics[width=0.5\textwidth]{NIKA_ml_deproj_figs/Real_Joint_gNFW_Real_11011111_2500S_500B_100W_non_parametric_pressure_p16cosmo.eps}
   %Real_Joint_gNFW_Real_11011111_2500S_500B_100W_pressure.eps
-  \caption{Non-parametric pressure profiles as determined via each dataset individually, and the gNFW (parametric)
-    pressure profile as simultaneously fit to the non-parametric pressure profiles. The error bars are statistical,
+  \caption{Non-parametric pressure profiles as determined via each dataset individually. The error bars are statistical,
     from the MCMC fits. The vertical dashed and dotted lines correspond to the half width at half maximum (HWHM) and
-    FOV/2 (i.e. radial FOV), respectively; the coloring is also respective to each instrument.}
+    FOV/2 (i.e. radial FOV), respectively.}
   \label{fig:nppps}
 \end{figure}
 
@@ -868,11 +867,13 @@ covariance matrices from our non-parametric fits.
   \includegraphics[width=0.5\textwidth]{NIKA_ml_deproj_figs/Real_Joint_gNFW_Power_Real_11011111_2500S_500B_100W_gNFW_pressure_w_NP_pts_v2_p16cosmo.eps}
 %    Real_Joint_gNFW_Real_11011111_2500S_500B_100W_pressure.eps
   \caption{The gNFW (parametric) pressure profile as simultaneously fit to the non-parametric pressure profiles.
-    The error bars are statistical, from the MCMC fits.
+    The error bars are statistical, from the MCMC fits. The residual significances ($\sigma$), accounting for calibration errors, are plotted
+    in the lower panel.
     %The vertical dashed and dotted lines correspond to the HWHM and FOV/2 (i.e. radial FOV), respectively;
-    The non-parametric symbol-to-instrument association remains the same as in Figure~\ref{fig:nppps}.
+    The non-parametric symbol-to-instrument association remains the same as in Figures~\ref{fig:virt_robustness} and \ref{fig:nppps}.
     The MUSTANG point that falls well ($\sim-2.8\sigma$) below the gNFW pressure profile (close to 0.1 $R_{500}$) is of
-    note and discussed in Section~\ref{sec:discussion}.}
+    note and discussed in Section~\ref{sec:discussion}. The last two NIKA points fall $-5.5\sigma$ and $-2.8\sigma$ below the gNFW
+    profile.}
   \label{fig:joint_pressure}
 \end{figure}
 
@@ -927,8 +928,6 @@ transfer function, we see that the inner bins remain largely unaffected (Section
 We find good agreement in our non-parametric fits between MUSTANG, NIKA, and Bolocam, as all but two points
 lie within $2.5\sigma$ of the fitted gNFW profile. The inner point that falls below the gNFW profile comes from
 MUSTANG fits, and is only $\sim 2\sigma$ discrepant from the gNFW profile.
-%While neither of their individual deviations is greater than $3\sigma$, their combined
-%significance is greater than $3\sigma$, and given their spatial coincidence
 
 This deviation (at a radius of $\sim$12\asec or $0.1 R_{500}$) is consistent with the location of the point source found in
 \citet{korngut2011}, and performing a fit on mock observations, where we add a 0.5 mJy source (at 90 GHz)
@@ -939,32 +938,13 @@ significant effect on the non-parametric fits, relative to the fits of the simul
 At other wavelengths, in the 260 GHz NIKA data \citep{adam2015}, as well as at lower frequencies and higher frequencies
 (Section~\ref{sec:preprocessing}), no evidence is seen for a point source.
 
-%We find it plausible that this deviation (at $\sims$12\asec, radially) is due to a weak point source.
+%We further note that the outer two NIKA points fall $-5.5\sigma$ and $-2.8\sigma$ away from our fitted gNFW pressure profile.
 
-%For NIKA, this deviation occurs in the innermost bin, $r < 17$\asec, while MUSTANG is able to localize the
-%deviation in a central bin: $9 < r < 23$\asec. To test the potential for a point source to account for these
-%deviations, we add a point source to the virtual fits mentioned previously (Section~\ref{sec:robustness}).
-%We run a suite of fits, where we place a point source over the radial range implied by MUSTANG and NIKA,
-%and allow for different flux densities at 90 and 150 GHz. We find that a point source at a radius of 12\asecs
-%with flux densities of 0.5 mJy and 1.4 mJy at 90 and 150 GHz roughly reproduces the observed deviations from
-%a gNFW curve.
-
-%Given the area enclosed for the MUSTANG and NIKA bins which
-%show this low pressure, such a source would necessarily be $\gtrsim 0.5$ mJy at 90 GHz and 150 GHz.
-%The sensitivity in the MUSTANG and NIKA maps are 0.1 and 0.2 mJy respectively. Such a point source,
-%with its central location, could be masked by the SZ signal in the NIKA map. Indeed, in our simulated
-%images (simulated cluster + point source), the surface brightness at the location of the point source
-%is (1) still negative, and (2) not visually evident to host a point source (pertubation to the smooth
-%surface brightness from the tSZ of the cluster).
-
-%The location at 12\asecs is well matched to the point source found in \citet{korngut2011}. The potential
-%existence of a point source at this location has already been investigated in the 260 GHz NIKA data
-%\citep{adam2015}, as well as at lower frequencies and higher frequencies (Section~\ref{sec:preprocessing}).
-
-Within our gNFW fits, if $\alpha$ is left unconstrained, we find that large values of $\alpha$ are preferred,
-indicating a rapid transition between the inner and outer pressure profile slopes. This turnover is largely
-driven by NIKA, which best covers the spatial region where this transition occurs, and additionally, NIKA
-has the strongest detection of the cluster and places the greatest constraints on the pressure profile, globally.
+Within our gNFW fits, if $\alpha$ is left unconstrained, we find that large values of $\alpha$ are preferred, indicating a
+rapid transition between the inner and outer pressure profile slopes. This turnover is largely driven by NIKA, where, in
+Figure~\ref{fig:joint_pressure} (with $\alpha$ fixed), the outer two points fall $-5.5\sigma$ and $-2.8\sigma$ away from
+the fitted gNFW pressure profile. NIKA has the best coverage in the spatial region where this transition occurs, and additionally,
+NIKA has the strongest detection of the cluster and places the greatest constraints on the pressure profile, globally.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\subsection{Comparison with Previous SZ Results}
@@ -973,16 +953,16 @@ has the strongest detection of the cluster and places the greatest constraints o
 
 Our gNFW pressure profile fit shows a higher core pressure than that of other sample-averaged gNFW profiles
 (see Figure~\ref{fig:joint_pressure}). This is indicative of the cluster being a cool-core cluster \citepalias{arnaud2010}.
-However, X-ray data \citep[e.g.][]{maughan2007} show that the core is relatively hot and suggest that this is indicative
-of an ongoing merger. With additional support from weak lensing \citep{jee2009a}, and their own AMI data, \citet{rumsey2016}
+However, X-ray data show that the core is relatively hot and is indicative of an ongoing merger \citep[][]{maughan2007}.
+With additional support from weak lensing \citep{jee2009a}, and their own AMI data, \citet{rumsey2016}
 propose that CLJ 1227 is the early stages of a head-on merger.
 
 This merger scenario could still be consistent with our findings, as a merger affecting the central pressure should indeed
 increase the pressure there. Provided that the system is not in equilibrium, and in particular, that increased gas pressure
 has not propogated to the outer extent of the cluster, then this scenario would be consistent with the cluster pressure profiles
 that we have reconstructed (both the non-parametric and subsequent parametric profiles). An approach of determining non-parametric
-profiles, such as that presented here, will be useful for a more accurate analysis of pressure fluctuations \citep[e.g.][]{khatri2016}.
-
+profiles, such as that presented here, will be useful for a more accurate analysis of pressure fluctuations and will inform
+the degree of non-thermal pressure support \citep[e.g.][]{khatri2016}.
 
 %In particular, our non-parametric fits give an indication that the departure
 %from a gNFW profile is marked by a pressure drop at a cluster-centric radius of $\sim 12$\asecs

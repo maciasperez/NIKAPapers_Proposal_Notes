@@ -4,28 +4,50 @@
 In view of future utilizations of KIDs in space mission it is necessary to demonstrate the capabilities and the suitability of KIDs arrays in a space like environment. In this section we will adress some of the systematics effects that need to be taken into account during the design of futur generation detector arrays for space applications, such as the KIDs non-linearity. Here we describe the simulation method used to study the KIDs non-linearity, then...\\
 
 \subsection{Simulations}
-To adress the KIDs non-linearity, we do simulations of their response to an incoming source of radiation using method 1 and method 2. In this section, we give the method used and its results.
+To adress the KIDs non-linearity, we do simulations of their response to an incoming source of radiation using \rf and \cf. In this section, we give the method used and its results.
 
 	\subsubsection{Method}
 	
-The simulation method consists in modelling the response of a KID to a scan of a bright source, then to reconstruct the signal with the 2 methods described  in Sec.\ref{sec:signal}. We simulate a realistic scanning strategy that ensures that the scanning speed is such that the number of points per $FWHM$ is between 2 and 5.
-Fig.\ref{planet} represents the reconstructed signal with different incoming flux. We observe that at a higher flux, the signal is less well reconstructed by the first method.
+The simulation method consists in modelling the response of a KID to a scan of a bright source, then to reconstruct the signal with the two methods described  in Sec.\ref{sec:signal}.
 
 \begin{figure}[h]
-\includegraphics[scale=0.6]{Figures/planets.eps}
+\includegraphics[scale=0.54]{Figures/planets.eps}
 \caption{Comparison of the incoming flux (in black) with the signals reconstructed by using method 1 (in blue) and method 2 (in red). In the top pannel and bottom pannels, the incoming fluxes are respectively $10^{3}$ and $5.10^{4}$ AU.}
 \label{planet}
 \end{figure}
 
+\newpage
+
+We simulate a realistic scanning strategy that ensures that the scanning speed is such that the number of points per $FWHM$ is between 2 and 5.
+
+
+
+
+Fig.\ref{planet} represents the reconstructed signal with different incoming flux. We observe that at a higher flux, the signal is less well reconstructed by the first method.
+
+
+
 In order to derive the KID non-linearity, we do a gaussian fit of the outcoming signal, to be able to plot the incoming flux as a function of the outcoming flux. This function is then fitted by a parabola :
 
 \begin{equation}
-\phi_{out} = \alpha (\phi_{in} + \frac{\varepsilon}{\alpha}  \phi_{in}^{2}) ,
-\label{fit_NL}
+\phi_{out} = \alpha \phi_{in} + \beta \phi_{in}^{2} ,
+\label{eq:fit-nl-1}
 \end{equation}
 
-with $\varepsilon$ the non-linearity coefficient. The coefficient $\alpha$ is not fixed, but will be absorbed by the calibration.\\
-The results of this fit on the KID non-linearity are shown in the next part.
+\begin{equation}
+\phi_{out} = \alpha (\phi_{in} + \frac{\beta}{\alpha}  \phi_{in}^{2}).
+\label{eq:fit-nl-2}
+\end{equation}
+
+The coefficient $\alpha$ is not fixed, but will be absorbed by the calibration. Eq \ref{eq:fit-nl-2} becomes :
+
+\begin{equation}
+\phi_{out} = \phi_{in} + \varepsilon \phi_{in}^{2},
+\label{eq:fit-nl-3}
+\end{equation}
+
+with $\varepsilon = \frac{\beta}{\alpha}$ the non-linearity coefficient. \\
+In the following paragraph, we will use the model described by Eq \ref{eq:fit-nl-3} to study the KID non-linearity when it is exposed to different sources such as : a planet and dipole, plus a half wave plate.
 
 \subsubsection{KIDs non-linearity}
 
@@ -33,10 +55,117 @@ The KIDs linearity has been demonstrated, over a large power range, in laborator
 
 \begin{figure}[h]
 \center
-	\includegraphics[scale=0.5]{Figures/KID-linearity-Monfardini2014.png}
+	\includegraphics[scale=0.55]{Figures/KID-linearity-Monfardini2014.png}
 	\caption{KID linarity demonstrated in laboratory under realistic conditions. Y-axis : frequency shift of the resonance (KID measured signal), X-axis : optical background temperature. The solid line represents the linear fit of the experimental points. Credits : \citet{2014JLTP..176..787M}.}
 	\label{KID-lin}
 \end{figure}
+
+\paragraph{Planet only}
+
+\begin{figure}[h]
+\center
+	\includegraphics[scale=0.55]{Figures/nl-planet.eps}
+	\caption{Output flux as a function of Input flux in Jy. The input signal corresponds to a planet. Blue : \rf reconstruction method, Red : \cf reconstruction method. $\varepsilon$  represented are the non-linearity cofficients for an incoming flux of 800 Jy.}
+	\label{fig:nl-planet}
+\end{figure}
+
+\begin{figure}[h]
+\center
+	\includegraphics[scale=0.5]{Figures/diff_rf_planet.eps}
+	\includegraphics[scale=0.5]{Figures/epsilon_rf_planet.eps}
+	\caption{The input signal corresponds to a planet. Top : Difference between the output and input signals as a function of the input flux (Jy) and the number of points per beam. Bottom : $ln(\varepsilon)$ as a as a function of the input flux (Jy) and the number of points per beam. \cf was used to reconstruct the signal.}
+	\label{fig:epsilon-planet}
+\end{figure}
+
+\begin{figure}[h]
+\center
+	\includegraphics[scale=0.5]{Figures/diff_cf_planet.eps}
+	\includegraphics[scale=0.5]{Figures/epsilon_cf_planet.eps}
+	\caption{The input signal corresponds to a planet. Top : Difference between the output and input signals as a function of the input flux (Jy) and the number of points per beam. Bottom : $ln(\varepsilon)$ as a function of the input flux (Jy) and the number of points per beam. \cf was used to reconstruct the signal.}
+	\label{fig:epsilon-planet}
+\end{figure}
+
+\paragraph{Planet and dipole}
+
+\begin{figure}[h]
+\center
+	\includegraphics[scale=0.55]{Figures/nl-planet-dipole.eps}
+	\caption{Output flux as a function of Input flux in Jy. The input signal corresponds to a planet and the dipole. Blue :\rf reconstruction method, Red : \cf reconstruction method. $\varepsilon$  represented are the non-linearity cofficients for an incoming flux of 800 Jy.}
+	\label{fig:nl-planet-dipole}
+\end{figure}
+
+\begin{figure}[h]
+\center
+	\includegraphics[scale=0.5]{Figures/diff_rf_planet_dipole.eps}
+	\includegraphics[scale=0.5]{Figures/epsilon_rf_planet_dipole.eps}
+	\caption{The input signal corresponds to a planet and the dipole. Top : Difference between the output and input signals as a function of the input flux (Jy) and the number of points per beam. Bottom : $ln(\varepsilon)$ as a as a function of the input flux (Jy) and the number of points per beam. \rf was used to reconstruct the signal.}
+	\label{fig:epsilon-rf-planet-dipole}
+\end{figure}
+
+\begin{figure}[h]
+\center
+	\includegraphics[scale=0.5]{Figures/diff_cf_planet_dipole.eps}
+	\includegraphics[scale=0.5]{Figures/epsilon_cf_planet_dipole.eps}
+	\caption{The input signal corresponds to a planet and the dipole. Top : Difference between the output and input signals as a function of the input flux (Jy) and the number of points per beam. Bottom : $ln(\varepsilon)$ as a as a function of the input flux (Jy) and the number of points per beam. \cf was used to reconstruct the signal.}
+	\label{fig:epsilon-cf-planet-dipole}
+\end{figure}
+
+\paragraph{Planet and HWP}
+
+\begin{figure}[h]
+\center
+	\includegraphics[scale=0.55]{Figures/nl-planet-hwp.eps}
+	\caption{Output flux as a function of Input flux in Jy. The input signal corresponds to a planet and an HWP. Blue :\rf reconstruction method, Red : \cf reconstruction method. $\varepsilon$  represented are the non-linearity cofficients for an incoming flux of 800 Jy.}
+	\label{fig:nl-planet-hwp}
+\end{figure}
+
+\begin{figure}[h]
+\center
+	\includegraphics[scale=0.5]{Figures/diff_rf_planet_hwp.eps}
+	\includegraphics[scale=0.5]{Figures/epsilon_rf_planet_hwp.eps}
+	\caption{The input signal corresponds to a planet and an HWP. Top : Difference between the output and input signals as a function of the input flux (Jy) and the number of points per beam. Bottom : $ln(\varepsilon)$ as a as a function of the input flux (Jy) and the number of points per beam. \rf was used to reconstruct the signal.}
+	\label{fig:epsilon-rf-planet-hwp}
+\end{figure}
+
+\begin{figure}[h]
+\center
+	\includegraphics[scale=0.5]{Figures/diff_cf_planet_hwp.eps}
+	\includegraphics[scale=0.5]{Figures/epsilon_cf_planet_hwp.eps}
+	\caption{The input signal corresponds to a planet and an HWP. Top : Difference between the output and input signals as a function of the input flux (Jy) and the number of points per beam. Bottom : $ln(\varepsilon)$ as a as a function of the input flux (Jy) and the number of points per beam. \cf was used to reconstruct the signal.}
+	\label{fig:epsilon-cf-planet-hwp}
+\end{figure}
+
+
+\paragraph{Planet, HWP and dipole}
+
+\begin{figure}[h]
+\center
+	\includegraphics[scale=0.55]{Figures/nl-planet-hwp-dipole.eps}
+	\caption{Output flux as a function of Input flux in Jy. The input signal corresponds to a planet, the dipole and an HWP. Blue :\rf reconstruction method, Red : \cf reconstruction method. $\varepsilon$  represented are the non-linearity cofficients for an incoming flux of 800 Jy.}
+	\label{fig:nl-planet-hwp-dipole}
+\end{figure}
+
+\begin{figure}[h]
+\center
+	\includegraphics[scale=0.5]{Figures/diff_rf_planet_hwp_dipole.eps}
+	\includegraphics[scale=0.5]{Figures/epsilon_rf_planet_hwp_dipole.eps}
+	\caption{The input signal corresponds to a planet, the dipole and an HWP. Top : Difference between the output and input signals as a function of the input flux (Jy) and the number of points per beam. Bottom : $ln(\varepsilon)$ as a as a function of the input flux (Jy) and the number of points per beam. \rf was used to reconstruct the signal.}
+	\label{fig:epsilon-rf-planet-hwp-dipole}
+\end{figure}
+
+\begin{figure}[h]
+\center
+	\includegraphics[scale=0.5]{Figures/diff_cf_planet_hwp_dipole.eps}
+	\includegraphics[scale=0.5]{Figures/epsilon_cf_planet_hwp_dipole.eps}
+	\caption{The input signal corresponds to a planet, the dipole and an HWP. Top : Difference between the output and input signals as a function of the input flux (Jy) and the number of points per beam. Bottom : $ln(\varepsilon)$ as a as a function of the input flux (Jy) and the number of points per beam. \cf was used to reconstruct the signal.}
+	\label{fig:epsilon-cf-planet-hwp-dipole}
+\end{figure}
+
+Fig \ref{fig:nl-planet}, \ref{fig:nl-planet-dipole}, \ref{fig:nl-planet-hwp} and \ref{fig:nl-planet-hwp-dipole} shows that at high flux, the reconstructed signal is not linear with the input signal, especially for the signal reconstructed by the \rf method.\\
+
+(To be able to reconstruct the signal well, we need to put constraints on the scanning speed and so the number of points per beam. In order to do that, we study realistic simulations in the following paragraph, by simulating a scanning strategy typical of a satellite.) 
+
+\newpage
 
 \subsubsection{Scanning strategy : EPIC, PLANCK}
 A key factor in the design of space experiments is the scanning strategy of the instrument, as it will play a role in the systematics effect that comes from the instrument. Here, we present different simulation of scanning strategies such as the ones used in EPIC and PLANCK (REF).
@@ -44,36 +173,16 @@ A key factor in the design of space experiments is the scanning strategy of the 
 \paragraph{EPIC}
 \paragraph{PLANCK}
 
-\subsubsection{Planet}
-With an EPIC scanning strategy, we simulate the passage of a planet over a detector, so that we can derive its non-linearity coefficient \eps. Fig.\ref{nl-planet} shows the output signal, reconstructed by Rf and Cf, as a function of the input signal at different fluxes. We can see that at higher fluxes the model becomes non-linear, especially for signals reconstructed by the Rf method. 
+\subsubsection{Results}
+With an EPIC scanning strategy, we simulate the passage of a planet over a detector, so that we can derive its non-linearity coefficient \eps. Fig.\ref{nl-planet} shows the output signal, reconstructed by \rf and \cf, as a function of the input signal at different fluxes. We can see that at higher fluxes the model becomes non-linear, especially for signals reconstructed by the Rf method. 
 
-\begin{figure}[h]
-\center
-	\includegraphics[scale=0.5]{Figures/nl-planet.eps}
-	\caption{Output flux as a function of Input flux in Jy. The input signal corresponds to a planet. Blue : Rf reconstruction method, Red : Cf reconstruction method. Solid lines correspond to an input signal going from 0 to 5 Jy. Cross correspond to an input signal going from 0 to 0.5 Jy.}
-	\label{epsilon-planet}
-\end{figure}
-
-Fig.\ref{nl-planet} represents the non-linearity coefficient as a function of the flux and the number of points per beam...
-
-\begin{figure}[h]
-\center
-	\includegraphics[scale=0.5]{Figures/epsilon-planet.eps}
-	\caption{KID}
-	\label{epsilon-planet}
-\end{figure}
-
-\subsubsection{Planet and Dipole}
-
-\begin{figure}[h]
-\center
-	\includegraphics[scale=0.5]{Figures/nl-planet-dipole.eps}
-	\caption{Output flux as a function of Input flux in Jy. The input signal corresponds to a planet plus a dipole. Blue : Rf reconstruction method, Red : Cf reconstruction method. Solid lines correspond to an input signal going from 0 to 5 Jy. Cross correspond to an input signal going from 0 to 0.5 Jy.}
-	\label{nl-planet-dipole}
-\end{figure}
-
-\subsubsection{Planet and HWP template}
-\subsubsection{All}
+%
+%\begin{figure}[h]
+%\center
+%	\includegraphics[scale=0.5]{Figures/nl-planet-dipole.eps}
+%	\caption{Output flux as a function of Input flux in Jy. The input signal corresponds to a planet plus a dipole. Blue : Rf reconstruction method, Red : Cf reconstruction method. Solid lines correspond to an input signal going from 0 to 5 Jy. Cross correspond to an input signal going from 0 to 0.5 Jy.}
+%	\label{nl-planet-dipole}
+%\end{figure}
 
 
 %\begin{figure}[h]
@@ -129,12 +238,6 @@ We generate I, Q, U maps from observed $C_{l}$ to which we apply the non-linear 
 This non-linearity can lead to leakage of the CMB temperature signal into the polarization maps and consequently can induce spurious polarization signals which could prevent us from detecting B mode polarization. The leakage effect is represented by the coefficient $\varepsilon$ of Eq. \ref{eq-Cl}. As a result, to be able to detect B mode polarization, the non-linearity coefficient related to the signal reconstruction must be lower than $\varepsilon^{2} \simeq 4.10^{-7}$.
 
 %To do so, we calculate the non-linearity coefficient $\varepsilon'$ given by Eq.\ref{eq-NL} with a tolerance on mode B contamination by generating I, Q, U maps from observed $C_{l}$. Then we apply the non linear mapping described by Eq.\ref{eq-NL}, this will generate spurious signal from which we derive modified $C_{l}$. 
-
-
-\subsection{Definition d'une strategie de pointage}
-
-\subsection{HWP associated systematics}
-
 
 \subsection{Cosmic rays impact on KIDs array}
 

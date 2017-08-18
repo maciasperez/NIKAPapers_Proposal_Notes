@@ -36,7 +36,7 @@ using the so-called 'focus$\_$OTF' PAKO script, which realises a
 series of five $1' \times 5'$ OTF scans at various values of
 the focus in $0.4~\rm{mm}$-steps around an \emph{a priori} value $z_0$,
 namely $z \in \{-0.8, -0.4, 0, 0.4, 0.8\} + z_0$. Elliptical Gaussian
-fit on the reconstructed maps provide estimates of the flux and FWHM
+fits on the reconstructed maps provide estimates of the flux and FWHM
 along minor- and major-axis for each focus. Then, parabolic fits are
 used to determine the best focus. We consider three estimates: i)
 $\hat z_{\rm{peak}}$ the focus that maximizes the estimated flux,
@@ -84,7 +84,8 @@ bright quasars,
 for various settings of the telescope axial focus around the
 optimal focus $z_{\rm{opt}}$. A beam-map scan consists of a deep-integrated
 $13.5' \times 7.8'$ OTF-scan observation comprizing $99$ sub-scans and
-with a scanning speed of $39''/s$ [TBC]. The z-focus is changed in step of
+with a scanning speed of either $65''/s$ whenever the mean integration
+elevation is $< 60$ degree or $39"/s$ at higher elevation. The z-focus is changed in step of
 $0.6~\rm{mm}$ to probe a large focus range for measuring even the
 extreme variation of the focus surfaces,
 namely $z \in \{-1.2, -0.6, 0, 0.6, 1.2 \} + z_{\rm{opt}}$.
@@ -121,7 +122,9 @@ others, we do not use it for the focus surface reconstruction.
 
 \emph{Data selection. }
 During the three commissioning campaigns that occured after the change of A1
-lens (hence in the final NIKA2 optic configuration), nine out-of-focus
+lens and the improvement of internal optics alignment (hence in the
+final NIKA2 optic configuration),
+nine out-of-focus
 beam-map scan sequences have been acquired, including incomplete
 sequences and sequences hindered by poor atmospheric conditions. We
 select sequences that i) comprises at least four scans, ii) have been
@@ -138,7 +141,7 @@ of the bright quasar '3C84' and Neptune.
 For each detector $k$ and each beam-map sequence $s$, we obtain for
 the array $a$, a focus measurement $z_k^{a, s} \pm \sigma_k^{a, s}$,
 where $\sigma_k^{a, s}$ is the $1\mbox{--}\sigma$ error of the least-square
-polynomial fit. The focus surface measurements per arrays obtained from the five
+polynomial fit. The focus surface measurements per array obtained from the five
 beam-map sequences are combined using an inverse-variance weighting
 scheme to obtain the focus surface estimates 
 \begin{equation}
@@ -160,9 +163,9 @@ in Fig.~\ref{fig:focus-surfaces}.
 The three flavours of focus-estimators provide us with focus surfaces
 per arrays that are in good agreement with each others and that have a
 non-axisymetrical flatten bowl shape consistent with expectations from
-simulation [TBA, as discussed further below].
+simulation {\bf [TBA, as discussed further below]}.
 The median defocus (that is the relative focus w.r.t. the center)
-across the detectors is of about
+across the detectors is about
 $-0.1~\rm{mm}$ for the three arrays. Maximal defocus values of about
 $-0.6~\rm{mm}$ are found for detectors located in the outer top and
 left regions of the FOV. Finally, a fraction comprised between $20$
@@ -183,8 +186,7 @@ error surfaces per array, which do not show any clear pattern across
 the FOV and which have a median value across the detectors of about
 $0.015~\rm{mm}$.  
 
-
-[EXPAND THE DISCUSSION ON COMPARISON WITH SIMULATION]
+%[EXPAND THE DISCUSSION ON COMPARISON WITH SIMULATION]
 
 \emph{Stability across sequences. }
 By comparing the focus surface obtained from the five individual focus
@@ -199,7 +201,8 @@ direction. The scatter is further mitigated by considering
 four-detector-wide diameters as shown in upper the left corner of
 Figs.~\ref{fig:focus-stability-H}-\ref{fig:focus-stability-V}.
 
-[DEVELOP A LITTLE THE DISCUSSION HERE]
+{\bf add a sentence to conclude on the stability}
+
 
 \begin{figure}
   %\begin{center}
@@ -245,12 +248,29 @@ Figs.~\ref{fig:focus-stability-H}-\ref{fig:focus-stability-V}.
 \subsubsection{Constraints on the X and Y foci}
 \label{sec:focus_X_Y}
 
+{\bf add a description of the method}
+
+{\bf expand a little the discussion below}
+
+Very delicate measurments
+
+The plan is to devote a few hours of technical observation time in
+good weather condition to perform an accurate measure of NIKA2 lateral
+focus. The X-, Y-focus will then be set at these robust estimated vallues and
+checked only a few times a year (at the seasonal change for example).  
+
+
+Figures \ref{fig:X_focus} and \ref{fig:Y_focus} show examples of the
+lateral focus measurements performed during \emph{N2R9}. 
+
 \begin{figure*}[h!]
 \centering
 \includegraphics[height=8cm]{Figures/plot_20170223s39.png}
 \hspace{0.5cm}
 \includegraphics[height=8cm]{Figures/residuals_focus_otf_20170223s39.png}
-\caption{{\footnotesize \textbf{Left:} X-focus measurement using a parabolic fit of the flux, beam fwhm and ellipticity on a sequence of OTF scans on Uranus. \textbf{Right:} Beam residuals after subtracting a model of the main beam for each OTF-scan of the X-focus session.}}
+\caption{{\footnotesize \textbf{Left:} X-focus measurement using a
+    parabolic fit of the flux, beam fwhm and ellipticity on a sequence
+    of five OTF scans on Uranus (20170223s39-43) \textbf{Right:} Beam residuals after subtracting a model of the main beam for each OTF-scan of the X-focus session.}}
 \label{fig:X_focus}
 \end{figure*}
 
@@ -259,7 +279,9 @@ Figs.~\ref{fig:focus-stability-H}-\ref{fig:focus-stability-V}.
 \includegraphics[height=8cm]{Figures/plot_20170223s44.png}
 \hspace{0.5cm}
 \includegraphics[height=8cm]{Figures/residuals_focus_otf_20170223s44.png}
-\caption{{\footnotesize \textbf{Left:} Y-focus measurement using a parabolic fit of the flux, beam fwhm and ellipticity on a sequence of OTF scans on Uranus. \textbf{Right:} Beam residuals after subtracting a model of the main beam for each OTF-scan of the Y-focus session.}}
+\caption{{\footnotesize \textbf{Left:} Y-focus measurement using a
+    parabolic fit of the flux, beam fwhm and ellipticity on a sequence
+    of OTF scans on Uranus (20170223s44-48). \textbf{Right:} Beam residuals after subtracting a model of the main beam for each OTF-scan of the Y-focus session.}}
 \label{fig:Y_focus}
 \end{figure*}
 
@@ -288,7 +310,34 @@ We present the two-dimensional distribution of the beam in Fig.~\ref{fig:beam}. 
 \end{figure}
 
 
-The deep NIKA2 beam maps reveal some noticeable features, which are shown in Fig.~\ref{fig:features}. 
+The deep NIKA2 beam maps reveal some noticeable features, which are
+shown in Fig.~\ref{fig:features}.
+
+{\bf Implement Samuel's comments copied below}
+Commentaires faits à Alessandro pour le papier:
+\begin{itemize}
+\item[(1)] les four symmetrical spokes of the error beam sont normaux
+  et attendu d'après mes simus comme tu peux voir dans la petite image
+  ci-dessous (c'est le beam obtenu dans Zemax pour la bande 1mm
+  convolué avec une fonction porte de la taille du pixel)
+\item[(2)] par contre les pink ellipse show spikes in this map
+  montrent un effet de diffraction ou de ghost image anormal et
+  inattendu qui est du \'a un probleme optique dans le cryostat ou au
+  niveau de M5 ou M6 ou la fenetre. On le sait car quand on regarde
+  leur position en fonction de l'elevation on voit qu'ils tournent
+  avec l'elevation dans les cartes Az-El
+\item[(3)] quant aux spikes of unknown origin montr\'es sur A3 je pense
+  que les deux en bas et à droite sont juste un des petits lobes de la
+  simu avec un meilleur contraste que ceux du haut et de gauche, alors
+  que pour le petit blob dans la diagonale a peu pres au niveau de
+  la diffraction sur un bras du quadrupode je soupçonne un effet
+  d'amplification du a la petite boite qui se trouve sur le cot\'e du
+  secondaire que tu peux voir sur la photo du slide 2 de la
+  presentation qu'Andrea a envoyee aujourd'hui (mais je n'ai pas de
+  preuve)
+\end{itemize}
+
+
 
 \begin{figure}
 \begin{center}
@@ -299,7 +348,7 @@ The deep NIKA2 beam maps reveal some noticeable features, which are shown in Fig
 \end{figure}
 
 
-To gain a first impression of the structure of the Iram 30-m beam as seen with NIKA2, we use radial cuts to evidence the relative level of the main beam, the first error beam and other features seen in the 2D beam pattern using radial cuts. NIKA2 full beam is shown in Fig. \ref{fig:beam_db} by means of two orthogonal cuts through Uranus
+To gain a first impression of the structure of the Iram 30-m beam as seen with NIKA2, we use radial cuts to evidence the relative level of the main beam, the first error beam and other features seen in the 2D beam pattern using radial cuts. NIKA2 full beam is shown in Fig.~\ref{fig:beam_db} by means of two orthogonal cuts through Uranus
 from a high quality map obtained on 2017 January 25th in excellent conditions
 (low opacity $\tau_{225}=0.08$ and elevation $46^{\circ}$).
 
@@ -311,7 +360,7 @@ from a high quality map obtained on 2017 January 25th in excellent conditions
 \caption{Two orthogonal cuts through the beam are shown in red and green and a best fit model made
 of three Gaussians is superimposed in black. These cuts were obtained from the high quality map of Uranus on 2017 January 25th.
 The main beam starts to depart from the first Gaussian at -12dB. }
-\label{fig:beam_dB3}
+\label{fig:beam_db}
 \end{center}
 \end{figure}
 
@@ -322,7 +371,11 @@ fit {\it by hand} to these cuts.
 We observe that the main beam starts to depart from the first
 Gaussian at the level of about -12dB for the three arrays.
 We note that for the instrument EMIR on the radiotelescope,
-this departure is about -20dB (Kramer, Penalver and Greve 2013).
+this departure is about -20dB (Kramer, Penalver and Greve
+2013). However, this
+discrepancy between a feedhorn-based experiment and a bare pixels one
+is expected since the main effect of the feedhorns is to lower the
+side lobes of the Airy diffraction pattern.
 The precise characterization of the full beam structure is discussed
 in Sect.~\ref{se:fullbeam_prof}.  
 
@@ -397,7 +450,7 @@ discussed methods and two datasets.
 
 \subsubsection{Sidelobe-masked Profile-based analysis}
 
-[JEAN-FRANCOIS]
+{\bf add a description here [Jean-Francois's method]}
 
 \subsubsection{Sidelobe-masked Map-based analysis}
 
@@ -422,9 +475,9 @@ NIKA2 in the 1mm band $\tau_{1\rm{mm}} \le 0.4$, reasonable lateral
 focus settings $x, y \le 0.5$mm. After selection cuts, our data set
 includes 130 OTF scans acquired during \emph{N2R9}, which consists of
 a representative sub-sample of a typical NIKA2 observation campaign,
-as well as XXX scans of \emph{N2R10}. 
+as well as {\bf XXX [TBC]} scans of \emph{N2R10}. 
 
-Figure~\ref{fig:fwhm_map} shows FWHM distributions obtained in using
+Figure~\ref{fig:fwhm_map} shows FWHM distributions obtained using
 the elliptical Gaussian fit method from the selected set of $8' \times 5'$ OTF scans.
 We checked a posteriori that $r_{\rm{in}}$ distributes as $7 \pm 1.5$ arcsec at 1mm and $13 \pm 4$ arcsec at 2mm, in agreement with settings defined in the profile-based analysis.
 
@@ -440,7 +493,15 @@ We checked a posteriori that $r_{\rm{in}}$ distributes as $7 \pm 1.5$ arcsec at 
 
 \paragraph{Estimates using beam-map scans}
 
-The elliptical Gaussian model is best fit to sidelobe-masked beam-maps from the scan selection described in Sect.~\ref{se:beammap_set}. Sidelobe masks are defined by a fixed $r_{\rm{out}}$ of $100 arcsec$ and a $r_{\rm{in}}$ that freely varies from $8'$ to $9'$ for the $260~\rm{GHz}$-arrays, and from $10'$ to $14'$ for the $150~\rm{GHz}$ array. We checked, hovewer, that we obtain consistent results but larger dispersion when using annulus masks of fixed $r_{\rm{in}}$ of $8.5'$ and $12'$ at $260$ and $150~\rm{GHz}$ respectively. The median main beam FWHM and the rms error estimate, as obtained from the nine beam-maps, are given in Table~\ref{tab:fwhm}.       
+We use masked version of the beam maps, which are selected as
+described in Sect.~\ref{se:beammap_set}. 
+Sidelobe masks are defined by a fixed $r_{\rm{out}}$ of $100 arcsec$
+and a $r_{\rm{in}}$ that freely varies from $8'$ to $9'$ for the
+$260~\rm{GHz}$-arrays, and from $10'$ to $14'$ for the $150~\rm{GHz}$
+array. We checked, hovewer, that we obtain consistent results but
+larger dispersion when using annulus masks of fixed $r_{\rm{in}}$ of
+$8.5'$ and $12'$ at $260$ and $150~\rm{GHz}$ respectively. The median
+main beam FWHM and the rms error estimate, which have been obtained from the nine beam-maps, are given in Table~\ref{tab:fwhm}.       
 
 
 
@@ -448,15 +509,18 @@ The elliptical Gaussian model is best fit to sidelobe-masked beam-maps from the 
   \caption[]{FWHM of the NIKA2 main beam in arcsec.}
   \centering
   \begin{threeparttable}
-  \begin{tabular}{|r|c|c|c|c|}
+  \begin{tabular}{|l|c|c|c|c|c|}
     \hline
-    Array & A1 &  A3 & A1 $\&$ A3 &  A2  \\
+    
+       &    &  \multicolumn{4}{|c|}{Array or array combination} \\
+    \cline{3-6}
+    Method & Dataset        &   A1 &  A3 & A1 $\&$ A3 &  A2  \\
     \hline
     \hline
-    Three-Gaussian model G1\tnote{a}    &  $10.8 \pm 0.2$  &  $10.8 \pm 0.2$  &  $10.8 \pm 0.3$  &  $17.2 \pm 0.05$  \\
-    Sidelobe-masked profile-based       &    &    &    &   \\
-    Sidelobe-masked map-based OTF       & $11.0 \pm 0.3$  &  $10.9 \pm 0.2$  &  $11.0 \pm 0.2$  &  $17.8 \pm 0.2$ \\ 
-    Sidelobe-masked map-based beam-map  & $$   & $$   &  $$  &  $$ \\ 
+    Three-Gaussian model G1\tnote{a} &  beam-map &  $10.8 \pm 0.2$  &  $10.8 \pm 0.2$  &  $10.8 \pm 0.3$  &  $17.2 \pm 0.05$  \\
+    Sidelobe-masked profile-based    &  TBD      &    &    &    &   \\
+    Sidelobe-masked map-based        &  OTF       & $11.0 \pm 0.3$  &  $10.9 \pm 0.2$  &  $11.0 \pm 0.2$  &  $17.8 \pm 0.2$ \\ 
+                                     &  beam-map  & $$   & $$   &  $$  &  $$ \\ 
     \hline
   \end{tabular}
   \begin{tablenotes}

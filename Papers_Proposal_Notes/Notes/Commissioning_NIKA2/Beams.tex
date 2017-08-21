@@ -6,7 +6,15 @@
 %% [intro]
 %%________________________________________________________
 
-The NIKA2 beam pattern mainly depends on the IRAM 30m telescope and NIKA2 internal optical system characteristics, whereas the detectors themselve might have an impact at sub-dominant level (through e.g. time constants or correlated noises). In this section, first we reconstruct the focus surfaces and present the optimal focus, then we characterize both the main beam, which is modeled as an elliptical Gaussian, and the full beam pattern including error beams up to angular scales of 10 arcmin.
+The NIKA2 beam pattern mainly depends on the IRAM 30m telescope and
+NIKA2 full (external and internal) optical system characteristics,
+whereas the detectors themselve might have an impact at sub-dominant
+level (through e.g. time constants or correlated noises). In this
+section, first we reconstruct the focus surfaces and present the
+optimal focus, then we characterize both the main beam, which is
+modeled as an elliptical Gaussian, and the full beam pattern including
+error beams up to angular scales of 10 arcmin.
+
 
 
 %% [Optimal Focus]
@@ -61,7 +69,8 @@ during N2R10 [PLACEHOLDER]}
 
 
 \subsubsection{Focus consistency between arrays}
-[LP]
+
+{\bf refaire les plots de difference de focus entre matrices }
 
 \subsubsection{Reconstruction of the focus surfaces}
 \label{sec:focus-surf}
@@ -252,7 +261,7 @@ Figs.~\ref{fig:focus-stability-H}-\ref{fig:focus-stability-V}.
 
 {\bf expand a little the discussion below}
 
-Very delicate measurments
+Very delicate measurements
 
 The plan is to devote a few hours of technical observation time in
 good weather condition to perform an accurate measure of NIKA2 lateral
@@ -299,6 +308,7 @@ The characterization of the IRAM 30-m beam pattern observed through NIKA2 detect
 
 
 \subsubsection{Deep beam maps}
+\label{se:beammaps}
 We present the two-dimensional distribution of the beam in Fig.~\ref{fig:beam}. We primary use a map obtained from a combination of deep observations of strong point sources collected during \emph{NIKA2-run8} and \emph{run9}. Namely, we use 'beammap' OTF scans of Uranus (scan id '20170125s223' and '20170125s243'),  Neptune ('20170224s177') and the bright quasar 3C84 ('20170226s415'). However, we checked the stability of our results on single scan maps, combinations of scans for a single source, and combinations of shallower scans but spanning a large range of scanning direction. The data processing includes a mitigation of the correlated noise, which mainly originates from the atmosphere.  We primarly use a subtraction of a common mode estimated from the most correlated detectors (the so-called 'cm one block' method). However, other methods are tested for assessing the immunity of our results to noise residuals.
 
 \begin{figure}
@@ -406,6 +416,26 @@ in Sect.~\ref{se:fullbeam_prof}.
 \subsubsection{Beam profile}
 \label{se:fullbeam_prof}
 
+{\bf complete this sub-section}
+
+The beam profile is the azimuthal average of the beam map around the
+main beam center. Although the profile cannot represent the sub-dominant non-axisymetrical
+extended features, which are seen in the beam pattern and discussed in
+Sect.~\ref{se:beammaps} (telescope arms, spikes), it provides us with a useful
+representation of the internal and central parts of the beam (about up to
+$100''$). We determine a beam profile from a beam map in centering to
+the fitted value of the main beam center and forming the
+weighted average of the pixels equidistant to the center.
+
+We model the beam profile as a three-Gaussian function defined as:
+\begin{equation}
+  B(\theta) = \sum_i A_i G_i(\theta) + B_0
+\end{equation}
+
+
+Figure \ref{fig:beam_profiles_3G} shows the beam profile from a beam
+map acquired during {\emph N2R8} (scan ID: 20170125s223), as well as
+the best-fit 3-Gaussian model. 
 
 \begin{figure*}[h!]
 \centering
@@ -501,9 +531,8 @@ $260~\rm{GHz}$-arrays, and from $10'$ to $14'$ for the $150~\rm{GHz}$
 array. We checked, hovewer, that we obtain consistent results but
 larger dispersion when using annulus masks of fixed $r_{\rm{in}}$ of
 $8.5'$ and $12'$ at $260$ and $150~\rm{GHz}$ respectively. The median
-main beam FWHM and the rms error estimate, which have been obtained from the nine beam-maps, are given in Table~\ref{tab:fwhm}.       
-
-
+main beam FWHM and the rms error estimate, which have been obtained
+from the nine beam-maps, are given in Table~\ref{tab:fwhm}.
 
 \begin{table}[h]
   \caption[]{FWHM of the NIKA2 main beam in arcsec.}
@@ -520,7 +549,7 @@ main beam FWHM and the rms error estimate, which have been obtained from the nin
     Three-Gaussian model G1\tnote{a} &  beam-map &  $10.8 \pm 0.2$  &  $10.8 \pm 0.2$  &  $10.8 \pm 0.3$  &  $17.2 \pm 0.05$  \\
     Sidelobe-masked profile-based    &  TBD      &    &    &    &   \\
     Sidelobe-masked map-based        &  OTF       & $11.0 \pm 0.3$  &  $10.9 \pm 0.2$  &  $11.0 \pm 0.2$  &  $17.8 \pm 0.2$ \\ 
-                                     &  beam-map  & $$   & $$   &  $$  &  $$ \\ 
+                                     &  beam-map  & $11.3 \pm 0.2$  & $11.2 \pm 0.2$   &  $11.2 \pm 0.2$  &  $17.7 \pm 0.05$ \\ 
     \hline
   \end{tabular}
   \begin{tablenotes}
@@ -531,13 +560,120 @@ main beam FWHM and the rms error estimate, which have been obtained from the nin
   \label{tab:fwhm}
 \end{table}
 
+\subsubsection{FWHM distribution across the FoV}
+
+% COPY FROM THE 'INSTRUMENT' PAPER
+\begin{figure}[h]
+  \centering
+  \includegraphics[clip=true,width=0.5\textwidth]{../../Paper_NIKA2_Technical/plot_histo_A1_fwhm_20170424s123.pdf}
+  \includegraphics[clip=true,width=0.5\textwidth]{../../Paper_NIKA2_Technical/plot_histo_A3_fwhm_20170424s123.pdf}
+  \includegraphics[clip=true,width=0.5\textwidth]{../../Paper_NIKA2_Technical/plot_histo_A2_fwhm_20170424s123.pdf}
+  
+\caption{From top to bottom, main beam FWHM distribution of all valid KID detectors of arrays A1, A3, and A2. The main beam FWHM is the geometrical combination of the two-orthogonal FWHM estimates obtained from an elliptical Gaussian fit on side-lobe masked individual maps per KID (see text). The red curves show a Gaussian fit to the histogram data.}
+  \label{fig:focalplane_histo}
+\end{figure}
+
+Figure \ref{fig:focalplane_histo} shows the distribution of the
+main beam FWHMs of the arrays A1, A3 and A2 using a beammap
+scan of Neptune acquired during the April 2017 commissioning
+campaign and for average weather conditions (scan ID: 20170424s123). We also
+show in red the best Gaussian fit to histogram data. We find an
+average main beam FWHM of $10.9''$ at 260 GHz and $17.5''$ at
+150 GHz in agreement with the main beam estimates gathered in
+Table~\ref{tab:fwhm}.
+The observed dispersion of about $0.6''$ is expected from the optics desing and its associated
+field distortions across the 6.5 arc-minutes FoV, as discussed in
+Sect.~\ref{se:grid_distortion}. This quantifies the impact of the
+non-constant focus across the FoV, which is characterised in
+Sect.~\ref{sec:focus-surf}, on the individual detector main beams.  
+
 
 \subsection{Beam efficiency}
+
+
+{\bf discrepant results between methods}
+
+
+\noindent \emph{method 1:}
+
+Eff = integral of the 2D Gaussian Main Beam / integral of the beam map
+
+\noindent \emph{method 2:}
+
+Eff = integral of the 2D Gaussian Main Beam / integral of the measured profile
+
+\noindent \emph{'Instru' Paper}
+
+Comparing the 2D gaussian main beam fit to the full beam
+pattern measurement up to a radius of $250''$, we compute the
+beam efficiencies defined as the ratio of power between the main
+beam and this full beam. We find beam efficiencies $\approx 55 \%$
+and $\approx 75 \%$ for the 260 and 150 GHz channels, respectively.
+Heterodyne observations of the lunar edge and of the forward
+beam efficiency derived from skydips show that a significant
+fraction of the full beam is received from beyond a radius of
+$250''$. This fraction is not considered here.
+
+
+The beam efficiency estimates for the three arrays and the
+1mm-array combination are given in Table~\ref{tab:beam_efficiency}.
+
+
+\begin{table}[h]
+  \caption[]{Beam efficiency}
+  \centering
+  \begin{threeparttable}
+  \begin{tabular}{|l|c|c|c|c|}
+    \hline
+    
+       &    \multicolumn{4}{|c|}{Array or array combination} \\
+    \cline{2-5}
+    Method & A1 &  A3 & A1 $\&$ A3 &  A2  \\
+    \hline
+    \hline
+    2D elliptical-over-deep map beam\tnote{a} &  $0.75 \pm 0.07$  &
+    $0.69 \pm 0.04$  &  $0.73 \pm 0.06$  &  $0.85 \pm 0.05$  \\
+    2D elliptical-over-measured profile\tnote{a} &  $0.63 \pm 0.10$  &
+    $0.56 \pm 0.05$  &  $0.58 \pm 0.06$  &  $0.79 \pm 0.06$  \\
+    $250''$ estimates\tnote{b}    &  $0.55$  &   $0.55$ &   $0.55$ &  $0.75$  \\
+    \hline
+  \end{tabular}
+  \begin{tablenotes}
+  \item[(a)] Laurence's study
+  \item[(b)] values reported in the 'Instrument' paper
+  \end{tablenotes}
+  \end{threeparttable}
+  \label{tab:beam_efficiency}
+\end{table}
 
 
 %% [STABILITY]
 %%________________________________________________________
 \subsection{Stability of the beam pattern}
+
+\subsubsection{Individual scan beam profiles}
+
+We checked the stability of the beam against various observing
+condition (source intensity, weather condition, focus optimisation) by
+comparing the beam profile of the beam-map set, which comprizes nine
+beam-maps acquired from N2R8 to N2R10, as defined in
+Sect.~\ref{se:beammap_set}.
+The nine beam profiles and their ratio
+w.r.t. the median beam profile are shown in Fig.~\ref{fig:beam_prof}.
+
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[clip=true,width=\textwidth]{Figures/Profile_allscans_mixed}
+  \includegraphics[clip=true,width=\textwidth]{Figures/Profile_allscans_over_median_mixed}
+\caption{Stability of the beam profile across various N2R8 to N2R10
+  beam-map scans. The upper panel shows the beam profiles normalised
+  to the maximum value, and the lower panel the ratios w.r.t. the median profile.}
+  \label{fig:beam_prof}
+\end{figure}
+
+
+\subsubsection{Main beam FWHM stability}
 
 [A FAIRE:
 

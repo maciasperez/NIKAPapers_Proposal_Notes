@@ -1,25 +1,46 @@
 
 \subsection{Methodology}
-For each kid $k$, $f_{tone}^k$ moves with the atmospheric load according to
+For each kid $k$, the absolute value of the resonance frequency
+$f_{tone}^k$ moves with the atmospheric load according to
 
 \begin{equation}
 f_{tone}^k = C_0^k + C_1^k T_{atm}[1-e^{-\tau/\sin\delta}]
 \end{equation}
 
-where $\delta$ is the elevation. The {\tt skydip} procedure consists in moving
+{\bf LP: pourquoi signe plus alors qu'on utilise un signe moins dans
+  Eq. 2 du papier instru ?}
+
+where $C_0^k$ is a constant equal to the resonance
+frequency at zero opacity, $C_1^k$ is the calibration conversion
+factor in kHz$/$K, $T_{atm}$ is the equivalent temperature
+of the atmosphere (taken as a constant at 270K), $\tau$ the zenith
+opacity and $\delta$ the average elevation of the telescope.
+By assuming a homogeneous plane-parallel atmosphere, the airmass $x$ is defined from the
+elevation as $x = \sin\delta$. 
+
+The coefficients $C_0^k$ and $C_1^k$ are expected to be constant in time
+within at least a cooldown cycle, and are determined using a {\tt
+  skydip} procedure. This consists in moving
 the telescope in elevation step by step and to monitor, for each kid, the
-evolution of $f_{tone}^k$ vs the air mass and to fit the opacity $\tau$ and
-$C_0^k$ and $C_1^k$. All the skydips (that were obtained under various opacity
-conditions) are analysed together to break the degeneracies between these
-parameters. The procedure has two steps. First, all the skydips are analysed
-individually to simply measure $f_{tone}^k$ for each stable elevation and fit
-simultaneously all the parameters. Error bars on $\tau$ are estimated by doing
+evolution of $f_{tone}^k$ vs the air mass and to fit the zenith opacity $\tau$ and
+$C_0^k$ and $C_1^k$. Namely, during a {\tt skydip}, the telescope performs
+eleven elevation steps in the elevation range from 19 to 65 degrees, regularly
+spaced in airmass. For each step, we acquire about twenty seconds of
+time traces to reduce the error in the determination of $f_{tone}^k$.
+
+All the skydips (that were obtained under various opacity
+conditions) are analysed together to break the degeneracies between
+the opacity and the responsivity. The procedure has two steps.
+First, all the skydips are analysed individually to simply measure
+$f_{tone}^k$ for each stable elevation and fit simultaneously all the
+parameters ($\tau$, $C_0^k$ and $C_1^k$.)
+Error bars on $\tau$ are estimated by doing
 this procedure on blocks of 40 kids only and getting a dispersion on the
 resulting $\tau$ from the different blocks. Usually the dispersion comes out as
 $4\times 10^{-3}$ at 1mm and $1\times 10^{-3}$ at 2mm. Once the $\tau$ values
 are estimated for each skydip (as the average over the blocks), we compute
-(while fixing $\tau$) the $C_0$ and $C_1$ final values for each kid. We thus
-retrieve the coefficients of all the Kids even though some of them could not
+(while fixing $\tau$) the $C_0$ and $C_1$ final values for each KID. We thus
+retrieve the coefficients of all the KIDs even though some of them could not
 contribute to the tau determination.
 
 %% \begin{figure}

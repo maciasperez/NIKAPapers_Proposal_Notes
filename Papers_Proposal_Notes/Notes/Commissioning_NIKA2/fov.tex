@@ -27,21 +27,21 @@
 
 In order to determine the pointing offsets of each KID with respect to the reference sky
 coordinates as commanded by the telescope tracking system, we perform a {\it beammap}, that is to say we map a bright and compact source, most of the time
-a planet, with a elevation step small enough to meet Nyquist sampling at the 1mm
+a planet, with an elevation step small enough to meet Nyquist sampling at the 1-mm
 beam scale, namely 4.8~arcsec. We observe this planet with a raster scan in
 (az,el) coordinates, either with fixed elevation subscans or fixed azimuth
 subscans. The former has the advantage of low air mass variation across a
 subscan, the latter offers an orthogonal scan direction to the former: the
-combination of both gives a more accurage determination of the far side
+combination of both gives a more accurate determination of the far side
 lobes. The data reduction proceeds in two steps.
 
 \paragraph{Step 1.} We apply a median filter per
 KID timeline whose width is 4~FWHM and we project one map per KID in Nasmyth
-coordinates. This median filter removes most of atmospheric and low frequency
-electronic noise efficiently, albeit a slight ringing and flux loss on the
+coordinates. This median filter removes efficiently most of the atmospheric and low frequency
+electronic noise, albeit a slight ringing and flux loss on the
 source. However, at this stage, we are only interested in the location of the
 observed planet. To derive the Nasmyth coordinates from the provided (az,el)
-coordinates, we build the following quantities at each time $t$
+coordinates, we build the following quantities at time~$t$ :
 
 \begin{eqnarray}
 dx_t &=& \cos el_t\, daz_t - \sin el_t\, del_t \nonumber \\

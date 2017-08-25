@@ -61,8 +61,8 @@ elliptical gaussian on each kid map. The centroid of this gaussian is a first
 estimate of the KID offsets, FWHM's, ellipticity and sensitivity. We apply a
 first KID selection by removing outliers to the statistics on these
 parameters. We also discard manually KIDs that show a cross-talk counter part on
-their map. At the end of this first step, we are ready to move to a second
-stage.
+their map. 
+%At the end of this first step, we are ready to move to a second stage.
 
 \paragraph{Step 2.} With the Nasmyth offsets derived in step 1, we are now able to
 mask out the planet in each KID timeline. This mask is centered on the planet
@@ -75,14 +75,14 @@ and we coadd all these KID cross-calibrated timelines when they are outside the
 mask to have the final common mode. In this sum, each KID TOI is weighted by the
 inverse of its variance outside the mask. Once we have this common mode in hand,
 we cross-calibrate each TOI on it outside the mask and we subtract it to the
-entire KID TOI. When then resume to the projection of each KID TOI in Nasmyth
+entire KID TOI. We then resume to the projection of each KID TOI in Nasmyth
 coordinates like in step 1, and the 2D elliptical gaussian fit on the each kid
 map. The centroid coordinates and the FWHM are now the final parameters that can
 be derived on the current scan.
 
-This analysis is repeated on all the beam maps, which provides statistics and
+This analysis is repeated on all beam maps, which provides statistics and
 precision on each KID parameter, together with estimates on KID performance stability.
-
+{\bf FM : {\it precision} ? }\\
 {\bf show a screen capture of Katana.}\\
 
 % LP: j'ajoute une phrase pour referencer la Figure \ref{fig:fov}

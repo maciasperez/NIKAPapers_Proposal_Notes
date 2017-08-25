@@ -36,7 +36,7 @@
 \input{listeauthors}
 
 \date{Received \today \ / Accepted --}
-\abstract {Sub-structures in the hot gas atmosphere of galaxy clusters are related to their formation history and to the astrophysical processes at play in the intracluster medium (ICM). The thermal Sunyaev-Zel'dovich (tSZ) effect is directly sensitive to the line-of-sight integrated ICM pressure, and is thus particularly adapted to study ICM sub-structures. In this paper, we apply structure-enhancement filtering algorithms to resolved NIKA tSZ observations of distant clusters, in order to search for pressure discontinuities and secondary peaks in the ICM. The same filters are applied to synthetic tSZ images extracted from cosmological hydrodynamic simulations, in order to better interpret the extracted features. We also study the noise propagation trough the filters and quantify the impact of systematic effects, such as data processing induced artifacts and point source residuals, the latter being identified as the dominant potential contaminant. In three of our six NIKA-observed clusters we identify features at high signal-to-noise that show clear evidence for merger events. In the triple merger \mbox{MACS~J0717.5+3745} ($z=0.55$), two strong pressure gradient ridges are observed on the east and southeast sectors, and a large gradient arc is visible on the west of the main X-ray cluster core. We also identify two main peaks in the pressure distribution, which coincide with the main sub-clusters identified at other wavelengths. However, contamination from the kinetic SZ signal limits our analysis in this case. We observe a lack of tSZ compact structure in the cool-core cluster \mbox{PSZ1~G045.85+57.71} ($z=0.61$) and a tSZ gradient ridge dominates in the southeast, potentially indicating ongoing merging activity. In the highest redshift cluster, \mbox{CL~J1226.9+3332} ($z=0.89$), we detect a $\sim 45$ arcsec (360 kpc) long ridge pressure gradient associated with a secondary pressure peak in the west region, consistent with the merger of a smaller cluster disturbing the overall spherically symmetric main cluster. Our results show that current tSZ facilities have now reached the angular resolution and sensitivity to allow an exploration of the details of pressure sub-structures in clusters, even at high redshift. This opens the possibility to quantify the impact of the dynamical state on the relation between the tSZ signal and the mass of clusters, which is important when using tSZ clusters to test cosmological models. This work also marks the first NIKA cluster sample data release.}
+\abstract {Sub-structures in the hot gas atmosphere of galaxy clusters are related to their formation history and to the astrophysical processes at play in the intracluster medium (ICM). The thermal Sunyaev-Zel'dovich (tSZ) effect is directly sensitive to the line-of-sight integrated ICM pressure, and is thus particularly adapted to study ICM sub-structures. In this paper, we apply structure-enhancement filtering algorithms to resolved NIKA tSZ observations of distant clusters, in order to search for pressure discontinuities and secondary peaks in the ICM. The same filters are applied to synthetic tSZ images extracted from cosmological hydrodynamic simulations, in order to better interpret the extracted features. We also study the noise propagation trough the filters and quantify the impact of systematic effects, such as data processing induced artifacts and point source residuals, the latter being identified as the dominant potential contaminant. In three of our six NIKA-observed clusters we identify features at high signal-to-noise that show clear evidence for merger events. In \mbox{MACS~J0717.5+3745} ($z=0.55$), three strong pressure gradients are observed on the east, southeast and west sectors and two main peaks in the pressure distribution are identified. We observe a lack of tSZ compact structure in the cool-core cluster \mbox{PSZ1~G045.85+57.71} ($z=0.61$) and a tSZ gradient ridge dominates in the southeast. In the highest redshift cluster, \mbox{CL~J1226.9+3332} ($z=0.89$), we detect a $\sim 45$ arcsec (360 kpc) long ridge pressure gradient associated with a secondary pressure peak in the west region. Our results show that current tSZ facilities have now reached the angular resolution and sensitivity to allow an exploration of the details of pressure sub-structures in clusters, even at high redshift. This opens the possibility to quantify the impact of the dynamical state on the relation between the tSZ signal and the mass of clusters, which is important when using tSZ clusters to test cosmological models. This work also marks the first NIKA cluster sample data release.}
 \titlerunning{Detection of discontinuities in high resolution tSZ maps}
 \authorrunning{R. Adam, O. Hahn, F. Ruppin et al.}
 \keywords{Techniques: high angular resolution; image processing -- Galaxies: clusters: intracluster medium}
@@ -47,13 +47,13 @@
 %###############################################################################################
 \section{Introduction}
 %---------- Sub-structure of the gas
-The internal structure of the hot ionized gas in galaxy clusters reflects their formation through the hierarchical merging of smaller structures and groups, and the accretion of surrounding material \citep[e.g.][and references therein]{Kravtsov2012}. In addition, it is tightly connected to various physical processes such as feedback from compact sources \citep[e.g.][]{Fabian2012}, turbulences, or shocks and sloshing \citep[e.g.][]{Markevitch2007} in the intracluster medium (ICM). The study of the structure of the ICM is therefore a unique way to understand how clusters form and to assess connections with the astrophysics at play. As the intracluster gas is commonly used to trace the overall mass distribution of clusters, the investigation of cluster astrophysics is in turn essential to handle scatter and biases that arise in the mass--observable relations, which are crucial to use clusters as cosmological probes \citep[see, e.g.][for a review]{Allen2011}.
+The internal structure of the hot ionized gas in galaxy clusters reflects their formation through the hierarchical merging of smaller structures and groups, and the accretion of surrounding material \citep[e.g.][and references therein]{Kravtsov2012}. It is tightly connected to turbulences, or shocks and sloshing \citep[e.g.][]{Markevitch2007} in the intracluster medium (ICM), as well as various non-gravitational physical processes such as feedback from compact sources \citep[e.g.][]{Fabian2012}. The study of the structure of the ICM is therefore a unique way to understand how clusters form and to assess connections with the astrophysics at play. As the intracluster gas is commonly used to trace the overall mass distribution of clusters, the investigation of cluster astrophysics is in turn essential to handle scatter and biases that arise in the mass--observable relations, which are crucial to use clusters as cosmological probes \citep[see, e.g.][for a review]{Allen2011}.
 
 %---------- The SZ effect
-The thermal Sunyaev-Zel'dovich \citep[tSZ,][]{Sunyaev1972} effect provides a direct probe of the integrated electron pressure along the line-of-sight in clusters. It is thus an excellent diagnostic of the ICM thermodynamics and complements well X-ray observations, which are sensitive to the squared electron density with some temperature dependance. In addition, the tSZ effect is well suited to study distant clusters since, unlike other probes, its surface brightness is insensitive to distance.
+The thermal Sunyaev-Zel'dovich \citep[tSZ,][]{Sunyaev1972} effect provides a direct probe of the integrated electron pressure along the line-of-sight in clusters. It is thus an excellent diagnostic of the ICM thermodynamics induced by gravitational dynamics and complements well X-ray imaging, which is sensitive to the squared electron density with weak temperature dependance. X-ray surface brightness provides a high density contrast, but cannot distinguish between cold front and shocks. The latter are accessible via the tSZ surface brightness through the pressure, but discontinuities that are in quasi-pressure equilibrium (e.g. cavities, cold fronts) will remain invisible in the tSZ signal, while they will show up in the X-ray. In addition, the tSZ effect is well suited to study distant clusters since, unlike other probes, its surface brightness is insensitive to distance.
 
 %---------- Gradient filter detection and upcoming instruments
-The study of sub-structures in the ICM is now routinely applied to X-ray imaging using dedicated filtering technics, such as unsharp masking, or gradient filtering \citep[see, for example, recent results by][]{Sanders2016}, allowing us to highlight ongoing physical processes in clusters, that would be missed otherwise (e.g. cold/shock front, jet cavity, sound waves, etc). However, only few applications of such procedures have been performed using tSZ data. Indeed, these methods require both high angular resolution and high sensitivity observations, in order to obtain significant detections, and the corresponding data remain challenging to obtain. With the advent of new state-of-the-art millimeter wave high angular resolution instruments such as NIKA2, installed on the IRAM 30m telescope \citep[The New IRAM KIDs Array 2, $< 20$ arcsec resolution at 150 and 260 GHz,][]{Calvo2016,Catalano2016}, or MUSTANG2, on the Green Bank Telescope \citep[The MUltiplexed Squid Tes Array at Ninety Gigahertzh 2, $\sim 8$ arcsec at 90 GHz,][]{Dicker2014}, the use of tSZ data to study the inner structure of clusters is thus about to enter a new era. Alternatively, the use of interferometers such as ALMA (Atacama Large Millimeter/submillimeter Array) have already shown the huge potential of such observations to map the tSZ effect at unprecedented angular resolutions \citep{Kitayama2016}.
+The study of sub-structures in the ICM is now routinely applied to X-ray imaging. Dedicated filtering technics have been developed in the literature, such as unsharp masking, or gradient filtering \citep[see, for example, recent results by][]{Sanders2016}, allowing us to highlight ongoing physical processes in clusters, that would be missed otherwise (e.g. cold/shock front, jet cavity, sound waves, etc). However, only few applications of such procedures have been performed using tSZ data \citep[see e.g.][using simulated nearby Planck clusters]{Bourdin2015}. Indeed, these methods require both high angular resolution and high sensitivity observations, in order to obtain significant detections, and the corresponding data remain challenging to obtain beyond the local universe. With the advent of new state-of-the-art millimeter wave high angular resolution instruments such as NIKA2, installed on the IRAM 30m telescope \citep[The New IRAM KIDs Array 2, $< 20$ arcsec resolution at 150 and 260 GHz,][]{Calvo2016,Catalano2016}, or MUSTANG2, on the Green Bank Telescope \citep[The MUltiplexed Squid Tes Array at Ninety Gigahertzh 2, $\sim 8$ arcsec at 90 GHz,][]{Dicker2014}, the use of tSZ data to study the inner structure of clusters is thus about to enter a new era. Alternatively, the use of interferometers such as ALMA (Atacama Large Millimeter/submillimeter Array) have already shown the huge potential of such observations to map the tSZ effect at unprecedented angular resolutions \citep{Kitayama2016}.
 
 %---------- What we do here
 The NIKA2 prototype, NIKA \citep{Monfardini2011,Catalano2014}, has already been used to image galaxy clusters at high angular resolution, including deep observations \citep{Adam2014,Adam2015,Adam2016a,Adam2016b,Ruppin2016}. In this paper, we apply filtering methods to the NIKA tSZ maps in order to detect and study pressure sub-structures in the ICM of six clusters of galaxies at $0.45 \leq z \leq 0.89$. The same filtering methods are applied to synthetic tSZ maps extracted from the RHAPSODY-G hydrodynamical simulations \citep{Wu2013,Hahn2017} to provide a better interpretation of the observed structures. We also study the noise propagation through the filters and quantify possible systematic effects arising from contaminating point sources and data processing. The detection of sub-structures allows us to infer the presence of ongoing merger activity of the targets and show the huge potential of future instrument for investigating cluster formation in distant clusters.
@@ -153,11 +153,14 @@ In the case of the shocks, Figure \ref{fig:test_filter_shock} presents the toy m
 
 \begin{figure}[h]
 \centering
-\resizebox{0.49\textwidth}{!} {
+\resizebox{0.5\textwidth}{!} {
 \begin{tabular}{lll}
-\includegraphics[trim=0cm 2.2cm 0cm 0cm, clip=true, scale=1]{Figure/Map_toy_gNFW.pdf} \put(-60,310){\makebox(0,0){\rotatebox{0}{\LARGE mJy/beam}}} & 
-\includegraphics[trim=2.3cm 2.2cm 0cm 0cm, clip=true, scale=1]{Figure/Grad_gNFW_15_15_45.pdf} \put(-60,310){\makebox(0,0){\rotatebox{0}{\LARGE mJy/beam/arcmin}}} & 
-\includegraphics[trim=2.3cm 2.2cm 0cm 0cm, clip=true, scale=1]{Figure/DoG_gNFW_15_15_45.pdf} \put(-60,310){\makebox(0,0){\rotatebox{0}{\LARGE mJy/beam}}} \\
+\includegraphics[trim=0cm 2.2cm 0cm 0cm, clip=true, scale=1]{Figure/Map_toy_gNFW.pdf} 
+\put(-60,310){\makebox(0,0){\rotatebox{0}{\LARGE mJy/beam}}} & 
+\includegraphics[trim=2.3cm 2.2cm 0cm 0cm, clip=true, scale=1]{Figure/Grad_gNFW_15_15_45.pdf} 
+\put(-60,310){\makebox(0,0){\rotatebox{0}{\LARGE mJy/beam/arcmin}}} & 
+\includegraphics[trim=2.3cm 2.2cm 0cm 0cm, clip=true, scale=1]{Figure/DoG_gNFW_15_15_45.pdf} 
+\put(-60,310){\makebox(0,0){\rotatebox{0}{\LARGE mJy/beam}}} \\
 \includegraphics[trim=0cm 2.2cm 0cm 0cm, clip=true, scale=1]{Figure/Map_toy_bimodal.pdf} &
 \includegraphics[trim=2.3cm 2.2cm 0cm 0cm, clip=true, scale=1]{Figure/Grad_bimodal_15_15_45.pdf} &
 \includegraphics[trim=2.3cm 2.2cm 0cm 0cm, clip=true, scale=1]{Figure/DoG_bimodal_15_15_45.pdf} \\
@@ -174,10 +177,17 @@ In the case of the shocks, Figure \ref{fig:test_filter_shock} presents the toy m
 
 \begin{figure}[h]
 \centering
-\includegraphics[trim=0cm 0cm 0cm 0cm, clip=true, width=0.49\textwidth]{Figure/Profiles_shock_15_15_45.pdf}
+\includegraphics[trim=0cm 0cm 0cm 0cm, clip=true, width=0.5\textwidth]{Figure/Profiles_shock_15_15_45.pdf}
 \caption{\footnotesize{GGM and DoG response to a shock propagating in a radially symmetrical way, with Mach number $\mathcal{M} = 3$. The black lines correspond to a shock propagating from core to outskirt, while the red dashed-dotted line correspond to the opposite case. The shock position is given by the vertical dashed line. {\bf From top to bottom:} pressure, Compton parameter (the thick lines provide the raw profile while the thin line accounts for beam smoothing, GGM and DoG radial profile. The pressure depends of the physical radius in 3D, while the other quantities depend on the projected radius, in 2D.}}
 \label{fig:test_filter_shock}
 \end{figure}
+
+The typical scale of gradient for shock is 2 mJy/beam/arcmin
+The typical scale of gradient for gNFW core is 1 mJy/beam/arcmin
+A shock appears as a compression because of the limited resolution.
+
+Limitation avec les échelles couvertes par NIKA
+
 
 
 
@@ -208,10 +218,14 @@ RG448\_00211 & 0.40 & 5.5 & 3.5 & 0.29 & Pressure shell caused by the central AG
 \begin{figure*}[h]
 \resizebox{\textwidth}{!} {
 \begin{tabular}{llll}
-\includegraphics[trim=0cm 2.2cm 0cm 0cm, clip=true, scale=1]{Figure/Map_RG361_00188_DMmap_zproj_zobs0p6_raw.pdf} \put(-60,310){\makebox(0,0){\rotatebox{0}{\LARGE a.d.u.}}} & 
-\includegraphics[trim=2.3cm 2.2cm 0cm 0cm, clip=true, scale=1]{Figure/Map_RG361_00188_Ymap_zobs0p6_raw.pdf} \put(-60,310){\makebox(0,0){\rotatebox{0}{\LARGE mJy/beam}}} & 
-\includegraphics[trim=2.3cm 2.2cm 0cm 0cm, clip=true, scale=1]{Figure/Grad_RG361_00188_Ymap_zobs0p6_regrid_15_15_45.pdf} \put(-60,310){\makebox(0,0){\rotatebox{0}{\LARGE mJy/beam/arcmin}}} & 
-\includegraphics[trim=2.3cm 2.2cm 0cm 0cm, clip=true, scale=1]{Figure/DoG_RG361_00188_Ymap_zobs0p6_regrid_15_15_45.pdf} \put(-60,310){\makebox(0,0){\rotatebox{0}{\LARGE mJy/beam}}} \\
+\includegraphics[trim=0cm 2.2cm 0cm 0cm, clip=true, scale=1]{Figure/Map_RG361_00188_DMmap_zproj_zobs0p6_raw.pdf} 
+\put(-60,310){\makebox(0,0){\rotatebox{0}{\LARGE a.d.u.}}} & 
+\includegraphics[trim=2.3cm 2.2cm 0cm 0cm, clip=true, scale=1]{Figure/Map_RG361_00188_Ymap_zobs0p6_raw.pdf} 
+\put(-60,310){\makebox(0,0){\rotatebox{0}{\LARGE mJy/beam}}} & 
+\includegraphics[trim=2.3cm 2.2cm 0cm 0cm, clip=true, scale=1]{Figure/Grad_RG361_00188_Ymap_zobs0p6_regrid_15_15_45.pdf} 
+\put(-60,310){\makebox(0,0){\rotatebox{0}{\LARGE mJy/beam/arcmin}}} & 
+\includegraphics[trim=2.3cm 2.2cm 0cm 0cm, clip=true, scale=1]{Figure/DoG_RG361_00188_Ymap_zobs0p6_regrid_15_15_45.pdf} 
+\put(-60,310){\makebox(0,0){\rotatebox{0}{\LARGE mJy/beam}}} \\
 \includegraphics[trim=0cm 2.2cm 0cm 0cm, clip=true, scale=1]{Figure/Map_RG474_00172_DMmap_zproj_zobs0p9_raw.pdf} & 
 \includegraphics[trim=2.3cm 2.2cm 0cm 0cm, clip=true, scale=1]{Figure/Map_RG474_00172_Ymap_zobs0p9_raw.pdf} & 
 \includegraphics[trim=2.3cm 2.2cm 0cm 0cm, clip=true, scale=1]{Figure/Grad_RG474_00172_Ymap_zobs0p9_regrid_15_15_45.pdf} & 
@@ -268,9 +282,12 @@ In addition to the tSZ sub-structures, NIKA data are affected by several systema
 \centering
 \resizebox{0.75\textwidth}{!} {
 \begin{tabular}{lll}
-\includegraphics[trim=0cm 2.2cm 0cm 0cm, clip=true, scale=1]{Figure/Map_RG361_00188_Ymap_zobs0p6_processed.pdf} \put(-60,310){\makebox(0,0){\rotatebox{0}{\LARGE mJy/beam}}} & 
-\includegraphics[trim=2.3cm 2.2cm 0cm 0cm, clip=true, scale=1]{Figure/Grad_RG361_00188_Ymap_zobs0p6_processed_15_15_45.pdf} \put(-60,310){\makebox(0,0){\rotatebox{0}{\LARGE mJy/beam/arcmin}}} & 
-\includegraphics[trim=2.3cm 2.2cm 0cm 0cm, clip=true, scale=1]{Figure/DoG_RG361_00188_Ymap_zobs0p6_processed_15_15_45.pdf} \put(-60,310){\makebox(0,0){\rotatebox{0}{\LARGE mJy/beam}}} \\
+\includegraphics[trim=0cm 2.2cm 0cm 0cm, clip=true, scale=1]{Figure/Map_RG361_00188_Ymap_zobs0p6_processed.pdf} 
+\put(-60,310){\makebox(0,0){\rotatebox{0}{\LARGE mJy/beam}}} & 
+\includegraphics[trim=2.3cm 2.2cm 0cm 0cm, clip=true, scale=1]{Figure/Grad_RG361_00188_Ymap_zobs0p6_processed_15_15_45.pdf} 
+\put(-60,310){\makebox(0,0){\rotatebox{0}{\LARGE mJy/beam/arcmin}}} & 
+\includegraphics[trim=2.3cm 2.2cm 0cm 0cm, clip=true, scale=1]{Figure/DoG_RG361_00188_Ymap_zobs0p6_processed_15_15_45.pdf} 
+\put(-60,310){\makebox(0,0){\rotatebox{0}{\LARGE mJy/beam}}} \\
 \includegraphics[trim=0cm 2.2cm 0cm 0cm, clip=true, scale=1]{Figure/Map_RG474_00172_Ymap_zobs0p9_processed.pdf} & 
 \includegraphics[trim=2.3cm 2.2cm 0cm 0cm, clip=true, scale=1]{Figure/Grad_RG474_00172_Ymap_zobs0p9_processed_15_15_45.pdf} & 
 \includegraphics[trim=2.3cm 2.2cm 0cm 0cm, clip=true, scale=1]{Figure/DoG_RG474_00172_Ymap_zobs0p9_processed_15_15_45.pdf} \\
@@ -310,7 +327,7 @@ The reduction of the raw NIKA data affects the reconstructed astrophysical sky s
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.45\textwidth]{Figure/Conta_noise_Grad_SNRtrueVSmeasRG377_00181_Ymap_zobs0p5_15_15_45.pdf}
+\includegraphics[width=0.5\textwidth]{Figure/Conta_noise_Grad_SNRtrueVSmeasRG377_00181_Ymap_zobs0p5_15_15_45.pdf}
 \caption{\footnotesize{Comparison of the estimated GGM filtered maps signal-to-noise ratio as a function of the true signal-to-noise, using the RHAPSODY-G sub-sample. The estimated signal-to-noise is computed using the NIKA processed RHAPSODY-G sub-sample (equation \ref{eq:GGM_filter_snr}). The red dashed line represent the one to one correspondence. Each point corresponds to a pixel of the map.}}
 \label{fig:noise_statistics2}
 \end{figure}
@@ -346,11 +363,14 @@ Finally, we use the end-to-end processed and filtered maps from a RHAPSODY-G sub
 %==================== Point sources
 \subsection{Point sources residuals}
 \begin{figure}[h]
-\resizebox{0.49\textwidth}{!} {
+\resizebox{0.5\textwidth}{!} {
 \begin{tabular}{lll}
-\includegraphics[trim=0cm 2.2cm 0cm 0cm, clip=true, scale=1]{Figure/PSalone_Input_PointSource_15_15_45.pdf} \put(-60,310){\makebox(0,0){\rotatebox{0}{\LARGE mJy/beam}}} & 
-\includegraphics[trim=2.3cm 2.2cm 0cm 0cm, clip=true, scale=1]{Figure/PSalone_GGM_PointSource_15_15_45.pdf} \put(-60,310){\makebox(0,0){\rotatebox{0}{\LARGE mJy/beam/arcmin}}} & 
-\includegraphics[trim=2.3cm 2.2cm 0cm 0cm, clip=true, scale=1]{Figure/PSalone_DoG_PointSource_15_15_45.pdf} \put(-60,310){\makebox(0,0){\rotatebox{0}{\LARGE mJy/beam}}} \\
+\includegraphics[trim=0cm 2.2cm 0cm 0cm, clip=true, scale=1]{Figure/PSalone_Input_PointSource_15_15_45.pdf} 
+\put(-60,310){\makebox(0,0){\rotatebox{0}{\LARGE mJy/beam}}} & 
+\includegraphics[trim=2.3cm 2.2cm 0cm 0cm, clip=true, scale=1]{Figure/PSalone_GGM_PointSource_15_15_45.pdf} 
+\put(-60,310){\makebox(0,0){\rotatebox{0}{\LARGE mJy/beam/arcmin}}} & 
+\includegraphics[trim=2.3cm 2.2cm 0cm 0cm, clip=true, scale=1]{Figure/PSalone_DoG_PointSource_15_15_45.pdf} 
+\put(-60,310){\makebox(0,0){\rotatebox{0}{\LARGE mJy/beam}}} \\
 \includegraphics[trim=0cm 0.7cm 0cm 0cm, clip=true, scale=1]{Figure/PSalone_GGM_PointSourceResidual_15_15_45.pdf} &
 \includegraphics[trim=2.3cm 0.7cm 0cm 0cm, clip=true, scale=1]{Figure/PSalone_GGM_PointSourceResidual_15_15_45.pdf} & 
 \includegraphics[trim=2.3cm 0.7cm 0cm 0cm, clip=true, scale=1]{Figure/PSalone_DoG_PointSourceResidual_15_15_45.pdf} 
@@ -377,11 +397,14 @@ We conclude that undetected or mismodeled point sources are an unavoidable poten
 \section{Application to the NIKA clusters sample}\label{sec:Application_to_the_NIKA_clusters_sample}
 \begin{figure*}[h]
 \centering
-\resizebox{0.8\textwidth}{!} {
+\resizebox{0.75\textwidth}{!} {
 \begin{tabular}{lll}
-\includegraphics[trim=0cm 2.2cm 0cm 0cm, clip=true, scale=1]{Figure/Map_RXJ1347.pdf} \put(-60,310){\makebox(0,0){\rotatebox{0}{\LARGE mJy/beam}}} & 
-\includegraphics[trim=2.3cm 2.2cm 0cm 0cm, clip=true, scale=1]{Figure/Grad_RXJ1347_15_15_45.pdf} \put(-60,310){\makebox(0,0){\rotatebox{0}{\LARGE mJy/beam/arcmin}}} & 
-\includegraphics[trim=2.3cm 2.2cm 0cm 0cm, clip=true, scale=1]{Figure/DoG_RXJ1347_15_15_45.pdf} \put(-60,310){\makebox(0,0){\rotatebox{0}{\LARGE mJy/beam}}} \\
+\includegraphics[trim=0cm 2.2cm 0cm 0cm, clip=true, scale=1]{Figure/Map_RXJ1347.pdf} 
+\put(-60,310){\makebox(0,0){\rotatebox{0}{\LARGE mJy/beam}}} & 
+\includegraphics[trim=2.3cm 2.2cm 0cm 0cm, clip=true, scale=1]{Figure/Grad_RXJ1347_15_15_45.pdf} 
+\put(-60,310){\makebox(0,0){\rotatebox{0}{\LARGE mJy/beam/arcmin}}} & 
+\includegraphics[trim=2.3cm 2.2cm 0cm 0cm, clip=true, scale=1]{Figure/DoG_RXJ1347_15_15_45.pdf} 
+\put(-60,310){\makebox(0,0){\rotatebox{0}{\LARGE mJy/beam}}} \\
 \includegraphics[trim=0cm 2.2cm 0cm 0cm, clip=true, scale=1]{Figure/Map_MACSJ1424.pdf} & 
 \includegraphics[trim=2.3cm 2.2cm 0cm 0cm, clip=true, scale=1]{Figure/Grad_MACSJ1424_15_15_45.pdf} & 
 \includegraphics[trim=2.3cm 2.2cm 0cm 0cm, clip=true, scale=1]{Figure/DoG_MACSJ1424_15_15_45.pdf} \\
@@ -488,7 +511,7 @@ The GGM and DoG filtered maps of \mbox{MACS~J0717.5+3745} compare well to multip
 
 The GGM map of \mbox{PSZ1~G045.85+57.71} is that of an elongated ring following the morphology of the cluster. On the southeast region, we observe a stronger pressure gradient extending over about 45 arcsec (312 kpc) and reaching ${\rm SNR}_{\rm GGM} = 5.8$. In contrast to the RHAPSODY-G relaxed cluster RG361\_00188, the GGM map shows that the pressure is approximately constant along the line-of-sight, over a wide area from the X-ray core to the southwest extension. As \mbox{PSZ1~G045.85+57.71} is a cool-core cluster, with a dense X-ray core, this indicates that the temperature rises in the southwest sector. The DoG map does not show the presence of any strong core and is consistent with the pressure being relatively constant from the X-ray core to the southwest extension. As a consequence of the lack of signal on small scales, the DoG map significance is relatively low, reaching only $4 \sigma$ at the peak. The main peak is located within a few arcsec of the X-ray core, but two secondary peaks are visible towards the southwest and on the north.
 
-The GGM and DoG images of \mbox{PSZ1~G045.85+57.71} are consistent with that of a merging sub-group falling from the southwest to the main cluster. It would be responsible for the local temperature rise and the gas compression on the southwest. Such scenarios are commonly observed in the RHAPSODY-G clusters. In contrast, relaxed RHAPSODY-G systems do not present similar features in their filtered maps, which reinforces the interpretation proposed above. Nevertheless, we note that the signal-to-noise ratio remains limited in the case of this cluster, and any stronger conclusions would require deeper data.
+The GGM and DoG images of \mbox{PSZ1~G045.85+57.71} are consistent with that of a merging sub-group falling from the southwest to the main cluster. It would be responsible for the local temperature rise and the gas overpressure on the southwest. Such scenarios are commonly observed in the RHAPSODY-G clusters. In contrast, relaxed RHAPSODY-G systems do not present similar features in their filtered maps, which reinforces the interpretation proposed above. Nevertheless, we note that the signal-to-noise ratio remains limited in the case of this cluster, and any stronger conclusions would require deeper data.
 
 %---------- CLJ1227
 \subsubsection{CL~J1226.9+3332}
@@ -502,7 +525,7 @@ The GGM and DoG analysis of \mbox{CL~J1226.9+3332} is fully consistent with the 
 %##########################                               DISCUSSIONS                               ##########################
 %###############################################################################################
 \section{Discussions and perspectives}\label{sec:discussions}
-Cosmological studies using tSZ observations of clusters of galaxies rely on hypothesis including the hydrostatic equilibrium of the ICM and the self-similarity of the galaxy cluster population. These assumptions enable to calibrate the scaling law linking the integrated Compton parameter to the cluster total mass \citep[see, e.g,][]{Arnaud2007} and to consider a universal pressure profile to compute the tSZ power spectrum \citep[e.g.][]{Komatsu2002}. However, deviations from these hypothesis have already been identified and may lead to biases on the cosmological parameter estimations using galaxy clusters \citep[see, e.g.][]{Ichikawa2013,McDonald2014}.
+Cosmological studies using tSZ observations of clusters of galaxies generally rely on hypothesis including the hydrostatic equilibrium of the ICM and the self-similarity of the galaxy cluster population. These assumptions enable to calibrate the scaling law linking the integrated Compton parameter to the cluster total mass \citep[see, e.g,][]{Arnaud2007} and to consider a universal pressure profile to compute the tSZ power spectrum \citep[e.g.][]{Komatsu2002}. However, deviations from these hypothesis have already been identified and may lead to biases on the cosmological parameter estimations using galaxy clusters \citep[see, e.g.][]{Ichikawa2013,McDonald2014}.
 
 Deviations from hydrostatic equilibrium are expected for unrelaxed clusters where the non-thermal pressure content due to turbulences and bulk flows contributes significantly to the equilibrium of the gas in the gravitational potential \citep[e.g.][]{Siegel2016}. Such effects suppress power principally on large scales in the tSZ power spectrum whereas AGN feedbacks have a significant impact on small scales \citep[e.g.][]{Shaw2010}. Furthermore, the bias affecting the estimate of the cluster mass under the hydrostatic equilibrium assumption in unrelaxed clusters is expected to be higher than for relaxed clusters. In this context, dynamical state indicators such as the GGM and DoG filters are powerful tools to identify unrelaxed gas structures.
 
@@ -560,8 +583,10 @@ In Figure \ref{fig:filtered_NIKA_maps_evolution}, we provide the extracted filte
 \centering
 \resizebox{0.5\textwidth}{!} {
 \begin{tabular}{ll}
-\includegraphics[trim=0cm 2.2cm 0cm 0cm, clip=true, scale=1]{Figure/Grad_CLJ1227_12_10_30_noannot.pdf} \put(-60,310){\makebox(0,0){\rotatebox{0}{\LARGE mJy/beam/arcmin}}} & 
-\includegraphics[trim=2.3cm 2.2cm 0cm 0cm, clip=true, scale=1]{Figure/DoG_CLJ1227_12_10_30_noannot.pdf} \put(-60,310){\makebox(0,0){\rotatebox{0}{\LARGE mJy/beam}}} \\
+\includegraphics[trim=0cm 2.2cm 0cm 0cm, clip=true, scale=1]{Figure/Grad_CLJ1227_12_10_30_noannot.pdf} 
+\put(-60,310){\makebox(0,0){\rotatebox{0}{\LARGE mJy/beam/arcmin}}} & 
+\includegraphics[trim=2.3cm 2.2cm 0cm 0cm, clip=true, scale=1]{Figure/DoG_CLJ1227_12_10_30_noannot.pdf} 
+\put(-60,310){\makebox(0,0){\rotatebox{0}{\LARGE mJy/beam}}} \\
 \includegraphics[trim=0cm 2.2cm 0cm 0cm, clip=true, scale=1]{Figure/Grad_CLJ1227_15_15_45_noannot.pdf} & 
 \includegraphics[trim=2.3cm 2.2cm 0cm 0cm, clip=true, scale=1]{Figure/DoG_CLJ1227_15_15_45_noannot.pdf} \\
 \includegraphics[trim=0cm 2.2cm 0cm 0cm, clip=true, scale=1]{Figure/Grad_CLJ1227_20_30_60_noannot.pdf} & 
@@ -576,16 +601,19 @@ In Figure \ref{fig:filtered_NIKA_maps_evolution}, we provide the extracted filte
 %========== kSZ impact
 \section{Impact of kSZ signal in \mbox{MACS~J0717.5+3745}}\label{sec:Impact_of_kSZ}
 Figure \ref{fig:MACSJ0717_kSZ} provides the surface brightness and filtered maps of \mbox{MACS~J0717.5+3745} in the case where a kSZ signal model, from \citep{Adam2016b}, has been subtracted to the data. This model presents large uncertainties and thus, can only be used to test the impact of this systematic effect. The overall structure is similar to that observed in figure \ref{fig:NIKA_cluster_sample}, where no correction is applied, but the magnitude of the different structures is significantly affected. See section \ref{sec:MACSJ0717} for discussions.
-\begin{figure*}[h]
+\begin{figure}[h]
 \centering
-\resizebox{0.8\textwidth}{!} {
+\resizebox{0.5\textwidth}{!} {
 \begin{tabular}{lll}
-\includegraphics[trim=0cm 0.7cm 0cm 0cm, clip=true, scale=1]{Figure/Map_MACSJ0717kSZ.pdf}  \put(-60,350){\makebox(0,0){\rotatebox{0}{\LARGE mJy/beam}}} & 
-\includegraphics[trim=2.3cm 0.7cm 0cm 0cm, clip=true, scale=1]{Figure/Grad_MACSJ0717kSZ_15_15_45.pdf}  \put(-60,350){\makebox(0,0){\rotatebox{0}{\LARGE mJy/beam/arcmin}}} & 
-\includegraphics[trim=2.3cm 0.7cm 0cm 0cm, clip=true, scale=1]{Figure/DoG_MACSJ0717kSZ_15_15_45.pdf}  \put(-60,350){\makebox(0,0){\rotatebox{0}{\LARGE mJy/beam}}}
+\includegraphics[trim=0cm 0.7cm 0cm 0cm, clip=true, scale=1]{Figure/Map_MACSJ0717kSZ.pdf}  
+\put(-60,350){\makebox(0,0){\rotatebox{0}{\LARGE mJy/beam}}} & 
+\includegraphics[trim=2.3cm 0.7cm 0cm 0cm, clip=true, scale=1]{Figure/Grad_MACSJ0717kSZ_15_15_45.pdf}  
+\put(-60,350){\makebox(0,0){\rotatebox{0}{\LARGE mJy/beam/arcmin}}} & 
+\includegraphics[trim=2.3cm 0.7cm 0cm 0cm, clip=true, scale=1]{Figure/DoG_MACSJ0717kSZ_15_15_45.pdf}  
+\put(-60,350){\makebox(0,0){\rotatebox{0}{\LARGE mJy/beam}}}
 \end{tabular}}
 \caption{\footnotesize{Surface brightness (left), GGM (middle) and DoG (right) maps of \mbox{MACS~J0717.5+3745} in the case of kSZ correction applied. See figure \ref{fig:NIKA_cluster_sample} for further details.}}
 \label{fig:MACSJ0717_kSZ}
-\end{figure*}
+\end{figure}
 
 \end{document}

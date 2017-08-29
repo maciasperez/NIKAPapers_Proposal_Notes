@@ -11,9 +11,9 @@
 \includegraphics[width=0.9\textwidth]{Figures/SpectralBands/bandpasses_nika2.png}
 \caption{Relative system response of the   three NIKA2 arrays as a
   function of frequency. For illustration we also plot atmospheric transmission obtained with the ATM model 
-  for different values of precipitable water vapor. The spectra of ESA4 model of Uranus and ESA5 model of
-  Neptune in the frequency range are overplotted with arbitrary
-  normalization. {\bf FM: please provide Ref. for ATM, ESA4 and ESA5.}}
+ \cite{ATM} for different values of precipitable water vapor. The spectra of ESA4 model of Uranus and ESA5 model of
+  Neptune \cite{ESAmodel} in the frequency range are overplotted with arbitrary
+  normalization. {\bf \color{green} FM: please provide Ref. for ATM, ESA4 and ESA5- DONE}}
  \label{spectralband1}
 \end{center}
 \end{figure}
@@ -21,6 +21,27 @@
  
 
 
+NIKA2 is a millimeter camera able to simultaneously image a
+field-of-view of 6.5arcmin at 150 and 260~GHz, with polarimetric
+capabilities at 260~GHz using KIDS. A 30-centimeters diameter air-gap
+dichroic splits the 150 GHz (reflection) from the 260 GHz
+(transmission) beams.  A grid polarizer ensures then the separation of
+the two linear polarisations on the 260 GHz channel.  There are
+therefore three KIDS array in NIKA2, one at 2mm, two at 1mm. 
+
+The 2mm array (150 GHz) consist of 616 pixels
+(KIDS), disposed to cover a circle with a 78 mm diameter. Each pixel
+has a size of $2.8 × 2.8 mm^{2}$ . This is the maximum pixel size that can
+be adopted without significantly degrading the telescope resolution,
+as it corresponds roughly to a 1F$\lambda$ sampling of the focal
+plane.  The array is labelled A2 in all the following.
+
+At 1mm, there are two arrays, labelled A1 and A3, consisting of 1140
+KIDS with a size of $2 × 2 mm^{2}$ to ensure a comparable 1F$\lambda$
+sampling. 
+
+Further technical details on the NIKA2 instrument can be found in the
+technical paper {\bf REF !}
 
 
 The NIKA2 spectral bands were measured in the laboratory using a
@@ -43,7 +64,8 @@ frequencies are
 referred to as reference frequencies (150 and 260 GHz) to which correpond the reference wavelength 
 (2.0  and 1.15 mm), see tab.~\ref{tab:nika2summary}.
 
-{\bf FM:V (A1) array is not defined. A short description of the instrument would be useful.}
+{\bf \color{green}  FM:V (A1) array is not defined. A short
+  description of the instrument would be useful. - DONE}
 
 
 %\begin{table}[h]
@@ -116,22 +138,25 @@ referred to as reference frequencies (150 and 260 GHz) to which correpond the re
 
 The total system response is the multiplication of the atmospheric
 transmission with the relative system response. To derive the
-atmospheric transmission, we use GILDAS ATM 2009 model {\bf REF}, computed for
+atmospheric transmission, we use GILDAS ATM 2009 model \cite{ATM} {\bf
+  \color{green} REF - DONE}, computed for
 the IRAM 30-m telescope, with so called {\it midlatwinter} conditions. We select in the model
 grid an atmosphere with $T=268.3 \ {\rm K}$ and a pressure of $703.5 \ {\rm hPa}$. The
 effective frequency of the passband is defined by:
 \begin{equation}
-\nu_{eff}( \sec z, mm_{H_{2}O}) = \frac{ \int_{0}^{+\infty} S_{\nu}
-  T_{\nu}(\sec z, mm_{H_{2}O}) \nu d\nu } { \int_{0}^{+\infty} S_{\nu} T_{\nu} d\nu}
+\nu_{eff}( \sec \delta, mm_{H_{2}O}) = \frac{ \int_{0}^{+\infty} S_{\nu}
+  T_{\nu}(\sec \delta, mm_{H_{2}O}) \nu d\nu } { \int_{0}^{+\infty} S_{\nu} T_{\nu} d\nu}
 \label{eq:nueff0}
 \end{equation}
 
-\noindent {\bf FM : in section 3, we use $\delta$ for the elevation. I think we
-should stick to a single convention.}\\
+\noindent {\bf \color{green} FM : in section 3, we use $\delta$ for the elevation. I think we
+should stick to a single convention. - DONE}\\
 
-where $T_{\nu}$ is the total system response, $S_{\nu}$ is the source
-spectrum. Table~\ref{tab:bandwidths} list this effective frequency,
-computed for Uranus spectrum (ESA4 model), for different atmospheric
+where $T_{\nu}$ is the total system response, normalized between
+0. and 1. (i.e. a relative response as a function of the frequency),
+hereafter referred to as RSR (Relative System Response), $S_{\nu}$ is
+the source spectrum. Table~\ref{tab:bandwidths} list this effective frequency,
+computed for Uranus spectrum (ESA4 model, \cite{ESAmodel}), for different atmospheric
 water vapor contents and different elevations. 
 Table~\ref{tab:bandwidths} also list the bandwidth, defined as:
 \begin{equation}
@@ -140,21 +165,30 @@ d\nu
 \end{equation}
 where the $Max(T_{\nu})$ ensure the RSR span the whole 0.0 to 1.0 range.
 
-\noindent {\bf FM: RSR is not defined.}\\
-\noindent {\bf FM: well, it means this is the normalized system response... i think it would be better than 
-{\it ensure the RSR span the whole 0.0 to 1.0 range.}}\\
+\noindent {\bf \color{green} FM: RSR is not defined. - Done }\\
+\noindent {\bf \color{red} FM: well, it means this is the normalized system response... i think it would be better than 
+{\it ensure the RSR span the whole 0.0 to 1.0 range.} \newline: Some
+of the files I have seen are not normalized to 1.0... better safe than
+sorry.}\\
 
 From Table~\ref{tab:bandwidths}, we see that the 2 mm band is somewhat
-sensitive to the atmospheric conditions, especially at low elevation.
+sensitive to the atmospheric conditions, especially at low
+elevation. Note that these effective frequencies are {\em not} the
+reference frequencies for the band, respectively 150 GHz and 260 GHz
+for the A2 and A1, A3 arrays. These reference frequencies are chosen
+arbitrarily to define NIKA2 photometric system as will be discussed in section~\ref{se:cal_HA}.
 
 
 
-\noindent {\bf FM: we should link this discussion with the so called central frequency quoted in table 13 as none of these values are in
-agreement (even no atmosphere and IRAM standard conditions).}\\
+\noindent {\bf \color{green} FM: we should link this discussion with the so called
+  central frequency quoted in table 13 as none of these values are in
+  agreement (even no atmosphere and IRAM standard conditions). - DONE}\\
 
 
 {\bf Can we be more specific about what was computed next ? Is it the
   opacity weighted by the band ? Or the resultant opacity ?}
+
+{\bf \color{red} Still to be done.}
 
 Using the NIKA2 bandpasses for N2R9, we can integrate the ATM
 atmospheric model to compute the expected ratio between the

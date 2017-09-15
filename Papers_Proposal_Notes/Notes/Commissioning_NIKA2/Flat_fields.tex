@@ -1,17 +1,35 @@
 \subsection{Flat fielding: calibration stability across the FOV}
 
 
-The dispersion of the detector responsivity across the field of view has been characterized by estimating flat fields using the \emph{beammap} scans described in Sect.~\ref{se:fp_reconstruction}. We have considered different kinds of flat field:
+The dispersion of the detector responsivity across the field of view has been characterized by estimating flat fields using the nominally focused \emph{beammap} scans described in Sect.~\ref{se:fp_reconstruction}. We have considered different kinds of flat field:
 \begin{itemize}
-\item Main beam flat field: the flat field for the far field is estimated using the relative calibration factors obtained for the calibration in FWHM$_{0}$ beam discussed in Sect.~\ref{se:cal_HA}. These are defined as
+\item Main beam flat field: the flat field for the main beam, which is the far field of the telescope estimated for the sources, is determined using the relative calibration factors obtained for the calibration in FWHM$_{0}$ beam discussed in Sect.~\ref{se:cal_HA}. These are defined as
   \begin{equation}
     G_k = \frac{S_{th}(\nu_0)\, e^{-\tau/sin(\delta)}}{A_k}, 
   \end{equation}
   where $S_{th}(\nu_0)$ is the expected flux of the source integrated in the NIKA2 bandpasses and derived at the reference frequency $\nu_0$, $\tau/sin(\delta)$ is the line-of-sight opacity measured using the \emph{skydip} method described in Sect.~\ref{se:opacities} and $A_k$ is the amplitude of a Gaussian of fixed FWHM fitted from the detector $k$ map (as $A_{c}$ in Eq.~\ref{eq:calib_fix_fwhm}).
-\item Forward beam flat field: the flat field for the near field is estimated using the correlation factor of each detector to a median common mode estimated off-source.
+\item Forward beam flat field: the flat field for forward beam, which is the near field of the telescope determined for the sky noise, is estimated using the correlation factor of each detector to a median common mode estimated off-source.
 \end{itemize}
 
-Figures \ref{fig:avg_mbff} and \ref{fig:avg_fbff} show the average main beam and forward beam flat fields for the three arrays. These have been constructed by combining the normalised flat fields of five \emph{beammap} scans, which were selected using a threshold in the line-of-sight opacity measured in the 1-mm band, such as $\tau/sin(\delta) \leq 0.85$. The dispersion of the average flat fields are shown in the bottom panel of Fig.~\ref{fig:avg_mbff} $\&$ \ref{fig:avg_fbff}. We find a sizable flat field dispersion for Array 1, indicating a significant variation of Array 1 detector responsivities depending on their position in the FOV. This effect, the origin of which is under investigation, mainly impacts the left-most third of the array. We verified that the flat field dispersions for Array 1 are in line with the ones of Array 3 after the detectors of the so-called shadow-zone were flagged out using a crescent-shaped mask. This is evidenced in Fig.~\ref{fig:stddev_ff}, which shows the dispersion of the flat fields for nine \emph{beammap} scans.      
+Figures \ref{fig:avg_mbff} and \ref{fig:avg_fbff} show the average main beam and forward beam flat fields for the three arrays. These have been constructed by combining the normalised flat fields of five \emph{beammap} scans, which were selected by thresholding the line-of-sight opacity measured in the 1-mm band, such as $\tau/sin(\delta) \leq 0.85$. The dispersion of the average flat fields are shown in the bottom panel of Fig.~\ref{fig:avg_mbff} $\&$ \ref{fig:avg_fbff}. We find a sizable flat field dispersion for Array 1, indicating a significant variation of Array 1 detector responsivities depending on their position in the FOV. This effect, the origin of which is under investigation, mainly impacts the left-most third of the array. The impacted area of Array 1 is referred to as the "shadow-zone''. We verified that the flat field dispersions for Array 1 are in line with the ones of Array 3 after the detectors within the shadow-zone were flagged out using a crescent-shaped mask. This is evidenced in Fig.~\ref{fig:stddev_ff}, which shows the dispersion of the flat fields for nine \emph{beammap} scans. The estimates of the flat field dispersion are gathered in Table~\ref{tab:flatfields}.      
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+     &  &  A1 & A3  & A2 \\
+\hline
+Main beam flat field  & all the FOV           &   &   &  \\
+                      & shadow-zone excluded  &   &   &  \\
+\hline
+Forward beam flat field  & all the FOV           &   &   &    \\
+                         & shadow zone excluded  &   &   &  \\
+\hline
+\end{tabular}
+\caption{Flat field dispersions over all the FOV and after masking out the shadow-zone}
+\end{center}
+\label{tab:flatfields}
+\end{table}
 
 
 \begin{figure}[ht] 

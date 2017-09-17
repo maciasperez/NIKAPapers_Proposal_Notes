@@ -8,7 +8,7 @@
 %\includegraphics[clip, angle=0, scale =
 %  0.5]{Figures/NEFD_HLS091828_20170226s415_FXDC0C1_GaussPhot.png}
 \includegraphics[clip, angle=0, scale = 0.5]{Figures/nefd_mpfit_HLS091828.eps}
-\caption{Kids Xcalib with fixed fwhm 12.5 and 18.5, HLS091828.}
+\caption{Kids Xcalib with fixed fwhm 12.5 and 18.5, \hls.}
 \label{fig:nefd_vs_t}
 \end{center}
 \end{figure}
@@ -17,19 +17,46 @@
 XX\% valid pixels, and with these pixels, we have an NEFD of YY. We should not
 discard some fraction of our pixels and estimate an NEFD on this subset.}\\
 
-HLS091828 is moderately faint source, expected to be below 100~mJy at 1mm and
+\hls is moderately faint source, expected to be below 100~mJy at 1mm and
 XX~mJy at 2mm {\bf check values in NIKA1 paper + use SED for predictions in
   NIKA2's bands}. This source was chosen for its flux and its availability during
 Run9 for long integration. It has been observed for XX hours in total over three
 nights.
 
 
+\subsection{Observations}
+
+As part of the NIKA2 Science Verification that took place in February 2017, we
+observed an area of 185~arcmin$^2$, centered on \hls, (a lensed dusty galaxy at
+z=5.24 \cite{combes2012}) during about 9~hours. The scans were 8x5~arcmin$^2$,
+alternatively oriented in (ra,dec), (dec,ra), (az,el), (el,az). This leads to
+the coverage presented on Fig.~\ref{fig:hls_cov} and effective integration times
+on \hls\ of $\sim 2.4$\,hours at 2\,mm and $\sim 1.7$\,hours at 1.2\,mm (the difference comes from
+the different density of detectors across the field of view for the two
+bands). This allowed us to reach $1\sigma$ sensitivities of about 0.3~mJy at
+1.2\,mm and 0.1~mJy at 2\,mm on \hls. {\bf the integration time is derived as follows:}
+
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[clip, angle=0, scale = 0.30]{Figures/hls_sensit_1mm.eps}
+\includegraphics[clip, angle=0, scale = 0.30]{Figures/hls_sensit_2mm.eps}
+\caption{Sensitivity per beam in mJy at 1 and 2mm}
+\label{fig:hls_cov}
+\end{center}
+\end{figure}
+
+
 \subsection{Data processing}
 
-The data were decorrelated using the XXX method... The scans have been combined
-with standard inverse noise weighting. The noise in each map pixel is derived
-from the rms of the background corrected for the number of observations per
-pixel.
+The data were decorrelated using the {\tt common-monde-one-block} method
+(cf.~\ref{se:cm1blck}), masking a disk of 60~arcsec radius centered \hls.  The
+scans have been combined with standard inverse noise weighting. The noise in
+each map pixel is derived from the rms of the background corrected by the
+square root of the number of observations per pixel (N1). If the noise was perfectly
+gaussian, the distribution of the map signal over this noise estimate would be a
+normalized gaussian. In practice, this leads to gaussians that 1.6 and 1.5
+larger. We therefore increase our noise estimate (N1) by these factors to derive
+our final estimates.
 
 \subsection{NEFD Methods 1 and 2: deep integration}
 These data can be used to derive the NEFD in several ways. One is to fit the
@@ -62,10 +89,10 @@ A1 \& A3 & $28.5$ mJy.s$^{-0.53}$ & $23.6$ mJy.s$^{1/2}$ & 22.4 mJy.s$^{1/2}$ & 
 \end{tabular}
 \label{tab:nefd}
 \end{table}
-       33.325263       5.2024647
-       28.397230       4.5723151
-       21.143376       4.1538804
-       5.7628233       3.3094792
+%       33.325263       5.2024647
+%       28.397230       4.5723151
+%       21.143376       4.1538804
+%       5.7628233       3.3094792
 
 
 \begin{figure}

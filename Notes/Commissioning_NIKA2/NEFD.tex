@@ -3,22 +3,22 @@
 %%      SECTION: SENSITIVITY
 %%
 
-\begin{figure}[htpb]
-\begin{center}
-%\includegraphics[clip, angle=0, scale =
-%  0.5]{Figures/NEFD_HLS091828_20170226s415_FXDC0C1_GaussPhot.png}
-%\includegraphics[clip, angle=0, scale = 0.5]{Figures/nefd_mpfit_HLS091828.eps}
-\includegraphics[clip, angle=0, scale = 0.4]{Figures/HLS_fit.eps}
-\includegraphics[clip, angle=0, scale = 0.4]{Figures/HLS_residuals.eps}
-\caption{Sensitivity on \hls\ vs time of integration. Two power laws are fit:
-  one with fixed slope $t^{1/2}$ that provides the estimate of the NEFD, one
-  with a free slope $t^\beta$ to monitor the departure of noise integration from
-  the canonical $t^{1/2}$. These data come from the integration on \hls\ during
-  Run9. The difference between the 1 and 2~mm integration time comes from the
-  density of KIDs in the FOV.}
-\label{fig:nefd_vs_t}
-\end{center}
-\end{figure}
+%% \begin{figure}[htpb]
+%% \begin{center}
+%% %\includegraphics[clip, angle=0, scale =
+%% %  0.5]{Figures/NEFD_HLS091828_20170226s415_FXDC0C1_GaussPhot.png}
+%% %\includegraphics[clip, angle=0, scale = 0.5]{Figures/nefd_mpfit_HLS091828.eps}
+%% \includegraphics[clip, angle=0, scale = 0.4]{Figures/HLS_fit.eps}
+%% \includegraphics[clip, angle=0, scale = 0.4]{Figures/HLS_residuals.eps}
+%% \caption{Sensitivity on \hls\ vs time of integration. Two power laws are fit:
+%%   one with fixed slope $t^{1/2}$ that provides the estimate of the NEFD, one
+%%   with a free slope $t^\beta$ to monitor the departure of noise integration from
+%%   the canonical $t^{1/2}$. These data come from the integration on \hls\ during
+%%   Run9. The difference between the 1 and 2~mm integration time comes from the
+%%   density of KIDs in the FOV.}
+%% \label{fig:nefd_vs_t}
+%% \end{center}
+%% \end{figure}
 
 {\bf The specs/goals ``NEFD on X \% of pixels'' should be understood as : we have
 XX\% valid pixels, and with these pixels, we have an NEFD of YY. We should not
@@ -36,23 +36,25 @@ nights.
 As part of the NIKA2 Science Verification that took place in February 2017, we
 observed an area of 185~arcmin$^2$, centered on \hls, (a lensed dusty galaxy at
 z=5.24 \cite{combes2012}) during about 9~hours. The scans were 8x5~arcmin$^2$,
-alternatively oriented in (ra,dec), (dec,ra), (az,el), (el,az). This leads to
-the coverage presented on Fig.~\ref{fig:hls_cov} and effective integration times
-on \hls\ of $\sim 2.4$\,hours at 2\,mm and $\sim 1.7$\,hours at 1.2\,mm (the
-difference comes from the different density of detectors across the field of
-view for the two bands). This allowed us to reach $1\sigma$ sensitivities of
-about 0.3~mJy at 1.2\,mm and 0.1~mJy at 2\,mm on \hls. The integration time
-$t_p$ in a map pixel of size $r\times r$~arcsec$^2$ is given by the number of hits in
-this pixel $N_p$, divided by the sampling frequency $\nu$. This estimate is not
-the time $t_{obs}$ that enters the definition of the NEFD and which is the time
-spent by the matrix ``overall'' on the region where we give the
-sensitivity. Indeed, we must account for the density of KIDs in the focal plane
-compared to the map resolution : assume there are two KIDs per map pixel, then
-$t_p = 2 t_{obs}$. A contrario, if the KIDs are sparsely distributed accross the
-focal plane, some map pixels are empty while they are physically covered by the
-FOV. Let's call $g$ the spacing between KIDs in arcsec in the FOV, and note
-$t_{obs}$ the total time that a matrix spends on the same position of the
-sky. The total number of samples, accross the whole FOV is:
+alternatively oriented in (ra,dec), (dec,ra), (az,el), (el,az).\\
+
+The MoU defines the NEFD:  \emph{The Noise Equivalent Flux Density (NEFD)
+  is the $1\,\sigma$ sensitivity in one second of effective on-source telescope
+  integration time after the absolute calibration has been performed (i.e. after
+  beam efficiency and opacity corrections). It is appropriate for 2 mm of
+  precipitable water vapor (pwv) content in the atmosphere and 60 degrees
+  elevation source. It refers to the inverse variance of the noise on the flux
+  measurement of a point-source, averaged over the valid receiver pixels}.
+
+The definition of the time of integration is understood as the total time that
+the source spends at a distance from the center of the FOV that is less than the
+FOV radius, provided the FOV is circular and evenly populated by pixels. Let us
+denote this estimate $t_{geom}$.
+
+Another way to derive the time of integration uses the number of samples
+involved in the projection. During a time of integration $t_{obs}$ when the
+matrix remains fixed, the total number of samples, accross the whole FOV
+is:
 
 \begin{equation}
 N_h^{tot} = N_k t_{obs} \nu \,,
@@ -103,15 +105,145 @@ t_{obs}^{1mm} =
 \label{eq:t_obs_1mm}
 \end{equation}
 
-In the ideal case where both matrices are full and superposed on the sky,
-$\eta_1=\eta_3$, $N_p^{A1}=N_p^{A3}$ and naturally, $t_{obs}^{1mm} =
-t_{obs}^{A1} = t_{obs}^{A3}$.
+Both estimates of this time of integration are presented on
+Fig.~\ref{fig:time_of_integration} these scans on \hls, together with schemes of
+the FOV footprint and scan pattern on top of a typical scan. Values on these
+plots show that $t_{geom}$ and $t_{obs}$ are in good agreement, hence validating
+the above reasoning.\\
 
-One way to check this algebra is to compare the estimation of $t_{obs}$ given by
-Eq.~(\ref{eq:t_obs}) and (\ref{eq:t_obs_1mm}) to the one we can derive from pure
-geometrical considerations: the matrix is ``on-source'' when the source is at a
-distance from the FOV center that is less than
-$R_{FOV}$. Fig.~\ref{fig:hls_integ_time_map} illustrates this on one scan of \hls.
+\begin{figure}[htpb]
+\begin{center}
+\includegraphics[clip, angle=0, scale = 0.4]{Figures/HLS_time_of_integration.eps}
+\includegraphics[clip, angle=0, scale = 0.4]{Figures/HLS_array_eff.eps}
+\includegraphics[clip, angle=0, scale = 0.4]{Figures/HLS_source_coverage.png}
+\caption{time of integration on the source, valid kids/nominal number of kids in
+the FOV, scan pattern and footprint of the FOV.}
+\label{fig:time_of_integration}
+\end{center}
+\end{figure}
+
+The problem is now that in the version of the code that has been used so far,
+the time of integration on the source that was estimated was
+
+\begin{equation}
+t_{old} = \eta \frac{N_p}{\nu}\frac{g^2}{r^2} = \eta^2 t_{obs}
+\label{eq:t_old}
+\end{equation}
+
+The error on the measured flux remain unchanged, so
+
+\begin{equation}
+NEFD = \sigma \sqrt{t_{obs}} = NEFD_{old}/\eta\,.
+\end{equation}
+
+With $\eta$ of the order of 0.55 and 0.65, the new values of the NEFDs become
+respectively
+
+\begin{eqnarray}
+NEFD(A_1)    &\simeq& 65 - 91   \;{\rm mJy.s^{1/2}}\nonumber \\
+NEFD(A_2)    &\simeq& 8.6 - 14  \;{\rm mJy.s^{1/2}}\nonumber \\
+NEFD(A_3)    &\simeq& 58.2 - 71 \;{\rm mJy.s^{1/2}}\nonumber \\
+NEFD(A1\&A3) &\simeq& 40 - 60   \;{\rm mJy.s^{1/2}}\nonumber
+\end{eqnarray}
+
+the first value is that scaled from the previous ones in the doc, the second one
+is one i've seen this afternoon while re-reunning the analysis, but this value
+fluctuates, so i *hope* it is not that bad. Still, even the first values are out
+of bounds at 1mm.\\
+
+The next point I want to mention here is that it was advocated at some point to
+take $NEFD = \sigma \sqrt{t_{obs}\eta}$. This definition means that we estimate
+the NEFD of a matrix that would be full of KIDS like those used for this
+measure. Such a full matrix would indeed give the same sensitivity in a shorter
+time of observation. However, this is not the definition of the NEFD adopted in
+the MoU. The MoU definition does not concern the detector performances but the
+effective sensitivity of the matrix as it is. So I don't think that we can
+correct for an extra $\sqrt{\eta}$, unfortunately.
+
+
+
+
+
+\newpage
+
+
+
+%%This leads to
+%%the coverage presented on Fig.~\ref{fig:hls_cov} and effective integration times
+%%on \hls\ of $\sim 2.4$\,hours at 2\,mm and $\sim 1.7$\,hours at 1.2\,mm (the
+%%difference comes from the different density of detectors across the field of
+%%view for the two bands). This allowed us to reach $1\sigma$ sensitivities of
+%%about 0.3~mJy at 1.2\,mm and 0.1~mJy at 2\,mm on \hls. The integration time
+%%$t_p$ in a map pixel of size $r\times r$~arcsec$^2$ is given by the number of hits in
+%%this pixel $N_p$, divided by the sampling frequency $\nu$. This estimate is not
+%%the time $t_{obs}$ that enters the definition of the NEFD and which is the time
+%%spent by the matrix ``overall'' on the region where we give the
+%%sensitivity. Indeed, we must account for the density of KIDs in the focal plane
+%%compared to the map resolution : assume there are two KIDs per map pixel, then
+%%$t_p = 2 t_{obs}$. A contrario, if the KIDs are sparsely distributed accross the
+%%focal plane, some map pixels are empty while they are physically covered by the
+%%FOV. Let's call $g$ the spacing between KIDs in arcsec in the FOV, and note
+%%$t_{obs}$ the total time that a matrix spends on the same position of the
+%%sky. The total number of samples, accross the whole FOV is:
+%%
+%%\begin{equation}
+%%N_h^{tot} = N_k t_{obs} \nu \,,
+%%\end{equation}
+%%
+%%\noindent where $N_k$ is the number of valid kids and $\nu$ is the sampling frequency. The
+%%total number of KIDs accross the FOV, if the matrix is full is
+%%
+%%\begin{equation}
+%%N_k^{full} = \pi R_{FOV}^2/g^2\, ,
+%%\end{equation}
+%%
+%%\noindent and we define $\eta = N_k/N_k^{full}$ as the fraction of valid kids. The number
+%%of map pixel at resolution $r$ covered by the FOV is
+%%
+%%\begin{equation}
+%%N_{pix} = \pi R_{FOV}^2/r^2\, .
+%%\end{equation}
+%%
+%%Thus, the number of hits per map pixel is:
+%%
+%%\begin{eqnarray}
+%%N_p &=& N_h^{tot}/N_{pix}\,, \nonumber\\
+%% &=& \frac{\eta N_k^{full} t_{obs} \nu}{N_{pix}}\,, \nonumber\\
+%%&=& \eta t_{obs}\nu \frac{\pi R_{FOV}^2/g^2}{\pi R_{FOV}^2/r^2}\,, \nonumber\\
+%%&=& \eta t_{obs}\nu \frac{r^2}{g^2}\,, \nonumber
+%%\end{eqnarray}
+%%
+%%so finally
+%%
+%%\begin{equation}
+%%t_{obs} = \frac{1}{\eta}\frac{N_p}{\nu}\frac{g^2}{r^2}
+%%\label{eq:t_obs}
+%%\end{equation}
+%%
+%%In the case of the combined 1~mm signal, the time spent in a pixel is simply
+%%
+%%\begin{eqnarray}
+%%t_p &=& t_p^{A1} + t_p^{A3}\,, \nonumber\\
+%%&=&\eta_1 t_{obs}\nu \frac{r^2}{g_1^2} + \eta_3 t_{obs}\nu \frac{r^2}{g_3^2}\,, \nonumber
+%%\end{eqnarray}
+%%
+%%thus
+%%
+%%\begin{equation}
+%%t_{obs}^{1mm} =
+%%\frac{g^2}{r^2}\frac{1}{\eta_1+\eta_3}\frac{N_p^{A1}+N_p^{A3}}{\nu}\,.
+%%\label{eq:t_obs_1mm}
+%%\end{equation}
+%%
+%%In the ideal case where both matrices are full and superposed on the sky,
+%%$\eta_1=\eta_3$, $N_p^{A1}=N_p^{A3}$ and naturally, $t_{obs}^{1mm} =
+%%t_{obs}^{A1} = t_{obs}^{A3}$.
+%%
+%%One way to check this algebra is to compare the estimation of $t_{obs}$ given by
+%%Eq.~(\ref{eq:t_obs}) and (\ref{eq:t_obs_1mm}) to the one we can derive from pure
+%%geometrical considerations: the matrix is ``on-source'' when the source is at a
+%%distance from the FOV center that is less than
+%%$R_{FOV}$. Fig.~\ref{fig:hls_integ_time_map} illustrates this on one scan of \hls.
 
 
 %% 
@@ -122,14 +254,14 @@ $R_{FOV}$. Fig.~\ref{fig:hls_integ_time_map} illustrates this on one scan of \hl
 %% &=&t_p \frac{g^2}{r^2}
 %% \end{eqnarray}
 
-\begin{figure}[htbp]
-\begin{center}
-\includegraphics[clip, angle=0, scale = 0.30]{Figures/hls_sensit_1mm_log.eps}
-\includegraphics[clip, angle=0, scale = 0.30]{Figures/hls_sensit_2mm_log.eps}
-\caption{Sensitivity per beam in mJy at 1 and 2mm}
-\label{fig:hls_cov}
-\end{center}
-\end{figure}
+%%\begin{figure}[htbp]
+%%\begin{center}
+%%\includegraphics[clip, angle=0, scale = 0.30]{Figures/hls_sensit_1mm_log.eps}
+%%\includegraphics[clip, angle=0, scale = 0.30]{Figures/hls_sensit_2mm_log.eps}
+%%\caption{Sensitivity per beam in mJy at 1 and 2mm}
+%%\label{fig:hls_cov}
+%%\end{center}
+%%\end{figure}
 
 
 \subsection{Data processing}

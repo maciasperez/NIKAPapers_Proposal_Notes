@@ -42,8 +42,7 @@ on \hls\ of $\sim 2.4$\,hours at 2\,mm and $\sim 1.7$\,hours at 1.2\,mm (the
 difference comes from the different density of detectors across the field of
 view for the two bands). This allowed us to reach $1\sigma$ sensitivities of
 about 0.3~mJy at 1.2\,mm and 0.1~mJy at 2\,mm on \hls. The integration time
-$t_p$ in a
-map pixel of size $r\times r$~arcsec$^2$ is given by the number of hits in
+$t_p$ in a map pixel of size $r\times r$~arcsec$^2$ is given by the number of hits in
 this pixel $N_p$, divided by the sampling frequency $\nu$. This estimate is not
 the time $t_{obs}$ that enters the definition of the NEFD and which is the time
 spent by the matrix ``overall'' on the region where we give the
@@ -51,14 +50,77 @@ sensitivity. Indeed, we must account for the density of KIDs in the focal plane
 compared to the map resolution : assume there are two KIDs per map pixel, then
 $t_p = 2 t_{obs}$. A contrario, if the KIDs are sparsely distributed accross the
 focal plane, some map pixels are empty while they are physically covered by the
-FOV. Let's call $g$ the spacing between KIDs in arcsec in the FOV, we thus have:
+FOV. Let's call $g$ the spacing between KIDs in arcsec in the FOV, and note
+$t_{obs}$ the total time that a matrix spends on the same position of the
+sky. The total number of samples, accross the whole FOV is:
+
+\begin{equation}
+N_h^{tot} = N_k t_{obs} \nu \,,
+\end{equation}
+
+\noindent where $N_k$ is the number of valid kids and $\nu$ is the sampling frequency. The
+total number of KIDs accross the FOV, if the matrix is full is
+
+\begin{equation}
+N_k^{full} = \pi R_{FOV}^2/g^2\, ,
+\end{equation}
+
+\noindent and we define $\eta = N_k/N_k^{full}$ as the fraction of valid kids. The number
+of map pixel at resolution $r$ covered by the FOV is
+
+\begin{equation}
+N_{pix} = \pi R_{FOV}^2/r^2\, .
+\end{equation}
+
+Thus, the number of hits per map pixel is:
 
 \begin{eqnarray}
-t_{obs} &=& \frac{t_p}{N_{kids\,per\,pix}} \nonumber\\
-&=& \frac{t_p}{N_{kids}/N_{pix}} \nonumber\\
-&=& \frac{t_p\pi R_{FOV}^2/r^2}{\pi R_{FOV}^2/g^2} \nonumber\\
-&=&t_p \frac{g^2}{r^2}
+N_p &=& N_h^{tot}/N_{pix}\,, \nonumber\\
+ &=& \frac{\eta N_k^{full} t_{obs} \nu}{N_{pix}}\,, \nonumber\\
+&=& \eta t_{obs}\nu \frac{\pi R_{FOV}^2/g^2}{\pi R_{FOV}^2/r^2}\,, \nonumber\\
+&=& \eta t_{obs}\nu \frac{r^2}{g^2}\,, \nonumber
 \end{eqnarray}
+
+so finally
+
+\begin{equation}
+t_{obs} = \frac{1}{\eta}\frac{N_p}{\nu}\frac{g^2}{r^2}
+\label{eq:t_obs}
+\end{equation}
+
+In the case of the combined 1~mm signal, the time spent in a pixel is simply
+
+\begin{eqnarray}
+t_p &=& t_p^{A1} + t_p^{A3}\,, \nonumber\\
+&=&\eta_1 t_{obs}\nu \frac{r^2}{g_1^2} + \eta_3 t_{obs}\nu \frac{r^2}{g_3^2}\,, \nonumber
+\end{eqnarray}
+
+thus
+
+\begin{equation}
+t_{obs}^{1mm} =
+\frac{g^2}{r^2}\frac{1}{\eta_1+\eta_3}\frac{N_p^{A1}+N_p^{A3}}{\nu}\,.
+\label{eq:t_obs_1mm}
+\end{equation}
+
+In the ideal case where both matrices are full and superposed on the sky,
+$\eta_1=\eta_3$, $N_p^{A1}=N_p^{A3}$ and naturally, $t_{obs}^{1mm} =
+t_{obs}^{A1} = t_{obs}^{A3}$.
+
+One way to check this algebra is to compare the estimation of $t_{obs}$ given by
+Eq.~(\ref{eq:t_obs}) and (\ref{eq:t_obs_1mm}) to the one we can derive from pure
+geometrical considerations: the matrix is ``on-source'' when the source is at a
+distance from the FOV center that is less than
+$R_{FOV}$. Fig.~\ref{fig:hls_integ_time_map} illustrates this on one scan of \hls.
+
+
+%% 
+%% \begin{eqnarray}
+%% t_{obs} &=& \frac{t_p}{N_{kids\,per\,pix}} \nonumber\\
+%% &=& \frac{t_p}{N_{kids}/N_{pix}} \nonumber\\
+%% &=& \frac{t_p\pi R_{FOV}^2/r^2}{\pi R_{FOV}^2/g^2} \nonumber\\
+%% &=&t_p \frac{g^2}{r^2}
+%% \end{eqnarray}
 
 \begin{figure}[htbp]
 \begin{center}

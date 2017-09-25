@@ -122,43 +122,57 @@ the FOV, scan pattern and footprint of the FOV.}
 \end{center}
 \end{figure}
 
-The problem is now that in the version of the code that has been used so far,
-the time of integration on the source that was estimated was
-
-\begin{equation}
-t_{old} = \eta \frac{N_p}{\nu}\frac{g^2}{r^2} = \eta^2 t_{obs}
-\label{eq:t_old}
-\end{equation}
-
-The error on the measured flux remain unchanged, so
-
-\begin{equation}
-NEFD = \sigma \sqrt{t_{obs}} = NEFD_{old}/\eta\,.
-\end{equation}
-
-With $\eta$ of the order of 0.55 and 0.65, the new values of the NEFDs become
-respectively
+Let us now use this definition to compute the NEFD. The definition of the MoU is
+that of a full matrix. This is why the specficiation, with 50\% of valid KIDs, is
+less stringent than the goal, with 90\% of valid KIDs. If $\sigma$ is the
+sensitivity that we have on the source after integrating $t_{obs}$, then
 
 \begin{eqnarray}
-NEFD(A_1)    &\simeq& 65 - 91   \;{\rm mJy.s^{1/2}}\nonumber \\
-NEFD(A_2)    &\simeq& 8.6 - 14  \;{\rm mJy.s^{1/2}}\nonumber \\
-NEFD(A_3)    &\simeq& 58.2 - 71 \;{\rm mJy.s^{1/2}}\nonumber \\
-NEFD(A1\&A3) &\simeq& 40 - 60   \;{\rm mJy.s^{1/2}}\nonumber
+NEFD_{meas} &=& \sigma\sqrt{t_{obs}} \label{eq:nefd_meas_def}\\
+NEFD_{MOU}  &=& NEFD_{meas}\sqrt{\eta} \label{eq:nefd_full_def}
 \end{eqnarray}
 
-the first value is that scaled from the previous ones in the doc, the second one
-is one i've seen this afternoon while re-reunning the analysis, but this value
-fluctuates, so i *hope* it is not that bad. Still, even the first values are out
-of bounds at 1mm.\\
+Table~\ref{tab:nefd} summarizes our results on \hls.
 
-The next point I want to mention here is that it was advocated at some point to
-take $NEFD = \sigma \sqrt{t_{obs}\eta}$. This definition means that we estimate
-the NEFD of a matrix that would be full of KIDS like those used for this
-measure. Such a full matrix would indeed give the same sensitivity in a shorter
-time of observation. However, this is not the definition of the NEFD adopted in
-the MoU. The MoU definition does not concern the detector performances but the
-effective sensitivity of the matrix as it is. So I don't think that we can
-correct for an extra $\sqrt{\eta}$, unfortunately.
+
+
+%% The problem is now that in the version of the code that has been used so far,
+%% the time of integration on the source that was estimated was
+%% 
+%% \begin{equation}
+%% t_{old} = \eta \frac{N_p}{\nu}\frac{g^2}{r^2} = \eta^2 t_{obs}
+%% \label{eq:t_old}
+%% \end{equation}
+%% 
+%% The error on the measured flux remain unchanged, so
+%% 
+%% \begin{equation}
+%% NEFD = \sigma \sqrt{t_{obs}} = NEFD_{old}/\eta\,.
+%% \end{equation}
+%% 
+%% With $\eta$ of the order of 0.55 and 0.65, the new values of the NEFDs become
+%% respectively
+%% 
+%% \begin{eqnarray}
+%% NEFD(A_1)    &\simeq& 65 - 91   \;{\rm mJy.s^{1/2}}\nonumber \\
+%% NEFD(A_2)    &\simeq& 8.6 - 14  \;{\rm mJy.s^{1/2}}\nonumber \\
+%% NEFD(A_3)    &\simeq& 58.2 - 71 \;{\rm mJy.s^{1/2}}\nonumber \\
+%% NEFD(A1\&A3) &\simeq& 40 - 60   \;{\rm mJy.s^{1/2}}\nonumber
+%% \end{eqnarray}
+%% 
+%% the first value is that scaled from the previous ones in the doc, the second one
+%% is one i've seen this afternoon while re-reunning the analysis, but this value
+%% fluctuates, so i *hope* it is not that bad. Still, even the first values are out
+%% of bounds at 1mm.\\
+%% 
+%% The next point I want to mention here is that it was advocated at some point to
+%% take $NEFD = \sigma \sqrt{t_{obs}\eta}$. This definition means that we estimate
+%% the NEFD of a matrix that would be full of KIDS like those used for this
+%% measure. Such a full matrix would indeed give the same sensitivity in a shorter
+%% time of observation. However, this is not the definition of the NEFD adopted in
+%% the MoU. The MoU definition does not concern the detector performances but the
+%% effective sensitivity of the matrix as it is. So I don't think that we can
+%% correct for an extra $\sqrt{\eta}$, unfortunately.
 
 
 

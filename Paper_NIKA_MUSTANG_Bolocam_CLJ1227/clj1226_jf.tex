@@ -198,7 +198,7 @@ with a fairly canonical set of parameters coming from \citet{arnaud2010} (Hereaf
 clusters.
 Recently, several SZ studies have reconstructed non-parametric pressure profiles either through a maximum-likelihood approach
 \citep[e.g.][]{ruppin2017,sayers2013} or deprojection of their data \citep[e.g.][]{basu2010,sayers2011}. The method employed in this
-paper is a maximum likelihood approach, where the principle difference is our employment of analytic integrals.
+paper is a maximimizes the marginalized posterior distribution, where the principle difference is our employment of analytic integrals.
 
 Galaxy cluster formation is understood currently in the framework of hierarchical structure formation\citep[e.g.][]{press1974}.
 While remarkable that a simple self-similar treatment of clusters \citep{kaiser1986} should describe the broad population of
@@ -284,7 +284,7 @@ of CLJ 1227 exhibits signs of merger activity, while the outskirts appear relaxe
 Given the relative circular symmetry of CLJ 1227, it provides a suitable test for determining a non-parametric pressure
 profile of the cluster, while maintaining the assumption of spherical symmetry. For the centroid, we adopt the X-ray
 centroid from ACCEPT \citep{cavagnolo2009} is at [RA,Dec] = [12:26:57.9,+33:32:49] (J2000).
-From X-ray data, \citet{mantz2010b} determined a scale radius $R_{500} = 1000 \pm 50$ kpc, which corresponds to
+From X-ray data, \citet{mantz2010b} determined a scale radius $R_{500} = 1000 \pm 50$ kpc \textbf{($126$\asecs$\pm8$\asec)}, which corresponds to
 $M_{500} = (7.8 \pm 1.1) \times 10^{14} M_{\odot}$. In the following, we summarize how the data, which are used in this study,
 were produced in previous studies. In Table~\ref{tbl:cluster_obs}, we summarize the angular scales probed by the instruments
 and the overall depth of observations.
@@ -295,8 +295,8 @@ and the overall depth of observations.
   \includegraphics[width=0.33\textwidth]{NIKA_ml_deproj_figs/MUSTANG_image_and_SNR_contours_cbar.eps}
   \includegraphics[width=0.33\textwidth]{NIKA_ml_deproj_figs/NIKA_image_and_SNR_contours_cbar.eps}
   \includegraphics[width=0.33\textwidth]{NIKA_ml_deproj_figs/BOLOCAM_image_and_SNR_contours_cbar.eps}
-  \caption{Left: MUSTANG map, smoothed by a 10\asecs FWHM kernel; Middle: NIKA (2mm) map smoothed by a 10\asecs FWHM kernel;
-    Right: Bolocam map smoothed by a 60\asecs FWHM kernel. In all three panels, the red contours are those
+  \caption{Left: MUSTANG map, smoothed by a 9\asecs FWHM kernel; Middle: NIKA (2mm) map smoothed by a 18\asecs FWHM kernel;
+    Right: Bolocam map smoothed by a 58\asecs FWHM kernel. In all three panels, the red contours are those
     of MUSTANG, magenta contours of those of NIKA, and white contours are those of Bolocam. For MUSTANG and Bolocam, the contours
     start at $(-)2\sigma$, with $1\sigma$ increments. For NIKA, the contours start at $(-)3\sigma$ with $2\sigma$ increments.
     The point source identified in \citet{adam2015} is subtracted in the MUSTANG
@@ -472,7 +472,11 @@ The reduction and calibration is similar to that used for MUSTANG, and Bolocam a
 As in \citet{adam2015}, we wish to include constraints on still larger scales than reached with the aforementioned instruments,
 and therefore we include in this analysis the integrated Compton parameter of the cluster as measured using Planck data.
 We use the Planck frequency maps from 143 to 857~GHz to produce a Compton parameter map as described in \citet{hurier2013} and
-\citet{planck2013ymap,planck2016_tsz}. The resolution of this map is 7.5$^{\prime}$, limited by the lowest frequency Planck channel
+\citet{planck2013ymap,planck2016_tsz}. \textbf{These maps take into account known spectral dependencies and are able to estimate non-SZ
+  signal from the higher frequencies. The impact of the observed point source would be greatest at 353 GHz, where, with an extrapolated
+  flux density, 
+  two orders of magnitude below the equivalent integrated compton y parameter.}
+The resolution of this map is 7.5$^{\prime}$, limited by the lowest frequency Planck channel
 map used in the reconstruction. Using this map we compute the integrated Compton parameter up to a radial distance of 15$^{\prime}$
 %with respect to the center of the cluster.
 Uncertainties in the integrated Compton parameter are computed by integrating at random positions
@@ -483,7 +487,7 @@ obtained as described in \citet{planck2013ymap,planck2016_tsz}. We find $Y_{Cyl,
 %%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Non-parametric Pressure Profile Reconstruction via a Maximum Likelihood Analysis}
+\section{Non-parametric Pressure Profile Reconstruction via a Maximum Posterior Distribution Analysis}
 \label{sec:ml_deproj}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -507,8 +511,8 @@ procedure is described in Section~\ref{sec:fitting}, and we review the performed
 A point source at $4.6\sigma$ significance ($\sim 0.5$ mJy) in MUSTANG was reported in \citet{korngut2011}, but is not
 evident in the MUSTANG data as reprocessed in \citet{romero2017}. A short VLA filler observation (VLA-12A-340, D-array, at 7 GHz)
 was performed to follow up this potential source (at RA 12:26:58.0 and Dec +33:32:59), but to a limit of $\sim 50 {\rm \mu Jy}$ nothing
-is seen\citep{romero2017}. At 500 $\mu$m, \emph{Herschel}-SPIRE has a point source sensitivity of $\sim 8$ mJy,
-and therefore does not truly constrain a potential point source at this location.
+is seen \citep{romero2017}. At 500 $\mu$m, \emph{Herschel}-SPIRE has a point source sensitivity of $\sim 8$ mJy, but no point
+source is evident at the above location.
 
 %In addition, \citet{adam2015} find a point source at RA 12:27:00.01 and Dec +33:32:42 with a flux density of 
 \citet{adam2015} find a point source at a different location, RA 12:26:59.855 and Dec +33:32:35.21, with a flux density of 
@@ -569,7 +573,8 @@ quantity is finite.
 
 We note that for a non-rotating, spherical object in hydrostatic equilibrium (HSE) under entirely thermal pressure
 support, the power law should be
-limited to $\alpha >4$ in order to avoid having infinite mass (see Appendix~\ref{sec:finite_mass}).
+limited to $\alpha >4$ in order to avoid having infinite mass (see Appendix~\ref{sec:finite_mass}). While we recognize
+this limit here, during fitting we only enforce $\alpha > 1$.
 
 %Our first bin covers the range $0 < r < R_1$; our second bin covers $R_1 < r < R_2$, and our last ($n$th) bin covers
 %$R_{n-1} < r $, i.e. it extends to infinity. A finite radius $R_n$ is defined, and is used to determine the power
@@ -612,7 +617,7 @@ of 2\amin, 4\amin, and 13.33\amin respectively.
 \label{sec:fitting}
 
 %\textcolor{red}{I need to review emcee and Matt's write-up.}
-We employ a maximum likelihood algorithm, and take our noise to be Gaussian.
+We employ a maximum posterior distribution algorithm, and take our noise to be Gaussian.
 % such that our likelihood is given by:
 %\begin{equation}
 %  \mathcal{L} \propto e^{-\chi^2 / 2} 
@@ -655,10 +660,12 @@ from Planck data \citep{planck2014} as discussed in Section~\ref{sec:picp}.
 In particular, we take the prior $Y_{cyl}(15$\amin$) = (0.94 \pm 0.36) \times 10^{-3} \text{arcmin}^2$.
 
 We employ the described probability function in a python Markov Chain Monte Carlo (MCMC) package, emcee \citep{foreman2013}.
-This MCMC package makes use of a variant of a Metropolis-Hastings (MH) algorithm, in particular the ensemble sampling algorithm is
-affine-invariant \citep{goodman2010}. The use of ensemble sampling, as opposed to a canonical single-point sampling, contributes
-to the notable advantage of this algorithm (within emcee) having a much shorter autocorrelation time than a standard MH algorithm.
-Furthermore, the computationally expensive part of drawing a new walker has been parallelized.
+It provides fairly accessible implementation and parallelized sampling. 
+
+%This MCMC package makes use of a variant of a Metropolis-Hastings (MH) algorithm, in particular the ensemble sampling algorithm is
+%affine-invariant \citep{goodman2010}. The use of ensemble sampling, as opposed to a canonical single-point sampling, contributes
+%to the notable advantage of this algorithm (within emcee) having a much shorter autocorrelation time than a standard MH algorithm.
+%Furthermore, the computationally expensive part of drawing a new walker has been parallelized.
 
 %\begin{figure}[!h]
 %  \centering
@@ -682,12 +689,22 @@ We perform initial tests to validate the number of bins chosen. The resolution (
 instruments (see Section~\ref{sec:np_models}) suggest that between 4 and 8 bins are appropriate.
 We cover this range, with fits run with 4, 6, and 8 bins with two model constructions. The first,
 as described in Section~\ref{sec:np_models}, and a second being uniform spherical pressure bins.
-We quantify the performance in terms of the logarithmic likelihoods ($\ln (\mathcal{L}) = -\chi^2 / 2$)
-of (1) the fit to fitted model maps to the mock observations, and (2) the fits of the non-parametric
-fits to the input pressure profile. In combination, we find that $\ln (\mathcal{L})$ typically varies
-by $<2$, and that 6 bins with the power law model perform best for MUSTANG and Bolocam, while 4 bins
-with the power law performs best for NIKA. We therefore adopt the 6-bin power law approach as our
-standard method of modeling the Compton y map.
+\textbf{F-tests on the posterior distributions do not indicate a preference in the number of bins used.
+We consider how well the recovered pressure profile matches the input gNFW pressure profile. To do so,
+we calculate $\chi^2$ of the fitted pressure profile relative to the input gNFW and find
+that the reduced $\chi^2$ is minimized when using 6 bins for MUSTANG and Bolocam. For NIKA, it is
+minimized at 8 bins, but this is likely influenced by the prior on the integrated Compton Y,
+which is only implemented on the NIKA data. A difference of $\chi^2$ test results in p-values for
+preferring 8 bins over 6 bins for MUSTANG, NIKA, and Bolocam are 0.015, 0.80, and 0.50. Except for
+MUSTANG, it appears that statistically there is not a significant preference. Given satisfactory
+fits with 6 bins for all instruments, and a preference from MUSTANG, we adopt 6 bins across the board.}
+
+%We quantify the performance in terms of the logarithmic likelihoods ($\ln (\mathcal{L}) = -\chi^2 / 2$)
+%of (1) the fit to fitted model maps to the mock observations, and (2) the fits of the non-parametric
+%fits to the input pressure profile. In combination, we find that $\ln (\mathcal{L})$ typically varies
+%by $<2$, and that 6 bins with the power law model perform best for MUSTANG and Bolocam, while 4 bins
+%with the power law performs best for NIKA. We therefore adopt the 6-bin power law approach as our
+%standard method of modeling the Compton y map.
 
 We further test the dependence of the fit results on initial guess of the pressure values, and find that this
 dependence is minimal. We change the input guesses by the
@@ -700,7 +717,8 @@ for all but the outer bins, which see dispersions less than 10\%.
 Finally, across the above suite of tests (number of bins, uniform or power law distribution within a bin, and
 initial guesses), we find that the outermost bins in MUSTANG and Bolocam are biased high, where for Bolocam,
 the second most outer bin is also biased high. We find that in the production of the models, this appears to arise
-with the application of the transfer functions of these instruments. As we define the outermost bin of our power
+with the application of the transfer functions of these instruments. In particular, with Bolocam, the transfer
+function produces artifacts at large radii ($r \gtrsim 1000$ kpc). As we define the outermost bin of our power
 law model to extend to infinity, truncating, or reducing the number of bins does not resolve this bias. Rather,
 we find it best to retain the bins in the map fitting procedure and to trim them in subsequent analyses. Therefore,
 in our analysis of real data, 6 bins are used within the fitting procedure, and we retain 5, 6, and 4 bins for
@@ -770,12 +788,9 @@ from \citet{romero2017}, and our output model is fit as prescribed in Section~\r
   \label{fig:nppps}
 \end{figure}
 
-Given the MUSTANG transfer function, we expect that the constraints beyond 42\asecs (radially) are negligible. Therefore,
-we exclude the outermost radial bin from further analysis.
-The Bolocam transfer function is provided as a two-dimensional transfer function. We find that the transfer function produces
-artifacts at large radii ($r \gtrsim 1000$ kpc) for all plausible cluster models. While we find it important to include these
-outer bins for the fitting procedure itself, we exclude the outer two bins from further analysis. The results, after these
-exclusions, are tabulated in Figure~\ref{fig:nppps} and shown in Table~\ref{tbl:nppp_res}.
+\textbf{As noted in the previous section, we trim the outer 1 and 2 bins in MUSTANG and Bolocam respectively from subsequent analysis.
+We trim these bins due to bias in the fits on simulated data. The results, shown in Figure~\ref{fig:nppps} are also tabulated
+in Table~\ref{tbl:nppp_res} with trimmed points in red.}
 %\input{table_nppp} % labelled as tbl:nppp_res
 \input{table_nppp_p16cosmo} % labelled as tbl:nppp_res
 
@@ -794,7 +809,8 @@ From the Monte Carlo chains of the non-parametric fits, we determine the covaria
 We show the correlation matrices in Figure~\ref{fig:corr_matrices}. We notice
 that any two adjacent bins are negatively correlated, and by extension, bins spaced 2 apart (e.g bins 1 and 3) are positively
 correlated. The maximum amplitude of off-diagonal correlations is 0.13, 0.05, and 0.05 for MUSTANG, NIKA, and Bolocam respectively.
-These are relatively small correlations, especially when contrasted with \citet{sayers2013}, for example.
+These are relatively small correlations, especially when contrasted with \citet{sayers2013}, \textbf{whose correlations (with 13 radial bins)
+appears to be over 0.5 for the some adjacent radial bins.}
 
 \begin{figure*}[h]
   \centering
@@ -856,7 +872,9 @@ covariance matrices from our non-parametric fits.
   \centering
 %  \includegraphics[width=0.5\textwidth]{NIKA_ml_deproj_figs/Real_Joint_gNFW_Real_11011111_2500S_500B_100W_contour.eps}
   \includegraphics[width=0.5\textwidth]{NIKA_ml_deproj_figs/Real_Joint_gNFW_Real_11011111_2500S_500B_100W_contour_p16cosmo.eps}
-  \caption{Parameter constraints for our gNFW model: $P_0$, $r_p$, $\gamma$, and $\beta$. Recall that $C_{500} = R_{500} / R_p$.}
+  \caption{Parameter constraints for our gNFW model: $P_0$, $r_p$, $\gamma$, and $\beta$. Recall that $C_{500} = R_{500} / R_p$.
+    \textbf{The dashed lines on the individual parameter histograms show 14th, 50th, and 86th percentiles. The contour plots of two
+    parameters have $1\sigma$, $2\sigma$, and $3\sigma$ contours.}}
   \label{fig:joint_constraints}
 \end{figure}
 %$206_{-43}^{+57}$ kpc
@@ -890,6 +908,8 @@ covariance matrices from our non-parametric fits.
 We find gNFW parameters of [$P_0$, $C_{500}$, $\beta$, and $\gamma$] =
 [$49.7_{-24.9}^{+22.4}$, $5.89_{-1.78}^{+1.94}$,$2.98_{-0.23}^{+0.28}$, and $0.23_{-0.17}^{+0.30}$].
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{We take our best-fit value as the 50th percentile in each marginalized parameter distribution.
+The error bars are calculated at the corresponding $1\sigma$ ($50 \pm 34$\%) percentiles.}
 The power law slope $\gamma$ is within the typical value range found in previous gNFW constraints
 \citep[e.g]{nagai2007,arnaud2010,sayers2013},
 on CLJ1226 as well as general cluster samples. However, our value of $\beta$ is less than expected;
@@ -951,11 +971,21 @@ NIKA has the strongest detection of the cluster and places the greatest constrai
 %\label{sec:prev_res}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%% ADD MORE DISCUSSION HERE!
+
 Our gNFW pressure profile fit shows a higher core pressure than that of other sample-averaged gNFW profiles
-(see Figure~\ref{fig:joint_pressure}). This is indicative of the cluster being a cool-core cluster \citepalias{arnaud2010}.
-However, X-ray data show that the core is relatively hot and is indicative of an ongoing merger \citep[][]{maughan2007}.
-With additional support from weak lensing \citep{jee2009a}, and their own AMI data, \citet{rumsey2016}
-propose that CLJ 1227 is the early stages of a head-on merger.
+(see Figure~\ref{fig:joint_pressure}). \textbf{Many sample-averaged profile studies have subdivided their
+  samples by dynamical state and find that cool-core clusters tend to have steeper inner pressure profiles
+  \citep[e.g.][]{arnaud2010,planck2013,sayers2013a,romero2017}, and therefore
+one might infer that CLJ1227 is also a core core cluster. However, X-ray data show that the core is relatively hot \textbf{(13 keV)}
+\citep{maughan2007}, thus highlighting that dynamical state is certainly not well established via a pressure profile alone.
+In an X-ray study of 80 South Pole Telescope (SPT) selected clusters, \citet{mcdonald2014} subdivided their sample into
+low- ($z < 0.6$) and high-($z > 0.6$) redshift clusters. Where CLJ 1227 is at $z=0.89$, its increased central pressure is
+counter to the trend found in \citet{mcdonald2014}.}
+
+\textbf{ \textcolor{red}{Add ACCEPT data to Figure~\ref{fig:joint_pressure}? If so:} We compare our parametric and non-parametric profiles to non-parametric profiles derived in ACCEPT \citep{cavagnolo2009}, a publicly available database of data products from \emph{Chandra} observations of galaxy clusters\footnote{\url{https://web.pa.msu.edu/astro/MC2/accept/}}. We agreement with their profile (Figure~\ref{fig:joint_pressure}). Specifically, in the core, the ACCEPT pressure profile rises above the ensemble averages of \citet{planck2013} and \citet{arnaud2010}, and slightly below our profile. Indeed, we can infer that CLJ1227 is a unique cluster, being among the most massive clusters at $z > 0.6$ \citep[e.g.][]{menanteau2012}.}
+
+\textbf{\citet{maughan2007} interpretred the hot ICM to be suggestive of a merger event. This interpretation is echoed in \citet{jee2009a}, whose lensing analysis supports a picture in which the dark matter distribution appears undisturbed on large scales, but shows a clear bimodaility in the central region, and conclude by postulating an early-stage head-on merger scenario. \citet{rumsey2016} support the early stage merger scenario primarily from the differences seen in scaling quantities ($Y_X$) between X-ray and SZ (AMI) data. In none of the SZ maps used in this analysis is there clear (significant) substructure which may be inferred to cause elevated pressure. This too is consistent with a merger being head-on.} 
 
 This merger scenario could still be consistent with our findings, as a merger affecting the central pressure should indeed
 increase the pressure there. Provided that the system is not in equilibrium, and in particular, that increased gas pressure
@@ -1038,6 +1068,7 @@ We acknowledge fundings from the ENIGMASS French LabEx (R. A. and F. R.),
 the CNES post-doctoral fellowship program (R. A.), the CNES doctoral fellowship program (A. R.) and 
 the FOCUS French LabEx doctoral fellowship program (A. R.).
 
+The authors would like to thank Marco de Petris for helpful comments on this manuscript.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%                       APPENDIX                              %%%%%%%%%%%%%%%%%%%%%%%%%%%

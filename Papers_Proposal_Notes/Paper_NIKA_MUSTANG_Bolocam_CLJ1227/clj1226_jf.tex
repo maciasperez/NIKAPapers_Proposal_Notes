@@ -884,11 +884,11 @@ covariance matrices from our non-parametric fits.
   \centering
 %  \includegraphics[width=0.5\textwidth]{NIKA_ml_deproj_figs/Real_Joint_gNFW_Real_11011111_2500S_500B_100W_gNFW_pressure.eps}
 %  \includegraphics[width=0.5\textwidth]{NIKA_ml_deproj_figs/Real_Joint_gNFW_Real_11011111_2500S_500B_100W_gNFW_pressure_w_NP_pts_v2.eps}
-  \includegraphics[width=0.5\textwidth]{NIKA_ml_deproj_figs/Real_Joint_gNFW_Power_Real_11011111_2500S_500B_100W_gNFW_pressure_w_NP_pts_v2_p16cosmo.eps}
+  \includegraphics[width=0.5\textwidth]{NIKA_ml_deproj_figs/Real_Joint_gNFW_Power_Real_11011111_2500S_500B_100W_gNFW_pressure_w_NP_pts_v2_p16cosmo_v2.eps}
 %    Real_Joint_gNFW_Real_11011111_2500S_500B_100W_pressure.eps
   \caption{The gNFW (parametric) pressure profile as simultaneously fit to the non-parametric pressure profiles.
-    The error bars are statistical, from the MCMC fits. The residual significances ($\sigma$), accounting for calibration errors, are plotted
-    in the lower panel.
+    The error bars are statistical, from the MCMC fits. The residual significances ($\sigma$) are calculated from the
+    assymetric statistical errors (Table~\ref{tbl:nppp_res}) and calibration errors, are plotted in the lower panel.
     %The vertical dashed and dotted lines correspond to the HWHM and FOV/2 (i.e. radial FOV), respectively;
     The non-parametric symbol-to-instrument association remains the same as in Figures~\ref{fig:virt_robustness} and \ref{fig:nppps}.
     The MUSTANG point that falls well ($\sim-2.8\sigma$) below the gNFW pressure profile (close to 0.1 $R_{500}$) is of
@@ -978,14 +978,14 @@ NIKA has the strongest detection of the cluster and places the greatest constrai
 Our gNFW pressure profile fit shows a higher core pressure than that of other sample-averaged gNFW profiles
 (see Figure~\ref{fig:joint_pressure}). \textbf{Many sample-averaged profile studies have subdivided their
   samples by dynamical state and find that cool-core clusters tend to have steeper inner pressure profiles
-  \citep[e.g.][]{arnaud2010,planck2013,sayers2013a,romero2017}, and therefore
+  \citep[e.g.][]{arnaud2010,planck2013a,sayers2013,romero2017}, and therefore
 one might infer that CLJ1227 is also a core core cluster. However, X-ray data show that the core is relatively hot \textbf{(13 keV)}
 \citep{maughan2007}, thus highlighting that dynamical state is certainly not well established via a pressure profile alone.
 In an X-ray study of 80 South Pole Telescope (SPT) selected clusters, \citet{mcdonald2014} subdivided their sample into
 low- ($z < 0.6$) and high-($z > 0.6$) redshift clusters. Where CLJ 1227 is at $z=0.89$, its increased central pressure is
 counter to the trend found in \citet{mcdonald2014}.}
 
-\textbf{ \textcolor{red}{Add ACCEPT data to Figure~\ref{fig:joint_pressure}? If so:} We compare our parametric and non-parametric profiles to non-parametric profiles derived in ACCEPT \citep{cavagnolo2009}, a publicly available database of data products from \emph{Chandra} observations of galaxy clusters\footnote{\url{https://web.pa.msu.edu/astro/MC2/accept/}}. We agreement with their profile (Figure~\ref{fig:joint_pressure}). Specifically, in the core, the ACCEPT pressure profile rises above the ensemble averages of \citet{planck2013} and \citet{arnaud2010}, and slightly below our profile. Indeed, we can infer that CLJ1227 is a unique cluster, being among the most massive clusters at $z > 0.6$ \citep[e.g.][]{menanteau2012}.}
+\textbf{ \textcolor{red}{Add ACCEPT data to Figure~\ref{fig:joint_pressure}? If so:} We compare our parametric and non-parametric profiles to non-parametric profiles derived in ACCEPT \citep{cavagnolo2009}, a publicly available database of data products from \emph{Chandra} observations of galaxy clusters\footnote{\url{https://web.pa.msu.edu/astro/MC2/accept/}}. We agreement with their profile (Figure~\ref{fig:joint_pressure}). Specifically, in the core, the ACCEPT pressure profile rises above the ensemble averages of \citet{planck2013a} and \citet{arnaud2010}, and slightly below our profile. Indeed, we can infer that CLJ1227 is a unique cluster, being among the most massive clusters at $z > 0.6$ \citep[e.g.][]{menanteau2012}.}
 
 \textbf{\citet{maughan2007} interpretred the hot ICM to be suggestive of a merger event. This interpretation is echoed in \citet{jee2009a}, whose lensing analysis supports a picture in which the dark matter distribution appears undisturbed on large scales, but shows a clear bimodaility in the central region, and conclude by postulating an early-stage head-on merger scenario. \citet{rumsey2016} support the early stage merger scenario primarily from the differences seen in scaling quantities ($Y_X$) between X-ray and SZ (AMI) data. In none of the SZ maps used in this analysis is there clear (significant) substructure which may be inferred to cause elevated pressure. This too is consistent with a merger being head-on.} 
 
@@ -1070,7 +1070,7 @@ We acknowledge fundings from the ENIGMASS French LabEx (R. A. and F. R.),
 the CNES post-doctoral fellowship program (R. A.), the CNES doctoral fellowship program (A. R.) and 
 the FOCUS French LabEx doctoral fellowship program (A. R.).
 
-The authors would like to thank Marco de Petris for helpful comments on this manuscript.
+%The authors would like to thank Marco de Petris for helpful comments on this manuscript.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%                       APPENDIX                              %%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1089,11 +1089,11 @@ generality, with the condition that an axis (taken as the $z$ axis) is along the
 Our quantity to be integrated along the line of sight is denoted as $\epsilon$, and has the
 following behavior:
 \begin{equation}
-  \epsilon(x,y,z) = \epsilon_i (\frac{x^2}{a_i^2}+\frac{y^2}{b_i^2}+\frac{z^2}{c_i^2})^{-P_i},
+  \epsilon(x,y,z) = \epsilon_i (\frac{x^2}{a_i^2}+\frac{y^2}{b_i^2}+\frac{z^2}{c_i^2})^{-Q_i},
 \end{equation}
 where $\epsilon_i$ is a normalization for the pressure within bin $i$;
 $a_i$, $b_i$, and $c_i$ are the ellipsoidal scalings of their respective axes,
-with the $z$-axis being along the line of sight, and $-2P_i$ is the slope of the pressure profile. We define an
+with the $z$-axis being along the line of sight, and $-2Q_i$ is the slope of the pressure profile. We define an
 ellipsoidal radius, $r_e = (\frac{x^2}{a_i^2}+\frac{y^2}{b_i^2}+\frac{z^2}{c_i^2})^{1/2}$.
 A pressure bin can be in one of three cases: (C1) an ellipsoid of finite extent, (C2) a shell of
 finite extent, and (C3) a shell of infinite extent. We use these markers (C1, C2, and C3) as superscripts
@@ -1128,13 +1128,13 @@ when writing definitions per case. The pressure distribution can be rewritten as
 \end{align}
 
 %\begin{align}
-%  \text{Case 1} & \epsilon(r_e) = \epsilon_i (r_e^2)^{-P_i} &: r_e^2 \leq 1 \\
+%  \text{Case 1} & \epsilon(r_e) = \epsilon_i (r_e^2)^{-Q_i} &: r_e^2 \leq 1 \\
 %                & \epsilon(r_e) = 0                      &: r_e^2 > 1 \\
 %  \text{Case 2} & \epsilon(r_e) = 0                      &: r_e^2 < 1 \\
-%                & \epsilon(r_e) = \epsilon_i (r_e^2)^{-P_i} &: 1 \leq r_e^2 \leq R_i^2 \\
+%                & \epsilon(r_e) = \epsilon_i (r_e^2)^{-Q_i} &: 1 \leq r_e^2 \leq R_i^2 \\
 %                & \epsilon(r_e) = 0                      &: r_e^2 > R_i^2 \\
 %  \text{Case 3} & \epsilon(r_e) = 0                      &: r_e^2 < R_i^2 \\
-%                & \epsilon(r_e) = \epsilon_i (r_e^2)^{-P_i} &: R_i^2 \leq r_e^2, 
+%                & \epsilon(r_e) = \epsilon_i (r_e^2)^{-Q_i} &: R_i^2 \leq r_e^2, 
 %\end{align}
 where $R_i$ is a boundary radius (the outer boundary in Case 2). Given a cluster profile with more than 3 bins, we end
 up with many bins in Case 2, in which case we rescale $a_i$, $b_i$, $c_i$, and subsequently $R_i$ each time to properly
@@ -1142,7 +1142,7 @@ normalize each bin ($\epsilon_i$)
 
 Let us define
 \begin{equation}
-  \kappa = \sqrt{\pi}\epsilon_i c \frac{\Gamma(P_i-0.5)}{\Gamma(P_i)}A^{1-2P_i},
+  \kappa = \sqrt{\pi}\epsilon_i c \frac{\Gamma(Q_i-0.5)}{\Gamma(Q_i)}A^{1-2Q_i},
 \end{equation}
 where $A^2 = (x^2 / a_i^2) + (y^2 / b_i^2)$. While the integration of each bin will share this expression,
 the actual values may change depending on $a_i$, $b_i$, and $c_i$ used for
@@ -1156,7 +1156,7 @@ where $z_0$ is the outer limit (in $z$) of the region in question. Over the thre
 \begin{equation}
   I^{\text{C1}} = \left\{
   \begin{array}{lr}
-    \kappa (1-I_{A^2}(P_i-0.5,0.5)) &: A^2 \leq 1 \\
+    \kappa (1-I_{A^2}(Q_i-0.5,0.5)) &: A^2 \leq 1 \\
     0 &: A^2 > 1
   \end{array}
   \right.
@@ -1166,8 +1166,8 @@ where $z_0$ is the outer limit (in $z$) of the region in question. Over the thre
 \begin{equation}
   I^{\text{C2}} = \left\{
   \begin{array}{lr}
-    \kappa (I_{A^2}(P_i-0.5,0.5)-I_{A^2/R_i^2}(P_i-0.5,0.5)) &: A^2 < 1 \\
-    \kappa (1-I_{A^2/R_i^2}(P_i-0.5,0.5)) &: 1 \leq A^2 \leq R_i^2 \\
+    \kappa (I_{A^2}(Q_i-0.5,0.5)-I_{A^2/R_i^2}(Q_i-0.5,0.5)) &: A^2 < 1 \\
+    \kappa (1-I_{A^2/R_i^2}(Q_i-0.5,0.5)) &: 1 \leq A^2 \leq R_i^2 \\
     0 &: R_i^2 \leq A^2
   \end{array}
   \right.
@@ -1176,7 +1176,7 @@ where $z_0$ is the outer limit (in $z$) of the region in question. Over the thre
 \begin{equation}
   I^{\text{C3}} = \left\{
   \begin{array}{lr}
-    \kappa (I_{A^2/R_i^2}(P_i-0.5,0.5)) &: A^2 \leq R_i^2 \\
+    \kappa (I_{A^2/R_i^2}(Q_i-0.5,0.5)) &: A^2 \leq R_i^2 \\
     \kappa &: A^2 > R_i^2
   \end{array}
   \right.
@@ -1186,22 +1186,22 @@ Here, $I_{A^2}$, or $I_{A^2/R_i^2}$ is the incomplete beta function, often denot
 the gamma and incomplete beta function (below), $x$, $y$, $a$, and $b$ serve as dummy variables. Given our use of
 the gamma and incomplete beta functions, it is important to recognize their limitations.
 Specifically, $\Gamma(a)$ is undefined for $a = -j, j \in \mathbb{N} \cup \{0\}$ (negative integers, including
-zero). The incomplete beta function, having $a = P_i -0.5$ and $b = 0.5$ suffers from undefined values
-for $P_i = 0.5-j, j \in \mathbb{N} \cup \{0\}$ as well as $P_i = -j, j \in \mathbb{N} \cup \{0\}$. Finally, all incomplete
+zero). The incomplete beta function, having $a = Q_i -0.5$ and $b = 0.5$ suffers from undefined values
+for $Q_i = 0.5-j, j \in \mathbb{N} \cup \{0\}$ as well as $Q_i = -j, j \in \mathbb{N} \cup \{0\}$. Finally, all incomplete
 beta functions are generally defined for $B(a,b)$ that $Re(a) > 0$ and $Re(b) > 0$. However, the relation of the
 incomplete beta function ($I_x$):
 \begin{equation}
   I_x(a,b) = I_x(a+1,b) + \frac{x^a (1-x)^b}{a B(a,b)}
   \label{eqn:recibeta}
 \end{equation}
-allows us to extend the function into the negative domain (for $a$, which we take as $P_i-0.5$). 
+allows us to extend the function into the negative domain (for $a$, which we take as $Q_i-0.5$). 
 
 To deal with the limitation, generally seen as: $2*y-2 = -j, j \in \mathbb{N} \cup \{0\}$, we derive another approach.
 From Equation~\ref{eqn:los_int_setup}, we can substitute variables ($t = z / (cA)$) to arrive at:
 \begin{align}
-  I &= 2 \epsilon_i A^{-2P_i} \int_{0}^{t_0}(1+t^2)^{-P_i} c A dt \text{ and now adopt } t^2 = \frac{u}{1-u} \\
-    &= 2 \epsilon_i A^{-2P_i} \int_{0}^{\theta_0}(1+\tan^2(\theta))^{-P_i} \sec^2(\theta) d\theta \\
-    &= 2 \epsilon_i A^{-2P_i} \int_{0}^{\theta_0}\cos^{2P_i-2}(\theta) d\theta
+  I &= 2 \epsilon_i A^{-2Q_i} \int_{0}^{t_0}(1+t^2)^{-Q_i} c A dt \text{ and now adopt } t^2 = \frac{u}{1-u} \\
+    &= 2 \epsilon_i A^{-2Q_i} \int_{0}^{\theta_0}(1+\tan^2(\theta))^{-Q_i} \sec^2(\theta) d\theta \\
+    &= 2 \epsilon_i A^{-2Q_i} \int_{0}^{\theta_0}\cos^{2Q_i-2}(\theta) d\theta
 \end{align}
 
 This must then be extended, and is done so with the relation:
@@ -1216,7 +1216,7 @@ applicable, and we will end in well-behaved functions; either:
   \int \cos^n(\theta)d\theta &= \ln \vert \sec(\theta) + \tan(\theta) \vert \text{ for } n=-1
 \end{align*}
 
-The \textbf{only} case where this analytic integration fails is for $P_i < 0.5$ \textbf{when} integrating out to infinity,
+The \textbf{only} case where this analytic integration fails is for $Q_i < 0.5$ \textbf{when} integrating out to infinity,
 which is fine, as this must diverge in any case. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

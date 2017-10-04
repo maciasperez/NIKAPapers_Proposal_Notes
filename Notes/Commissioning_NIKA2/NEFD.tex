@@ -229,9 +229,9 @@ conservative.
 
 \subsection{NEFD Methods 1 and 2: deep integration}
 
-\input{hls_1mm.tex}
-\input{hls_2mm.tex}
-\input{Pluto.tex}
+%% \input{hls_1mm.tex}
+%% \input{hls_2mm.tex}
+%% \input{Pluto.tex}
 
 These data can be used to derive the NEFD in several ways. One is to fit the
 evolution of the uncertainty on the flux of the source $\sigma_\phi$ with the
@@ -323,7 +323,17 @@ the opacity-elevation correction on this estimator on \hls\ data. One should
 focus on the values derived from the Jackknivfe maps and thoses including the
 opacity-elevation correction $1/\sqrt{t_{eff}}$: these values are in very good
 agreement when derived from the same reduction method, and in good agreement
-between Pluto and \hls.
+between Pluto and \hls.\\
+
+{\bf Conclusion}: while uncertainties on these values should be further
+investigated, the good agreement between alternative estimates and at the same
+time their differences indicate that they should be valid at about $\pm 1$\,mJy.s$^{1/2}$.
+{\bf With these two estimators (fit vs time of integration and
+  Jackknife), we find zenith $NEFDs$ below 35 and 9\,mJy.s$^{1/2}$ at 1 and
+  2\,mm respectively.} While less intuitive, the more rigourous definition of
+the integration time that enters the estimation of the flux, $t_{beam}$, leads to
+  slightly different values. It improves by 5\% at 1\,mm, i.e. puts the upper limit at 33.4, but
+  degrades the 2\,mm value by the same amount and raise the upper limit to 9.3.
 
 \begin{table}
 \begin{tabular}{|l|l|l|l|l|}
@@ -377,7 +387,7 @@ Red.~method  & CMB           & CMB+poly5     & CMB           & CMB+poly5\\
   extra subtraction of polynomial of order 5 per subscan while masking the
   source does not subtract power to the source, hence the derived sensitivities
   with this methods do not need to be recalibrated.}
-\label{tab:nefd_stable_2mm}
+\label{tab:fluxes}
 \end{table}
 
 %% Tab.~\ref{tab:nefd}. Fig.~\ref{fig:nefd_vs_t} shows the decrease of the

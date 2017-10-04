@@ -277,8 +277,108 @@ atmospheric conditions and at quasi constant elevation. This will allow us to
 check this formalism against more intuitive and direct definitions. We can also
 extract from the scans on \hls those that were under stable opacity conditions
 and at high and quasi-constant elevation as a confirmation of our final
-estimates. The other regimes will help us derive uncertainties our estimates.
+estimates. The other regimes will help us derive uncertainties our estimates.\\
 
+\begin{figure}
+\begin{center}
+\includegraphics[clip, angle=0, scale=0.4]{Figures/Pluto_8_sigma_vs_time_matrix_center.png}
+\includegraphics[clip, angle=0, scale=0.4]{Figures/Pluto_8_sigma_vs_time_matrix_center_tau_w8.png}
+\caption{\emph{Left:}$1\,\sigma$ sensitivity vs $t_{int}$ during observations of Pluto, {\bf
+  without correction for elevation or opacity}. \emph{Right:} Same fit but this
+  time considering the effective time, weighted by opacity and elevation as in Eq.~(\ref{eq:sigma_tau_w8}).}
+\label{fig:Pluto_8_sigma_vs_time_matrix_center}
+\end{center}
+\end{figure}
+
+\paragraph{Pluto.} We have 28 scans of Pluto, for a total
+integration time of XX at 1mm and XX at
+2mm. Fig.~\ref{fig:Pluto_8_sigma_vs_time_matrix_center} shows how the
+$1\,\sigma$ sensitivity decreases with $t_{int}$. Considering the small
+variations of opacity and elevation during these observations of Pluto
+(Fig.~\ref{fig:pluto_opacities}), we can derive an average correction
+$exp(-\tau/\sin\delta) = exp(-0.07/\sin(30^\circ)) = 0.87$. This leads to zenith
+$NEFD_0^{1mm} = 38.8$ and $NEFD_0^{2mm} = 9.2$\,mJy.s$^{-1/2}$. Using the
+jackknife maps and applying the same opacity-elevation correction, one gets
+$NEFD_0^{1mm}=38.0$ and $NEFD_0^{2mm}=8.96$.
+
+In light what is discussed in the previous paragraph, if we fit the sensitivity
+vs $\sum_{n}t_n e^{-2\tau_n/\sin\delta_n}$, we obtain $NEFD_0^{1mm} = 38.5$ and
+$NEFD_0^{2mm}=9.2$. These value are summarized in
+tables~\ref{tab:nefd_stable_1mm} and \ref{tab:nefd_stable_2mm}. All these
+numbers are obtained with the standard reduction method, a.~k.~a. {\tt
+  common\_mode\_one\_block, (CMB)}. If we further subtract a polynomial of order
+5 per subscan after this decorrelation (still masking the source), we improve
+the results as reported in the tables, while not changing the measured fluxes of
+Pluto and HLS (tab.~\ref{tab:fluxes}). We therefore do not change the
+calibration with this extra filtering, so the gain in sensitivity does come from
+better noise subtraction.
+
+\paragraph{\hls.} While we have an overall
+longer integration on \hls, it was acquired during distinct periods, over
+varying elevation and different (albeit almost constant by plateau)
+opacities (Fig.~\ref{fig:hls_opacities}). Still, performing the same analyses, we obtains the results presented
+in tables~\ref{tab:nefd_stable_1mm} and \ref{tab:nefd_stable_2mm}. The values
+obtained from the fit vs $1/\sqrt{t}$ are recalled to illustrate the impact of
+the opacity-elevation correction on this estimator on \hls\ data. One should
+focus on the values derived from the Jackknivfe maps and thoses including the
+opacity-elevation correction $1/\sqrt{t_{eff}}$: these values are in very good
+agreement when derived from the same reduction method, and in good agreement
+between Pluto and \hls.
+
+\begin{table}
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+$NEFD_0^{1mm}$~mJy.s$^{1/2}$ & \multicolumn{2}{|c|}{Pluto} & \multicolumn{2}{|c|}{\hls}\\
+\hline
+Red.~method             & CMB     & CMB+poly5     & CMB & CMB+poly5\\
+\hline
+$\sim 1/\sqrt{t}$       & 38.8  & 34.3  & 41.7 & 38.2\\
+$JK$                    & 35.9  & {\bf 34.7}  & 33.8 & {\bf 33.6} \\
+$\sim 1/\sqrt{t_{eff}}$ & 38.5  & {\bf 32.8}  & 37.5 & {\bf 34.4} \\
+\hline
+\hline
+\end{tabular}
+\caption{Zenith NEFD's in stable elevation and atmospheric conditions on Pluto
+  and \hls\ at 1mm.}
+\label{tab:nefd_stable_1mm}
+\end{table}
+
+\begin{table}
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+$NEFD_0^{2mm}$~mJy.s$^{1/2}$ & \multicolumn{2}{|c|}{Pluto} & \multicolumn{2}{|c|}{\hls}\\
+\hline
+Red.~method             & CMB     & CMB+poly5     & CMB & CMB+poly5\\
+\hline
+$\sim 1/\sqrt{t}$       & 9.3 & 8.0 & 9.8  & 8.5\\
+$JK$                    & 8.8 & {\bf 7.7} & 8.3  & {\bf 7.6} \\
+$\sim 1/\sqrt{t_{eff}}$ & 9.2 & {\bf 8.2} & 9.4  & {\bf 8.2} \\
+\hline
+\hline
+\end{tabular}
+\caption{Zenith NEFD's in stable elevation and atmospheric conditions on Pluto
+  and \hls\ at 2mm.}
+\label{tab:nefd_stable_2mm}
+\end{table}
+
+\begin{table}
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+Fluxes (mJy) & \multicolumn{2}{|c|}{Pluto} & \multicolumn{2}{|c|}{\hls}\\
+\hline
+Red.~method  & CMB           & CMB+poly5     & CMB           & CMB+poly5\\
+\hline
+1\,mm        & $15.0\pm 1.1$ & $13.6\pm 0.9$ & $85.2\pm 0.4$ & $85.4\pm 0.4$\\
+2\,mm        & $5.0\pm 0.2$  & $5.0\pm 0.2$  & $14.9\pm 0.1$ & $14.9\pm 0.1$\\
+\hline
+\hline
+\end{tabular}
+\caption{Measured fluxes of Pluto and \hls\ with two data reduction methods. The
+  extra subtraction of polynomial of order 5 per subscan while masking the
+  source does not subtract power to the source, hence the derived sensitivities
+  with this methods do not need to be recalibrated.}
+\label{tab:nefd_stable_2mm}
+\end{table}
 
 %% Tab.~\ref{tab:nefd}. Fig.~\ref{fig:nefd_vs_t} shows the decrease of the
 %% uncertainty on the measured flux at the center of the map as a function of

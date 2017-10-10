@@ -72,13 +72,13 @@ In the next paragraphs we do several simulations following the method described 
 
 Here we simulate the scan of a planet by a KID to see if the input signal is linearly reconstruted.
 
-\begin{figure}[h]
-\center
-	\includegraphics[scale=0.5]{Figures/NL-planet.eps}
-	\caption{Output flux as a function of Input flux in Jy. 
-	The input signal corresponds to a planet. Cross and diamond represent the signal reconstructed respectively by \cf and \rf. Black : Output flux as a function of Input flux in Jy. Blue : Scan with 3 points per beam. Red : Scan with 5 points per beam.}
-	\label{fig:nl-planet}
-\end{figure}
+%\begin{figure}[h]
+%\center
+%	\includegraphics[scale=0.5]{Figures/NL-planet.eps}
+%	\caption{Output flux as a function of Input flux in Jy. 
+%	The input signal corresponds to a planet. Cross and diamond represent the signal reconstructed respectively by \cf and \rf. Black : Output flux as a function of Input flux in Jy. Blue : Scan with 3 points per beam. Red : Scan with 5 points per beam.}
+%	\label{fig:nl-planet}
+%\end{figure}
 
 Fig.\ref{fig:nl-planet} shows the output signal, reconstructed by \rf and \cf, as a function of the input signal at different fluxes. The signal is linearly reconstructed with \rf and \cf, but becomes non-linear at higher fluxes, especially for \rf.  \\
 
@@ -86,16 +86,39 @@ Fig.\ref{fig:nl-planet} shows the output signal, reconstructed by \rf and \cf, a
 \center
 	\begin{tabular}{|c|c|c|}
   	\hline
- 	\backslashbox{$npts/fwhm$}{$\varepsilon$} & $	\varepsilon_{R_{f}}$ & $\varepsilon_{C_{f}} $ \\
+ 	\backslashbox{$\varepsilon$}{$npts/fwhm$} & 3 & 5 \\
 	\hline
- 	3  & - 8.05 x $10^{-5}$ & 3.78 x $10^{-7}$ \\
+ 	 $\varepsilon_{P}$ & -8.00 x $10^{-5}$ & 7.48 x $10^{-5}$ \\
   	\hline
- 	5 & 7.27 x $10^{-5}$ & 1,74 x $10^{-7}$ \\
+ 	$\varepsilon_{P+D}$ & -8.02 x $10^{-5}$ & -7.50 x $10^{-5}$ \\
   	\hline
+  	$\varepsilon_{P+D+HWP}$ & -9.29 x $10^{-5}$ & -7.90 x $10^{-5}$ \\
+	\hline
+ 	$\varepsilon_{P}$ & 6.19 x $10^{-7}$ & 2.82 x $10^{-7}$ \\
+  	\hline
+ 	$\varepsilon_{P+D}$ & 6.16 x $10^{-7}$ & 2.82 x $10^{-7}$ \\
+  	\hline
+  	$\varepsilon_{P+D+HWP}$ & -3.98 x $10^{-7}$ & -3.09 x $10^{-7}$ \\
+	\hline
 	\end{tabular} 
-\caption{Non-linearity coefficients \eps for \rf and \cf. The incoming flux corresponds to a planet (700 Jy).}
+\caption{Non-linearity coefficients \eps for \rf and \cf. The incoming flux corresponds to a planet (500 Jy).}
 \label{tab:eps-planet}
 \end{table} 
+
+% \begin{table}[h!]
+%\center
+%	\begin{tabular}{|c|c|c|}
+%  	\hline
+% 	\backslashbox{$npts/fwhm$}{$\varepsilon$} & $	\varepsilon_{R_{f}}$ & $\varepsilon_{C_{f}} $ \\
+%	\hline
+% 	3  & - 8.05 x $10^{-5}$ & 3.78 x $10^{-7}$ \\
+%  	\hline
+% 	5 & 7.27 x $10^{-5}$ & 1,74 x $10^{-7}$ \\
+%  	\hline
+%	\end{tabular} 
+%\caption{Non-linearity coefficients \eps for \rf and \cf. The incoming flux corresponds to a planet (700 Jy).}
+%\label{tab:eps-planet}
+%\end{table} 
 
 In the next parts we will see how this non-linearity progresses if we add other sources to the planet such as the CMB dipole and/or a HWP.
 
@@ -103,28 +126,28 @@ In the next parts we will see how this non-linearity progresses if we add other 
 
 The CMB dipole is a smooth gradient in the CMB temperature accross the sky. It is the result of the motion of the local group of galaxies with respect to the reference framed defined by the CMB. The CMB dipole amplitude is $\Delta T = 3.365 \pm 0.027$ mK and directed toward $(l,b) = (264.4 \degree \pm 0.3 \degree , 48.4 \degree \pm 0.5 \degree)$ in galactic coordinates \citep{2015IJMPD..2430004B}. Here we do a simulation with two incoming fluxes : a planet and the CMB dipole. 
 
-\begin{figure}[h]
-\center
-	\includegraphics[scale=0.5]{Figures/NL-planet-dipole.eps}
-	\caption{Output flux as a function of Input flux in Jy. 
-	The input signal corresponds to a planet and the CMB dipole. Cross and diamond represent the signal reconstructed respectively by \cf and \rf. Blue : Scan with 3 points per beam. Black : Output flux as a function of Input flux in Jy. Red : Scan with 5 points per beam.}
-	\label{fig:nl-planet-dipole}
-\end{figure}
+%\begin{figure}[h]
+%\center
+%	\includegraphics[scale=0.5]{Figures/NL-planet-dipole.eps}
+%	\caption{Output flux as a function of Input flux in Jy. 
+%	The input signal corresponds to a planet and the CMB dipole. Cross and diamond represent the signal reconstructed respectively by \cf and \rf. Blue : Scan with 3 points per beam. Black : Output flux as a function of Input flux in Jy. Red : Scan with 5 points per beam.}
+%	\label{fig:nl-planet-dipole}
+%\end{figure}
 
-\begin{table}[h!]
-\center
-	\begin{tabular}{|c|c|c|}
-  	\hline
- 	\backslashbox{$npts/fwhm$}{$\varepsilon$} & $	\varepsilon_{R_{f}}$ & $\varepsilon_{C_{f}} $ \\
-	\hline
- 	3  & - 8.07 x $10^{-5}$ & 3.74 x $10^{-7}$ \\
-  	\hline
- 	5 & 7.29 x $10^{-5}$ & 1,73 x $10^{-7}$ \\
-  	\hline
-	\end{tabular} 
-\caption{Non-linearity coefficients \eps for \rf and \cf. The incoming flux corresponds to a planet (700 Jy) and the CMB dipole.}
-\label{tab:eps-planet-dipole}
-\end{table}
+%\begin{table}[h!]
+%\center
+%	\begin{tabular}{|c|c|c|}
+%  	\hline
+% 	\backslashbox{$npts/fwhm$}{$\varepsilon$} & $	\varepsilon_{R_{f}}$ & $\varepsilon_{C_{f}} $ \\
+%	\hline
+% 	3  & - 8.07 x $10^{-5}$ & 3.74 x $10^{-7}$ \\
+%  	\hline
+% 	5 & 7.29 x $10^{-5}$ & 1,73 x $10^{-7}$ \\
+%  	\hline
+%	\end{tabular} 
+%\caption{Non-linearity coefficients \eps for \rf and \cf. The incoming flux corresponds to a planet (700 Jy) and the CMB dipole.}
+%\label{tab:eps-planet-dipole}
+%\end{table}
 
 Fig. \ref{fig:nl-planet-dipole} and Tab. \ref{tab:eps-planet-dipole} shows that like in the precedent simulation, the signal is well reconstructed at lower fluxes but becomes non-linear at higher fluxes notably with \rf. Plus, we can see that the more number of points per beam we have the smaller \eps becomes. 
 
@@ -143,20 +166,20 @@ Many experiments, such as MAXIPOL \citep{2007ApJ...665...42J}, EBEX \citep{2010S
 	\label{fig:nl-planet-hwp-dipole}
 \end{figure}
 
-\begin{table}[h!]
-\center
-	\begin{tabular}{|c|c|c|}
-  	\hline
- 	\backslashbox{$npts/fwhm$}{$\varepsilon$} & $	\varepsilon_{R_{f}}$ & $\varepsilon_{C_{f}} $ \\
-	\hline
- 	3  & - 8.99 x $10^{-5}$ & -2.58 x $10^{-7}$ \\
-  	\hline
- 	5 & 7.50 x $10^{-5}$ & 1,54 x $10^{-7}$ \\
-  	\hline
-	\end{tabular} 
-\caption{Non-linearity coefficients \eps for \rf and \cf. The incoming flux corresponds to a planet (700 Jy), a HWP template and CMB dipole.}
-\label{tab:eps-planet-hwp-dipole}
-\end{table}
+%\begin{table}[h!]
+%\center
+%	\begin{tabular}{|c|c|c|}
+%  	\hline
+% 	\backslashbox{$npts/fwhm$}{$\varepsilon$} & $	\varepsilon_{R_{f}}$ & $\varepsilon_{C_{f}} $ \\
+%	\hline
+% 	3  & - 8.99 x $10^{-5}$ & -2.58 x $10^{-7}$ \\
+%  	\hline
+% 	5 & 7.50 x $10^{-5}$ & 1,54 x $10^{-7}$ \\
+%  	\hline
+%	\end{tabular} 
+%\caption{Non-linearity coefficients \eps for \rf and \cf. The incoming flux corresponds to a planet (700 Jy), a HWP template and CMB dipole.}
+%\label{tab:eps-planet-hwp-dipole}
+%\end{table}
 
 Like in the two precedent simulations we can see in Fig. \ref{fig:nl-planet-hwp-dipole} and Tab. \ref{tab:eps-planet-hwp-dipole} that the signal is well reconstructed but that non-linearities appear at higher fluxes. We note that, compared to the simulation with only the planet, the non-linearity brought by the HWP is negligeable.\\
 
@@ -204,20 +227,20 @@ In order to derive the non-linearity coefficient in more realistic simulations w
 
 \paragraph{Pol sat \\}
 
-\begin{figure}[h]
-\center
-	\includegraphics[scale=0.5]{Figures/toi-galaxy-dipole.eps}
-	\caption{Representation of the incoming flux (Galaxy and Dipole in black), scanned by Pol sat, and its reconstruction. Red : Reconstruction of the incoming signal using \cf. Blue : Reconstruction of the incoming signal using \rf.
-}
-	\label{fig:toi-galaxy-dipole-pol}
-\end{figure}
-
-\begin{figure}[h]
-\center
-	\includegraphics[scale=0.5]{Figures/NL-galaxy-dipole.eps}
-	\caption{Output flux as a function of Input flux (Galaxy and Dipole) in Jy. Red : The signal was reconstructed with \cf. Blue : The signal was reconstructed with \rf.}
-	\label{fig:nl-galaxy-dipole-pol}
-\end{figure}
+%\begin{figure}[h]
+%\center
+%	\includegraphics[scale=0.5]{Figures/toi-galaxy-dipole.eps}
+%	\caption{Representation of the incoming flux (Galaxy and Dipole in black), scanned by Pol sat, and its reconstruction. Red : Reconstruction of the incoming signal using \cf. Blue : Reconstruction of the incoming signal using \rf.
+%}
+%	\label{fig:toi-galaxy-dipole-pol}
+%\end{figure}
+%
+%\begin{figure}[h]
+%\center
+%	\includegraphics[scale=0.5]{Figures/NL-galaxy-dipole.eps}
+%	\caption{Output flux as a function of Input flux (Galaxy and Dipole) in Jy. Red : The signal was reconstructed with \cf. Blue : The signal was reconstructed with \rf.}
+%	\label{fig:nl-galaxy-dipole-pol}
+%\end{figure}
 
 Fig. \ref{fig:toi-galaxy-dipole} and  Fig. \ref{fig:nl-galaxy-dipole-pol} shows that the Galaxy and the dipole are well reconstructed by \rf and \cf. Plus, in Fig. \ref{toi-galaxy-hwp-dipole-pol} and Fig. \ref{fig:nl-galaxy-hwp-dipole-pol} we can see that the reconstructed signal is not strongly impacted by the HWP as the output signal is still very linear with the input signal.
 
@@ -235,40 +258,40 @@ Fig. \ref{fig:toi-galaxy-dipole} and  Fig. \ref{fig:nl-galaxy-dipole-pol} shows 
 	\label{fig:nl-galaxy-hwp-dipole-pol}
 \end{figure}
 
-\begin{table}[h!]
-\center
-	\begin{tabular}{|c|c|c|}
-  	\hline
- 	\backslashbox{$Input signal$}{$\varepsilon$} & $	\varepsilon_{R_{f}}$ & $\varepsilon_{C_{f}} $ \\
-	\hline
- 	$G+D$  & -1.45 x $10^{-7}$ & -2.05 x $10^{-8}$ \\
-  	\hline
- 	$G+D+HWP$ & 3.54 x $10^{-4}$ & 3.06 x $10^{-7}$ \\
-  	\hline
-	\end{tabular} 
-\caption{Non-linearity coefficients \eps for \rf and \cf. $G$, $D$ and $HWP$ respectively stands for Galaxy, Dipole and Half Wave Plate.}
-\label{tab:eps-galaxy-hwp-dipole-pol}
-\end{table}
+%\begin{table}[h!]
+%\center
+%	\begin{tabular}{|c|c|c|}
+%  	\hline
+% 	\backslashbox{$Input signal$}{$\varepsilon$} & $	\varepsilon_{R_{f}}$ & $\varepsilon_{C_{f}} $ \\
+%	\hline
+% 	$G+D$  & -1.45 x $10^{-7}$ & -2.05 x $10^{-8}$ \\
+%  	\hline
+% 	$G+D+HWP$ & 3.54 x $10^{-4}$ & 3.06 x $10^{-7}$ \\
+%  	\hline
+%	\end{tabular} 
+%\caption{Non-linearity coefficients \eps for \rf and \cf. $G$, $D$ and $HWP$ respectively stands for Galaxy, Dipole and Half Wave Plate.}
+%\label{tab:eps-galaxy-hwp-dipole-pol}
+%\end{table}
 
 \paragraph{Planck \\}
 
 In this paragraph we do the same simulations but we use Planck's scanning strategy. 
 Here again the input signals are linearly reconstructed by \rf and \cf without (cf Fig. \ref{fig:toi-galaxy-dipole-planck} and \ref{fig:nl-galaxy-dipole-planck}) or with (cf Fig. \ref{fig:toi-galaxy-hwp-dipole-planck} and \ref{fig:tnl-galaxy-hwp-dipole-planck}) the HWP.
 
-\begin{figure}[h]
-\center
-	\includegraphics[scale=0.5]{Figures/toi-galaxy-dipole-planck.eps}
-	\caption{Representation of the incoming flux (Galaxy and Dipole in black), scanned by PLANCK, and its reconstruction. Red : Reconstruction of the incoming signal using \cf. Blue : Reconstruction of the incoming signal using \rf.
-}
-	\label{fig:toi-galaxy-dipole-planck}
-\end{figure}
-
-\begin{figure}[h]
-\center
-	\includegraphics[scale=0.5]{Figures/NL-galaxy-dipole-planck.eps}
-	\caption{Output flux as a function of Input flux (Galaxy, Dipole) in Jy. Red : The signal was reconstructed with \cf. Blue : The signal was reconstructed with \rf.}
-	\label{fig:nl-galaxy-dipole-planck}
-\end{figure}
+%\begin{figure}[h]
+%\center
+%	\includegraphics[scale=0.5]{Figures/toi-galaxy-dipole-planck.eps}
+%	\caption{Representation of the incoming flux (Galaxy and Dipole in black), scanned by PLANCK, and its reconstruction. Red : Reconstruction of the incoming signal using \cf. Blue : Reconstruction of the incoming signal using \rf.
+%}
+%	\label{fig:toi-galaxy-dipole-planck}
+%\end{figure}
+%
+%\begin{figure}[h]
+%\center
+%	\includegraphics[scale=0.5]{Figures/NL-galaxy-dipole-planck.eps}
+%	\caption{Output flux as a function of Input flux (Galaxy, Dipole) in Jy. Red : The signal was reconstructed with \cf. Blue : The signal was reconstructed with \rf.}
+%	\label{fig:nl-galaxy-dipole-planck}
+%\end{figure}
 
 \begin{figure}[h]
 \center
@@ -284,12 +307,32 @@ Here again the input signals are linearly reconstructed by \rf and \cf without (
 	\label{fig:nl-galaxy-hwp-dipole-planck}
 \end{figure}
 
+
+%\begin{table}[h!]
+%\center
+%	\begin{tabular}{|c|c|c|}
+%  	\hline
+% 	\backslashbox{$Input signal$}{$\varepsilon$} & $	\varepsilon_{R_{f}}$ & $\varepsilon_{C_{f}} $ \\
+%	\hline
+% 	$G+D$  & 6.48 x $10^{-6}$ & -2.99 x $10^{-8}$ \\
+%  	\hline
+% 	$G+D+HWP$ & 6.55 x $10^{-6}$ & 2.73 x $10^{-7}$ \\
+%  	\hline
+%	\end{tabular} 
+%\caption{Non-linearity coefficients \eps for \rf and \cf derived by using Planck's scanning strategy. $G$, $D$ and $HWP$ respectively stands for Galaxy, Dipole and Half Wave Plate.}
+%\label{tab:eps-galaxy-hwp-dipole-planck}
+%\end{table}
+
 \begin{table}[h!]
 \center
 	\begin{tabular}{|c|c|c|}
   	\hline
- 	\backslashbox{$Input signal$}{$\varepsilon$} & $	\varepsilon_{R_{f}}$ & $\varepsilon_{C_{f}} $ \\
+ 	\backslashbox{$\varepsilon$}{$Input signal$} & $	\varepsilon_{R_{f}}$ & $\varepsilon_{C_{f}} $ \\
 	\hline
+	$G+D$  & -1.45 x $10^{-7}$ & -2.05 x $10^{-8}$ \\
+  	\hline
+ 	$G+D+HWP$ & 3.54 x $10^{-4}$ & 3.06 x $10^{-7}$ \\
+ 	\hline
  	$G+D$  & 6.48 x $10^{-6}$ & -2.99 x $10^{-8}$ \\
   	\hline
  	$G+D+HWP$ & 6.55 x $10^{-6}$ & 2.73 x $10^{-7}$ \\
@@ -298,7 +341,6 @@ Here again the input signals are linearly reconstructed by \rf and \cf without (
 \caption{Non-linearity coefficients \eps for \rf and \cf derived by using Planck's scanning strategy. $G$, $D$ and $HWP$ respectively stands for Galaxy, Dipole and Half Wave Plate.}
 \label{tab:eps-galaxy-hwp-dipole-planck}
 \end{table}
-
 In Tab. \ref{tab:eps-galaxy-hwp-dipole-pol} and Tab. \ref{tab:eps-galaxy-hwp-dipole-planck} we can see that as expected, for both pointing strategies the non-linearity coefficients are higher when we add the HWP to the input signal. In addition, they emphasize the fact that the \cf method of signal reconstruction is slightly better than \rf, which confirms what we saw with the planet simulation.\\
 
 To conclude, we have seen that both signal reconstruction methods can reconstruct the signal very well at low fluxes but start to be limited at higher fluxes. The non-linearity coefficient that we derived from them are very low. In every simulations, adding a HWP template to the incoming signal can slighlty add some non-linearities but it doesn't biais the reconstructed signal.\\

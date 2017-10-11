@@ -44,11 +44,11 @@
 \bibliographystyle{aa}
 
 \begin{document}
-\title{Crab nebula polarization observations at 150 GHz with NIKA: \\ implications for future CMB experiments}
+\title{Crab nebula polarization observations at 150 GHz with NIKA: \\ implications for future CMB experiments: Answer to the referee}
 
-\section{Referee's answer}
-\subsection{First question}
-1.The handling of noise bias, and more generally the discussion of
+\section{First question}
+
+The handling of noise bias, and more generally the discussion of
 errors and uncertainties, is not sufficiently sophisticated to meet the
 stated goals of this paper (namely that the measurements might be used
 for calibration of other instruments). There are two places where
@@ -79,9 +79,9 @@ the inferred polarization angle by 3.5 degrees and the polarization
 fraction by more than 1 percentage point. For the polarization angle,
 at least, this change is much larger than the total uncertainty.
 Although the authors perform this computation both with and without
-the exclusion of S/N < 3 points, the values they carry forward, and
-use in summary sentences and plots, are the biased ones (using S/N > 3
-only). One suspects that the S/N > 3 results were ultimately chosen
+the exclusion of S/N \textless 3 points, the values they carry forward, and
+use in summary sentences and plots, are the biased ones (using S/N \textgreater 3
+only). One suspects that the S/N \textgreater 3 results were ultimately chosen
 because they agree better with the results from other experiments
 (WMAP and Planck). The authors mention the need for an "additional
 uncertainty at a level of 1\% on p and 4 deg on psi", but this
@@ -98,9 +98,9 @@ profitable approach is to check for consistency between different
 subsets of the data (e.g., look at two co-adds of 12 maps instead of
 the one co-add of 24 maps).
 
-\paragraph{\color{blue} Answer to the first question}
+\subsection{\textbf{Answer}}
 
-\subsection{Second question}
+\section{Second question}
 2. Basic errors in astrometry and coordinate handling.
 \\
 The position of the Crab Pulsar is given, to sufficient precision, in
@@ -119,11 +119,23 @@ These issues undermine a reader's confidence that the authors have
 performed the photometry as described, or that they understand the
 tools used to convert between coordinate systems to a sufficient
 degree that we can trust their results.
-\paragraph{\color{blue} Answer to the second question}
+\subsection{\textbf{Answer}}
+\textbf{The error in the pulsar position concerns only the plot.
+Indeed we used previous observations from XPOL experiment (Aumont et al. 2010) to match the map and the position of the pulsar.
+There was unfortunately a pointing offset between the two instrument (Xpol and NIKA) ``center of the map" for this observation that we have now corrected on maps, see Fig.~\ref{Q_map}.}
+
+\begin{figure}[!h]
+\centering
+     	  { \includegraphics[width=0.5\linewidth,keepaspectratio]{referee_figures/crab_q_2mm_pulsPositionCor.png}}
+\caption{Stokes Q map with pulsar position corrected.}     	  
+ 
+\label{Q_map}
+\end{figure}
 
 
 
-\subsection{Third question}
+
+\section{Third question}
 Models are not explained clearly, and fits contain obvious errors.\\
 (a) The intensity model described in equations (6) and (7) is not
 completely described. It appears to be discontinuous, through 100
@@ -141,8 +153,8 @@ beta = -0.38.
 These errors and/or omissions make it difficult to take any of the
 model fitting seriously; they undermine the conclusions of the paper.
 \\ \\
-\paragraph{\color{blue} Answer to the third question}
-\textbf{(a)  In the plot of Fig. 6 the fit appears to be discontinuos because it is due to the sum of two different fits. When we DO NOT consider the Planck data for $\nu$ \textgreater 100 GHz the parameters of the fit are: A = 980.6 +- 0.7 and $\beta$ = -0.3151+-0.0002.
+\subsection{\textbf{Answer}}
+\textbf{(a)  The fit in Fig. 6 appears to be discontinuos because it is due to the sum of two different fits. When we DO NOT consider the Planck data for $\nu$ \textgreater 100 GHz the parameters of the fit are: A = 980.6 +- 0.7 and $\beta$ = -0.3151+-0.0002.
 Otherwise, fitting Planck data with $\nu$ \textgreater 100 GHz gives: A$_H$ = 8.6+-0.45 and $\beta$ = -0.71+-0.09.}
 
 {\color{blue} If now we consider to fit all data we obtain the plot of Fig.\ref{crab_int_SED}
@@ -150,7 +162,7 @@ where the cut-off frequency is 90 GHz and the knee frequencies are: 8 GHz and 10
 The best-fit parameters using the code plot-SED-intensity.pro are:
 } 
  \begin{equation}
- A_1 = 507.7+-0.1 /quad \beta_1 = -0.31866+-5x10^{-5} \nonumber
+ A_1 = 507.7+-0.1 \quad \beta_1 = -0.31866+-5x10^{-5} \nonumber
  \end{equation}
  and
  \begin{equation}
@@ -159,16 +171,18 @@ The best-fit parameters using the code plot-SED-intensity.pro are:
 
 
 
-\begin{figure}
+\begin{figure}[!ht]
 \centering
      	  { \includegraphics[width=0.5\linewidth,keepaspectratio]{referee_figures/Crab_SED_int_test.pdf}}
-     	\label{crab_int_SED}
+\caption{Total intensity SED.}     	  
+ 
+\label{crab_int_SED}
 \end{figure}
 
 
-\textbf{(b) The models represented in Fig.7 account for the data at frequecies below 100 GHz to agree the  fit for Planck data represented in the plot of the polarization SED accounts for frequencies below 100 GHz. If we take into account all data we obtain:
+\textbf{(b) The models represented in Fig.7 account for the data at frequecies below 100 GHz. If we take now into account all data we obtain:
 A = 116.5+-6.52 for the amplitude and $\beta$ = -0.45+0.01.
-If now we take into account all data considering an uncertainty of 0.1 fixed for all data we obtain:
+And, considering an uncertainty of 0.1 fixed for all data we obtain:
 A = 89.85+-1.22 and $\beta$ = -0.389+-0.003.}
 \begin{figure*}[h!]
   \centering

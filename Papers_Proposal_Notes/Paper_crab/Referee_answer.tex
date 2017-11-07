@@ -159,17 +159,27 @@ model fitting seriously; they undermine the conclusions of the paper.
 \textbf{(a)  The fit in Fig. 6 appears to be discontinuos because it is due to the sum of two different fits. When we DO NOT consider the Planck data for $\nu$ \textgreater 100 GHz the parameters of the fit are: A = 980.6 +- 0.7 and $\beta$ = -0.3151+-0.0002.
 Otherwise, fitting Planck data with $\nu$ \textgreater 100 GHz gives: A$_H$ = 8.6+-0.45 and $\beta$ = -0.71+-0.09.}
 
-{\color{blue} If now we consider to fit all data we obtain the plot of Fig.\ref{crab_int_SED}
-where the cut-off frequency is 90 GHz and the knee frequencies are: 8 GHz and 100 GHz. See the code fading-2sync.pro in my labtool under the subdirectories codes4thesis and CRAB.
+{\color{red} Modification in the text}
+
+Accounting for the break shown by \Planck\ satellite data we assume a simple
+two-power-law model\footnote{A detailed physical description of the SED of the
+  Crab nebula is out of the scope of this paper.}:
+\begin{equation}
+I_{\nu} = \left\{ 
+\begin{array}{rl}A_L(\nu/1GHz)^{\beta_L} &\mbox{$\nu<90$ GHz} \\
+   A_H(\nu/1GHz)^{\beta_H} &\mbox{$\nu\geq90$ GHz}
+  \end{array} \right.    
+\end{equation}
+By $\chi^2$-minimization we obtain the fit shown in cyan in Fig.~{\ref{crab_int_SED}},
+where the cut-off frequency is 90 GHz and the knee frequencies are: 8 GHz and 100 GHz. 
 The best-fit parameters using the code plot-SED-intensity.pro are:
-} 
- \begin{equation}
- A_1 = 507.7+-0.1 \quad \beta_1 = -0.31866+-5x10^{-5} \nonumber
- \end{equation}
- and
- \begin{equation}
- A_2 = 216.36+-0.33 \quad \beta_2 = -0.7525+-0.0003
- \end{equation}
+$$\setlength\arraycolsep{0.1em}
+ \begin{array}{rclcl}
+  A_L&=& 507.7\pm0.1 ; \quad \quad   \beta_L = -0.3187\pm0.0001\\
+  A_H&=& 216.36\pm0.33 ; \quad \beta_H = -0.7525\pm0.0003
+ \end{array}
+$$
+We note that \NIKA\ data is consistent with this model at the 2$\sigma$ level. More data at mm wavelengths are needed to better understand the observed break of the SED at about 90 GHz. 
 
 
 

@@ -45,7 +45,7 @@
 \bibliographystyle{aa}
 
 \begin{document}
-\title{Crab nebula polarization observations at 150 GHz with NIKA: \\ implications for future CMB experiments}
+\title{Crab nebula polarization observations at 150 GHz with NIKA}
 \author{A.~Ritacco \inst{\ref{LPSC}},\inst{\ref{IRAME}}\thanks{Corresponding author: Alessia Ritacco, \url{ritaccoa@iram.es}}
 \and  J.F.~Mac\'ias-P\'erez \inst{\ref{LPSC}}
 \and  N.~Ponthieu \inst{\ref{IPAG}}
@@ -694,77 +694,95 @@ well described by a single power law of the form:
 I_{\nu} = A(\nu / 1 {\bf GHz})^{\beta}
 \end{equation}\label{eq:sync}
 with spectral index $\beta$ = -0.296$\pm$0.06 \citep{baars1977absolute,macias2010}. Further, the Crab nebula is fading with time at a rate of $\alpha$ = 0.167$\pm$0.015 \% yr$^{-1}$ \citep{aller1985decrease}. 
-These results suggest a low frequency emission produced by particles accelerated by the same magnetic field. \cite{macias2010} have shown also that here is no evidence for an extra synchrotron component and for a component of thermal dust emission at these wavelengths. The direction of the polarization is therefore expected to be constant across frequency range 30-300 GHz while the polarization degree may vary.
+These results suggest a low frequency emission produced by particles accelerated by the same magnetic field. \cite{macias2010} have shown also that there is no evidence for an extra synchrotron component and for a component of thermal dust emission at these frequencies. The direction of the polarization is therefore expected to be constant across the frequency range 30-300 GHz while the polarization degree may vary.
 
 We show in Fig.~\ref{crab_SED} the flux of the Crab nebula as a function of frequency. The fluxes in the radio domain were taken from \cite{dmitrenko1970absolute} and \cite{1971IzVUZ..14..157V}. We also show microwave and mm wavelengths fluxes from \Archeops\ \citep{macias2007archeops}, \Planck\ \citep{2015arXiv150702058P}, WMAP \citep{2011ApJS..192...19W}, XPOL/30m \citep{aumont2010}, MAMBO/30m \citep{2002A&A...386.1044B} and GISMO/30m \citep{2011ApJ...734...54A}. The measured \NIKA\ total intensity flux at 150 GHz is shown in red.
-We present in the figure the best-fit model obtained assuming a power law as given by Eq.~\ref{eq:sync} to the data computed by $\chi^2$-minimization using observations below 100 GHz (cyan line). The amplitude and spectral index found are: 
 
-\begin{equation}
- A = 980.6 \pm 0.7  ,\quad \beta = -0.3151 \pm 0.0002. 
- \end{equation}
- For illustration we also show the best-fit model to the data found by \cite{macias2010} in a previous analysis (green line). 
-Notice that fading of the source is accounted for in the best-fit models as well as in the data presented in the figure.
-The estimated best-fit model from this paper is slightly different with respect to the previous analysis mainly due to the addition of recently published results by \Planck\ \citep{2015arXiv150702058P} and  WMAP \citep{2011ApJS..192...19W}. However, the result found at 150 GHz by the \NIKA\ camera agrees at 1 $\sigma$ level with both models. 
-Notice that, as discussed before, the XPOL/30m integrated flux is low with respect to expectations from both power law models. 
- 
-The \Planck\ data at 100, 143, 217 and 353 GHz are consistent with a much
-steeper SED with respect to the lower frequency data suggesting an extra emission component due to a different
-population of relativistic electrons \citep{1965ARA&A...3..297G, 2012ApJ...760...96G}. 
-{\it Archeops}, MAMBO/30m, GISMO/30m
-and \NIKA/30m do not seem to support such a low frequency break in the Crab nebula
-SED. Moreover, \cite{macias2010} found a break for frequencies above 1000~GHz. 
-However, considering the break shown by \Planck\ satellite data we assume a simple
+\textbf{Accounting for the break shown by \Planck\ satellite data we assume a simple
 two-power-law model\footnote{A detailed physical description of the SED of the
   Crab nebula is out of the scope of this paper.}:
 \begin{equation}
-I_{\nu} = A(\nu/1GHz)^{\beta} \quad for \quad \nu   \textless  100 GHz
+I_{\nu} = \left\{ 
+\begin{array}{rl}A_L(\nu/1GHz)^{\beta_L} &\mbox{$\nu<90$ GHz} \\
+   A_H(\nu/1GHz)^{\beta_H} &\mbox{$\nu\geq90$ GHz}
+  \end{array} \right.    
 \end{equation}
-and 
-\begin{equation}
-I_{\nu} = A_{H}(\nu/1GHz)^{\beta_H} \quad for \quad \nu   \textgreater  100 GHz
-\end{equation}
-By $\chi^2$-minimization we find
-A$_H$ = 8.6 $\pm$ 0.45 and $\beta_H$ = -0.71 $\pm$ 0.09.
-We note that \NIKA\ data is consistent with this model at the 2$\sigma$ level. More data at mm wavelengths are needed to better understand the observed break of the SED at about 90 GHz. 
+By $\chi^2$-minimization we obtain the fit shown in cyan in Fig.~\ref{crab_SED},
+where the cut-off frequency is 90 GHz and the knee frequencies are: 8 GHz and 100 GHz. 
+The best-fit parameters obtained are:
+$$\setlength\arraycolsep{0.1em}
+ \begin{array}{rclcl}
+  A_L&=& 507.7\pm0.1 ; \quad \quad   \beta_L = -0.3187\pm0.0001\\
+  A_H&=& 216.4\pm0.3 ; \quad \beta_H = -0.7525\pm0.0003
+ \end{array}
+$$
+We note that \NIKA\ data is consistent with this model at the 2$\sigma$ level. More data at mm wavelengths are needed to better understand the observed break of the SED around 90 GHz. }
+
+\begin{figure}
+  \centering
+          { \includegraphics[width=1\linewidth,keepaspectratio]{figures/Crab_SED_int_test.pdf}}
+           \caption{Crab nebula total intensity SED as obtained from \Planck\ \citep{2015arXiv150702058P}, \WMAP\ \citep{2011ApJS..192...19W}, Archeops \citep{macias2007archeops}, radio experiments \citep{dmitrenko1970absolute, 1971IzVUZ..14..157V}, XPOL/30m \citep{aumont2010}, \NIKA\/30m (this paper), MAMBO/30m \citep{2002A&A...386.1044B} and GISMO/30m \citep{2011ApJ...734...54A} data. The green line shows the model derived by a previous analysis discussed in \citep{macias2010}. The best-fit obtained by the analysis in this paper is shown in cyan line. Both, the best-fit models and the data account for the Crab nebula fading with the time.}
+\label{crab_SED}		
+  \end{figure} 
+
+For illustration we also show in green line the best-fit model as result of a previous study \citet{macias2010}. 
+Notice that in the plot both the best-fit modeland the data represented accounts for the fading of the source.
+The estimated spectral index $\beta_L$ is slightly different if we compare with the previous estimation provided by \cite{macias2010}. This mainly concerns the addition of recently published results by \Planck\ \citep{2015arXiv150702058P} and  WMAP \citep{2011ApJS..192...19W}.
+\NIKA\ camera agrees at 1 $\sigma$ level with both models. 
+As already discussed above XPOL/30m total power emission is low with respect to expectations from both power law models.
+ 
+The \Planck\ data at 100, 143, 217 and 353 GHz appears to be consistent with a much steeper SED with respect to the lower frequency data. This trend suggests  an extra emission component due to a different
+population of relativistic electrons \citep{1965ARA&A...3..297G, 2012ApJ...760...96G} which to date has not been identified with other experiments. 
+
+By contrast {\it Archeops}, MAMBO/30m, GISMO/30m
+and \NIKA/30m do not seem to support such a low frequency break in the Crab nebula SED. In addition, \cite{macias2010} discusses this possibility but only for higher frequency above 1000~GHz, where few observations evidences a break in the power law. 
+
+\textbf{This section figures out a clear inconsistency of recent \Planck\ data with low and high frequency data. In particular they show the evidence of a break in the power law around 90-100 GHz suggesting a different origin of the emission and/or the presence of a second population of electrons. This should be investigate more with high angular resolution observations which will permit to probe the small and large angular scales.}
+
 
 
 \subsection{Polarization}
-The total intensity of the Crab nebula has been monitored over decades across a
-large range of frequencies. By contrast the amount of polarization observations
-is really small.  Recent results provided by
+\textbf{Though the total power emission of the Crab nebula has been monitored over decades across a
+large range of frequencies, the amount of polarization data is
+very small.}
+Recent results provided by
 \Planck\ \citep{2015arXiv150702058P}, \WMAP\ \citep{2011ApJS..192...19W} and
-XPOL \citep{aumont2010} together with \NIKA\ allow us to trace the spectrum of the polarized flux as shown in Fig.~\ref{crab_SED_ipol}.  The \Planck\ data points show an oscillating behavior while
-the \WMAP\ ones are more consistent with a power law model. 
-This figure  show a tighter correlation of 
-the XPOL measurement with other data 
-because it is not affected by the Stokes $I$ quality.
-Furthermore, the
-average slope of the SED when approached by a single power-law seems to be
-different for the \Planck\ and \WMAP\ data.  To investigate this issue further
-we assume a power law model for the data as in Eq.~\ref{eq:sync}, and fit
-separately the \Planck\ and \WMAP\ data. We restrict the fit to the data with
-$\nu \textless$ 100 GHz. We show in Fig.~\ref{crab_SED_ipol} in black and blue
-the best-fit models for the \Planck\ and \WMAP\ data, respectively.
+XPOL \citep{aumont2010} together with \NIKA\ allow us to trace the spectral energy distribution of the polarized emission as shown in Fig.~\ref{crab_SED_ipol}.  
 
-Accounting for fading the fitted amplitudes and spectral indexes are:
-\begin{itemize}
-\item best-fit parameters for \WMAP\ only data:
-\begin{equation}
-A = 78.9\pm7.8 \quad , \quad \beta_p = -0.35\pm0.03;
-\end{equation}
-\item best-fit parameters for \Planck\ only data:
-\begin{equation}
-A = 179.1\pm15.4 \quad , \quad \beta_p = -0.54\pm0.02.
-\end{equation}
-\end{itemize}
+\textbf{\Planck\ data show an oscillating behaviour which is in contrast with what has been previously observed by \WMAP\ satellite.
+The comparison between the two satellites at lower frequencies teases the question about the photometry of the \Planck\ LFI for different frequencies.
+Whereas the \Planck\ data at 100 GHz shows again a break of the power law, the point at 353 GHz follows a completely different trend.
+By contrast the \WMAP\ data, although only at low frequencies, show a self-consistent power law model.
+Even if the comparison between the \WMAP\ and \Planck\ satellites is out the scope of this paper, we have decided to account for the two different trends shown by their results. Considering Eq.~\ref{eq:sync} as single power law like model for synchtron emission we use separately the \Planck\ and \WMAP\ data.}
+In Fig.~\ref{crab_SED_ipol} the two best-fit models are shown in blanck and blue for \Planck\ and \WMAP\ data, respectively.
+ 
+%This figure  show a tighter correlation of the XPOL measurement with other data because it is not affected by the Stokes $I$ quality.
+%Furthermore, the average slope of the SED when approached by a single power-law seems to be different for the \Planck\ and \WMAP\ data.  To investigate this issue further we assume a power law model for the data as in Eq.~\ref{eq:sync}, and fit separately the \Planck\ and \WMAP\ data. We restrict the fit to the data with $\nu \textless$ 100 GHz. We show in Fig.~\ref{crab_SED_ipol} in black and blue the best-fit models for the \Planck\ and \WMAP\ data, respectively.
 
-The \WMAP\ best-fit model is in agreement with \Planck\ observations at 30, 100
-and 353 GHz.  The \Planck\ best-fit model seems to overestimate the polarization
-flux at low frequency.  The \NIKA\ data at 150 GHz are consistent at the
-1$\sigma$ level with both the \WMAP\ and \Planck\ best-fit models.  In contrast
+Accounting for fading the best-fit parameters A$_w$, $\beta_w$, A$_p$, $\beta_p$ for \WMAP\ and \Planck\ fits, respectively are:
+%\begin{itemize}
+%\item best-fit parameters for \WMAP\ only data:
+%\begin{equation}
+%A = 78.9\pm7.8 \quad , \quad \beta_p = -0.35\pm0.03;
+%\end{equation}
+%\item best-fit parameters for \Planck\ only data:
+%\begin{equation}
+%A = 179.1\pm15.4 \quad , \quad \beta_p = -0.54\pm0.02.
+%\end{equation}
+%\end{itemize}
+$$
+\setlength\arraycolsep{0.1em}
+ \begin{array}{rclcl}
+  A_w&=& 78.98\pm7.82 ; \quad \quad   \beta_w = -0.35\pm0.03\\
+  A_p&=& 116.46\pm6.52 ; \quad \beta_p = -0.45\pm0.01
+ \end{array}
+$$
+
+XPOL and \NIKA\ agree both power laws within 1$\sigma$ error bar. In this case the XPOL data are not affected by the Stokes $I$ map quality as in the case of the polarization degree measurement.
+If the \WMAP\ best-fit model is in agreement with \Planck\ observations at 30, 100 and 353 GHz,  the \Planck\ best-fit model seems to overestimate the polarization flux at low frequency. In contrast
 to the intensity data, here a 100 GHz break is less conspicuous.
 We find no clear hint of a break in the polarization SED
-at frequencies above 90 GHz, hence putting pressure on the hypothesis of multiple electron populations to explain the SED break in intensity.
+at frequencies above 90 GHz, hence putting pressure on the hypothesis of multiple electron populations to explain the SED break in total power emission.
 
 We have also estimated the spectral index of the Crab nebula polarization
 emission at high frequency using the map obtained by SCUPOL \citep{scubapol} at 352 GHz (850
@@ -775,40 +793,15 @@ obtain:
 \end{equation}
 This result is in good agreement with the \WMAP\ best-fit model spectral index.
 
-\begin{figure}
-  \centering
-          { \includegraphics[width=1\linewidth,keepaspectratio]{figures/Crab_SED_i_150.pdf}}
-           \caption{Crab nebula total intensity SED as obtained from \Planck\ \citep{2015arXiv150702058P}, \WMAP\ \citep{2011ApJS..192...19W}, Archeops \citep{macias2007archeops}, radio experiments \citep{dmitrenko1970absolute, 1971IzVUZ..14..157V}, XPOL/30m \citep{aumont2010}, \NIKA\/30m (this paper), MAMBO/30m \citep{2002A&A...386.1044B} and GISMO/30m \citep{2011ApJ...734...54A} data. The green line shows the model derived by a previous analysis discussed in \citep{macias2010}. The best-fit obtained by the analysis in this paper is shown in cyan line. Both, the best-fit models and the data account for the Crab nebula fading with the time.}
-\label{crab_SED}		
-  \end{figure} 
 
 \begin{figure}
   \centering
-             { \includegraphics[width=1\linewidth,keepaspectratio]{figures/Crab_SED_ipol.pdf}}
+             { \includegraphics[width=1\linewidth,keepaspectratio]{figures/Crab_SED_ipol_test.pdf}}
            \caption{Crab nebula polarization flux SED as obtained from the \Planck\ \citep{2015arXiv150702058P}, \WMAP\ \citep{2011ApJS..192...19W} and \NIKA\ (this paper) data. The two best-fit models presented have been estimated using only WMAP data (blue line) or \Planck\ data only (black line).}
 \label{crab_SED_ipol}		
   \end{figure} 
  \noindent
-
-%The left panel of Fig.~\ref{crab_beta_ipol} represents the spatial distribution of the spectral index $\beta$ where $I$ $\textgreater$ 3$\sigma$. $\beta$ is obtained as described by the Eq.~\ref{beta_equation} considering the \NIKA\ Stokes $I$ maps of Fig.~\ref{crab_intensity_maps} and accounting for the corresponding frequencies. 
-
-%The right panel of Fig.~\ref{crab_beta_ipol} shows the total intensity map values at 260 GHz as function of the total intensity map observed at 150 GHz. The correlation found between the two frequencies suggests the same physical origin of the emission. 
-%The value of the spectral index obtained by the fit is:
-%\begin{equation}
-%\beta = -0.482 \pm 0.002.
-%\end{equation}
-%The measured value is different from the expected spectral index from previous observation \citet{baars1977absolute,macias2010}. This difference can be explained by the noise decorrelation used, which is different for the two Stokes $I$ map estimation, that causes filtering effect on the map at 260 GHz.
-%The measured spectral index is in agreement with what we observe on the map of the spatial distribution of $\beta$. Indeed, $\beta$ remains approximately constant around -0.45 in the most intense emission region of the source. The contours (red) represent the 150 GHz Stokes $I$ emission map. 
-
-%\begin{figure*}[h!]
-  %\centering
-  %           { \includegraphics[width=0.4\linewidth,keepaspectratio]{figures/crab_beta_i.pdf}}
-  %          { \includegraphics[width=0.5\linewidth,keepaspectratio]{figures/I_1mm_vs_2mm.pdf}}
-  %        \caption{Spectral index map (left) obtained using the two NIKA total intensity maps. The correlation between the two maps is shown on the right panel.}
-%\label{crab_beta_ipol}		
-%  \end{figure*} 
-%\subsection{Polarization spectral index}
-%In polarization the low S/N observed at 260 GHz prevents us to have a significant detection and to derive the spatial distribution of the spectral index.
+\textbf{From this analysis we noticed that the small amount of information at millimeter wavelengths in polarization emission is not conclusive but rather open several questions about the morphology of the polarized emission of the Crab nebula above 200 GHz. In the context of the \NIKA2\ instrument we aim to further investigate this aspect thanks to its polarized channel at 260 GHz.} 
 
 
 \section{Conclusions}\label{sec:conclusions}

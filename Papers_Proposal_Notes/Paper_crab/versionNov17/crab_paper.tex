@@ -359,8 +359,6 @@ of the polarization pipeline are summarized below:
     with the subtraction of a zero level for the photometry (see below). In the
     following, we therefore neglect this transfer function.
 
-%In order to have a proper estimate of the polarization degree we need to have a proper reconstruction of the intensity map. For an extended source like the Crab nebula, with angular size larger than the \NIKA\ FoV, it is difficult to correctly estimate its intensity emission avoiding filtering effects due to noise decorrelation methods. A common mode decorrelation method consisting in a template reconstruction (to be subtracted) using only the pixels outside the source is usually used in \NIKA\ data analysis. Filtering effects can be encountered in regions where the number of pixels used for the template reconstruction is too low.
-%In order to avoid such an effect the Stokes $I$ map shown on the left panel of Fig.~\ref{crab_intensity_maps} has been obtained by using a decorrelation method called ``dual-band decorrelation''. Such a decorrelation algorithm has been developed for the reconstruction of the Sunyaev-Zel'dovich signal in galaxy clusters observations \citep{adam2013} taking advantage of \NIKA\ dual-band capabilities. The idea of this algorithm arises with the fact that the atmospheric emission is stronger at 260 GHz than at 150 GHz, as a consequence we can use 260 GHz observations as a ``template'' of the atmospheric emission to be subtracted to the 150 GHz observational data.
 
 \item Correction of the intensity-to-polarization-leakage-effect, which was
   identified in observations of unpolarized sources like the planet Uranus. For
@@ -368,50 +366,7 @@ of the polarization pipeline are summarized below:
   \cite{ritacco2017} describes the algorithm of leakage correction developed specifically for \NIKA\ polarization observations. Applying this algorithm to Uranus observations the instrumental polarization is reduced to 0.6\% of the total intensity $I$.
   \item Projection of the demodulated and decorrelated Stokes $I$, $Q$, and $U$ TOIs into Stokes $I$, $Q$ and $U$ equatorial coordinates maps.
 
-    %After correction the leakage effect in extended sources is negligible.
-
-
-
-%, and corrected by developing an algorithm able to reduce the effect from $\sim$ 3\% to lower than 1\%. More details on this effect and the data analysis pipeline can be found in \cite{ritacco2017}.
-%For the Crab nebula observations the leakage systematic effect reaches a value of 0.5\% peak-to-peak of the total intensity.
-%The level of this spurious instrumental polarization appears significantly lower on an extended source than on Uranus. 
-%This can be due to a compensation of the negative and positive signal between adjacent pixels. Although the effect is weaker the algorithm of correction is still applied to obtain the final maps represented in Fig.~\ref{crab_intensity_maps}.
 \end{enumerate}
-% The first step of this dedicated module sees the subtraction of the a parasite signal which is modulated at harmonics of the HWP rotation %frequency and represents the most annoying noise contributing to the polarized signal. 
-%The second step is the reconstruction of the Stokes $I$, $Q$ and $U$ time ordered information (TOI) from modulated data. This is achieved using a demodulation procedure consisting in a lock-in around the fourth harmonic of the HWP rotation frequency, where the polarization signal is located. 
-%Finally, an intensity to polarization leakage effect was observed on the observation of an unpolarized source, the planet Uranus, and corrected by developing an algorithm able to reduce the effect from $\sim$ 3\% to lower than 1\%. More details on this effect and the data analysis pipeline can be found in \cite{ritacco2017}.
-%For the Crab nebula observations the leakage systematic effect reaches a value of 0.5\% peak-to-peak of the total intensity.
-%The level of this spurious instrumental polarization appears significantly lower on an extended source than on Uranus. 
-%This can be due to a compensation of the negative and positive signal between adjacent pixels. Although the effect is weaker the algorithm of correction is still applied to obtain the final maps represented in Fig.~\ref{crab_intensity_maps}.
-
-%In order to have a proper estimate of the polarization degree we need to have a proper reconstruction of the intensity map. For an extended source like the Crab nebula, with angular size larger than the \NIKA\ FoV, it is difficult to correctly estimate its intensity emission avoiding filtering effects due to noise decorrelation methods. A common mode decorrelation method consisting in a template reconstruction (to be subtracted) using only the pixels outside the source is usually used in \NIKA\ data analysis. Filtering effects can be encountered in regions where the number of pixels used for the template reconstruction is too low.
-%In order to avoid such an effect the Stokes $I$ map shown on the left panel of Fig.~\ref{crab_intensity_maps} has been obtained by using a decorrelation method called ``dual-band decorrelation''. Such a decorrelation algorithm has been developed for the reconstruction of the Sunyaev-Zel'dovich signal in galaxy clusters observations \citep{adam2013} taking advantage of \NIKA\ dual-band capabilities. The idea of this algorithm arises with the fact that the atmospheric emission is stronger at 260 GHz than at 150 GHz, as a consequence we can use 260 GHz observations as a ``template'' of the atmospheric emission to be subtracted to the 150 GHz observational data.
- 
-
-
- %The level of this spurious instrumental polarization is significantly lower than the observed one on Uranus. This is probably due to a compensation of the negative and positive signal between adjacent pixels. Although the leakage effect is very weak on this diffuse source the correction is still applied to produce the final maps presented in Fig.~\ref{crab_intensity_maps}.
-
-
-%This data analysis allows to produce Stokes $I$, $Q$ and $U$ maps as shown in Figg.~\ref{crab_intensity_maps},\ref{crab_polarization_maps}. The continuos rotation of the HWP running at 2.98 Hz permits to shift the polarized signal at higher frequencies. In this way the polarized signal is cleaned by the low frequency noise (e.g.~atmosphere variations, electronics etc), but the intensity signal could be. As a consequence an accurate determination of the polarization fraction requires a good estimation of the total intensity map. 
-
-%Fig.~\ref{crab_intensity_maps} shows the Stokes intensity map obtained at 150 GHz using the dual band decorrelation method.
-
-
-%For illustration we show in Fig.~\ref{fig:crab_leakage_maps} the intensity to polarization leakage maps of Stokes $Q$ and $U$ of the Crab nebula, obtained as subtraction of the $Q$ and $U$ maps before and after leakage correction.
-
-%\begin{figure}[h!]
-%\begin{center}
-%\includegraphics[clip, angle=0, scale = 0.23]{figures/Crab_IQ_1mm.pdf}
-%\includegraphics[clip, angle=0, scale = 0.23]{figures/Crab_IU_1mm.pdf}
-
-%\includegraphics[clip, angle=0, scale = 0.23]{figures/Crab_IQ_2mm.pdf}
-%\includegraphics[clip, angle=0, scale = 0.23]{figures/Crab_IU_2mm.pdf}
-%\caption{Crab Nebula Stokes $Q$ and $U$ intensity to polarization leakage maps. The peak-to-peak estimation reaches a value 0.5\% of the total intensity emission, respectively. See the total intensity map represented in Fig.~\ref{crab_intensity_maps}.}
-%\label{fig:crab_leakage_maps}
-%\end{center}
-%\end{figure}
-
-%The intensity to polarization leakage peak-to-peak reaches a value of $\sim$ 1\% (260 GHz) and 0.5\% (150 GHz) of the total intensity, see Fig.~\ref{fig:crab_leakage_maps}. 
 
 \subsection{Crab polarization properties}\label{sec:pol_properties}
 In this section we discuss the polarization properties of the source in terms of polarization degree $p$ and angle $\psi$, which are defined through the Stokes parameters $I, Q$, and $U$ as follows:
@@ -475,8 +430,6 @@ We present in Fig.~\ref{crab_ipol_maps} the 150 GHz Crab polarization intensity
 map $I_{pol}$ uncorrected for noise bias. We observe a peak at 0.8 Jy beam$^{-1}$ and the polarization
 decreases towards the edges of the nebula.
 
-%The polarization intensity $P$ map, represented in Fig.~\ref{crab_ipol_maps}, exhibits a polarized emission peaked at 0.8 Jy beam$^{-1}$ and decreasing to 0.1 Jy beam$^{-1}$ on the extremities of the nebula. 
-
 \section{Total intensity and polarization fluxes}\label{sec:Polarization estimates in CMB experiments like beams}
 We compute the total flux across the Crab nebula, which has an extent of about
 5$^{\prime}$x7$^{\prime}$ as shown in Fig.~\ref{crab_intensity_maps}.  We use
@@ -524,18 +477,7 @@ As discussed in \cite{ritacco2017} a 1.8$^{\circ}$ uncertainty must be considere
 Notice that the \Planck\ satellite FWHMs are: 33$^{\prime}$, 24$^{\prime}$, 14$^{\prime}$, 10$^{\prime}$, 7.1$^{\prime}$, 5.5$^{\prime}$, 5$^{\prime}$ arcminutes at 30, 44, 70, 100, 143, 217, 353 GHz, respectively.
 \WMAP\ satellite has FWHMs: 0.93$^{\circ}$, 0.68$^{\circ}$, 0.53$^{\circ}$, 0.35$^{\circ}$, \textless 0.23$^{\circ}$ at 22 GHz, 30 GHz, 40 GHz, 60 GHz, 90 GHz respectively. 
 
-%% As stated in \ref{sec:pol_properties} the polarization estimates assume a
-%% Gaussian form in case of high S/N ratio, in particular when I$_{pol} > $
-%% 3$\sigma_{I_{pol}}$. This allows us to avoid noise bias and motivates the safe
-%% choice of estimating the polarization angle where this condition is satisfied.
-%% Moreover, we estimated the polarization angles as integrated values over a
-%% 5$^{\prime}$ and 7$^{\prime}$ Gaussian beam finding $\psi$ =
-%% -83.6912$\pm$0.0004$^{\circ}$ and $\psi$ = -83.6491$\pm$0.0004$^{\circ}$,
-%% respectively. These values agree with those presented in Tab.~\ref{tab:crab_results}
-%% if we do not consider significant regions. Although all the polarization angles
-%% estimated are in agreement with each other due to the systematic error, we
-%% consider as reliable only those estimated in high S/N ratio regions.
-	As stated in \ref{sec:pol_properties}, we use simple Gaussian
+As stated in \ref{sec:pol_properties}, we use simple Gaussian
   estimators in this work that are unbiased only at high S/N ratio. This adds an
   additional uncertainty on the determination of the degree of polarization $p$
   and on the angle $\psi$ when the SNR is not larger than $\sim 3\sigma$. While
@@ -556,16 +498,10 @@ Notice that the \Planck\ satellite FWHMs are: 33$^{\prime}$, 24$^{\prime}$, 14$^
   $p$ and $4^{\circ}$ on $\psi$ should be considered at this stage to account
   for the yet incomplete subtraction of the noise bias on polarized quantities.
 
-%To compare with the \Planck\ satellite we estimate the values in two regions of $7^{\prime}$ and $5^{\prime}$ width corresponding to the beam widths of the \Planck\ frequency channels at 143 and 217 GHz, respectively. 
-%Further, two other regions are defined at high S/N ratio: where $P$ $\textgreater$ $3\sigma_P$ and  where $P$ $\textgreater$ 0.2 Jy. 
 
 Fig.~\ref{crab_p_angle_comparison} shows the polarization fraction (top) and polarization angle (bottom) of the Crab nebula as a function of the frequency as measured by
 five different instruments: \Planck\ \citep{2015arXiv150702058P},
 \WMAP\ \citep{2011ApJS..192...19W}, XPOL \citep{aumont2010} and \NIKA\ (this paper).  
-%For \NIKA\ we have averaged within a 5$^\prime$ region and considered only pixels for which $I_{pol} > 3\sigma_{I_{pol}}$. It is important to note here that this ``average'' is the integrated value over a 5~arcmin GAUSSIAN beam.
-  %We also into account the color correction factor, which is estimated to be 1.05 for the Crab Nebula at 150 GHz and the secondary lobe fraction of 28 \% at 150 GHz, affecting the \NIKA\ beam \citep{catalano2014}, and estimated by \cite{adam:tel-01303736}.
-%Notice that SCUPOL maps \citep{scubapol} provided at 352 GHz have reduced angular size w.r.t \NIKA. In order to compare with it we define a small region of 1.4$^\prime$ around the peak of the polarization intensity. 
-%For the polarization fraction we keep the convention used by XPOL \citep{aumont2010} and we represent in the figure the value measured within 5$^{\prime}$. 
 
 The solid line in both figures represents the weighted-average found using all
 the observations shown and the dashed lines represent the uncertainties
@@ -627,10 +563,8 @@ the \Planck\ value at 30 GHz, which is slightly high.
       \hline
       \hline
       & &  Pulsar & & \\
-       & $I$ [Jy]& $p$ [\%] & $\psi$ [$^\circ$] \\ 
+       & $I$ [Jy]& $p$ [\%] & $\psi$ [$^\circ$] & \\ 
        \hline
-      \NIKA\ & 0.97 $\pm$ 0.01 & 13.8 $\pm$ 0.7 & 151.4 $\pm$ 1.5 $\pm$ 1.8 (-93.8)&\\
-                                         
       POLKA & 1.63 & 25.3 $\pm$ 3.0 & 145.1 $\pm$ 3.3 & \\
       XPOL  & & 13.9 $\pm$ 0.6 & 158.1 $\pm$ 0.5 &  \\
       SCUPOL & & 14.3 $\pm$ 1.8 & 140.0 $\pm$ 2.8& \\
@@ -638,7 +572,6 @@ the \Planck\ value at 30 GHz, which is slightly high.
       \hline
        & &  Peak & & \\
        \hline
-        \NIKA\ &1.14 $\pm$ 0.01 & 22.5 $\pm$ 0.7 & 145.8 $\pm$ 0.8 $\pm$ 1.8 (-88.15)\\                                        
       POLKA & 1.72 & 25.0 $\pm$ 3.1 & 151.7 $\pm$ 3.5 &  \\
       XPOL  & & 25 & 149.0 $\pm $ 1.4 &  \\
       SCUPOL & & 18.7 $\pm$ 1.5 & 146.1 $\pm$ 2.1&\\
@@ -647,11 +580,36 @@ the \Planck\ value at 30 GHz, which is slightly high.
     \hline   
     \end{tabular}
    \caption{ 
-   	Total flux $I$, polarization degree $p$, and angle $\psi$ estimated at the pulsar position evidenced on the maps by a black cross and at the peak of the Stokes $I$ map. The polarization angle is here given in Equatorial coordinates and in Galactic coordinates within parenthesis.
-   	Values estimated by POLKA, XPOL, SCUPOL reported in \cite{2014PASP..126.1027W} are also represented for comparison. 
+   	%Total flux $I$, polarization degree $p$, and angle $\psi$ estimated at the pulsar position evidenced on the maps by a black cross and at the peak of the Stokes $I$ map. The polarization angle is here given in Equatorial coordinates and in Galactic coordinates within parenthesis.
+   	Values estimated by POLKA, XPOL, SCUPOL reported in \cite{2014PASP..126.1027W} at the pulsar and peak position, respectively. 
     }
     \label{tab:crab_comparison}
  \end{table*}
+
+
+\begin{table*}
+  \centering
+      \begin{tabular}{ccccccccc}
+      \hline
+      \hline 
+   & $I$ & $Q$ & $U$ & $I_{pol}$ & $p$ & $\psi$ & \\ 
+      &	[Jy] & [Jy] & [Jy] & [Jy] & [\%] &[$^\circ$] & \\
+       \hline
+	Peak \\	
+	\hline
+  A pixel beam size &  0.219 $\pm$ 0.001 & 0.0053 $\pm$ 0.0047 & -0.045 $\pm$ 0.001 & 0.045 $\pm$ 0.001 & 20.7 $\pm$ 0.7 & 138.3 $\pm$ 2.3 $\pm$ 1.8 & \\
+ 	\hline
+  \NIKA\ beam size & 8.28 $\pm$ 0.12 & 0.31 $\pm$ 0.06 & -1.70 $\pm$ 0.05 & 1.73 $\pm$ 0.05 & 20.9 $\pm$ 0.8 & 140.20 $\pm$ 0.04 $\pm$ 1.8 & \\	
+     \hline            
+    \hline   
+    \end{tabular}
+   \caption{ 
+   	Flux densities in total power, polarization and polarization properties estimated at the peak position of the Stokes $I$ map, which position is shown on the maps with a black cross. The polarization angle is here given in Equatorial coordinates and in Galactic coordinates within parenthesis.}
+    \label{tab:crab_comparison}
+ \end{table*}
+
+
+
   
 
 \begin{figure}

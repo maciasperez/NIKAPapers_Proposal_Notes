@@ -7,7 +7,6 @@
 \usepackage{epstopdf}
 \usepackage{epsf,color}
 \usepackage[mathscr]{eucal}
-\usepackage{amsmath}
 \usepackage{amssymb,amsfonts}
 \usepackage{natbib}
 \usepackage{graphicx}
@@ -25,53 +24,8 @@
 
 \newfont{\gwpfont}{cmssq8 scaled 1000}
 \mathchardef\mhyphen="2D
-%\mathchardef\mhyphen=''2D
-\newcommand{\rexcess}{{\gwpfont REXCESS}}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\documentclass[iop,numberedappendix,apj]{emulateapj}
-%\documentclass[iop,numberedappendix,apj]{aastex}
-%\documentclass{article}
-%\usepackage{emulateapj}
-%\pdfoutput=1
-%\usepackage{color}
-%\usepackage{amssymb}
-%\PassOptionsToPackage{hyphens}{url}
-%\usepackage{hyperref}
-%\usepackage{breakurl}
-%\def\UrlBreaks{\do\/\do-}
-%\usepackage{natbib}
-%\usepackage{graphicx}
-%\usepackage{epsfig}
-%\usepackage[hyphens]{url}
-%\usepackage{csquotes}
-%\usepackage{lscape}
-%\usepackage{afterpage}
-%\usepackage[tbtags]{amsmath}
-%\usepackage{hyperref,xcolor}
-%\hypersetup{colorlinks,linkcolor={blue!50!black},citecolor={blue!50!black},urlcolor={blue!80!black}}
-%\setlength{\tabcolsep}{0.04in} 
-%\usepackage{epsfig}
-%\usepackage{fullpage}
-%\usepackage{hyperref}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% NOTES ON COMPILING / PRINTING THIS DOCUMENT
-%%% do the latex <filename>
-%%% dvips -O 0cm,2.0cm <filename.dvi>
-%%% dvips -O 0cm,2.0cm clash_pressures.dvi
 
-\include{latex_commands}
-\defcitealias{arnaud2010}{A10}
-\defcitealias{planck2013a}{P13}
-\defcitealias{cavagnolo2009}{C09}
-\defcitealias{bulbul2010}{B10}
-\defcitealias{vikhlinin2006a}{V06}
-
-\newcommand{\quotes}[1]{``#1''}
-
-%\slugcomment{}
-%\shortauthors{Romero \etal}
-%\shorttitle{Joint SZE Map Fitting with MUSTANG and Bolocam}
-%altaffilmark{#}
+\include{latex_commands}  % Included above (17 Nov. 2017)
 
 \begin{document}
 
@@ -80,36 +34,10 @@
 \input{authorlist}
 \input{lablist}
 %%%%%%%%%%%%%%%%%%%%%%%%
-%\author{
-%  Order TBD ,
-%  Charles E. Romero\altaffilmark{1,*},
-%  Matthew McWilliam \altaffilmark{2,3},
-%  Juan Macias-Perez \altaffilmark{3},
-%  NIKA Collaboration \altaffilmark{4}
-%} 
-%\date{\today}
-\date{Received \today \ / Accepted --}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\altaffiltext{1}{Institut de Radioastronomie Millim\'{e}trique
-%300 rue de la Piscine, Domaine Universitaire
-%38406 Saint Martin d'H\`{e}res, France} 
-%\altaffiltext{2}{Imperial College London, Kensington, London SW7 2AZ, UK}
-%\altaffiltext{3}{Laboratoire de Physique Subatomique et Cosmologie 53 Avenue des Martyrs, 38000 Grenoble}
-%\altaffiltext{4}{NIKA2 Collaboration}
-%\altaffiltext{*}{Author contact: \email{romero@iram.fr}}
-%\begin{document}
+\date{Received July 20, 2017 \ / Accepted November 13, 2017}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%\begin{abstract}
-%%% TO-DO: 20 JUNE 2017:
-%%% MAKE THE INCLUSION OF PLANCK SOUND MORE POSITIVE
-%%% END the abstract with the range covered.
-%%% Mention deviation/gNFW
-%%% Double check noise
-
-%%% MASK THE MUSTANG MAP.
 
 \abstract
     {\emph{Context:} In the past decade, sensitive, resolved Sunyaev-Zel'dovich (SZ) studies of galaxy
@@ -125,8 +53,8 @@
       which under the assumption of ellipsoidal symmetry is analytically integrable.
       For MUSTANG, NIKA, and Bolocam we derive a non-parametric pressure profile 
       independently and find good agreement among the instruments. In particular, we find
-      that the non-parametric profiles are consistent with a fitted gNFW profile.
-      Given the ability of Planck to constrain the total signal,
+      that the non-parametric profiles are consistent with a fitted generalized Navaro-Frenk-White (gNFW)
+      profile. Given the ability of Planck to constrain the total signal,
       we include a prior on the integrated Compton Y parameter as determined by Planck.
       
       \emph{Results:}
@@ -162,7 +90,7 @@
 
 In recent years, Sunyaev Zel'dovich \citep[SZ,][]{sunyaev1970,sunyaev1972}
 effect observations have seen an increase in high resolution ($\theta \lesssim 30$\asecs)
-observations \citep[e.g.][]{mason2010,adam2014,kitayama2016}. These observations come from MUSTANG on the
+observations \citep[e.g.,][]{mason2010,adam2014,kitayama2016}. These observations come from MUSTANG on the
 Robert C. Byrd Green Bank Telescope \citep[GBT][]{dicker2008}, NIKA on the IRAM 30-meter telescope \citep{monfardini2010},
 and ALMA (band 3). However, all of these high resolution instruments have been limited in their ability to
 recover signal beyond their field of view ($\sim 45$\asecs for MUSTANG and ALMA, and $\sim 120$\asecs for NIKA). As massive
@@ -175,17 +103,17 @@ such as Bolocam \citet{czakon2015} or Planck \citep{planck2013a} have been used 
 \citet{romero2015a} and \citet{adam2015,adam2016a} respectively.
 
 These joint analyses have shown the ability to constrain the pressure profile of the intracluster medium (ICM) of individual
-galaxy clusters over a large spatial range, often by assuming some parameterized pressure profile \citep[e.g.][]{romero2017,adam2014}.
+galaxy clusters over a large spatial range, often by assuming some parameterized pressure profile \citep[e.g.,][]{romero2017,adam2014}.
 In \citet{romero2015a}, the differences in fitted pressure profiles, especially in additional constraint of the inner pressure profile
 slope, with the addition of MUSTANG data were noted. In the case of
-\citet{romero2017,adam2015,adam2016a}, the pairs of instruments used did not have an overlap in recovered spatial scales, thus
+\citet{romero2017,adam2015,adam2016a}, the pairs of instruments used had no overlap in recovered spatial scales, thus
 limiting the ability to ascertain systematic errors of instruments.
 %so the addition of another instrument would not necessarily present any discrepancies.
 However, as new SZ instruments like NIKA2 \citep[][]{monfardini2014,calvo2016} and MUSTANG2 \citep[][]{dicker2014a}
 with the ability to recover a larger range of scales come online, there will be overlap. Consequently, for clusters observed
 with multiple instruments (operating at different frequency bands), studies of the kinetic SZ effect, or relativistic
 corrections \citep{itoh1998} will be of significant interest and stand to benefit from the additional frequency coverage.
-The additional frequency coverage will help with removal of contaminants (e.g. compact sources), as well as offering additional
+The additional frequency coverage will help with removal of contaminants (e.g., compact sources), as well as offering additional
 leverage of the spectral distortion. 
 To be sure of the results of these analyses, it will be critical to
 understand any systematics involved with individual instruments. Recent results combining Bolocam and Planck data \citep{sayers2016},
@@ -199,14 +127,14 @@ of the ICM pressure profile, the generalized Navarro-Frenk-and-White \citep[gNFW
 with a fairly canonical set of parameters coming from \citet{arnaud2010} (Hereafter, A10), which used a sample of 33 local ($z < 0.2$)
 clusters.
 Recently, in several SZ studies non-parametric pressure profiles have been reconstructed either through a maximum-likelihood approach
-\citep[e.g.][]{ruppin2017,sayers2013} or through deprojection of deconvolved data  \citep[e.g.][]{basu2010,sayers2011}.
+\citep[e.g.,][]{ruppin2017,sayers2013} or through deprojection of deconvolved data  \citep[e.g.,][]{basu2010,sayers2011}.
 The method employed in this
-paper maximizes the marginalized posterior distribution, where the principle difference is our employment of analytic integrals.
+paper maximized the marginalized posterior distribution, where the principle difference is our employment of analytic integrals.
 
-Galaxy cluster formation is understood currently in the framework of hierarchical structure formation\citep[e.g.][]{press1974}.
+Galaxy cluster formation is understood currently in the framework of hierarchical structure formation\citep[e.g.,][]{press1974}.
 While remarkable that a simple self-similar treatment of clusters \citep{kaiser1986} should describe the broad population of
 galaxy clusters, non-linear physical processes in cluster formation (see \citet{kravtsov2012} for a review) likely account
-for much of the scatter in scaling relations \citep[e.g.][]{battaglia2012}. In this context, investigating cluster pressure profiles
+for much of the scatter in scaling relations \citep[e.g.,][]{battaglia2012}. In this context, investigating cluster pressure profiles
 non parametrically can reveal deviations from a smooth pressure profile, which may correspond to departures from self-similarity
 \citep{basu2010}. Moreover, these non-parametric fits do not rely on any physical model, and thus provide a less biased avenue
 to constraining the thermodynamic state of the ICM. The combination of non-parametric SZ pressure profiles with complementary
@@ -223,12 +151,12 @@ Counts of galaxy clusters by mass and redshift serve to constrain cosmological p
 ($\Omega_{\Lambda}$), matter density ($\Omega_{m}$), the amplitude of matter fluctuations ($\sigma_8$), and the equation of state of
 dark energy ($w$) \citep{planck2016_szc}. Constraints on these
 parameters derived from galaxy cluster samples are generally limited by the accuracy of mass estimation of 
-galaxy clusters \citep[e.g.][]{hasselfield2013, dehaan2016}. Scaling relations which relate global (integrated) observables
+galaxy clusters \citep[e.g.,][]{hasselfield2013, dehaan2016}. Scaling relations which relate global (integrated) observables
 to the cluster mass are often employed. Currently, scaling relations as applied to observables over an intermediate radial
 region ($R_{2500} \lesssim r \lesssim R_{500}$) of galaxy clusters is preferred as this range shows minimal scatter in the
-scaling relations \citep[e.g.][]{kravtsov2012}. This is due
+scaling relations \citep[e.g.,][]{kravtsov2012}. This is due
 to the generally low cluster-to-cluster scatter in pressure profiles, found observationally and in simulations,
-within this radial range \citep[e.g.][]{borgani2004,nagai2007,arnaud2010,bonamente2012,planck2013a,sayers2013}.
+within this radial range \citep[e.g.,][]{borgani2004,nagai2007,arnaud2010,bonamente2012,planck2013a,sayers2013}.
 While the relative homogeneity of pressure profiles in the intermediate region is well evidenced, it remains important to
 develop methods to derive non-parametric pressure profiles of clusters so that physical deviations are not artificially
 smoothed by the adoption of a parametric profile. 
@@ -253,7 +181,7 @@ km s$^{-1}$ Mpc$^{-1}$, consistent with the cosmological parameters derived from
 \citep{planck2016_cp}. For this cosmology, at $z=0.89$, we have a scale of 7.945 kpc/\asec.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Observations and Data Reduction}
+\section{Observations and data reduction}
 \label{sec:obs}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -287,7 +215,7 @@ of CLJ1227 exhibits signs of merger activity, while the outskirts appear relaxed
 Given the relative circular symmetry of CLJ1227, it provides a suitable test for determining a non-parametric pressure
 profile of the cluster, while maintaining the assumption of spherical symmetry. For the centroid, we adopt the X-ray
 centroid from ACCEPT \citep{cavagnolo2009} is at [RA,Dec] = [12:26:57.9,+33:32:49] (J2000).
-From X-ray data, \citet{mantz2010b} determined a scale radius $R_{500} = 1000 \pm 50$ kpc \textbf{($126$\asecs$\pm8$\asec)}, which corresponds to
+From X-ray data, \citet{mantz2010b} determined a scale radius $R_{500} = 1000 \pm 50$ kpc ($126$\asecs$\pm8$\asec), which corresponds to
 $M_{500} = (7.8 \pm 1.1) \times 10^{14} M_{\odot}$. In the following, we summarize how the data, which are used in this study,
 were produced in previous studies. In Table~\ref{tbl:cluster_obs}, we summarize the angular scales probed by the instruments
 and the overall depth of observations.
@@ -307,41 +235,12 @@ and the overall depth of observations.
   \label{fig:clj1227_maps}
 \end{figure*}
 
-
-%and a scaling pressure, $P_{500} = 11.7$keV/cm$^{3}$.
-
-%%% K09 flux is 0.34 +/- 0.13 mJy in our maps. Now I've written it in. Jan 2016.
-
-%\textcolor{red}{[I will do an analysis with the point source found in Korngut+2011. The question is if I already 
-%have the point source modelled (and to find it).}
-
-%\begin{deluxetable}{llllll}
-%\tabletypesize{\footnotesize}
-%\tablecolumns{10}
-%\tablewidth{0pt} 
-%\tablecaption{observational properties. \label{tbl:cluster_obs}}
-%\tablehead{ 
-%  \colhead{Instrument} & \colhead{Freq.} & \colhead{$T_{obs}$} & \colhead{Noise} &
-%  \colhead{FWHM} & \colhead{FOV} \\
-%  \colhead{ } & \colhead{(GHz)} & \colhead{(hours)} & \colhead{(Compton y)} &
-%  \colhead{(\asec)} & \colhead{(\amin)}
-%}
-%\startdata
-%\textbf{NIKA}    & 150 & 7.2  & $12.5 \times 10^{-6}$ & 18  & 1.9 \\
-%\textbf{MUSTANG} &  90 & 4.9  & $34.2 \times 10^{-6}$ & 9   & 0.7 \\
-%\textbf{Bolocam} & 150 & 11.8 & $8.48 \times 10^{-6}$ & 58  &   8 \\
-%\textbf{Planck}  & 100 & ??   & ??                   & 588 & 5000 ? 
-%\enddata
-%\tablecomments{Overview of the sensitivities achieved for each of the instruments used in this analysis.}
-%\end{deluxetable}
-
 \begin{table*}[]
   \caption{\footnotesize{Overview of instrument parameters influencing the constraining power of
       pressure profiles for CLJ1227 relevant for this analysis. Noise is determined on maps smoothed
       by a Gaussian kernel with FWHM of 10\asec, 10\asec, and 60\asec for MUSTANG, NIKA, and Bolocam
       respectively.}}
 \begin{center}
-%\resizebox{\textwidth}{!} {
 \begin{tabular}{l|lllll}
   \hline
   \hline \\
@@ -375,17 +274,9 @@ More detailed information about the instrument can be found in \citet{dicker2008
 
 The observations and data reduction are described in detail in \citet{romero2015a}, and were applied to the MUSTANG
 data of CLJ1227 as presented in \citet{romero2017}.
-%We briefly review the observations and reduction here.
-%Absolute flux calibrations were based on the planets Mars, Uranus, or Saturn, nebulae, or the star Betelgeuse 
-%($\alpha_{Ori}$). Responsive detectors were determined by scans taken at regular intervals with a calibration lamp.
-%A common mode template, polynomial, and sinusoid were fit and subtracted.
-%Further data quality checks were calculated after this subtraction.
 The MUSTANG data map, with a point source subtracted (see Section~\ref{sec:preprocessing})
 is shown in the left panel in Figure~\ref{fig:clj1227_maps}.
 
-%A transfer function was calculated in \citet{romero2017} when applied to white noise
-%across an entire sky. We find that said transfer function does not fully reproduce the results of a simulated
-%cluster observation.
 For this analysis, we refine the transfer function found in  \citet{romero2017} by filtering a cluster model
 using a strictly \citetalias{arnaud2010} profile (a gNFW profile with parameters
 $[\alpha,\beta,\gamma,C_{500},P_0]=[1.05,5.49,0.31,1.18,8.42 P_{500}]$) through the standard MUSTANG pipeline.
@@ -455,11 +346,6 @@ Bolocam was a facility instrument on the CSO from
 2003 until 2012. CLJ1227 was observed with a Lissajous pattern that results in a tapered
 coverage dropping to 50\% of the peak value at a radius of roughly 5\amin, and to 0 at a radius of 10\amin.
 The Bolocam maps used in this analysis are $14\arcmin \times 14\arcmin$. The Bolocam data 
-%\footnote{Bolocam data is publicaly available at 
-%\href{http://irsa.ipac.caltech.edu/data/Planck/release\_2/ancillary-data/bolocam/}
-%{http://irsa.ipac.caltech.edu/data/Planck/release\_2/ancillary-data/} 
-%\href{http://irsa.ipac.caltech.edu/data/Planck/release\_2/ancillary-data/bolocam/}{bolocam/}.}
-%%% Removed '(2mm)' in from of 'map' for 'Bolocam map'...
 are the same as those used in \citet{czakon2015} and \citet{sayers2013}; the details of the reduction are 
 given therein, along with \citet{sayers2011}. The Bolocam map is shown in the right panel of Figure~\ref{fig:clj1227_maps}.
 The reduction and calibration is similar to that used for MUSTANG, and Bolocam achieves a 
@@ -470,17 +356,14 @@ The reduction and calibration is similar to that used for MUSTANG, and Bolocam a
 \subsection{Planck integrated Compton parameter}
 \label{sec:picp}
 
-%To account for information on larger angular scales, we include in the analysis the integrated Compton parameter of the cluster
-%as measured using Planck data, exactly as it was done in \citet{adam2015}.
 As in \citet{adam2015}, we wish to include constraints on still larger scales than reached with the aforementioned instruments,
 and therefore we include in this analysis the integrated Compton parameter of the cluster as measured using Planck data.
 We use the Planck frequency maps from 143 to 857~GHz to produce a Compton parameter map as described in \citet{hurier2013} and
-\citet{planck2013ymap,planck2016_tsz}. \textbf{These maps take into account known spectral dependencies and are able to mitigate non-SZ
+\citet{planck2013ymap,planck2016_tsz}. These maps take into account known spectral dependencies and are able to mitigate non-SZ
   signal from the higher frequencies. The impact of the observed point source would be greatest at 353 GHz, where the flux density,
-  extrapolated from NIKA2 bands, is significantly below the uncertainty in the Planck integrated Compton y parameter.}
+  extrapolated from NIKA2 bands, is significantly below the uncertainty in the Planck integrated Compton y parameter.
 The resolution of this map is 7.5$^{\prime}$, limited by the lowest frequency Planck channel
 map used in the reconstruction. Using this map we compute the integrated Compton parameter up to a radial distance of 15$^{\prime}$
-%with respect to the center of the cluster.
 Uncertainties in the integrated Compton parameter are computed by integrating at random positions
 around the cluster. The uncertainties obtained have been also crossed-checked using Planck half-ring half difference Compton parameter
 map
@@ -489,24 +372,21 @@ obtained as described in \citet{planck2013ymap,planck2016_tsz}. We find $Y_{Cyl,
 %%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Non-parametric Pressure Profile Reconstruction via a Maximum Posterior Distribution Analysis}
+\section{Non-parametric pressure profile reconstruction via a maximum posterior distribution analysis}
 \label{sec:ml_deproj}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%\subsection{{\color{red}Overview}}
-%\label{sec:ml_overview}
-
 We perform non-parametric fits of the pressure profile of CLJ1227 on MUSTANG, NIKA, and Bolocam data maps independently.
-The filtering effects incurred from data processing of these instruments favors forward modelling pressure profiles and
-performing fits over trying to do a geometric deprojection, for example with Abel transforms \citep[e.g.][]{basu2010}.
-\textbf{However, the deconvolution method employed in \citet{basu2010} was reported to have systematic flux loss of up to 40\%
+The filtering effects incurred from data processing of these instruments favors forward modeling pressure profiles and
+performing fits over trying to do a geometric deprojection, for example with Abel transforms \citep[e.g.,][]{basu2010}.
+However, the deconvolution method employed in \citet{basu2010} was reported to have systematic flux loss of up to 40\%
 at $R_{200}$. Our use of priors, especially of the integrated Compton parameter (Section~\ref{sec:fitting}) allows us to
 better constrain the pressure profile at larger radii. While the Abel transform and the ``onion-skin'' deprojection method
-\citep[e.g.][]{kriss1983} may be computationally efficient, the calculation of errors from many deconvolved map realizations
-\citep[e.g. 100 as in ][]{david2001,basu2010} reduces the computational advantage over the approach employed in this work.
-Additionally, the ``onion-skin'' deprojection method typically suffers from large anti-correlations in adjacent bins and is heavily
-dependent on the choice of the outermost bin; these drawbacks can be significantly mitigated with regularization \citep[e.g.][]{croston2006}.
-Yet the choice of regularization parameters are non-trivial and requires cross-validation to ensure accuracy.}
+\citep[e.g.,][]{kriss1983} may be computationally efficient, the calculation of errors from many deconvolved map realizations
+\citep[e.g., 100 as in ][]{david2001,basu2010} reduces the computational advantage over the approach employed in this work.
+Additionally, the onion-skin deprojection method typically suffers from large anti-correlations in adjacent bins and is heavily
+dependent on the choice of the outermost bin; these drawbacks can be significantly mitigated with regularization \citep[e.g.,][]{croston2006}.
+Yet the choice of regularization parameters are non-trivial and requires cross-validation to ensure accuracy.
 
 Before fitting the pressure profiles (Section~\ref{sec:preprocessing}),
 we remove a point source from the MUSTANG and NIKA maps based on previous works
@@ -522,8 +402,8 @@ procedure is described in Section~\ref{sec:fitting}, and we review the performed
 A point source at $4.6\sigma$ significance ($\sim 0.5$ mJy) in MUSTANG was reported in \citet{korngut2011}, but is not
 evident in the MUSTANG data as reprocessed in \citet{romero2017}. A short VLA filler observation (VLA-12A-340, D-array, at 7 GHz)
 was performed to follow up this potential source (at RA 12:26:58.0 and Dec +33:32:59), but to a limit of $\sim 50 {\rm \mu Jy}$ nothing
-is seen \citep{romero2017}. At 500 $\mu$m, \emph{Herschel}-SPIRE has a point source sensitivity of $\sim 8$ mJy, \textbf{but no point
-source is evident at the above location.}
+is seen \citep{romero2017}. At 500 $\mu$m, \emph{Herschel}-SPIRE has a point source sensitivity of $\sim 8$ mJy, but no point
+source is evident at the above location.
 
 %In addition, \citet{adam2015} find a point source at RA 12:27:00.01 and Dec +33:32:42 with a flux density of 
 \citet{adam2015} find a point source at a different location, RA 12:26:59.855 and Dec +33:32:35.21, with a flux density of 
@@ -534,14 +414,6 @@ data with a flux density of $0.36 \pm 0.11$ mJy \citep{romero2017}.
 We subtract this point source from the NIKA and MUSTANG maps using the above flux density values.
 In the Bolocam data, the point source is faint enough to not be a concern, given Bolocam's beam size.
 
-%A point source at $4.6\sigma$ significance in MUSTANG was reported in \citet{korngut2011}, but is not
-%evident in the reprocessed MUSTANG data. A short VLA filler observation (VLA-12A-340, D-array, at 7 GHz) 
-%was performed to follow up this potential source, but to a limit of $\sim 50 {\rm \mu Jy}$ nothing is seen.
-%However, \citet{adam2015} find a point source at RA 12:27:00.01 and Dec +33:32:42 with a flux density of 
-%$6.8 \pm 0.7 \text{ (stat.)} \pm 1.0 \text{ (cal.)}$ mJy at 260 GHz and $1.9 \pm 0.2 \text{ (stat.)}$ at 150 GHz. 
-%A point source at this location is fit to the MUSTANG data with a flux density of $0.36 \pm 0.11$ mJy
-%\citep{romero2017}. We subtract this point source from the NIKA and MUSTANG maps.
-
 We also wish to account for any mean level before fitting our cluster model, especially because there is a degeneracy
 between the mean level and the cluster model, and the mean level can typically be well constrained a priori.
 The mean level in the MUSTANG map is calculated
@@ -551,13 +423,13 @@ Within NIKA data, a mean level is calculated within the timestreams for data fal
 the masked region. This mean level is subtracted within the timestream processing of NIKA data. The Bolocam map already has
 a mean level subtracted.
 
-\subsection{Non-Parametric Pressure Profile Models}
+\subsection{Non-parametric pressure profile models}
 \label{sec:np_models}
 
 Our non-parametric pressure profile reconstruction assumes spherical symmetry and power law interpolation between radial bins.
 Because we employ analytic integrals, we can integrate from zero to a finite radius, and from a finite radius to infinity,
 with some clear restrictions on the power
-laws when doing so. The analytic integration has been employed before \citep[e.g.][]{vikhlinin2001a,korngut2011,sarazin2016}.
+laws when doing so. The analytic integration has been employed before \citep[e.g.,][]{vikhlinin2001a,korngut2011,sarazin2016}.
 Here, we resolve  previous limitations (Appendix~\ref{sec:analytic_integrals}) found with certain power laws for which the
 previously given analytic formulation are undefined \citep{korngut2011,sarazin2016}, but which are necessary to be covered
 in our analysis.
@@ -588,7 +460,7 @@ limited to $\alpha >4$ in order to avoid having infinite mass (see Appendix~\ref
 this limit here, during fitting we only enforce $\alpha > 1$.
 
 %Our first bin covers the range $0 < r < R_1$; our second bin covers $R_1 < r < R_2$, and our last ($n$th) bin covers
-%$R_{n-1} < r $, i.e. it extends to infinity. A finite radius $R_n$ is defined, and is used to determine the power
+%$R_{n-1} < r $, i.e., it extends to infinity. A finite radius $R_n$ is defined, and is used to determine the power
 %law in this outermost bin. Pressure normalizations, $P_i$, are defined at each bin boundary, $R_i$. We then assume
 %that the pressure in between bin boundaries follows a power law, $P \propto r^{-\alpha}$. We assume that the power
 %law in the first bin is given by the power law of the second bin.
@@ -599,7 +471,7 @@ this limit here, during fitting we only enforce $\alpha > 1$.
 
 Given the restrictions of ellipsoidal symmetry and a power law dependence of the integrated quantity (pressure) on the
 ellipsoidal radius, it is possible to calculate the integral along the line of sight analytically
-\citep[e.g.][]{vikhlinin2001a,korngut2011}. We follow
+\citep[e.g.,][]{vikhlinin2001a,korngut2011}. We follow
 principally the formulation provided in \citet{korngut2011}. As noted in \citet{sarazin2016}, there are certain power
 laws ($\alpha/2 = p = 1/2, 0 , -1/2, -1, -3/2, ...$) for which the formulation given in \citet{korngut2011} fails,
 but a reformulation provides a valid integration. More generally, the formulation fails for $\alpha/2 = p < -1/2$.
@@ -641,7 +513,7 @@ We employ a maximum posterior distribution algorithm, and take our noise to be G
 %\end{equation}
 %where $\overrightarrow{d}$ is our data, $\overrightarrow{d}_{mod}$ is our model, and $\mathbf{N}^{-1}$ is our
 %covariance matrix for a given dataset.
-In previous works, NIKA and MUSTANG noise have been taken as uncorrelated \citep[e.g.][]{romero2015a,romero2017,adam2015}.
+In previous works, NIKA and MUSTANG noise have been taken as uncorrelated \citep[e.g.,][]{romero2015a,romero2017,adam2015}.
 Bolocam noise has been taken as approximately uncorrelated, but 1000 noise realizations, which included CMB and point
 source estimates, are provided to allow for a more accurate noise estimation \citep{sayers2011}.
 %In \citet{romero2017},
@@ -681,12 +553,12 @@ It provides fairly accessible implementation and parallelized sampling.
 %\begin{figure}[!h]
 %  \centering
 %  \includegraphics[width=0.5\textwidth]{NIKA_ml_deproj_figs/NIKA_Real_6_B_Real_3000S_500B_ML-YES_PP-YES_50W_step.eps}
-%  \caption{A typical series of chains. Here, we used 6 bins, 3000 steps, 500 of which were
+%  \caption{A typical series of chains. Here, we used six bins, 3000 steps, 500 of which were
 %    burn in. 30 walkers were used.}
 %  \label{fig:mc_steps}
 %\end{figure}
 
-\subsection{Validation and Performance of Fitting Algorithm}
+\subsection{Validation and performance of fitting algorithm}
 \label{sec:validity}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\subsection{Systematics}
@@ -697,25 +569,18 @@ Our algorithm is first tested with mock cluster observations. We create mock obs
 a noise realization (created from jack-knifed timestreams) for each of the three maps to the
 corresponding filtered map of a previously determined \citep{romero2017} gNFW profile.
 We perform initial tests to validate the number of bins chosen. The resolution (FWHM) and FOV of our
-instruments (see Section~\ref{sec:np_models}) suggest that between 4 and 8 bins are appropriate.
-We cover this range, with fits run with 4, 6, and 8 bins with two model constructions. The first,
+instruments (see Section~\ref{sec:np_models}) suggest that between four and eight bins are appropriate.
+We cover this range, with fits run with four, six, and eight bins with two model constructions. The first,
 as described in Section~\ref{sec:np_models}, and a second being uniform spherical pressure bins.
-\textbf{F-tests on the posterior distributions do not indicate a preference in the number of bins used.
+F-tests on the posterior distributions do not indicate a preference in the number of bins used.
 We consider how well the recovered pressure profile matches the input gNFW pressure profile. To do so,
 we calculate $\chi^2$ of the fitted pressure profile relative to the input gNFW and find
-that the reduced $\chi^2$ is minimized when using 6 bins for MUSTANG and Bolocam. For NIKA, it is
-minimized at 8 bins, but this is likely influenced by the prior on the integrated Compton Y,
+that the reduced $\chi^2$ is minimized when using six bins for MUSTANG and Bolocam. For NIKA, it is
+minimized at eight bins, but this is likely influenced by the prior on the integrated Compton Y,
 which is only implemented on the NIKA data. A difference of $\chi^2$ test results in p-values for
-preferring 8 bins over 6 bins for MUSTANG, NIKA, and Bolocam are 0.015, 0.80, and 0.50. Except for
+preferring eight bins over six bins for MUSTANG, NIKA, and Bolocam are 0.015, 0.80, and 0.50. Except for
 MUSTANG, it appears that statistically there is not a significant preference. Given satisfactory
-fits with 6 bins for all instruments, and a preference from MUSTANG, we adopt 6 bins across the board.}
-
-%We quantify the performance in terms of the logarithmic likelihoods ($\ln (\mathcal{L}) = -\chi^2 / 2$)
-%of (1) the fit to fitted model maps to the mock observations, and (2) the fits of the non-parametric
-%fits to the input pressure profile. In combination, we find that $\ln (\mathcal{L})$ typically varies
-%by $<2$, and that 6 bins with the power law model perform best for MUSTANG and Bolocam, while 4 bins
-%with the power law performs best for NIKA. We therefore adopt the 6-bin power law approach as our
-%standard method of modeling the Compton y map.
+fits with six bins for all instruments, and a preference from MUSTANG, we adopt six bins across the board.
 
 We further test the dependence of the fit results on initial guess of the pressure values, and find that this
 dependence is minimal. We change the input guesses by the
@@ -732,10 +597,10 @@ with the application of the transfer functions of these instruments. In particul
 function produces artifacts at large radii ($r \gtrsim 1000$ kpc). As we define the outermost bin of our power
 law model to extend to infinity, truncating, or reducing the number of bins does not resolve this bias. Rather,
 we find it best to retain the bins in the map fitting procedure and to trim them in subsequent analyses. Therefore,
-in our analysis of real data, 6 bins are used within the fitting procedure, and we retain 5, 6, and 4 bins for
+in our analysis of real data, six bins are used within the fitting procedure, and we retain five, six, and four bins for
 MUSTANG, NIKA, and Bolocam respectively for subsequent analysis and discussion.
 
-We show the fits to our mock observations with this 6-bin, power-law model in Figure~\ref{fig:virt_robustness},
+We show the fits to our mock observations with this six-bin, power-law model in Figure~\ref{fig:virt_robustness},
 and note that the reconstructed profiles are consistent with the input profile. Our input gNFW model has been taken
 from \citet{romero2017}, and our output model is fit as prescribed in Section~\ref{sec:parfits}.
 
@@ -767,7 +632,7 @@ from \citet{romero2017}, and our output model is fit as prescribed in Section~\r
 %Additionally, our pressure profiles are consistent with those produced when using uniform pressure
 %bins (as opposed to using interpolated power laws). This is true of persistant features, especially those seen
 %at large radii in Bolocam data, where the transfer function shows a notable ringing effect. A drawback of our
-%modelling algorithm is that our requirement that the outer slope be greater than 1 results in our outer two bins,
+%modeling algorithm is that our requirement that the outer slope be greater than 1 results in our outer two bins,
 %in the Bolocam fits, being affected by the ringing effect, over a wider range of bin spacing. 
 
 %The outermost bins appear to be affected by systematics from the transfer function, of the respective instrument.
@@ -779,12 +644,12 @@ from \citet{romero2017}, and our output model is fit as prescribed in Section~\r
 %While these outer bins are trimmed, we conversely find that the exclusion of these bins from the fitting
 %procedure does not improve the fits. Given that we inherently integrate to infinity, this is not surprising.
 
-%The use of 6 bins provides generally reliable results. Use of more bins results in larger error bars, while
+%The use of six bins provides generally reliable results. Use of more bins results in larger error bars, while
 %the use of fewer bins reduces resolution, thereby smoothing out interesting features revealed in our pressure profiles.
 %The results of these fits are shown for NIKA, MUSTANG, and Bolocam in
 %Figures~\ref{fig:nika_contours},\ref{fig:mustang_contours},and \ref{fig:bolocam_contours} respectively.
 
-\section{Non-Parametric Pressure Profile Results}
+\section{Non-parametric pressure profile results}
 \label{sec:np_res}
 
 \begin{figure}[!h]
@@ -795,13 +660,13 @@ from \citet{romero2017}, and our output model is fit as prescribed in Section~\r
   %Real_Joint_gNFW_Real_11011111_2500S_500B_100W_pressure.eps
   \caption{Non-parametric pressure profiles as determined via each dataset individually. The error bars are statistical,
     from the MCMC fits. The vertical dashed and dotted lines correspond to the half width at half maximum (HWHM) and
-    FOV/2 (i.e. radial FOV), respectively.}
+    FOV/2 (i.e., radial FOV), respectively.}
   \label{fig:nppps}
 \end{figure}
 
-\textbf{As noted in the previous section, we trim the outer 1 and 2 bins in MUSTANG and Bolocam respectively from subsequent analysis.
+As noted in the previous section, we trim the outer one and two bins in MUSTANG and Bolocam respectively from subsequent analysis.
 We trim these bins due to bias in the fits on simulated data. The results, shown in Figure~\ref{fig:nppps} are also tabulated
-in Table~\ref{tbl:nppp_res} with trimmed points in red.}
+in Table~\ref{tbl:nppp_res} with trimmed points in red.
 %\input{table_nppp} % labelled as tbl:nppp_res
 \input{table_nppp_p16cosmo} % labelled as tbl:nppp_res
 
@@ -816,16 +681,16 @@ From the Monte Carlo chains of the non-parametric fits, we determine the covaria
   \mathbf{N}_{i,j} = \langle d_i d_j \rangle - \langle d_i \rangle \langle d_j \rangle.
   \label{eqn:covariance}
 \end{equation}
-\textbf{This formulation assumes that the data is well described by a Gaussian distribution; however Table~\ref{tbl:nppp_res}
+This formulation assumes that the data is well described by a Gaussian distribution; however Table~\ref{tbl:nppp_res}
   shows that the distributions of binned pressures are asymmetric. From the residuals in Figure~\ref{fig:joint_pressure},
   which account for the asymmetries, we find that assuming Gaussian distributions does not adversely impact our
-  results, particularly as we have employed the covariance matrix in this work.}
+  results, particularly as we have employed the covariance matrix in this work.
 
 We show the correlation matrices in Figure~\ref{fig:corr_matrices}. We notice
-that any two adjacent bins are negatively correlated, and by extension, bins spaced 2 apart (e.g bins 1 and 3) are positively
+that any two adjacent bins are negatively correlated, and by extension, bins spaced two apart (e.g., bins one and three) are positively
 correlated. The maximum amplitude of off-diagonal correlations is 0.13, 0.05, and 0.05 for MUSTANG, NIKA, and Bolocam respectively.
-These are relatively small correlations, especially when contrasted with \citet{sayers2013}, \textbf{whose correlations (with 13 radial bins)
-appears to be over 0.5 for the some adjacent radial bins.}
+These are relatively small correlations, especially when contrasted with \citet{sayers2013}, whose correlations (with 13 radial bins)
+appears to be over 0.5 for the some adjacent radial bins.
 
 \begin{figure*}[h]
   \centering
@@ -841,7 +706,7 @@ appears to be over 0.5 for the some adjacent radial bins.}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\section{Parametric Pressure Profile (gNFW) Fits}
+\section{Parametric pressure profile (gNFW) fits}
 \label{sec:parfits}
 
 %\textcolor{red}{I need to introduce this section.}
@@ -880,7 +745,7 @@ covariance matrices from our non-parametric fits.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Parametric Constraints}
+\subsection{Parametric constraints}
 \label{sec:parametric}
 
 \begin{figure}[!h]
@@ -888,8 +753,8 @@ covariance matrices from our non-parametric fits.
 %  \includegraphics[width=0.5\textwidth]{NIKA_ml_deproj_figs/Real_Joint_gNFW_Real_11011111_2500S_500B_100W_contour.eps}
   \includegraphics[width=0.5\textwidth]{NIKA_ml_deproj_figs/Real_Joint_gNFW_Real_11011111_2500S_500B_100W_contour_p16cosmo.eps}
   \caption{Parameter constraints for our gNFW model: $P_0$, $r_p$, $\gamma$, and $\beta$. Recall that $C_{500} = R_{500} / R_p$.
-    \textbf{The dashed lines on the individual parameter histograms show 14th, 50th, and 86th percentiles. The contour plots of two
-    parameters have $1\sigma$, $2\sigma$, and $3\sigma$ contours.}}
+    The dashed lines on the individual parameter histograms show 14th, 50th, and 86th percentiles. The contour plots of two
+    parameters have $1\sigma$, $2\sigma$, and $3\sigma$ contours.}
   \label{fig:joint_constraints}
 \end{figure}
 %$206_{-43}^{+57}$ kpc
@@ -902,7 +767,7 @@ covariance matrices from our non-parametric fits.
   \caption{Our gNFW (parametric) pressure profile as simultaneously fit to the non-parametric pressure profiles is shown in red.
     The error bars are statistical, from the MCMC fits. The residual significances ($\sigma$, lower panel) are calculated from the
     asymmetric statistical errors (Table~\ref{tbl:nppp_res}) and calibration errors.
-    %The vertical dashed and dotted lines correspond to the HWHM and FOV/2 (i.e. radial FOV), respectively;
+    %The vertical dashed and dotted lines correspond to the HWHM and FOV/2 (i.e., radial FOV), respectively;
     The non-parametric symbol-to-instrument association remains the same as in Figures~\ref{fig:virt_robustness} and \ref{fig:nppps}.
     The MUSTANG point that falls well ($\sim-2.8\sigma$) below the gNFW pressure profile (close to 0.1 $R_{500}$) is of
     note and discussed in Section~\ref{sec:discussion}. The last two NIKA points fall $-5.5\sigma$ and $-2.8\sigma$ below the gNFW
@@ -923,10 +788,10 @@ covariance matrices from our non-parametric fits.
 We find gNFW parameters of [$P_0$, $C_{500}$, $\beta$, and $\gamma$] =
 [$49.7_{-24.9}^{+22.4}$, $5.89_{-1.78}^{+1.94}$,$2.98_{-0.23}^{+0.28}$, and $0.23_{-0.17}^{+0.30}$].
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\textbf{We take our best-fit value as the 50th percentile in each marginalized parameter distribution.
-The error bars are calculated at the corresponding $1\sigma$ ($50 \pm 34$\%) percentiles.}
+We take our best-fit value as the 50th percentile in each marginalized parameter distribution.
+The error bars are calculated at the corresponding $1\sigma$ ($50 \pm 34$\%) percentiles.
 The power law slope $\gamma$ is within the typical value range found in previous gNFW constraints
-\citep[e.g]{nagai2007,arnaud2010,sayers2013},
+\citep[e.g.,]{nagai2007,arnaud2010,sayers2013},
 on CLJ1227 as well as general cluster samples. However, our value of $\beta$ is less than expected;
 moreover, for a non-rotating spherical cluster in HSE under thermal pressure support $\beta \le 4$ would
 indicate an unbounded mass at arbitrarily large radii (Appendix~\ref{sec:finite_mass}).
@@ -938,7 +803,7 @@ value indicates that the scale radius (transition in pressure profile slopes) oc
 
 We also note that the value of $C_{500}$ itself may not be nearly as high if a smaller value of $R_{500}$
 is adopted (implying a smaller $M_{500}$ and $P_{500}$.) This may well be the case, as several other
-studies conclude that $R_{500} < 1000$ kpc \citep[e.g][]{rumsey2016,mroczkowski2009}.
+studies conclude that $R_{500} < 1000$ kpc \citep[e.g.,][]{rumsey2016,mroczkowski2009}.
 
 Setting aside the variations in parameter values themselves, we see in Figure~\ref{fig:joint_pressure} that our
 gNFW fit is in agreement for $R \gtrsim 0.3 R_{500}$. In the central regions, our fit shows greater pressure than
@@ -989,38 +854,31 @@ NIKA has the strongest detection of the cluster and places the greatest constrai
 %%% ADD MORE DISCUSSION HERE!
 
 Our gNFW pressure profile fit shows a higher core pressure than that of other sample-averaged gNFW profiles
-(see Figure~\ref{fig:joint_pressure}). \textbf{Many sample-averaged profile studies have subdivided their
+(see Figure~\ref{fig:joint_pressure}). Many sample-averaged profile studies have subdivided their
   samples by dynamical state and find that cool-core clusters tend to have steeper inner pressure profiles
-  \citep[e.g.][]{arnaud2010,planck2013a,sayers2013,romero2017}, and therefore
+  \citep[e.g.,][]{arnaud2010,planck2013a,sayers2013,romero2017}, and therefore
 one might infer that CLJ1227 is also a core core cluster. However, X-ray data show that the core is relatively hot \textbf{(13 keV)}
-\citep{maughan2007}, thus highlighting that dynamical state is certainly not well established via a pressure profile alone.}
+\citep{maughan2007}, thus highlighting that dynamical state is certainly not well established via a pressure profile alone.
 
-\textbf{We compare our parametric and non-parametric profiles to non-parametric profiles derived in ACCEPT \citep{cavagnolo2009}, a publicly available database of data products from \emph{Chandra} observations of galaxy clusters\footnote{\url{https://web.pa.msu.edu/astro/MC2/accept/}}. We find agreement with the ACCEPT profile (Figure~\ref{fig:joint_pressure}), noting that both the ACCEPT and our pressure profiles rise above the ensemble averages of \citet{planck2013a} ($z < 0.5$) and \citetalias{arnaud2010} ($z < 0.2$. In an X-ray study of 80 South Pole Telescope (SPT) selected clusters, \citet{mcdonald2014} found lower central pressure, relative to the universal pressure profile in \citetalias{arnaud2010}, for their subsample of high-($z > 0.6$) redshift clusters. Where CLJ1227 is at $z=0.89$, its increased central pressure relative to \citetalias{arnaud2010} is counter to the trend in \citet{mcdonald2014}, is suggestive that CLJ1227 is somehow unique. Indeed, CLJ1227 is among the most massive clusters at $z > 0.6$ \citep[e.g.][]{menanteau2012}.}
+We compare our parametric and non-parametric profiles to non-parametric profiles derived in ACCEPT \citep{cavagnolo2009}, a publicly available database of data products from \emph{Chandra} observations of galaxy clusters\footnote{\url{https://web.pa.msu.edu/astro/MC2/accept/}}. We find agreement with the ACCEPT profile (Figure~\ref{fig:joint_pressure}), noting that both the ACCEPT and our pressure profiles rise above the ensemble averages of \citet{planck2013a} ($z < 0.5$) and \citetalias{arnaud2010} ($z < 0.2$. In an X-ray study of 80 South Pole Telescope (SPT) selected clusters, \citet{mcdonald2014} found lower central pressure, relative to the universal pressure profile in \citetalias{arnaud2010}, for their subsample of high-($z > 0.6$) redshift clusters. Where CLJ1227 is at $z=0.89$, its increased central pressure relative to \citetalias{arnaud2010} is counter to the trend in \citet{mcdonald2014}, is suggestive that CLJ1227 is somehow unique. Indeed, CLJ1227 is among the most massive clusters at $z > 0.6$ \citep[e.g.,][]{menanteau2012}.
 
-\textbf{The uniqueness of CLJ1227 is likely enhanced given the various studies supporting merger activity. \citet{maughan2007} interpreted the hot ICM to be suggestive of a merger event. This interpretation is echoed in \citet{jee2009a}, whose lensing analysis supports a picture in which the dark matter distribution appears undisturbed on large scales, but shows a clear bimodality in the central region, and conclude by postulating an early-stage head-on merger scenario. \citet{rumsey2016} support the early stage merger scenario primarily from the differences seen in scaling quantities ($Y_X$) between X-ray and SZ (AMI) data.}
+The uniqueness of CLJ1227 is likely enhanced given the various studies supporting merger activity. \citet{maughan2007} interpreted the hot ICM to be suggestive of a merger event. This interpretation is echoed in \citet{jee2009a}, whose lensing analysis supports a picture in which the dark matter distribution appears undisturbed on large scales, but shows a clear bimodality in the central region, and conclude by postulating an early-stage head-on merger scenario. \citet{rumsey2016} support the early stage merger scenario primarily from the differences seen in scaling quantities ($Y_X$) between X-ray and SZ (AMI) data.
 
-\textbf{The profiles recovered here are consistent with the parametric profiles found in \citet{adam2015}. We note that the transition in the pressure profile from the inner to outer profile appears gradual in \citet{adam2015}, whereas our work is suggestive of a sharper transition, especially when we allow $\alpha$ to vary (Section~\ref{sec:parametric}). In none of the SZ maps used in this analysis is there clear (significant) substructure which may be inferred to cause elevated pressure. Where a merger in the plane of the sky may produce observable shocks, especially via high-resolution SZ observations, we find the lack of substructure in our study to be consistent with a head-on merger. Given the noise levels achieved by NIKA and MUSTANG, if substructure exists in the core, it may require yet higher resolution to observe it.} 
+The profiles recovered here are consistent with the parametric profiles found in \citet{adam2015}. We note that the transition in the pressure profile from the inner to outer profile appears gradual in \citet{adam2015}, whereas our work is suggestive of a sharper transition, especially when we allow $\alpha$ to vary (Section~\ref{sec:parametric}). In none of the SZ maps used in this analysis is there clear (significant) substructure which may be inferred to cause elevated pressure. Where a merger in the plane of the sky may produce observable shocks, especially via high-resolution SZ observations, we find the lack of substructure in our study to be consistent with a head-on merger. Given the noise levels achieved by NIKA and MUSTANG, if substructure exists in the core, it may require yet higher resolution to observe it.
 
 This merger scenario could still be consistent with our findings, as a merger affecting the central pressure should indeed
 increase the pressure there. Provided that the system is not in equilibrium, and in particular, that increased gas pressure
 has not propagated to the outer extent of the cluster, then this scenario would be consistent with the cluster pressure profiles
 that we have reconstructed (both the non-parametric and subsequent parametric profiles). An approach of determining non-parametric
 profiles, such as that presented here, will be useful for a more accurate analysis of pressure fluctuations and will inform
-the degree of non-thermal pressure support \citep[e.g.][]{khatri2016}.
-
-%In particular, our non-parametric fits give an indication that the departure
-%from a gNFW profile is marked by a pressure drop at a cluster-centric radius of $\sim 12$\asecs
-%($\sim 100$ kpc), where MUSTANG data is critical to determining the location of this pressure deviation.
-
-%We find that the deviations from a more canonical gNFW pressure profile (e.g. A10 profile) in our
-%non-parametric fits and parametric fits are consistent with
+the degree of non-thermal pressure support \citep[e.g.,][]{khatri2016}.
 
 \section{Conclusions}
 \label{sec:conclusions}
 
 We developed an algorithm to determine a non-parametric pressure profile for galaxy clusters.
 This method is of particular utility to SZ observations, where the filtering effects from data
-processing favor fitting forward modelled pressure profiles, as opposed to deriving non-parametric pressure profiles via
+processing favor fitting forward modeled pressure profiles, as opposed to deriving non-parametric pressure profiles via
 geometric deprojection. Our fitting algorithm is robust with respect to input parameters,
 bin spacing, and instrumental setup specifics. While the constraints of single-dish SZ observations
 beyond the FOV for a given instrument are poor, we find that the inclusion of such a bin
@@ -1031,7 +889,7 @@ CLJ1227 from MUSTANG, NIKA, and Bolocam. In doing so, we cover a radial range
 $0.05 R_{500} < r < 1.1 R_{500}$, continuously recovering spatial scales in this range,
 and find consistency among the non-parametric fits of the individual instruments. Furthermore,
 parametric best fits indicate a gNFW profile with a relatively small scale radius ($r_p$)
-($r_p = C_{500}/R_{500}$). If left unconstrained, $\alpha$ tends towards large values, indicating
+($r_p = C_{500}/R_{500}$). If left unconstrained, $\alpha$ tends toward large values, indicating
 a rapid transition at this scale radius between the inner and outer slope. This rapid transition
 is consistent across all three instruments, where NIKA is most sensitive to this transition
 region and indeed NIKA data alone favors a rapid transition. This rapid transition is also
@@ -1075,14 +933,14 @@ The NIKA dilution cryostat has been designed and built at the Institut N\'eel.
 In particular, we acknowledge the crucial contribution of the Cryogenics Group, and 
 in particular Gregory Garde, Henri Rodenas, Jean Paul Leggeri, Philippe Camus. 
 This work has been partially funded by the Foundation Nanoscience Grenoble, the LabEx FOCUS ANR-11-LABX-0013 and 
-the ANR under the contracts ``MKIDS'', ``NIKA'' and ANR-15-CE31-0017. 
+the ANR under the contracts MKIDS, NIKA and ANR-15-CE31-0017. 
 This work has benefited from the support of the European Research Council Advanced Grant ORISTARS 
 under the European Union's Seventh Framework Programme (Grant Agreement no. 291294).
 We acknowledge fundings from the ENIGMASS French LabEx (R. A. and F. R.), 
 the CNES post-doctoral fellowship program (R. A.), the CNES doctoral fellowship program (A. R.) and 
 the FOCUS French LabEx doctoral fellowship program (A. R.).
 
-%The authors would like to thank Marco de Petris for helpful comments on this manuscript.
+The authors would like to thank the anonymous referee for helpful comments on this manuscript.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%                       APPENDIX                              %%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1091,7 +949,7 @@ the FOCUS French LabEx doctoral fellowship program (A. R.).
 \appendix
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Analytic Integrals of Ellipsoidally Symmetric Power Laws}
+\section{Analytic integrals of ellipsoidally symmetric power laws}
 \label{sec:analytic_integrals}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1148,7 +1006,7 @@ when writing definitions per case. The pressure distribution can be rewritten as
 %  \text{Case 3} & \epsilon(r_e) = 0                      &: r_e^2 < R_i^2 \\
 %                & \epsilon(r_e) = \epsilon_i (r_e^2)^{-Q_i} &: R_i^2 \leq r_e^2, 
 %\end{align}
-where $R_i$ is a boundary radius (the outer boundary in Case 2). Given a cluster profile with more than 3 bins, we end
+where $R_i$ is a boundary radius (the outer boundary in Case 2). Given a cluster profile with more than three bins, we end
 up with many bins in Case 2, in which case we rescale $a_i$, $b_i$, $c_i$, and subsequently $R_i$ each time to properly
 normalize each bin ($\epsilon_i$)
 

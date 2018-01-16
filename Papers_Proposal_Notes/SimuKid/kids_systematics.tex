@@ -48,8 +48,27 @@ with :
 
 $c_{0}$ is a constant and \eps\ is the non-linearity coefficient. \\
 
-Many experiments such as MAXIPOL \citep{2007ApJ...665...42J}, EBEX \citep{2010SPIE.7741E..1CR}, POLARBEAR \citep{2017JCAP...05..008T}, \nika2 \citep{2017A&A...599A..34R}, use half-wave plates (HWPs) to improve the sensitivity in polarization measurments by naturally rejecting atmospheric noise, and to reconstruct the three Stokes parameters :  \I , \Q\ and \U . However, the rotation of the HWP induces a strong additional parasitic signal that is highly peaked at harmonics of the HWP rotation frequency. This parasitic signal is due to imperfections of the HWP that modulate the background signal, it was observed by experiments like \nika2 \citep{2017A&A...599A..34R}, EBEX \citep{2010SPIE.7741E..1CR} and MAXIPOL \citep{2007ApJ...665...42J}. 
-The power spectrum illustrated in Fig.~\ref{fig:hwp_power_spectrum} shows this additionnal noise that is two to three order of magnitude above the noise level, making it one of the strongest noise contributor in polarization observations. Experiment like \nika\ corrected this effect by fitting it by a sum of harmonics of the HWP rotation frequency and subtracting it fom the TOIs. As you can see in Fig.~\ref{fig:hwp_power_spectrum}, the parasitic signal was corrected and its amplitude was reduced to noise level, but the residuals of this signal could still induce non-linearity in the measurement. In this paper we will study this systematic effect and see if it biases the measurment of a KID. To do so, we simulate this signal by modelling it as a Fourier series of the harmonics of the HWP rotation frequency :
+Many experiments such as MAXIPOL \citep{2007ApJ...665...42J}, EBEX
+\citep{2010SPIE.7741E..1CR}, POLARBEAR \citep{2017JCAP...05..008T}, \nika2
+\citep{2017A&A...599A..34R}, use half-wave plates (HWPs) to improve the
+sensitivity in polarization measurments by naturally rejecting atmospheric
+noise, and to reconstruct the three Stokes parameters : $I$ , $Q$ and $U$
+. However, the rotation of the HWP induces a strong additional parasitic signal
+that is highly peaked at harmonics of the HWP rotation frequency. This parasitic
+signal is due to imperfections of the HWP that modulate the background signal,
+it was observed by experiments like \nika2 \citep{2017A&A...599A..34R}, EBEX
+\citep{2010SPIE.7741E..1CR} and MAXIPOL \citep{2007ApJ...665...42J}.  The power
+spectrum illustrated in Fig.~\ref{fig:hwp_power_spectrum} shows this additionnal
+noise that is two to three order of magnitude above the noise level, making it
+one of the strongest noise contributor in polarization observations. Experiment
+like \nika\ corrected this effect by fitting it by a sum of harmonics of the HWP
+rotation frequency and subtracting it fom the TOIs. As you can see in
+Fig.~\ref{fig:hwp_power_spectrum}, the parasitic signal was corrected and its
+amplitude was reduced to noise level, but the residuals of this signal could
+still induce non-linearity in the measurement. In this paper we will study this
+systematic effect and see if it biases the measurment of a KID. To do so, we
+simulate this signal by modelling it as a Fourier series of the harmonics of the
+HWP rotation frequency :
 
 \begin{equation}
 HWP(t) = \sum_{n=1}^{6} A_{n} \cos nwt + B_{n} \sin nwt , 

@@ -1,31 +1,44 @@
-\section{Application to CMB maps and power spectra estimations}
+%\section{Application to CMB maps and power spectra estimations}
+\section{Non linearity and impact on CMB polarization measurements}
 \label{sec:cmb}
-The measurement of CMB polarization, and especially the detection of $B$ modes, is one of the major challenges in modern cosmology. In this section, we show that the KIDs systematic effect such as the non-linearity does not affect them from detecting $B$ modes.\\
 
-A measure done by a KID is defined by Eq.~(\ref{eq:eq-NL}):
-\begin{equation}
-m  \simeq (I + \varepsilon I^{2}) + (Q + 2\varepsilon IQ) \cos(2\alpha) + (U + 2 \varepsilon IU) \sin(2\alpha),
+Detecting CMB polarization $B$ modes is one of the major challenges in modern
+cosmology. However, due to the faintness of the expected signal, systematic
+effects must be controlled to challenging low levels. The specific way KID
+photometry is derived is as new as this technology and we here investigate if it
+might lead to non linearty in the photometry reconstruction, and how this would
+impact CMB polarization measurements.
+
+\subsection{Parameterization}
+
+We assume that KIDs are placed right after a perfect polarizer along the optical
+path. At each time, they therefore measure a combination of the Stokes
+parameters $I$, $Q$ and $U$. To first order, the non linearity of the KID
+response can be described by a parameter $\epsilon$ such as:
+
+\begin{eqnarray}
+m &=& \phi + \epsilon\phi^2 \nonumber \\
+&=& (I+Q\cos2\alpha+U\sin2\alpha) + \epsilon(I+Q\cos2\alpha+U\sin2\alpha)^2 \nonumber\\
+ &\simeq & (I + \epsilon I^{2}) + (Q + 2\epsilon IQ) \cos(2\alpha) + (U + 2 \epsilon IU) \sin(2\alpha)
 \label{eq:eq-NL}
-\end{equation}
-
-with \eps\ the non-linearity coefficient.
+\end{eqnarray}
 
 The non-linearity coefficient depends on the detector response. In fact, it is a systematic effect of the instrument and as a consequence will always impact our measurements. This non-linearity can lead to leakage of the CMB and dust temperature signal into the polarization maps and consequently can induce spurious polarization signals which could prevent us from detecting $B$ mode polarization. \eps\ is constituted of several components such as \eps\ related to the CMB and dust. $T_{dust}$ has more effect on the leakage than $T_{CMB}$  that is why we will focus on dust.
 To study this effect we simulate spurious signals from a map of the galaxy (dust) observed by Planck (REF) by applying the non-linear mapping described by Eq.~(\ref{eq:eq-NL}) :
 
 \begin{eqnarray}
 \label{eq:spurious-mapI}
-\Delta I_{dust}  &=& \varepsilon I_{dust}^{2},\\
+\Delta I_{dust}  &=& \epsilon I_{dust}^{2},\\
 \label{eq:spurious-mapQ}
-\Delta Q_{dust}  &=& 2\varepsilon I_{dust}Q_{dust},\\
+\Delta Q_{dust}  &=& 2\epsilon I_{dust}Q_{dust},\\
 \label{eq:spurious-mapU}
-\Delta U_{dust} &=& 2 \varepsilon I_{dust}U_{dust}.
+\Delta U_{dust} &=& 2 \epsilon I_{dust}U_{dust}.
 \end{eqnarray}
 
 To investigate the different modes of CMB polarization we used the HEALPix package \citep{2005ApJ...622..759G} to generate modified power spectra from the spurious polarization maps. They are described by Eq.~(\ref{eq:eq-cl}) and are represented in Fig.~\ref{fig:cl2}.
 
 \begin{equation}
-\Delta C_{l} = \varepsilon'^{2} C_{l}^{XX'},
+\Delta C_{l} = \epsilon'^{2} C_{l}^{XX'},
 \label{eq:eq-cl}
 \end{equation}
 Where $\lbrace X,X' \rbrace$ = $\lbrace T,E,B \rbrace$ .\\
@@ -39,14 +52,14 @@ Where $\lbrace X,X' \rbrace$ = $\lbrace T,E,B \rbrace$ .\\
 
 Here we will focus on the leading spurious term $C_{l}^{TE}$ : 
 \begin{equation}
-\Delta C_{l}^{BB} = \varepsilon^{2} C_{l}^{TE}.
+\Delta C_{l}^{BB} = \epsilon^{2} C_{l}^{TE}.
 \label{eq:eq-cl2}
 \end{equation}
 
 The leakage of temperature into polarization is represented by the coefficient \eps\ of Eq.~(\ref{eq:eq-cl2}). To determine this coefficient, we compute :
 
 \begin{equation}
-\varepsilon = \sqrt{\dfrac{r/10}{C_{l}^{TE}}},
+\epsilon = \sqrt{\dfrac{r/10}{C_{l}^{TE}}},
 \label{eq:eq-cl3}
 \end{equation}
 
@@ -56,9 +69,9 @@ they are represented in Tab. \ref{tab:eps-lkg}
 \center
 	\begin{tabular}{|c|c|c|c|}
   	\hline
- 	\backslashbox{$\varepsilon$}{$r$} & 0.1 & 0.01 & 0.001 \\
+ 	\backslashbox{$\epsilon$}{$r$} & 0.1 & 0.01 & 0.001 \\
 	\hline
-	$\varepsilon'$ & 7.90 x $10^{-4}$ & 2.50 x $10^{-4}$ & 7.90 x $10^{-5}$\\
+	$\epsilon'$ & 7.90 x $10^{-4}$ & 2.50 x $10^{-4}$ & 7.90 x $10^{-5}$\\
   	\hline
 	\end{tabular} 
 \caption{Non-linear coefficients related to the leakage of temperature into polarization for scalar-to-tensor ratio r = (T/S) = 0.1, 0.01, 0.001.}

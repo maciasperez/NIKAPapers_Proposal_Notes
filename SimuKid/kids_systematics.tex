@@ -10,23 +10,33 @@ The KID linearity has been demonstrated, over a large power range, in laboratory
 
 \begin{figure}[h]
 \center
-	\includegraphics[scale=0.55]{Figures/KID-linearity-Monfardini2014.png}
-	\caption{KID linearity demonstrated in laboratory under realistic conditions. The plot shows the frequency shift of the resonance as a function of the optical background temperature (K). Solid line : linear fit of the experimental points. Credits : \citet{2014JLTP..176..787M}.}
-	\label{KID-lin}
+\includegraphics[clip, angle=0, width=\columnwidth]{Figures/KID-linearity-Monfardini2014.png}
+\caption{KID linearity demonstrated in laboratory under realistic conditions. The plot shows the frequency shift of the resonance as a function of the optical background temperature (K). Solid line : linear fit of the experimental points. Credits : \citet{2014JLTP..176..787M}.}
+\label{KID-lin}
 \end{figure}
 
 In this section we will adress the KID non-linearity by doing simulations that consist in modelling the response of a KID to a scan of a bright source, then to reconstruct the signal with the two methods described in Sec.~\ref{sec:signal}. This bright source is typically a planet, considered point like 
 
 \begin{figure}[h]
 \center
-\includegraphics[scale=0.55]{Figures/planets.eps}
-\caption{Comparison of the incoming flux (in black) with the signals reconstructed by using \rf\ (in blue) and \cf\ (in red). In the top pannel and bottom pannels, the incoming fluxes are respectively $10^{4}$ Hz and $10^{5}$ Hz.}
+%\includegraphics[clip, angle=0, width=\columnwidth]{Figures/planets.eps}
+%\caption{Comparison of the incoming flux (in black) with the signals
+%  reconstructed by using \rf\ (in blue) and \cf\ (in red). In the top pannel and
+%  bottom pannels, the incoming fluxes are respectively $10^{4}$ Hz and $10^{5}$
+%  Hz. \todo{add a plot of the circle next to this one to show the excursion of $(\I,\Q)$}}
+\includegraphics[clip, angle=0, width=\columnwidth]{Figures/planet_profiles.eps}
+\caption{Comparison of the incoming flux (in black) with the reconstructed flux
+  for various input fluxes and with the \rf\ and \cf method. Fluxes are
+  unrealistically large on purpose for illustration. Non linearity
+  appears with the distortion of the input gaussian profile in the case of the
+  \rf\ method whereas \cf\ remains linear on the same flux scale \todo{rephrase
+    better and address the 3 vs 5 points per FWHM}.}
 \label{fig:planets}
 \end{figure}
 
 \begin{figure}[h]
 \center
-\includegraphics[scale=0.8]{Figures/resonance.eps}
+\includegraphics[clip, angle=0, width=\columnwidth]{Figures/resonance.eps}
 \caption{Simulation of a resonance in the $I-Q$ plane, for incoming fluxes equal to $10^{4}$ (in red) and $10^{5}$ (in black) Hz.}
 \label{fig:resonance}
 \end{figure}
@@ -79,7 +89,7 @@ with n the number of harmonics of the HWP rotation frequency.
 
 \begin{figure}[h]
 \center
-\includegraphics[scale=0.8]{Figures/hwp_power_spectrum.png}
+\includegraphics[clip, angle=0, width=\columnwidth]{Figures/hwp_power_spectrum.png}
 \caption{Power spectrum of an observation of Orion OMC-1 for one KID. The observations were done with \nika . Black and green lines represent respectively the raw data and the raw data after subtraction of the HWP parasitic signal. Credits : \citet{2017A&A...599A..34R} }
 \label{fig:hwp_power_spectrum}
 \end{figure}
@@ -94,18 +104,16 @@ We do several simulations following the method described earlier. In these simul
 Fig \ref{fig:diff-rf-cf} shows the results of these simulations by plotting the difference between the input and output signals. We can see on the top plot that for the worst case (incoming signal : planet, dipole and HWP), for both \rf\ and \cf\ the signals were well reconstructed as the difference between the input and output signal is less than $ 1 \%$. For \rf\ this difference derives more and is bigger than for \cf\, so using \cf\ is better because it adds less non-linearites than \rf . In addition, the plot shows that there is less non-linearities if you do the scan with more points per beam. As we can see in the bottom plot which represents the difference between the output and input signals but for different sources, the addition of the HWP template slightly adds some non-linearity to the measurment. In fact, at 40 Jy, there is a difference of less than $1 \%$ between the output signal of a planet only and a planet plus a HWP template meaning that adding a HWP template to the source do not bias the signal.
 
 \begin{figure}[h]
-\center
-	\includegraphics[scale=0.5]{Figures/diff-rf-cf.eps}
-	\caption{Top : Difference between the output and input signals as a function of the incoming Planet flux (Jy). The incoming signal corresponds to a planet, a dipole and the HWP template. Blue and red lines correspond to signals reconstructed with \rf\ and \cf. Solid lines : scan with 5 points per beam. Dashed lines : scan with 3 points per beam.
-	Bottom : Difference between the output and input signals as a function of the incoming Planet flux (Jy). The green, blue, red and turquoise lines correspond respectively to incoming signals consisting of a planet, planet and dipole, planet and HWP, planet and HWP and dipole. The signals were reconstructed with \rf. }
-	\label{fig:diff-rf-cf}
+  \includegraphics[clip, angle=0, width=\columnwidth]{Figures/diff-rf-cf.eps}
+  \caption{Top : Difference between the output and input signals as a function of the incoming Planet flux (Jy). The incoming signal corresponds to a planet, a dipole and the HWP template. Blue and red lines correspond to signals reconstructed with \rf\ and \cf. Solid lines : scan with 5 points per beam. Dashed lines : scan with 3 points per beam.
+    Bottom : Difference between the output and input signals as a function of the incoming Planet flux (Jy). The green, blue, red and turquoise lines correspond respectively to incoming signals consisting of a planet, planet and dipole, planet and HWP, planet and HWP and dipole. The signals were reconstructed with \rf. }
+  \label{fig:diff-rf-cf}
 \end{figure}
 
 \begin{figure}[h]
-\center
-	\includegraphics[scale=0.5]{Figures/diff-rf-cf-10-200jy-2.eps}
-	\caption{same mais de 10 a 200 Jy}
-	\label{fig:diff-rf-cf}
+  \includegraphics[clip, angle=0, width=\columnwidth]{Figures/diff-rf-cf-10-200jy-2.eps}
+  \caption{same mais de 10 a 200 Jy}
+  \label{fig:diff-rf-cf}
 \end{figure}
 
 
@@ -159,19 +167,17 @@ For EPIC scanning strategy, the optical axis of the telescope is inclined by $\b
 Planck scans large circles on the sky with a 85$\degree$ angle between the optical axis and the spin axis. The precession angle is 7$\degree$.
 
 \begin{figure}[h]
-\center
-	\includegraphics[scale=0.5]{Figures/schema_satellite.png}
-	\caption{Schematic view of a satellite}
-	\label{fig:satellite}
+  \includegraphics[clip,angle=0,width=\columnwidth]{Figures/schema_satellite.png}
+  \caption{Schematic view of a satellite}
+  \label{fig:satellite}
 \end{figure}
 
 The two scanning strategies are represented in Fig.~\ref{fig:strat-polsat-Planck}.
 
 \begin{figure}[h]
-\center
-	\includegraphics[scale=0.3]{Figures/plot_mollweide.pdf}
-	\caption{White : representation of EPIC scanning strategy. Red : representation of Planck scanning strategy }
-	\label{fig:strat-polsat-Planck}
+  \includegraphics[clip,angle=0,width=\columnwidth]{Figures/plot_mollweide.pdf}
+  \caption{White : representation of EPIC scanning strategy. Red : representation of Planck scanning strategy }
+  \label{fig:strat-polsat-Planck}
 \end{figure}
 
 In the next paragraph we will do a more realistic simulation by using these scanning strategies to scan a map of the Galaxy (REF) and the cosmological dipole.
@@ -183,17 +189,15 @@ Here we scan a map of the Galaxy with the two pointing strategies described earl
 We have seen previously that to be in a linear regime, constraints had to be put on the scanning strategy, especially on the scanning speed, and on the incoming flux. Here the scanning strategy that we use ensure that we respect the Nyquist criteria, by having a number of points per beam between 3 and 5. Plus, we can see in Fig.~\ref{fig:histo-gal-dip}, that the flux of the Galaxy and Dipole does not go higher than 20 Jy and that the two methods \rf\ and \cf\ can reconstruct it. So considering the scanning strategy and the incoming flux, we can conclude that this simulation is in the regime where \eps\ is ranged between $10^{-6} - 10^{-5}$ for \rf , and $10^{-8} - 10^{-7}$ for \cf . 
 
 \begin{figure}[h]
-\center
-	\includegraphics[scale=0.53]{Figures/histo_gal_dip_epic.eps}
-	\caption{Top : Histogram of the flux of the Galaxy and dipole in Jy. Bottom : Representation of the incoming flux (Galaxy, Dipole and HWP in black) and its reconstruction using \rf\ (blue) and \cf\ (red), in Jy. The Galaxy was scanned using Planck scanning strategy.}
-	\label{fig:histo-gal-dip}
+  \includegraphics[clip,angle=0,width=\columnwidth]{Figures/histo_gal_dip_epic.eps}
+  \caption{Top : Histogram of the flux of the Galaxy and dipole in Jy. Bottom : Representation of the incoming flux (Galaxy, Dipole and HWP in black) and its reconstruction using \rf\ (blue) and \cf\ (red), in Jy. The Galaxy was scanned using Planck scanning strategy.}
+  \label{fig:histo-gal-dip}
 \end{figure}
 
 \begin{figure}[h]
-\center
-	\includegraphics[scale=0.53]{Figures/histo_gal_dip_planck.eps}
-	\caption{Top : Histogram of the flux of the Galaxy and dipole in Jy. Bottom : Representation of the incoming flux (Galaxy, Dipole and HWP in black) and its reconstruction using \rf\ (blue) and \cf\ (red), in Jy. The Galaxy was scanned using Planck scanning strategy.}
-	\label{fig:histo-gal-dip}
+  \includegraphics[clip,angle=0,width=\columnwidth]{Figures/histo_gal_dip_planck.eps}
+  \caption{Top : Histogram of the flux of the Galaxy and dipole in Jy. Bottom : Representation of the incoming flux (Galaxy, Dipole and HWP in black) and its reconstruction using \rf\ (blue) and \cf\ (red), in Jy. The Galaxy was scanned using Planck scanning strategy.}
+  \label{fig:histo-gal-dip}
 \end{figure}
 
 

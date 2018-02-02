@@ -64,18 +64,24 @@ gplanet = exp(-(x_hf-x0)^2/(2.*sigma^2))
 in_flux_list = [100, 300, 700, 1000];, 10000, 1e10] ; Jy
 nflux = n_elements(in_flux_list)
 
-wind, 1, 1, /free, /large
-my_multiplot, 2, 1, pp, pp1, /rev
+;wind, 1, 1, /free, /large
+;my_multiplot, 2, 1, pp, pp1, /rev
 
 ; loop in reverse order to init plot ranges
 delvarx, ires, qres
-flux_col = dindgen(nflux)/(nflux-1)*(250-40) + 40
+flux_col = [70, 100, 150, 250] ; dindgen(nflux)/(nflux-1)*(250-40) + 40
 did_plot = 0
 for iflux=nflux-1, 0, -1 do begin
    toi_planet_jy = gplanet * in_flux_list[iflux]
    freso_planet  = -toi_planet_jy*jy2hz
    freso2toi, freso_planet, kid_model, delta_f, toi_rf_planet_hz, toi_cf_planet_hz, $
               i=i, q=q, stop=stop, xc=xc, yc=yc, r=r
+   
+   ;; Rotate it for the picture
+   alpha = 30*!dtor
+   i1 = cos(alpha)*i - sin(alpha)*q
+   q  = sin(alpha)*i + cos(alpha)*q
+   i  = i1
 
    if defined(ires) eq 0 then begin
       n = n_elements(i)

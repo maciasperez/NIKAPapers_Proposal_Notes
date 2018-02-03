@@ -7,7 +7,7 @@ col_rf = 70
 col_cf = 250
 
 png = 0 ; 1
-ps  = 0
+ps  = 1
 nside = 2048
 
 npts_per_fwhm_min = 5 ; 3
@@ -78,10 +78,11 @@ for iflux=nflux-1, 0, -1 do begin
               i=i, q=q, stop=stop, xc=xc, yc=yc, r=r
    
    ;; Rotate it for the picture
-   alpha = 30*!dtor
+   alpha = 20*!dtor
    i1 = cos(alpha)*i - sin(alpha)*q
    q  = sin(alpha)*i + cos(alpha)*q
    i  = i1
+   circlefit, i, q, xc, yc, r, avgdist, zzmin=1d-6
 
    if defined(ires) eq 0 then begin
       n = n_elements(i)
@@ -112,8 +113,8 @@ cosphi = cos(phi)
 sinphi = sin(phi)
 j = dcomplex(0,1)
 
-xra = [-0.5,10]
-yra = [-0.5,5]
+xra = [-0.5,max(xcres)*1.1]
+yra = [-0.5,max(ycres)*1.1]
 
 position = [0.1, 0.1, 0.95, 0.95]
 position1 = [position[0], 0.83, 0.95, 0.95]
@@ -139,6 +140,22 @@ for iflux=nflux-1, 0, -1 do begin
 
    oplot, float(Zres), imaginary(Zres), psym=8, syms=0.5, col=flux_col[iflux]
 endfor
+oplot, [xc], [yc], psym=1, thick=2
+oplot, [0,xc], [0,yc]
+
+oplot, [xc, xc+r*cos(170*!dtor+alpha)], [yc, yc+r*sin(170*!dtor+alpha)]
+phi = dindgen( 100)/99.*10.*!dtor
+oplot, xc + cos(170*!dtor+alpha+phi)*r/5., $
+       yc + sin(170*!dtor+alpha+phi)*r/5.
+xyouts, xc + cos(170*!dtor+alpha+avg(phi))*r/5*1.2, $
+        yc + sin(170*!dtor+alpha+avg(phi))*r/5*1.2, "!7u!3"
+
+
+;; alpha caption
+phi = dindgen( 100)/99.*alpha
+oplot, r/5*cos(phi), r/5*sin(phi)
+xyouts, r/5*1.1*cos(avg(phi)), r/5*1.1*sin(avg(phi)), "!7a!3"
+
 legendastro, strtrim( in_flux_list,2)+" Jy", col=flux_col, line=0
 
 iflux=nflux-1

@@ -3,11 +3,11 @@
 \subsection{Photometry}
 \label{sec:signal}
 
-A dedicated KID readout system has been developed by
-\citet{2013A&A...551L..12C} and successfully used for \nika\ and
-\nika2\ \todo{which paper should we cite here, all ?}. We here summarize its
-main characteristics and the observables that are
-relevant for our simulation work. We then present two ways to use them to derive photometry.
+A dedicated KID readout system has been developed by \citet{2013A&A...551L..12C}
+and successfully used for \nika\ and \nika2\ \todo{which paper should we cite
+  here, all ?}. We here summarize its main characteristics and the observables
+that are relevant for our simulation work. We then present two ways to use them
+to derive the photometry.
 
 %% To convert the $\I(t)$ and $\Q(t)$ that
 %% describe the resonance frequency shift $\delta f_0$ to the absorbed optical
@@ -16,15 +16,24 @@ relevant for our simulation work. We then present two ways to use them to derive
 %% \citet{2013A&A...551L..12C} that we summarize first.
 
 \subsubsection{Modulated readout technique}
+
+\begin{figure}
+  \includegraphics[clip,angle=0,width=\columnwidth]{Figures/resonance-circle.png}
+  \caption{Trajectory of $\I$ and $\Q$ during a frequency sweep around the
+    resonance of a KID. The arrows represent $(\di,
+    \dq)$. \citep{2013A&A...551L..12C}}
+  \label{circle-iq}
+\end{figure}
+
 The excitation tone frequency of a KID is modulated by a local oscillator with a
-known frequency shift. This provides two values $f_{\pm} = f_0 \pm \frac{\delta
-  f_{LO}}{2}$ with $\delta f_{LO} \simeq 1$\,kHz. The ``In-phase'' in
-``in-Quadrature'' amplitudes $\I(t)$ and $\Q(t)$ then read:
+known frequency shift. This provides two values $f_{\pm} = f_0 \pm \delta
+  f_{LO}/2$ with $\delta f_{LO} \simeq 1$\,kHz. The ``In-phase'' in
+``in-Quadrature'' amplitudes $i(t)$ and $q(t)$ then read:
 
 \begin{equation}
-(\I(t), \Q(t)) = (\frac{\I(f_{+}) +
-    \I(f_{-})}{2},
-\frac{\Q(f_{+}) + \Q(f_{-})}{2}),
+(i(t), q(t)) = (\frac{i(f_{+}) +
+    i(f_{-})}{2},
+\frac{q(f_{+}) + qf_{-})}{2}),
 \end{equation}
 
 and the differential values are :
@@ -32,37 +41,23 @@ and the differential values are :
 \begin{equation}
 \label{gradient}
 (\di(t), \dq(t)) =
-(\frac{\I(f_{+}) - \I(f_{-})}{\delta f_{LO}},
-\frac{\Q(f_{+}) - \Q(f_{-})}{\delta f_{LO}}).
+\left(\frac{i(f_{+}) - i(f_{-})}{\delta f_{LO}},
+\frac{q(f_{+}) - q(f_{-})}{\delta f_{LO}}\right).
 \end{equation}
 
-\begin{figure}[h]
-\center
-	\includegraphics[clip,angle=0,width=\columnwidth]{Figures/resonance-circle.png}
-	\caption{Representation in the $\I$ - $\Q$ plane of a
-          frequency sweep around a resonance. The red line represents the
-          $(I,Q)$ data of the frequency sweep around the resonance. The arrows
-          represent $(\di, \dq)$. \citep{2013A&A...551L..12C}}
-	\label{circle-iq}
-\end{figure}
-
-Fig. \ref{circle-iq} shows a typical KID resonance circle. Thanks to this
-modulation technique, we obtain four quantities : $\I$ , $\Q$ and their
-variation $\di$, $\dq$. In this paper, $\I(t)$ and $\Q(t)$ are sampled at
-22\,Hz. They are the mean values over 40 points of $i(t)$ and $q(t)$ that are
-sampled at 880\,Hz. $\di(t)$ and $\dq(t)$ are the mean values of the difference
-between the data measured at $f_{-}$ and $f_{+}$ on 40 points as well:
+These quantities are represented on Fig. \ref{circle-iq}. In this paper, we take
+typical laboratory values and assume that $i$ and $q$ are sampled at
+880\,Hz. This high acquisition rate is allowed by the sub-millisecond time
+constant of the KIDs. For most experiments, such a high sampling rate is not
+required and we average these measures over 40~samples to produce
+four secondary quantities at 22\,Hz:
 
 \begin{eqnarray}
 \I  &=& \sum^{N_{m}=40}_{p=1} i_{p},\\
-%\label{eq:i}
 \Q  &=& \sum^{N_{m}=40}_{p=1} q_{p},\\
-%\label{eq:q}
 d\I &=& \sum^{N_{m}/2=20}_{p=1} i_{2p} - i_{2p-1},\\
-d\Q &=& \sum^{N_{m}/2=20}_{p=1} q_{2p} - q_{2p-1},
+d\Q &=& \sum^{N_{m}/2=20}_{p=1} q_{2p} - q_{2p-1}.
 \end{eqnarray}
-
-% on voit les equations \ref{eq:i}, \ref{eq:q}.\\
 
 With these quantities in hand we have several ways to derive the transmitted
 signal. They are presented in the following paragraph.
@@ -74,7 +69,7 @@ $\Delta f_{0}$ between these two samples by comparing ($\Delta \I$, $\Delta \Q$)
 with the gradient $(\di,\dq)$ induced by the known $\delta
 f_{0}$ of the local oscillator. This is done by a scalar projection of ($\Delta\I$,
 $\Delta\Q$) on $(\di,\dq)$ that is tangent to the resonance circle. To have a
-cleaner estimation of the latter, we take its average over 50
+cleaner estimation of the latter, we take its running average over 50
 points that we write $\langle . \rangle_{50}$ \citep{2014A&A...569A...9C}:
 
 \begin{equation}
@@ -86,56 +81,55 @@ points that we write $\langle . \rangle_{50}$ \citep{2014A&A...569A...9C}:
  + \langle \dq \rangle_{50}^{2}},
 \end{equation}
 
-%\delta f_{LO} \frac{\Delta I <dI>_{50} + \Delta Q <dQ>_{50}}{<dI>_{50}^{2} + <dQ>_{50}^{2}}
-
-%% where $\langle . \rangle_{50}$ means that we average the considered quantities
-%% over 50 points before and after the concerned value, and $\delta f_{LO} \simeq
-%% 1$\,kHz.
-
-This method has been successfully used in \todo{XXXX}, but can be affected by
-some systematic uncertainty and be a source of non-linearity. Indeed,
-$(\di,\dq)$ is tangent to the $(\I,\Q)$ circle for a fixed background optical
-power, while, in principle, the incident optical power that induces the
-observable $(\Delta \I, \Delta \Q)$ should distort the resonance circle to some
-extent. As a consequence, the observed $(\I,\Q)$ trajectory is not precisely
-parallel to the $(\di,\dq)$ direction. Early laboratory and on-site tests have
-shown that this approximaton leads to a reconstruction of point source fluxes
-better than 2\% \citep{2013A&A...551L..12C}. In this work, we improve this upper
-limit on simulations and assess the impact of this error on futures CMB
-polarization measurements.
+Note that this average is performed only on the tangent vector $(\di,\dq)$ so
+that $\Delta f_0$ is sampled like $\I$ and $\Q$ at 22\,Hz. This method has been
+successfully used in \todo{XXXX}, but can be affected by some systematic
+uncertainty and be a source of non-linearity. Indeed, $(\di,\dq)$ is tangent to
+the $(\I,\Q)$ circle for a fixed background optical power, while, in principle,
+the incident optical power that induces the observable $(\Delta \I, \Delta \Q)$
+should distort the resonance circle to some extent. As a consequence, the
+observed $(\I,\Q)$ trajectory is not precisely parallel to the $(\di,\dq)$
+direction. Early laboratory and on-site tests have shown that this approximaton
+leads to a reconstruction of point source fluxes better than 2\%
+\citep{2013A&A...551L..12C}. In this work, we improve this upper limit on
+simulations and assess the impact of this error on futures CMB polarization
+measurements.
 
 \subsubsection{Circle fit : Cf}
 
 \begin{figure}
 \includegraphics[clip, angle=0, width=\columnwidth]{Figures/circle_zres.eps}
 \caption{Bottom: location of $\I$ and $\Q$ when a KID observes a point source of
-various fluxes. Top: distance of each $(\I,\Q)$ point to the center of the
-fitted circle divided by the radius of this circle.\todo{improve this caption}}
+  various fluxes. Top: ratio of the distance between $(\I,\Q)$ and the center of
+  the fitted circle over the radius of this circle. All the points on the pure
+  imaginary line at $\I=1$ are the result of the transformation of the circle
+  into $Z_{res}$ according to eqs.~(\ref{eq:z_res}) and
+  (\ref{eq:scale_rotate}).}
 \label{fig:circle_zres}
 \end{figure}
 
 \todo{ref to the circular nature of (I,Q): \cite{2011ApJS..194...24M}}.\\
 
 To improve \rf, we developed a new technique that fully exploits the circular
-nature of the $(\I,\Q)$ trajectory, hereafter called \cf. {\color{blue} It is
+nature of the $(\I,\Q)$ trajectory, hereafter called \cf. It is
   based on the transformation property of a circle in the complex plane into a
   straight line. Indeed, let us consider a circle centered on $(0,1/2)$ with a
   radius $1/2$ and compute its inverse:
 
 \begin{eqnarray}
-Z_{ref} &\equiv&\frac{1}{2} + \frac{1}{2}e^{i\varphi}\,, \\
-&=&\cos\frac{\varphi}{2}e^{i\varphi/2}\,,\\
+Z_{ref} &\equiv&\frac{1}{2} + \frac{1}{2}e^{i\phi}\,, \\
+&=&\cos\frac{\phi}{2}e^{i\phi/2}\,,\\
 Z_{res} &\equiv& 1/Z_{ref}\,, \label{eq:z_res} \\
-&=&1-i\tan\frac{\varphi}{2}\,.
+&=&1-i\tan\frac{\phi}{2}\,.
+\label{eq:z_res}
 \end{eqnarray}
 
 $Z_{res}$ is a straight line and along this line $Z$ varies linearly with
-$\varphi$ for small values of $\varphi$. Experimentally, we are in this regime
-when the signal is weak and when $\varphi$ is defined w.r.t.~ the $(O,C)$ axis
-as defined on Fig.~\ref{fig:circle_def} \todo{(Add a figure defining the center
-  of the circle and $C$, $\alpha$...)}. We thus fit the radius $r$ and the
+$\phi$ for small values of $\phi$. Experimentally, we are in this regime
+when the signal is weak and when $\phi$ is defined w.r.t.~ the $(O,C)$ axis
+as defined on Fig.~\ref{fig:circle_zres}. We thus fit the radius $r$ and the
 center $(\I_c,\Q_c)$ of our measurement circle $Z=\I+j\Q$. Defining
-$\alpha=\arctan\frac{\Q_c}{\I_c}$, we can scale, rotate and translate this
+$\alpha=\arctan\Q_c/\I_c$, we scale, rotate and translate this
 circle to the $Z_{res}$ circle according to
 
 \begin{equation}
@@ -155,8 +149,8 @@ Z_{ref} = \left(\begin{array}{c}
 \end{equation}
 
 The result of this transformation is shown on Fig.~\ref{fig:circle_zres}. A
-variation of the signal $(\Delta\I,\Delta\Q)$ will lead to a variation
-$\Delta\varphi$ along $Z$ that is proportional to the frequency shift $\Delta f$
+variation of the signal $(\Delta\I,\Delta\Q)$ leads to a variation
+$\Delta\phi$ along $Z$ that is proportional to the frequency shift $\Delta f$
 that we are after to determine photometry. To derive the calibration between
 these two quantities, we once again rely on the $(\di,\dq)$ that is induced by
 the known $\delta f_{LO}$. Applying transformation (\ref{eq:scale_rotate}) to
@@ -167,48 +161,81 @@ $Im(dZ_{res})$ as a polynomial of $dy/\delta f_{LO}$ that is therefore trivial
 to integrate.
 
 %% \begin{equation}
-%% \tan\frac{\delta\varphi}{2} \simeq \frac{\delta\varphi}{2} +
-%% \frac{(\delta\varphi)^3}{15}
+%% \tan\frac{\delta\phi}{2} \simeq \frac{\delta\phi}{2} +
+%% \frac{(\delta\phi)^3}{15}
 %% \end{equation}
 
+{\color{blue} 
 \subsection{Non linearity characterization with simulations}
 
-In this section, we simulate the measure of point source by a KID and show how
-linear this measure remains in various contexts. Non linearity could appear when
-the source is very bright (such as planets of several tens of Jy) and the
-density of charge carriers is altered. This will lead to $(\I,\Q)$ meaures that
-leave the resonance circle, hence invalidating the approximations made in the
-photometric equations of the previous section. A second possible source or non
-linearity is the instrument scanning speed. Indeed, even if the source
-is moderately bright, if it is scanned too fast, $(\Delta\I,\Delta\Q)$ could be
-far from the tangent vector $(\di,\dq)$ and hence alter their linear
-relation. In this paragraph, we explore both cases. We simulate the observation
-of a point source with a flux that we vary between \todo{XX} and
-\todo{XX}~Jy. We assume that our instrument has a 11\,arcsec FWHM Gaussian beam
-like the polarized 1\,mm channel of \nikad. We also vary the scanning speed of
-our virtual instrument while keeping a minimum of 3~samples per FWHM to respect
-the Nyquist criterion.
+\begin{figure}
+\center
+\includegraphics[clip, angle=0, width=\columnwidth]{Figures/KID-linearity-Monfardini2014.png}
+\caption{KID linearity demonstrated in laboratory under realistic
+  conditions. The plot shows the frequency shift of the resonance as a function
+  of the optical background temperature (K). Solid line : linear fit of the
+  experimental points. Credits : \citet{2014JLTP..176..787M}.}
+\label{fig:KID-lin}
+\end{figure}
 
-In the context of a CMB experiment mapping a large fraction of the sky, one
-should also consider the CMB dipole with its 6.73\,mK peak to peak \todo{ADD
-  REF} converts into a \todo{XXX\,Jy} signal \todo{Account for the bandpass
-  !!}. It can displace the zero level $Z$ along the circle so that a
-bright source would enter the non linear regime sooner than expected. This is
-also true for strong Galactic emission like that of Dust at frequencies above
-$\sim 100$\,GHz. It is even truer for the background modulation induced by a
-rotating Half Wave Plate (HWP). After early tests by \todo{cite Hildebrand in
-  the 80's or so ?}, this kind of modulating device has been left aside for
+Laboratory measurements with \todo{XXXX describe set up XXX} have shown that
+KIDs are linear over a wide range of backgrounds
+(Fig.~\ref{fig:KID-lin}). However, for these measurements, $\Delta f$ was not
+reconstructed as described in the previous section, and we want to characterize
+our formalism up to $\epsilon$ of the order of $10^{-5}-10^{-6}$. We simulate
+the measure of point source by a KID and show how linear this measure remains in
+various contexts. Non linearity could appear when the source is very bright
+(such as planets of several tens of Jy) and the density of charge carriers is
+altered. This leads to $(\I,\Q)$ meaures that leave the resonance circle, hence
+invalidating the approximations made in the photometric equations of the
+previous section. A second possible source of non linearity is the instrument
+scanning speed. Indeed, even if the source is moderately bright, if it is
+scanned too fast, $(\Delta\I,\Delta\Q)$ could be far from the tangent vector
+$(\di,\dq)$ which would alter their linear relation. In this paragraph, we
+explore both cases. We simulate the observation of a point source with a flux
+that we vary between \todo{1 and 500\,Jy TBC}. We assume that our instrument has
+a 11\,arcsec FWHM Gaussian beam like the polarized 1\,mm channel of \nikad. We
+also vary the scanning speed of our virtual instrument while keeping a minimum
+of 3~samples per FWHM to respect the Nyquist criterion.
+
+Modulation of the polarization by a rotating Half Wave Plate (HWP) like in
+\nika\ and \nikad\ creates a background modulation equivalent to several tens to
+hundreds of Jy at frequencies close to the HWP rotation harmonics
+\citep{2017A&A...599A..34R}. After early tests by \todo{cite Hildebrand in the
+  80's or so ?}, this kind of modulating device has been left aside for
 \todo{20~TBC} years in the context of millimetric observations. With the
-improvement of technologies, it progressively came back in the landscape, in
+improvement of technologies it progressively came back in the landscape, in
 particular with pioneering experiments like \emph{Maxipol}
 \citep{2007ApJ...665...42J} and \emph{EBEX} \citep{2010SPIE.7741E..1CR}. It is
 now more and more common and is considered as the leading option for future
-satellite designs such as \emph{LiteBIRD} \todo{add ref.}. \nika\ has used a
-fast and continously rotating HWP and saw strong parasitic signal synchronous
-with the HWP rotation harmonics \citep{2017A&A...599A..34R} like \emph{Maxipol}
-and \emph{EBEX} (cf.~Fig.~\ref{fig:hwp_power_spectrum}). The amplitude of this
-signal is comparable to bright planets at several tens of Jy and could also bias
-the average position of the $Z$ measurement and hence the photometry.
+satellite designs such as \emph{LiteBIRD} \todo{add ref}. Such a background must
+be accounted for in the simulations.
+
+
+
+
+
+
+%% In the context of a CMB experiment mapping a large fraction of the sky, one
+%% should also consider the CMB dipole with its 6.73\,mK peak to peak \todo{ADD
+%%   REF} converts into a \todo{XXX\,Jy} signal \todo{Account for the bandpass
+%%   !!}. It can displace the zero level $Z$ along the circle so that a
+%% bright source would enter the non linear regime sooner than expected. This is
+%% also true for strong Galactic emission like that of Dust at frequencies above
+%% $\sim 100$\,GHz. It is even truer for the background modulation induced by a
+%% rotating Half Wave Plate (HWP). After early tests by \todo{cite Hildebrand in
+%%   the 80's or so ?}, this kind of modulating device has been left aside for
+%% \todo{20~TBC} years in the context of millimetric observations. With the
+%% improvement of technologies, it progressively came back in the landscape, in
+%% particular with pioneering experiments like \emph{Maxipol}
+%% \citep{2007ApJ...665...42J} and \emph{EBEX} \citep{2010SPIE.7741E..1CR}. It is
+%% now more and more common and is considered as the leading option for future
+%% satellite designs such as \emph{LiteBIRD} \todo{add ref.}. \nika\ has used a
+%% fast and continously rotating HWP and saw strong parasitic signal synchronous
+%% with the HWP rotation harmonics \citep{2017A&A...599A..34R} like \emph{Maxipol}
+%% and \emph{EBEX} (cf.~Fig.~\ref{fig:hwp_power_spectrum}). The amplitude of this
+%% signal is comparable to bright planets at several tens of Jy and could also bias
+%% the average position of the $Z$ measurement and hence the photometry.
 
 }
 

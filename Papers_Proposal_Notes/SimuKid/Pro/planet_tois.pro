@@ -1,25 +1,26 @@
 
+;; From hwp_flux.pro
+;;--------------------
+
+;; Realizations
+nmc = 30 ; 100
+
+;; HWP power
+hwp_max_ampl_jy = 1000 ; 100. ; 50.
 
 ;; Conversion Jy to Hz based on N2R11
 jy2hz = 1500./30
 
 col_rf = 70
 col_cf = 250
-
 png = 0 ; 1
 ps  = 0
-nside = 2048
 
 ;; We first fix the HWP rotation frequency
 fwhm = 11. ; NIKA2
 hwp_rot_freq = 3.d0 ; 3.d0 like NIKA
 n_harmonics = 8
 f_sampling = long( (12.*hwp_rot_freq) > (2*n_harmonics*hwp_rot_freq))
-
-npts_per_fwhm_list = [3, 5]
-nspeed = n_elements( npts_per_fwhm_list)
-my_multiplot, 2, 2, pp, pp1, /rev
-if ps eq 0 then wind, 1, 1, /free, /large
 
 ;; premiere fois qu'on definit kid_model, donc on l'initialise,
 ;; structure kid_model
@@ -45,108 +46,202 @@ obs_time_hour = 1./60d0
 nsn = round(obs_time_hour*3600.d0*f_hf)
 time_hf = dindgen(nsn)/f_hf
 
-gplanet_speed = dblarr(nspeed,nsn)
+;; Planet fluxes
+nflux = 30
+flux_min = 1.d0
+flux_max = 500.d0
+
+;;--------------------------------------------------------------
+;; Scanning speeds
+npts_per_fwhm_list = [3, 5]
+nspeed = n_elements( npts_per_fwhm_list)
+
+;; Planet fluxes
+flux_list = dindgen(nflux)/(nflux-1.)*(flux_max-flux_min) + flux_min
+
+;; Init result arrays
+planet_rf_flux_results     = dblarr(nspeed, nmc, nflux)
+planet_cf_flux_results     = dblarr(nspeed, nmc, nflux)
+planet_hwp_rf_flux_results = dblarr(nspeed, nmc, nflux)
+planet_hwp_cf_flux_results = dblarr(nspeed, nmc, nflux)
+
+calib_planet_rf       = dblarr(nspeed,nmc)
+epsilon_planet_rf     = dblarr(nspeed,nmc)
+const_planet_rf       = dblarr(nspeed,nmc)
+calib_planet_hwp_rf   = dblarr(nspeed,nmc)
+epsilon_planet_hwp_rf = dblarr(nspeed,nmc)
+const_planet_hwp_rf   = dblarr(nspeed,nmc)
+
+calib_planet_cf       = dblarr(nspeed,nmc)
+epsilon_planet_cf     = dblarr(nspeed,nmc)
+const_planet_cf       = dblarr(nspeed,nmc)
+calib_planet_hwp_cf   = dblarr(nspeed,nmc)
+epsilon_planet_hwp_cf = dblarr(nspeed,nmc)
+const_planet_hwp_cf   = dblarr(nspeed,nmc)
+
+;; All random numbers at once to minimize correlations
+xn = reform( randomn( seed, n_harmonics*2*nmc), 2, n_harmonics*nmc) * hwp_max_ampl_jy
+
+;; Gaussian fit parameters
+nterms = 3
+
+;; Main loop: produced TOI's and fit output fluxes
 for ispeed=0, nspeed-1 do begin
    npts_per_fwhm_min = npts_per_fwhm_list[ispeed]
-   vmax = fwhm/npts_per_fwhm_min * 4 * hwp_rot_freq ; arcsec/s
-
-;; To produce signal timelines from pixelized maps 
-f_nyquist = 1./(fwhm/3./vmax)
-nsn_nyquist = round( obs_time_hour*3600.d0*f_nyquist)
-
-;; Planet timeline
-   scan_speed = vmax            ; arcmin/s
+   vmax = fwhm/npts_per_fwhm_min * 4 * hwp_rot_freq    ; arcsec/s
+   scan_speed = vmax                                   ; arcmin/s
    sigma = fwhm*!fwhm2sigma
    
    x_hf = scan_speed*time_hf
    x0 = x_hf[nsn/4]
    x_hf_min = min(x_hf)
    t_planet_hf = time_hf[nsn/4]
-   
-;; Planet gaussian profile
    gplanet = exp(-(x_hf-x0)^2/(2.*sigma^2))
-   gplanet_speed[ispeed,*] = gplanet
    
-;; Main loop
-   in_flux_list = [1, 100, 1000, 2000] ; Jy
-   nflux = n_elements(in_flux_list)
-   for iflux=0, nflux-1 do begin
-      toi_planet_jy = gplanet * in_flux_list[iflux]
-      freso_planet  = -toi_planet_jy*jy2hz
+   ;; Loop on hwp template
+   for imc=0, nmc-1 do begin
+      percent_status, imc, nmc, 10
+
+      ;; HWP template
+      an = xn[ 0, imc*n_harmonics:(imc+1)*n_harmonics-1]
+      bn = xn[ 1, imc*n_harmonics:(imc+1)*n_harmonics-1]
+      hwp_beta_jy = time_hf*0.d0
+      for n=0, n_harmonics-1 do begin
+         hwp_beta_jy += an[n]*cos(n*2.d0*!dpi*hwp_rot_freq*time_hf)
+         hwp_beta_jy += bn[n]*sin(n*2.d0*!dpi*hwp_rot_freq*time_hf)
+      endfor
       
-      freso2toi, freso_planet, kid_model, delta_f, toi_rf_planet_hz, toi_cf_planet_hz, $
-                 i=i, q=q, stop=stop, xc=xc, yc=yc, r=r
-      if defined(toi_rf_res_jy) eq 0 then begin
-         ;; Define the ouput LF time vector:
-         ;; need to add 0.5/f_sampling to compute the time corresponding to the average
-         ;; of the 20-40 points interval taken in iqdidq to produce a final sample from
-         ;; the "oversampled" i,q timelines.
-         ni = n_elements(toi_rf_planet_hz)
-         time_lf = dindgen(ni)/f_sampling + 0.5/f_sampling
-         
-         toi_rf_res_jy = dblarr(nspeed,nflux,ni)
-         toi_cf_res_jy = dblarr(nspeed,nflux,ni)
-      endif
-      
-      ;; convert back to Jy for the plot
-      toi_rf_planet_jy = toi_rf_planet_hz/jy2hz
-      toi_cf_planet_jy = toi_cf_planet_hz/jy2hz
-      
-      toi_rf_res_jy[ispeed,iflux,*] = toi_rf_planet_jy
-      toi_cf_res_jy[ispeed,iflux,*] = toi_cf_planet_jy
+      for iflux=0, nflux-1 do begin
+
+         ;; Planet only
+         freso = -gplanet*flux_list[iflux]*jy2hz
+         freso2toi, freso, kid_model, delta_f, toi_rf_hz, toi_cf_hz, $
+                    npts_avg=npts_avg, i=i_hwp, q=q_hwp
+         toi_rf_jy = toi_rf_hz/jy2hz
+         toi_cf_jy = toi_cf_hz/jy2hz
+
+         if defined(time_lf) eq 0 then begin
+            ni = n_elements(toi_rf_jy)
+            time_lf = dindgen(ni)/f_sampling + 0.5/f_sampling
+            ;; for the gaussian fit of the flux
+            wfit = where( abs(time_lf-t_planet_hf) le 2.d0, nwfit)
+         endif
+
+         junk = gaussfit( time_lf, toi_rf_jy, a, nterms=nterms)
+         planet_rf_flux_results[ispeed,imc,iflux] = a[0]
+         junk = gaussfit( time_lf, toi_cf_jy, a, nterms=nterms)
+         planet_cf_flux_results[ispeed,imc,iflux] = a[0]
+
+         ;; HWP only (for subtraction)
+         freso_hwp  =  -hwp_beta_jy*jy2hz
+         freso2toi, freso_hwp, kid_model, delta_f, toi_rf_hwp_hz, toi_cf_hwp_hz, $
+                    i=i_hwp, q=q_hwp
+         toi_rf_hwp_jy = toi_rf_hwp_hz/jy2hz
+         toi_cf_hwp_jy = toi_cf_hwp_hz/jy2hz
+
+         ;; Planet + HWP
+         freso = -(gplanet*flux_list[iflux]+hwp_beta_jy) * jy2hz
+         freso2toi, freso, kid_model, delta_f, toi_rf_hz, toi_cf_hz, $
+                    npts_avg=npts_avg, i=i_hwp, q=q_hwp, di=di, dq=dq
+         toi_rf_jy = toi_rf_hz/jy2hz
+         toi_cf_jy = toi_cf_hz/jy2hz
+         ;; Subtract the HWP timeline not to bias the fit
+         junk = gaussfit( time_lf, (toi_rf_jy-toi_rf_hwp_jy), a, nterms=nterms)
+         planet_hwp_rf_flux_results[ispeed,imc,iflux] = a[0] ; flux
+         junk = gaussfit( time_lf, (toi_cf_jy-toi_cf_hwp_jy), a, nterms=nterms)
+         planet_hwp_cf_flux_results[ispeed,imc,iflux] = a[0] ; flux
+      endfor
    endfor
 endfor
 
-
-;;-------------------------------------
-;; Plot of timelines
-;make_ct, nflux, flux_col
-flux_col = [70, 150, 200, 250]
-
-xra = [14,16]
-yra = [0,1]
-symlist = [1,4,5,6]
-outplot, file='planet_profiles', png=png, ps=ps
+;; Fit linearity coeff's
+;wind, 1, 1, /free, /large
+my_multiplot, 1, nspeed, pp, pp1, /rev
 for ispeed=0, nspeed-1 do begin
-   plot, time_hf, gplanet_speed[ispeed,*], xra=xra, yra=yra, /xs, /ys, $
-         position=pp[0,ispeed,*], xtitle='time (sec)', ytitle='Output/input Flux', /noerase
-   for iflux=0, nflux-1 do begin
-      norm = in_flux_list[iflux]
-      oplot, time_lf, toi_rf_res_jy[ispeed,iflux,*]/norm, $
-             col=flux_col[iflux], psym=symlist[iflux]
+   for imc=0, nmc-1 do begin
+      ;; Planet only
+      fit = poly_fit( flux_list, planet_rf_flux_results[ispeed,imc,*], 2, /double, /yfit, status=status)
+      calib_planet_rf[  ispeed,imc] = 1.d0/fit[1]
+      epsilon_planet_rf[ispeed,imc] = fit[2]
+      const_planet_rf[  ispeed,imc] = fit[0]
+      fit = poly_fit( flux_list, planet_cf_flux_results[ispeed,imc,*], 2, /double, /yfit, status=status)
+      calib_planet_cf[  ispeed,imc] = 1.d0/fit[1]
+      epsilon_planet_cf[ispeed,imc] = fit[2]
+      const_planet_cf[  ispeed,imc] = fit[0]
+
+      ;; Planet and hwp
+      fit = poly_fit( flux_list, planet_hwp_rf_flux_results[ispeed,imc,*], 2, /double, /yfit, status=status)
+      calib_planet_hwp_rf[  ispeed,imc] = 1.d0/fit[1]
+      epsilon_planet_hwp_rf[ispeed,imc] = fit[2]
+      const_planet_hwp_rf[  ispeed,imc] = fit[0]
+      fit = poly_fit( flux_list, planet_hwp_cf_flux_results[ispeed,imc,*], 2, /double, /yfit, status=status)
+      calib_planet_hwp_cf[  ispeed,imc] = 1.d0/fit[1]
+      epsilon_planet_hwp_cf[ispeed,imc] = fit[2]
+      const_planet_hwp_cf[  ispeed,imc] = fit[0]
+
+      ;; plot, flux_list, flux_list, /xs, /ys, $
+      ;;       xtitle='Input flux', ytitle='Output flux', $
+      ;;       position=pp1[ispeed,*], /noerase
+      ;; oplot, flux_list, planet_rf_flux_results[ispeed,imc,*,1], psym=1, col=col_rf
+      ;; oplot, flux_list, planet_cf_flux_results[ispeed,imc,*,1], psym=4, col=col_cf
+      ;; legendastro, strtrim(npts_per_fwhm_list[ispeed],2)+" pts/FWHM"
+      ;; 
+      ;; print, ""
+      ;; print, "imc: "+Strtrim(imc,2)
+      ;; print, "epsilon_planet_rf:     "+strtrim(epsilon_planet_rf[    ispeed,imc],2)
+      ;; print, "epsilon_planet_cf:     "+strtrim(epsilon_planet_cf[    ispeed,imc],2)
+      ;; print, "epsilon_planet_hwp_rf: "+strtrim(epsilon_planet_hwp_rf[ispeed,imc],2)
+      ;; print, "epsilon_planet_hwp_cf: "+strtrim(epsilon_planet_hwp_cf[ispeed,imc],2)
+
    endfor
-   legendastro, strtrim(in_flux_list,2)+" Jy", col=flux_col, psym=symlist
-   legendastro, ['RfdIdQ', strtrim(npts_per_fwhm_list[ispeed],2)+" pts/FWHM"], /right
-   plot, time_hf, gplanet_speed[ispeed,*], xra=xra, yra=yra, /xs, /ys, $
-         position=pp[1,ispeed,*], /noerase, xtitle='time (sec)', $
-         ycharsize=1d-10
-   for iflux=0, nflux-1 do begin
-      norm = in_flux_list[iflux]
-      oplot, time_lf, toi_cf_res_jy[ispeed,iflux,*]/norm, $
-             col=flux_col[iflux], psym=symlist[iflux]
-   endfor
-   legendastro, strtrim(in_flux_list,2)+" Jy", col=flux_col, psym=symlist
-   legendastro, ['Cf', strtrim(npts_per_fwhm_list[ispeed],2)+" pts/FWHM"], /right
+endfor
+
+;; Output vs input flux
+yra = [0.9, 1.01]
+xra = minmax(flux_list)
+imc = 0
+if ps eq 0 then wind, 1, 1, /free, /large
+outplot, file='flux_out_vs_in', png=png, ps=ps
+plot, flux_list, planet_rf_flux_results[0,imc,*,1]/flux_list, $
+      /xs, /ys, xra=xra, yra=yra, xtitle='Input flux', $
+      ytitle='Output flux / input flux', /nodata
+oplot, xra, xra*0. + 1.d0
+oplot, flux_list, planet_rf_flux_results[0,imc,*]/flux_list, col=col_rf, line=2
+oplot, flux_list, planet_rf_flux_results[1,imc,*]/flux_list, col=col_rf
+oplot, flux_list, planet_cf_flux_results[0,imc,*]/flux_list, col=col_cf, line=2
+oplot, flux_list, planet_cf_flux_results[1,imc,*]/flux_list, col=col_cf
+legendastro, ['3pts/FWHM', '5pts/FWHM'], line=[2,0], /right
+outplot, /close, /verb
+stop
+
+;; Distribution of non linearity coeffs
+if ps eq 0 then wind, 1, 1, /free, /large
+outplot, file='histos_epsilon', png=png, ps=ps
+my_multiplot, 1, 1, ntot=nspeed*2, pp, pp1, /rev
+for ispeed=0, nspeed-1 do begin
+   np_histo, reform( epsilon_planet_hwp_rf[ispeed,*], nmc), $
+             position=pp[ispeed,0,*], title='Epsilon planet_hwp RF', $
+             /fit, /noerase, /fill, fcol=col_Rf
+   legendastro, ['Max. HWP Ampl: '+strtrim(hwp_max_ampl_jy,2)+" Jy", $
+                 strtrim(npts_per_fwhm_list[ispeed],2)+" pts/FWHM"]
+   
+   np_histo, reform( epsilon_planet_hwp_cf[ispeed,*],nmc), $
+             position=pp[ispeed,1,*], title='Epsilon planet_hwp CF', $
+             /fit, /noerase, /fill, fcol=col_cf
+   legendastro, ['Max. HWP Ampl: '+strtrim(hwp_max_ampl_jy,2)+" Jy", $
+                 strtrim(npts_per_fwhm_list[ispeed],2)+" pts/FWHM"]
 endfor
 outplot, /close, /verb
 
-;; 
-;; 
-;;    xra = t_planet_hf + [-1, 1]*0.5
-;;    norm_ampl = max(toi_planet_jy)
-;;    if did_plot eq 0 then begin
-;;       plot,  time_hf, toi_planet_jy/norm_ampl, /xs, position=pp[0,0,*], /noerase, $
-;;              xra=xra, xtitle='Time (sec)', ytitle='Output Flux / Input flux'
-;;       did_plot = 1
-;;    endif
-;; 
-;;    wfit = where( abs(time_lf-t_planet_hf) le 2,nwfit)
-;;    junk = gaussfit( time_lf[wfit], toi_rf_planet_jy[wfit], a, nterms=5)
-;;    flux = a[0]
-;;    oplot, time_lf, toi_rf_planet_jy/a[0], psym=8, syms=0.5, col=flux_col[iflux]
-;; 
-;;    legendastro, strtrim(in_flux_list,2)+" Jy", line=0, col=flux_col
-;; endfor
-;; xyouts, 14.8, 0.4, orien=45, 'WHY are the output FWHM different ?!'
+
+np_histo, reform( calib_planet_hwp_rf[ispeed,*], nmc), $
+          position=pp1[0,*], title='Calib planet_hwp RF', /fit, /fill, fcol=col_rf
+legendastro, ['Max. HWP Ampl: '+strtrim(hwp_max_ampl_jy,2)+" Jy"]
+
+np_histo, reform( calib_planet_hwp_cf[ispeed,*], nmc), $
+          position=pp1[1,*], title='Calib planet_hwp CF', /fit, /noerase, /fill, fcol=col_cf
+legendastro, ['Max. HWP Ampl: '+strtrim(hwp_max_ampl_jy,2)+" Jy"]
+
+
 
 end

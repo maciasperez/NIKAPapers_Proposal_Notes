@@ -1,93 +1,98 @@
-\documentclass[report,article]
-\usepackage{fixltx2e}
+
+%\documentclass{article}
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
-\usepackage{graphicx,amsmath}
-%\usepackage{epstopdf}
-\usepackage{epsf,color}
-\usepackage[mathscr]{eucal}
-\usepackage{amsmath}
-\usepackage{amssymb,amsfonts}
-\usepackage{natbib}
-\usepackage{txfonts}
-\usepackage{dsfont}
-\definecolor{Mygreen}{rgb}{0.00, 0.72, 0.0}
-\definecolor{Mypink}{rgb}{1.0, 0.0, 0.5}
-\usepackage[breaklinks, citecolor=blue, linkcolor=Mygreen, urlcolor=Mypink, colorlinks=true, debug, baseurl=' ']{hyperref}
-\usepackage{float}
-\usepackage{color}
-%\usepackage{scrextend}
-%\usepackage{nccmath}
-%\usepackage{mathtools, cuted}
-%\usepackage{lscape}
-\usepackage{widetext}
-%\usepackage{flushend}
-%\usepackage[T1]{fontenc}
 
-
-\newcommand{\nika}{{\it NIKA}}
-\newcommand{\nikad}{{\it NIKA2}}
-
-
-\def\intk#1{\displaystyle\int\frac{d^2k_{#1}}{(2\pi)^2}}
-\def\intr#1{\displaystyle\int d^2r_{#1}}
-\def\simlt{\lower.5ex\hbox{$\; \buildrel < \over \sim \;$}}
-\def\simgt{\lower.5ex\hbox{$\; \buildrel > \over \sim \;$}}
-\def\simgt{\lower.5ex\hbox{$\; \buildrel $\textgreater$ \over \sim \;$}}
-\def\NIKA{\textit{NIKA}}
-\def\NIKAd{\textit{NIKA2}}
-\def\Archeops{\textit{Archeops}}
-\def\Planck{\textit{Planck}}
-\def\WMAP{\textit{WMAP}}
-\def\Skydip{\textit{Skydip}}
-
-\bibpunct{(}{)}{;}{a}{}{,}
-\bibliographystyle{aa}
+\title{Referee report: NIKA polarization observations of the Crab nebula}
+%\author{Alessia Ritacco}
+%\date{March 2018}
 
 \begin{document}
-\title{Crab nebula polarization observations at 150 GHz with NIKA: \\ implications for future CMB experiments: Answer to the referee}
+\maketitle
+Dear Referee,\\
+thank you very much for your attentive report. 
+We went deeper in our analysis considering all the suggestions you have recommended. 
+The paper has been entirely reviewed.
+We also have collaborated with the Planck team to understand the behaviour of the SED shown by Planck high frequency data. These latter have been reanalyzed using Planck 2018 data that will be soon published. Please find below the answer (in boldface) to your questions.\\
+Best regards,\\
+A. Ritacco, J.F. Macías-Pérez, N. Ponthieu
 
-\section{First question}
 
-The handling of noise bias, and more generally the discussion of
+\begin{enumerate}
+    \item 
+The paper presents an analysis of NIKA observations of the Crab
+Nebula, at 150 GHz. The analysis includes measurements of the
+integrated intensity, polarized intensity, and net polarization angle.
+These measurements are combined with data from other instruments
+(especially WMAP and Planck), and used to constrain simple empirical
+models for the SED in intensity and polarized intensity in the
+microwave regime.
+
+The Crab Nebula is indeed an important polarized calibration source
+for CMB instruments, and efforts to measure its properties and assess
+consistency between different instruments across a broad frequency
+range is very valuable to the community.
+
+For a paper that aims to contribute to the delicate science of
+polarization calibration, I would have expected more attention to be
+paid to the accounting of systematic errors, and to astrometric
+accuracy. In addition, the section on SEDs should have been
+straight-forward but instead is marred by confusing discussion of the
+models and apparent mistakes in the fitting.
+
+In what follows, I discuss the most serious technical issues. I have
+additional concerns with the interpretation of the results, but it
+does not seem worth discussing these until the numerical reductions
+have been revisited.
+
+
+1. The handling of noise bias, and more generally the discussion of
 errors and uncertainties, is not sufficiently sophisticated to meet the
 stated goals of this paper (namely that the measurements might be used
 for calibration of other instruments). There are two places where
 this is most apparent:
-\\ \\
+
+
 In section 3, an effort is made to make statements about the spatially
 integrated flux, polarized flux, and polarization angle of the nebula.
 This information is potentially valuable for calibration of CMB
 instruments, with larger beams. Ultimately the authors settle on a
 method where pixels are excluded from the average if the polarized
 flux in the pixel is below 3 times the noise level. This is
-problematic for several reasons:\\
+problematic for several reasons:
+
 (a) Because the polarized intensity is distributed differently than
 the unpolarized intensity, cutting on polarized brightness will bias
 the measurement towards parts of the nebula with a pixels with a
 higher polarization degree (p). This will inflate the "average" p
 relative to what an experiment with a larger beam would be able to
-observe.\\
+observe.
+
 (b) The reason given for the exclusion is to avoid "noise bias". The
 noise bias is described earlier in the paper and is indeed important
 when converting low S/N measurements of I,Q,U into estimates of p and
 polarization angle (psi). But to compute integrated p and psi values
 correctly, one should first obtain integrated values of I, Q, and U;
 these will have quite high S/N, compared to individual pixel S/N, and
-noise bias will not be a concern.\\
+noise bias will not be a concern.
+
 (c) This exclusion is hardly a minor technical point, since it changes
 the inferred polarization angle by 3.5 degrees and the polarization
 fraction by more than 1 percentage point. For the polarization angle,
 at least, this change is much larger than the total uncertainty.
+
 Although the authors perform this computation both with and without
 the exclusion of S/N \textless 3 points, the values they carry forward, and
 use in summary sentences and plots, are the biased ones (using S/N \textgreater 3
 only). One suspects that the S/N \textgreater 3 results were ultimately chosen
 because they agree better with the results from other experiments
 (WMAP and Planck). The authors mention the need for an "additional
-uncertainty at a level of 1\% on p and 4 deg on psi", but this
+uncertainty at a level of 1% on p and 4 deg on psi", but this
 uncertainty is not mentioned again; it is not included in tables,
 plots, or summary sentences.
-\\ \\
+
+
 Secondly, the authors often quote numbers with very small statistical
 errors. For example, for one of the averages in section 3, the mean
 polarization angle has an error of 0.0004 degrees. This suggests
@@ -98,52 +103,37 @@ profitable approach is to check for consistency between different
 subsets of the data (e.g., look at two co-adds of 12 maps instead of
 the one co-add of 24 maps).
 
-\subsection{\textbf{Answer}}
+\textbf{This part has been completely reviewed, the polarization degree and angle are now calculated by using aperture methods accounting for all pixels. In the estimation of the uncertainties we now consider jack-knife maps, differences observed between two co-added maps before and after leakage correction and also the calibration error.}
 
-\section{Second question}
-2. Basic errors in astrometry and coordinate handling.
-\\
+\item  Basic errors in astrometry and coordinate handling.
+
 The position of the Crab Pulsar is given, to sufficient precision, in
 both the Introduction and the Conclusion. But the position of the
 pulsar is not plotted correctly in any of the images that purport to
 do so. Rather, the position appears to have been truncated to 0.01
 degrees prior to plotting.
-\\
+
 The position angle (PA) conversion between galactic and equatorial
 coordinates is not done correctly. In tables 1 and 2 we find that the
 Equatorial and Galactic PA differ by values ranging between 220 to 245
 degrees, even though all of these points lie in a very small region of
 the sky.
-\\
+
 These issues undermine a reader's confidence that the authors have
 performed the photometry as described, or that they understand the
 tools used to convert between coordinate systems to a sufficient
 degree that we can trust their results.
-\subsection{\textbf{Answer}}
-\textbf{The error in the pulsar position concerns only the plot.
-Indeed we used previous observations from XPOL experiment (Aumont et al. 2010) to match the map and the position of the pulsar.
-There was unfortunately a pointing offset between the two instrument (Xpol and NIKA) ``center of the map" for this observation that we have now corrected on maps, see Fig.~\ref{Q_map}.}
 
-{\color{blue}I do not understand the second point of the question, and even if we have decided to compute the polar angles in galactic coordinates for all the experiments, I do not see his point. Moreover to properly calculate the angles I need to know at least the intensity flux, e.g. at the pulsar position. With only p and $\psi$ in Radec coordinates I do not see how to obtain q and u in galactic coordinates and then $\psi_{gal}$.}
+\textbf{The position of the Crab nebula was indeed plotted, by mistake, in a wrong position on the maps. The issue occurred in our tools when we have tried to zoom the plot in the inner part. All the values in the tables have been recalculated.}
 
-\begin{figure}[!h]
-\centering
-     	  { \includegraphics[width=1\linewidth,keepaspectratio]{referee_figures/Crab_Q_v3_2mm.pdf}}
-\caption{Stokes Q map with pulsar position corrected.}     	  
- 
-\label{Q_map}
-\end{figure}
+\item Models are not explained clearly, and fits contain obvious errors.
 
-
-
-
-\section{Third question}
-Models are not explained clearly, and fits contain obvious errors.\\
 (a) The intensity model described in equations (6) and (7) is not
 completely described. It appears to be discontinuous, through 100
 GHz, and the best-fit values are only given for 2 of the 4 model
 parameters. Fig. 6 shows a very reasonable broken power-law fit to
-the data, but the description in the text is inadequate and confusing.\\
+the data, but the description in the text is inadequate and confusing.
+
 (b) In 4.2, models are fit to the polarized intensity from WMAP and
 Planck. It is alleged that only data below 100 GHz are used; this
 raises the question of whether or not the Planck measurement at 100
@@ -152,58 +142,12 @@ equation (9) and plotted in Fig. 7, do not appear to be the best fit
 to these data. Indeed, if I take the Planck measurements and fit a
 simple power-law, I find a very different best-fit line: A = 91.8 and
 beta = -0.38.
+
 These errors and/or omissions make it difficult to take any of the
 model fitting seriously; they undermine the conclusions of the paper.
-\\ \\
-\subsection{\textbf{Answer}}
-\textbf{(a)  The fit in Fig. 6 appears to be discontinuos because it is due to the sum of two different fits. When we DO NOT consider the Planck data for $\nu$ \textgreater 100 GHz the parameters of the fit are: A = 980.6 +- 0.7 and $\beta$ = -0.3151+-0.0002.
-Otherwise, fitting Planck data with $\nu$ \textgreater 100 GHz gives: A$_H$ = 8.6+-0.45 and $\beta$ = -0.71+-0.09.}
 
-{\color{red} Modification in the text}
+\textbf{Since Planck high frequency data are now changed the fits have been recomputed.}
 
-Accounting for the break shown by \Planck\ satellite data we assume a simple
-two-power-law model\footnote{A detailed physical description of the SED of the
-  Crab nebula is out of the scope of this paper.}:
-\begin{equation}
-I_{\nu} = \left\{ 
-\begin{array}{rl}A_L(\nu/1GHz)^{\beta_L} &\mbox{$\nu<90$ GHz} \\
-   A_H(\nu/1GHz)^{\beta_H} &\mbox{$\nu\geq90$ GHz}
-  \end{array} \right.    
-\end{equation}
-By $\chi^2$-minimization we obtain the fit shown in cyan in Fig.~{\ref{crab_int_SED}},
-where the cut-off frequency is 90 GHz and the knee frequencies are: 8 GHz and 100 GHz. 
-The best-fit parameters using the code plot-SED-intensity.pro are:
-$$\setlength\arraycolsep{0.1em}
- \begin{array}{rclcl}
-  A_L&=& 507.7\pm0.1 ; \quad \quad   \beta_L = -0.3187\pm0.0001\\
-  A_H&=& 216.36\pm0.33 ; \quad \beta_H = -0.7525\pm0.0003
- \end{array}
-$$
-We note that \NIKA\ data is consistent with this model at the 2$\sigma$ level. More data at mm wavelengths are needed to better understand the observed break of the SED at about 90 GHz. 
-
-
-
-\begin{figure}[!ht]
-\centering
-     	  { \includegraphics[width=1\linewidth,keepaspectratio]{referee_figures/Crab_SED_int_test.pdf}}
-\caption{Total intensity SED.}     	  
- 
-\label{crab_int_SED}
-\end{figure}
-
-
-\textbf{(b) The models represented in Fig.7 account for the data at frequecies below 100 GHz. If we take now into account all data we obtain:
-A = 116.5+-6.52 for the amplitude and $\beta$ = -0.45+0.01.
-And, considering an uncertainty of 0.1 fixed for all data we obtain:
-A = 89.85+-1.22 and $\beta$ = -0.389+-0.003; see Fig.~\ref{crab_polar_SED}}
-\begin{figure*}[h!]
-  \centering
-     	  { \includegraphics[width=0.5\linewidth,keepaspectratio]{referee_figures/Crab_SED_ipol_test.pdf}}
-     	  \caption{Polarization SED.}  
-     	\label{crab_polar_SED}
-\end{figure*}
-  
-
-
+\end{enumerate}
 
 \end{document}

@@ -1,0 +1,95 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage{epsfig}
+\usepackage{latexsym}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{xcolor}
+
+%-----------------------------------------
+% Pour accepter les lettres accentuees de clavier azerty
+% sans les \'e (utile) pour tapper directement en azerty 
+% et ou faire passer aspell -c --lang=fr bidon.tex
+%\usepackage[latin1]{inputenc}
+%------------------------------------------
+
+
+%\topmargin=-3cm
+\topmargin=-1cm
+\oddsidemargin=-1cm
+\evensidemargin=-1cm
+\textwidth=17cm
+%\textheight=27cm
+\textheight=25cm
+\raggedbottom
+\sloppy
+
+\definecolor{Blue}{rgb}{0.,0.,1.}
+\definecolor{LightSkyBlue}{rgb}{0.691,0.827,1.}
+\definecolor{Red}{rgb}{1.,0.,0.}
+\definecolor{Green}{rgb}{0.,1.,0.}
+\definecolor{Purple}{rgb}{0.5, 0., 0.5}
+\definecolor{Try}{rgb}{0.15,0.,1}
+\definecolor{Black}{rgb}{0., 0., 0.}
+
+%To get DRAFT accross all pages
+%\usepackage{draftcopy}
+%To replace ``DRAFT'' by ``ON GOING''
+%\draftcopyName{ON GOING}{150}
+
+\title{Derivation of uncertainties on the degree of polarization and the angle}
+\author{Ritacco et al}
+
+\begin{document}
+\maketitle
+
+\begin{equation}
+ p    = \frac{\sqrt{Q^2 + U^2}}{I} \nonumber 
+\end{equation}
+
+so
+
+\begin{eqnarray}
+\frac{\partial p}{\partial Q} &=& \frac{Q}{I\sqrt{Q^2+U^2}}, \\
+\frac{\partial p}{\partial U} &=& \frac{U}{I\sqrt{Q^2+U^2}}, \\
+\frac{\partial p}{\partial I} &=& -\frac{\sqrt{Q^2+U^2}}{I^2},
+\end{eqnarray}
+
+thus
+
+\begin{eqnarray}
+\sigma_p^2 &=& \left(\frac{Q}{I\sqrt{Q^2+U^2}}\right)^2\sigma_Q^2 + 
+\left(\frac{U}{I\sqrt{Q^2+U^2}}\right)^2\sigma_U^2 + 
+\left(\frac{\sqrt{Q^2+U^2}}{I^2}\right)^2\sigma_I^2\\
+&=&\frac{(Q^2\sigma_Q^2 + U^2\sigma_U^2)I^2 +
+  (Q^2+U^2)^2\sigma_I^2}{I^4(Q^2+U^2)} \\
+&=&\frac{(Q^2\sigma_Q^2 + U^2\sigma_U^2)I^2 +
+  (p^2I^2)^2\sigma_I^2}{I^4(Q^2+U^2)} \\
+&=&\frac{(Q^2\sigma_Q^2+U^2\sigma_U^2)+p^4I^2\sigma_I^2}{p^2I^4}
+\end{eqnarray}
+
+hence
+
+\begin{equation}
+\sigma_p = \frac{\sqrt{Q^2\sigma_Q^2+U^2\sigma_U^2+p^4I^2\sigma_I^2}}{pI^2}.
+\end{equation}
+
+As far as the angle is concerned:
+
+\begin{eqnarray}
+\psi & = & \frac{1}{2}\arctan{\frac{U}{Q}}\\
+\frac{\partial \psi}{\partial Q} &=& \frac{1}{2}\frac{-U}{Q^2+U^2} \\
+\frac{\partial \psi}{\partial U} &=& \frac{1}{2}\frac{Q}{Q^2+U^2}
+\end{eqnarray}
+
+\begin{eqnarray}
+\sigma_\psi^2 &=& \frac{1}{4}\frac{U^2\sigma_Q^2+Q^2\sigma_U^2}{(Q^2+U^2)^2}\\
+&=&\frac{1}{4}\frac{U^2\sigma_Q^2+Q^2\sigma_U^2}{p^4I^4}
+\end{eqnarray}
+
+so
+
+\begin{equation}
+\sigma_\psi = \frac{1}{2}\frac{\sqrt{U^2\sigma_Q^2+Q^2\sigma_U^2}}{(pI)^2}
+\end{equation}
+\end{document}

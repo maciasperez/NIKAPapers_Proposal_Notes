@@ -5,7 +5,7 @@
 \usepackage[english]{babel}
 
 \title{Referee report: NIKA polarization observations of the Crab nebula}
-%\author{Alessia Ritacco}
+\author{A.Ritacco, J.F. Macías-Pérez, N. Ponthieu}
 %\date{March 2018}
 
 \begin{document}
@@ -38,8 +38,11 @@ $Q^2\sigma_U^2$. Whatever the final correct equations are, I ask the
 authors to guide me in how these results were obtained from the 3 
 references given (i.e. what equations under what assumptions).
 
-{\bf The assumptions we have made here are: (i) correlations between the total and polarized intensities are negligible; (ii) correlated noise between Q and U is also negligible; and (iii) equal noise is observed on Q and U measurements.
-  In this case the full covariance matrix (Eq. 3) represented in Montier et al. 2015 I reduces to the diagonal terms. These assumptions have been verified as described in Ritacco PhD thesis 2016 (Paragraph 6.3.4) and in addition a white noise spectrum is observed in Q and U as described by Ritacco et al. 2017 A$\&$A, 599, A34. This leads our computation of the uncertainty on p which is without dimension, as expected.}
+{\bf Actually, dimensional analysis does not pose any problem: Q, U, $\sigma_Q$ and $\sigma_U$ are homogeneous to intensity, like $\sigma_I$. So the term under the square root goes like I$^4$, hence the total ratio is dimensionless. For the same reasons, equation (3) gives an error on the angle that is also dimensionless, as it should for an angle. Please have a look to the Appendix \ref{appendix} where we detail the arithmetics of the uncertainties derivation on p and $\psi$. }
+
+{\bf Furtheremore referring to {\it Montier et al. 2015 I} we have demonstrated (see Ritacco PhD thesis 2016, paragraph 6.3.4) that in our case the full covariance matrix (Eq. 3) reduces to the diagonal terms. Moreover Ritacco et al. 2017 A$\&$A, 599, A34 show a noise spectrum in Stokes Q and U compatible with a white noise like spectrum. So in our derivation of the uncertainties we assume that: (i) correlations between the total and polarized intensities are negligible; (ii) correlated noise between Q and U is also negligible; and (iii) equal noise is observed on Q and U measurements.}
+
+{\bf For Eq. 3 you are right, thank you. We have corrected the equation in the text and also recalculated the errors for the angles. Please find in the tables the new values boldfaced.}
 
 In section 3.1, a "zero level" subtraction is described, with 
 particular reference to the annulus between 4 and 4.5 arcminute 
@@ -53,7 +56,9 @@ removed? The authors need to clarify whether these are radii or
 diameters, and I would encourage them to not use "FWHM" in this 
 context. 
 
-\textbf{Indeed this section is a bit confusing. When we finally decided to use aperture photometry to compute the fluxies we forgot to specify that we are now talking of diameters. We consider circular aperture with radii of: 2.5', 3.5' and 5'. }
+\textbf{Indeed this section is a bit confusing. Some typos remained from the previous version.
+  We consider circular apertures with diameters 5',7' and 10'.
+  For the zero level we use an annular ring between radius 4.3'\textless R \textgreater 5'. We have decided to scale up to the maximum map size avoiding the border. Since the map size is limited to 10' we cannot go further. This is now specified in the text, thank you for the remark. Figure 5 has also been updated.}
 
 At various points, the color correction of 1.05 is mentioned. A few 
 more words are warranted here... what assumptions (spectral index, 
@@ -61,7 +66,10 @@ pass band) go into the color correction? How big is the uncertainty?
 After color correction, are the quoted flux densities valid at the 
 nominal frequency of 150 GHz, or some other frequency? 
 
-\textbf{}
+\textbf{The color correction factor has been estimated using the spectral index of {\it Macias et al. 2010}, namely $\beta$ = -0.296. The NIKA bandpasses have been measured {\it Catalano et al. 2014} showing an uncertainty of 1$\%$ at 2 mm. So negligible comparing to statistical uncertainties and absolute photometry uncertainty. Once the color correction is applied the flux obtained corresponds to the integrated flux in the bandpass.}
+
+{\bf  We add a sentence to better explain this point:
+ {\it This factor has been estimated using the spectral index $\beta$ measured by {\it Macias et al. 2010} and considering the NIKA bandpass at 2 mm as shown in {\it Catalano et al. 2014}. The final flux is thus the integrated value in the bandpass.}}
 
 In section 4.1, it is claimed that the flux at radio and millimeter 
 wavelengths is due to synchrotron from a single population of 
@@ -73,8 +81,68 @@ angle, could be decoupled like this. Either different parts of the
 nebula could scale differently with frequency (producing varying 
 degree and angle of polarization), or they all scale together, locking 
 all polarization properties to the total intensity.
-\textbf{}
+
+\textbf{Indeed the phrasing is incorrect, thank you for noting this. We mean that the direction of polarization and the degree of polarization on small scales accross the nebula, but this pattern should be the same at different frequencies of observations. We have rephrased it as:
+ {\it The direction and degree of the polarization is therefore expected to be constant across the frequency range 30-300 GHz.}}
 
 \end{enumerate}
+
+\appendix
+\label{appendix}
+\section{Derivation of uncertainties on the degree of polarization and the angle}
+
+Let's define the polarization degree p:
+
+\begin{equation}
+ p    = \frac{\sqrt{Q^2 + U^2}}{I} \nonumber 
+\end{equation}
+
+so
+
+\begin{eqnarray}
+\frac{\partial p}{\partial Q} &=& \frac{Q}{I\sqrt{Q^2+U^2}}, \\
+\frac{\partial p}{\partial U} &=& \frac{U}{I\sqrt{Q^2+U^2}}, \\
+\frac{\partial p}{\partial I} &=& -\frac{\sqrt{Q^2+U^2}}{I^2},
+\end{eqnarray}
+
+thus
+
+\begin{eqnarray}
+\sigma_p^2 &=& \left(\frac{Q}{I\sqrt{Q^2+U^2}}\right)^2\sigma_Q^2 + 
+\left(\frac{U}{I\sqrt{Q^2+U^2}}\right)^2\sigma_U^2 + 
+\left(\frac{\sqrt{Q^2+U^2}}{I^2}\right)^2\sigma_I^2\\
+&=&\frac{(Q^2\sigma_Q^2 + U^2\sigma_U^2)I^2 +
+  (Q^2+U^2)^2\sigma_I^2}{I^4(Q^2+U^2)} \\
+&=&\frac{(Q^2\sigma_Q^2 + U^2\sigma_U^2)I^2 +
+  (p^2I^2)^2\sigma_I^2}{I^4(Q^2+U^2)} \\
+&=&\frac{(Q^2\sigma_Q^2+U^2\sigma_U^2)+p^4I^2\sigma_I^2}{p^2I^4}
+\end{eqnarray}
+
+hence
+
+\begin{equation}
+\sigma_p = \frac{\sqrt{Q^2\sigma_Q^2+U^2\sigma_U^2+p^4I^2\sigma_I^2}}{pI^2}.
+\end{equation}
+
+As far as the angle is concerned:
+
+\begin{eqnarray}
+\psi & = & \frac{1}{2}\arctan{\frac{U}{Q}}\\
+\frac{\partial \psi}{\partial Q} &=& \frac{1}{2}\frac{-U}{Q^2+U^2} \\
+\frac{\partial \psi}{\partial U} &=& \frac{1}{2}\frac{Q}{Q^2+U^2}
+\end{eqnarray}
+
+\begin{eqnarray}
+\sigma_\psi^2 &=& \frac{1}{4}\frac{U^2\sigma_Q^2+Q^2\sigma_U^2}{(Q^2+U^2)^2}\\
+&=&\frac{1}{4}\frac{U^2\sigma_Q^2+Q^2\sigma_U^2}{p^4I^4}
+\end{eqnarray}
+
+so
+
+\begin{equation}
+\sigma_\psi = \frac{1}{2}\frac{\sqrt{U^2\sigma_Q^2+Q^2\sigma_U^2}}{(pI)^2}
+\end{equation}
+
+
 
 \end{document}

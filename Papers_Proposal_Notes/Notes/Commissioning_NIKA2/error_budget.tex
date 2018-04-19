@@ -1,0 +1,84 @@
+
+\section{Total effective error budget}
+
+We here list the main sources of uncertainties (other than pure noise) on our flux measurements and
+estimate their respective values. We model them as a sum of quadratures:
+
+\begin{equation}
+\sigma_{syst}^2 = (k_{NL} + k_{beam} + k_{cc} + k_\tau)\phi^2
+\end{equation}
+
+These terms account for the following systematic effects:
+
+\begin{itemize}
+\item[-] $k_{NL}$. This term accounts for the Non-Linearity of the detector response. When the incoming flux is too
+  high, the detector responds in a non linear way. On the brightest sources
+  such as Mars (several hundreds of Jy), we have seen biased estimations of the
+  flux by $\Delta\phi/\phi$ of a few \%. We'll thus take $k_{NL}=10^{-4}$.
+\item[-] $k_{beam}$. Anomalous refraction and focus imperfections act together to
+  broaden the nominal resolution into an effective $FWHM_1 = 2.35\sigma_1$ while we perform
+  photometry with a fixed $FWHM=2.35\sigma$. If $m$ is the signal map and $g$ is
+  a gaussian weight (of width $\sigma$), then our flux estimate is equivalent to
+
+\begin{equation}
+\phi_{est} = \frac{1}{\sum_i g_i^2}\sum_i g_im_i
+\end{equation}
+
+Indeed, in the case of a point source and no error on the FWHM, $m_i = \phi
+g_i = \phi exp(-x_i^2/2\sigma^2)$. Now, accounting for the effective $\sigma_1$, our estimate becomes
+
+\begin{eqnarray}
+\phi_{eff} &= & \frac{1}{\sum_i g_i^2}\sum_i \phi e^{-x_i^2/(2\sigma^2)}
+e^{-x_i^2/(2\sigma_1^2)}, \nonumber \\
+ &=&\phi\frac{1}{\sum_i g_i^2}\sum_i e^{-\frac{x_i^2}{2}\frac{\sigma^2+\sigma_1^2}{\sigma_1^2\sigma^2}},
+\end{eqnarray}
+
+and so
+
+\begin{equation}
+\phi_{est} = \phi_{eff}\frac{\sum_i g_i^2}{\sum_i
+  e^{-\frac{x_i^2}{2}\frac{\sigma^2+\sigma_1^2}{\sigma_1^2\sigma^2}}}
+\end{equation}
+
+However, our estimate of $\sigma_1$ suffers from uncertainties. Let's call
+$\sigma_2 = \sigma_1 + \delta$ our estimate of $\delta$, we thus have
+
+\begin{eqnarray}
+\phi_{est} &=& \phi_{eff}\frac{\sum_i g_i^2}{\sum_i
+  e^{-\frac{x_i^2}{2}\frac{\sigma^2+\sigma_2^2}{\sigma_2^2\sigma^2}}} \nonumber \\
+&=& \phi\frac{\sum_i
+  e^{-\frac{x_i^2}{2}\frac{\sigma^2+\sigma_1^2}{\sigma_1^2\sigma^2}}}{\sum_i
+  e^{-\frac{x_i^2}{2}\frac{\sigma^2+\sigma_2^2}{\sigma_2^2\sigma^2}}}
+\nonumber\\
+&=&
+\phi\frac{2\pi\sigma^2\sigma_1^2}{\sigma^2+\sigma_1^2}\frac{\sigma^2+\sigma_2^2}{2\pi\sigma^2\sigma_2^2}
+\nonumber \\
+&\simeq&\phi\frac{\sigma^2\sigma_1^2(\sigma^2+\sigma_1^2+2\delta\sigma_1+\delta^2)}{\sigma^2\sigma_1^2(\sigma^2+\sigma_1^2)(1+2\delta/\sigma_1+
+  \delta^2/\sigma_1^2)} \nonumber \\
+&\simeq& \phi\frac{\sigma^2+\sigma_1^2+2\delta\sigma_1}{\sigma^2+\sigma_1^2}(1-2\delta/\sigma_1)\nonumber\\
+&\simeq& \phi \frac{2\delta}{\sigma_1}\frac{\sigma^2}{\sigma_1^2+\sigma^2}
+\end{eqnarray}
+
+
+
+
+%%  Our flux estimation is equivalent to the
+%%   convolution of the map by the fixed $FWHM_{ref}$, which leads to an estimated
+%%   flux:
+%% 
+%% \begin{equation}
+%% \phi_{est} = \phi\frac{FWHM_{eff}^2 + FWHM_{ref}^2}{2 FWHM_{ref}^2}
+%% \end{equation}
+%% 
+%% $FWHM_{est}$ is derived from the nearby pointings on bright sources and is
+%% affected by an uncertainty $\delta$\,arcsec. Thus, rather than applying the true
+%% correction, we rather correct by
+%% $(FWHM_{ref}+\delta)^2+FWHM_{ref}^2)/2FWHM_{ref}^2$, which leads to an error :
+%% 
+%% \begin{equation}
+%% \Delta\phi = \phi
+
+
+
+\item[-] junk
+\end{itemize}

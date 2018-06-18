@@ -1,0 +1,304 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Thin Sectioned Essay
+% LaTeX Template
+% Version 1.0 (3/8/11)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original Author:
+% Nicolas Diaz (nsdiaz@uc.cl) with extensive modifications by:
+% Vel (vel@latextemplates.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[a4paper, 11pt]{article} % Font size (can be 10pt, 11pt or 12pt) and paper size (remove a4paper for US letter paper)
+\usepackage{hyperref}
+
+\usepackage[protrusion=true,expansion=true]{microtype} % Better typography
+\usepackage{graphicx} % Required for including pictures
+\usepackage{wrapfig} % Allows in-line images
+\usepackage{tablefootnote} % to display footnotes in tables
+\usepackage{threeparttable}
+\usepackage[toc,page]{appendix}
+\usepackage{multirow}
+\usepackage{color}
+
+\usepackage{mathpazo} % Use the Palatino font
+\usepackage[T1]{fontenc} % Required for accented characters
+\linespread{1.05} % Change line spacing here, Palatino benefits from a slight increase by default
+
+
+% SPECIAL COMMANDS  
+
+\newcommand{\hls}{HLS\,J0918+5142}
+\makeatletter
+%\renewcommand\@biblabel[1]{\textbf{#1.}} % Change the square brackets for each bibliography item from '[1]' to '1.'
+\renewcommand{\@listI}{\itemsep=0pt} % Reduce the space between items in the itemize and enumerate environments and the bibliography
+
+% TITLE
+
+\renewcommand{\maketitle}{ % Customize the title - do not edit title and author name here, see the TITLE block below
+\begin{flushleft} % Right align
+{\LARGE\@title} % Increase the font size of the title
+
+\vspace{50pt} % Some vertical space between the title and author name
+
+{\large\@author} % Author name
+\\\@date % Date
+
+\vspace{40pt} % Some vertical space between the author block and abstract
+\end{flushleft}
+}
+
+%
+% PAGE STYLE
+%
+\setlength{\textwidth}{16cm}
+\setlength{\textheight}{23cm}
+\oddsidemargin +0.5cm
+\evensidemargin +0.5cm
+\topmargin 0.1cm
+
+%----------------------------------------------------------------------------------------
+%	TITLE
+%----------------------------------------------------------------------------------------
+
+\title{\textbf{NIKA2 research note}\\   
+\textsc{NIKA2 Commissioning results v2.0}} % Subtitle
+
+
+\author{NIKA2 team % Author
+\\{\textit{NIKA2 collaboration}}} % Institution
+
+\date{\today} % Date
+
+
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle % Print the title section
+%
+%
+%
+\tableofcontents
+%----------------------------------------------------------------------------------------
+%	ABSTRACT AND KEYWORDS
+%----------------------------------------------------------------------------------------
+
+%\renewcommand{\abstractname}{Summary} % Uncomment to change the name of the abstract to something else
+\newpage
+\begin{abstract}
+We present NIKA2 performance assessment after the end of the commissioning in intensity.
+\end{abstract}
+
+%\hspace*{3,6mm}\textit{Version:}  % Version
+
+%\vspace{30pt} % Some vertical space between the abstract and first section
+
+\newpage
+%----------------------------------------------------------------------------------------
+%
+%	ESSAY BODY
+%
+%----------------------------------------------------------------------------------------
+%\tableofcontents
+
+
+
+%----------------------------------------------------------------------------------------
+%	INRODUCTION
+%----------------------------------------------------------------------------------------
+\section{Total power Commissionning}
+\label{se:intro}
+\input{Introduction.tex}
+
+
+\clearpage
+%----------------------------------------------------------------------------------------
+%	OVERVIEW OF NIKA2
+%----------------------------------------------------------------------------------------
+\section{Overview of NIKA2 instrument}
+\label{se:bandpasses}
+\input{Instrument.tex}
+
+
+\clearpage
+%----------------------------------------------------------------------------------------
+%	OBSERVATION MODES
+%----------------------------------------------------------------------------------------
+\section{Observations at the 30 meter telescope}
+\label{se:observation}
+\input{Observation.tex}
+
+\clearpage
+%----------------------------------------------------------------------------------------
+%	CALIBRATION PIPELINE
+%----------------------------------------------------------------------------------------
+\section{Calibration and Data reduction overviews}
+\label{se:calib_pipeline}
+\input{Calibration_pipeline.tex}
+
+\clearpage
+%----------------------------------------------------------------------------------------
+%	OPACITY
+%----------------------------------------------------------------------------------------
+\section{Opacity derivation}
+\label{se:opacities}
+\input{Opacity}
+
+
+\clearpage
+%----------------------------------------------------------------------------------------
+%	FOCAL PLANE RECONSTRUCTION
+%----------------------------------------------------------------------------------------
+\section{Focal Plane Reconstruction}
+\label{se:fp_reconstruction}
+\input{FOV_geometry}
+% + Focal Plane Geometry
+% + KID selection and average geometry
+% + FOV grid distortion
+% + Reconstruction of the focus surfaces
+
+
+\clearpage
+%----------------------------------------------------------------------------------------
+%	BEAM PATTERN
+%----------------------------------------------------------------------------------------
+\section{Beam pattern}
+\label{se:beams}
+\input{Beams.tex}
+% Full Beam Pattern
+% Main Beam
+% Stability of the Beam Pattern
+
+
+\clearpage
+%----------------------------------------------------------------------------------------
+%	INTER-CALIBRATION
+%----------------------------------------------------------------------------------------
+\section{Flat-fielding}
+\label{se:flat_field}
+\input{Flat_fields.tex}
+
+
+
+\clearpage
+%----------------------------------------------------------------------------------------
+%	ABSOLUTE CALIBRATION
+%----------------------------------------------------------------------------------------
+\section{Absolute calibration}
+\label{se:calibration}
+
+% Paragraphe Intro
+% NIKA2 Photometric System
+\input{photometry_HA.tex}
+\label{se:cal_HA}
+
+% Reference flux densities of the calibrators
+\input{reference_flux.tex}
+\label{se:ref_flux}
+
+% Aperture photometry
+% Stability of the flux density scale with the primary calibrators Uranus and Neptune
+% Stability of the flux density scale with three secondary calibrators 
+\input{cal_JFL.tex}
+\label{se:cal_JFL}
+
+
+\clearpage
+%----------------------------------------------------------------------------------------
+%     PHOTOMETRY 
+%----------------------------------------------------------------------------------------
+\section{Photometry robustness tests}
+\label{se:photometry}
+
+% Fig Nico
+\begin{figure}
+\begin{center}
+\includegraphics[clip, angle=0, scale = 0.4]{Figures/Calibrators_N2R9_20170226s415_FXDC0C1_GaussPhotFluxType_fixed_fwhm_gauss.png}
+\caption{Decorrelation mask: 100 or 60 arcsec, KID cross-calib with fixed fwhm
+  (12.5 and 18.5), then absolute photometry with the same fixed fwhm. Note:
+  NGC7027 not point like and not corrected for here. Error bars from NIKA2
+  measurements and abs. cal. uncertainties by JFL.}
+\label{fig:fov}
+\end{center}
+\end{figure}
+
+% Calibration stability across the run
+\input{Calib_stability.tex}
+
+\clearpage
+%----------------------------------------------------------------------------------------
+%	NOISE 
+%----------------------------------------------------------------------------------------
+\section{Noise characteristics}
+\label{se:noise}
+\input{Noise}
+
+
+\clearpage
+%----------------------------------------------------------------------------------------
+%	SENSITIVITY 
+%----------------------------------------------------------------------------------------
+\section{Sensitivities}
+\label{se:nefd}
+\input{NEFD}
+
+
+\clearpage
+%----------------------------------------------------------------------------------------
+%	ERROR BUDGET
+%----------------------------------------------------------------------------------------
+\section{Error budget}
+\label{se:error}
+\input{error_budget}
+
+
+
+\clearpage
+%----------------------------------------------------------------------------------------
+%	SUMMARY
+%----------------------------------------------------------------------------------------
+\section{Summary of performance}
+\label{se:summary}
+\input{Summary}
+
+\clearpage
+%-----------------------------------------------------------------------------------------
+%     APPENDICES
+%-----------------------------------------------------------------------------------------
+\appendix
+%\begin{appendix}
+
+  \section{Synchronization with the telescope}
+  \label{ap:synchro}
+  \input{Synchro.tex}
+  
+  \section{Reference to technical documentation}
+  \label{ap:doc}
+  \input{Documentation}
+
+%\end{appendix}
+
+\clearpage
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY
+%----------------------------------------------------------------------------------------
+
+%\bibliographystyle{unsrt}
+
+\input{biblio}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}

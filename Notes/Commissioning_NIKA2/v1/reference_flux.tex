@@ -1,0 +1,356 @@
+%
+%  Created by LP from a copy a photometry_HA.tex and a merge of cal_JFL.tex
+%
+
+
+\subsection{Reference flux densities of the calibrators}
+\label{se:ref_flux}
+
+% HA text
+The two main calibrators of NIKA2 are the giant planets Uranus and
+Neptune. Mars can also be used as primary calibrator, but care must be
+taken to use a flux corresponding to the date of the
+observations. Secondary calibrators were also observed during the
+commissioning campaign. 
+
+\subsubsection{Uranus and Neptune}
+For the flux densities of the giant planets, we use the ESA model from
+\cite{ESAmodel}: Version 5 for Neptune and Version 4 for Uranus. 
+Both models provide the planet brightness temperature in the
+Rayleigh-Jeans approximation as a function of the frequency. The
+resulting flux is therefore: 
+\begin{equation}
+S_{\nu} = \Omega \times \frac{2 \nu^{2} k T_{RJ}}{c^2}
+\end{equation}
+where $\Omega$ is the solid angle of the planet on the sky. Following
+Bendo et al. (2013) {\bf REF} and correcting their equation 12 we have:
+\begin{equation}
+\Omega = \pi \frac{r_{e} r_{p-a}}{D^{2}} 
+\label{eq:omega}
+\end{equation}
+where $r_{e}$ is the equatorial radius of the planet and $r_{p-a}$ is
+its apparent polar radius, and $D$ the distance to the
+planet. $r_{p-a}$ can be computed from the sub-observer latitude $\phi$
+({\it e.g.} the latitude of the observed {\bf ?}  as seen from the planet in the
+planet equatorial reference frame) and $r_{p}$ the polar radius of the
+planet as:
+\begin{equation}
+r_{p-a} = \sqrt{r_{p}^2 \cos^{2}\phi + r_{e}^2 \sin^{2} \phi}
+\end{equation}
+All quantities to compute the planet flux are obtained from the NASA
+Horizons web site \cite{NASAHorizon}, and are
+listed in table~\ref{tab:planetphysparam}. To compute the planet fluxes for a given date, we use the python
+photometry package available at \cite{gith-Haussel}.
+
+\begin{table}[ht]
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+     & Uranus & Neptune \\
+\hline
+$r_{e}$ [km]  & 25559 & 24764 \\ 
+\hline
+$r_{p}$ [km]  & 24973 & 24341  \\
+\hline
+$\phi$         & Ob-lat & Ob-lat \\
+\hline
+$D$   [AU]    & delta   & delta \\
+\hline
+\end{tabular}
+\end{center}
+\caption{Physical quantities used for the Uranus and Neptune fluxes
+  computation (equation~\ref{eq:omega}. Ob-lat and delta are quantities 
+  tabulated by NASA Horizons system \cite{NASAHorizon} as a function of the date}
+\label{tab:planetphysparam}
+\end{table}
+
+
+
+ 
+The model spectra are linarly interpolated in log space at the
+reference frequencies of the NIKA2 bandpasses. Fluxes for all NIKA2
+calibration runs are listed in table~\ref{tab:fluxPred}, together with
+the expected variation between the start and end of a run. 
+
+The Uranus and Neptune models have been compared to Planck
+observations of these planets \cite{PLCK-LII}. For Uranus, the model used in the comparison
+is the ESA V2, and it is found to overpredict by 4 K (about 4\%) the
+observed RJ temperature at 143~GHz, to agree at 217 GHz, and
+to underpredict at 353 GHz. We use for NIKA2 calibration ESA model V4,
+that predict a flux respectively -3.3\%, 0.3\% and 4.7\% higher in the
+the 143, 217 and 353 GHz, that would lead to a percent
+accuracy with respect to Planck observations. 
+
+For Neptune, the same study compared Planck observation with the ESA V5
+model, {\it i. e.} the same one used for NIKA2 calibration. For this
+planet, temperatures are found to disagree at most by 5 K, i.e 4.1\%,
+with the same trend with frequency as observed for Uranus. All thing
+considered, this study confirm that Uranus ESA V4 and Neptune ESA V5
+models are accurate to 5\% for predicting planet fluxes. Calibration
+values tabulated in table~\ref{tab:flucPred} show that the variations
+of Uranus and Neptune over the duration of a typical NIKA2 run are
+negligible compared to the model accuracy. On the other hand, not
+taking into account the planet shape and orientation with respect to
+the observer in the computations of its solid angle can lead to errors
+between 1 and 2\% as illustrated in the Python notebook
+\cite{gith-Haussel-Note}
+distributed with the software. 
+
+
+
+\begin{table}[p]
+\centering
+\begin{tabular}{|l|r|r|r|r|r|r|}
+\hline
+NR$^{a}$  & JD$^{b}$ & $\Delta t$ $^{c}$ & $S_{\nu}$(260 GHz)  $^{d}$& $S_{\nu}$(150  GHz)$^{e}$  & $\Delta S_{\nu}/  S_{\nu} ^{f}$  \\
+\hline
+         & d  &  d        & Jy               & Jy                 &                                                                    \%  \\
+\hline
+         &    &            & \multicolumn{3}{|c|}{Uranus}\\
+\hline
+13 & 2457330.5 &  12 & 45.59 & 17.65 & -0.89\\
+14 & 2457354.5 &  8 & 44.44 & 17.21 & -1.07\\
+15 & 2457409.5 &  20 & 40.62 & 15.73 & -3.22\\
+16 & 2457455.5 &  14 & 38.27 & 14.82 & -1.16\\
+18 & 2457660.0 &  25 & 46.06 & 17.83 & +1.25\\
+19 & 2457690.0 &  7 & 46.09 & 17.85 & -0.32\\
+20 & 2457732.0 &  7 & 44.14 & 17.09 & -1.04\\
+21 & 2457764.5 &  4 & 41.82 & 16.19 & -0.69\\
+22 & 2457809.0 &  7 & 39.08 & 15.13 & -0.83\\
+23 & 2457865.0 &  7 & 37.96 & 14.70 & +0.14\\
+24 & 2457915.4 &  5 &  39.49 & 15.29 & +0.66 \\
+\hline
+         &    &            & \multicolumn{3}{|c|}{Neptune}\\
+\hline
+13 & 2457330.5 &  12 & 17.09 & 7.18 & -1.26\\
+14 & 2457354.5 &  8 & 16.64 & 6.99 & -0.92\\
+15 & 2457409.5 &  20 & 15.76 & 6.62 & -1.35\\
+16 & 2457455.5 &  14 & 15.55 & 6.53 & +0.19\\
+18 & 2457660.0 &  25 & 17.65 & 7.41 & -1.30\\
+19 & 2457690.0 &  7 & 17.24 & 7.24 & -0.68\\
+20 & 2457732.0 &  7 & 16.46 & 6.91 & -0.79\\
+21 & 2457764.5 &  4 & 15.92 & 6.68 & -0.34\\
+22 & 2457809.0 &  7 & 15.56 & 6.53 & -0.08\\
+23 & 2457865.0 &  7 & 15.89 & 6.67 & +0.57\\
+24 & 2457915.4 &  5 & 16.73 & 7.02 & +0.56 \\
+\hline
+         &    &            & \multicolumn{3}{|c|}{Mars}\\
+\hline
+13 & 2457330.5 &  12 & 146.19 & 48.30 & +7.75\\
+14 & 2457354.5 &  8 & 175.88 & 58.14 & +8.70\\
+15 & 2457409.5 &  20 & 319.71 & 105.62 & +27.68\\
+16 & 2457455.5 &  14 & 666.46 & 218.49 & +30.37\\
+18 & 2457660.0 &  25 & 597.17 & 199.44 & -21.61\\
+19 & 2457690.0 &  7 & 439.23 & 146.24 & -4.82\\
+20 & 2457732.0 &  7 & 311.78 & 103.98 & -4.89\\
+21 & 2457764.5 &  4 & 239.37 & 79.54 & -2.12\\
+22 & 2457809.0 &  7 & 174.99 & 57.94 & -4.94\\
+23 & 2457865.0 &  7 & 123.61 & 40.61 & -5.44\\
+24 & 2457915.4 &  5 & 102.08 & 33.68 & +0.59 \\
+\hline
+\end{tabular}
+\caption{NIKA2 Planet fluxes. a: Nika Run, b: Julian Date when the
+  model are computed, c: Run duration, d, e: total fluxes at 260 and
+  150 GHz, f: varition of the 150 GHz flux density over the duration
+  of the run}
+\label{tab:fluxPred}
+\end{table}
+
+
+\subsubsection{Mars}
+For Mars, we use the model of Belloche \&  Amri (2006) available at
+\cite{beloche},
+with default parameters. Model output is computed at the two reference
+frequencies of NIKA2, 150 and 260~GHz.
+
+Fluxes of Mars are tabulated in table~\ref{tab:fluxPred}. In many
+cases, the variations of Mars flux during the course of a run are
+larger than the model uncertainty (5\%), and should be recomputed at
+more frequent times. 
+
+
+{\bf FM: conclusion for Mars ?}\\
+
+
+% End HA edit
+
+%\subsubsection{Secondary calibrators: asteroids}
+\subsubsection{Secondary calibrators}
+
+%
+% LP: commented the obsolete text below (see Jean-Francois's email on
+% August, 17)
+%
+
+
+%The asteroids Ceres and Vesta have been modeled by Muller et al (2014) in accounting for 
+%size, shape, spin-properties, albedo, and thermal properties and in adjusting to PACS, SPIRE and HIFI observations
+%of Herschel with an accuracy of 5\%. 
+%Thomas Mueller has tabulated flux densities at different wavelengths, in particular at 1300$\mu$m, every five days
+%until 2020 \footnote{http://www.iram.es/IRAMES/mainWiki/Continuum/Calibrators}.
+%We have used the prediction at  1300$\mu$m made for  23rd february 2017
+%and extrapolated it  to the central frequencies of the arrays in using a Rayleigh-Jeans
+%spectrum expected for Ceres and Vesta. Their flux densities in
+%Table~\ref{tab:fluxPred} are for this date. Over the five days of  run 9 (february 23 - 28), the
+%flux densities  at 1300$\mu$m  have decreased by  3\% 
+%for Ceres and  by 6\%  for Vesta in Muller's tables but we have not corrected for this effect in our analysis below.  
+%
+%The secondary calibrator MWC349A is a young Be star, part of a stellar binary system, surrounded by a disk. Its radio
+%continuum emission originates in an ionized bipolar outflow (Tafoya et al 2004).
+%MWC349 has been monitored with the  Plateau de Bure interferometer
+%and shown to be only slightly angularly resolved, making it a point source for the 30-metre telescope. We have adopted
+%its flux densities from this monitoring \footnote{http://www.iram.fr/IRAMFR/IS/IS2012/presentations/krips-fluxcalibration.pdf}.
+%The secondary calibrator CRL2688 is an Asympotic Giant Branch star. Its radio continuum emission is mostly from circumstellar dust and
+%is somewhat extended  (Knapp et al 1994).
+%Its flux densities at $850\mu$m  and $450\mu$m  have been stable at the 5\% level as monitored by SCUBA2 (Dempsey et al 2013).
+%We have extrapolated their flux densities to the central frequencies
+%of the arrays with a power law of index $\alpha=-2.47$ derived from these SCUBA2 measurements.
+%The secondary calibrator NGC7027 is a young, dusty, carbon rich Planetary Nebula with an ionized core.
+%It is extended in the continuum and molecular lines (Bieging et al 1991) and  is not a point source for the telescope.
+%Its  most recent flux densities are reported at $1100\mu$m  and $2000\mu$m by Hoare et al (1992). It has been reported
+%to decrease by $\sim$ 0.145 percent/yr in the optically thin part of its spectrum above  $6$ GHz from VLA
+%observations (Zijlstra, van Hoof \& Perley 2008, and Hafez et al, 2008) that makes these flux densities uncertain by 3.6\%
+%at present. Its SED from cm wavelengths to optical is also presented in Hafez, Y.A. et al (2008).
+%The flux densities adopted at the central frequencies of the arrays for these three calibrators are in Table~\ref{tab:fluxPred}.
+%
+%
+%
+%
+%
+%\begin{table}
+%\centering
+%\label{tab:fluxPred}
+%\caption[]{Flux densities of calibrators at the reference frequencies
+% of arrays for Run9 (computed for 2017-02-24T00:00) and Run10
+%(computed for 2017-04-21T00:00)}
+%\begin{tabular}{|l|r|r|}
+%\hline
+%\multicolumn{1}{|c}{}  & \multicolumn{2}{|c|}{flux densities (Jy)}  \\
+%\hline
+%         &    A1, A3      &  A2   \\
+%       &  260 GHz    & 150 GHz \\
+%\hline
+%\multicolumn{1}{|c}{}  & \multicolumn{2}{|c|}{Run9}  \\
+%
+%\hline
+%Uranus   &  39.10 & 15.14 \\
+%Neptune  & 15.56 & 6.53 \\
+%\hline
+%\multicolumn{1}{|c}{}  & \multicolumn{2}{|c|}{Run10}  \\
+%Uranus   &  37.95 & 14.69 \\%
+%Neptune  & 15.56 & 6.67  \\
+%\end{tabular}
+%\label{tab:fluxPred}
+%\end{table}
+
+%Vesta    &   0.99   &  0.35 &   1.01  \\
+%Ceres    &   0.89   &  0.31 &   0.91   \\
+%MWC349   &   2.2    &  1.6  &   2.2   \\
+%NGC7027  &   3.61   &  4.42 &   3.61  \\
+%CRL2688  &   3.03   &  0.83 &   3.03  \\
+%\hline
+%\end{tabular}
+%\label{tab:fluxPred}
+%\end{table}
+
+
+
+
+%\begin{table}
+%\centering
+%\label{tab:fluxPred}
+%\caption[]{Reference flux densities of calibrators at central frequencies of arrays.}
+%\begin{tabular}{|l|c|c|c|}
+%\hline
+%\multicolumn{1}{|c}{}  & \multicolumn{3}{|c|}{flux densities (Jy)}  \\
+%\hline
+%         &    A1      &  A2   &   A3    \\
+ %        &  255GHz    & 152GHz  &  258GHz \\
+%\hline
+%Uranus   &  37.12   & 16.35 &  37.810 \\
+%Neptune  &  15.28   &  6.84 &  15.58  \\
+%Vesta    &   0.99   &  0.35 &   1.01  \\
+%Ceres    &   0.89   &  0.31 &   0.91   \\
+%MWC349   &   2.2    &  1.6  &   2.2   \\
+%NGC7027  &   3.61   &  4.42 &   3.61  \\
+%CRL2688  &   3.03   &  0.83 &   3.03  \\
+%\hline
+%\end{tabular}
+%\label{tab:fluxPred}
+%\end{table}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%   cp in cal_JFL.tex
+
+%\subsubsection{Reference flux densities of secondary calibrators}
+\label{se:fluxSec}
+%(revised by JFL Aug 2017 - must remove the old version in photometry-HA.tex)
+% --> done by LP following intruction in Jean-Francois's email (to be checked)
+
+The secondary calibrator MWC349A is a young Be star, part of a stellar binary system, surrounded by a disk. Its radio
+continuum emission originates in an ionized bipolar outflow \cite{Tafoya}.
+MWC349A has been monitored with the  Plateau de Bure interferometer and VLA,
+and shown to be stable in time and only slightly angularly resolved, making it a point source
+for the 30-metre telescope. The SED of MWC349A   \cite{krips} is presented in Fig.~\ref{fig:Krips2017}. We have computed its flux densities at the NIKA2 reference frequencies 150 and 260 GHz with 
+$S_\nu = 1.16\pm0.01 \times (\nu/100 \rm{GHz})^{0.60\pm0.01}$ provided by this monitoring \cite{krips}.
+
+
+%\noindent {\bf FM: MWC349A or MWC349 ?}\\
+
+The secondary calibrator CRL2688 is an Asympotic Giant Branch star. Its radio continuum emission is mostly
+from circumstellar dust and is somewhat extended \cite{Knapp}.
+Its flux densities at $850\ \mu$m  and $450 \ \mu$m  have been stable at the 5\% level as monitored by SCUBA2 in 2011-2012 
+\cite{Dempsey}. We have extrapolated their flux densities to  150 and 260 GHz
+with the power law $S_{\nu} \propto \nu^{\alpha}$ and index $\alpha=2.44\pm0.18$ derived from their SCUBA2 measurements.
+
+\begin{table}[t]
+\begin{center}    
+  \begin{threeparttable}
+
+\begin{tabular}{|l|c|c|c|l|}
+\hline
+\multicolumn{1}{|c}{}  & \multicolumn{3}{|c}{flux  densities (Jy)} & \multicolumn{1}{|c|}{}  \\
+\hline
+         &    A1 \& A3       &  A2             &          &   Ref. \\
+         &  260 GHz           &  150 GHz         & $\alpha^1$ &      \\
+\hline
+MWC349A   &   $2.06\pm0.04$  &  $1.48\pm0.02$ &  $+0.60\pm0.01$      &  PdB \cite{krips}    \\
+NGC7027  &   $3.46\pm0.11$   &  $4.26\pm0.24$  &  $-0.34\pm0.10$     &  Hoare et al 1992 \cite{Hoare}      \\
+CRL2688  &   $2.91\pm0.23$   &  $0.76\pm0.14$  &  $+2.44\pm0.18$     &  Dempsey et al 2013  \cite{Dempsey} \\
+\hline
+\end{tabular}
+  \begin{tablenotes}
+{\small     
+  \item[$^1$]  Spectral index is defined as $S_{\nu} \propto \nu^{\alpha}$. 
+}
+  \end{tablenotes}
+\end{threeparttable}
+\caption[]{Reference flux densities of secondary calibrators at the NIKA2 reference frequencies 150 and 260 GHz. Uncertainties of flux densities extrapolated
+at 150 and 260 GHz include contribution of the uncertainty on $\alpha$.}
+\label{tab:flux_ref_sec}
+\end{center}
+\end{table}
+% cahier I p. 128 et 129.
+
+The secondary calibrator NGC7027 is a young, dusty, carbon rich Planetary Nebula with an ionized core.
+It is extended in the continuum and molecular lines (Bieging et al 1991), and  is not a point source
+for the 30-metre telescope.
+Its  most recent flux densities are reported at $1100\mu$m  and $2000\mu$m by Hoare et al (1992). It has been reported
+to decrease by $\sim$ 0.145 percent/yr in the optically thin part of its spectrum above  $6$ GHz from VLA
+observations (Zijlstra, van Hoof \& Perley 2008, and Hafez et al, 2008) that makes these flux densities uncertain
+by 3.6\% currently. Its SED from cm wavelengths to optical is also presented in Hafez, Y.A. et al (2008).
+Its flux densities have been extrapolated to 150 and 260 GHz and the modelled decrease since 1992 included.
+
+All these extrapolated flux densities are in Table~\ref{tab:flux_ref_sec}.
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[clip, angle=0, scale=0.4]{Figures/MWC_349_pap-flux.eps}
+  \caption{SED of MWC349A from its flux density monitoring at PdB and VLA \cite{krips}.
+  Symbols are for primary calibrators used (Uranus, Neptune and Mars).}
+\label{fig:Krips2017}
+\end{center}
+\end{figure}

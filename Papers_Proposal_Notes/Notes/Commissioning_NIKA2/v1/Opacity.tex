@@ -30,11 +30,12 @@ that calibration to measure the opacity during a given scan.
 \subsection{Skydip-based method}
 \label{se:skydip-method}
 
-For each kid $k$, the absolute value of the resonance frequency
+For each KID $k$, the absolute value of the resonance frequency
 $f_{tone}^k$ moves with the atmospheric load according to
 
 \begin{equation}
 \ftone^k  = C_0^k - C_1^k T_{atm}[1-e^{-\tau/\sin\delta}]
+\label{eq:skydip}
 \end{equation}
 
 %FXD corrected 
@@ -87,11 +88,18 @@ determination process, the skydip scan are thoroughtly selected.
    
 \subsection{Skydip selection}
 
-\addparag{FIG}
+
+\begin{figure}[p]
+\begin{center}
+\includegraphics[clip=true,width=0.9\linewidth]{Figures/Opacity/plot_skydip_selection_two_crit.pdf}
+\label{fig:skydip_selection}
+\caption{N2R9 skydip scan selection. Median dT quality-fit criterion is plotted in fonction of Median rms criterion for each skydip scans of the N2R9 campaign and for the three arrays. Both criteria are nicely correlated. Empty diamonds show the results of the first iteration of the skydip coefficient estimation, whereas filled circled show the second iteration, for which only the skydips that met both fit-quality criteria are included. After the second iteration, all the remaining skydips met the criteria.}
+\end{center}
+\end{figure}
 
 For each skydip scan and for each bunch of 40 KIDs, we compute the
 difference between the measured KID resonance frequency and the model
-given in Eq.~\ref{eq:opacity} taken at the best-fit values of the
+given in Eq.~\ref{eq:skydip} taken at the best-fit values of the
 ($C_0$, $C_1$) parameters. Then we determine two indicators
 of the fit quality per skydip. First, the standard deviation of the
 measure-to-model difference is calculated over all the KIDs in a
@@ -110,7 +118,18 @@ criteria
 \item Median $dT < 1.6~\rm{K}$
 \end{itemize}
 
-The threshold values have been determined using the set of 44 skydip scans of N2R9. The Median rms cut corresponds to twice the median of this quantity per skydip scan, whereas the Median $dT$ cut is twice the standard deviation of Median $dT$ over the skydips.
+The threshold values have been determined using the set of 44 skydip
+scans of N2R9. The Median rms cut corresponds to twice the median of
+this quantity per skydip scan, whereas the Median $dT$ cut is twice
+the standard deviation of Median $dT$ over the skydips. N2R9 skydip
+scan selection is illustrated in Fig.~\ref{fig:skydip_selection}, in
+which the agreement between the two fit-quality criteria is clearly
+seen. The ($C_0$, $C_1$) estimation proceeds in two steps: first the
+parameters are estimated using all the available skydip scan for a
+given campaign, then the estimation is re-iterated using the only
+skydip scans that met the fit-quality criteria. After the second
+iteration, we check that no extra skydip outlier are left, as shown by
+the 'v2' label data points in Fig.~\ref{fig:skydip_selection}.
 
 
 We test the stability of the ($C_0$, $C_1$) parameters against the exact choice of the selection criteria.  
@@ -156,28 +175,28 @@ We observe that the measured \emph{shape} of the measured opacity ratio is well 
 
 %{\bf copy from the 'Instru' paper}
 
-\begin{figure}[ht]
-\begin{center}
-\includegraphics[scale=0.8]{Figures/test_allskd_N2R10v3commiss2.pdf}
-\caption{Atmospheric opacity as measured from the NIKA2 data 
-at 260 (top) and 150\,GHz (bottom) during N2R10
-commissioning campaign. Each block of 40 KIDs gives an independent estimate of
-the opacity value for each skydip scan (the integer abscissae). The block
-number is the decimal value of the abscissae.
-\label{fig:taumeas_paper}}
-\end{center}
-\end{figure}
+%\begin{figure}[ht]
+%\begin{center}
+%\includegraphics[scale=0.8]{Figures/test_allskd_N2R10v3commiss2.pdf}
+%\caption{Atmospheric opacity as measured from the NIKA2 data 
+%at 260 (top) and 150\,GHz (bottom) during N2R10
+%commissioning campaign. Each block of 40 KIDs gives an independent estimate of
+%the opacity value for each skydip scan (the integer abscissae). The block
+%number is the decimal value of the abscissae.
+%\label{fig:taumeas_paper}}
+%\end{center}
+%\end{figure}
 
-\begin{figure}[ht]
-\begin{center}
-\includegraphics[scale=0.8]{Figures/test_allskd_N2R10v2commiss1.pdf}
-\caption{Atmospheric opacity as measured from the NIKA2 data 
-at 260 and 150\,GHz during N2R10
-commissioning campaign. The error bars are in fact dispersion of the deduced
-opacities between blocks of 40 KIDs.
-\label{fig:taumeas_paper}}
-\end{center}
-\end{figure}
+%\begin{figure}[ht]
+%\begin{center}
+%\includegraphics[scale=0.8]{Figures/test_allskd_N2R10v2commiss1.pdf}
+%\caption{Atmospheric opacity as measured from the NIKA2 data 
+%at 260 and 150\,GHz during N2R10
+%commissioning campaign. The error bars are in fact dispersion of the deduced
+%opacities between blocks of 40 KIDs.
+%\label{fig:taumeas_paper}}
+%\end{center}
+%\end{figure}
 
 We observe that the skydip-fitted $\tau$ values are, as expected, common
 between different detectors of the same array. By comparing the results of different skydips, we

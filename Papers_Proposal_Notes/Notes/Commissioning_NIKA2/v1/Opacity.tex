@@ -85,13 +85,37 @@ day during a scientific campagn. Then during the ($C_0$, $C_1$)
 determination process, the skydip scan are thoroughtly selected.
 
    
-\subsection{skydip selection}
+\subsection{Skydip selection}
 
-\addparag{fit-quality based selection criteria + FIG}
+\addparag{FIG}
+
+For each skydip scan and for each bunch of 40 KIDs, we compute the
+difference between the measured KID resonance frequency and the model
+given in Eq.~\ref{eq:opacity} taken at the best-fit values of the
+($C_0$, $C_1$) parameters. Then we determine two indicators
+of the fit quality per skydip. First, the standard deviation of the
+measure-to-model difference is calculated over all the KIDs in a
+bunch. For each skydip, we evaluate the median rms, which is the
+median over the KID bunches of the standard deviation per bunch, given
+in Hz. Secondly, for each scan, we compute the average
+measure-to-model difference of each KID $k$, labelled $dT_k$, which is
+then converted from Hertz to Kelvin using the $C_1$ parameter of the
+KID $k$. Median $dT$ is the median of $dT_k$ over all the KID of an
+array. With these two indicators in hands, we discard the skydip scans
+that are noisy or that yield a poor fit by applying the selection
+criteria
+
+\begin{itemize}
+\item Median $\rm{rms} < 1.5 \times 10^{4}~\rm{Hz}$
+\item Median $dT < 1.6~\rm{K}$
+\end{itemize}
+
+The threshold values have been determined using the set of 44 skydip scans of N2R9. The Median rms cut corresponds to twice the median of this quantity per skydip scan, whereas the Median $dT$ cut is twice the standard deviation of Median $dT$ over the skydips.
+
+
+We test the stability of the ($C_0$, $C_1$) parameters against the exact choice of the selection criteria.  
 
 \addparag{stability against the skydip scan selection + FIG}
-We test that the estimated opacities are stable againts the choice of the selection criteria.
-
 
 At 1mm, we find about {\color{red} $[$TBC$]$  $10\%$} opacity variation from very inclusive to very aggressive selections. However, at 2mm, this scatter reachs about {\color{red} $[$TBC$]$  $30\%$} relative uncertainties.
 

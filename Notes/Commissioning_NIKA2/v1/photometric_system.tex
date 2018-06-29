@@ -1,0 +1,208 @@
+%
+%%
+%%
+%%
+
+%% LP: first synthetic version of Appendix D. 
+
+%% LP modif : to be validated by HA :
+%% - 'spectral irradiance' remplac\'ee par 'flux density', qu'on utilise plus souvent
+%% - 'response' remplac\'e par 'map' [ une occurence]
+%% - '\Omega_{b}' remplac\'e par 'B_{k}', plus \'evocateur du beam et souligne la dependance dans le KID k
+%% - '\Omega_{s}' remplac\'e par '\Omega_{p}' pour \'evoquer angle solide sur la pupille
+%% - A VERIFIER: les quantit\'es pas connues précisement
+%%   'Because both $A_{p}$ and $ \Omega_{p} $ are not known with good accuracy', correct ? 
+
+
+
+%% [intro]
+The calibration of the NIKA2 instrument in its final configuration of
+January 24th 2017 is studied in this section in using Uranus as the
+main primary calibrator. Neptune and Mars are also considered as
+valluable alternatives to calibrate when Uranus is not visible.
+
+% HA 
+\subsection{Photometric System}
+\label{se:cal_HA}
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+     & 1 mm & 2 mm \\
+\hline
+Reference frequency $\nu_{0}$ & 260 GHz & 150 GHz \\
+\hline
+Reference FWHM                      & 12.5  '' & 18.5 '' \\
+\hline
+\end{tabular}
+\caption{NIKA2 reference frequencies and FWHM}
+\end{center}
+\label{tab:definitions}
+\end{table}
+
+\subsubsection{Main photometric equation}
+
+Starting from the general equation for the response of a detector to
+an astronomical source, we derive the main photometric equation as
+detailed in Sect.~\ref{ap:cal_HA}.
+The map (in units of the KID resonance frequency shift or $\rm Hz$) of a source using a single KID $k$
+after correction of the atmospheric absorption is
+\begin{equation}
+R_{k}(\theta, \phi) \simeq G_{k}  A_{p}\Omega_{p} \int_{0}^{+\infty} I(\nu)
+T(\nu) T_{atm}(\nu) B_{k} (\theta, \phi, \nu)  d\nu 
+\label{eq:mainphot}
+\end{equation}
+
+where we have considered a source observed at airmass $\am$ under
+$mm_{H_{2}O}$ of precipitable water, with specific intensity $I_{\nu}$ (in units
+of  ${\rm W/m^{2}/sr/Hz}$) in the direction $\theta, \phi$, where $\theta$
+is the off-axis distance and $\phi$ the position angle, illuminating the KID $k$. 
+The dependance on elevation and opacity is corrected, as discussed in
+section~\ref{se:opacities}, so that Eq.~\ref{eq:mainphot} is the KID
+response outside of atmosphere (in terms of airmass, but not in terms
+of transmission).
+
+The integral in the right-hand part of Eq.~\ref{eq:mainphot} gives the total power (units of $\rm W$)
+falling on the KID, where the factors are:
+\begin{itemize}
+\item $T(\nu)$, NIKA2 bandpasses, which are measured and corrected for the Raighleigh-Jeans term as discussed in Sect.~\ref{se:bandpasses}
+\item $T_{atm}(\nu)$, the transmission of the atmosphere at zenith. 
+\item $B_{k} (\theta, \phi, \nu)$, the fraction of source signal illuminating the KID, that is the beam function.  
+\end{itemize}
+
+The gain of the KID $k$ $G_{k}$ (units of  $\rm Hz \cdot \rm W^{-1}$) converts the total power in $\rm W$
+to the frequency shift in $\rm Hz$. $A_{p}$ is the area of the entrance pupil ({\it i.e.} the
+dish collecting area), and $\Omega_{p}$ is the solid angle of the source seen from the
+entrance pupil.
+
+Because both $A_{p}$ and $ \Omega_{p} $ are not known with good
+accuracy, it is not possible to compute all the terms of
+Eq.~\ref{eq:mainphot} from first principles, and a practical way of
+calibrating the system must be used: it is done by observing a primary
+calibrator.
+
+
+\subsubsection{Beammap of a calibrator}
+
+A primary calibrator is a source whose flux density (or spectral irradiance) is
+known. For NIKA2, we use two planets as primary calibrators, Uranus
+and Neptune.
+
+
+The specific intensity $I_{c}(\nu)$ of the
+calibrator is:
+\begin{equation}
+I_{c}(\nu) =  \frac{S_{c}(\nu)}{\Omega_{p}} =\frac{ S_{c}
+(\nu_{0})}{\Omega_{p}} f(\frac{\nu}{\nu_{0}})  
+\end{equation}
+Where $S_{c}(\nu)$ is the flux density of the calibrator (units
+of $\rm W/m^{2}/Hz$ or Jy). We parametrize the source flux density
+as a function of a reference frequency $\nu_{0}$ that we choose
+arbitrarily to be: $\nu_{0} = 150$~GHz for the 2mm array and $\nu_{0}
+= 260$~GHz for both 1mm arrays. 
+
+
+The beam $B_{k}$ is further parametrized as a function
+of the effective frequency as defined in eq~\ref{eq:nueff} of Sect.~\ref{ap:cal_HA},
+considering that its frequency dependency is only due to the diffraction law,
+hence a variation as $1/\nu$.
+
+With this in hand, we can write the equation of a beam map using a
+single KID with eq~\ref{eq:mainphot}. At each position ($\theta, \phi$)
+on the beam map (in units of $\rm Hz$) we have:
+\begin{equation}
+R_{c}(\theta, \phi) =  G_{k} A_{p} S_{c} (\nu_{0})  \int_{0}^{+\infty}
+f(\frac{\nu}{\nu_{0}}) B_{k}(\nu_{0}, \theta \times \frac{\nu}{\nu_{0}},
+\phi) T(\nu) T_{atm}(\nu) d\nu
+\label{eq:beammap}
+\end{equation}
+
+\subsubsection{Calibration in FWHM$_{0}$ beam}
+
+This map is fitted with a Gaussian of fixed width FWHM$_{0}$ (we
+recall that $2 \sqrt{2\ln{2}} \sigma_{0} =  {\rm FWHM}_{0}$).
+\begin{equation} 
+R_{c}(\theta, \phi) = \frac{A_{c}}{2 \pi \sigma_{o}^{2}}
+e^{-\frac{\theta^{2}}{2\sigma_{0}^{2}}}  + \epsilon(\theta, \phi)
+\end{equation}
+where $\epsilon(\theta, \phi)$ are the residuals of the fit.
+
+Assuming that the fit is not biased, we have:
+\begin{equation} 
+\int\int R_{c}(\theta, \phi) \sin \theta d\theta d\phi = A_{c}
+\end{equation}
+because errors average out so that:
+\begin{equation} 
+\int\int \epsilon (\theta, \phi) \sin \theta d\theta d\phi = 0
+\end{equation}
+But we also know that integral of the beammap should give the power
+emitted by the source. Therefore, we form the map:
+\begin{equation}
+M_{c}(\theta, \phi) = R_{c}(\theta, \phi)   S_{c} (\nu_{0}) / A_{c}
+\end{equation}
+where  $S_{c} (\nu_{0})$ is the spectral irradiance of the calibrator
+at a reference frequency $\nu_{0}$ given in
+table~\ref{tab:definitions}. This map has units of $\rm W/m^{2}/Hz$. Note
+that the choice of the reference frequency is arbitrary, it is a
+convention. By construction, integrating over the map we have:
+
+\begin{equation}
+\int\int M_{c}(\theta, \phi) \sin \theta d\theta d\phi = S_{c}(\nu_{0})
+\end{equation}
+
+
+Similarly, a point source with spectral irradiance $S_{s}(\nu)$ will
+generate a response at position $(\theta, \phi)$
+\begin{equation}
+R_{s}(\theta, \phi) =  G_{k} A_{p}  \int_{0}^{+\infty}
+S_{s}(\nu) B_{k}(\nu_{0}, \theta \times \frac{\nu}{\nu_{0}},
+\phi) T(\nu) T_{atm}(\nu) d\nu
+\end{equation}
+Note here that the effective frequency for the beam is not necessarily
+the same as the one for the primary calibrator, as it depends on the
+source spectrum.
+
+
+This beammap will be fitted with a gaussian of fixed width:
+\begin{equation} 
+R_{s}(\theta, \phi)  = \frac{A_{s}}{2 \pi \sigma_{o}^{2}}
+e^{-\frac{\theta^{2}}{2\sigma_{0}^{2}}}  + \epsilon(\theta, \phi)
+\end{equation}
+
+The quoted flux for the source is then:
+\begin{equation}
+S_{q}(\nu_{0}) =  S_{c} (\nu_{0})  \times \frac{A_{s}}{A_{c}}
+\end{equation}
+
+In other words, the quoted flux is the flux that should have the
+calibrator in order to generate a response that would be fitted with a
+gaussian of fixed width and the same amplitude as the source.
+Let us form the map:
+
+\begin{equation}
+M_{s}(\theta, \phi) = R_{s}(\theta, \phi)   S_{c} (\nu_{0}) / A_{c}
+\end{equation}
+
+ {\em The map $M_{\theta, \phi}$ is said to be calibrated in Jy / FWHM$_{0}$ beam.}
+
+If we have a single point source in M, we have when we fit a gaussian
+of fixed width:
+\begin{equation}
+\int \int M_{s}(\theta, \phi) \sin \theta d\theta d\phi = A_{s}  S_{c} (\nu_{0}) /
+A_{c} = S_{q}(\nu_{0})
+\end{equation}
+
+
+Note that the quoted flux {\em is not} the flux of the source at the
+reference frequency. In order to find the flux of the source at the
+reference frequency, a color correction has to be applied
+\begin{equation}
+S_{s}(\nu_{0}) = S_{q}(\nu_{0})  C_{s}
+\end{equation}
+The color correction $C_{s}$ is derived in Sect.~\ref{ap:cal_HA}. 
+
+
+For aperture photometry, the map calibrated in Jy / $FWHM_{0}$ must be
+converted in a map in Jy / pixel. 
+

@@ -1,40 +1,20 @@
-%
 %%
 %%
 %%
+%%
 
-%% [intro]
+%% LP: full section by HA moved to appendices. Synthetic version created in photometric_system.tex 
 
-The calibration of the NIKA2 instrument in its final configuration
-of January 24th 2017  is studied in this section  in using the 
- primary calibrators, Uranus and Neptune, and secondary calibrators (planetary nebulae NGC7027, CRL2688, and MWC349A).
-Planer Mars and the two largest asteroids Ceres and Vesta were also observed. 
+The definitions and the assumptions that have been used to derive the
+NIKA2 photometric system discussed in Sect.~\ref{se:cal_HA} are
+thoroughtly reported here.
 
-% HA 
-\subsection{NIKA2 Photometric System}
-\label{se:cal_HA}
 
-\begin{table}[h]
-\begin{center}
-\begin{tabular}{|c|c|c|}
-\hline
-     & 1 mm & 2 mm \\
-\hline
-Reference frequency $\nu_{0}$ & 260 GHz & 150 GHz \\
-\hline
-Reference FWHM                      & 12.5  '' & 18.5 '' \\
-\hline
-\end{tabular}
-\caption{NIKA2 reference frequencies and FWHM}
-\end{center}
-\label{tab:definitions}
-\end{table}
-
-\subsubsection{Response of a detector to astronomical source}
+\subsection{Response of a detector to astronomical source}
 
 \noindent {\bf FM: airmass was $x$ in previous section, and elevation was $\delta$. we have to choose among these various notations}\\
 
-Let us consider a source observed at airmass $\sec z$ under
+Let us consider a source observed at airmass $\am$ under
 $mm_{H_{2}O}$ of precipitable water, with specific intensity $I_{\nu}$ (in units
 of  ${\rm W/m^{2}/sr/Hz}$) in the direction $\theta, \phi$, where $\theta$
 is the off-axis distance and $\phi$ the position angle, illuminating a KID
@@ -43,8 +23,8 @@ of the NIKA2 array.
 A KID response located at position $\theta, \phi$
 on the focal plane to this signal will be:
 \begin{equation}
-R(\theta, \phi, \sec z, mm_{H_{2}O}) = G_{k} \int_{0}^{+\infty} I(\nu)
-\frac{T'(\nu)}{\left(\frac{\nu}{\nu_{0}}\right)^{2}} e^{\left(-\sec z
+R(\theta, \phi, \am, mm_{H_{2}O}) = G_{k} \int_{0}^{+\infty} I(\nu)
+\frac{T'(\nu)}{\left(\frac{\nu}{\nu_{0}}\right)^{2}} e^{\left(-\am
   . \tau(\nu,  mm_{H_{2}O})\right)}A\Omega (\nu)  d\nu 
 \label{eq:basicphot}
 \end{equation}
@@ -61,12 +41,12 @@ where the different factors in the integral are:
    
    \noindent {\bf FM: in section 2, we define $T$ note $T^\prime$}\\
 
-\item $e^{\left(-\sec z . \tau(\nu,  mm_{H_{2}O} )\right)}$: the
-  atmospheric transmission at airmass  $\sec z$ for an amount of
+\item $e^{\left(-\am . \tau(\nu,  mm_{H_{2}O} )\right)}$: the
+  atmospheric transmission at airmass  $\am$ for an amount of
   precipitable water vapor $mm_{H_{2}O}$ generating an opacity $\tau(\nu)$.
 \item $A\Omega (\nu) $: the KID etendue   {\bf FM: extent ? etendue is not english as far as i know}, {\it i. e.} the product of
   its light collecting area by the solid angle it intercepts on the
-  sky. While the step between  pixels is well known and is measured (see sec~\ref{se:fov}), the
+  sky. While the step between  pixels is well known and is measured (see Sect.~\ref{se:fov}), the
   actual solid angle is not known precisely and is {\em probably} a function of the
   frequency  because the pixels sizes are close to the wavelength of
   operation (2.75 mm at 2 mm for example). The collecting $A$ area is the
@@ -80,8 +60,8 @@ power to ADU. {\bf FM:  ADU ?}
 By virtue of the conservation of specific intensity in a telescope,
 equation~\ref{eq:basicphot} can be rewritten as:
 \begin{equation}
-R(\theta, \phi, \sec z, mm_{H_{2}O}) = G_{k} A_{p}\Omega_{s}\int_{0}^{+\infty} I(\nu)
-\frac{T'(\nu)}{\left(\frac{\nu}{\nu_{0}}\right)^{2}} e^{\left(-\sec z
+R(\theta, \phi, \am, mm_{H_{2}O}) = G_{k} A_{p}\Omega_{s}\int_{0}^{+\infty} I(\nu)
+\frac{T'(\nu)}{\left(\frac{\nu}{\nu_{0}}\right)^{2}} e^{\left(-\am
   . \tau(\nu,  mm_{H_{2}O})\right)} \Omega_{b} (\theta, \phi, \nu)  d\nu 
 \label{eq:basicphot2}
 \end{equation}
@@ -106,15 +86,15 @@ assumptions. Let us first turn ourselves toward the effect of the
 atmosphere. 
 
 
-\subsubsection{Effect of the atmosphere}
+\subsection{Effect of the atmosphere}
 
 In order to study the effects of the atmosphere, let us define the
 effective frequency of a source as the weighted frequency of the
 passband, taking into account the system and atmospheric transmission,
 as well as the shape of the incident spectrum:
 \begin{equation}
-\nu_{eff}( \sec z, mm_{H_{2}O}) = \frac{ \int_{0}^{+\infty} I(\nu) \frac{T'(\nu)}{\left(\frac{\nu}{\nu_{0}}\right)^{2}} e^{\left(-\sec z
-  . \tau(\nu,  mm_{H_{2}O})\right)} \nu d\nu } { \int_{0}^{+\infty} I(\nu) \frac{T'(\nu)}{\left(\frac{\nu}{\nu_{0}}\right)^{2}} e^{\left(-\sec z
+\nu_{eff}( \am, mm_{H_{2}O}) = \frac{ \int_{0}^{+\infty} I(\nu) \frac{T'(\nu)}{\left(\frac{\nu}{\nu_{0}}\right)^{2}} e^{\left(-\am
+  . \tau(\nu,  mm_{H_{2}O})\right)} \nu d\nu } { \int_{0}^{+\infty} I(\nu) \frac{T'(\nu)}{\left(\frac{\nu}{\nu_{0}}\right)^{2}} e^{\left(-\am
   . \tau(\nu,  mm_{H_{2}O})\right)}  d\nu}
 \label{eq:nueff}
 \end{equation}
@@ -171,7 +151,7 @@ effective zenith opacity $\tau_{eff}$
 used. 
 Equation~\ref{eq:basicphot2} becomes under this assumption: 
 \begin{equation}
-R(\theta, \phi, \sec z, mm_{H_{2}O}) \simeq G_{k}  A_{p}\Omega_{s} e^{\left(-\sec z
+R(\theta, \phi, \am, mm_{H_{2}O}) \simeq G_{k}  A_{p}\Omega_{s} e^{\left(-\am
   . \tau_{eff}(mm_{H_{2}O})\right)} \int_{0}^{+\infty} I(\nu)
 \frac{T'(\nu)}{\left(\frac{\nu}{\nu_{0}}\right)^{2}} T_{atm}(\nu)
 \Omega_{b} (\theta, \phi, \nu) d\nu 
@@ -198,7 +178,7 @@ eq.~\ref{eq:basicphot4} from first principles, and a practical way of
 calibrating the system must be used: it is done by observing a primary
 calibrator.
 
-\subsubsection{Beammap of a calibrator}
+\subsection{Beammap of a calibrator}
 
 A primary calibrator is a source whose spectral irradiance is
 known. For NIKA2, we use two planets as primary calibrators, Uranus
@@ -242,7 +222,7 @@ T_{atm}(\nu) d\nu
 \label{eq:beammap}
 \end{equation}
 
-\subsubsection{Calibration in FWHM$_{0}$ beam}
+\subsection{Calibration in FWHM$_{0}$ beam}
 
 This map is fitted with au gaussian of fixed width: FWHM$_{0}$ (we
 recall that $2 \sqrt{2\ln{2}} \sigma_{0} =  {\rm FWHM}_{0}$).
@@ -327,7 +307,7 @@ reference frequency, a color correction has to be applied
 S_{s}(\nu_{0}) = S_{q}(\nu_{0})  C_{s}
 \end{equation}
 
-\subsubsection{Color correction for point sources measured with fixed
+\subsection{Color correction for point sources measured with fixed
   gaussian fit}
 
 
@@ -386,12 +366,12 @@ T_{atm}(\nu) d\nu
 \end{equation}
 
 
-\subsubsection{Calibration for aperture photometry}
+\subsection{Calibration for aperture photometry}
 
 For aperture photometry, the map calibrated in Jy / $FWHM_{0}$ must be
 converted in a map in Jy / pixel. 
 
-\subsubsection{Calibration in surface brightness}
+\subsection{Calibration in surface brightness}
 
 
 

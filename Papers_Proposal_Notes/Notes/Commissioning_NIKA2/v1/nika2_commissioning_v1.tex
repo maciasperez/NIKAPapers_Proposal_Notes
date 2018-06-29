@@ -62,6 +62,9 @@
 % NOTATION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\ftone}{f_{\rm{tone}}}
+\newcommand{\am}{x}
+\newcommand{\elev}{\delta}
+
 
 
 % COMMENTAIRES
@@ -143,7 +146,6 @@ We present NIKA2 performance assessment after the end of the commissioning in in
 \label{se:bandpasses}
 \input{Instrument.tex}
 
-
 \clearpage
 %----------------------------------------------------------------------------------------
 %	OBSERVATION MODES
@@ -213,18 +215,13 @@ We present NIKA2 performance assessment after the end of the commissioning in in
 
 % Paragraphe Intro
 % NIKA2 Photometric System
-\input{photometry_HA.tex}
+\input{photometric_system.tex}
 \label{se:cal_HA}
 
 % Reference flux densities of the calibrators
 \input{reference_flux.tex}
-\label{se:ref_flux}
+\label{se:ref_flux_primaries}
 
-% Aperture photometry
-% Stability of the flux density scale with the primary calibrators Uranus and Neptune
-% Stability of the flux density scale with three secondary calibrators 
-\input{cal_JFL.tex}
-\label{se:cal_JFL}
 
 
 \clearpage
@@ -233,8 +230,21 @@ We present NIKA2 performance assessment after the end of the commissioning in in
 %----------------------------------------------------------------------------------------
 \section{Photometry robustness tests {\color{blue} Laurence et al}}
 \label{se:photometry}
+
+% Intro + reference fluxes
+\input{reference_flux_secondaries.tex}
+\label{se:ref_flux_secondaries}
+
+% Aperture photometry
+% Stability of the flux density scale with the primary calibrators Uranus and Neptune
+% Stability of the flux density scale with three secondary calibrators 
+\input{cal_JFL.tex}
+\label{se:cal_JFL}
+
 % Calibration stability across the run
 \input{Calib_stability.tex}
+
+
 
 
 \clearpage
@@ -291,6 +301,12 @@ We present NIKA2 performance assessment after the end of the commissioning in in
   \label{ap:opacity}
   \input{Appendix_opacity}
 
+  % NIKA2 Photometric System
+  \section{Photometric system definitions}
+  \input{photometry_HA.tex}
+  \label{ap:cal_HA}
+
+  
   
 %\end{appendix}
 

@@ -10,7 +10,7 @@ The steps to go from raw timeline data in Hertz to calibrated data in Jansky per
 \end{itemize}
 
 
-\subsection{Data reduction summary}
+\subsection{Data reduction summary {\color{blue} Nico}}
 
 The performance assessment relies on a data reduction pipeline that consists of the following steps:
 \begin{itemize}
@@ -19,3 +19,50 @@ The performance assessment relies on a data reduction pipeline that consists of 
 \item[] substraction of the correlated part of the noise 
 \item[] projection of the timeline onto maps
 \end{itemize}
+
+
+\subsection{Data selection {\color{blue} Laurence}}
+
+For calibration and performance assessment, we select scans in average
+observing conditions by performing mild selection cuts. These scan
+cuts rely on zenith opacity estimates in NIKA2 bands $\tau$, as
+described in Sect.~\ref{se:opacities}, and on the observation date:
+%
+\begin{itemize}
+\item[i)] $\tau_{3} < 0.5$, where $\tau_{3}$ is $\tau$ estimate for
+  Array 3, corresponding to a decrease of the signal by a factor of
+  two at $45^{o}$ of elevation;
+\item[ii)] $x\, \tau_{3} < 0.7$ and $\elev > 20^{o}$, where $\elev$ is the
+  elevation of the telescope and $x$ the
+  air mass, which depends on the elevation as $x=\sec \elev$. This
+  threshold corresponds to a decrease of the signal by a factor of two;
+\item[iii)] observation date from 22:00 to 9:00 UT and from 10:00 to
+  15:00, that is excluding the sunrise period and the late afternoon.
+\end{itemize}
+%
+As discussed in Sect.~\ref{se:obsdate_variations}, the late afternoon
+observation are impacted by telescope-driven beam broadening. Around
+sunrise, the focus shifts continuously due to the ambiant temperature
+change until the temperature stabilizes, so that the scans taken from
+9:00 to 10:00 UT are likely not to be optimally focused.
+After the focus stabilisation, morning period 
+from 10:00 to 15:00 UT offers stable observing conditions
+provided the telescope is not heated due to observations in a
+direction close to the Sun.  Otherwise, further scan selection based on the
+observation exact historic might be needed before using these
+observations for performance assessment.
+
+   
+In addition to the above scan selection cuts, we use a Gaussian beam
+size criterion for the absolute calibration on Planets
+(e.g. Uranus). Namely, the FWHM estimated from the Planet observation
+map is asked to be lower than $13''$ at 1mm and lower than $18.3''$ at
+2mm, which correspond to a beam about $15\%$ larger than the average
+beam (see Sect.~\ref{se:beams}). The rational of this extra cut is
+mitigating the flux scatter due to beam broadening, and thus
+preserving the absolute calibration accuracy, as discussed in
+Sect.~\ref{se:calibration}.
+
+
+
+

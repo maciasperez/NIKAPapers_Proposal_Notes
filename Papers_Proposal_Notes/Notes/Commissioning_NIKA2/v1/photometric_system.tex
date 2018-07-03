@@ -22,7 +22,7 @@ main primary calibrator. Neptune and Mars are also considered as
 valluable alternatives to calibrate when Uranus is not visible.
 
 % HA 
-\subsection{Photometric System}
+\subsection{Photometric System {\color{blue} Herv\'e}}
 \label{se:cal_HA}
 
 \begin{table}[h]
@@ -49,8 +49,9 @@ detailed in Sect.~\ref{ap:cal_HA}.
 The map (in units of the KID resonance frequency shift or $\rm Hz$) of a source using a single KID $k$
 after correction of the atmospheric absorption is
 \begin{equation}
-R_{k}(\theta, \phi) \simeq G_{k}  A_{p}\Omega_{p} \int_{0}^{+\infty} I(\nu)
-T(\nu) T_{atm}(\nu) B_{k} (\theta, \phi, \nu)  d\nu 
+R^{k}(\theta, \phi) \simeq G_{k}  A_{p}\Omega_{p} \int_{0}^{+\infty} I(\nu)
+T(\nu) T_{atm}(\nu) B_{k}(\nu_{0}, \theta \times \frac{\nu}{\nu_{0}},
+\phi) d\nu 
 \label{eq:mainphot}
 \end{equation}
 
@@ -68,7 +69,8 @@ falling on the KID, where the factors are:
 \begin{itemize}
 \item $T(\nu)$, NIKA2 bandpasses, which are measured and corrected for the Raighleigh-Jeans term as discussed in Sect.~\ref{se:bandpasses}
 \item $T_{atm}(\nu)$, the transmission of the atmosphere at zenith. 
-\item $B_{k} (\theta, \phi, \nu)$, the fraction of source signal illuminating the KID, that is the beam function.  
+\item $B_{k} (\theta, \phi, \nu)$, the fraction of source signal illuminating the KID, that is the beam function. It has been parametrized as a function of the effective frequency as defined in eq~\ref{eq:nueff} of Sect.~\ref{ap:cal_HA},
+considering that its frequency dependency is only due to the diffraction law, hence a variation as $1/\nu$ from a reference frequency $\nu_0$.  
 \end{itemize}
 
 The gain of the KID $k$ $G_{k}$ (units of  $\rm Hz \cdot \rm W^{-1}$) converts the total power in $\rm W$
@@ -83,122 +85,114 @@ calibrating the system must be used: it is done by observing a primary
 calibrator.
 
 
-\subsubsection{Beammap of a calibrator}
+\subsubsection{Calibrator map in the reference system}
 
 A primary calibrator is a source whose flux density (or spectral irradiance) is
 known. For NIKA2, we use two planets as primary calibrators, Uranus
 and Neptune.
 
-
 The specific intensity $I_{c}(\nu)$ of the
 calibrator is:
 \begin{equation}
 I_{c}(\nu) =  \frac{S_{c}(\nu)}{\Omega_{p}} =\frac{ S_{c}
-(\nu_{0})}{\Omega_{p}} f(\frac{\nu}{\nu_{0}})  
+  (\nu_{0})}{\Omega_{p}} f(\frac{\nu}{\nu_{0}})
+\label{eq:intensity_calibrator}
 \end{equation}
-Where $S_{c}(\nu)$ is the flux density of the calibrator (units
+where $S_{c}(\nu)$ is the flux density of the calibrator (units
 of $\rm W/m^{2}/Hz$ or Jy). We parametrize the source flux density
 as a function of a reference frequency $\nu_{0}$ that we choose
 arbitrarily to be: $\nu_{0} = 150$~GHz for the 2mm array and $\nu_{0}
 = 260$~GHz for both 1mm arrays. 
 
-
-The beam $B_{k}$ is further parametrized as a function
-of the effective frequency as defined in eq~\ref{eq:nueff} of Sect.~\ref{ap:cal_HA},
-considering that its frequency dependency is only due to the diffraction law,
-hence a variation as $1/\nu$.
-
-With this in hand, we can write the equation of a beam map using a
-single KID with eq~\ref{eq:mainphot}. At each position ($\theta, \phi$)
-on the beam map (in units of $\rm Hz$) we have:
+Ingesting Eq.~\ref{eq:intensity_calibrator} in the main photometric
+equation (Eq.~\ref{eq:mainphot}), the map (in units of $\rm Hz$) of a
+calibrator observed with the KID $k$ is:
 \begin{equation}
-R_{c}(\theta, \phi) =  G_{k} A_{p} S_{c} (\nu_{0})  \int_{0}^{+\infty}
+R_{c}^{k}(\theta, \phi) =  G_{k} A_{p} S_{c} (\nu_{0})  \int_{0}^{+\infty}
 f(\frac{\nu}{\nu_{0}}) B_{k}(\nu_{0}, \theta \times \frac{\nu}{\nu_{0}},
 \phi) T(\nu) T_{atm}(\nu) d\nu
-\label{eq:beammap}
+\label{eq:mainbeammap}
 \end{equation}
+
+This observed map is modelled with a fixed-width Gaussian as 
+\begin{equation} 
+R_{c}(\theta, \phi)  = \frac{A_{c}}{2 \pi \sigma_{0}^{2}}
+e^{-\frac{\theta^{2}}{2\sigma_{0}^{2}}}. 
+\end{equation}
+The reference FWHM, labelled FWHM$_{0}$, which we recall, is related
+to $\sigma_{0}$ by $2 \sqrt{2\ln{2}} \sigma_{0} = {\rm FWHM}_{0}$),
+are $12.5''$ for the 1mm arrays and $18.5''$ for the 2mm
+array, as defined in Table~\ref{tab:definitions}. These values have
+been chosen sizably larger than the main beam values, as reported in
+Sect.~\ref{se:beams}, to account for a fraction of the signal smeared 
+in the error beam.
+
+
+We form an estimator of the FWHM$_{0}$ Gaussian amplitude:
+\begin{equation} 
+\hat{A_{c}}  = 2 \int \int R_{c}(\theta, \phi) e^{-\frac{\theta^{2}}{2\sigma_{0}^{2}}} \sin \theta d\theta d\phi
+\end{equation}
+
+But we also know that the integral of the observed map should give the power
+emitted by the source. Therefore, we form the map:
+\begin{equation}
+M_{c}(\theta, \phi) = R_{c}(\theta, \phi)   S_{c} (\nu_{0}) / \hat{A}_{c}
+\end{equation}
+where  $S_{c} (\nu_{0})$ is the flux density of the calibrator
+at a reference frequency $\nu_{0}$ given in Table~\ref{tab:definitions}.
+
+This map has units of $\rm Jy$. By construction, integrating over the map we have:
+\begin{equation}
+\int\int M_{c}(\theta, \phi) \sin \theta d\theta d\phi = S_{c}(\nu_{0}).
+\end{equation}
+
+
 
 \subsubsection{Calibration in FWHM$_{0}$ beam}
 
-This map is fitted with a Gaussian of fixed width FWHM$_{0}$ (we
-recall that $2 \sqrt{2\ln{2}} \sigma_{0} =  {\rm FWHM}_{0}$).
-\begin{equation} 
-R_{c}(\theta, \phi) = \frac{A_{c}}{2 \pi \sigma_{o}^{2}}
-e^{-\frac{\theta^{2}}{2\sigma_{0}^{2}}}  + \epsilon(\theta, \phi)
-\end{equation}
-where $\epsilon(\theta, \phi)$ are the residuals of the fit.
-
-Assuming that the fit is not biased, we have:
-\begin{equation} 
-\int\int R_{c}(\theta, \phi) \sin \theta d\theta d\phi = A_{c}
-\end{equation}
-because errors average out so that:
-\begin{equation} 
-\int\int \epsilon (\theta, \phi) \sin \theta d\theta d\phi = 0
-\end{equation}
-But we also know that integral of the beammap should give the power
-emitted by the source. Therefore, we form the map:
-\begin{equation}
-M_{c}(\theta, \phi) = R_{c}(\theta, \phi)   S_{c} (\nu_{0}) / A_{c}
-\end{equation}
-where  $S_{c} (\nu_{0})$ is the spectral irradiance of the calibrator
-at a reference frequency $\nu_{0}$ given in
-table~\ref{tab:definitions}. This map has units of $\rm W/m^{2}/Hz$. Note
-that the choice of the reference frequency is arbitrary, it is a
-convention. By construction, integrating over the map we have:
-
-\begin{equation}
-\int\int M_{c}(\theta, \phi) \sin \theta d\theta d\phi = S_{c}(\nu_{0})
-\end{equation}
-
-
-Similarly, a point source with spectral irradiance $S_{s}(\nu)$ will
+Similarly, a point source with flux density $S_{s}(\nu)$ will
 generate a response at position $(\theta, \phi)$
 \begin{equation}
-R_{s}(\theta, \phi) =  G_{k} A_{p}  \int_{0}^{+\infty}
+R_{s}^{k}(\theta, \phi) =  G_{k} A_{p}  \int_{0}^{+\infty}
 S_{s}(\nu) B_{k}(\nu_{0}, \theta \times \frac{\nu}{\nu_{0}},
 \phi) T(\nu) T_{atm}(\nu) d\nu
 \end{equation}
+
 Note here that the effective frequency for the beam is not necessarily
 the same as the one for the primary calibrator, as it depends on the
 source spectrum.
 
-
-This beammap will be fitted with a gaussian of fixed width:
-\begin{equation} 
-R_{s}(\theta, \phi)  = \frac{A_{s}}{2 \pi \sigma_{o}^{2}}
-e^{-\frac{\theta^{2}}{2\sigma_{0}^{2}}}  + \epsilon(\theta, \phi)
-\end{equation}
-
-The quoted flux for the source is then:
+We fit the amplitude of a Gaussian of FWHM$_0$ width $\hat{A_{s}}$.
+The flux density estimate for the source is then:
 \begin{equation}
-S_{q}(\nu_{0}) =  S_{c} (\nu_{0})  \times \frac{A_{s}}{A_{c}}
+  \hat{S}(\nu_{0})  = \frac{S_{c}(\nu_{0})}{A_{c}} \times \hat{A_{s}}
 \end{equation}
 
-In other words, the quoted flux is the flux that should have the
-calibrator in order to generate a response that would be fitted with a
-gaussian of fixed width and the same amplitude as the source.
+In other words, the flux estimate is the flux that should have the
+calibrator in order to generate a response that would be fitted with a FWHM$_0$
+Gaussian of the same amplitude as the source.
+
 Let us form the map:
-
 \begin{equation}
-M_{s}(\theta, \phi) = R_{s}(\theta, \phi)   S_{c} (\nu_{0}) / A_{c}
+M_{s}(\theta, \phi) = \frac{S_{c} (\nu_{0})}{A_{c}}  R_{s}(\theta, \phi)   
 \end{equation}
 
- {\em The map $M_{\theta, \phi}$ is said to be calibrated in Jy / FWHM$_{0}$ beam.}
+The map $M_{s}(\theta, \phi)$ is said to be calibrated in Jy / FWHM$_{0}$
+beam. The factor $S_{c} (\nu_{0})/A_{c}$ is referred to as the
+absolute calibration factor.
 
-If we have a single point source in M, we have when we fit a gaussian
+If we have a single point source in $M$, we have when we fit a Gaussian
 of fixed width:
 \begin{equation}
-\int \int M_{s}(\theta, \phi) \sin \theta d\theta d\phi = A_{s}  S_{c} (\nu_{0}) /
-A_{c} = S_{q}(\nu_{0})
+\int \int M_{s}(\theta, \phi) \sin \theta d\theta d\phi = \hat{A_{s}}  S_{c} (\nu_{0}) /
+A_{c} = \hat{S}(\nu_{0})
 \end{equation}
 
-
-Note that the quoted flux {\em is not} the flux of the source at the
+Note that the flux density estimate $\hat{S}(\nu_{0})$ {\em is not} the flux of the source at the
 reference frequency. In order to find the flux of the source at the
 reference frequency, a color correction has to be applied
 \begin{equation}
-S_{s}(\nu_{0}) = S_{q}(\nu_{0})  C_{s}
+S_{s}(\nu_{0}) = \hat{S}(\nu_{0})  C_{s}
 \end{equation}
 The color correction $C_{s}$ is derived in Sect.~\ref{ap:cal_HA}. 
 

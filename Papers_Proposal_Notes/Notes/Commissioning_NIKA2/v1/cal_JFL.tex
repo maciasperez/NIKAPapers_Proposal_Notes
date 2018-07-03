@@ -9,19 +9,19 @@
 %++ SPIRE refer.
 
 
-\subsection{Aperture photometry}
-\label{S:ApPh}
+\subsection{Consistency test using aperture photometry {\color{blue} Jean-Fran\c cois}}
+\label{se:aperture_photometry}
 
-Generally speaking, 
-photometry is most advantageously done by PSF fitting when  target is a point-source and the telescope PSF is well known.
-The 30-metre PSF with NIKA2 is not fully caracterised yet and likely depend on elevation and atmospheric conditions.
-Hence, instead of PSF fitting, we have used aperture photometry to
-recover as much as possible of the calibrator flux spread over the main beam and side
-lobes of the telescope for our study of the stability of the calibration. 
+Generally speaking, photometry is most advantageously done by PSF fitting when target is a point-source
+and the telescope PSF is well known. The 30-metre PSF with NIKA2 depends on elevation and atmospheric conditions.
+Hence, as a consistency check of the baseline calibration results that rely on PSF fitting, we have also used aperture photometry to recover as much as possible of the calibrator flux spread over the main beam and side
+lobes of the telescope when assessing the stability of the calibration. 
 For this study, observations were beammaps and $8' \times 5'$ otf's of the primary calibrators Uranus and Neptune
 and of the secondary calibrators MWC349A, NGC7027 and CRL2688. All are
 point-sources or quasi, except NGC7027 which is slightly extended.
 
+
+\subsubsection{Methodology}
 We describe now how we have implemented aperture photometry.
 
 All observations (beammaps and $8' \times 5'$ otf's) were first processed 
@@ -102,7 +102,7 @@ $\Omega_{true} / 2 \pi (\sigma_{Gauss})^2$, with  $\sigma_{Gauss}$ derived from 
 with  the NIKA2 map for a point-like source.
 
 
-\subsection{Determination of the solid angle of the total beam with Uranus and Neptune : }
+\subsubsection{Determination of the solid angle of the total beam}
 \label{S:solang}
 
 
@@ -180,7 +180,7 @@ This effect is not understood and under investigation.
 \end{figure}
 
 
-\subsection{Stability of calibration with the primary calibrators Uranus and Neptune }
+\subsubsection{Stability of the primary calibrator fluxes}
 
 The primary calibrators Uranus and Neptune are the best sources to caracterize the stability of the intrument
 because they are significantly stronger than the other calibrators.
@@ -327,10 +327,7 @@ while, in Fig.\ref{fig:U_N_ratio} above, observations of 4 consecutive otf's wer
 \end{center}
 \end{figure}
 
-\clearpage
-\newpage
-
-\subsection{Calibration of the secondary calibrators MWC349A, NGC7027 and CRL2688}
+\subsubsection{Stability of the secondary calibrator fluxes}
 
 The sources  MWC349A, NGC7027 and CRL2688 are standard secondary calibrators
 and were observed during runs N2R9 and N2R10. Their reference flux densities at
@@ -470,23 +467,22 @@ its reference flux densities are monitored at PdB
        of the reference FWHMs for the pipeline Gaussian fit (currently $12.5''$ and $18.5''$) could remove this bias.
 
 
-\subsection{Tentative gain-elevation curve}
+%\subsection{Tentative gain-elevation curve}
 
-
-We have searched for any elevation dependence of the solid angle of the total beam  $\Omega_{true}$ of Uranus and Neptune
-and found none for
-the elevation range of their observations between  30$^{\circ}$ and 65$^{\circ}$.  We have also studied such a dependence
-for the observations of the three secondary calibrators which span a larger range between elevations 23$^{\circ}$ and 74$^{\circ}$.
-The most conclusive study is for NGC7027, the brightest secondary calibrator, in Figure~\ref{fig:gain_curve_NG7027}. 
-Its pipeline Gaussian photometry exhibits some degree of curvature centered around elevation 45$^{\circ}$ and in a similar way
-for the three arrays.
-While the pipeline Gaussian photometry  assumes a fixed solid angle for the total beam based on the reference FWHM's $12.5''$ and $18.5''$,
-the solid angle as determined with the data themselves in using
-eq.~\ref{eq:Otrue} exhibits instead a similar curvature centered on elevation 45$^{\circ}$. This needs confirmation with further
-observations  over the largest elevation range possible at the telescope and on the strongest source available. Note finally,
-that the flux density of NGC7027 determined
-with aperture photometry does not exhibit any curvature, as expected, since the conversion factor ${dx^2} \over {\Omega_{true}}$
-in eq~\ref{eq:ApPh} models the effect.  We stress again that the EMIR gain curved was not turned on to process the data. 
+%We have searched for any elevation dependence of the solid angle of the total beam  $\Omega_{true}$ of Uranus and Neptune
+%and found none for
+%the elevation range of their observations between  30$^{\circ}$ and 65$^{\circ}$.  We have also studied such a dependence
+%for the observations of the three secondary calibrators which span a larger range between elevations 23$^{\circ}$ and 74$^{\circ}$.
+%The most conclusive study is for NGC7027, the brightest secondary calibrator, in Figure~\ref{fig:gain_curve_NG7027}. 
+%Its pipeline Gaussian photometry exhibits some degree of curvature centered around elevation 45$^{\circ}$ and in a similar way
+%for the three arrays.
+%While the pipeline Gaussian photometry  assumes a fixed solid angle for the total beam based on the reference FWHM's $12.5''$ and $18.5''$,
+%the solid angle as determined with the data themselves in using
+%eq.~\ref{eq:Otrue} exhibits instead a similar curvature centered on elevation 45$^{\circ}$. This needs confirmation with further
+%observations  over the largest elevation range possible at the telescope and on the strongest source available. Note finally,
+%that the flux density of NGC7027 determined
+%with aperture photometry does not exhibit any curvature, as expected, since the conversion factor ${dx^2} \over {\Omega_{true}}$
+%in eq~\ref{eq:ApPh} models the effect.  We stress again that the EMIR gain curved was not turned on to process the data. 
 
 
 

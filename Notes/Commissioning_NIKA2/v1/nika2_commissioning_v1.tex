@@ -105,7 +105,12 @@
 %
 %
 %
+
+\pagenumbering{roman}
+
 \tableofcontents
+
+\clearpage
 \listoffigures
 \listoftables
 
@@ -115,6 +120,8 @@
 
 %\renewcommand{\abstractname}{Summary} % Uncomment to change the name of the abstract to something else
 \newpage
+\pagenumbering{arabic}
+
 \begin{abstract}
 We present NIKA2 performance assessment after the end of the commissioning in intensity.
 \end{abstract}
@@ -317,16 +324,22 @@ We present NIKA2 performance assessment after the end of the commissioning in in
   \section{Opacity measurement consistency tests}
   \label{ap:opacity}
   \input{Appendix_opacity}
-
+  \clearpage
+  
+  % Focus surface stability checks
+  %\label{ap:focus_surfaces}
+  \input{appendix_focus_surfaces}
+  \clearpage
+  
   % NIKA2 Photometric System
   \section{Photometric system definitions}
   \input{photometry_HA.tex}
   \label{ap:cal_HA}
 
   % JFL photometry N2R9 & N2R10
-  \section{Photometric validation using aperture photometry {\color{blue} Jean-Fran\c cois}}
   \input{cal_JFL.tex}
   \label{ap:cal_JFL}
+  \clearpage
   
   % Calibration stability across the run
   \input{Calib_stability.tex}

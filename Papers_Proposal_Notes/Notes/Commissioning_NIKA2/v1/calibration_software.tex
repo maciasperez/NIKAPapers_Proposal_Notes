@@ -1,0 +1,34 @@
+\section{Calibration reference software}
+
+The reference software used for NIKA2 calibration are available under
+SVN in the directory {\tt Processing/Scr/Reference/}, refered to as
+the calibration directory. Once a first beam map scan is reduced, the
+subsequent steps of the calibration are implemented using the main
+script in the calibration directory 
+{\tt Calibration/baseline$\_$calibration.pro}. 
+This script, which must be edited to perform the calibration of each
+campaign, calls the following daughter scripts:
+
+
+\subsubsection*{FOV geometry and relative calibration}
+In the calibration directory, {\tt Geometry/reduce$\_$beammap.pro}
+
+\subsubsection*{Opacity}
+Calibration directory then {\tt
+  Opacity/reduce$\_$skydips$\_$reference.pro}.
+This reference script calls the routine {\tt all$\_$skydips.pro}, which relies on
+the fitting routine available in {\tt
+  Processing/Realtime/nk$\_$test$\_$allskd4.pro}
+
+\subsubsection*{Absolute calibration}
+Calibration directory then {\tt
+  Photometry/calibration$\_$uranus$\_$reference.pro}.
+For the beam-hardened calibration test, the photometric
+correction is implemented in {\tt
+  Photometry/photometric$\_$correction.pro}
+
+
+
+\subsubsection*{Photometric checks}
+Once all these steps are done, the calibration can be checked using
+the script {\tt Photometry/validate$\_$calibration$\_$reference.pro}.

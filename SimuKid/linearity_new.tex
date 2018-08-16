@@ -23,7 +23,7 @@ extra contribution
 m &=& \phi + \epsilon\phi^2, \nonumber \\
 &=& (I+Q\cos2\alpha+U\sin2\alpha) + \epsilon(I+Q\cos2\alpha+U\sin2\alpha)^2, \nonumber\\
  &\simeq & (I+Q\cos2\alpha+U\sin2\alpha) \nonumber \\
-&+&\epsilon I^{2} + 2\epsilon IQ\cos2\alpha + 
+&&+\epsilon I^{2} + 2\epsilon IQ\cos2\alpha + 
 2\epsilon IU \sin2\alpha + \mathcal{O}e^{i4\alpha}.
 \label{eq:eq-NL}
 \end{eqnarray}
@@ -34,21 +34,23 @@ intensity to polarization and creates spurious additional contributions to $Q$
 and $U$, so that their estimates read
 
 \begin{eqnarray}
-\hat{I} &=& I + \epsilon I^2\\
-\hat{Q} &=& Q + 2\epsilon IQ\\
-\hat{U} &=& U + 2\epsilon IU
+\hat{I} &=& I + \epsilon I^2,\\
+\hat{Q} &=& Q + 2\epsilon IQ,\\
+\hat{U} &=& U + 2\epsilon IU.
 \end{eqnarray}
 
-In addition to CMB, we must account for the foregrounds. We limit
-ourselves to dust thermal emission and synchrotron because they are the two
-major polarized foregrounds. The question is now to know how to include these
-emissions, or their residuals after component separation, in our simulations to
-assess the impact of non linearity on the final CMB estimates ? A complete study
-of component separation is beyond the scope of this paper. However, for the sake of
-specification derivation, it is enough to approximate foreground emissions by
-fixed spatial templates at a reference frequency $\nu_0$ and power law
-SED's. Let us denote $\beta_S$ and $\beta_D$ the indices of these power laws for
-synchrotron and dust respectively. Thus
+\noindent In addition to CMB, we must account for the foregrounds. We limit ourselves to
+dust thermal emission and synchrotron because they are the two major polarized
+foregrounds\footnote{Our forthcoming arguments apply also to other components
+  with spectral dependencies different from that of the CMB.}. The question is
+now how to include these emissions (or their residuals after component
+separation) in our simulations to assess the impact of non linearity on the
+final CMB estimates. A complete study of component separation is beyond the
+scope of this paper. However, for the sake of specification derivation, it is
+enough to approximate foreground emissions by fixed spatial templates at a
+reference frequency $\nu_0$ and power law SED's. Let us denote $\beta_S$ and
+$\beta_D$ the indices of these power laws for synchrotron and dust
+respectively. Thus
 
 \begin{eqnarray}
 I&=&I_{cmb} + \left(\frac{\nu}{\nu_0}\right)^{\beta_D}I_D(\nu_0) +
@@ -59,7 +61,7 @@ U&=&U_{cmb} + \left(\frac{\nu}{\nu_0}\right)^{\beta_D}U_D(\nu_0) +
 \left(\frac{\nu}{\nu_0}\right)^{\beta_S}U_S(\nu_0).
 \end{eqnarray}
 
-Putting these in eq.~(\ref{eq:eq-NL}), leads to:
+\noindent Putting these in eq.~(\ref{eq:eq-NL}), leads to:
 
 \begin{eqnarray}
 \hat{Q} &=& Q_{cmb} + 2\epsilon I_{cmb}Q_{cmb} \nonumber\\
@@ -71,14 +73,15 @@ Putting these in eq.~(\ref{eq:eq-NL}), leads to:
 &+&2\epsilon\left(\frac{\nu}{\nu_0}\right)^{\beta_D+\beta_S}\left(Q_D(\nu_0)I_S(\nu_0)+I_D(\nu_0)Q_S(\nu_0)\right),
 \end{eqnarray}
 
-with similar results for $\hat{I}$ and $\hat{U}$. Spectral dependence is the key
+\noindent with similar results for $\hat{I}$ and $\hat{U}$. Spectral dependence is the key
 feature of component separation methods, and we assume in this work that it is
 actually able to isolate components of a given SED, in particular that of the
 CMB. This leads to the interesting result that all the couplings between
 components have a SED that is different from that of the CMB. CMB will ``leak''
-into components of the same SED as the foregrounds and foregrounds will induce
+into components of the same SED as the foregrounds, and foregrounds will induce
 spurious components with SED's in $2\beta_D$, $2\beta_S$ and
-$\beta_S+\beta_D$. So after component separation, we are left with
+$\beta_S+\beta_D$. So at the end of the component separation stage, the
+estimated CMB reads:
 
 \begin{eqnarray}
 \hat{I} &=& I_{cmb} +  \epsilon I_{cmb}^2, \label{eq:spurious-mapI}\\

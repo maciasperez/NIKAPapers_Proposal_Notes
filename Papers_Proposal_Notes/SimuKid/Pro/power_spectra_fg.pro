@@ -1,40 +1,32 @@
 
-whoami = 'nico' ; 'aina'
-
 ;; Outplot format
 ps = 0
 png= 0
 nside = 256 ; 1024 ; 512
 
-if strupcase(whoami) eq 'AINA' then begin
-   input_cl_file = "/Users/andriaai/NIKA/Processing/idl-libs/Healpix/test/cl.fits"
-   map_dir = "/Users/andriaai/NIKA/Processing/Labtools/AA/Dev"
-endif else begin
-   input_cl_file = !nika.soft_dir+"/idl-libs/Healpix/test/cl.fits"
-   map_dir = "/Data/Planck/Dust"
+map_dir = '$SK_DIR/Maps'
 
-   ;; To have B modes in the CMB simulation
-   ;;readcol, '/Data/CLS_totCls.dat',  l, cl1, cl2, cl3, cl4, format='DDDDD'
-   readcol, "/Users/ponthien/Projects/NIKA/Soft/Papers_Proposal_Notes/SimuKid/Pro/cmb_totCls_r0.001.dat", $
-            l, cl1, cl2, cl3, cl4, format='DDDDD'
-   wind, 1, 1, /free
-   plot, l, cl1, /xs, /ys, /xlog, yra=[1d-6,1d5], /ylog
-   oplot, l, cl2, col=70
-   oplot, l, cl3, col=250
-   oplot, l, abs(cl4), col=150
+;; To have B modes in the CMB simulation
+;;readcol, '/Data/CLS_totCls.dat',  l, cl1, cl2, cl3, cl4, format='DDDDD'
+readcol, '$SK_DIR/Cl/cmb_totCls_r0.001.dat', $
+         l, cl1, cl2, cl3, cl4, format='DDDDD'
+wind, 1, 1, /free
+plot, l, cl1, /xs, /ys, /xlog, yra=[1d-6,1d5], /ylog
+oplot, l, cl2, col=70
+oplot, l, cl3, col=250
+oplot, l, abs(cl4), col=150
 
-   ;; Need to add monopole and dipole for synfast
-   cl_in = dblarr(max(l)+1,4)
-   ;; prefactor included in the CAMB's output files
-   fl = l*(l+1)/(2*!dpi)
-   cl_in[2:*,0] = cl1/fl
-   cl_in[2:*,1] = cl2/fl
-   cl_in[2:*,2] = cl3/fl
-   cl_in[2:*,3] = cl4/fl
+;; Need to add monopole and dipole for synfast
+cl_in = dblarr(max(l)+1,4)
+;; prefactor included in the CAMB's output files
+fl = l*(l+1)/(2*!dpi)
+cl_in[2:*,0] = cl1/fl
+cl_in[2:*,1] = cl2/fl
+cl_in[2:*,2] = cl3/fl
+cl_in[2:*,3] = cl4/fl
 
-   input_cl_file = 'mycl.fits'
-   cl2fits, cl_in, input_cl_file
-endelse
+input_cl_file = 'mycl.fits'
+cl2fits, cl_in, input_cl_file
 
 npix = nside2npix( nside)
 
@@ -106,7 +98,7 @@ outplot, /close, /verb
 
 ;;------------------------------------------------------------------------------------------
 ;; Look at the actual correlations between CMB and foregrounds
-planck_cmb = mrdfits("/Data/Planck/Maps/COM_CMB_IQU-commander_1024_R2.02_full.fits", 1, hcmb)
+planck_cmb = mrdfits("$SK_DIR/Maps/COM_CMB_IQU-commander_1024_R2.02_full.fits", 1, hcmb)
 
 ;; K to microK
 planck_cmb.i_stokes *= 1d6
@@ -114,7 +106,7 @@ planck_cmb.q_stokes *= 1d6
 planck_cmb.u_stokes *= 1d6
 
 ;; Dust at 353GHz
-planck_dust = mrdfits("/Data/Planck/Maps/COM_CompMap_DustPol-commander_1024_R2.00.fits", 1, hdust)
+planck_dust = mrdfits("$SK_DIR/Maps/COM_CompMap_DustPol-commander_1024_R2.00.fits", 1, hdust)
 print, sxpar(hdust,"NU_REF")
 lambda = !const.c/353.d9 * 1d6 ; microns
 planck_dust.q_ml_full /= 1000.d0
@@ -130,7 +122,7 @@ ud_grade, u_dust_ref, u_dust_ref_out, nside_out=nside, order_in='nested', order_
 q_dust_ref = q_dust_ref_out
 u_dust_ref = u_dust_ref_out
 
-planck_t_dust = mrdfits("/Data/Planck/Maps/COM_CompMap_ThermalDust-commander_2048_R2.00.fits", 1, htdust)
+planck_t_dust = mrdfits("$SK_DIR/Maps/COM_CompMap_ThermalDust-commander_2048_R2.00.fits", 1, htdust)
 print, sxpar( htdust, "NU_REF")
 lambda = !const.c/545.d9 * 1d6 ; microns
 mollview, planck_t_dust.i_ml_full, /nest
@@ -144,7 +136,7 @@ mollview, q_dust_ref, title='Q dust (353 GHz)'
 mollview, u_dust_ref, title='U dust (353 GHz)'
 
 ;; Synchrotron
-planck_sync = mrdfits("/Data/Planck/Maps/COM_CompMap_SynchrotronPol-commander_0256_R2.00.fits", 1, hsync)
+planck_sync = mrdfits("$SK_DIR/Maps/COM_CompMap_SynchrotronPol-commander_0256_R2.00.fits", 1, hsync)
 print, sxpar( hsync, "NU_REF")
 lambda = !const.c/30.d9 * 1d6 ; microns
 
@@ -162,7 +154,7 @@ ud_grade, u_sync_ref, u_sync_ref_out, nside_out=nside, order_in='nested', order_
 q_sync_ref = q_sync_ref_out
 u_sync_ref = u_sync_ref_out
 
-planck_t_sync = mrdfits("/Data/Planck/Maps/COM_CompMap_Synchrotron-commander_0256_R2.00.fits", 1, htsync)
+planck_t_sync = mrdfits("$SK_DIR/Maps/COM_CompMap_Synchrotron-commander_0256_R2.00.fits", 1, htsync)
 print, sxpar( htsync, "NU_REF")
 lambda = !const.c/408.d6 * 1d6 ; microns
 ud_grade, planck_t_sync.i_ml, i_sync_ref, nside_out=nside, order_in='nested', order_out='ring'

@@ -17,7 +17,7 @@ print, ';; Uranus flux (NIKA bands) (Jy): ', flux_source
 
 ;; CMB Dipole in a typical 7arcmin beam
 print, ""
-T_dipole = 2.726 + [-1,1]*3d-3
+T_dipole = 2.726 + [-1,1]*3d-3/2.
 lambda = 3d-3 ; <-- 100GHz
 fwhm = 7. ; arcmin
 beam_size = sqrt(8.*(fwhm*!fwhm2sigma*!arcmin2rad)^2) ; effective diameter
@@ -25,7 +25,7 @@ nubnu_planck, lambda, T_dipole, nubnu
 conv_nubnu_bnu, lambda, nubnu, bnu
 flux_dipole = bnu * 1E6 * !pi/4.* beam_size^2 ;
 print, ';; CMB Dipole flux variation at 100GHz in a 7 arcmin beam (Jy): ', max(flux_dipole)-min(flux_dipole)
-;; CMB Dipole flux variation at 100GHz in a 7 arcmin beam (Jy):        6.7243186
+;; CMB Dipole flux variation at 100GHz in a 7 arcmin beam (Jy):        3.3621599
 
 ;; Galactic Dust at 353GHz
 planck_dust = mrdfits("$SK_DIR/Maps/COM_CompMap_DustPol-commander_1024_R2.00.fits", 1, hdust)
@@ -63,16 +63,15 @@ print, ";; minmax(u_dust_ref) (K): ", minmax(u_dust_ref)
 ;; minmax(i_dust_ref) (K):    3.7330228e-05       23.881363
 ;; minmax(q_dust_ref) (K):    -0.0053505400    0.0062592595
 ;; minmax(u_dust_ref) (K):    -0.0044205532     0.016788402
-stop
+;stop
 
 ;; Apply Uranus type flux derivation to our diffuse emissions
 temp_name = ['Qdust', 'Udust', 'Q(10%) pol']
 t_dust = 10. ; typical...?
 dT = [ max(abs(q_dust_ref)), max(abs(u_dust_ref)), 0.1*t_dust]/2.
-print, "temperature: ", temperature
 lambda = 3d-3 ; <-- 100GHz
 fwhm = 7. ; arcmin
-;; take effective disk diameter
+;; take effective disk diameter d such that pi*d^2/4 = 2*!dpi*sigma^2
 beam_size = sqrt( 8.*(fwhm*!fwhm2sigma*!arcmin2rad)^2)
 for i=0, n_elements(dt)-1 do begin
    T = t_dust + dt[i]
@@ -104,45 +103,27 @@ print, ";; ", minmax(u_megajy)*2.d0*!dpi*(fwhm*!fwhm2sigma*!arcmin2rad)^2*1d6
 
 ;; Dipole flux:
 lambda_microns = lambda*1.d6
-convert_millik_megajy, lambda_microns, 3003., i_dipole_megajy1, /cmb
-convert_millik_megajy, lambda_microns, 3000.-3, i_dipole_megajy2, /cmb
+convert_millik_megajy, lambda_microns, 1000*(2.726 + 3d-3/2.), i_dipole_megajy1, /cmb
+convert_millik_megajy, lambda_microns, 1000*(2.726 - 3d-3/2.), i_dipole_megajy2, /cmb
 print, ";; Dipole flux in a 7 arcmin beam (Jy): ", 1.d6*(i_dipole_megajy1-i_dipole_megajy2)*2.d0*!dpi*(fwhm*!fwhm2sigma*!arcmin2rad)^2
-;; Dipole flux in a 7 arcmin beam (Jy):    6.7246963
+;; Dipole flux in a 7 arcmin beam (Jy):    3.3623570
 
-;; Account for 30% bandpass:
-freq = freq[sort(freq)]
+;; Analytical conversion
 t_cmb = 2.726
-bp_width = 0.3
-nfreq = 100
-freq0 = 353.d9
-freq_min = freq0*(1-bp_width/2.)
-freq_max = freq0*(1+bp_width/2.)
-freq = dindgen(nfreq)/(nfreq-1)*(freq_max - freq_min) + freq_min
-
-
-;; W.m^-2.sr^-1.Hz^-1 K^-1
+freq = !const.c/lambda
+print, "freq: ", freq
+;; W.m^-2.sr^-1.Hz^-1 /K
 dBBdT = 2*!const.h^2*freq^4/!const.k/!const.c^2/t_cmb^2 * $
         EXP(!const.h/!const.k*freq/t_cmb) / (EXP(!const.h/!const.k*freq/t_cmb) - 1)^2
 
 ;; (W.m^-2.Hz^-1/sr)/K to (Jy/sr)/K (cross-checked at 100GHz with planck_g() in convert_millik_megajy)
 dBBdT = dBBdT/1d-26
 
-dt_dipole = 3d-3 ; 3mK = 3d-3 K
-phi1 = int_tabulated( freq, dbbdt * (t_cmb+dt_dipole)/freq^2)
-phi2 = int_tabulated( freq, dbbdt * (t_cmb-dt_dipole)/freq^2)
-dipole_jy_per_sr = abs(phi1-phi2)
-dipole_jy_in_beam = dipole_jy_per_sr * 2.d0*!dpi*(fwhm*!fwhm2sigma*!arcmin2rad)^2
-print, ";; dipole_jy_in_beam: ", dipole_jy_in_beam
-
-;; Cross check with standard convertion routines
-convert_millik_megajy, !const.c/freq*1d6, dt_dipole*1000, dipole_megajy, /cmb
-print, "int_tabulated (after convert_millik...): ", int_tabulated( freq, dipole_megajy)
-print, ";; int_tabulated * beam: ", int_tabulated( freq, dipole_megajy)*2.d0*!dpi*(fwhm*!fwhm2sigma*!arcmin2rad)^2
-;; 100738.54
-
-wind, 1, 1, /free
-plot, freq, dipole_megajy, /xs
-
+flux1 = dbbdt * (3+3.d-3/2.)
+flux2 = dbbdt * (3-3.d-3/2.)
+print, ";; Dipole amplitude flux in 7 arcmin beam (analytical) (Jy): ", $
+       (flux1-flux2)*2*!dpi*(fwhm*!fwhm2sigma*!arcmin2rad)^2
+;; Dipole amplitude flux in 7 arcmin beam (analytical) (Jy):        3.3623260
 
 
 end

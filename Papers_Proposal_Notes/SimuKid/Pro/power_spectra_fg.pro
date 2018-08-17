@@ -17,8 +17,8 @@ xmap = dblarr(npix,3)
 
 ;; Mask out the galactic plane
 latitude_cut = 30 ; deg
-cover = dblarr(npix)
-ipring = lindgen(npix)
+cover        = dblarr(npix)
+ipring       = lindgen(npix)
 pix2ang_ring, nside, ipring, theta, phi
 latitude = 90.-theta*!radeg
 w = where( abs(latitude) ge latitude_cut, nw)
@@ -28,10 +28,11 @@ fsky = float(nw)/npix
 ;; Cosmic Variance on BB
 cosmic_var = sqrt(2./(fsky*(2*l_in+1.d0)))*cl_in.curl
 
-;; Spurious maps
+;; Foreground residuals
 wd, /a
 beta_dust = 1.5
 beta_sync = -3
+;; Caracterize residual foregrounds in estimated CMB maps by eta
 eta_pow   = [-2, -3, -4, -5, -6]
 eta_list   = 10.d0^eta_pow
 nu_list = [70.d0, 100.d0, 143.d0, 217.d0, 353.d0]

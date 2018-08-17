@@ -22,7 +22,6 @@ alpha_det_deg = [0.d0, 60.d0, 120.d0]
 ;; Assumed non-linearity parameter
 epsilon = 1d-6
 
-
 ;;============================================
 n_nu = n_elements(nu)
 alpha = alpha_det_deg*!dtor

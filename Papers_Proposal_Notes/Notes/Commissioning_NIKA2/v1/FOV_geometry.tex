@@ -33,7 +33,6 @@ F\lambda = gridstep\times D(30m)/\lambda
 
 
 
-
 %   KID selection
 %----------------------------------------------------------------------------------------
 \subsection{KID selection and average geometry {\color{blue} Nico (Barbara's part)} }
@@ -42,25 +41,41 @@ F\lambda = gridstep\times D(30m)/\lambda
 
 \begin{figure}[p]
 \begin{center}
-\includegraphics[trim=2cm 14cm 4cm 4cm, clip=true,width=0.55\linewidth]{Figures/A1_fwhm_color_count.pdf}
-\includegraphics[trim=2cm 14cm 4cm 4cm, clip=true,width=0.55\linewidth]{Figures/A3_fwhm_color_count.pdf}
-\includegraphics[trim=2cm 14cm 4cm 4cm, clip=true,width=0.55\linewidth]{Figures/A2_fwhm_color_count.pdf}
-\caption[KID selection]{Average detectors positions for arrays A1, A3, and A2 (from
-  green to red as a function of the number of times that a given pixel
-  has been considered as valid). The three plots show the detectors
-  that have seen the sky and passed the quality criteria for at least
-  two beam maps during Run10, 9 and 8: 952, 961, and 553
-  %925, 944, and 543
-  for A1, A3 and A2, respectively. The inner and outer dash-line circles correspond to a 
-  FOV of 5.5$\prime$ and 6.5$\prime$, respectively. Units are arcseconds. 
-  The color (from green to red)  shows the number of times that a given pixel has been considered as valid.}
+%\includegraphics[trim=2cm 14cm 4cm 4cm, clip=true,width=0.55\linewidth]{Figures/A1_fwhm_color_count.pdf}
+%\includegraphics[trim=2cm 14cm 4cm 4cm, clip=true,width=0.55\linewidth]{Figures/A3_fwhm_color_count.pdf}
+%\includegraphics[trim=2cm 14cm 4cm 4cm, clip=true,width=0.55\linewidth]{Figures/A2_fwhm_color_count.pdf}
+%
+\includegraphics[trim=2cm 14cm 4cm 4cm, clip=true,width=0.45\linewidth]{Figures/A1_fwhm_color_count.pdf}
+\includegraphics[trim=2cm 14cm 5cm 4cm, clip=true,width=0.45\linewidth]{Figures/A1_positions.pdf}
+\includegraphics[trim=2cm 14cm 4cm 4cm, clip=true,width=0.45\linewidth]{Figures/A3_fwhm_color_count.pdf}
+\includegraphics[trim=2cm 14cm 5cm 4cm, clip=true,width=0.45\linewidth]{Figures/A3_positions.pdf}
+\includegraphics[trim=2cm 14cm 4cm 4cm, clip=true,width=0.45\linewidth]{Figures/A2_fwhm_color_count.pdf}
+\includegraphics[trim=2cm 14cm 5cm 4cm, clip=true,width=0.45\linewidth]{Figures/A2_positions.pdf}
+
+\caption[KID selection and stability of position in the FOV]{\emph{Left column:}
+  Average detector positions for arrays A1, A3, and A2 (from green to red as a
+  function of the number of times that a given pixel has been considered as
+  valid). The three plots show the detectors that have seen the sky and passed
+  the quality criteria for at least two beam maps during Run10, 9 and 8: 952,
+  961, and 553 for A1, A3 and A2, respectively. The inner and outer dash-line
+  circles correspond to a FOV of 5.5\,arcmin and 6.5\,arcmin,
+  respectively. Units are arcseconds.  The color (from green to red) shows the
+  number of times that a given pixel has been considered as valid. \emph{Right
+    column:}
+For the valid
+  detectors, we show the positions of each pixel, as obtained from each beam
+  map. Some of them are not found at the same position for all the beam
+  maps. Units are arcseconds. \todo{{\bf FM : color code : same as on the 1st
+      maps of validity}}}
 \label{fig:avg_fov_color}
 \end{center}
 \end{figure}
 
-In order to identify the most stable pixels, we compare the KIDs parameter obtained with several beam maps. 
-In the following, we show results as obtained using seven beam maps from Run10, two from Run9 and one from Run8.
-For each pixel we compute the average position on the focal plane and the average FWHM, counting the times that it has been considered as valid.
+In order to identify the most stable pixels, we compare the KID parameters
+obtained with several beam maps.  In the following, we show results as obtained
+using seven \bms\ from Run10, two from Run9 and one from Run8.  For each
+pixel we compute the average position on the focal plane and the average FWHM,
+counting the times that it has been considered as valid.
 
 In Fig. \ref{fig:avg_fov_color} we show the average focal plane
 reconstruction, from green to red depending on the number of times
@@ -69,44 +84,46 @@ respectively, we have 952, 961, and 553 pixels that have been
 considered as valid at least twice (840, 508, 868 valid at least five
 times).
 % LP: add a sentence to reference Table ``\ref{tab:number_of_kids}"
-Using this criterion, we deduce the fraction of valid
-detectors over the designed ones, as given in Table~\ref{tab:number_of_kids}. 
-As a second step, we also flag pixels that move across the focal plane from a 
-beam map to another (Fig. \ref{fig:jumping_kids} , jumping KIDs) and those 
-who share the same position (twin KIDs). To identify the former, we look at the difference 
-of the mean and median position of each KID (the red crosses and black squares in 
-Fig. \ref{fig:mean_vs_median}). For the latter a criterion on the position is applied in 
-order to find the pixels that are closer than the grid step.
+Using this criterion, we deduce the fraction of valid detectors over the
+designed ones, as given in Table~\ref{tab:number_of_kids}.  As a second step, we
+also flag pixels that move across the focal plane from a beam map to another
+%(Fig. \ref{fig:jumping_kids}, jumping KIDs)
+and those who share the same
+position (twin KIDs). To identify the former, we look at the difference of the
+mean and median position of each KID, for the latter a criterion on the position
+is applied in order to find the pixels that are closer than the grid step. Each
+detector showing one of these behaviour is marked as unvalid.
+%(the red crosses and black squares in 
+%Fig. \ref{fig:mean_vs_median}). 
 
+\todo{\noindent {\bf FM: how many twins ? how many jumping kids ?}}\\
 
+%% \begin{figure}[htp]
+%% \begin{center}
+%% \includegraphics[trim=2cm 14cm 5cm 4cm, clip=true,width=0.55\linewidth]{Figures/A1_positions.pdf}
+%% \includegraphics[trim=2cm 14cm 5cm 4cm, clip=true,width=0.55\linewidth]{Figures/A3_positions.pdf}
+%% \includegraphics[trim=2cm 14cm 5cm 4cm, clip=true,width=0.55\linewidth]{Figures/A2_positions.pdf}
+%% \caption[Stability of KID positions in the field-of-view]{For the valid
+%%   detectors, we show the positions of each pixel, as obtained from each beam
+%%   map. Some of them are not found at the same position for all the beam
+%%   maps. Units are arcseconds. \todo{{\bf FM : color code : same as on the 1st
+%%       maps of validity}}}
+%% \label{fig:jumping_kids}
+%% \end{center}
+%% \end{figure}
 
-\noindent {\bf FM: how many twins ? how many jumping kids ?}\\
-
-
-\begin{figure}[htp]
-\begin{center}
-\includegraphics[trim=2cm 14cm 5cm 4cm, clip=true,width=0.55\linewidth]{Figures/A1_positions.pdf}
-\includegraphics[trim=2cm 14cm 5cm 4cm, clip=true,width=0.55\linewidth]{Figures/A3_positions.pdf}
-\includegraphics[trim=2cm 14cm 5cm 4cm, clip=true,width=0.55\linewidth]{Figures/A2_positions.pdf}
-\caption[Stability of KID positions in the field-of-view]{For the valid detectors, we show the positions of each pixel, as obtained from 
-each beam map. Some of them are not found at the 
-same position for all the beam maps. Units are arcseconds. {\bf FM : color code ?}}
-\label{fig:jumping_kids}
-\end{center}
-\end{figure}
-
-\begin{figure}[htp]
-\begin{center}
-\includegraphics[trim=2cm 14cm 5cm 4cm, clip=true,width=0.55\linewidth]{Figures/A1_test_positions.pdf}
-\includegraphics[trim=2cm 14cm 5cm 4cm, clip=true,width=0.55\linewidth]{Figures/A3_test_positions.pdf}
-\includegraphics[trim=2cm 14cm 5cm 4cm, clip=true,width=0.55\linewidth]{Figures/A2_test_positions.pdf}
-\caption[Average KID positions]{For the valid detectors,
-  we show the mean (red crosses) and the median (black squares)
-  positions of each pixel, as obtained from each beam map.
-  Units are arcseconds. {\bf FM : color code ?}}
-\label{fig:mean_vs_median}
-\end{center}
-\end{figure}
+%\begin{figure}[htp]
+%\begin{center}
+%\includegraphics[trim=2cm 14cm 5cm 4cm, clip=true,width=0.55\linewidth]{Figures/A1_test_positions.pdf}
+%\includegraphics[trim=2cm 14cm 5cm 4cm, clip=true,width=0.55\linewidth]{Figures/A3_test_positions.pdf}
+%\includegraphics[trim=2cm 14cm 5cm 4cm, clip=true,width=0.55\linewidth]{Figures/A2_test_positions.pdf}
+%\caption[Average KID positions]{For the valid detectors,
+%  we show the mean (red crosses) and the median (black squares)
+%  positions of each pixel, as obtained from each beam map.
+%  Units are arcseconds. \todo{FM : color code ? same as on the 1st maps of validity}}
+%\label{fig:mean_vs_median}
+%\end{center}
+%\end{figure}
 
 
 % LP: copy from fov.tex + modif according to Samuel's comment
@@ -121,12 +138,10 @@ same position for all the beam maps. Units are arcseconds. {\bf FM : color code 
     A2 & 616  & 553 &  90\%\\
     \hline
   \end{tabular}
-  \caption[Number of detectors]{ CAPTION}
+  \caption[Number of detectors]{\todo{CAPTION}}
   \label{tab:number_of_kids}
 \end{center}    
 \end{table}
-
-
 
 
 %   Distortion from the grid
@@ -146,7 +161,7 @@ array. They are described in Table~\ref{ta:gridmatch}.
 \begin{table}[ht]
 \label{ta:gridmatch}
 \begin{center}
-\begin{tabular}{|c|c|c|c|}
+\begin{tabular}{|c|c|c|l|}
 \hline
 Array 1  &	Array 3   &	Array 2   &	Comment \\
 \hline
@@ -162,6 +177,7 @@ Array 1  &	Array 3   &	Array 2   &	Comment \\
 6.6  &	6.6  &	6.6  &	FOV (Total kids) \\
 9.8/2.00  &	9.7/2.00  &	13.3/2.75  &	Distance between near detectors [arcsec, mm] \\
 1.24  &	1.22  &	0.97  &	Distance between near detectors [in lambda/D] \\
+\hline
 \end{tabular}
 \end{center}
 \caption[Field-of-view deformations]{Linear 2D fit of the observed position of the detectors in the sky
@@ -201,9 +217,9 @@ optical system.
 \begin{center}
 \includegraphics[width=0.9\textwidth]{Figures/NIKA2_Final_grid.png}
 \caption[Simulated FOV grid]{NIKA2 grid diagram simulated using ZEMAX. Crosses indicate
-  the real coordinates on the Nasmyth image plan. {\bf question a
+  the real coordinates on the Nasmyth image plan. \todo{{\bf question a
     Samuel: pourquoi les dimensions indiquees sont environs 4.5 arcmin
-  de cote (et pas 6.5)?}}
+  de cote (et pas 6.5)?}}}
  \label{fig:fov_grid_distortion_zemax}
 \end{center}
 \end{figure}

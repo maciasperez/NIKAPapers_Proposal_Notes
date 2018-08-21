@@ -1,0 +1,138 @@
+
+Because each matrix of \nika\ is a filled array with more than one detector per
+PSF on average, and because the atmosphere and electronic noise acting as
+correlated low frequency parasites, the data reduction of \nika\ does not
+proceed on an individual KID basis. We therefore have to use an iterative scheme
+that is presented in this section. Specific details on each step are then
+presented in further dedicated sections.
+
+\subsection{Overview of the calibration pipeline}
+
+The steps to go from raw timeline data as given by the acquisition in Hertz, to
+calibrated data in Jansky per beam comprize:
+
+\begin{itemize}
+\item[-] Low level processing
+\item[-] Field-of-view geometry and KID selection
+\item[-] KID-to-KID intercalibration (flat fielding and iterative common mode)
+\item[-] Opacity correction
+\item[-] Absolute calibration
+\end{itemize}
+
+\subsubsection{Low level processing}
+
+A first step of the analysis is to read the data produced by \nika's
+acquisition. These data as such are in Hz. Not only their physical unit is not
+suitable for observations, the timelines are not yet free of artefacts that must
+be corrected for before any scientific use. Indeed, a file of raw data related
+to a scan is created after the reception of message \todo{from the
+  telescope/Elvin/Pako/what-exactly?}. The KIDS are then tuned during a first
+dedicated subscan and only after that the data samples have a physical
+meaning. The firs task of the pipeline is therefore to detect this tuning and
+select data after it. A set of tasks and sanity checks are then performed, such
+as flagging the samples affected by cosmic rays, detecting potentially missing
+pointing information and reconstructing it from the \emph{antennaIMBfits} file,
+flagging saturated data or ill tuned KIDs.\\
+
+All these tasks are routinely done for all analyses.
+
+\subsubsection{Focal plane geometry reconstruction}
+\label{se:fov_first_geometry}
+
+In order to be able to produce any map, one needs to associate a pointing
+direction to any data sample of the system. The telescope provides us with
+various pointing information for a reference position in the focal plane. We
+then need to know the relative pointing offsets of each detector. We use \bms\
+for this purpose. These observations consist in azimuth-elevation (or
+elevation-azimuth) raster scans of $13\times7.8$~arcmin$^2$ with an
+inter-subscan step of 4.8\,arcsec. The scan size ensures that the entire FOV is
+observed with good margins for beam mapping even on the edges and good margin
+for baseline derivation and subtraction in the scanning direction. The
+inter-subscan step provides Nyquist sampling of the smallest beams of the system
+at 1\,mm. During subscans, the telescope travels at 65\,arcsec/s. This values
+results of a compromise between the need to scan as fast as possible to minimize
+atmospheric contamination while keeping subscans no shorter than 10\,s
+(telescope constraint). The need to have Nyquist sampling of the beams along the
+scan direction translates into a maximum speed 110\,arcsec/s for our nominal
+acquisition rate of 23.8\,Hz and is thus largely met. Subscans last 12\,s, the
+entire scan lasts about 25\,mn, which is short enough to prevent to much
+variation of KID tuning under stable weather conditions on this timescale.\\
+
+The determination of the KID offsets in the focal plane proceeds in two steps.
+
+\paragraph{Step 1.} We apply a median filter per
+KID timeline whose width is 4~FWHM and we project one map per KID in Nasmyth
+coordinates. This median filter removes efficiently most of the atmospheric and low frequency
+electronic noise, albeit a slight ringing and flux loss on the
+source. However, at this stage, we are only interested in the location of the
+observed planet. To derive the Nasmyth coordinates from the provided (az,el)
+coordinates, we build the following quantities at time~$t$ :
+
+\begin{eqnarray}
+dx_t &=& \cos el_t\, daz_t - \sin el_t\, del_t \nonumber \\
+dy_t &=& \sin el_t\, daz_t + \cos el_t\, del_t \nonumber
+\end{eqnarray}
+
+\todo{
+\noindent {\bf FM: why not using $\delta$ as in the previous section ?}\\
+\noindent {\bf FM: i don't think the $_t$ is useful}\\
+}
+
+where $el_t$ is the elevation of the reference pointing direction and $daz$ and
+$del$ are the pointing offsets with respect to the source in azimuth and elevation as
+provided by the tracking system. Note that $daz$ is already corrected by the
+$\cos el_t$ factor to have orthonormal coordinates in the tangent plane of the sky
+and be immune to the geodesic convergence at the poles. We then fit a 2D
+elliptical gaussian on each kid map. The centroid of this gaussian is a first
+estimate of the KID offsets, FWHM's, ellipticity and sensitivity. We apply a
+first KID selection by removing outliers to the statistics on these
+parameters. We also discard manually KIDs that show a cross-talk counter part on
+their map. \todo{show maps of ``doubles'' to illustrate this}
+
+\paragraph{Step 2.} While Step 1 is already enough for many uses, it is possible
+to improve its results with a better signal processing. Now that we have an
+estimate of each KID offset, it is possible to know when a given KID crosses the
+planet and mask it out to derive a template of the atmosphere and low frequency
+components of the noise that can then be subtracted from the timelines. This
+process improves on the image of each KID (no more ringing and minimal flux
+loss) and therefore improve the determination of the beam parameters and the
+relative calibration of KIDs. More detailed on this aspect of TOI processing is
+given in \todo{Sect.~\ref{se:decorrelation}}.
+
+%%  With the Nasmyth offsets derived in step 1, we are now able to
+%% mask out the planet in each KID timeline. This mask is centered on the planet
+%% location as seen by each kid, it is circular and has a radius of 60~arcsec. We
+%% now build a template timeline (a.k.a. ``common mode'') in two steps. First, we
+%% take the median of all samples of all KIDs that are outside this mask at a given
+%% time $t$. This gives a first estimate of the common mode. Second, we
+%% cross-calibrate each KID on this common mode when the KID is outside the mask
+%% and we coadd all these KID cross-calibrated timelines when they are outside the
+%% mask to have the final common mode. In this sum, each KID TOI is weighted by the
+%% inverse of its variance outside the mask. Once we have this common mode in hand,
+%% we cross-calibrate each TOI on it outside the mask and we subtract it to the
+%% entire KID TOI. We then resume to the projection of each KID TOI in Nasmyth
+%% coordinates like in step 1, and the 2D elliptical gaussian fit on the each kid
+%% map. The centroid coordinates and the FWHM are now the final parameters that can
+%% be derived on the current scan.
+
+This analysis is repeated on all \bms, which provide statistics and
+precision on each KID parameter, together with estimates on KID performance
+stability. More details and final numbers on the FOV characteristics are given
+in Sect.~\ref{se:fov_geometry}.
+
+\subsubsection{Opacity correction}
+
+Water vapor along the line of sight absorbs power from the source and therefore
+biases the flux measurement. At the same time, the overall airmass acts as a
+diffuse source of power on the KIDs that induce a variation of their resonance
+frequency. We are able to calibrate it and therefore derive the opacity in real
+time from \nika\ data. This is described in details in
+Sect.~\ref{se:opacities}. Suffice is here to say that after the derivation of
+the KID offsets and their relative gains as described in
+Sect.~\ref{se:fov_first_geometry}, one we know the opacity, we can derive an
+absolute calibration per KID.
+
+\subsubsection{Absolute calibration}
+\todo{See how to talk about Planet models and repeated observations of these to derive
+the ``final'' abs. cal for the run.}
+

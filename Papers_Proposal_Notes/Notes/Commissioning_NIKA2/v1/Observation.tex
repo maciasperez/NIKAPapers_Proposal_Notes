@@ -1,10 +1,143 @@
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+This section presents the different observation modes that have been used with
+\nika\ for both commissioning and scientific purposes. Some of them are common
+to usual IRAM observing modes (e.g.~''on the fly'' raster scans), some of them
+have been designed specifically for \nika\ (e.g.~the focus sequence). We start
+by a short overview of a typical set up sequence at the beginning of a run. This
+will put each observation mode in perspective. Then we go into more details
+about the performances of the system.
 
-%      POINTING
+\subsection{Overview of calibration and observation scans : a pool set-up}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Once the KIDs are tune and \nika\ is ready for observations, before actually
+observing a scientific target, one needs to adjst the focus and pointing of the
+telescope. On EMIR typically, these two parameters are adjusted iteratively by
+alterning a ``pointing'' (\aka\ ``cross'') and ``focus'' scans to optimize the
+centering of a bright point source on a reference detector and maximize the
+incoming flux on it. With \nika\ , mostly due to absence of horns, this
+procedure is not optimal. Indeed, it was noticed that the position of the source
+moved by several arcsec with the displacement of M2 and this would alter the flux
+measurement on a fixed reference position too much to allow focus
+optimization.
+
+To solve this issue we have designed a specific focus procedure
+that takes advantage of the filled array nature of the instrument. We perform a
+series of five successive short raster scans of a bright point source at five M2 position
+offsets, typically $\{-0.8, -0.4, 0, 0.4, 0.8\}$\,mm w.r.t.~the current
+$z$-focus. We then analyse each map to optimize M2 $z$ position. More details are
+given in Sect.~\ref{se:focus}.
+
+Once the focus is correctly determined, the pointing corrections are derived
+from an EMIR like pointing calibration scan (Sect.~\ref{se:pointing}).
+
+The instrument is then ready to observe scientific targets. A discussion on how
+to parameterize the scanning strategy is proposed in Sect.~\ref{se:observing_strat}.
+
+\subsection{Focus}
+\label{se:focus}
+
+\todo{explain the caveats of the relative weight of the central part of the
+  array to focus and the hardwired offset -0.2 or -0.3}
+
+\subsubsection{Axial focus estimation}
+\label{sec:focus-meas}
+
+The best axial focus in the central region of the arrays is estimated
+using the so-called 'focus$\_$OTF' PAKO script, which realizes a
+series of five $1' \times 5'$ OTF scans at various values of
+the focus in $0.4~\rm{mm}$-steps around an \emph{a priori} value $z_0$,
+namely $z \in \{-0.8, -0.4, 0, 0.4, 0.8\} + z_0$. Elliptical Gaussian
+fits on the reconstructed maps provide estimates of the flux and FWHM
+along minor- and major-axis for each focus. Parabolic fits are then
+used to determine the best focus. We consider three estimates: i)
+$\hat z_{\rm{peak}}$ the focus that maximizes the estimated flux,
+which is the amplitude of the 2D Gaussian, 
+ii) $\hat z_{\rm{fwhm}}$ the focus that
+minimizes the geometrical FWHM, defined as the quadratic mean of
+$\rm{FWHM}_{\rm{major}}$ and $\rm{FWHM}_{\rm{minor}}$,  and iii)
+$\hat z_{\rm{ellipt}}$ the focus that minimizes the beam ellipticity,
+defined as $\rm{FWHM}_{\rm{major}}/\rm{FWHM}_{\rm{minor}}$.
+Fig.~\ref{fig:focus-example} shows an example of
+axial focus measurement using a 'focus$\_$OTF' observation of Neptune
+during N2R10.
+
+\begin{figure}
+\begin{center}
+  \includegraphics[clip, angle=0, scale=0.25]{Figures/plot_20170419s143.png}
+\caption[Axial focus measure]{Example of axial focus measurement using a
+  'focus$\_$OTF' observation of Neptune during N2R10. The blue vertical line
+  locates the optimal value of each fit. The optimal values derived from flux
+  maximization and FWHM minimization agree to better than 0.1\,mm in these
+  conditions of observation. While ellipticity may be regarded as a confirmation
+  more than a decisive criterion (due to larger uncertainty on its measure), the
+  associated minimum is also in good agreement with the values derived from flux
+  and FWHM measurements.}
+\label{fig:focus-example}
+\end{center}
+\end{figure}
+
+\subsubsection{Focus consistency between arrays}
+
+\todo{plot de recap sur les differences de focus optimaux observes sur les
+  differents arrays}
+
+\subsubsection{Lateral foci estimation}
+\label{sec:focus_X_Y}
+
+Like in the $z$ (optical axis) direction, it is possible to control the position
+of M2 along the $x$ and $y$ directions. We have tried to determine of their was
+an optimal position in the $(x,y)$ plane that would improve further measures
+with \nika. We have applied the same procedure as the one described in
+Sect~\ref{se:focus-meas}, this time varying the position of M2 along $x$ or $y$
+rather than along $z$. Examples of such observations are presented on
+Figs.~\ref{fig:X_focus} and \ref{fig:Y_focus}. While the forced parabola fit
+guides the eye towards optimization, one should note the size of the error bars
+and the relatively low variations compared to M2 displacements along the $z$
+axis. This is expected from optical simulations and experience on
+EMIR. Figs.~\ref{fig:X_focus} and \ref{fig:Y_focus} also show as complement,
+images of the residuals of the intensity maps at each M2 position after the
+subtraction of an elliptical gaussian fitted only on a disk of 6 and 15\,arcsec
+(1 and 2\,mm resp.) around the maximum location and outside a ring of 100\,arcsec
+away from the maximum (to fix the background while not being affected by the
+side lobes). These maps of residuals are meant to help decide on a minimization
+criterion and $x$ or $y$-focus value.
+
+While we have performed ``many'' such observations and explored the entire
+parameter space of the $(x,y,z)$~triplet position in a reasonable range of
+several millimeters around a fixed position, it has not been possible to
+demonstrated that any $(x,y)$ position would improve significantly the
+focalization of the whole system compared to the nominal $(0,0)$ reference
+position. This confirms experience of the IRAM staff who only act on this
+$(x,y)$ position about once a year after specific, dedicted and delicate
+measures. We have therefore concluded that we should not change these parameters
+for \nika\ and only rely on $z$-focus optimization for observations.
+
+\begin{figure*}[h!]
+\centering
+\includegraphics[height=8cm]{Figures/plot_20170223s39.png}
+\hspace{0.5cm}
+\includegraphics[height=8cm]{Figures/residuals_focus_otf_20170223s39.png}
+\caption[Lateral X focus measures]{\textbf{Left:} X-focus measurement using a
+    parabolic fit of the flux, beam fwhm and ellipticity on a sequence
+    of five OTF scans on Uranus (20170223s39-43) \textbf{Right:} Beam residuals
+    after subtracting a model of the main beam for each OTF-scan of the X-focus
+    session. (N2R9)}
+\label{fig:X_focus}
+\end{figure*}
+
+\begin{figure*}[h!]
+\centering
+\includegraphics[height=8cm]{Figures/plot_20170223s44.png}
+\hspace{0.5cm}
+\includegraphics[height=8cm]{Figures/residuals_focus_otf_20170223s44.png}
+\caption[Lateral Y focus measures]{\textbf{Left:} Y-focus measurement using a
+    parabolic fit of the flux, beam fwhm and ellipticity on a sequence
+    of OTF scans on Uranus (20170223s44-48). \textbf{Right:} Beam residuals
+    after subtracting a model of the main beam for each OTF-scan of the Y-focus
+    session. (N2R9)}
+\label{fig:Y_focus}
+\end{figure*}
 
 \subsection{Pointing}
 \label{se:pointing}
@@ -12,17 +145,23 @@
 % + pointing model
 % + pointing error (scan-to-scan scattering)
 
+Once the instrument is correctly focused, we can estimate pointing corrections
+before scientific observations. The procedure that is used is very similar to
+that used for EMIR and is described in the next subsection. It was used
+repeatedly during pointing sessions to derive \nika\'s pointing model
+(Sect.~\ref{se:pointing_session}).
+
 \subsubsection{Pointing monitoring}
 
 \begin{figure}[p]
 \begin{center}
 \includegraphics[clip, angle=0, scale = 0.30]{Figures/plot_20170418s192.png}
-\caption[Summary plots of the reduction of pointing scan.]{ There is one combined
+\caption[Summary plots of the reduction of pointing scan.]{There is one combined
   map per array to check the overall quality of the scan, and a set of azimuth
   and elevation profiles for one reference detector per array. The 2-mm reference
-  detector, highlighed in red, is the the pointing reference detector of
-  NIKA2. The location of the peak in azimuth and elevation, as observed by the
-  reference detector gives the pointing offset of the current scan.}
+  detector, highlighed in red, is the pointing reference detector of
+  \nika. The location of the peak in azimuth and elevation, as observed by the
+  reference detector gives the pointing offsets of the current scan.}
 \label{fig:ptg}
 \end{center}
 %\end{figure}
@@ -44,6 +183,8 @@ offsets of the system in azimuth and elevation. These offsets can then be passed
 to PAKO to recenter the next scan (Fig.~\ref{fig:ptg}).
 
 \subsubsection{Pointing session}
+\label{se:pointing_session}
+
 Such scans and their analyses are also used to improve the pointing
 model of NIKA2. A pointing session consists in observing about 30
 sources on a wide range of elevations while monitoring the pointing
@@ -67,87 +208,6 @@ red) is clearly more symmetric and narrower than before. During N2R9 run, the po
 1.62 arcsec rms in azimuth and 1.37 arcsec rms in elevation.
 
 
-
-
-\subsection{Focus}
-
-
-\subsubsection{Axial focus estimation}
-\label{sec:focus-meas}
-
-The best axial focus in the central region of the arrays is estimated
-using the so-called 'focus$\_$OTF' PAKO script, which realises a
-series of five $1' \times 5'$ OTF scans at various values of
-the focus in $0.4~\rm{mm}$-steps around an \emph{a priori} value $z_0$,
-namely $z \in \{-0.8, -0.4, 0, 0.4, 0.8\} + z_0$. Elliptical Gaussian
-fits on the reconstructed maps provide estimates of the flux and FWHM
-along minor- and major-axis for each focus. Then, parabolic fits are
-used to determine the best focus. We consider three estimates: i)
-$\hat z_{\rm{peak}}$ the focus that maximizes the estimated flux,
-which is the amplitude of the 2D Gaussian, 
-ii) $\hat z_{\rm{fwhm}}$ the focus that
-minimizes the geometrical FWHM, defined as the quadratic mean of
-$\rm{FWHM}_{\rm{major}}$ and $\rm{FWHM}_{\rm{minor}}$,  and iii)
-$\hat z_{\rm{ellipt}}$ the focus that minimizes the beam ellipticity,
-defined as $\rm{FWHM}_{\rm{major}}/\rm{FWHM}_{\rm{minor}}$.
-Fig.~\ref{fig:focus-example} shows an example of
-axial focus measurement using a 'focus$\_$OTF' observation of Neptune
-during N2R10.
-
-\begin{figure}
-\begin{center}
-  \includegraphics[clip, angle=0, scale=0.25]{Figures/plot_20170419s143.png}
-\caption[Axial focus measure]{Example of axial focus measurement using a 'focus$\_$OTF' observation of Neptune
-during N2R10 [PLACEHOLDER]}
-\label{fig:focus-example}
-\end{center}
-\end{figure}
-
-
-\subsubsection{Focus consistency between arrays}
-
-{\bf refaire les plots de difference de focus entre matrices }
-
-
-\subsubsection{Lateral foci estimation}
-\label{sec:focus_X_Y}
-
-{\bf add a description of the method}
-
-{\bf expand a little the discussion below}
-
-Very delicate measurements
-
-The plan is to devote a few hours of technical observation time in
-good weather condition to perform an accurate measure of NIKA2 lateral
-focus. The X-, Y-focus will then be set at these robust estimated vallues and
-checked only a few times a year (at the seasonal change for example).  
-
-
-Figures \ref{fig:X_focus} and \ref{fig:Y_focus} show examples of the
-lateral focus measurements performed during \emph{N2R9}. 
-
-\begin{figure*}[h!]
-\centering
-\includegraphics[height=8cm]{Figures/plot_20170223s39.png}
-\hspace{0.5cm}
-\includegraphics[height=8cm]{Figures/residuals_focus_otf_20170223s39.png}
-\caption[Lateral X focus measures]{\textbf{Left:} X-focus measurement using a
-    parabolic fit of the flux, beam fwhm and ellipticity on a sequence
-    of five OTF scans on Uranus (20170223s39-43) \textbf{Right:} Beam residuals after subtracting a model of the main beam for each OTF-scan of the X-focus session.}
-\label{fig:X_focus}
-\end{figure*}
-
-\begin{figure*}[h!]
-\centering
-\includegraphics[height=8cm]{Figures/plot_20170223s44.png}
-\hspace{0.5cm}
-\includegraphics[height=8cm]{Figures/residuals_focus_otf_20170223s44.png}
-\caption[Lateral Y focus measures]{\textbf{Left:} Y-focus measurement using a
-    parabolic fit of the flux, beam fwhm and ellipticity on a sequence
-    of OTF scans on Uranus (20170223s44-48). \textbf{Right:} Beam residuals after subtracting a model of the main beam for each OTF-scan of the Y-focus session.}
-\label{fig:Y_focus}
-\end{figure*}
 
 
 

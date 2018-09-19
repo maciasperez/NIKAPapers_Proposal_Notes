@@ -19,7 +19,7 @@
 %	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
 %----------------------------------------------------------------------------------------
 
-\documentclass[a4paper, 11pt]{article} % Font size (can be 10pt, 11pt or 12pt) and paper size (remove a4paper for US letter paper)
+\documentclass[a4paper, 11pt]{report} 
 \usepackage{hyperref}
 
 \usepackage[protrusion=true,expansion=true]{microtype} % Better typography
@@ -85,24 +85,26 @@
 \evensidemargin +0.5cm
 \topmargin 0.1cm
 
+
+\begin{document}
+
 %----------------------------------------------------------------------------------------
 %	TITLE
 %----------------------------------------------------------------------------------------
-
-\title{\textbf{NIKA2 research note}\\   
-\textsc{NIKA2 Commissioning results v2.0}} % Subtitle
-
-
-\author{NIKA2 team % Author
-\\{\textit{NIKA2 collaboration}}} % Institution
-
-\date{\today} % Date
-
-
-
-%----------------------------------------------------------------------------------------
-
-\begin{document}
+\title{\parbox{16cm}{
+    \includegraphics[width=5.5cm]{Figures/Logo_NIKA2.pdf} \\ [5mm]   
+    \textbf{NIKA2 research note} \\ [5cm]   
+    \begin{center}\sf\bfseries\huge
+      NIKA2 Commissioning Phase One Results \\ [-4mm]
+      \rule{16cm}{1pt}\\    
+    \end{center}
+    \hfill
+    \scriptsize NIKA2 Commissioning Tiger team \\ [5cm]
+%    September 2018
+  }
+}
+\author{{\textit{NIKA2 collaboration}}  }
+\date{\today}
 
 \maketitle % Print the title section
 %
@@ -144,9 +146,9 @@ We present NIKA2 performance assessment after the end of the commissioning in in
 
 
 %----------------------------------------------------------------------------------------
-%	INRODUCTION
+%	INTRODUCTION
 %----------------------------------------------------------------------------------------
-\section{Total power Commissionning Introduction}
+\chapter{Total power Commissionning Introduction}
 \label{se:intro}
 \input{Introduction.tex}
 
@@ -154,7 +156,7 @@ We present NIKA2 performance assessment after the end of the commissioning in in
 %----------------------------------------------------------------------------------------
 %	GENERALITIES: INSTRUMENT, OBSERVATION AND METHODS
 %----------------------------------------------------------------------------------------
-\section{Intrument, observations and methods}
+\chapter{Intrument, observations and methods}
 
 %%	INSTRUMENT
 \input{Instrument.tex}
@@ -175,7 +177,7 @@ We present NIKA2 performance assessment after the end of the commissioning in in
 %----------------------------------------------------------------------------------------
 %	OPACITY
 %----------------------------------------------------------------------------------------
-\section{Opacity derivation {\color{blue} Laurence $\rightarrow$ Juan et Xavier ?}}
+\chapter{Opacity derivation {\color{blue} Laurence $\rightarrow$ Juan et Xavier ?}}
 \label{se:opacities}
 \input{Opacity}
 
@@ -184,7 +186,7 @@ We present NIKA2 performance assessment after the end of the commissioning in in
 %----------------------------------------------------------------------------------------
 %	FOCAL PLANE RECONSTRUCTION
 %----------------------------------------------------------------------------------------
-\section{Focal Plane Reconstruction {\color{blue} Nico et al. }}
+\chapter{Focal Plane Reconstruction {\color{blue} Nico et al. }}
 \label{se:fp_reconstruction}
 \input{FOV_geometry}
 % + Focal Plane Geometry
@@ -197,7 +199,7 @@ We present NIKA2 performance assessment after the end of the commissioning in in
 %----------------------------------------------------------------------------------------
 %	BEAM PATTERN
 %----------------------------------------------------------------------------------------
-\section{Beam pattern {\color{blue} Laurence et al.} }
+\chapter{Beam pattern {\color{blue} Laurence et al.} }
 \label{se:beams}
 \input{Beams.tex}
 % Full Beam Pattern
@@ -209,7 +211,7 @@ We present NIKA2 performance assessment after the end of the commissioning in in
 %----------------------------------------------------------------------------------------
 %	INTER-CALIBRATION
 %----------------------------------------------------------------------------------------
-\section{Relative calibration {\color{blue} Nico et Laurence} }
+\chapter{Relative calibration {\color{blue} Nico et Laurence} }
 \label{se:flat_field}
 \input{Flat_fields.tex}
 
@@ -219,7 +221,7 @@ We present NIKA2 performance assessment after the end of the commissioning in in
 %----------------------------------------------------------------------------------------
 %	ABSOLUTE CALIBRATION
 %----------------------------------------------------------------------------------------
-\section{Absolute calibration {\color{blue} Laurence et al}}
+\chapter{Absolute calibration {\color{blue} Laurence et al}}
 \label{se:calibration}
 
 % Paragraphe Intro
@@ -244,7 +246,7 @@ We present NIKA2 performance assessment after the end of the commissioning in in
 %----------------------------------------------------------------------------------------
 %     PHOTOMETRY 
 %----------------------------------------------------------------------------------------
-\section{Photometry assessment using secondary calibrators {\color{blue} Laurence et al}}
+\chapter{Photometry assessment using secondary calibrators {\color{blue} Laurence et al}}
 \label{se:photometry}
 
 % Intro + reference fluxes
@@ -274,7 +276,7 @@ We present NIKA2 performance assessment after the end of the commissioning in in
 %----------------------------------------------------------------------------------------
 %	ERROR BUDGET
 %----------------------------------------------------------------------------------------
-\section{Calibration error budget {\color{blue} Nico}}
+\chapter{Calibration error budget {\color{blue} Nico}}
 \label{se:error}
 \input{error_budget}
 
@@ -283,7 +285,7 @@ We present NIKA2 performance assessment after the end of the commissioning in in
 %----------------------------------------------------------------------------------------
 %	NOISE 
 %----------------------------------------------------------------------------------------
-\section{Noise characteristics {\color{blue} Juan}}
+\chapter{Noise characteristics {\color{blue} Juan}}
 \label{se:noise}
 \input{Noise}
 
@@ -292,7 +294,7 @@ We present NIKA2 performance assessment after the end of the commissioning in in
 %----------------------------------------------------------------------------------------
 %	SENSITIVITY 
 %----------------------------------------------------------------------------------------
-\section{Sensitivities {\color{blue} Nico et al} }
+\chapter{Sensitivities {\color{blue} Nico et al} }
 \label{se:nefd}
 \input{NEFD}
 
@@ -301,16 +303,19 @@ We present NIKA2 performance assessment after the end of the commissioning in in
 %----------------------------------------------------------------------------------------
 %	SUMMARY
 %----------------------------------------------------------------------------------------
-\section{Summary of performance}
+\chapter{Summary of performance}
 \label{se:summary}
 \input{Summary}
+
 
 \clearpage
 %-----------------------------------------------------------------------------------------
 %     APPENDICES
 %-----------------------------------------------------------------------------------------
-\appendix
+%\appendix
 %\begin{appendix}
+
+\chapter{APPENDIX}
 
   \section{Synchronization with the telescope}
   \label{ap:synchro}

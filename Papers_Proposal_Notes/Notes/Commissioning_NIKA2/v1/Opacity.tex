@@ -7,6 +7,59 @@
 %\input{Opacity_checks}
 
 
+Only a fraction of the signal is transmitted by the atmosphere and
+reaches NIKA2 detectors. 
+The relation between uncorrected observed flux densities
+$\tilde{S}_{\nu}$ and top-of-the-atmosphere flux densities $S_{\nu}$
+is parametrized from the zenith opacity $\tau_{\nu}$
+and the line-of-sight air mass $x$, such as
+\begin{equation}
+\tilde{S}_{\nu} = S_{\nu} \, e^{-\tau_{\nu} \cdot x}.
+\end{equation}
+
+An accurate derivation of the opacity condition for each scan is
+required in order to retrieve the source signal at the top of the
+atmosphere. Opacity correction uncertainties even prevail in the
+final calibration error budget (see Chapter~\ref{se:error}).
+
+We developped three opacity derivation methods, which are discussed
+in the sections below, and extensively tested their robustness against
+observing condition. The 'taumeter' method discussed in
+Sect~\ref{se:taumeter-method} relies on measurements provided by the
+resident IRAM tau-meter operated at $225~\rm{GHz}$ and a fit of the
+opacity estimates in NIKA2 frequency bands by imposing the flux
+density stability against atmospheric condition. The 'skydip' method
+described in Sect~\ref{se:skydip-method} consists in using NIKA2 as a
+taumeter by resorting to a series of skydip scans, the selection of
+which is addressed in Sect.~\ref{se:skydip-selection}. Finally, the
+'corrected skydip' method presented in Sect.~\ref{se:corrected-skydip}
+is a modifed version of the 'skydip' method that minimizes the
+dependence of the measured flux density on the opacity.\\
+
+
+Consistency check between two independent methods, the \emph{taumeter}-
+and \emph{skydip}-based methods, constitutes a first
+robustness test, which is addressed in this chapter.
+Then, the opacity estimates in NIKA2 bands are
+ultimately tested by assessing the stability of the
+top-of-the-atmosphere flux densities for a large range of
+atmsopheric conditions, as discussed in Chapter~\ref{se:photometry}.
+
+
+
+%----------------------------------------------------------------------------------------
+%	taumeter Method
+%----------------------------------------------------------------------------------------
+\section{Taumeter-based method}
+\label{se:taumeter-method}
+
+
+%----------------------------------------------------------------------------------------
+%	skydip-based Method
+%----------------------------------------------------------------------------------------
+\section{Skydip-based method}
+\label{se:skydip-method}
+
 % LP: copie de l'intro de Xavier
 In NIKA2, the opacity is measured via a total-power technique, which was
 successfully tested with NIKA. The details of this technique and its agreement
@@ -22,13 +75,6 @@ frequency of each KID varies linearly with the total power. First, we have to
 calibrate the relationship between total power and opacity. Then we can use
 that calibration to measure the opacity during a given scan.
 % fin copie
-
-
-%----------------------------------------------------------------------------------------
-%	skydip-based Method
-%----------------------------------------------------------------------------------------
-\section{Skydip-based method}
-\label{se:skydip-method}
 
 For each KID $k$, the absolute value of the resonance frequency
 $f_{tone}^k$ moves with the atmospheric load according to
@@ -87,7 +133,7 @@ determination process, the skydip scan are thoroughtly selected.
 
    
 \section{Skydip selection}
-
+\label{se:skydip-selection}
 
 \begin{figure}[p]
 \begin{center}
@@ -139,29 +185,36 @@ At 1mm, we find about {\color{red} $[$TBC$]$  $10\%$} opacity variation from ver
 
 We conclude that opacities at 1mm can be reliably estimated from a series of skydip scans using the (C0, C1) model. By contrast, for the 2mm opacities, a skydip-based method is not stable enough against the skydip selection. Thus, we adopt an hybrid approach. 
 
-\section{The hybrid method}
+%\section{The hybrid method}
 
-The hybrid method comprizes two-steps: i) first the 1mm opacities,
-that are $\tau_{A1}$ and $\tau_{A3}$, are determined using the skydip
-method described in Sect.~\ref{se:skydip-method}, ii) then the 2mm
-opacity $\tau_{A2}$ is extrapolated from the 1mm ones using a modified
-ATM model. Namely, for the second step, we perform:
+%The hybrid method comprizes two-steps: i) first the 1mm opacities,
+%that are $\tau_{A1}$ and $\tau_{A3}$, are determined using the skydip
+%method described in Sect.~\ref{se:skydip-method}, ii) then the 2mm
+%opacity $\tau_{A2}$ is extrapolated from the 1mm ones using a modified
+%ATM model. Namely, for the second step, we perform:
 
-\begin{equation}
-\tau_{A2} = \left( \left.\frac{\tau_{A2}^{\rm{ATM}}}{\tau_{A3}^{\rm{ATM}}}\right\vert_{\tau_{A3}} + \alpha \right) \tau_{A3},
-\end{equation}
+%\begin{equation}
+%\tau_{A2} = \left( \left.\frac{\tau_{A2}^{\rm{ATM}}}{\tau_{A3}^{\rm{ATM}}}\right\vert_{\tau_{A3}} + \alpha \right) \tau_{A3},
+%\end{equation}
 
- where $\alpha$ is an offset, which are estimated from the observations themselves, and the ratio is the predicted zenith opacity ratio for A2 and A3 frequency bands using the ATM model described in \ref{Pardo2002} and taken at the measured A3 zenith opacity. The zenith opacity expectations for the array $A_i$ is
-\begin{equation}
-  \tau^{\rm{ATM}}_{A_i} = - \ln{\frac{\int e^{-\tau^{ATM}(\nu)} T_{A_i}(\nu) d\nu}{ \int T_{A_i}(\nu) d\nu}},
-\end{equation}
-where the bandpasses $T_{A_i}$ for arrays $A_i$, $i=1, 2, 3$, are the Martin-Pupplet reference transmissions
-corrected by a Rayleigh-Jeans term  $T'_{A_i}(\nu) / \left( \frac{\nu}{\nu_0}\right)^2$. 
+% where $\alpha$ is an offset, which are estimated from the observations themselves, and the ratio is the predicted zenith opacity ratio for A2 and A3 frequency bands using the ATM model described in \ref{Pardo2002} and taken at the measured A3 zenith opacity. The zenith opacity expectations for the array $A_i$ is
+%\begin{equation}
+%  \tau^{\rm{ATM}}_{A_i} = - \ln{\frac{\int e^{-\tau^{ATM}(\nu)} T_{A_i}(\nu) d\nu}{ \int T_{A_i}(\nu) d\nu}},
+%\end{equation}
+%where the bandpasses $T_{A_i}$ for arrays $A_i$, $i=1, 2, 3$, are the Martin-Pupplet reference transmissions
+%corrected by a Rayleigh-Jeans term  $T'_{A_i}(\nu) / \left( \frac{\nu}{\nu_0}\right)^2$. 
 
-We observe that the measured \emph{shape} of the measured opacity ratio is well described by the ATM expectations whereas its \emph{amplitude} is too low by an offset $\alpha$, which we dertermine using a data-driven approach. We estimate $\alpha$ as the offset that ensures a stability of the A2 flux over the whole opacity span.  
+%We observe that the measured \emph{shape} of the measured opacity ratio is well described by the ATM expectations whereas its \emph{amplitude} is too low by an offset $\alpha$, which we dertermine using a data-driven approach. We estimate $\alpha$ as the offset that ensures a stability of the A2 flux over the whole opacity span.  
 
-\addparag{$\alpha$ fit + FIG}
+%\addparag{$\alpha$ fit + FIG}
 
+
+
+%----------------------------------------------------------------------------------------
+%	Corrected skydip method
+%----------------------------------------------------------------------------------------
+\section{Corrected skydip method}
+\label{se:corrected-skydip}
 
 
 
@@ -169,7 +222,7 @@ We observe that the measured \emph{shape} of the measured opacity ratio is well 
 %----------------------------------------------------------------------------------------
 %	Tests
 %----------------------------------------------------------------------------------------
-\section{Baseline opacity measurements}
+\section{Opacity measurements}
 \label{se:opacity_correction}
 
 %{\bf copy from the 'Instru' paper}

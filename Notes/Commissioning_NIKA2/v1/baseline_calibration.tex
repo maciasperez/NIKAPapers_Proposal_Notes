@@ -2,13 +2,73 @@
 %\label{se:baseline_calibration}
 
 \subsection{Methodology}
-Calibration factors are estimated from a series of OTF scans towards Uranus
 
-\subsection{Data sets}
+Practically, the absolute calibration consists in evaluating a flux
+density rescaling factor using a series a OTF scans toward
+planets. When available, the prefered primary calibrator is Uranus,
+which allies strong flux density and quasi point-like emission. The
+flux rescaling factor is estimated as the ratio of the calibrator flux
+density expectations, as obtained as discussed in
+Sect.~\ref{se:ref_flux_primaries}, and the average calibrator flux
+density estimate, obtained using Eq.~\ref{eq:pointsourcephot}.
 
-\addparag{ selected scan numbers} in Table~\ref{tab:absolute_calibration_scan_numbers}.
+Before the flux density estimation, the calibrator raw data are i)
+intercalibrated as decribed
+in Sect.~\ref{se:intercalibration} and ii) corrected of the
+atmospheric attenuation as described in Chapter~\ref{se:opacities}. To
+refine the intercalibration between the two $1$-mm arrays after the
+KID Hertz to Jy/beam conversion factor estimates, a flux rescaling
+factor per array is calculated. For the baseline calibration, we
+resort to the 'corrected skydip' opacity correction, as described in
+Sect.~\ref{se:corrected-skydip}. However, calibrations relying on the
+'taumeter' (Sect.~\ref{se:taumeter-method}) and the 'skydip'
+(Sect.~\ref{se:skydip-method}) methods are also derived, and will be
+used for performing the photometry robustness tests discussed in
+Sect.~\ref{se:photometry_others}. Finally, the telescope-driven beam
+effect, discussed in Sect.~\ref{se:obsdate_variations}, is mitigated by
+using the baseline scan selection of
+Sect.~\ref{se:baseline_calibration}, in which, we recall, the most
+impacted scans are discarded by mean of a cut on the observation
+date. 
 
-Uranus measured-to-predicted flux density ratios are shown in Fig.~\ref{fig:calib_uranus_vs_fwhm_all} as a fonction of the 2D Gaussian FWHM estimates and color-coded from the observation dates given in UT hours. As discussed in Sect.~\ref{se:obsdate_variations}, a correlation between the flux densities and the FWHM estimates is observed, broaden beams are associated with lower fluxes. However, the baseline scan selection, discussed in Sect.~\ref{se:data_selection}, which relies on the observation date among other criteria, is efficient to discard the larger beam scans, and thus mitigates the flux dispersion.          
+
+\subsection{Scan selection}
+
+To illustrate the baseline selection efficiency, we present Uranus
+measured-to-predicted flux density ratios as a fonction of the 2D
+Gaussian FWHM estimates and color-coded from the observation dates
+given in UT hours in the first panels of
+Fig.~\ref{fig:calib_uranus_vs_fwhm_all}
+We note that the flux density estimates have been corrected by the
+rescaling factors, so that the flux density ratios are equal to unity
+in average by contruct. First row panels of
+Fig.~\ref{fig:calib_uranus_vs_fwhm_all} show the flux ratio after
+correction from the baseline rescaling factors, whereas second and
+third row panels are for 'taumeter'-based and 'skydip'-based absolute
+calibration respectively. For the baseline calibration, the selected
+scan flux ratios (shown as full circles) are stable against the beam
+FWHM. The 'taumeter'-based selected flux ratios show more dispersion
+but no significant dependence on the FWHM. The flux ratio-to-FWHM
+correlation is most clearly seen for the 'skydip'-based calibration:
+broaden beams are associated with lower fluxes. However, this
+correlation is efficiently mitigated after the baseline scan
+selection. The residual anti-correlation between
+the 'skydip' flux ratios and beams originates from a mild
+correlation of the flux density with the atmospheric transmission as
+discussed later in Sect.~\ref{se:photometry_others}. 
+
+The Uranus available scan numbers and the scan numbers after the baseline scan
+selection was performed are given per observation campaigns and for
+the combination of the three considered campaigns in
+Table~\ref{tab:absolute_calibration_scan_numbers}. For N2R9 and N2R14,
+which were both February campaigns one year apart, Uranus was mainly
+visible during the day. As a results, only two good scans are used to
+derive the absolute calibration. However, we will verify in
+Sect.~\ref{photometry_baseline.tex} that this suffices to obtain an
+accurate photometry. By contrast, due to the night time visibility of
+Uranus during N2R12, almost all the available scans meet the baseline
+section criteria. 
+
 
 % ALL METHOD RESULTS 
 \begin{table}[th]
@@ -34,38 +94,36 @@ Uranus measured-to-predicted flux density ratios are shown in Fig.~\ref{fig:cali
 \begin{figure}[ht!]
   \begin{center}
     % corrected skydip
-    \includegraphics[clip=true, width=0.35\textwidth]{Figures/Calibration/plot_flux_density_ratio_fwhm_uranus_corrected_skydip_narrow_1mm.pdf}\hspace{0.2cm}
-    \includegraphics[clip=true, width=0.3337\textwidth]{Figures/Calibration/plot_flux_density_ratio_fwhm_uranus_corrected_skydip_narrow_a2.pdf}
-    \vspace{0.3cm}
+    \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.35\textwidth]{Figures/Calibration/plot_flux_density_ratio_fwhm_uranus_corrected_skydip_narrow_1mm.pdf}
+    \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.3337\textwidth]{Figures/Calibration/plot_flux_density_ratio_fwhm_uranus_corrected_skydip_narrow_a2.pdf}
     % taumeter
-    \includegraphics[clip=true, width=0.35\textwidth]{Figures/Calibration/plot_flux_density_ratio_fwhm_uranus_tau225_narrow_1mm.pdf}\hspace{0.2cm}
-    \includegraphics[clip=true, width=0.3337\textwidth]{Figures/Calibration/plot_flux_density_ratio_fwhm_uranus_tau225_narrow_a2.pdf}
-    \vspace{0.3cm}
+    \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.35\textwidth]{Figures/Calibration/plot_flux_density_ratio_fwhm_uranus_tau225_narrow_1mm.pdf}
+    \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.3337\textwidth]{Figures/Calibration/plot_flux_density_ratio_fwhm_uranus_tau225_narrow_a2.pdf}
     % skydip
-    \includegraphics[clip=true, width=0.35\textwidth]{Figures/Calibration/plot_flux_density_ratio_fwhm_uranus_skydip_narrow_1mm.pdf}\hspace{0.2cm}
-    \includegraphics[clip=true, width=0.3337\textwidth]{Figures/Calibration/plot_flux_density_ratio_fwhm_uranus_skydip_narrow_a2.pdf}
-    \vspace{0.3cm}
+    \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.35\textwidth]{Figures/Calibration/plot_flux_density_ratio_fwhm_uranus_skydip_narrow_1mm.pdf}
+    \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.3337\textwidth]{Figures/Calibration/plot_flux_density_ratio_fwhm_uranus_skydip_narrow_a2.pdf}
     % corr. sky. photocorr demo
-    \includegraphics[clip=true, width=0.35\textwidth]{Figures/Calibration/plot_flux_density_ratio_fwhm_uranus_corrected_skydip_photocorr_demo_narrow_1mm.pdf}\hspace{0.2cm}
-    \includegraphics[clip=true, width=0.3337\textwidth]{Figures/Calibration/plot_flux_density_ratio_fwhm_uranus_corrected_skydip_photocorr_demo_narrow_a2.pdf}
-    \vspace{0.3cm}
+    \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.35\textwidth]{Figures/Calibration/plot_flux_density_ratio_fwhm_uranus_corrected_skydip_photocorr_demo_narrow_1mm.pdf}
+    \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.3337\textwidth]{Figures/Calibration/plot_flux_density_ratio_fwhm_uranus_corrected_skydip_photocorr_demo_narrow_a2.pdf}
     % corr. sky. photocorr pointing
-    \includegraphics[clip=true, width=0.35\textwidth]{Figures/Calibration/plot_flux_density_ratio_fwhm_uranus_corrected_skydip_photocorr_pointing_narrow_1mm.pdf}\hspace{0.2cm}
-    \includegraphics[clip=true, width=0.3337\textwidth]{Figures/Calibration/plot_flux_density_ratio_fwhm_uranus_corrected_skydip_photocorr_pointing_narrow_a2.pdf}
-\caption[Uranus flux density stability against FWHM]{Ratio of the
-  Uranus measured flux densities to expectations in fonction of the
-  measured 2D
-  Gaussian beam FWHM for array 1 (upper left), array 3 (upper right),
-  1mm array combination (lower left) and array 2 (lower right),
-  including scans acquired during N2R9, N2R12 and N2R14 campaigns. The
-  color code indicates the range of observing time in UT hours, shades
-  of blue corresponds to night time observations while shades of red
-  to day time. A primary scan selection is performed from measured
-  opacity criteria, as defined in Sect.~\ref{se:data_selection}, and
-  from FWHM estimates, where the FWHM thresholds are showed as red vertical
-  lines. The scans that met the baseline selection criteria (see
-  Sect.~\ref{se:data_selection})
-  are shown as filled circled, whereas the discarded scans are open circles.}
+    \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.35\textwidth]{Figures/Calibration/plot_flux_density_ratio_fwhm_uranus_corrected_skydip_photocorr_pointing_narrow_1mm.pdf}
+    \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.3337\textwidth]{Figures/Calibration/plot_flux_density_ratio_fwhm_uranus_corrected_skydip_photocorr_pointing_narrow_a2.pdf}
+    \caption[Uranus flux density stability against FWHM]{
+      Uranus flux density ratio vs beam size for five
+      calibration methods. The ratio of 
+      Uranus measured flux densities to expectations in fonction of the
+      measured 2D Gaussian beam FWHM is shown for the $1$-mm array
+      combination (left column) and for array 2 (right column) after absolute
+      calibration using (\emph{first row}:) the baseline method, as
+      well as (\emph{second row}:) the 'taumeter'-based and
+      (\emph{third row}:) the 'skydip'-based methods, and methods
+      relying to (\emph{fourth row}:) the 'demo' and (\emph{fifth
+        row}:) the 'pointing' photometric corrections. These plots
+      include all Uranus scans acquired during N2R9, N2R12 and N2R14
+      campaigns and whose beam FWHM are below the threshold indicated
+      by the vertical red lines, (open circles), as
+      well as the scans that met the baseline selection criteria (filled
+      circles).}
 \label{fig:calib_uranus_vs_fwhm_all}
 \end{center}
 \end{figure}

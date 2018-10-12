@@ -6,17 +6,52 @@ Calibration factors are estimated from a series of OTF scans towards Uranus
 
 \subsection{Data sets}
 
-\addparag{ selected scan numbers}
+\addparag{ selected scan numbers} in Table~\ref{tab:absolute_calibration_scan_numbers}.
 
-Uranus measured-to-predicted flux density ratios are shown in Fig.~\ref{fig:uranus_flux_fwhm} as a fonction of the 2D Gaussian FWHM estimates and color-coded from the observation dates given in UT hours. As discussed in Sect.~\ref{se:obsdate_variations}, a correlation between the flux densities and the FWHM estimates is observed, broaden beams are associated with lower fluxes. However, the baseline scan selection, discussed in Sect.~\ref{se:data_selection}, which relies on the observation date among other criteria, is efficient to discard the larger beam scans, and thus mitigates the flux dispersion.          
+Uranus measured-to-predicted flux density ratios are shown in Fig.~\ref{fig:calib_uranus_vs_fwhm_all} as a fonction of the 2D Gaussian FWHM estimates and color-coded from the observation dates given in UT hours. As discussed in Sect.~\ref{se:obsdate_variations}, a correlation between the flux densities and the FWHM estimates is observed, broaden beams are associated with lower fluxes. However, the baseline scan selection, discussed in Sect.~\ref{se:data_selection}, which relies on the observation date among other criteria, is efficient to discard the larger beam scans, and thus mitigates the flux dispersion.          
+
+% ALL METHOD RESULTS 
+\begin{table}[th]
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|}
+  \hline
+  \multicolumn{2}{|c|}{}            &  \multicolumn{4}{|c|}{Datasets} \\\cline{3-6}
+  \multicolumn{2}{|c|}{Scan number} &  N2R9  & N2R12  &  N2R14  &  Combined \\
+  \hline\hline
+  \multicolumn{2}{|c|}{Total}       &   27   &   25    &   40    &    92  \\
+  \hline
+  Selected & Baseline               &   2    &   22    &    2    &    26  \\
+           & Photocorr              &   2    &   24    &   12    &    38  \\
+\hline\hline
+\end{tabular}
+\caption[Absolute calibration scan numbers]{Number of scans for the absolute calibration}
+\label{tab:absolute_calibration_scan_numbers}
+\end{center}
+\end{table}
+
 
 
 \begin{figure}[ht!]
-\begin{center}
-\includegraphics[clip=true,width=0.47\textwidth]{Figures/Calibration/plot_flux_density_ratio_primary_a1.pdf}
-\includegraphics[clip=true,width=0.47\textwidth]{Figures/Calibration/plot_flux_density_ratio_primary_a3.pdf}
-\includegraphics[clip=true,width=0.47\textwidth]{Figures/Calibration/plot_flux_density_ratio_primary_1mm.pdf}
-\includegraphics[clip=true,width=0.47\textwidth]{Figures/Calibration/plot_flux_density_ratio_primary_a2.pdf}
+  \begin{center}
+    % corrected skydip
+    \includegraphics[clip=true, width=0.35\textwidth]{Figures/atrier/plot_flux_density_ratio_fwhm_uranus_corrected_skydip_narrow_1mm.pdf}\hspace{0.2cm}
+    \includegraphics[clip=true, width=0.3337\textwidth]{Figures/atrier/plot_flux_density_ratio_fwhm_uranus_corrected_skydip_narrow_a2.pdf}
+    \vspace{0.3cm}
+    % taumeter
+    \includegraphics[clip=true, width=0.35\textwidth]{Figures/atrier/plot_flux_density_ratio_fwhm_uranus_tau225_narrow_1mm.pdf}\hspace{0.2cm}
+    \includegraphics[clip=true, width=0.3337\textwidth]{Figures/atrier/plot_flux_density_ratio_fwhm_uranus_tau225_narrow_a2.pdf}
+    \vspace{0.3cm}
+    % skydip
+    \includegraphics[clip=true, width=0.35\textwidth]{Figures/atrier/plot_flux_density_ratio_fwhm_uranus_skydip_narrow_1mm.pdf}\hspace{0.2cm}
+    \includegraphics[clip=true, width=0.3337\textwidth]{Figures/atrier/plot_flux_density_ratio_fwhm_uranus_skydip_narrow_a2.pdf}
+    \vspace{0.3cm}
+    % corr. sky. photocorr demo
+    \includegraphics[clip=true, width=0.35\textwidth]{Figures/atrier/plot_flux_density_ratio_fwhm_uranus_corrected_skydip_photocorr_demo_narrow_1mm.pdf}\hspace{0.2cm}
+    \includegraphics[clip=true, width=0.3337\textwidth]{Figures/atrier/plot_flux_density_ratio_fwhm_uranus_corrected_skydip_photocorr_demo_narrow_a2.pdf}
+    \vspace{0.3cm}
+    % corr. sky. photocorr pointing
+    \includegraphics[clip=true, width=0.35\textwidth]{Figures/atrier/plot_flux_density_ratio_fwhm_uranus_corrected_skydip_photocorr_pointing_narrow_1mm.pdf}\hspace{0.2cm}
+    \includegraphics[clip=true, width=0.3337\textwidth]{Figures/atrier/plot_flux_density_ratio_fwhm_uranus_corrected_skydip_photocorr_pointing_narrow_a2.pdf}
 \caption[Uranus flux density stability against FWHM]{Ratio of the
   Uranus measured flux densities to expectations in fonction of the
   measured 2D
@@ -31,7 +66,7 @@ Uranus measured-to-predicted flux density ratios are shown in Fig.~\ref{fig:uran
   lines. The scans that met the baseline selection criteria (see
   Sect.~\ref{se:data_selection})
   are shown as filled circled, whereas the discarded scans are open circles.}
-\label{fig:uranus_flux_fwhm}
+\label{fig:calib_uranus_vs_fwhm_all}
 \end{center}
 \end{figure}
 
@@ -41,12 +76,12 @@ Uranus measured-to-predicted flux density ratios are shown in Fig.~\ref{fig:uran
 \addparag{ stability against opacity}
 
 \begin{figure}[ht!]
-\begin{center}
-\includegraphics[clip=true,width=0.47\textwidth]{Figures/Calibration/plot_flux_density_ratio_obstau_primary_a1.pdf}
-\includegraphics[clip=true,width=0.47\textwidth]{Figures/Calibration/plot_flux_density_ratio_obstau_primary_a3.pdf}
-\includegraphics[clip=true,width=0.47\textwidth]{Figures/Calibration/plot_flux_density_ratio_obstau_primary_1mm.pdf}
-\includegraphics[clip=true,width=0.47\textwidth]{Figures/Calibration/plot_flux_density_ratio_obstau_primary_a2.pdf}
-\caption[Uranus flux density stability against observed
+  \begin{center}
+    \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.35\textwidth]{Figures/atrier/plot_flux_density_ratio_obstau_uranus_corrected_skydip_narrow_a1.pdf}
+    \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.35\textwidth]{Figures/atrier/plot_flux_density_ratio_obstau_uranus_corrected_skydip_narrow_a3.pdf}
+    \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.35\textwidth]{Figures/atrier/plot_flux_density_ratio_obstau_uranus_corrected_skydip_narrow_1mm.pdf}
+    \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.35\textwidth]{Figures/atrier/plot_flux_density_ratio_obstau_uranus_corrected_skydip_narrow_a2.pdf}
+    \caption[Uranus flux density stability against observed
   opacity]{Uranus measured-to-modeled flux density ratio as a fonction
   of the measured observed opacity for array 1 (upper left), array 3
   (upper right), 1mm array combination (lower left) and array 2 (lower

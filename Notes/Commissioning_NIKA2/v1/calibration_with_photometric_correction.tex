@@ -36,6 +36,27 @@ on a beam monitoring using pointing scans.
 \subsection{Photometric correction methods}
 \label{se:photocorr_methods}
 
+When the beam size broaden due to e.g. temperature increase of the
+telescope main dish, the flux density is smeared in a larger solid angle and
+the flux density estimator, which is based on the amplitude fit of a
+Gaussian beam of fixed FWHM as described in
+Sect.~\ref{se:flux_density_equation}, is biased toward low flux densities.
+
+Considering only the main beam broadening, modeled as a Gaussian of
+size $FWHM' = 2 \sqrt{2\ln{2}} \sigma '$, we show in
+Sect.~\ref{se:photometric_correction} that
+the flux density estimator depends on the size of the convolution
+function between the enlarged $\sigma '$ Gaussian and the 
+$\sigma_0$ fixed width Gaussian of our reference system.
+A corrected flux density estimator $\hat{S}_{pc}$ can be derived from
+the uncorrected estimator as
+\begin{equation}
+  \hat{S}_{pc} = f(\sigma')\hat{S},  
+\end{equation} 
+where the photometric correction f(\sigma') reads
+\begin{equation}
+  f(\sigma') = \frac{(\sigma'^2 + \sigma_0^2)}{2 \sigma_0^2}. 
+\end{equation} 
 
 
 

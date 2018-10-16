@@ -43,7 +43,7 @@ Gaussian beam of fixed FWHM as described in
 Sect.~\ref{se:flux_density_equation}, is biased toward low flux densities.
 
 Considering only the main beam broadening, modeled as a Gaussian of
-size $FWHM' = 2 \sqrt{2\ln{2}} \sigma '$, we show in
+size $FWHM' = 2 \sqrt{2\ln{2}} \, \sigma '$, we show in
 Sect.~\ref{se:photometric_correction} that
 the flux density estimator depends on the size of the convolution
 function between the enlarged $\sigma '$ Gaussian and the 
@@ -58,61 +58,57 @@ where the photometric correction $f$ reads
   f(\sigma') = \frac{(\sigma'^2 + \sigma_0^2)}{2 \sigma_0^2}. 
 \end{equation} 
 
+The photometric correction relies on the measure of the current beam
+size $\sigma ’$. The induced uncertitude on the flux density
+measurments depends on the precision of which we are able to monitor
+the beam size. 
 
 
-
-
-\subsection{Demonstration case}
+\subsubsection{Demonstration case}
 \label{se:photocorr_demo}
 
 \addparag{ demo case}
 
-Fig.~\ref{fig:calib_uranus_vs_atmtrans_all} shows the
-measured-to-expected flux density ratio of Uranus observations after
-calibrating using the demonstration case of the beam-variation
-hardened calibration. 
-
-
-\subsection{Practical case using pointing scans}
+\subsubsection{Practical case using pointing scans}
 \label{se:photocorr_pointing}
 
 \addparag{ pointing-based photometric correction}
 
-Fig.~\ref{fig:calib_uranus_vs_atmtrans_all} shows the
-measured-to-expected flux density ratio of Uranus observations after
-calibrating using the practical case of the beam-variation
-hardened calibration. 
+
+
+
+\subsection{Stability against observing conditions}
+
 
 \begin{figure}[ht!]
 \begin{center}
   % corrected skydip
-    \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.35\textwidth]{Figures/Calibration/plot_flux_density_ratio_obstau_uranus_corrected_skydip_narrow_1mm.pdf}\hspace{0.2cm}
-    \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.35\textwidth]{Figures/Calibration/plot_flux_density_ratio_obstau_uranus_corrected_skydip_narrow_a2.pdf}
-    \vspace{0.3cm}
-    % taumeter
-    \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.35\textwidth]{Figures/Calibration/plot_flux_density_ratio_obstau_uranus_tau225_narrow_1mm.pdf}\hspace{0.2cm}
-    \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.35\textwidth]{Figures/Calibration/plot_flux_density_ratio_obstau_uranus_tau225_narrow_a2.pdf}
-    \vspace{0.3cm}
-    % skydip
-    \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.35\textwidth]{Figures/Calibration/plot_flux_density_ratio_obstau_uranus_skydip_narrow_1mm.pdf}\hspace{0.2cm}
-    \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.35\textwidth]{Figures/Calibration/plot_flux_density_ratio_obstau_uranus_skydip_narrow_a2.pdf}
-    \vspace{0.3cm}
-    % corr. sky. photocorr demo
-    \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.35\textwidth]{Figures/Calibration/plot_flux_density_ratio_obstau_uranus_corrected_skydip_photocorr_demo_narrow_1mm.pdf}\hspace{0.2cm}
-    \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.35\textwidth]{Figures/Calibration/plot_flux_density_ratio_obstau_uranus_corrected_skydip_photocorr_demo_narrow_a2.pdf}
-    \vspace{0.3cm}
-    % corr. sky. photocorr pointing
-    \includegraphics[clip=true, width=0.35\textwidth]{Figures/Calibration/plot_flux_density_ratio_obstau_uranus_corrected_skydip_photocorr_pointing_narrow_1mm.pdf}\hspace{0.2cm}
-    \includegraphics[clip=true, width=0.3337\textwidth]{Figures/Calibration/plot_flux_density_ratio_obstau_uranus_corrected_skydip_photocorr_pointing_narrow_a2.pdf}
-\caption[Uranus flux density stability using the
-  practical case of the beam-hardened calibration]{For the
-  practical case of the beam-hardened calibration, 
-  ratio of the Uranus measured flux densities to expectations as a
-  fonction of the measured 2D Gaussian beam FWHM (top) and as a
-  function of the observed opacity (bottom) for the 1mm array
-  combination (left) and for array 2 (right),
-  including scans acquired during N2R9, N2R12 and N2R14 campaigns. }
-\label{fig:calib_uranus_vs_atmtrans_all}
+  \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.35\textwidth]{Figures/Calibration/plot_flux_density_ratio_obstau_uranus_corrected_skydip_narrow_1mm.pdf}
+  \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.35\textwidth]{Figures/Calibration/plot_flux_density_ratio_obstau_uranus_corrected_skydip_narrow_a2.pdf}
+  % taumeter
+  \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.35\textwidth]{Figures/Calibration/plot_flux_density_ratio_obstau_uranus_tau225_narrow_1mm.pdf}
+  \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.35\textwidth]{Figures/Calibration/plot_flux_density_ratio_obstau_uranus_tau225_narrow_a2.pdf}
+  % skydip
+  \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.35\textwidth]{Figures/Calibration/plot_flux_density_ratio_obstau_uranus_skydip_narrow_1mm.pdf}
+  \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.35\textwidth]{Figures/Calibration/plot_flux_density_ratio_obstau_uranus_skydip_narrow_a2.pdf}
+  % corr. sky. photocorr demo
+  \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.35\textwidth]{Figures/Calibration/plot_flux_density_ratio_obstau_uranus_corrected_skydip_photocorr_demo_narrow_1mm.pdf}
+  \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.35\textwidth]{Figures/Calibration/plot_flux_density_ratio_obstau_uranus_corrected_skydip_photocorr_demo_narrow_a2.pdf}
+  % corr. sky. photocorr pointing
+  \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.35\textwidth]{Figures/Calibration/plot_flux_density_ratio_obstau_uranus_corrected_skydip_photocorr_pointing_narrow_1mm.pdf}
+  \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.35\textwidth]{Figures/Calibration/plot_flux_density_ratio_obstau_uranus_corrected_skydip_photocorr_pointing_narrow_a2.pdf}
+  \caption[Uranus flux density stability against atmospheric
+    transmission]{Uranus flux density ratio vs atmospheric transmission
+    shown for the $1$-mm array
+    combination (left column) and for array 2 (right column) after absolute
+    calibration using (\emph{first row}:) the baseline method, as
+    well as (\emph{second row}:) the 'taumeter'-based and
+    (\emph{third row}:) the 'skydip'-based methods, and methods
+    relying to (\emph{fourth row}:) the 'demo' and (\emph{fifth
+      row}:) the 'pointing' photometric corrections. These plots
+    include all Uranus scans acquired during N2R9, N2R12 and N2R14
+    campaigns. }
+  \label{fig:calib_uranus_vs_atmtrans_all}
 \end{center}
 \end{figure}
 

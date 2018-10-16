@@ -27,11 +27,6 @@ in the absolute calibration in order not to include twice the
 photometric correction uncertainties in the error budget (once for the
 absolute calibration and once for the photometry).
 
-We perform two case studies: Sect.~\ref{se:photocorr_demo} presents a demonstration
-calibration assuming the beam is precisely monitored, whereas
-Sect.~\ref{se:photocorr_pointing} addresses a practical calibration relying
-on a beam monitoring using pointing scans. 
-
 
 \subsection{Photometric correction methods}
 \label{se:photocorr_methods}
@@ -63,11 +58,29 @@ size $\sigma ’$. The induced uncertitude on the flux density
 measurments depends on the precision of which we are able to monitor
 the beam size. 
 
+We perform two case studies: Sect.~\ref{se:photocorr_demo} presents a demonstration
+calibration assuming the beam is precisely monitored, whereas
+Sect.~\ref{se:photocorr_pointing} addresses a practical calibration relying
+on a beam monitoring using pointing scans. 
 
 \subsubsection{Demonstration case}
 \label{se:photocorr_demo}
 
-\addparag{ demo case}
+For the demonstration case, shortened as 'demo' hereafter, we use a
+photometric correction based on the Gaussian FWHM fitted on the map
+of the source. This method thus applies only on point-like
+sources that are bright enough for an accurate fit of the beam to be
+obtained using a single scan.  
+
+The beam size is estimated by fitting a 2D Gaussian from the map and
+forming the geometrical $\sigma$, $\sigma_{\rm{geom}} = (\sigma_x^2 +
+\sigma_y^2)^{1/2}$.  
+
+This yields a slightly biased estimator of the beam variation since \sigma_geom slightly depends on the flux of the source. The 2D Gaussian fit yields slightly broaden \sigma_geom for bright sources (e.g. planets) to accomodate for the side lobes, which are measured with high signal-to-noise. 
+We account for the side lobes impact by correcting \sigma_geom by a small offset \delta_sl
+
+
+
 
 \subsubsection{Practical case using pointing scans}
 \label{se:photocorr_pointing}

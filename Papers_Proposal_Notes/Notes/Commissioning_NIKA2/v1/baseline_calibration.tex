@@ -1,4 +1,4 @@
-\section{Baseline Calibration {\color{blue} Laurence} }
+\section{Baseline Calibration {\color{YellowGreen} Laurence} }
 %\label{se:baseline_calibration}
 
 \subsection{Methodology}
@@ -6,8 +6,12 @@
 Practically, the absolute calibration consists in evaluating a flux
 density rescaling factor using a series a OTF scans toward
 planets. When available, the prefered primary calibrator is Uranus,
-which allies strong flux density and quasi point-like emission. The
-flux rescaling factor is estimated as the ratio of the calibrator flux
+which allies strong flux density and quasi point-like\footnote{Uranus
+  has a small apparent solid angle of
+  around 4''-radius, which is accounted for in the flux density
+  prediction (Sect.~\ref{se:ref_flux_uranus_neptune})}
+emission.
+The flux rescaling factor is estimated as the ratio of the calibrator flux
 density expectations, as obtained as discussed in
 Sect.~\ref{se:ref_flux_primaries}, and the average calibrator flux
 density estimate, obtained using Eq.~\ref{eq:pointsourcephot}.
@@ -64,7 +68,7 @@ Table~\ref{tab:absolute_calibration_scan_numbers}. For N2R9 and N2R14,
 which were both February campaigns one year apart, Uranus was mainly
 visible during the day. As a results, only two good scans are used to
 derive the absolute calibration. However, we will verify in
-Sect.~\ref{photometry_baseline.tex} that this suffices to obtain an
+Sect.~\ref{se:photometry_baseline} that this suffices to obtain an
 accurate photometry. By contrast, due to the night time visibility of
 Uranus during N2R12, almost all the available scans meet the baseline
 section criteria. 
@@ -90,6 +94,8 @@ section criteria.
 \end{table}
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%    Flux ratio vs FWHM
 
 \begin{figure}[ht!]
   \begin{center}
@@ -129,9 +135,24 @@ section criteria.
 \end{figure}
 
 
-\subsection{Stability against the observed opacity}
+\subsection{Stability against the atmospheric transmission}
 
-\addparag{ stability against opacity}
+We test the stability of Uranus flux density ratio
+against the atmospheric transmission. The later quantity, we
+recall, depends on the measured zenith opacity $\tau$ and the scan
+average airmass $x = \rm{cosec}(\delta)$ as $\exp{-\tau \cdot x}$. In
+Fig.~\ref{fig:uranus_flux_obstau}, Uranus flux ratios of Array 1,
+Array 3, the $1$-mm array combination and Array 2 are plotted as a
+function of the atmospheric transmission for the three considered
+observation campaigns (N2R9, N2R12 $\&$ N2R14). Although Uranus flux
+ratio per campaign is equal to the unity in average, any trend as
+a fonction of the observing conditions would sign the presence of a
+systematic effect. However, no sizable dependencies of the flux ratio
+on the atmospheric transmission is observed. This constitutes a first
+indication of the robustness of the flux density estimates againts the
+atmospheric conditions using the baseline calibration. This will be
+further tested using more scans in Sect.~\ref{se:photometry_baseline}.   
+
 
 \begin{figure}[ht!]
   \begin{center}
@@ -139,16 +160,21 @@ section criteria.
     \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.35\textwidth]{Figures/Calibration/plot_flux_density_ratio_obstau_uranus_corrected_skydip_narrow_a3.pdf}
     \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.35\textwidth]{Figures/Calibration/plot_flux_density_ratio_obstau_uranus_corrected_skydip_narrow_1mm.pdf}
     \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.35\textwidth]{Figures/Calibration/plot_flux_density_ratio_obstau_uranus_corrected_skydip_narrow_a2.pdf}
-    \caption[Uranus flux density stability against observed
-  opacity]{Uranus measured-to-modeled flux density ratio as a fonction
-  of the measured observed opacity for array 1 (upper left), array 3
-  (upper right), 1mm array combination (lower left) and array 2 (lower
-  right). The datapoints denote the flux ratio of the scans retained after the
-  baseline section is performed, for the three campaigns, N2R9
-  in blue, N2R12 in orange and N2R14 in chartreuse (yellow green). For
-  each campaign, flux ratios are equal to unity in average by
-  construction and are stable againts the observed opacity, modelled as
-  the zenith opacity times the air mass at the telescope elevation.}
+    \caption[Uranus flux density stability against atmospheric
+      transmission]{Uranus flux density ratio stability against the
+      atmospheric transmission using the baseline calibration.
+      The measured-to-modeled flux density
+      ratio as a fonction of the measured atmospheric transmission is
+      shown for array 1 (upper left), array 3 (upper right), 1mm array
+      combination (lower left) and array 2 (lower right).
+      The datapoints denote the flux ratio of Uranus scans acquired
+      during N2R9 in blue, N2R12 in orange and N2R14 in chartreuse
+      (yellow green).
+      For each campaign, flux ratios are equal to unity in average by
+      construction. We observe no sizable systematic effect depending
+      on the atmospheric transmission, modelled as the decreasing exponential
+      function of the zenith opacity times the air mass at the
+      telescope elevation.}
 \label{fig:uranus_flux_obstau}
 \end{center}
 \end{figure}

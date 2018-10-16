@@ -117,7 +117,8 @@ f(\frac{\nu}{\nu_{0}}) B_{k}(\nu_{0}, \theta \times \frac{\nu}{\nu_{0}},
 This observed map is modelled with a fixed-width Gaussian as 
 \begin{equation} 
 R_{c}(\theta, \phi)  = \frac{A_{c}}{2 \pi \sigma_{0}^{2}}
-e^{-\frac{\theta^{2}}{2\sigma_{0}^{2}}}. 
+e^{-\frac{\theta^{2}}{2\sigma_{0}^{2}}}.
+\label{eq:calfwhm0}
 \end{equation}
 The reference FWHM, labelled FWHM$_{0}$, which we recall, is related
 to $\sigma_{0}$ by $2 \sqrt{2\ln{2}} \sigma_{0} = {\rm FWHM}_{0}$),
@@ -149,6 +150,7 @@ This map has units of $\rm Jy$. By construction, integrating over the map we hav
 
 
 \subsection{Calibration in FWHM$_{0}$ beam}
+\label{se:flux_density_equation}
 
 Similarly, a point source with flux density $S_{s}(\nu)$ will
 generate a response at position $(\theta, \phi)$
@@ -156,6 +158,7 @@ generate a response at position $(\theta, \phi)$
 R_{s}^{k}(\theta, \phi) =  G_{k} A_{p}  \int_{0}^{+\infty}
 S_{s}(\nu) B_{k}(\nu_{0}, \theta \times \frac{\nu}{\nu_{0}},
 \phi) T(\nu) T_{atm}(\nu) d\nu
+\label{eq:pointsourceresponse}
 \end{equation}
 
 Note here that the effective frequency for the beam is not necessarily
@@ -176,7 +179,9 @@ Gaussian of the same amplitude as the source.
 
 Let us form the map:
 \begin{equation}
-M_{s}(\theta, \phi) = \frac{S_{c} (\nu_{0})}{A_{c}}  R_{s}(\theta, \phi)   
+M_{s}(\theta, \phi) = \frac{S_{c} (\nu_{0})}{A_{c}}  R_{s}(\theta,
+\phi)
+\label{eq:pointsourcemap}
 \end{equation}
 
 The map $M_{s}(\theta, \phi)$ is said to be calibrated in Jy / FWHM$_{0}$

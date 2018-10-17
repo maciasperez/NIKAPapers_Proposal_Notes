@@ -1,0 +1,122 @@
+
+\section{Beam efficiency}
+
+%% LP
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \emph{method 1:}
+
+Eff = integral of the 2D Gaussian Main Beam / integral of the beam map
+
+\noindent \emph{method 2:}
+
+Eff = integral of the 2D Gaussian Main Beam / integral of the measured profile
+
+\noindent \emph{'Instru' Paper}
+
+Comparing the 2D gaussian main beam fit to the full beam
+pattern measurement up to a radius of $250''$, we compute the
+beam efficiencies defined as the ratio of power between the main
+beam and this full beam. We find beam efficiencies $\approx 55 \%$
+and $\approx 75 \%$ for the 260 and 150 GHz channels, respectively.
+Heterodyne observations of the lunar edge and of the forward
+beam efficiency derived from skydips show that a significant
+fraction of the full beam is received from beyond a radius of
+$250''$. This fraction is not considered here.
+
+
+The beam efficiency estimates for the three arrays and the
+1mm-array combination are given in Table~\ref{tab:beam_efficiency}.
+
+
+\begin{table}[h]
+  \caption[]{Beam efficiency}
+  \centering
+  \begin{threeparttable}
+  \begin{tabular}{|l|c|c|c|c|}
+    \hline
+    
+       &    \multicolumn{4}{|c|}{Array or array combination} \\
+    \cline{2-5}
+    Method & A1 &  A3 & A1 $\&$ A3 &  A2  \\
+    \hline
+    \hline
+    2D elliptical-over-deep map beam\tnote{a} &  $0.75 \pm 0.07$  &
+    $0.69 \pm 0.04$  &  $0.73 \pm 0.06$  &  $0.85 \pm 0.05$  \\
+    2D elliptical-over-measured profile\tnote{a} &  $0.63 \pm 0.10$  &
+    $0.56 \pm 0.05$  &  $0.58 \pm 0.06$  &  $0.79 \pm 0.06$  \\
+    $250''$ estimates\tnote{b}    &  $0.55$  &   $0.55$ &   $0.55$ &  $0.75$  \\
+    \hline
+  \end{tabular}
+  \begin{tablenotes}
+  \item[(a)] Laurence's study
+  \item[(b)] values reported in the 'Instrument' paper
+  \end{tablenotes}
+  \end{threeparttable}
+  \label{tab:beam_efficiency}
+\end{table}
+
+
+
+
+%%
+%%  JFL
+%%  --> extracted from results_Ap.tex
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Observations of Uranus and Neptune during runs 9, 12 and 14 have been used to measure the true beam, i.e. total beam incluing main and error beams, 
+the beam efficiencies, and the ratio between the flux densities determined with the aperture photometry and gaussian fit.
+
+In Table \ref{tab:solid}, the solid angle of the true beam  $\Omega_{true} (\nu,r_{max}) = \int_0^{r_{max}} B(\nu, r) 2 \pi r dr$
+is estimated at $r_{max} =180''$ and
+the gaussian solid angle $\Omega_{gauss}={{2\pi} \over {(2 \sqrt{2\ln2})^2}} (fwhm)^2$ is derived with the $fwhm$ determined
+from a fit of a gaussian main beam within a radius of $0.65 \times fwhm$. 
+
+\begin{table*}[!h]
+\caption{Solid angle of true beam based on Uranus and Neptune observations}
+\label{tab:solid}
+\centering
+\begin{tabular}{l| c | c c c | c c c}
+\hline\hline
+\noalign{\smallskip}
+run  & Nber of scans & \multicolumn{3}{c}{$\Omega_{true}$ (arcsec$^{2}$)} & \multicolumn{3}{c}{$\Omega_{true}/\Omega_{gauss}$} \\
+\hline
+     &               &  A1    &    A2   &  A3  & A1  &  A2  & A3   \\
+            \hline
+r9    & 27  &  265$\pm$ 23    &  466$\pm$ 17 & 252 $\pm$ 23 &  1.80 $\pm$ 0.12    &  1.35 $\pm$ 0.05   &   1.74 $\pm$ 0.13   \\
+r12   & 20  &  229$\pm$ 11    &  437$\pm$  9 & 221 $\pm$ 10 &  1.71 $\pm$ 0.06   &  1.30 $\pm$ 0.02   &   1.68 $\pm$ 0.06   \\
+r14   & 28  &  251$\pm$ 16    &  457$\pm$ 15 & 245 $\pm$ 18 &  1.73 $\pm$ 0.08   &  1.32 $\pm$ 0.03   &   1.72 $\pm$ 0.08   \\
+mean  &     &  248            &  453         &  239         &  1.74              &   1.32             &   1.71              \\
+       \noalign{\smallskip}
+            \hline
+\end{tabular}
+\end{table*}
+
+
+
+
+
+
+In Table \ref{tab:MB}, the main beam efficiency is defined as the ratio between the power in the gaussian main beam fitted and 
+the power out to $r_{max}=180''$ by summing intensities of all pixels within this radius. The level of the error beam 
+is given relative to the main beam peak (we recall that -12dB as found is 6\%). 
+
+\begin{table*}[!h]
+\caption{Main beam efficiency and level of error beam}
+\label{tab:MB}
+\centering
+\begin{tabular}{l| c | c c c | c c c}
+\hline\hline
+\noalign{\smallskip}
+run  & Nber of scans & \multicolumn{3}{c}{Main beam efficiency } & \multicolumn{3}{c}{Error beam level} \\
+\hline
+     &               &  A1    &    A2   &  A3  & A1  &  A2  & A3   \\
+            \hline
+r9    & 27  &  54.1$\pm$ 3.2\%    &  74.7$\pm$ 2.9\% & 55.9 $\pm$ 3.7\%   &  -11.5 $\pm$ 0.8    &  -14.9 $\pm$ 0.6   &  -12.0 $\pm$ 0.6   \\
+r12   & 20  &  55.7$\pm$ 2.0\%    &  77.4$\pm$ 1.0\% & 57.1 $\pm$ 2.0\%   &  -13.4 $\pm$ 0.3    &  -16.1 $\pm$ 0.3   &  -13.8 $\pm$ 0.3   \\
+r14   & 28  &  55.0$\pm$ 2.7\%    &  76.0$\pm$ 1.8\% & 56.1 $\pm$ 2.6\%   &  -12.5 $\pm$ 0.6    &  -15.3 $\pm$ 0.6   &  -12.7 $\pm$ 0.8   \\
+            \noalign{\smallskip}
+            \hline
+\end{tabular}
+\end{table*}
+

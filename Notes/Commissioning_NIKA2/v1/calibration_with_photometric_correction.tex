@@ -42,7 +42,15 @@ size $FWHM' = 2 \sqrt{2\ln{2}} \, \sigma '$, we show in
 Sect.~\ref{se:photometric_correction} that
 the flux density estimator depends on the size of the convolution
 function between the enlarged $\sigma '$ Gaussian and the 
-$\sigma_0$ fixed width Gaussian of our reference system.
+$\sigma_0$ fixed width Gaussian of our reference system. It also
+depends on the nominal size of the 2D Gaussian fit of the beam that is
+measured in stable observing conditions $\sigma_{\rm{nom}}$. This quantity
+slightly varies with the source flux density as described in
+Sect.~\ref{se:photometric_correction}: namely, it smoothly goes from
+$11.2''$ at 1-mm and $17.4''$ at 2-mm for moderately bright sources to
+$11.7''$ at 1-mm and $17.7''$ at 2-mm at the flux density of Uranus,
+then slightly continues increasing for sources brighter than Uranus.  
+
 A corrected flux density estimator $\hat{S}_{pc}$ can be derived from
 the uncorrected estimator as
 \begin{equation}
@@ -50,12 +58,12 @@ the uncorrected estimator as
 \end{equation} 
 where the photometric correction $f$ reads
 \begin{equation}
-  f(\sigma') = \frac{(\sigma'^2 + \sigma_0^2)}{2 \sigma_0^2}. 
+  f(\sigma') = \frac{(\sigma'^2 + \sigma_0^2)}{\sigma_{\rm{nom}}^2 + \sigma_0^2}. 
 \end{equation} 
 
 The photometric correction relies on the measure of the current beam
 size $\sigma ’$. The induced uncertitude on the flux density
-measurments depends on the precision of which we are able to monitor
+measurements depends on the precision of which we are able to monitor
 the beam size. 
 
 We perform two case studies: Sect.~\ref{se:photocorr_demo} presents a demonstration
@@ -76,13 +84,17 @@ The beam size is estimated by fitting a 2D Gaussian from the map and
 forming the geometrical $\sigma$, $\sigma_{\rm{geom}} = (\sigma_x^2 +
 \sigma_y^2)^{1/2}$.  
 
-This yields a slightly biased estimator of the beam variation since
+This yields a slightly biased estimator of the beam variations since
 $\sigma_{\rm geom}$ slightly depends on the flux of the source. The 2D
 Gaussian fit yields slightly broaden $\sigma_{\rm{geom}}$ for bright
 sources (e.g. planets) to accomodate for the side lobes, which are
 measured with high signal-to-noise. We account for the side lobes
 impact by correcting $\sigma_{\rm{geom}}$ by a small offset
-$\delta_{\rm{sl}}$.
+$\delta_{\rm{sl}}$. This is measured by comparing the
+average $\sigma_{\rm{geom}}$ estimates using Uranus scans and using
+MWC349 scans.
+We found $\delta_{\rm{sl}} = 0.4‘’$ at 1-mm and $\delta_{\rm{sl}} =
+0.3’’$ at 2-mm. 
 
 
 

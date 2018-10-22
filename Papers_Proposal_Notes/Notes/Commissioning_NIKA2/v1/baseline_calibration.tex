@@ -3,18 +3,16 @@
 
 \subsection{Methodology}
 
-Practically, the absolute calibration consists in evaluating a flux
+The absolute calibration is based on the calibration in $FWHM_0$ beam
+described in Sect.~\ref{se:flux_density_equation}. 
+Practically, its consists in evaluating a flux
 density rescaling factor using a series a OTF scans toward
-planets. When available, the prefered primary calibrator is Uranus,
-which allies strong flux density and quasi point-like\footnote{Uranus
-  has a small apparent solid angle of
-  around 4''-radius, which is accounted for in the flux density
-  prediction (Sect.~\ref{se:ref_flux_uranus_neptune})}
-emission.
-The flux rescaling factor is estimated as the ratio of the calibrator flux
-density expectations, as obtained as discussed in
-Sect.~\ref{se:ref_flux_primaries}, and the average calibrator flux
-density estimate, obtained using Eq.~\ref{eq:pointsourcephot}.
+planets. This flux rescaling factor is an estimate of the
+$S_{c}(\nu_{0})$-to-$A_{c}$ ratio of Eq.~\ref{eq:pointsourcephot}. The
+calibrator flux density expectation $S_{c}(\nu_{0})$ is obtained as
+discussed in Sect.~\ref{se:ref_flux_primaries}, whereas the measured
+amplitude $A_c$ is estimated as the average amplitude of the $FWHM_0$
+Gaussian fitted from a series of calibrator maps.
 
 Before the flux density estimation, the calibrator raw data are i)
 intercalibrated as decribed
@@ -36,6 +34,38 @@ using the baseline scan selection of
 Sect.~\ref{se:data_selection}, in which, we recall, the most
 impacted scans are discarded by mean of a cut on the observation
 date. 
+
+ When available, the prefered primary calibrator is Uranus,
+ which allies a strong flux density and a small extention. At the IRAM
+ $30$-m telescope, the apparent Uranus disc diameter varies from
+ $3.3''$ to $3.7''$. In Sect.~\ref{se:ref_flux_uranus_neptune}, Uranus
+ disc is accounted for in evaluating the flux density
+ expectation. To retrieve the
+ flux density of a point source after absolute calibration using
+ Uranus, a correction has also to be applied to account for the
+ beam widening effect of Uranus disc. The response of the $FWHM_0$
+ Gaussian amplitude estimator (as of
+ Eq.~\ref{eq:fixed-width-gaussian-estimator})
+ of a map of Uranus disc
+ slightly differs from the one of a point-like source. In
+ Sect.~\ref{se:photometric_correction}, we find that the $\sigma_0$
+ Gaussian amplitude estimate
+ of the map of a point source varies as
+ $(\sigma^2 + \sigma_0^2)/(2\sigma_0^2)$, where $\sigma$ is the main
+ beam width. The convolution of Uranus disc and the $\sigma$-width
+ Gaussian widens the main beam size to $\sigma_{\rm{u}}$. Thus, the
+ absolute calibration factor evaluated on Uranus has to be corrected
+ from the Uranus disc-widening factor:
+ \begin{equation}
+   C_{u} = \frac{\sigma_{\rm{u}}^2 + \sigma_0^2}{\sigma^2 + \sigma_0^2} 
+\end{equation}
+to retrieve point-source flux densities. Using the main beam FWHM of
+$11.2''$ at $1$mm and $17.4''$ at $2$mm, as reported in Sect.~\ref{se:MB},
+the beam widening is of $0.2''$ at $1$mm and $0.13''$ at $2$mm and the
+widening factors are $1.016$ and $1.007$ at 1 and 2 mm respectively.
+
+ 
+
 
 
 \subsection{Scan selection}

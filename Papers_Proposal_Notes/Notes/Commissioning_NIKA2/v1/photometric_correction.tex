@@ -11,20 +11,24 @@ In our reference photometric system, as presented in
 Sect.~\ref{se:flux_density_equation} and
 Sect.~\ref{ap:flux_density_equation},
 the flux density is estimated by fitting an amplitude of a fixed-width
-Gaussian beam. Using Eqs.~\ref{eq:calfwhm0}, \ref{eq:pointsourcephot}
-and \ref{eq:pointsourcemap}, observed maps are modeled as:
-\begin{equation}
-  M(\theta, \phi) = \frac{A}{2 \pi \sigma_{0}^{2}} e^{-\frac{\theta^{2}}{2\sigma_{0}^{2}}}, 
-\end{equation}
-where $\sigma_{0}$ is the Gaussian beam size corresponding to the
-reference FWHM, which is $12.5''$ for the 1mm arrays and $18.5''$ for
-the 2mm array, as defined in Table~\ref{tab:definitions}. The
-amplitude of the fixed-FWHM Gaussian provides us with an estimator of
-the flux density 
+Gaussian beam:
+%. Using Eqs.~\ref{eq:calfwhm0}, \ref{eq:pointsourcephot}
+%and \ref{eq:pointsourcemap}, observed maps are modeled as:
+%\begin{equation}
+%  M(\theta, \phi) = \frac{A}{2 \pi \sigma_{0}^{2}} e^{-\frac{\theta^{2}}{2\sigma_{0}^{2}}}, 
+%\end{equation}
+%where $\sigma_{0}$ is the Gaussian beam size corresponding to the
+%reference FWHM, which is $12.5''$ for the 1mm arrays and $18.5''$ for
+%the 2mm array, as defined in Table~\ref{tab:definitions}.
 \begin{equation}
   \hat{S}  = 2 \int \int M(\theta, \phi)\, e^{-\frac{\theta^{2}}{2\sigma_{0}^{2}}} \sin \theta d\theta d\phi.
   \label{eq:flux_density_estimator}
 \end{equation}
+The beam width $\sigma_{0}$ corresponds to the
+reference FWHM, which we recall,  is $12.5''$ for the 1mm arrays and $18.5''$ for
+the 2mm array, as defined in Table~\ref{tab:definitions}.
+
+
 
 If the beam size varies so that the Gaussian part has a size given by
 $\sigma ’$, the map model rewrites  

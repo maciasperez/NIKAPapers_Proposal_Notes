@@ -6,6 +6,17 @@ in Sect.~\ref{se:obsdate_variations}, is mitigated by correcting the measured fl
 densities using a beam-size dependent function, referred to as the
 photometric correction.
 
+% flux-dependency of sigma stable
+\begin{figure}[ht!]
+  \begin{center}
+    \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.45\textwidth]{Figures/atrier/Photocorr/FWHM_stable_empiric_ref_1mm.pdf}
+    \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.45\textwidth]{Figures/atrier/Photocorr/FWHM_stable_empiric_ref_a2.pdf}
+    \caption[Photometric correction pivot Gaussian
+      size]{Flux-dependency of the photometric correction pivot
+      Guassian size $\sigma_\star$. }
+    \label{fig:sigma_stable_vs_flux}
+  \end{center}
+\end{figure}
 
 In our reference photometric system, as presented in
 Sect.~\ref{se:flux_density_equation} and
@@ -28,32 +39,61 @@ The beam width $\sigma_{0}$ corresponds to the
 reference FWHM, which we recall,  is $12.5''$ for the 1mm arrays and $18.5''$ for
 the 2mm array, as defined in Table~\ref{tab:definitions}.
 
-
-
-If the beam size varies so that the Gaussian part has a size given by
-$\sigma ’$, the map model rewrites  
+First of all, in stable observing conditions (no beam
+broadening effect), the map can be modeled by a single Gaussian of
+width $\sigma_\star$ corresponding basically to the main beam size:
 \begin{equation}
-  M(\theta, \phi) = \frac{A'}{2 \pi \sigma'^{2}} e^{-\frac{\theta^{2}}{2\sigma'^{2}}}.
-  \label{eq:broader_beam_map}
+  M(\theta, \phi) = \frac{A}{2 \pi \sigma_\star^{2}} e^{-\frac{\theta^{2}}{2\sigma_\star^{2}}}.
+  \label{eq:pointsource_map}
 \end{equation}
-
 Ingesting Eq.~\ref{eq:broader_beam_map} in
 Eq.~\ref{eq:flux_density_estimator}, we find that the flux density
-estimator depends on the actual beam size as
+estimator depends on the beam size as
 \begin{equation}
-  \hat{S}  = A' \frac{2 \sigma_0^2}{(\sigma'^2 + \sigma_0^2)}
+  \hat{S}  = A \frac{2 \sigma_0^2}{(\sigma_{\star}^2 + \sigma_0^2)}.
 \end{equation}
+However, the map is calibrated in $FWHM_0$ beam, as described in
+Sect.~\ref{se:flux_density_equation}. The absolute calibration factor,
+which is evaluating as
+$S_{c}(\nu_{0})/\hat{S}_{c}$, has a beam dependency that
+compensates the one of the flux density for the source.
 
-
-We use a photometric correcting function $f(\sigma')$ to evaluate the corrected flux density estimate $\hat{S}_{pc}$ from the
-uncorrected flux density estimate $\hat{S}$ as
+On the other hand, if the beam size varies so that the Gaussian part has a size given by
+$\sigma'$, the map model rewrites  
 \begin{equation}
-  \hat{S}_{pc} = f(\sigma')\hat{S},
-\end{equation} 
-where
+  M(\theta, \phi) = \frac{A}{2 \pi \sigma'^{2}} e^{-\frac{\theta^{2}}{2\sigma'^{2}}},
+  \label{eq:broader_beam_map}
+\end{equation}
+where the amplitude is the same as in the stable condition case
+because the flux density is conserved when integrating over the map. 
+The flux density measured using the fixed-width amplitude estimator 
 \begin{equation}
-  f(\sigma') = \frac{(\sigma'^2 + \sigma_0^2)}{2 \sigma_0^2}. 
+  \hat{S'}  = A \frac{2 \sigma_0^2}{(\sigma'^2 + \sigma_0^2)}
+\end{equation}
+presents a beam-dependency which differs from the one of the primary
+calibrator, and which is no longer compensated when performing the
+absolute calibration.
+
+To retrieve an unbiased flux density estimate $\hat{S}_{pc}$, the
+flux density estimate $\hat{S'}$ has to be corrected as
+\begin{equation}
+  \hat{S}_{pc} = f(\sigma')\hat{S'},
 \end{equation} 
+where the photometric correction is 
+\begin{equation}
+  f(\sigma') = \frac{(\sigma'^2 + \sigma_0^2)}{(\sigma_\star^2+\sigma_0^2)}, 
+\end{equation} 
+so that $f(\sigma') = 1$ if $\sigma'=\sigma_\star$.
 
-
-
+The pivot Gaussian size $\sigma_{\star}$, which corresponds
+to the nominal size of the 2D Gaussian fit of the beam that is
+measured in stable observing conditions, slightly varies with the
+source flux density. Whereas it basically corresponds to the main beam
+size for faint to moderately bright point source, it is slightly
+larger for sources bright enought for the error beams to be well above
+the noise level. In Fig.~\ref{fig:sigma_stable_vs_flux}, we give an
+empirical model for the flux dependency of $\sigma_{\star}$: it
+smoothly goes from $11.2''$ at 1-mm and $17.4''$ at 2-mm for
+moderately bright sources to
+$11.7''$ at 1-mm and $17.7''$ at 2-mm at the flux density of Uranus,
+then slightly continues increasing for sources brighter than Uranus.

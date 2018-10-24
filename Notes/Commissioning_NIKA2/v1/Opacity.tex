@@ -15,6 +15,7 @@ is parametrized from the zenith opacity $\tau_{\nu}$
 and the line-of-sight air mass $x$, such as
 \begin{equation}
 \tilde{S}_{\nu} = S_{\nu} \, e^{-\tau_{\nu} \cdot x}.
+\label{eq:uncorr_flux}
 \end{equation}
 
 An accurate derivation of the opacity condition for each scan is
@@ -53,13 +54,60 @@ atmsopheric conditions, as discussed in Chapter~\ref{se:photometry}.
 \section{Taumeter-based method}
 \label{se:taumeter-method}
 
+We use a series of 64 scans of MWC349
+acquired during N2R9 campaign to fit the relations between the IRAM
+$225$GHz taumeter opacities and NIKA2 band pass opacities. This data
+set consists of the baseline selected sub-set of scans from the 68
+available scans for this source during N2R9. It constitutes an
+homogeneous data set in flux density but heterogeneous in atmospheric
+conditions: zenith opacities at $225$GHz range from
+0.08 to 0.32 and elevations from $23$ to $73$ degrees. NIKA2 opacities
+$\tau_\nu$, for $\nu$ corresponding
+to Array 1, 2, 3 and the combination of Arrays 1 and 3, are estimated
+from the $225$GHz taumeter opacity measurements $\tau_{225}$ as
+\begin{equation}  
+  \tau_\nu =  a_\nu^{225}\tau_{225} + b_\nu^{225},          
+\end{equation}
+where the parameters $a_\nu^{225}$ and $b_\nu^{225}$ are fitted to ensure
+that the non-corrected flux densities $\tilde{S}_\nu$ are stable againts
+$\tau_{225}$ after correction of the atmospheric attenuation by
+inversion of Eq.~\ref{eq:uncorr_flux} using 
+\begin{equation}  
+  S_\nu = \tilde{S}_\nu e^{(a_\nu^{225}\tau_{225} + b_\nu^{225}) \cdot x}.
+  \label{eq:opacorr_taumeter}
+\end{equation}
+
+We tested two estimators of the flux stability. The first one relies
+on minimising the
+standard deviation of the estimate-to-median ratio of the opacity
+corrected flux densities of Eq.~\ref{eq:opacorr_taumeter}. The second
+one consists in rewriting the rms minimisation as an unweighted
+$\chi^2$ minimisation using:
+\begin{equation}
+\chi^2 = \sum_{i=1}^{N} \frac{1}{N\sigma^2} \, \left( \frac{S_\nu}{Med(S_\nu)} -1 \right)^2,  
+\end{equation}
+where $\sigma$ is the rms error of the flux density estimates. Note
+that these estimates are not independent and they do not depends on
+the flux density of the source.  
+
+
 \begin{figure}[ht!]
   \begin{center}
     \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.33\textwidth]{Figures/Opacity/fit_nika2_tau_from_taumeter_mwc349_a1.pdf}
     \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.33\textwidth]{Figures/Opacity/fit_nika2_tau_from_taumeter_mwc349_a3.pdf}
     \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.33\textwidth]{Figures/Opacity/fit_nika2_tau_from_taumeter_mwc349_1mm.pdf}
     \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.33\textwidth]{Figures/Opacity/fit_nika2_tau_from_taumeter_mwc349_a2.pdf}
-    \caption[IRAM taumeter to NIKA2 opacity model]{IRAM taumeter to NIKA2 opacity model}
+    \caption[IRAM taumeter to NIKA2 opacity model]{IRAM $225$GHz taumeter to
+    NIKA2 opacity relation fit.
+    The $a_{\nu}^{225}$ and
+    $b_{\nu}^{225}$ parameter space is explored for Array 1 (upper left),
+    Array 3 (upper right), the combination of 1mm arrays (lower left)
+    and Array 2 (lower right).
+    The red contours correspond to rms
+    errors of the measured-to-median flux density ratio of $9$, $10$
+    and $12\%$ at 1mm and $4.5$, $5$ and $6\%$ at 2mm. The blue
+    contours correspond to $\chi^2$ estimates of 1, 2 and 3.
+    The best fit values are shows as green stars} 
 \label{fig:taumeter_fit}
 \end{center}
 \end{figure}

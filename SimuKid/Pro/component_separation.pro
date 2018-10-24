@@ -2,13 +2,13 @@
 ;; Simple component separation to assess impact of non linearity
 
 ;; Assumed non-linearity parameter
-epsilon = 0.5d-1
+epsilon = 1d-3 ;0.5d-1 ;1d-6 ;0.d0
 
 ;pro a, epsilon
 
 ;; Outplot format
 ps  = 0
-png = 1
+png = 0
 
 ;; Final map resolution
 nside = 256 ; 1024 ; 512
@@ -331,7 +331,7 @@ oplot, l, clb
 oplot, l, abs(clte)
 oplot, l_out, fl*clt_out_avg
 oplot, l_out, fl*cle_out_avg, col=col_ee
-oplot, l_out, fl*clb_out_avg, col=col_bb
+oplot, l_out, fl*abs(clb_out_avg), col=col_bb
 oplot, l_out, fl*abs(clte_out_avg), col=col_te
 legendastro, ['T', 'E', 'B', 'TE'], col=[!p.color, col_ee, col_bb, col_te], line=0
 legendastro, 'Nmc = '+strtrim(nmc,2), /right

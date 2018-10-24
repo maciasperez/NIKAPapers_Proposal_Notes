@@ -3,7 +3,7 @@
 ;;--------------------
 
 ;; Realizations
-nmc = 30 ; 100
+nmc = 30 ;200
 
 ;; HWP power
 hwp_max_ampl_jy = 1000 ; 100. ; 50.
@@ -197,12 +197,12 @@ for ispeed=0, nspeed-1 do begin
 endfor
 
 ;; Output vs input flux
-yra = [0.9, 1.01]
+yra = [0.96, 1.01]
 xra = minmax(flux_list)
 imc = 0
 if ps eq 0 then wind, 1, 1, /free, /large
 outplot, file='flux_out_vs_in', png=png, ps=ps
-plot, flux_list, planet_rf_flux_results[0,imc,*,1]/flux_list, $
+plot, flux_list, planet_rf_flux_results[0,imc,*]/flux_list, $
       /xs, /ys, xra=xra, yra=yra, xtitle='Input flux', $
       ytitle='Output flux / input flux', /nodata
 oplot, xra, xra*0. + 1.d0
@@ -211,17 +211,20 @@ oplot, flux_list, planet_rf_flux_results[1,imc,*]/flux_list, col=col_rf
 oplot, flux_list, planet_cf_flux_results[0,imc,*]/flux_list, col=col_cf, line=2
 oplot, flux_list, planet_cf_flux_results[1,imc,*]/flux_list, col=col_cf
 legendastro, ['3pts/FWHM', '5pts/FWHM'], line=[2,0], /right
+legendastro, ['Rf', 'Cf'], col=[col_rf, col_cf], line=[0,0], /left
 outplot, /close, /verb
+
 stop
 
 ;; Distribution of non linearity coeffs
+gap_x = 0.05
 if ps eq 0 then wind, 1, 1, /free, /large
 outplot, file='histos_epsilon', png=png, ps=ps
-my_multiplot, 1, 1, ntot=nspeed*2, pp, pp1, /rev
+my_multiplot, 1, 1, ntot=nspeed*2, pp, pp1, /rev, gap_x=gap_x
 for ispeed=0, nspeed-1 do begin
    np_histo, reform( epsilon_planet_hwp_rf[ispeed,*], nmc), $
              position=pp[ispeed,0,*], title='Epsilon planet_hwp RF', $
-             /fit, /noerase, /fill, fcol=col_Rf
+             /fit, /noerase, /fill, fcol=col_rf
    legendastro, ['Max. HWP Ampl: '+strtrim(hwp_max_ampl_jy,2)+" Jy", $
                  strtrim(npts_per_fwhm_list[ispeed],2)+" pts/FWHM"]
    
@@ -233,15 +236,18 @@ for ispeed=0, nspeed-1 do begin
 endfor
 outplot, /close, /verb
 
+;; wind, 1, 1, /free, /large
+;; my_multiplot, 1, 1, ntot=nspeed*2, pp, pp1, /rev
+;; for ispeed=0, nspeed-1 do begin 
 
-np_histo, reform( calib_planet_hwp_rf[ispeed,*], nmc), $
-          position=pp1[0,*], title='Calib planet_hwp RF', /fit, /fill, fcol=col_rf
-legendastro, ['Max. HWP Ampl: '+strtrim(hwp_max_ampl_jy,2)+" Jy"]
-
-np_histo, reform( calib_planet_hwp_cf[ispeed,*], nmc), $
-          position=pp1[1,*], title='Calib planet_hwp CF', /fit, /noerase, /fill, fcol=col_cf
-legendastro, ['Max. HWP Ampl: '+strtrim(hwp_max_ampl_jy,2)+" Jy"]
-
+;;    np_histo, reform( calib_planet_hwp_rf[ispeed,*], nmc), $
+;;              position=pp1[0,*], title='Calib planet_hwp RF', /fit, /noerase, /fill, fcol=col_rf
+;;    legendastro, ['Max. HWP Ampl: '+strtrim(hwp_max_ampl_jy,2)+" Jy"]
+   
+;;    np_histo, reform( calib_planet_hwp_cf[ispeed,*], nmc), $
+;;              position=pp1[1,*], title='Calib planet_hwp CF', /fit, /noerase, /fill, fcol=col_cf
+;;    legendastro, ['Max. HWP Ampl: '+strtrim(hwp_max_ampl_jy,2)+" Jy"]
+;; endfor
 
 
 end

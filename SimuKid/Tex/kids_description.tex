@@ -13,12 +13,6 @@
 %%%%
 
 
-\begin{figure}
-  \includegraphics[clip, angle=0, width=\columnwidth]{../Figures/resonance.png}
-  %	\includegraphics[clip, angle=0, width=\columnwidth]{Figures/resonance.pdf}
-  \caption{Schematic representation of a KID resonance in amplitude (left) and phase (right), as a function of the excited tone injected in the feedline. The optical power absorbed by the detector is weak for black curves and increases for red curves. The absorption of a photon shifts the resonance frequency and this is directly proportional to the received power.}
-  \label{resonance}
-\end{figure}
 
 Kinetic Inductance Detectors (KID) are a novel superconducting detector technology
 that provides high sensitivity and ease of multiplexing. In this section we give
@@ -64,14 +58,21 @@ this paper, we shall assume typical values of KIDs $X_{1} = X_{2} =
 addresses how the resonance of a KID is monitored and related to the incident
 optical power.
 
+\begin{figure}
+  \includegraphics[clip, angle=0, width=\columnwidth]{Figures/resonance.png}
+  %	\includegraphics[clip, angle=0, width=\columnwidth]{Figures/resonance.pdf}
+  \caption{Schematic representation of a KID resonance in amplitude (left) and phase (right), as a function of the excited tone injected in the feedline. The optical power absorbed by the detector is weak for black curves and increases for red curves. The absorption of a photon shifts the resonance frequency and this is directly proportional to the received power.}
+  \label{fig:resonance}
+\end{figure}
+
+
 
 % \section{Methods of signal reconstruction}
 \subsection{Photometry}
 \label{sec:signal}
 
 A dedicated KID readout system has been developed by \citet{2013A&A...551L..12C}
-and successfully used for \nika\ and \nika2\ \todo{which paper should we cite
-  here, all ?}. We here summarize its main characteristics and the observables
+and successfully used for \nika\ and \nika2\ \citep{2010A&A...521A..29M,2016JLTP..184..816C}. We here summarize its main charcteristics and the observables
 that are relevant for our simulation work. We then present two ways to use them
 to derive the photometry.
 
@@ -84,7 +85,7 @@ to derive the photometry.
 \subsubsection{Modulated readout technique}
 
 \begin{figure}
-  \includegraphics[clip,angle=0,width=\columnwidth]{../Figures/resonance-circle.png}
+  \includegraphics[clip,angle=0,width=\columnwidth]{Figures/resonance-circle.png}
   \caption{Trajectory of $\I$ and $\Q$ during a frequency sweep around the
     resonance of a KID. The arrows represent $(\di,
     \dq)$. \citep{2013A&A...551L..12C}}
@@ -164,7 +165,7 @@ measurements.
 \subsubsection{Circle fit : Cf}
 
 \begin{figure}
-\includegraphics[clip, angle=0, width=\columnwidth]{../Figures/circle_zres.eps}
+\includegraphics[clip, angle=0, width=\columnwidth]{Figures/circle_zres.eps}
 \caption{Bottom: location of $\I$ and $\Q$ when a KID observes a point source of
   various fluxes. Top: ratio of the distance between $(\I,\Q)$ and the center of
   the fitted circle over the radius of this circle. All the points on the pure
@@ -231,12 +232,11 @@ to integrate.
 %% \frac{(\delta\phi)^3}{15}
 %% \end{equation}
 
-{\color{blue} 
 \subsection{Non linearity characterization with simulations of observations of a point source}
 
 \begin{figure}
 \center
-\includegraphics[clip, angle=0, width=\columnwidth]{../Figures/KID-linearity-Monfardini2014.png}
+\includegraphics[clip, angle=0, width=\columnwidth]{Figures/KID-linearity-Monfardini2014.png}
 \caption{KID linearity demonstrated in laboratory under realistic
   conditions. The plot shows the frequency shift of the resonance as a function
   of the optical background temperature (K). Solid line : linear fit of the
@@ -276,11 +276,38 @@ We simulate the observation of a point source with a flux
 that we vary between \todo{1 and 2000\,Jy TBC} (fluxes are unrealistically large on purpose for illustration). We assume that our instrument has
 a 11\,arcsec FWHM Gaussian beam like the polarized 1\,mm channel of \nikad. We
 also vary the scanning speed of our virtual instrument while keeping a minimum
-of 3~samples per FWHM to respect the Nyquist criterion.}
-As shown in Fig.~\ref{fig:planet_profiles}, non linearity appears with the distortion of the input gaussian profile in the case of \rf\ method whereas \cf\ remains linear on the same flux scale.
+of 3~samples per FWHM to respect the Nyquist criterion.
+As shown in Fig.~\ref{fig:planet_profiles} and Fig.~\ref{fig:flux_out_vs_in}, non linearity appears with the distortion of the input gaussian profile in the case of \rf\ method whereas \cf\ remains linear on the same flux scale.
 
 \begin{figure}
-  \includegraphics[clip, angle=0, width=\columnwidth]{../Figures/planet_profiles.eps}
+  \includegraphics[clip, angle=0, width=\columnwidth]{Figures/planet_profiles.eps}
   \caption{Comparison of an incoming flux that we vary between 1 and 2000 Jy TBC (in black), with flux reconstructed by \rf\ and \cf. Fluxes are unrealistically large on purpose for illustration. }
   \label{fig:planet_profiles}
 \end{figure}
+
+
+\begin{figure}
+  \includegraphics[clip, angle=0, width=\columnwidth]{Figures/flux_out_vs_in.eps}
+  \caption{Comparison of an incoming flux that we vary between 1 and 2000 Jy TBC (in black), with flux reconstructed by \rf\ and \cf. Fluxes are unrealistically large on purpose for illustration. }
+  \label{fig:flux_out_vs_in}
+\end{figure}
+
+For all simulations we computed the non-linearity coefficient $\varepsilon$ from eq.~\ref{eq:model_kid_nl} by doing a fit of the input fluxes as a fonction of output fluxes. Results are shown in Tab.~\ref{tab:eps}. As in the two figures the non-linearity coefficients show \rf\ method is less linear than \cf\ on the same flux scale.
+
+\begin{table}
+\center
+\begin{tabular}{|c|c|c|}
+	\hline
+	    & $\frac{3pts}{beam}$ & $\frac{5pts}{beam}$ \\
+	\hline
+\rf\	&  $-4.58 \times 10^{-5}$ & $-2.33 \times 10^{-5}$ \\
+	\hline
+\cf\ & $1.09 \times 10^{-7}$   & $8.90 \times 10^{-8}$ \\
+	\hline
+\end{tabular}
+\caption{Non-linearity coefficients $\varepsilon$ from an incoming flux that we vary between 1 and 500 Jy.}
+\label{tab:eps}
+\end{table}
+
+Simulations of a KID exposed to a point source with a large variation of fluxes have shown that it meets the requirement addressed in Sec.~\ref{sec:cmb}. 
+HWP presente bcp d'avantages pour les futurs experiences cmb, dans la prochaine section on regarde la NL induite par la HWP. 

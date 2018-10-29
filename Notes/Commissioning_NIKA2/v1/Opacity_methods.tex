@@ -54,8 +54,10 @@ atmsopheric conditions, as discussed in Chapter~\ref{se:photometry}.
 \section{Taumeter-based method {\color{blue} Laurence $\&$ Juan}}
 \label{se:taumeter-method}
 
-The IRAM 30m falicity is equipped of a fixed-azymuth taumeter operated
-at $225$~GHz to monitor the atmospheric opacity. Time-stamped
+The IRAM 30m falicity is equipped of a resident taumeter, which performs
+elevation scans at a fixed azimuth and is operated at 225~GHz, to
+monitor the atmospheric opacity.
+Time-stamped
 zenith opacities at $225$~GHz $\hat{\tau}_{225}$ are derived from the
 taumeter measures by Dave~L.~John. Two different $\hat{\tau}_{225}$
 estimates are fitted, one relying on a linear model and the other on
@@ -70,6 +72,29 @@ observing scans is of several minutes. Thus we use median filtered
 version of the $\hat{\tau}_{225}$ estimates. {\color{magenta} Juan to
 complement/rewrite this paragraph}\\
 
+
+\begin{figure}[ht!]
+  \begin{center}
+    \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.4\textwidth]{Figures/Opacity/fit_nika2_tau_from_taumeter_mwc349_a1.pdf}
+    \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.4\textwidth]{Figures/Opacity/fit_nika2_tau_from_taumeter_mwc349_a3.pdf}
+    \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.4\textwidth]{Figures/Opacity/fit_nika2_tau_from_taumeter_mwc349_1mm.pdf}
+    \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.4\textwidth]{Figures/Opacity/fit_nika2_tau_from_taumeter_mwc349_a2.pdf}
+    \caption[IRAM taumeter to NIKA2 opacity model]{IRAM $225$GHz taumeter to
+    NIKA2 opacity relation fit.
+    The $a_{\nu}^{225}$ and
+    $b_{\nu}^{225}$ parameter space is explored for Array 1 (upper left),
+    Array 3 (upper right), the combination of 1mm arrays (lower left)
+    and Array 2 (lower right).
+    The red contours correspond to rms
+    errors of the measured-to-median flux density ratio of $9\%$, $10\%$
+    and $12\%$ at 1mm and $4.5\%$, $5\%$ and $6\%$ at 2mm. The blue
+    contours are the $68$, $95$ and $99\%$ confidence
+    level contours of the parameters estimated using the $\chi^2$
+    minimization.
+    The best fit values are shows as green stars} 
+\label{fig:taumeter_fit}
+\end{center}
+\end{figure}
 
 We fit the the relations between the IRAM
 $225$GHz taumeter opacities and NIKA2 band pass opacities using
@@ -133,29 +158,6 @@ to correct for the atmospheric attenuation and perform consistency
 checks for baseline results in Sect.~\ref{se:photometry_others}.
 
 
-\begin{figure}[ht!]
-  \begin{center}
-    \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.42\textwidth]{Figures/Opacity/fit_nika2_tau_from_taumeter_mwc349_a1.pdf}
-    \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.42\textwidth]{Figures/Opacity/fit_nika2_tau_from_taumeter_mwc349_a3.pdf}
-    \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.42\textwidth]{Figures/Opacity/fit_nika2_tau_from_taumeter_mwc349_1mm.pdf}
-    \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.42\textwidth]{Figures/Opacity/fit_nika2_tau_from_taumeter_mwc349_a2.pdf}
-    \caption[IRAM taumeter to NIKA2 opacity model]{IRAM $225$GHz taumeter to
-    NIKA2 opacity relation fit.
-    The $a_{\nu}^{225}$ and
-    $b_{\nu}^{225}$ parameter space is explored for Array 1 (upper left),
-    Array 3 (upper right), the combination of 1mm arrays (lower left)
-    and Array 2 (lower right).
-    The red contours correspond to rms
-    errors of the measured-to-median flux density ratio of $9\%$, $10\%$
-    and $12\%$ at 1mm and $4.5\%$, $5\%$ and $6\%$ at 2mm. The blue
-    contours are the $68$, $95$ and $99\%$ confidence
-    level contours of the parameters estimated using the $\chi^2$
-    minimization.
-    The best fit values are shows as green stars} 
-\label{fig:taumeter_fit}
-\end{center}
-\end{figure}
-
 
 
 %----------------------------------------------------------------------------------------
@@ -170,8 +172,7 @@ successfully tested with NIKA. The details of this technique and its agreement
 with the Atmospheric Transmission at Microwaves (ATM) model
 (\cite{2001IEEE....49.1683C}) are described in \cite{Catalano:2014nml}. The
 underlying idea is to replace the opacity, usually delivered by the resident
-IRAM tau-meter that performs elevation scans at a fixed azimuth and is
-operating at 225\,GHz, by a measurement that uses the NIKA2 instrument itself
+IRAM tau-meter by a measurement that uses the NIKA2 instrument itself
 as a tau-meter. Using this procedure we can directly derive an opacity
 integrated in the NIKA2 very bandpasses and in the same line-of-sight of the
 source in the considered map. For that purpose, we assume that the resonance
@@ -201,13 +202,13 @@ By assuming a homogeneous plane-parallel atmosphere, the airmass $x$ is defined 
 elevation as $x = \left(\sin\delta\right)^{-1}$. 
 
 The coefficients $C_0^k$ and $C_1^k$ are expected to be constant in
-time within at least a cooldown cycle, and are determined using a {\tt
+time within at least a cooldown cycle, and are determined using a {\emph
 skydip} procedure. This consists in moving the telescope in elevation
-step by step and monitoring, for each kid, the evolution of $\ftone^k$
-versus the air mass and to fit the zenith opacity $\tau$ and $C_0^k$
-and $C_1^k$. This process is realised by performing a skydip scan, as
-defined in~Sect.~\ref{se:skydip}. The acquisition time spend on each
-elevation step, wich is of about twenty seconds, is chosen to reduce
+step by step, that is performing a skydip scan, as
+defined in~Sect.~\ref{se:skydip}, and monitoring, for each kid, the
+evolution of $\ftone^k$ versus the air mass and to fit the zenith
+opacity $\tau$ and $C_0^k$ and $C_1^k$. The acquisition time spend on each
+elevation step, which is of about twenty seconds, is chosen to reduce
 the error in the determination of $\ftone^k$.
 
 All skydips, obtained under various opacity
@@ -244,9 +245,9 @@ determination process relies on a selection of the skydip scans.
 \section{Skydip selection {\color{blue} Laurence}}
 \label{se:skydip-selection}
 
-\begin{figure}[p]
+\begin{figure}[ht!]
 \begin{center}
-\includegraphics[clip=true,width=0.9\linewidth]{Figures/Opacity/plot_skydip_selection_two_crit.pdf}
+\includegraphics[clip=true,width=0.8\textwidth]{Figures/Opacity/plot_skydip_selection_two_crit.pdf}
 \caption[N2R9 skydip scan selection.]{ Median dT quality-fit criterion is plotted in fonction of Median rms criterion for each skydip scans of the N2R9 campaign and for the three arrays. Both criteria are nicely correlated. Empty diamonds show the results of the first iteration of the skydip coefficient estimation, whereas filled circled show the second iteration, for which only the skydips that met both fit-quality criteria are included. After the second iteration, all the remaining skydips met the criteria.}
 \label{fig:skydipselection}
 \end{center}
@@ -276,8 +277,9 @@ criteria
 The threshold values have been determined using the set of 44 skydip
 scans of N2R9. The Median rms cut corresponds to twice the median of
 this quantity per skydip scan, whereas the Median $dT$ cut is twice
-the standard deviation of Median $dT$ over the skydips. N2R9 skydip
-scan selection is illustrated in Fig.~\ref{fig:skydipselection}, in
+the standard deviation of Median $dT$ over the skydips.
+N2R9 skydip scan selection is illustrated in
+Fig.~\ref{fig:skydipselection}, in
 which the agreement between the two fit-quality criteria is clearly
 seen. The ($C_0$, $C_1$) estimation proceeds in two steps: first the
 parameters are estimated using all the available skydip scan for a
@@ -286,10 +288,33 @@ skydip scans that met the fit-quality criteria. After the second
 iteration, we check that no extra skydip outlier are left, as shown by
 the 'v2' label data points in Fig.~\ref{fig:skydipselection}.
 
+\begin{figure}[ht!]
+  \begin{center}
+    \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0},  width=0.42\textwidth]{Figures/Opacity/Skydip_selection_impact_a1.pdf}
+    \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0},  width=0.42\textwidth]{Figures/Opacity/Skydip_selection_impact_a3.pdf}
+    \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0},  width=0.42\textwidth]{Figures/Opacity/Skydip_selection_impact_1mm.pdf}
+    \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0},  width=0.42\textwidth]{Figures/Opacity/Skydip_selection_impact_a2.pdf}
+   \caption[Skydip selection impact on opacities]{Skydip-selection
+    impact on the opacity estimates.} 
+\label{fig:skydip-selection-impact}
+\end{center}
+\end{figure}
 
-\addparag{stability against the skydip scan selection + FIG}
-We test the stability of the ($C_0$, $C_1$) parameters against the exact choice of the selection criteria.  
-At 1mm, we find about {\color{red} $[$TBC$]$  $10\%$} opacity variation from very inclusive to very aggressive selections. However, at 2mm, this scatter reachs about {\color{red} $[$TBC$]$  $30\%$} relative uncertainties.
+
+
+We test the stability of the ($C_0$, $C_1$) parameters against the
+exact choice of the selection criteria. 
+
+Figure~\ref{fig:skydip-selection-impact} shows the relative
+difference w.r.t. the baseline $\tau$ of five skydip selections.
+
+
+
+At 1mm, we find about {\color{red} $[$TBC$]$  $10\%$} opacity
+variation from very inclusive to very aggressive selections. However,
+at 2mm, this scatter reachs about {\color{red} $[$TBC$]$  $30\%$}
+relative uncertainties.
+
 
 
 %We conclude that opacities at 1mm can be reliably estimated from a series of skydip scans using the (C0, C1) model. %By contrast, for the 2mm opacities, a skydip-based method is not stable enough against the skydip selection. Thus, we adopt an hybrid approach. 

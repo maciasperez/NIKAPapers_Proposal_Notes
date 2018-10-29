@@ -66,10 +66,15 @@
 \newcommand{\elev}{\delta}
 \newcommand{\nika}{NIKA2}
 \newcommand{\todo}[1]{\textcolor{magenta}{\textbf{#1}}}
-\newcommand{\aka}{a.~k.~a.}
+\newcommand{\aka}{a.\,k.\,a.}
+\newcommand{\wrt}{w.\,r.\,t.}
 \newcommand{\bm}{\emph{beammap}}
 \newcommand{\bms}{\emph{beammaps}}
-
+\newcommand{\rf}{\emph{RfdIdQ}}
+\newcommand{\kidpar}{\emph{kidpar}}
+\newcommand{\radec}{\emph{R.\,A.,\,Dec}}
+\newcommand{\cm}{\emph{common~mode}}
+\newcommand{\cmoneb}{\emph{common~mode~one~block}}
 
 % COMMENTAIRES
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -158,20 +163,33 @@ We present NIKA2 performance assessment after the end of the commissioning in in
 %----------------------------------------------------------------------------------------
 %	GENERALITIES: INSTRUMENT, OBSERVATION AND METHODS
 %----------------------------------------------------------------------------------------
-\chapter{Intrument, observations and methods {\color{blue} Nico}}
+\chapter{Intrument, observations and methods}
+
+This chapter is meant to be an introduction to the instrument and the data
+reduction from an astronomer point of view. It summarizes the intrument
+parameters that are relevant for the data processing and the different steps
+required to go from raw data to scientific maps. The details of each of these
+parameters and their derivation is the object of the following sections.
 
 %%	INSTRUMENT
 \input{Instrument.tex}
 
+%% Data reduction: explain what is needed to go from raw timelines to maps.
+%% it will be a list of what is needed with very little description that will
+%% announce the details on each item that is developped in the following
+%% sections.
+\input{toi2maps.tex}
+
 %%	OBSERVATION MODES
-%\section{Calibration and commissioning observations at the 30\,m telescope {\color{blue} Nico}}
+%% This section presents the different kind of observations that we have
+%% performed to derive the pipeline parameters and performances that are
+%% presented in details in the followin sections.
 %\label{se:observation}
 \input{Observation.tex}
 
 %%	CALIBRATION PIPELINE, DATA REDUCTION, DATA SELECTION
 %\section{Data reduction: from timelines to maps {\color{blue} Nico et al.} }
 %\label{se:toi2maps}
-\input{toi2maps.tex}
 \input{Calibration_pipeline.tex}
 
 

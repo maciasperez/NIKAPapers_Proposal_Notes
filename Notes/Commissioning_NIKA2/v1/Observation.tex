@@ -22,18 +22,15 @@ moved by several arcsec with the displacement of M2 and this would alter the flu
 measurement on a fixed reference position too much to allow focus
 optimization.
 
-To solve this issue we have designed a specific focus procedure
-that takes advantage of the filled array nature of the instrument. We perform a
-series of five successive short raster scans of a bright point source at five M2 position
+To solve this issue we have designed a specific focus procedure that takes
+advantage of the filled array nature of the instrument. We perform a series of
+five successive short raster scans of a bright point source at five M2 position
 offsets, typically $\{-0.8, -0.4, 0, 0.4, 0.8\}$\,mm w.r.t.~the current
-$z$-focus. We then analyse each map to optimize the $z$ position of M2. More details are
-given in Sect.~\ref{se:focus}.
-
-Once the focus is correctly determined, the pointing corrections are derived
-from an EMIR like pointing calibration scan (Sect.~\ref{se:pointing}).
-
-The instrument is then ready to observe scientific targets. A discussion on how
-to parameterize the scanning strategy is proposed in Sect.~\ref{se:observing_strat}.
+$z$-focus. We then analyse each map to optimize the $z$ position of M2. More
+details are given in Sect.~\ref{se:focus}. Once the focus is correctly
+determined, the pointing corrections are derived from an EMIR like pointing
+calibration scan (Sect.~\ref{se:pointing}). The instrument is then ready to
+observe scientific targets.
 
 \subsection{Focus}
 \label{se:focus}
@@ -213,16 +210,32 @@ to ensure a precise monitoring of each KIDs.
 
 \todo{add RTA and skydips\_4 plots to illustrate}
 
-\subsection{Beam-maps}
+\subsection{\bms}
+\label{se:beammaps}
 
 A \bm\ is a map of a bright and compact source, most of the time
 a planet, with an elevation step small enough to meet Nyquist sampling of the
 1\,mm beam, namely 4.8~arcsec. We observe this planet with a raster scan in
-(az,el) coordinates, either with fixed elevation subscans or fixed azimuth
+(az,el) coordinates of $13\times7.8$~arcmin$^2$, either with fixed elevation subscans or fixed azimuth
 subscans. The former has the advantage of low air mass variation across a
 subscan, the latter offers an orthogonal scan direction to the former: the
 combination of both gives a more accurate determination of the far side
-lobes. More details on these observations are given in
+lobes. The scan size ensures that the entire FOV is
+observed with good margins for beam mapping even on the edges and good margin
+for baseline derivation and subtraction in the scanning direction. During
+subscans, the telescope travels at 65\,arcsec/s. This values
+results of a compromise between the need to scan as fast as possible to minimize
+atmospheric contamination while keeping subscans no shorter than 10\,s
+(telescope constraint). The need to have Nyquist sampling of the beams along the
+scan direction translates into a maximum speed 110\,arcsec/s for our nominal
+acquisition rate of 23.8\,Hz and is thus largely met. Subscans last 12\,s, the
+entire scan lasts about 25\,mn, which is short enough to prevent to much
+variation of KID tuning under stable weather conditions on this timescale.
+
+
+
+
+ More details on these observations are given in
 Sect.~\ref{se:fp_reconstruction} where we describe how to actually exploit them
 to derive individual KID properties.
 

@@ -1,139 +1,329 @@
-\section{Overview of the calibration pipeline}
+
+
+\section{Overview of the data reduction pipeline {\color{blue} Nico}}
 
 Because each matrix of \nika\ is a filled array with more than one detector per
-PSF on average, and because the atmosphere and electronic noise acting as
+PSF on average, and because the atmosphere and electronic noise act as
 correlated low frequency parasites, the data reduction of \nika\ does not
-proceed on an individual KID basis. We therefore have to use an iterative scheme
-that is presented in this section. Specific details on each step are then
-presented in further dedicated sections.
-
-%\subsection{Overview of the calibration pipeline}
-
-The steps to go from raw timeline data as given by the acquisition in Hertz, to
-calibrated data in Jansky per beam comprize:
+proceed on an individual KID basis in general. This, in addition to the
+necessary pointing information specifies some of the data reduction
+process. In short, the data reduction proceeds as such:
 
 \begin{itemize}
-\item[-] Low level processing
-\item[-] Field-of-view geometry and KID selection
-\item[-] KID-to-KID intercalibration (flat fielding and iterative common mode)
-\item[-] Opacity correction
-\item[-] Absolute calibration
+\item Low level processing (sect.~\ref{se:ll_proc})
+\item Pointing reconstruction (sect.~\ref{se:ptg})
+\item TOI calibration and opacity correction (sect.~\ref{se:flux_calib})
+\item TOI processing (sect.~\ref{se:toi_proc})
+\item Map projection (sect.~\ref{se:map_projection})
+\item Photometry (sect.~\ref{se:photometry})
 \end{itemize}
 
 \subsection{Low level processing}
+\label{se:ll_proc}
 
 A first step of the analysis is to read the data produced by \nika's
-acquisition. These data as such are in Hz. Not only their physical unit is not
-suitable for observations, the timelines are not yet free of artefacts that must
-be corrected for before any scientific use. Indeed, a file of raw data related
-to a scan is created after the reception of message \todo{from the
-  telescope/Elvin/Pako/what-exactly?}. The KIDS are then tuned during a first
-dedicated subscan and only after that the data samples have a physical
-meaning. The first task of the pipeline is therefore to detect this tuning and
-select data after it. A set of tasks and sanity checks are then performed, such
-as flagging the samples affected by cosmic rays, detecting potentially missing
-pointing information and reconstructing it from the \emph{antennaIMBfits} file,
-flagging saturated data or ill tuned KIDs.\\
+acquisition. The data as such comprise various quantities that describe the
+variations of the KID's resonnance frequencies, such as $I$, $Q$, $dI$,
+$dQ$. From these quantities, and throughout this work, we use our so called
+\rf\ photometric estimator that combines them into a quantity that is
+proportionnal to the flux absorbed by a KID \cite{Calvo13} and homogeneous to Hz.
 
-All these tasks are routinely done for all analyses.
+In addition to this, we look for and remove the - rare - cosmic rays
+events. KIDs have such fast time constants that unlike bolometers, these events
+affect a sole sample that is easy to detect by a simple comparison to the rms of
+the TOI a few second window. These affected samples are remplaced by a simple
+linear interpolation of their surrounding (not to leave holes in the TOI) but
+are flagged in order not to project false data on the final map.
 
-\subsection{Focal plane geometry reconstruction}
-\label{se:fov_first_geometry}
+We also have a series of tests that read flags from the acquisition
+overall. These flags monitor potential jumps in the cryostat or acquisition
+monitoring. Most important are the flags related to the tuning. Because the
+acquisition file boundaries are not strictly linked to the beginning and the end of
+a scan, we must discard everything that happens before the last tuning of the
+beginning, and everything after the first automatic tuning that happens when the
+scan is done.
 
-In order to be able to produce any map, one needs to associate a pointing
-direction to any data sample of the system. The telescope provides us with
-various pointing information for a reference position in the focal plane. We
-then need to know the relative pointing offsets of each detector. We use \bms\
-for this purpose. These observations consist in azimuth-elevation (or
-elevation-azimuth) raster scans of $13\times7.8$~arcmin$^2$ with an
-inter-subscan step of 4.8\,arcsec. The scan size ensures that the entire FOV is
-observed with good margins for beam mapping even on the edges and good margin
-for baseline derivation and subtraction in the scanning direction. The
-inter-subscan step provides Nyquist sampling of the smallest beams of the system
-at 1\,mm. During subscans, the telescope travels at 65\,arcsec/s. This values
-results of a compromise between the need to scan as fast as possible to minimize
-atmospheric contamination while keeping subscans no shorter than 10\,s
-(telescope constraint). The need to have Nyquist sampling of the beams along the
-scan direction translates into a maximum speed 110\,arcsec/s for our nominal
-acquisition rate of 23.8\,Hz and is thus largely met. Subscans last 12\,s, the
-entire scan lasts about 25\,mn, which is short enough to prevent to much
-variation of KID tuning under stable weather conditions on this timescale.\\
+Because the tuning of KIDs might fail from time to time depending on the weather
+conditions for instance, we systematically check each KID and see if its noise
+is far from the average noise of all other KIDs in the same array, with a
+typical $3\sigma$. This criterion may seem a bit tight, but in any case, KID's
+are inverse noise variance weighted in the final map projection, so they would
+be given relatively low weight anyway (see sect.~\ref{se:map_king}).
 
-The determination of the KID offsets in the focal plane proceeds in two steps.
+At this stage of the processing, we have isolated the relevant fraction of the
+data for scientific processing and flagged out potentially misbehaving KIDs or
+timeline accidents (glitches).
 
-\paragraph{Step 1.} We apply a median filter per
-KID timeline whose width is 4~FWHM and we project one map per KID in Nasmyth
-coordinates. This median filter removes efficiently most of the atmospheric and low frequency
-electronic noise, albeit a slight ringing and flux loss on the
-source. However, at this stage, we are only interested in the location of the
-observed planet. To derive the Nasmyth coordinates from the provided (az,el)
-coordinates, we build the following quantities at time~$t$ :
+\subsection{Pointing reconstruction}
+\label{se:ptg}
+
+This step consists in addressing each sample of each KID to the correct sky
+coordinates and their associated map pixel. The pointing data are passed to the
+\nika\ raw data via ELVIN \todo{XXX TBC XXX}. They describe the absolute
+pointing of a reference point in the focal plane in various quantities, the
+absolute azimuth and elevation $(\alpha,\delta)$ of the source, together with
+offsets $(\Delta\alpha_t, \Delta\delta_t)$ \wrt~these. Because our final maps
+will be centered on a fixed position (typically the center of the source that is
+aimed by the focal plane reference position), we are especially interested in
+pointing offsets \wrt~this position. We therefore detail here the derivation of
+these offsets.
+
+We store KID pointing offsets \wrt\ the reference position in Nasmyth $(x,y)$
+coordinates (indepent of time) once and for all in our KID database
+(\aka~\kidpar). Sect.~\ref{se:fp_reconstruction} details how these offsets are
+derived. To go from Nasmyth offsets to $(\alpha,\delta)$ offsets, we apply the
+following rotation by the elevation angle:
 
 \begin{eqnarray}
-dx_t &=& \cos el_t\, daz_t - \sin el_t\, del_t \nonumber \\
-dy_t &=& \sin el_t\, daz_t + \cos el_t\, del_t \nonumber
+\Delta\alpha^k_t &=&  \cos\delta_t \Delta x^k + \sin\delta_t \Delta y^k \nonumber\\
+\Delta\delta^k_t &=& -\sin\delta_t \Delta x^k + \cos\delta_t \Delta y^k \nonumber
 \end{eqnarray}
 
-\todo{
-\noindent {\bf FM: why not using $\delta$ as in the previous section ?}\\
-\noindent {\bf FM: i don't think the $_t$ is useful}\\
-}
+Adding these offsets to the reference $(\Delta alpha_t, \Delta \delta_t)$ gives the absolute
+pointing of each KID in these coordinates. An extra rotation by the parallactic
+angle $\eta_t$ is required to obtain KID's coordinates in \radec\ coordinates:
 
-where $el_t$ is the elevation of the reference pointing direction and $daz$ and
-$del$ are the pointing offsets with respect to the source in azimuth and elevation as
-provided by the tracking system. Note that $daz$ is already corrected by the
-$\cos el_t$ factor to have orthonormal coordinates in the tangent plane of the sky
-and be immune to the geodesic convergence at the poles. We then fit a 2D
-elliptical gaussian on each kid map. The centroid of this gaussian is a first
-estimate of the KID offsets, FWHM's, ellipticity and sensitivity. We apply a
-first KID selection by removing outliers to the statistics on these
-parameters. We also discard manually KIDs that show a cross-talk counter part on
-their map. \todo{show maps of ``doubles'' to illustrate this}
+\begin{eqnarray}
+\Delta R.\,A.^k_t &=&  \cos\eta_t \Delta\alpha^k_t + \sin\eta_t \Delta\delta^k_t\\
+\Delta Dec^k_t    &=& -\sin\eta_t \Delta\alpha^k_t + \cos\eta_t \Delta\delta^k_t
+\end{eqnarray}
 
-\paragraph{Step 2.} While Step 1 is already enough for many uses, it is possible
-to improve its results with a better signal processing. Now that we have an
-estimate of each KID offset, it is possible to know when a given KID crosses the
-planet and mask it out to derive a template of the atmosphere and low frequency
-components of the noise that can then be subtracted from the timelines. This
-process improves on the image of each KID (no more ringing and minimal flux
-loss) and therefore improve the determination of the beam parameters and the
-relative calibration of KIDs. More detailed on this aspect of TOI processing is
-given in \todo{Sect.~\ref{se:decorrelation}}.
+We now have the pointing of each KID at each time relative to the source that we
+usually center on our final map. It then trivial to assign the map pixel
+corresponding to this pointing on a Nearest Grid Point basis.
 
-%%  With the Nasmyth offsets derived in step 1, we are now able to
-%% mask out the planet in each KID timeline. This mask is centered on the planet
-%% location as seen by each kid, it is circular and has a radius of 60~arcsec. We
-%% now build a template timeline (a.k.a. ``common mode'') in two steps. First, we
-%% take the median of all samples of all KIDs that are outside this mask at a given
-%% time $t$. This gives a first estimate of the common mode. Second, we
-%% cross-calibrate each KID on this common mode when the KID is outside the mask
-%% and we coadd all these KID cross-calibrated timelines when they are outside the
-%% mask to have the final common mode. In this sum, each KID TOI is weighted by the
-%% inverse of its variance outside the mask. Once we have this common mode in hand,
-%% we cross-calibrate each TOI on it outside the mask and we subtract it to the
-%% entire KID TOI. We then resume to the projection of each KID TOI in Nasmyth
-%% coordinates like in step 1, and the 2D elliptical gaussian fit on the each kid
-%% map. The centroid coordinates and the FWHM are now the final parameters that can
-%% be derived on the current scan.
+This pointing reconstruction is done early in the data reductio process because
+the knowledge of when a KID is close or far from the source will be used during
+the timeline processing (sect.~\ref{se:toi_proc}).
 
-This analysis is repeated on all \bms, which provide statistics and
-precision on each KID parameter, together with estimates on KID performance
-stability. More details and final numbers on the FOV characteristics are given
-in Sect.~\ref{se:fov_geometry}.
+\subsection{TOI calibration}
+\label{se:flux_calib}
 
-\subsection{Opacity correction}
+We now focus on the absolute calibration of each TOI. As stated in
+sect.~\ref{se:ll_proc}, at this stage of the reduction each KID \rf~timeline is
+in Hz. The conversion process to go from these Hz into Jy/beam proceeds in two
+steps: a standard absolute calibration and a correction for the current opacity
+and elevation.
 
-Water vapor along the line of sight absorbs power from the source and therefore
-biases the flux measurement. At the same time, the overall airmass acts as a
-diffuse source of power on the KIDs that induce a variation of their resonance
-frequency. We are able to calibrate it and therefore derive the opacity in real
-time from \nika\ data. This is described in details in
-Sect.~\ref{se:opacities}. Suffice is here to say that after the derivation of
-the KID offsets and their relative gains as described in
-Sect.~\ref{se:fov_first_geometry}, one we know the opacity, we can derive an
-absolute calibration per KID.
+The standard conversion from Hz to Jy/beam is stored in the
+\kidpar\ database. The derivation of these gains is detailed in
+Sect.~\ref{se:fp_reconstruction}. Suffice is to say here that simply multiplying
+the TOI's by these gains converts them into Jy/beam. Of course, this individual
+absolute calibration also acts as a relative calibration. This calibration is
+meant to work at zero opacity and 90$^\circ$ elevation. We thus need to correct
+for the current opacity $\tau$ and elevation. In short, the absolute calibration reads
 
-\subsection{Absolute calibration}
-\todo{See how to talk about Planet models and repeated observations of these to derive
-the ``final'' abs. cal for the run.}
+\begin{equation}
+TOI^k(t) [{\rm Jy/beam}] = \rf^k(t)[{\rm Hz}] \times g(k) \times e^{\tau_t/\sin\delta_t}
+\end{equation}
 
+The derivation of opacity is presented in sect.~\ref{se:skydip} and \todo{XXXX
+  TBC XXXX}.
+
+\subsection{TOI processing}
+\label{se:toi_proc}
+
+\begin{figure}[hhh]
+\begin{center}
+\includegraphics[clip, angle=0, scale=0.4]{Figures/toi_plot.eps}
+\includegraphics[clip, angle=0, scale=0.4]{Figures/toi_plot_decorr.eps}
+\includegraphics[clip, angle=0, scale=0.4]{Figures/matrix_2mm_raw.eps}
+\includegraphics[clip, angle=0, scale=0.4]{Figures/matrix_2mm_decorr.eps}
+\caption{\emph{Top-left:} Example of 40 KID raw timelines during an observation
+  of Uranus. The low frequency correlated component (atmosphere and electronic
+  noise) is clear. \emph{Top-right:} One of these TOI's and the scaled
+\cm\ that is subtracted from it to remove the low frequency
+component. \emph{Bottom-left:} TOI to TOI correlation matrix for the 2mm array
+before any processing (but for absolute calibration). The cross-correlation is
+large for every pair of KIDs and is dominated by the low frequency content
+presented on the top plots. \emph{Bottom-right:} TOI to TOI correlation matrix
+after the subtraction of the \cm\ in each KID timeline. The improvement is
+significant but residual correlations are observed among electronic boxes or
+electronic subbands and indicate that further improvement is possible.}
+\label{fig:nika_toi}
+\end{center}
+\end{figure}
+
+As presented on Fig.~\ref{fig:nika_toi}, the atmosphere and the electronic noise
+combine into a large low frequency component that we want to eliminte as much as
+possible. Most of the atmospheric component is common to all KIDs. We have
+investigated several ways of using this information to remove this component
+from the TOI's. We first introduce our prefered choice so far in the case when
+we know that we observe a single point source at the center of the field (as
+relevant for this commissioning document) and then give clues on how it can be
+generalized to any kind of astronomical source. Our reference method for this
+document and for our publications so far has been dubbed \cmoneb and consists
+in:
+
+\begin{itemize}
+\item From the pointing information (sect.~\ref{se:ptg}), derive a mask per TOI,
+  that says, for each time $t$, if a KID is closer to the source than
+  e.g. 60\,arcsec.
+\item Selecting only samples for which two KIDs are far from the source, compute
+  the KID to KID correlation and for each KID $k$ and store the KID names that are most
+  correlated to it. We first select the 15 most correlated KIDs, then compute
+  the average and dispersion $\sigma$ of these correlations. When then loop over all KIDs
+  are add to the selection all the KIDs that are as correlated to $k$ than the
+  15 first, up to $2\,\sigma$.
+\item Derive a median mode for this block of KIDs.
+\item Cross-calibrate each of these KIDs with the median mode (far from the
+  source) and build an inverse noise weighted average mode with all these
+  KIDs. At each time, we use only KIDs that are far from the source. We make
+  sure to have enough KIDs to produce a continuous mode and to leave no sample
+  without estimation.
+\item Linearly regress this average mode against KID $k$'s TOI (far from the
+  source) and subtract on the entire timeline.
+\end{itemize}
+
+Fig.~\ref{fig:nika_toi} shows an example of such average mode derivation and the
+resulting TOI cross-correlation matrix after that. We have tested on simulations
+that this method does not alter the flux of the source when the distance to the
+source is large enough. This method makes full use of the filled array nature of
+\nika\ and of the coherence of the atmospheric signal accross the focal plane
+due to the 30\,m dish.
+
+If the observed field contains something else than a single point source at its
+center, then several options are available to generalize this method. In
+particular, the mask can be design to adjust to several point sources. If the
+source is diffuse and extended, then go through a an iterative procedure that
+subtract improved derivations of the signal at each step. For this work about
+the commissionning of the instrument and the assessment of its performances on
+point sources, we do not need to go into further details about this.
+
+\subsection{Map projection}
+\label{se:map_projection}
+
+At this stage, data have been calibrated and cleaned and we have the pointing
+information for each sample. If the noise was white and uncorrelated from KID to
+KID, we would be able to produce an optimal map $S_p$ with a simple Nearest Grid
+Point inverse variance noise weighting of all of the measurements $m^k_t$ that
+fall into a map pixel $p$. In this scheme, data samples are coadded with inverse
+variance noise weighting: for each KID, we compute the standard deviation
+$\sigma_k$ of its TOI far from the source (see sect.~\ref{se:toi_proc}). Each
+sample of this KID therefore has a weight of $1/\sigma_k^2$ and
+
+\begin{eqnarray}
+S_p        &=& \frac{1}{\sum_{k,t}1/\sigma_k^2}\sum_{k,t} \frac{m^k_t}{\sigma_k^2}\,, \label{eq:ngp_sum}\\
+\sigma^2_p &=& \sum_{k,t}1/\sigma_k^2\,, \label{eq:ngp_var}
+\end{eqnarray}
+
+where $\sigma^2_p$ is the variance associated to pixel $p$. We systematically
+project one map per array and a combined 1\,mm map and take a small enough
+resolution to respect the Nyquist criterion on the beam sampling. For the sake
+of margin and simplicity, we usuallly take 2\,arcsec resolution pixels.
+
+In practice, and although the data cleaning procedure described in
+Sect.~\ref{se:toi_proc} significantly reduces the low frequency component of
+TOI's, the residual noise is still not completely white and KID independent. The
+correlation matrix is not strictly zero to begin with (Fig.~\ref{fig:nika_toi})
+and when looking at the distribution of the SNR on maps and variance maps
+obtained with Eqs~(\ref{eq:ngp_sum},\ref{eq:ngp_var}), the distribution is
+gaussian, but not normalized (see Fig.~\ref{fig:sigma_boost}). This is due to the
+remaining correlations between TOIs before projection. At this stage,
+rather than putting more effort in TOI processing, we renormalize the width of
+the gaussian noise, actually increase the map variance but the required factor
+so that the SNR distribution becomes normalized. This normalization factor
+varies from scan to scan but is usually between 1.2 and 1.5. It is estimated on
+the background of the map, i.~e. far from the source.
+
+\begin{figure}[hhh]
+\begin{center}
+\includegraphics[clip, angle=0, scale=1]{Figures/sigma_boost.eps}
+\caption{Histogram of the SNR per beam on a scan of weak source (G2, see
+  sect.~\ref{se:nefd_estimation_methods}). While the histogram is gaussian, its
+  width is not normalized to 1 due to residual correlated noise between the
+  TOI's. This factor is accounted for before delivering the final variance map
+  and associated flux estimates.}
+\label{fig:sigma_boost}
+\end{center}
+\end{figure}
+
+We several scans of the same source are averaged, we here too apply an inverse
+variance weighting. Weights are taken from the variance maps of each scan,
+corrected for the excess variance mentionned in the previous paragraph. The
+final variance map of the sum of scans is also corrected for such a factor if necessary.
+
+\subsection{Photometry}
+\label{se:photometry}
+
+Throughout this document, we adopt the following convention. Assuming the beam
+is a perfect gaussian of known $FWHM=\sigma\sqrt{8\ln 2}$, the instantaneous
+signal measured by a KID is
+
+\begin{equation}
+m^k(x,y) = \phi e^{-(x^2+y^2)/2\sigma^2}
+\label{eq:flux_per_beam_def}
+\end{equation}
+
+with $\phi$ the flux of the source. In pratice, the beam is not a perfect
+gaussian and significant side lobes must be accounted for
+(sect.~\ref{se:beams}). If the beam was perfectly known and stable, we could in
+principle replace the gaussian form in eq.~(\ref{eq:flux_per_beam_def}) by the
+beam pattern and fit for the amplitude $\phi$. In practice, we have found that
+it was enough as first approximation to take an equivalent effective gaussian
+width and use it to derive the beam template. We take 12.5 and 18.5\,arcsec FWHM
+at 1 and 2\,mm respectively and compute all our fluxes with these
+values. We do this for both analyzed point sources and for absolute calibrators
+to be consistent.
+
+The amplitude fit is performed with a usual maximum likelihood
+approach. We assume that the renormalization of the variance map described in
+the previous section is enough to account for the residual noise correlations
+from pixel to pixel and therefore take the pixels to be independent in this
+estimator:
+
+\begin{eqnarray}
+\hat{\phi} &=& \frac{1}{\sum_p g_p^2/\sigma_p^2}\sum_p
+s_p\frac{g_p}{\sigma_p^2} \label{eq:flux_estim_def} \\
+\sigma^2(\hat{\phi}) &=& \frac{1}{\sum_p
+  g_p^2/\sigma_p^2} \label{eq:flux_estim_var_def}
+\end{eqnarray}
+
+where $g$ is the gaussian profile as defined in eq.~(\ref{eq:flux_per_beam_def})
+and $p$ is the index of pixels.
+
+
+%% \subsection{Opacity correction}
+%% 
+%% Water vapor along the line of sight absorbs power from the source and therefore
+%% biases the flux measurement. At the same time, the overall airmass acts as a
+%% diffuse source of power on the KIDs that induce a variation of their resonance
+%% frequency. We are able to calibrate it and therefore derive the opacity in real
+%% time from \nika\ data. This is described in details in
+%% Sect.~\ref{se:opacities}. Suffice is here to say that after the derivation of
+%% the KID offsets and their relative gains as described in
+%% Sect.~\ref{se:fov_first_geometry}, one we know the opacity, we can derive an
+%% absolute calibration per KID.
+
+%% \subsection{Absolute calibration}
+%% \todo{See how to talk about Planet models and repeated observations of these to derive
+%% the ``final'' abs. cal for the run.}
+%% 
+%% %The data reduction of \nika\ cannot be done exclusively KID by KID
+%% %independently. Each matrix is a filled array with more than one detector per PSF
+%% %and the atmosphere together with the electronics chain act as correlated
+%% %noise. We therefore have to work iteratively to improve both individual and
+%% %global parameters of the detectors. In this section, we give an overview of the
+%% %full data reduction that illustrates this iterative process. More details on
+%% %each specific step are given in other dedicated sections.
+%% 
+%% \subsection{Overview of the on-sky calibration method}
+%% 
+%% The steps to go from raw timeline data in Hertz to calibrated data in Jansky per beam comprize:
+%% \begin{itemize}
+%% \item[] Opacity correction
+%% \item[] Field-of-view geometry and KIDs selection
+%% \item[] KID-to-KID intercalibration (flat fielding)
+%% \item[] Absolute calibration  
+%% \end{itemize}
+%% 
+%% 
+%% \subsection{Data reduction summary {\color{blue} Nico}}
+%% 
+%% The performance assessment relies on a data reduction pipeline that consists of the following steps:
+%% \begin{itemize}
+%% \item[] reading of the raw timeline 
+%% \item[] implementation of the calibration
+%% \item[] substraction of the correlated part of the noise 
+%% \item[] projection of the timeline onto maps
+%% \end{itemize}

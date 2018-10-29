@@ -227,7 +227,16 @@ are estimated for each skydip (as the average over the blocks), we compute
 retrieve the coefficients of all the KIDs even though some of them could not
 contribute to the $\tau$ determination.
 
-This procedure consists thus in fitting a couple of paramaters ($C_0$,
+We observe that the skydip-fitted $\tau$ values are, as expected, common
+between different detectors of the same array. By comparing the results of different skydips, we
+have verified experimentally that the coefficients $C_0$, $C_1$ are stable,
+within the fit errors, on very long time scales within a cooldown cycle. The
+coefficients can thus be applied to the whole observing campaign in order to
+recover the opacity of each scan.
+\noindent {\bf FM : a figure would help to convince the reader that it is stable on lng time
+ scale, which is a key point.}\\ {\color{magenta} FXD: I will do that figure}
+
+The skydip-based procedure consists in fitting a couple of paramaters ($C_0$,
 $C_1$) for each of the several thousand valid KIDs. This requires to
 have on hands a sizable amount of skydip scans -- typically ten to
 twenty -- that i) span the whole opacity range and ii) avoid hightly
@@ -242,7 +251,7 @@ determination process relies on a selection of the skydip scans.
 %----------------------------------------------------------------------------------------
 %	skydip selection
 %----------------------------------------------------------------------------------------
-\section{Skydip selection {\color{blue} Laurence}}
+\section{Skydip selection {\color{YellowGreen} Laurence}}
 \label{se:skydip-selection}
 
 \begin{figure}[ht!]
@@ -286,7 +295,10 @@ parameters are estimated using all the available skydip scan for a
 given campaign, then the estimation is re-iterated using the only
 skydip scans that met the fit-quality criteria. After the second
 iteration, we check that no extra skydip outlier are left, as shown by
-the 'v2' label data points in Fig.~\ref{fig:skydipselection}.
+the 'v2' label data points in Fig.~\ref{fig:skydipselection}. After
+selection of the skydip scans acquired during the N2R9 campaign, 15
+skydips are kept for the final step of the ($C_0$, $C_1$) fit. 
+
 
 \begin{figure}[ht!]
   \begin{center}
@@ -295,26 +307,63 @@ the 'v2' label data points in Fig.~\ref{fig:skydipselection}.
     \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0},  width=0.42\textwidth]{Figures/Opacity/Skydip_selection_impact_1mm.pdf}
     \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0},  width=0.42\textwidth]{Figures/Opacity/Skydip_selection_impact_a2.pdf}
    \caption[Skydip selection impact on opacities]{Skydip-selection
-    impact on the opacity estimates.} 
+    impact on the opacity estimates. For a series of calibration scans
+    of MWC349 acquired during N2R9, the relative difference
+    w.r.t. the baseline opacities $\tau_{\rm{base}}$ (labeled 'base')
+    are shown as a function of $\tau_{\rm{base}}$ for five skydip
+    selections. The most inclusive one (labeled 'incl')
+    includes 38 skydips of the 44 available. 'night' comprizes 11
+    skydips acquired during nighttime. 'low' consists of 20 skydips
+    acquired in low opacity conditions. 'high
+    1' and 'high 2' are fit-quality based selections relying of relaxed
+    ('high1') or tighened ('high 2') criteria w.r.t. the baseline
+    criteria given in Sect.~\ref{se:skydip-selection}. The dashed
+    lines figure a $10\%$ opacity difference
+    w.r.t. $\tau_{\rm{base}}$. } 
 \label{fig:skydip-selection-impact}
 \end{center}
 \end{figure}
 
 
-
 We test the stability of the ($C_0$, $C_1$) parameters against the
-exact choice of the selection criteria. 
-
+exact choice of the selection criteria.
+We derive ($C_0$, $C_1$) parameter sets for the N2R9 campaign using
+six skydip selections: the baseline selection (labeled 'base')
+consists in the fit-quality based selection described above, which
+comprizes 15 skydips, the selection labeled 'incl' consists of an
+inclusive selection of 38 skydips in which only the noisier ones were
+discarded, the 'night' selection comprizes 11 skydips acquired during
+between 21:00 and 09:00 UT,
+'high 1' and 'high 2' are two different selections, which comprize 23
+and 13 skydips and are based on fit quality criteria that are
+respectively relaxed or tighened with respect to the baseline criteria, 
+and 'low' corresponds to a selection of 20 skydips acquired while
+$\tau_{1mm} < 0.44$. Each ($C_0$, $C_1$) sets are used to derive
+zenith opacity of the N2R9 calibration scans of MWC349. 
 Figure~\ref{fig:skydip-selection-impact} shows the relative
-difference w.r.t. the baseline $\tau$ of five skydip selections.
+difference between each $\tau$ estimates and the baseline $\tau$
+estimates as a function of the baseline $\tau$. The relative
+differences are basically constant for the whole opacity range: the
+main effect of the skydip selection is a normalisation factor on the
+$\tau$ estimates at both wavelength. At both wavelength, this factor
+is below $10\%$ of the baseline $\tau$ for most of the skydip
+selections. However, this is of about $10\%$ for the 'low' selection,
+which highlight the necessity of including good skydips acquired in
+high $(\tau_{1\rm{mm}} > 0.44)$ opacity conditions in the final
+selection. The 'incl' (inclusive 38-skydip based) selection results in the larger
+difference w.r.t. the baseline $\tau$, which are up to $20\%$ at 1mm
+and up to $40\%$ at $2$mm, whereas the 'high 1' (mild quality-fit)
+selection suffices to reduce the relative difference below $10\%$ at
+1mm and below $15\%$ at 2mm.
+As a summary, the $\tau$ estimates are robust against the exact skydip
+selection as long as the selection includes good
+skydips in high opacity condition $(\tau_{1\rm{mm}} > 0.44)$ and as the poor
+fitting skydips are excluded. When these conditions are met, the
+skydip selection induced uncertainties are below $10\%$ at 1mm and
+below $15\%$ at 2mm. 
 
-
-
-At 1mm, we find about {\color{red} $[$TBC$]$  $10\%$} opacity
-variation from very inclusive to very aggressive selections. However,
-at 2mm, this scatter reachs about {\color{red} $[$TBC$]$  $30\%$}
-relative uncertainties.
-
+We conclude that opacities at both wavelengths can be reliably
+estimated from a series of skydip scans using the (C0, C1) model.
 
 
 %We conclude that opacities at 1mm can be reliably estimated from a series of skydip scans using the (C0, C1) model. %By contrast, for the 2mm opacities, a skydip-based method is not stable enough against the skydip selection. Thus, we adopt an hybrid approach. 
@@ -346,17 +395,8 @@ relative uncertainties.
 %----------------------------------------------------------------------------------------
 %	skydip opacity tests
 %----------------------------------------------------------------------------------------
-\section{Skydip-based opacity measurements and tests {\color{blue} Laurence $\&$ Xavier}}
+\section{Skydip-based opacity measurements and tests {\color{blue} Laurence}}
 \label{se:skydip-opacity_tests}
-
-We observe that the skydip-fitted $\tau$ values are, as expected, common
-between different detectors of the same array. By comparing the results of different skydips, we
-have verified experimentally that the coefficients $C_0$, $C_1$ are stable,
-within the fit errors, on very long time scales within a cooldown cycle. The
-coefficients can thus be applied to the whole observing campaign in order to
-recover the opacity of each scan.
-\noindent {\bf FM : a figure would help to convince the reader that it is stable on lng time
- scale, which is a key point.}\\ {\color{magenta} FXD: I will do that figure}
 
 We perform basic sanity tests of the skydip-based opacity
 measurements, referred to as 'skydip' opacities hereafter.

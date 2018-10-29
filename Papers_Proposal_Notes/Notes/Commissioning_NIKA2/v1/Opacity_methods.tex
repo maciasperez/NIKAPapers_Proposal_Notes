@@ -54,6 +54,23 @@ atmsopheric conditions, as discussed in Chapter~\ref{se:photometry}.
 \section{Taumeter-based method {\color{blue} Laurence}}
 \label{se:taumeter-method}
 
+The IRAM 30m falicity is equipped of a fixed-azymuth taumeter operated
+at $225$~GHz to monitor the atmospheric opacity. Time-stamped
+zenith opacities at $225$~GHz $\tau_{225}$ are derived from the
+taumeter measures by Dave~L.~John. Two different $\tau_{225}$
+estimates are fitted, one relying on a linear model and the other on
+an exponential fitting model. The $\tau_{225}$ estimates are then
+filtered using the cuts $0< \tau_{225} <1.2$ and $R^2 > 0.99$, where
+$R$ is the correlation coefficient between the two flavours of
+$\tau_{225}$ estimates. 
+
+The time-stamped $\tau_{225}$ estimates are sampled every
+{\color{magenta} XXX secondes}, whereas the typicel duration of NIKA2
+observing scans is of several minutes. Thus we use median filtered
+version of the $\tau_{225}$ estimates. {\color{magenta} Juan to
+complement/rewrite this paragraph}
+
+
 We use a series of 64 scans of MWC349
 acquired during N2R9 campaign to fit the relations between the IRAM
 $225$GHz taumeter opacities and NIKA2 band pass opacities. This data
@@ -309,9 +326,22 @@ measurements, referred to as 'skydip' opacities hereafter.
 First, we test the stability of the 'skydip' opacities from one
 observation campaign to another.
 Figure~\ref{fig:skydip-to-taumeter-correl} shows the
-correlation between the 'skydip' $\tau$ estimates and the taumeter
-$\tau$ for a series of scans of Uranus and MWC349 acquired during
-three campaigns.
+correlation between the 'skydip' $\tau$ estimates $\tau_{\rm{skydip}}$
+and the taumeter zenith opacities $\tau_{225}$ for a series of scans
+of Uranus and MWC349 acquired during three campaigns. As guidelines,
+we also show the predicted correlations using an ATM model integrated
+in NIKA2 wavebands. At 1~mm, the
+$\tau_{\rm{skydip}}$ to $\tau_{225}$ correlation relations are
+consistent for the three campaigns. They are
+also in agreement with the ATM model expectations. At 2~mm, more
+dispersion is observed between each correlation relations although
+they are compatible with each others within statistical errors.
+We note that the ATM model underestimates the
+measured $\tau_{\rm{skydip}}$. This mild discrepancy with the
+ATM model predictions is yet to be understood, but has no impact on
+our opacity measurements, which do not rely on any ATM model nor on
+the precision with which the observing bandpasses are known.
+
 
 \begin{figure}[ht!]
   \begin{center}
@@ -319,8 +349,10 @@ three campaigns.
     \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.42\textwidth]{Figures/Opacity/Opacity_correl_skydip_vs_tau_a3.pdf}
     \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.42\textwidth]{Figures/Opacity/Opacity_correl_skydip_vs_tau_1mm.pdf}
     \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.42\textwidth]{Figures/Opacity/Opacity_correl_skydip_vs_tau_a2.pdf}
-    \caption[NIKA2 skydip-based vs taumeter opacities]{ NIKA2
-    skydip-based opacities vs IRAM 225GHz taumeter opacities.} 
+   \caption[NIKA2 skydip-based vs taumeter opacities]{ NIKA2
+    skydip-based opacities vs IRAM 225GHz taumeter opacities. The
+    modeled correlations relying on an ATM model integrated in NIKA2
+    bands are shown in black.} 
 \label{fig:skydip-to-taumeter-correl}
 \end{center}
 \end{figure}

@@ -24,7 +24,7 @@
 %% XX\% valid pixels, and with these pixels, we have an NEFD of YY. We should not
 %% discard some fraction of our pixels and estimate an NEFD on this subset.}\\
 
-\section{Methodology {\color{blue} Nico}}
+\section{Methodology {\color{YellowGreen} Nico}}
 
 The MoU defines the NEFD:  \emph{The Noise Equivalent Flux Density (NEFD)
   is the $1\,\sigma$ sensitivity in one second of effective on-source telescope
@@ -166,7 +166,7 @@ reference time estimator.}
 \subsection{NEFD estimation methods}
 \label{se:nefd_estimation_methods}
 
-With the uncertainty on flux measurements as described in \todo{SECTION XXXXXXXXXXX} and
+With the uncertainty on flux measurements as described in sect.~\ref{se:photometry} and
 now an esimator of the time of integration, we have everything in hand to derive
 the NEFD. We have devised several ways to estimate it at the same time as
 checking the good behaviour of the instrument. Two methods are based on deep
@@ -174,34 +174,37 @@ integrations on a source, one is based on the joint analysis of multiple scans
 without combining them:
 
 \begin{enumerate}
-\item Deep Integration method 1: the error on the flux of a point source for an
-  integration time $t$ is $\sigma = NEFD/\sqrt{t}$. Fitting this obtained
-  uncertainty against $\sqrt{t}$ must therefore give a straight line whose
+\item {\bf Deep Integration method 1}: the error on the flux of a point source for an
+  integration time $t$ is $\sigma = NEFD/\sqrt{t}$. Co-adding several scans of
+  the same source and fitting $\sigma$ as a function of the square root of the
+  time of integration must therefore give a straight line whose
   amplitude is the NEFD if correctly corrected for the different elevation and
   opacity conditions of observations.
-\item Deep Integration method 2: by summing an large and even number of scans
+\item {\bf Deep Integration method 2}: by summing a large and even number of scans
   with alternative positive and negative weights, we cancel the signal while
-  keeping the noise properties. The final ``Jackknife'' map can then be analyzed
+  keeping the noise properties. This final ``Jackknife'' map can then be analyzed
   to provide estimates of flux uncertainties for a the effective time of
   integration, hence giving an alternate estimation of the NEFD.
-\item Scatter method: analyzing each scan in terms of sensitivity and
+\item {\bf Scatter method}: analyzing each scan in terms of sensitivity and
   time of integration, we have an NEFD per scan that varies with opacity and
   elevation. Fitting the distribution of measures against $e^\tau/sin\delta$
-  must provide the zenith opacity.
+  provides the zenith opacity.
 \end{enumerate}
 
-In this section, we use data of Runs 9 and 12 \todo{XXXXX TBC} on \hls\ and G2.
+In this section, we use two data sets from Runs 9 and 12.
 
-\hls\ is moderately faint source \cite{hls_combes}, expected to be 74.5\,mJy at
-1mm and 15.7\,mJy at 2mm (M.~Bethermin, private communication). This source was
-chosen for its flux and its availability during Run9 for long integration. It
-has been observed for about 9\,h in total over three nights. The scans were
-8x5~arcmin$^2$, alternatively oriented in (ra,dec), (dec,ra), (az,el), (el,az).
+For Run~9, \hls\ is moderately faint source \cite{hls_combes}, expected to be
+74.5\,mJy at 1mm and 15.7\,mJy at 2mm (M.~Bethermin, private
+communication). This source was chosen for its flux and its availability during
+Run9 for long integration. It has been observed for about 9\,h in total over
+three nights. The scans were 8x5~arcmin$^2$, alternatively oriented in (ra,dec),
+(dec,ra), (az,el), (el,az).
 
-G2 has become the nickname of an empty target close to sources known to IRAM but
-not to the commissionning team in order to check our source detection capacities blindly.
+For Run~12, G2 has become the nickname of an empty target close to sources known
+to IRAM but not to the commissionning team in order to check our source
+detection capacities blindly.
 
-The data were processed according to \todo{(cf.~\ref{se:cm1blck}XXXXX)}.
+The data were processed according to sect.~\ref{se:pipeline_overview}.
 
 \subsubsection{Deep integration method 1: $\sigma = NEFD/\sqrt{t}$}
 
@@ -218,14 +221,13 @@ The data were processed according to \todo{(cf.~\ref{se:cm1blck}XXXXX)}.
 %% estimate more conservative.
 
 We co-add the scans one by one and each time perform a photometric analysis on
-the map according to {\todo{REF TO SECTION ON PHOTOMETRY}}. The uncertainty on
-the flux at the center of the field (on source in the case of \hls, off source
-in the case of G2) is plotted and fitted against $\sqrt{t_det}$. It should go
-like a straight line if scans were all taken in the exact same conditions and
-stacked with equal weights. In pratice, the weights are sensitive to the
-conditions of observations, namely the elevation and opacities \todo{XXXXX
-  (Fig.~\ref{fig:obs_conditions}) XXXX} and they must be accounted for. The
-uncertainty on the central flux reads
+the map according to sect.~\ref{se:photometry}. The uncertainty on the flux at
+the center of the field (on source in the case of \hls, off source in the case
+of G2) is plotted and fitted against $\sqrt{t_det}$. It should go like a
+straight line if scans were all taken in the exact same conditions and stacked
+with equal weights. In pratice, the weights are sensitive to the conditions of
+observations, namely the elevation and opacities (see Fig.~\ref{fig:nefd_plots}
+and they must be accounted for. The uncertainty on the central flux reads
 
 \begin{equation}
 \sigma = NEFD_{det}\times e^{\tau/\sin\delta}\times\sqrt{t}
@@ -264,20 +266,14 @@ Fig.~\ref{fig:nefd_vst} and in Tab.~\ref{tab:nefd_summary}.
 \includegraphics[clip, angle=0, scale =0.42]{Figures/g2_nefd_vst.eps}
 \includegraphics[clip, angle=0, scale =0.4]{Figures/hls_opacity_and_elev.eps}
 \includegraphics[clip, angle=0, scale =0.4]{Figures/g2_opacity_and_elev.eps}
-\caption[NEFD deep integration]{\todo{XXXXXXXXXXXXXXXXXXXXXXXXX}}
-\label{fig:time_comparison}
+\caption[NEFD vs time]{\emph{Top row:} 1\,$\sigma$ sensitivity on the
+  measure of the flux of a point source vs the time of integration on this
+  source in two cases. The sensitivity goes like $t^{-1/2}$ as
+  expected. \emph{Bottom row:} Opacities and elevations of the scans used in
+  this analysis.}
+\label{fig:nefd_plots}
 \end{center}
 \end{figure}
-
-\begin{figure}
-\begin{center}
-\includegraphics[clip, angle=0, scale =0.42]{Figures/hls_NEFD_vs_TauElev_all.eps}
-\includegraphics[clip, angle=0, scale =0.42]{Figures/g2_NEFD_vs_TauElev_all.eps}
-\caption[NEFD deep integration]{\todo{XXXXXXXXXXXXXXXXXXXXXXXXX}}
-\label{fig:time_comparison}
-\end{center}
-\end{figure}
-
 
 \subsubsection{Deep integration method 2: Jackknife}
 
@@ -286,9 +282,18 @@ subtraction of the scans and therefore cancel the contribution of the signal to
 the final combination, while preserving the noise properties. This method is
 often refered to as ``Jackknife'' and is a powerful test for residual
 systematics. The Jaccknife maps of \hls\ and G2 are presented on
-\todo{XXXXX Fig.\ref{figs:jk_maps} XXXX}. Photometry at their center provides estimates of
-  the zenith NEFD of \todo{XXXX}
+Fig.~\ref{fig:jk_maps}. Photometry at their center provides estimates of the
+zenith NEFD that are reported in Tab.~\ref{tab:nefd_summary}.
 
+\begin{figure}[hhh]
+\begin{center}
+\includegraphics[clip, angle=0, scale=0.5]{Figures/nefd_jackknife.png}
+\caption[Jackknife maps of G2 and \hls]{\emph{Top row:} Maps of \hls\ and G2 at
+  1mm. \emph{Bottom row:} \emph{Jackknife} maps :After the sum of scans with alternative positive and negative
+  weights, signal residuals are negligible while noise properties are preserved.}
+\label{fig:jk_maps}
+\end{center}
+\end{figure}
 
 \begin{table}
 \begin{center}
@@ -312,9 +317,35 @@ $t^{-1/2}$  & A1     & 51.28  & 49.15\\
             & A2     &  8.39  &  7.94\\
 \hline
 \end{tabular}
-\caption{ NEFD's in mJy.s$^{1/2}$ \todo{XXXX EXPAND XXX}.}
+\caption{ NEFD's in mJy.s$^{1/2}$ for the three methods described in the text
+  and obtained on G2 and \hls.}
+\label{tab:nefd_summary}
 \end{center}
 \end{table}
+
+\subsubsection{NEFD per plot vs $e^{\tau/sin\delta}$}
+
+Performing photometry on each individual scan on G2 or \hls, we can estimate the
+sensitivity on the central flux and measure the time of integration, hence
+derive the NEFD for this scan. This determination is intrinsically noisie than
+the two previous maps because of the variance associated to each scan. However,
+taken alltogether, the scans provide another estimate of the instrument
+NEFD. Results are presented on Fig.~\ref{fig:nefd_scatter} and the derived
+zenith opacities are given in Tab.~\ref{tab:nefd_summary}.
+
+\begin{figure}[hhh]
+\begin{center}
+\includegraphics[clip, angle=0, scale =0.42]{Figures/hls_NEFD_vs_TauElev_all.eps}
+\includegraphics[clip, angle=0, scale =0.42]{Figures/g2_NEFD_vs_TauElev_all.eps}
+\caption[NEFD per scan]{1\,$\sigma$ sensitivity on the central flux for each
+  observation of G2 and \hls. The solid black line is the theoretical fit of
+  $\sigma = \sigma_{ref}e^{\tau/\sin\delta}$ and gives the zenith opacity when
+  extrapolated to $\tau/\sin\delta = 0$.}
+\label{fig:nefd_scatter}
+\end{center}
+\end{figure}
+
+
 
 \newpage
 

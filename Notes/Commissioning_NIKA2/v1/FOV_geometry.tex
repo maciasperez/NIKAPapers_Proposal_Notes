@@ -7,7 +7,7 @@
 
 %   Geometry
 %----------------------------------------------------------------------------------------
-\section{Focal Plane Geometry {\color{blue} Nico}}
+\section{Focal Plane Geometry {\color{YellowGreen} Nico}}
 \label{se:fov_geometry}
 
 %% \todo{Refer to Sect.~\ref{se:fov_first_geometry} and then present here the
@@ -60,89 +60,64 @@ the geodesic convergence at the poles. We then fit a 2D elliptical gaussian on
 each kid map. The centroid of this gaussian is a first estimate of the KID
 offsets, FWHM's, ellipticity and sensitivity. We apply a first KID selection by
 removing outliers to the statistics on these parameters. We also discard
-manually KIDs that show a cross-talk counter part on their map. \todo{show maps
-  of ``doubles'' to illustrate this}
+manually KIDs that show a cross-talk counterpart on their map.
 
-\paragraph{Step 2.} While Step 1 is already enough for many uses, it is possible
-to improve its results with a better signal processing. Now that we have an
-estimate of each KID offset, it is possible to apply the pointing reconstruction
+\paragraph{Step 2.} With these offsets, it is already possible to produce maps
+from the combination of all detectors. However, in order to go up to the
+calibration stage, we must correct for the flux loss induced by the median
+filter and ensure that each timeline is treated in the same way as the final
+observation will. For this, we apply the pointing reconstruction
 presented in sect.~\ref{se:ptg} and the data reduction presented in
 sect.~\ref{se:toi_proc}. We still do not have absolute calibration for each KID
 (no opacity correction yet) but the amplitude of the fitted centroid on the same
-planet provides the required intercalibration to average all the timelines into
-a single map. This improved timeline processing allows an improved derivation of
-the flux as observed by each KID, up to an opacity correction that will be
-performed later on \todo{XXXX CHECK REF TO ABS CAL SECTION XXX}(see sect.~\ref{se:abs_cal}.)
+planet provides the required cross-calibration between KIDs. The final absolute
+calibration will be presented in Sect.~\ref{se:calibration}.\\
 
-This analysis is repeated on all \bms, which provide statistics and
+This analysis is repeated on all \bms\ to obtain statistics and
 precision on each KID parameter, together with estimates on KID performance
-stability. More details and final numbers on the FOV characteristics are given
-in Sect.~\ref{se:fov_geometry}.
+stability, as discussed in the next sections.
 
-%   KID selection
-%----------------------------------------------------------------------------------------
-\section{KID selection and average geometry {\color{blue} Nico (Barbara's part)} }
-\label{avg_kidpar}
-
+%\section{KID selection and average geometry {\color{blue} Nico (Barbara's part)} }
+%\label{avg_kidpar}
 
 \begin{figure}[p]
 \begin{center}
-%\includegraphics[trim=2cm 14cm 4cm 4cm, clip=true,width=0.55\linewidth]{Figures/A1_fwhm_color_count.pdf}
-%\includegraphics[trim=2cm 14cm 4cm 4cm, clip=true,width=0.55\linewidth]{Figures/A3_fwhm_color_count.pdf}
-%\includegraphics[trim=2cm 14cm 4cm 4cm, clip=true,width=0.55\linewidth]{Figures/A2_fwhm_color_count.pdf}
-%
 \includegraphics[trim=2cm 14cm 4cm 4cm, clip=true,width=0.45\linewidth]{Figures/A1_fwhm_color_count.pdf}
 \includegraphics[trim=2cm 14cm 5cm 4cm, clip=true,width=0.45\linewidth]{Figures/A1_positions.pdf}
 \includegraphics[trim=2cm 14cm 4cm 4cm, clip=true,width=0.45\linewidth]{Figures/A3_fwhm_color_count.pdf}
 \includegraphics[trim=2cm 14cm 5cm 4cm, clip=true,width=0.45\linewidth]{Figures/A3_positions.pdf}
 \includegraphics[trim=2cm 14cm 4cm 4cm, clip=true,width=0.45\linewidth]{Figures/A2_fwhm_color_count.pdf}
 \includegraphics[trim=2cm 14cm 5cm 4cm, clip=true,width=0.45\linewidth]{Figures/A2_positions.pdf}
-
-\caption[KID selection and stability of position in the FOV]{\emph{Left column:}
-  Average detector positions for arrays A1, A3, and A2 (from green to red as a
-  function of the number of times that a given pixel has been considered as
-  valid). The three plots show the detectors that have seen the sky and passed
-  the quality criteria for at least two beam maps during Run10, 9 and 8: 952,
-  961, and 553 for A1, A3 and A2, respectively. The inner and outer dash-line
-  circles correspond to a FOV of 5.5\,arcmin and 6.5\,arcmin,
-  respectively. Units are arcseconds.  The color (from green to red) shows the
-  number of times that a given pixel has been considered as valid. \emph{Right
-    column:}
-For the valid
-  detectors, we show the positions of each pixel, as obtained from each beam
-  map. Some of them are not found at the same position for all the beam
-  maps. Units are arcseconds. \todo{{\bf FM : color code : same as on the 1st
-      maps of validity}}}
+\caption[KID selection and stability of position in the FOV]{On each of these
+  plots, the color indicates, from green to red, how many times a KID was
+  identified as valid on a \bm. \emph{Left column:} Average detector positions
+  for arrays A1, A3, and A2. The three plots show the detectors that have seen
+  the sky and passed the quality criteria for at least two \bms\ during Run10, 9
+  and 8: 952, 961, and 553 for A1, A3 and A2, respectively. The inner and outer
+  dash-line circles correspond to a FOV of 5.5\,arcmin and 6.5\,arcmin,
+  respectively. Units are arcseconds. \emph{Right column:} For valid detectors,
+  we show the positions of each pixel, as obtained from each \bm. Some of them
+  are not found at the same position for all the \bms\ and are discarded. Units
+  are arcseconds.}
 \label{fig:avg_fov_color}
 \end{center}
 \end{figure}
 
 In order to identify the most stable pixels, we compare the KID parameters
-obtained with several beam maps.  In the following, we show results as obtained
-using seven \bms\ from Run10, two from Run9 and one from Run8.  For each
-pixel we compute the average position on the focal plane and the average FWHM,
-counting the times that it has been considered as valid.
-
-In Fig. \ref{fig:avg_fov_color} we show the average focal plane
-reconstruction, from green to red depending on the number of times
-that the pixel has been considered as valid. For A1, A3 and A2,
-respectively, we have 952, 961, and 553 pixels that have been
-considered as valid at least twice (840, 508, 868 valid at least five
-times).
-% LP: add a sentence to reference Table ``\ref{tab:number_of_kids}"
-Using this criterion, we deduce the fraction of valid detectors over the
-designed ones, as given in Table~\ref{tab:number_of_kids}.  As a second step, we
-also flag pixels that move across the focal plane from a beam map to another
-%(Fig. \ref{fig:jumping_kids}, jumping KIDs)
-and those who share the same
-position (twin KIDs). To identify the former, we look at the difference of the
-mean and median position of each KID, for the latter a criterion on the position
-is applied in order to find the pixels that are closer than the grid step. Each
-detector showing one of these behaviour is marked as unvalid.
-%(the red crosses and black squares in 
-%Fig. \ref{fig:mean_vs_median}). 
-
-\todo{\noindent {\bf FM: how many twins ? how many jumping kids ?}}\\
+obtained with several \bms.  In the following, we show results as obtained using
+seven \bms\ from Run10, two from Run9 and one from Run8.  For each pixel we
+compute the average position on the focal plane and the average FWHM, counting
+the times that it has been considered as valid and at the same position. Indeed,
+a few KIDs have close resonnances and can be tuned and switched on some scans. A
+few others must also be discarded because they appear identical numerically due
+to a reminaing artefact in the acquisition. These KIDs are flagged out (less
+than 1\% of the designed KIDs). In Fig. \ref{fig:avg_fov_color} we show the
+average focal plane reconstruction, from green to red depending on the number of
+times that the pixel has been considered as valid. For A1, A3 and A2,
+respectively, we have 952, 961, and 553 pixels that have been considered as
+valid at least twice (840, 508, 868 valid at least five times). Using this
+criterion, we deduce the fraction of valid detectors over the designed ones, as
+given in Table~\ref{tab:number_of_kids}.
 
 %% \begin{figure}[htp]
 %% \begin{center}
@@ -151,8 +126,8 @@ detector showing one of these behaviour is marked as unvalid.
 %% \includegraphics[trim=2cm 14cm 5cm 4cm, clip=true,width=0.55\linewidth]{Figures/A2_positions.pdf}
 %% \caption[Stability of KID positions in the field-of-view]{For the valid
 %%   detectors, we show the positions of each pixel, as obtained from each beam
-%%   map. Some of them are not found at the same position for all the beam
-%%   maps. Units are arcseconds. \todo{{\bf FM : color code : same as on the 1st
+%%   map. Some of them are not found at the same position for all the \bms.
+%% Units are arcseconds. \todo{{\bf FM : color code : same as on the 1st
 %%       maps of validity}}}
 %% \label{fig:jumping_kids}
 %% \end{center}
@@ -165,14 +140,12 @@ detector showing one of these behaviour is marked as unvalid.
 %\includegraphics[trim=2cm 14cm 5cm 4cm, clip=true,width=0.55\linewidth]{Figures/A2_test_positions.pdf}
 %\caption[Average KID positions]{For the valid detectors,
 %  we show the mean (red crosses) and the median (black squares)
-%  positions of each pixel, as obtained from each beam map.
+%  positions of each pixel, as obtained from each \bm.
 %  Units are arcseconds. \todo{FM : color code ? same as on the 1st maps of validity}}
 %\label{fig:mean_vs_median}
 %\end{center}
 %\end{figure}
 
-
-% LP: copy from fov.tex + modif according to Samuel's comment
 \begin{table}[ht]
 \begin{center}  
   \begin{tabular}{|c|c|c|c|}
@@ -184,19 +157,17 @@ detector showing one of these behaviour is marked as unvalid.
     A2 & 616  & 553 &  90\%\\
     \hline
   \end{tabular}
-  \caption[Number of detectors]{\todo{CAPTION}}
+  \caption[Number of detectors]{Summary of the number of valid detectors per array.}
   \label{tab:number_of_kids}
 \end{center}    
 \end{table}
 
 
-%   Distortion from the grid
-%----------------------------------------------------------------------------------------
-\section{FOV grid distortion {\color{blue} Nico et Xavier }  }
+\section{FOV grid distortion {\color{blue} Xavier }  }
 \label{se:grid_distortion}
 
 We studied the matching of the KIDs position on the sky to the
-\emph{design} position, as decribed in detail in this wiki post\footnote{see
+design position, as decribed in detail in this wiki post\footnote{see
   {\tt http$://$www.iram.fr$/$wiki$/$nika2$/$index.php$/$}
   
   {\tt April$\_$19,$\_$2017,$\_$FXD,$\_$KID$\_$position$\_$mapping$\_$and$\_$Field$\_$distortion$\_$for$\_$Run9}
@@ -317,46 +288,40 @@ the focus surfaces as decribed here.
 
 \subsection{Method}
 
-We measure NIKA2 focal surfaces by means of a sequence of five 'beam-map'
-scan observations of bright point-like sources, typically Planets or
-bright quasars,
-for various settings of the telescope axial focus around the
-optimal focus $z_{\rm{opt}}$. A beam-map scan consists of a deep-integrated
-$13.5' \times 7.8'$ OTF-scan observation comprizing $99$ sub-scans and
-with a scanning speed of either $65''/s$ whenever the mean integration
-elevation is $< 60$ degree or $39"/s$ at higher elevation. The z-focus is changed in step of
-$0.6~\rm{mm}$ to probe a large focus range for measuring even the
-extreme variation of the focus surfaces,
-namely $z \in \{-1.2, -0.6, 0, 0.6, 1.2 \} + z_{\rm{opt}}$.
-Each beam-map scans allow for $4''$-resolution individual maps per kid to
-be projected. Before the projection, the correlated noise is mitigated
-from each KID timeline in subtrating out a common mode, which is obtained
-using, amongst the other detectors, those that correlates the most
-with this KID and that are located outside a radius of $90''$
-around the source centroid.
-Therefore, a series of five cleaned maps at various focus is
-available for each detector, from which the best focus is estimated as
-described in Sect.~\ref{sec:focus-meas}. The ensemble of the relative
-focus estimate per KIDs with respect to the best focus at the center
-of the array constitutes the focus surface. An accurate estimate of
-the center focus is obtained as the
-weighted average focus estimate of the KIDs lying in a $30''$ radius
-around the geometrical center of the array. This average does not
-induce any sizeable bias thanks to the flatness of the focus surface
-in the innermost regions. For robustness test, we consider three focus
+We measure NIKA2 focal surfaces by means of a sequence of five \bms\ of bright
+point-like sources, typically Planets or bright quasars, for various settings of
+the telescope axial focus around the optimal focus $z_{\rm{opt}}$. A \bm\
+scan consists of a deep-integrated $13.5' \times 7.8'$ OTF-scan observation
+comprizing $99$ sub-scans and with a scanning speed of either $65''/s$ whenever
+the mean integration elevation is $< 60$ degree or $39"/s$ at higher
+elevation. The z-focus is changed in step of $0.6~\rm{mm}$ to probe a large
+focus range for measuring even the extreme variation of the focus surfaces,
+namely $z \in \{-1.2, -0.6, 0, 0.6, 1.2 \} + z_{\rm{opt}}$.  Each \bm\
+allows for $4''$-resolution individual maps per kid to be projected. Before the
+projection, the correlated noise is mitigated from each KID timeline in
+subtrating out a common mode, which is obtained using, amongst the other
+detectors, those that correlates the most with this KID and that are located
+outside a radius of $90''$ around the source centroid.  Therefore, a series of
+five cleaned maps at various focus is available for each detector, from which
+the best focus is estimated as described in Sect.~\ref{sec:focus-meas}. The
+ensemble of the relative focus estimate per KIDs with respect to the best focus
+at the center of the array constitutes the focus surface. An accurate estimate
+of the center focus is obtained as the weighted average focus estimate of the
+KIDs lying in a $30''$ radius around the geometrical center of the array. This
+average does not induce any sizeable bias thanks to the flatness of the focus
+surface in the innermost regions. For robustness test, we consider three focus
 estimates: the two first ones are the same as discussed in
 Sect.~\ref{sec:focus-meas} -- namely i) $\hat z_{\rm{fwhm}}$ the focus that
-minimizes the geometrical FWHM and ii) $\hat z_{\rm{peak}}$ the focus
-that maximizes the amplitude of the best-fitting ellitical Gaussian --
-whereas the third one is $\hat z_{\rm{flux}}$ the focus that maximizes
-the amplitude of the best-fitting elliptical Gaussian of fixed FWHM
-(at $12''$ at $260~\rm{GHz}$ and $18''$ at $150~\rm{GHz}$). The 
-comparison between the two amplitude-based estimators
-($\hat z_{\rm{peak}}$ and $\hat z_{\rm{flux}}$), will test the
+minimizes the geometrical FWHM and ii) $\hat z_{\rm{peak}}$ the focus that
+maximizes the amplitude of the best-fitting ellitical Gaussian -- whereas the
+third one is $\hat z_{\rm{flux}}$ the focus that maximizes the amplitude of the
+best-fitting elliptical Gaussian of fixed FWHM (at $12''$ at $260~\rm{GHz}$ and
+$18''$ at $150~\rm{GHz}$). The comparison between the two amplitude-based
+estimators ($\hat z_{\rm{peak}}$ and $\hat z_{\rm{flux}}$), will test the
 stability of the focus results against the exact choice of the beam fitting
-function. Since the ellipticity-based estimator $\hat z_{\rm{ellip}}$ is
-less sensitive to focus changes and yields larger uncertainties than the
-others, we do not use it for the focus surface reconstruction.     
+function. Since the ellipticity-based estimator $\hat z_{\rm{ellip}}$ is less
+sensitive to focus changes and yields larger uncertainties than the others, we
+do not use it for the focus surface reconstruction.
 
 
 \subsection{Data selection}
@@ -365,7 +330,7 @@ During the three commissioning campaigns that occured after the change of A1
 lens and the improvement of internal optics alignment (hence in the
 final NIKA2 optic configuration),
 nine out-of-focus
-beam-map scan sequences have been acquired, including incomplete
+\bms sequences have been acquired, including incomplete
 sequences and sequences hindered by poor atmospheric conditions. We
 select sequences that i) comprises at least four scans, ii) have been
 observed at zenith opacity at $225~\rm{GHz}$ (as indicated by
@@ -378,11 +343,11 @@ $20170421s160\mbox{--}164$ and $20170424s123\mbox{--}127$, which consist of obse
 of the bright quasar '3C84' and Neptune.
 
 \subsection{Results}
-For each detector $k$ and each beam-map sequence $s$, we obtain for
+For each detector $k$ and each \bm sequence $s$, we obtain for
 the array $a$, a focus measurement $z_k^{a, s} \pm \sigma_k^{a, s}$,
 where $\sigma_k^{a, s}$ is the $1\mbox{--}\sigma$ error of the least-square
 polynomial fit. The focus surface measurements per array obtained from the five
-beam-map sequences are combined using an inverse-variance weighting
+\bm sequences are combined using an inverse-variance weighting
 scheme to obtain the focus surface estimates 
 \begin{equation}
 \label{eq:mv_focus_surf}
@@ -412,7 +377,7 @@ left regions of the FOV. Finally, a fraction comprised between $20$
 and $30\%$ of the KIDs has a relative $z\le -0.2~\rm{mm}$.  
 
 In Sect.~\ref{ap:focus_surfaces}, we further test the stability of the
-focus surfaces by comparing results from a series of beam-map
+focus surfaces by comparing results from a series of \bm\
 sequences acquired at various date and under various atmospheric
 conditions. We found the focus surfaces to be stable against
 observation dates and atmospheric conditions.
@@ -434,4 +399,66 @@ $0.015~\rm{mm}$.
 
 %[EXPAND THE DISCUSSION ON COMPARISON WITH SIMULATION]
 
+\paragraph{Focus consistency between arrays}
+
+\todo{plot de recap sur les differences de focus optimaux observes sur les
+  differents arrays}
+
 \addparag{summary}
+
+\paragraph{Lateral foci estimation}
+\label{sec:focus_X_Y}
+
+Like in the $z$ (optical axis) direction, it is possible to control the position
+of M2 along the $x$ and $y$ directions. We have tried to determine if there was
+an optimal position in the $(x,y)$ plane that would improve further measures
+with \nika. We have applied the same procedure as the one described in
+Sect~\ref{se:focus-meas}, this time varying the position of M2 along $x$ or $y$
+rather than along $z$. Examples of such observations are presented on
+Figs.~\ref{fig:X_focus} and \ref{fig:Y_focus}. While the forced parabola fit
+guides the eye towards optimization, one should note the size of the error bars
+and the relatively low variations compared to M2 displacements along the $z$
+axis. This is expected from optical simulations and experience on
+EMIR. Figs.~\ref{fig:X_focus} and \ref{fig:Y_focus} also show as complement,
+images of the residuals of the intensity maps at each M2 position after the
+subtraction of an elliptical gaussian fitted only on a disk of 6 and 15\,arcsec
+(1 and 2\,mm resp.) around the maximum location and outside a ring of 100\,arcsec
+away from the maximum (to fix the background while not being affected by the
+side lobes). These maps of residuals are meant to help decide on a minimization
+criterion and $x$ or $y$-focus value.
+
+While we have performed ``many'' such observations and explored the entire
+parameter space of the $(x,y,z)$~triplet position in a reasonable range of
+several millimeters around a fixed position, it has not been possible to
+demonstrated that any $(x,y)$ position would improve significantly the
+focalization of the whole system compared to the nominal $(0,0)$ reference
+position. This confirms experience of the IRAM staff who only act on this
+$(x,y)$ position about once a year after specific, dedicted and delicate
+measures. We have therefore concluded that we should not change these parameters
+for \nika\ and only rely on $z$-focus optimization for observations.
+
+\begin{figure*}[h!]
+\centering
+\includegraphics[height=8cm]{Figures/plot_20170223s39.png}
+\hspace{0.5cm}
+\includegraphics[height=8cm]{Figures/residuals_focus_otf_20170223s39.png}
+\caption[Lateral X focus measures]{\textbf{Left:} X-focus measurement using a
+    parabolic fit of the flux, beam fwhm and ellipticity on a sequence
+    of five OTF scans on Uranus (20170223s39-43) \textbf{Right:} Beam residuals
+    after subtracting a model of the main beam for each OTF-scan of the X-focus
+    session. (N2R9)}
+\label{fig:X_focus}
+\end{figure*}
+
+\begin{figure*}[h!]
+\centering
+\includegraphics[height=8cm]{Figures/plot_20170223s44.png}
+\hspace{0.5cm}
+\includegraphics[height=8cm]{Figures/residuals_focus_otf_20170223s44.png}
+\caption[Lateral Y focus measures]{\textbf{Left:} Y-focus measurement using a
+    parabolic fit of the flux, beam fwhm and ellipticity on a sequence
+    of OTF scans on Uranus (20170223s44-48). \textbf{Right:} Beam residuals
+    after subtracting a model of the main beam for each OTF-scan of the Y-focus
+    session. (N2R9)}
+\label{fig:Y_focus}
+\end{figure*}

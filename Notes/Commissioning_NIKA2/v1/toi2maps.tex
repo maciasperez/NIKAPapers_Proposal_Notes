@@ -1,6 +1,7 @@
 
 
-\section{Overview of the data reduction pipeline {\color{blue} Nico}}
+\section{Overview of the data reduction pipeline {\color{YellowGreen} Nico}}
+\label{se:pipeline_overview}
 
 Because each matrix of \nika\ is a filled array with more than one detector per
 PSF on average, and because the atmosphere and electronic noise act as
@@ -46,9 +47,9 @@ scan is done.
 Because the tuning of KIDs might fail from time to time depending on the weather
 conditions for instance, we systematically check each KID and see if its noise
 is far from the average noise of all other KIDs in the same array, with a
-typical $3\sigma$. This criterion may seem a bit tight, but in any case, KID's
+typical $3\,\sigma$ threshold. This criterion may seem a bit tight, but in any case, KIDs
 are inverse noise variance weighted in the final map projection, so they would
-be given relatively low weight anyway (see sect.~\ref{se:map_king}).
+be given relatively low weight anyway (see sect.~\ref{se:map_projection}).
 
 At this stage of the processing, we have isolated the relevant fraction of the
 data for scientific processing and flagged out potentially misbehaving KIDs or
@@ -79,7 +80,7 @@ following rotation by the elevation angle:
 \Delta\delta^k_t &=& -\sin\delta_t \Delta x^k + \cos\delta_t \Delta y^k \nonumber
 \end{eqnarray}
 
-Adding these offsets to the reference $(\Delta alpha_t, \Delta \delta_t)$ gives the absolute
+Adding these offsets to the reference $(\Delta \alpha_t, \Delta \delta_t)$ gives the absolute
 pointing of each KID in these coordinates. An extra rotation by the parallactic
 angle $\eta_t$ is required to obtain KID's coordinates in \radec\ coordinates:
 
@@ -117,8 +118,7 @@ for the current opacity $\tau$ and elevation. In short, the absolute calibration
 TOI^k(t) [{\rm Jy/beam}] = \rf^k(t)[{\rm Hz}] \times g(k) \times e^{\tau_t/\sin\delta_t}
 \end{equation}
 
-The derivation of opacity is presented in sect.~\ref{se:skydip} and \todo{XXXX
-  TBC XXXX}.
+The derivation of opacity is presented in sect.~\ref{se:opacities}.
 
 \subsection{TOI processing}
 \label{se:toi_proc}
@@ -152,14 +152,13 @@ from the TOI's. We first introduce our prefered choice so far in the case when
 we know that we observe a single point source at the center of the field (as
 relevant for this commissioning document) and then give clues on how it can be
 generalized to any kind of astronomical source. Our reference method for this
-document and for our publications so far has been dubbed \cmoneb and consists
-in:
+document and for our publications so far has been dubbed \cmoneb:
 
 \begin{itemize}
-\item From the pointing information (sect.~\ref{se:ptg}), derive a mask per TOI,
-  that says, for each time $t$, if a KID is closer to the source than
-  e.g. 60\,arcsec.
-\item Selecting only samples for which two KIDs are far from the source, compute
+\item From the pointing information (sect.~\ref{se:ptg}), derive a mask per TOI
+  and for each time $t$ that is 0 if the KID is closer to the source than e.g. 60\,arcsec, 1
+  otherwise.
+\item Select only samples for which two KIDs are far from the source, compute
   the KID to KID correlation and for each KID $k$ and store the KID names that are most
   correlated to it. We first select the 15 most correlated KIDs, then compute
   the average and dispersion $\sigma$ of these correlations. When then loop over all KIDs

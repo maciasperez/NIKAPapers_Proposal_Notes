@@ -114,11 +114,10 @@ inversion of Eq.~\ref{eq:uncorr_flux} using
 \end{equation}
 
 We tested two estimators of the flux stability. The first one relies
-on minimising the
-standard deviation of the measured-to-median flux densities ratio
-after correction of the opacity using Eq.~\ref{eq:opacorr_taumeter}. The second
-one consists in rewriting the rms minimisation as an unweighted
-$\chi^2$ minimisation using:
+on minimising the standard deviation of the measured-to-median flux
+densities ratio after correction of the opacity using
+Eq.~\ref{eq:opacorr_taumeter}. The second one consists in rewriting
+the rms minimisation as an unweighted $\chi^2$ minimisation using:
 \begin{equation}
 \chi^2 = \sum_{i=1}^{N} \frac{1}{\sigma^2} \, \left( \frac{S_\nu}{Med(S_\nu)} -1 \right)^2,  
 \end{equation}
@@ -230,9 +229,13 @@ results of different skydips, we have verified experimentally that the
 coefficients $c_0$, $c_1$ are stable, within the fit errors, on very
 long time scales within a cooldown cycle. The coefficients can thus be
 applied to the whole observing campaign in order to recover the
-opacity of each scan.
-\noindent {\bf FM : a figure would help to convince the reader that it is stable on lng time
- scale, which is a key point.}\\ {\color{magenta} FXD: I will do that figure}
+opacity of each scan. Fig.~\ref{fig:skydip-stability} illustrates the
+stability of $c_0$ converted to equivalent temperature of the
+background. There is no apparent change of that background by more
+than 0.5~K.
+
+%\noindent {\bf FM : a figure would help to convince the reader that it is stable on lng time
+% scale, which is a key point.}\\ {\color{magenta} FXD: I will do that figure}
 
 The skydip-based procedure consists in fitting a couple of paramaters
 ($c_0$, $c_1$) for each of the several thousand valid KIDs. This
@@ -297,6 +300,21 @@ the 'v2' label data points in Fig.~\ref{fig:skydipselection}. After
 selection of the skydip scans acquired during the N2R9 campaign, 15
 skydips are kept for the final step of the ($c_0$, $c_1$) fit. 
 
+\begin{figure}[ht!]
+  \begin{center} \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm,
+    0},
+    width=0.42\textwidth]{Figures/Opacity/test_allskd4_N2R9v3_3-crop.pdf} \includegraphics[clip=true,
+    trim={0, -0.3cm, -0.3cm, 0},
+    width=0.42\textwidth]{Figures/Opacity/test_allskd4_N2R9v3_4-crop.pdf} \caption[]{(left)
+    rms dispersion of the skydip fit to the KIDs resonance frequency
+    for almost all N2R9 skydips. The rms gives the quality of the
+    plane-parallel hypothesis. (right) evolution of the background as
+    observed by NIKA2 during the N2R9 run. During the whole run, there
+    is no particular trend of that background with time (except for
+    anomalous skydips).  }
+\label{fig:skydip-stability}
+\end{center}
+\end{figure}
 
 \begin{figure}[ht!]
   \begin{center}

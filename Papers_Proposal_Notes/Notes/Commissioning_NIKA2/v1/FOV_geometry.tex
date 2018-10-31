@@ -41,12 +41,13 @@ then need to know the relative pointing offsets of each detector. We use
 KID offsets in the focal plane proceeds in two steps.
 
 \paragraph{Step 1.} We apply a median filter per
-KID timeline whose width is 4~FWHM and we project one map per KID in Nasmyth
-coordinates. This median filter removes efficiently most of the atmospheric and low frequency
-electronic noise, albeit a slight ringing and flux loss on the
-source. However, at this stage, we are only interested in the location of the
-observed planet. To derive the Nasmyth coordinates from the provided
-$(\alpha_t,\delta_t)$ and $(\Delta\alpha_t,\Delta\delta_t)$
+KID timeline whose width is equivalent to 4~FWHM and we project one
+map per KID in Nasmyth coordinates. This median filter removes
+efficiently most of the atmospheric and low frequency electronic
+noise, albeit with a slight ringing and flux loss on the
+source. However, at this stage, we are only interested in the location
+of the observed planet. To derive the Nasmyth coordinates from the
+provided $(\alpha_t,\delta_t)$ and $(\Delta\alpha_t,\Delta\delta_t)$
 coordinates, we build the following quantities at time~$t$ :
 
 \begin{eqnarray}
@@ -63,19 +64,20 @@ removing outliers to the statistics on these parameters. We also discard
 manually KIDs that show a cross-talk counterpart on their map.
 
 \paragraph{Step 2.} With these offsets, it is already possible to produce maps
-from the combination of all detectors. However, in order to go up to the
-calibration stage, we must correct for the flux loss induced by the median
-filter and ensure that each timeline is treated in the same way as the final
-observation will. For this, we apply the pointing reconstruction
-presented in sect.~\ref{se:ptg} and the data reduction presented in
-sect.~\ref{se:toi_proc}. We still do not have absolute calibration for each KID
-(no opacity correction yet) but the amplitude of the fitted centroid on the same
-planet provides the required cross-calibration between KIDs. The final absolute
-calibration will be presented in Sect.~\ref{se:calibration}.\\
+from the combination of all detectors. However, in order to go up to
+the calibration stage, we must correct for the flux loss induced by
+the median filter and ensure that each timeline is treated in the same
+way as the final observation will. For this, we apply the pointing
+reconstruction presented in sect.~\ref{se:ptg} and the data reduction
+presented in sect.~\ref{se:toi_proc}. We still do not have absolute
+calibration for each KID (no opacity correction yet) but the amplitude
+of the fitted centroid on the same planet provides the required
+cross-calibration between KIDs. The final absolute calibration will be
+presented in Sect.~\ref{se:calibration}.\\
 
 This analysis is repeated on all \bms\ to obtain statistics and
-precision on each KID parameter, together with estimates on KID performance
-stability, as discussed in the next sections.
+precision on each KID parameter, together with estimates on KID
+performance stability, as discussed in the next sections.
 
 %\section{KID selection and average geometry {\color{blue} Nico (Barbara's part)} }
 %\label{avg_kidpar}
@@ -108,7 +110,7 @@ obtained with several \bms.  In the following, we show results as obtained using
 seven \bms\ from Run10, two from Run9 and one from Run8.  For each pixel we
 compute the average position on the focal plane and the average FWHM, counting
 the times that it has been considered as valid and at the same position. Indeed,
-a few KIDs have close resonnances and can be tuned and switched on some scans. A
+a few KIDs have close resonances and can be tuned and switched on some scans. A
 few others must also be discarded because they appear identical numerically due
 to a reminaing artefact in the acquisition. These KIDs are flagged out (less
 than 1\% of the designed KIDs). In Fig. \ref{fig:avg_fov_color} we show the
@@ -183,35 +185,37 @@ array. They are described in Table~\ref{ta:gridmatch}.
 Array 1  &	Array 3   &	Array 2   &	Comment \\
 \hline
 1 mm      &       1 mm     &        2 mm  & \\
-1140 	 &      1140 	   &        616  &	Total of designed Kids \\
-736/673  &	758/734  &	444/437  &	Found/Well-placed Kids \\
-91/59 	 &    96/64 	 &      98/71 	 & Fraction [\%] of WPK/FoundKids and WPK/Total \\
-0.87 	 &     0.84 	  & 0.66     &	Median deviation (arcsec) for pixels with a deviation smaller than 5 arcsec. \\
+1140 	 &      1140 	   &        616  &	Total of designed Kids (TDK) \\
+673/736  &	734/758  &	437/444  &	Well-placed Kids (WPK)/Found Kids (FK) \\
+91/59 	 &    96/64 	 &      98/71 	 & Ratio in [\%] of WPK/FK and WPK/TDK \\
+0.87 	 &     0.84 	  & 0.66     &	Median deviation (arcsec) for detectors deviating by less than 5~arcsec. \\
 0.52 	 &     0.69 	 &        0.68 	 & Mean distortion across the FoV in arcsec \\
 2.3 -4.5  &	2.0 -5.8  &	9.3 -7.5  &	Array center in Nasmyth coordinates (arcsec) \\
 4.90  &	4.88  &	4.88  &	Plate scaling (arcsec/mm) in the Design x and y (averaged) \\
 77.3  &	76.4  &	78.2  &	Plate rotation angle (degree) from the Design to Nasmyth coordinates \\
-6.6  &	6.6  &	6.6  &	FOV (Total kids) \\
+6.6  &	6.6  &	6.6  &	FOV [arcmin] (Total kids) \\
 9.8/2.00  &	9.7/2.00  &	13.3/2.75  &	Distance between near detectors [arcsec, mm] \\
 1.24  &	1.22  &	0.97  &	Distance between near detectors [in lambda/D] \\
 \hline
 \end{tabular}
 \end{center}
-\caption[Field-of-view deformations]{Linear 2D fit of the observed position of the detectors in the sky
-  against their mechanical designed position for N2R9. }
+\caption[Field-of-view deformations]{Linear 2D fit of the observed
+  position of the detectors in the sky against their mechanically
+  designed position for N2R9. The initial table of Found Kids is given
+  by the \bms procedure. More than 90\% of the detectors (WPK/FK) are
+  within less than 5 arcseconds of their expected position. }
 \end{table}
 
 It shows that on average the position of each detector is known to better than
-an arcsecond. The 1mm arrays have almost the same center but this center
+an arcsecond. The 1~mm arrays have almost the same center but this center
 differs by 7 and 2 arseconds from the 2mm array center. The sampling is above
-$\lambda/D$ at 1 mm. Note that the plate rotation angle was designed as
+$\lambda/D$ at 1~mm. Note that the plate rotation angle was designed as
 76.2\,degrees, less than 2 degrees from what is observed. We find that array 1
-has the most deviant detectors (above 4 arcseconds from their expected
+has some of the most deviant detectors (above 4 arcseconds from their expected
 position). These detectors should be excluded from further analysis. We call
 distortion (in the table) the $x.y$ term in the polynomial fitting between the
 design grid and the observed position (the fitting is done with the $x$ and
-$y$ linear terms and $x.y$ term). 
-
+$y$ linear terms and the $x.y$ term). 
 
 
 This has been compared to expectations obtained using ZEMAX

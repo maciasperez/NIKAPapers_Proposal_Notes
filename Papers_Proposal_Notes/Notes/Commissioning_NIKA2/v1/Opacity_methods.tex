@@ -212,8 +212,9 @@ x$. The procedure has two steps.  First, all the skydips are analysed
 individually to simply extract $f_{reso}^k$ for each stable elevation
 and each KID. Secondly, a simultaneous fit is done for all parameters
 (one $\tau$ per skydip, and a set of $c_0^k$ and $c_1^k$ for all
-KIDs.)  Error bars on $\tau$ are estimated by doing this procedure on
-blocks of 40 kids only and getting a dispersion on the resulting
+KIDs). Fig~\ref{fig:skydipfitexample} illustrates the fitting
+procedure.  Error bars on $\tau$ are estimated by doing this procedure
+on blocks of 40 kids only and getting a dispersion on the resulting
 $\tau$ from the different blocks (the Mpfit routine does not allow
 more KIDs anyway). Usually the dispersion comes out as $4\times
 10^{-3}$ at 1~mm and $1\times 10^{-3}$ at 2~mm. Once the $\tau$ values
@@ -222,6 +223,23 @@ compute (while fixing the $\tau$) the $c_0$ and $c_1$ final values for
 each KID with a simple linear fit. We thus retrieve the coefficients
 of all the KIDs even though some of them could not contribute to the
 $\tau$ determination (flagged in the first step).
+
+
+\begin{figure}[ht!]
+\begin{center}
+\includegraphics[clip=true,width=0.8\textwidth]{Figures/Opacity/test_allskd4_N2R9v5_5-crop.pdf}
+\caption[]{Example of the global skydip fit for four KIDs (one per plot).
+Each square point represents one step in a skydip (made of eleven
+elevation steps). 12 skydips are used together spanning zenith
+opacities from 0.15 to 0.50. The horizontal axis gives the sky
+effective temperature $T_{atm}[1-e^{-\tau x}]$ where $\tau$ is the
+skydip zenith opacity found in the fit. The vertical axis shows the
+resonance frequency of the KID. The blue line is the expected linear
+fit implied by the found $c_0^k$ and $c_1^k$ coefficients (see
+Eq.~\ref{eq:skydip}). }
+\label{fig:skydipfitexample}
+\end{center}
+\end{figure}
 
 We observe that the skydip-fitted $\tau$ values are, as expected,
 common between different detectors of the same array. By comparing the

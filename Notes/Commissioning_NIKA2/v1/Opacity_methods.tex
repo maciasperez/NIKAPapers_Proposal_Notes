@@ -43,7 +43,7 @@ measured flux density on the opacity.\\
 %----------------------------------------------------------------------------------------
 %	taumeter Method
 %----------------------------------------------------------------------------------------
-\section{Taumeter-based method {\color{blue} Laurence $\&$ Juan}}
+\section{Taumeter-based method {\color{YellowGreen} Laurence $\&$ Juan}}
 \label{se:taumeter-method}
 
 The IRAM 30m falicity is equipped of a resident taumeter, which performs
@@ -58,10 +58,12 @@ $R$ is the correlation coefficient between the two flavours of
 $\hat{\tau}_{225}$ estimates. Redundant samples and outliers are removed.
 
 For the NIKA2 analysis we use the linear filtered  $\hat{\tau}_{225}$ data.
-The time-stamped $\hat{\tau}_{225}$ estimates, which are sampled about every 4 minutes, are interpolated
-to the time of the NIKA2 scans (we consider the time of the middle of the scan). For crosscheck we also produce 
-a smooth version of time-stamped $\hat{\tau}_{225}$ data by filtering with a running median of 7 samples, which
-is then interpolated to the NIKA2 scan times. 
+The time-stamped $\hat{\tau}_{225}$ estimates, which are sampled about
+every 4 minutes, are interpolated to the time of the NIKA2 scans (we
+consider the time of the middle of the scan). For crosscheck we also
+produce a smooth version of time-stamped $\hat{\tau}_{225}$ data by
+filtering with a running median of 7 samples, which is then
+interpolated to the NIKA2 scan times.
 
 
 \begin{figure}[ht!]
@@ -130,7 +132,8 @@ contours in the parameter plane ($a_\nu^{225}$, $b_\nu^{225}$), as
 well as the best-fitting parameter values. We find
 $a^{225} = [1.94,  1.86, 1.92]$ and $b^{225} = [-0.04,  -0.07, -0.06]$
 for A1, A3, and the 1mm array combination, while $a^{225}=0.94$ and
-$b^{225}=0$ for A2.   
+$b^{225}=0$ for A2. Uncertainties are of about 0.1 for the $a^{225}$
+parameter and about 0.05 on $b^{225}$. 
 
 % bf_a     = 1.9401878      0.94233333       1.8952941       1.9342579
 % err_bf_a = 0.16605729     0.097230351     0.084799830      0.12000000
@@ -143,18 +146,25 @@ $b^{225}=0$ for A2.
 %$a = [1.94,  0.94,  1.86,  1.92]$
 %$b = [-0.04, 0.00, -0.07, -0.06]$
 
-As stated latter, we will use the 'taumeter' method as an alternative method
-to correct for the atmospheric attenuation and perform consistency
-checks for baseline results in Sect.~\ref{se:photometry_others}.
 
-{\color{blue} FXD: We could state that the error bars on the coefficients $a$ and $b$ are large and that this method does not measure directly the line of sight opacity, hence we use this method as a backup.}
+Because the IRAM tau-meter observes at a fixed azymuth, the
+taumeter-based opacities are not exactly the line-of-sight opacities for
+the observation scans. As discussed in
+Sect.~\ref{se:photometry_others}, this induces larger rms errors of
+the top-of-the-atmosphere flux density estimates with respect to
+opacity correction methods that relies on skydip-based measurements using
+NIKA2 instrument itself. The taumeter-based method will thus be used
+as an alternative method in case of failure of the NIKA2 skydip-based
+methods and ii) to perform consistency checks.
+
+%{\color{blue} FXD: We could state that the error bars on the coefficients $a$ and $b$ are large and that this method does not measure directly the line of sight opacity, hence we use this method as a backup.}
 
 
 
 %----------------------------------------------------------------------------------------
 %	skydip-based Method
 %----------------------------------------------------------------------------------------
-\section{Skydip-based method {\color{blue} Xavier $\&$ Laurence}}
+\section{Skydip-based method {\color{YellowGreen} Xavier $\&$ Laurence}}
 \label{se:skydip-method}
 
 % LP: copie de l'intro de Xavier
@@ -504,7 +514,7 @@ and iii) are stable for various sources.
 %----------------------------------------------------------------------------------------
 %	Corrected skydip method
 %----------------------------------------------------------------------------------------
-\section{Corrected skydip method {\color{blue} Laurence}}
+\section{Corrected skydip method {\color{YellowGreen} Laurence}}
 \label{se:corrected-skydip}
 
 The consistency checks presented in
@@ -529,7 +539,8 @@ We use the flux stability estimators described in
 Sect.~\ref{se:taumeter-method} to fit a correction to the 'skydip'
 opacities $\tau_{\rm{skydip}}$ as
 \begin{equation}  
-  \tau_\nu =  a_\nu^{\rm{skydip}}\tau_{\rm{skydip}}.        
+  \tau_\nu =  a_\nu^{\rm{skydip}}\tau_{\rm{skydip}}.
+  \label{eq:corrected_skydip}
 \end{equation}
 
 We find $a_\nu^{\rm{skydip}}$ of
@@ -591,5 +602,14 @@ $b_\nu^{\rm{skydip}'}$ are compatible with zero at both wavelengths.
 % s_a = 0.037853031     0.050552977     0.068354972     0.044088207
 % b   = -0.0053333333    -0.014432990    -0.040000000    -0.030731707
 % s_b = 0.011925696     0.012184154     0.030641294     0.020823168
+
+We conclude that correcting the skydip-based opacity estimes for a
+normalisation as given in Eq.~\ref{eq:corrected_skydip} suffices for
+ensuring flux density robustness against atmospheric conditions.
+NIKA2 baseline results rely on zenith opacity estimes obtained with
+the corrected skydip method for the atmospheric attenuation
+correction. Assessment of the photometric capabilities using the data
+from three onservation campaigns will be addressed in
+Sect.~\ref{se:photometry_baseline}.
 
 

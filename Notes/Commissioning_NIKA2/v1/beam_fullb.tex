@@ -30,26 +30,57 @@ compared to the period when MAMBO or NIKA were on activity, these
 daily deformations have probably strengthen due to the aging of the
 main dish white coating.
 
-\subsection{Beam monitoring using beammaps}
+\subsection{Beam monitoring using bright source scans}
 
 We monitor the time-dependent beam-size variations using all the
-available beam-map scans of Uranus, Neptune and the bright quasar 3C84
-acquired at the optimal focus for each campaign.
+available bright source scans acquired at the optimal focus for each
+campaign. Bright sources are selected as flux density
+estimates above $1\,\rm{Jy}$ at both wavelengths.
 The beam size is estimated by fitting a 2D Gaussian from the map and
 taking the geometrical FWHM, defined as 
 $\rm{FWHM}_{\rm{geom}} = (\rm{FWHM}_x \rm{FWHM}_y)^{1/2}$, where
 $\rm{FWHM}_x$ and $\rm{FWHM}_y$ are the best-fitting values of FWHM
-along the minor and major axis of the elliptical 2D Gaussian. 
+along the minor and major axis of the elliptical 2D Gaussian.
 
 % see def of RESULT_FWHM in nk_grid2info.pro line 320
 % + see def of params in nika_gauss2d.pro
 
-\addparag{Monitoring using beammaps: FIG FWHM vs obsdate, tous runs}
+For Uranus, the FWHM estimates are corrected for the beam broadening due
+to the extension of the apparent disc. At the IRAM 30m latitude,
+Uranus disc diameter varies from $3.3''$ to $3.7''$. This induces a
+broadening of the Gaussian main beam of $0.19 \pm 0.03\,\rm{arcsec}$ at
+1-mm and $0.12 \pm 0.02\,\rm{arcsec}$ at 2-mm. Uranus FWMH estimates are
+corrected for the average beam widening values. 
+
+\begin{figure}[ht!]
+  \begin{center}
+    \includegraphics[clip=true, trim={0.9cm, 0.5cm, 0.5cm, 0.5cm}, width=0.4725\textwidth]{Figures/Beams/Beam_monitoring_with_otfs_vs_ut_1mm.pdf}
+    \includegraphics[clip=true, trim={0.5cm, 0.5cm, 0.5cm, 0.5cm}, width=0.4875\textwidth]{Figures/Beams/Beam_monitoring_with_otfs_vs_ut_a2.pdf}
+    \caption[Beam size monitoring using OTF scans]{Beam size monitoring using OTF scans} 
+\label{fig:beam_monitoring_otf}
+\end{center}
+\end{figure}
 
 \subsection{Beam monitoring using pointing}
 
-\addparag{Monitoring using pointing scans: FIG FWHM vs obsdate, tous runs}
 
+\begin{figure}[ht!]
+  \begin{center}
+    \includegraphics[clip=true, trim={0.9cm, 0.5cm, 0.5cm, 0.5cm}, width=0.4725\textwidth]{Figures/Beams/Beam_monitoring_with_pointings_vs_ut_1mm.pdf}
+    \includegraphics[clip=true, trim={0.5cm, 0.5cm, 0.5cm, 0.5cm}, width=0.4875\textwidth]{Figures/Beams/Beam_monitoring_with_pointings_vs_ut_a2.pdf}
+    \caption[Beam size monitoring using pointing scans]{Beam size monitoring using pointing scans} 
+\label{fig:beam_monitoring_pointing}
+\end{center}
+\end{figure}
+
+\begin{figure}[ht!]
+  \begin{center}
+    \includegraphics[clip=true, trim={0.9cm, 0.5cm, 0.5cm, 0.5cm}, width=0.4725\textwidth]{Figures/Beams/Beam_monitoring_with_otfs_vs_ut_compare_pointings_1mm.pdf}
+    \includegraphics[clip=true, trim={0.5cm, 0.5cm, 0.5cm, 0.5cm}, width=0.4875\textwidth]{Figures/Beams/Beam_monitoring_with_otfs_vs_ut_compare_pointings_a2.pdf}
+    \caption[Beam size monitoring comparison]{Beam size monitoring comparison} 
+\label{fig:beam_monitoring_compare}
+\end{center}
+\end{figure}
 
 %% [Full beam pattern]
 %%________________________________________________________

@@ -69,60 +69,26 @@ Modulation of the polarization by a rotating HWP like in \nika\ and \nikad\ crea
 \label{fig:hwp_power_spectrum}
 \end{figure}
 
-This additional parasitic signal was observed by experiments like \nika2\, \emph{EBEX} \citep{2010SPIE.7741E..1CR} and \emph{MAXIPOL} \citep{2007ApJ...665...42J}. This Half Wave Plate Synchronous Signal (HWPSS) can be modelled by a sum of $n$ harmonics of the HWP rotation frequency $\nu_{p}$ with amplitudes $A_{n}$ and $B_{n}$ that are linearly drifting :
+This additional parasitic signal was observed by experiments like \nika2\ , \emph{EBEX} \citep{2010SPIE.7741E..1CR} and \emph{MAXIPOL} \citep{2007ApJ...665...42J}. This Half Wave Plate Synchronous Signal (HWPSS) can be modelled by a sum of $n$ harmonics of the HWP rotation frequency $\nu_{p}$ with amplitudes $A_{n}$ and $B_{n}$ that are linearly drifting :
 
 \begin{equation}
-HWPSS(t) = \sum_{n=1}^{\infty} A_{n} \cos nwt + B_{n} \sin nwt , 
+HWPSS(t) = \sum_{n=1} A_{n} \cos nwt + B_{n} \sin nwt , 
 \label{eq:hwp-template}
 \end{equation}
 
 where : 
 \begin{eqnarray}
-A_{n}  &=& A_{n}^{0} + \varepsilon_{A_{n}}t\\
+A_{n}  &=& A_{n}^{0} + \varepsilon_{A_{n}}t,\\
 B_{n}  &=& B_{n}^{0} + \varepsilon_{B_{n}}t, 
 \end{eqnarray}
 
 with $w = 2 \pi \nu_{p}$.
 This effect can then be corrected by subtracting observations by the model presented in eq.~\ref{eq:hwp-template}. 
 
-The amplitude of the HWPSS can cause non-linearity in the detector response. 
+A large amplitude of the HWPSS can cause non-linearity in the detector response. This non-linear response can then be the source of coupling between intensity and polarization signals. Systematic effects arising from detector non-linearity have been studied in \emph{Simon's Observatory} \citep{2018SPIE10708E..48S}, \emph{POLARBEAR} \citep{2017JCAP...05..008T} and \emph{EBEX} \citep{2017arXiv171101314D}. In the latter, it was shown that the dominant source of intensity to polarization leakage is due to detector non-linearity caused by a large HWPSS. 
 
-%The magnitude of the HWPSS induces a non-linear response in the detectors which is synchronous with the HWPSS. The non-linear response couples unpolarized sky signal into the polarization signal bandwidth.
-%We found that the relatively large HWPSS induced non-linear detector response, which in turn caused significant conversion of intensity signals to polarization, ICPNL.
-%
-%Alternatively, non-linearity should be avoided by reducing the range of incoming signals (in particular the HWPSS), or by using detectors with operating parameters that ensure linear response over a larger dynamic range of incident signals.
-%
-%In practice, however, the optical elements on the sky side of the CRHWP and non-
-%idealities of the HWP can create the I→P leakage, which becomes the source of both 1/f noise [see, e.g. 17] and systematic errors [10, 13]. Additionally, we find that the non-linearity
-%of the detector couples with the finite amplitude of the instrumental polarization and mimics
-%I→P leakage. 
-%
-%In this configuration, one needs to address the intensity to
-%polarization (I→P) leakage of the optics, which becomes a source of 1/f noise and also causes differential gain systematics that arise from CMB temp```erature fluctuations.
-%
-%investigate the resulting temperature to polarization (I → P) leakage and nonlinear behavior in the detectors from the HWPSS.
-%
-%In the presence of detector nonlinearity, both the 2f and 4f components of the HWPSS contaminate the polarization band and are sources of systematic error.
-%
-%Another major source of I →P leakage is the non-linear behavior of the detector response.35 This effect is caused primarily by the dependence of the detector responsivity and time constant on the temperature of the system
-%and incoming loading. The dominant source of I → P leakage observed in experiments such as Polarbear3 and EBEX is the coupling of incoming intensity to the HWPSS, creating leakage from the 0f (constant) band
-%to the 4f band
-%
-%However, HWPs can also be a source of systematic effects like the HWPSS. Additionally, the HWPSS can
-%cause non-linearity in the detector response, introducing another source of I → P leakage, which is not the dominant cause of the leakage
-%
-%
-%when operating a HWP, including the amplitude of the HWP synchronous signal (HWPSS), and I →P (intensity to polarization) leakage that arises from detector non-linearity in the presence of a large HWPSS.
+In \nikad\ this additionnal noise is two to three order of magnitude above the noise level, making it one of the strongest noise contributor in polarization observations, such a bakground must be accounted for in the simulations. In the next paragraph, we study the non-linearity of a KID caused by a large HWPSS. 
 
-%The power
-%spectrum illustrated in Fig.~\ref{fig:hwp_power_spectrum} shows this additionnal
-%noise that is two to three order of magnitude above the noise level, making it
-%one of the strongest noise contributor in polarization observations.  In this paper we will study this
-%systematic effect and see if it biases the measurment of a KID. To do so, we
-%simulate this signal by modelling it as a Fourier series of the harmonics of the
-%HWP rotation frequency :
-%
-%In the following paragraph, we will use the model described by Eq.~(\ref{eq:fit-nl}) to study the KID non-linearity when it is exposed to a planet and a HWP template.
 
 \subsection{Simulations}
 

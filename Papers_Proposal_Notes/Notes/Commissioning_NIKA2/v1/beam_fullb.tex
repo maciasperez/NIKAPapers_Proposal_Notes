@@ -17,7 +17,7 @@ error beams up to angular scales of 10 arcmin.
 
 %% [Afternoon beam broadening ]
 %%________________________________________________________
-\section{Telescope-driven beam variations {\color{blue} Laurence}}
+\section{Telescope-driven beam variations {\color{YellowGreen} Laurence}}
 \label{se:obsdate_variations}
 
 In this section, we evidence a beam size broadening depending on the
@@ -31,6 +31,7 @@ daily deformations have probably strengthen due to the aging of the
 main dish white coating.
 
 \subsection{Beam monitoring using bright source scans}
+\label{se:beam_monitoring_otf}
 
 We monitor the time-dependent beam-size variations using all the
 available bright source scans acquired at the optimal focus for each
@@ -98,6 +99,7 @@ discussed in Sect.~\ref{se:photocorr_calibration}.
 
 
 \subsection{Beam monitoring using pointing}
+\label{se:beam_monitoring_pointing}
 
 As discussed in Sect.~\ref{se:pointing}, the telescope pointing is
 monitored on a hour basis during observation using pointing
@@ -114,31 +116,72 @@ Sect.~\ref{se:pipeline_overview} with the same parameters as for
 standard OTF scans, and projected onto maps of $2''$ resolution.
 As previously, an elliptical 2D Gaussian is then fitted from the map
 and a geometrical FWHM is formed from the best-fitting FWHM along the
-two ellipse radii.  
+two ellipse radii. FWHM estimates on Uranus maps are corrected for an
+offset due to the finite size of the apparent disc, as discussed in
+Sect.~\ref{se:beam_monitoring_otf}. Pointing scans on other extended
+sources, such as NGC7027, are discarded from the analysis. 
 
-
+In Fig.~\ref{fig:beam_monitoring_pointing}, we present the FWHM
+estimates using pointing scans as a function of the observing time in
+UT hours for three observation campaigns. We observe the same the beam
+size evolution with UT hours as previously discussed in
+Sect.~\ref{se:beam_monitoring_otf}, that is a plateau during night-time
+and a smooth increase during day-time up to a maximum in the
+afternoon, which is followed by a smooth decrease down to the plateau
+a few hours after the sunset. Although the general trend is the same
+as the OTF-based FWHM variations, more dispersion is seen either using
+pointings toward giant planets or other bright sources.
+%
 \begin{figure}[ht!]
   \begin{center}
     \includegraphics[clip=true, trim={0.9cm, 0.5cm, 0.5cm, 0.5cm}, width=0.4725\textwidth]{Figures/Beams/Beam_monitoring_with_pointings_vs_ut_1mm.pdf}
     \includegraphics[clip=true, trim={0.5cm, 0.5cm, 0.5cm, 0.5cm}, width=0.4875\textwidth]{Figures/Beams/Beam_monitoring_with_pointings_vs_ut_a2.pdf}
-    \caption[Beam size monitoring using pointing scans]{Beam size monitoring using pointing scans} 
+    \caption[Beam size monitoring using pointing scans]{Beam size
+      monitoring using pointing scans. Same legend as in
+      Fig.~\ref{fig:beam_monitoring_otf}.} 
 \label{fig:beam_monitoring_pointing}
 \end{center}
 \end{figure}
-
-%traitement FWHM per scans
-
-%comparison FWHM OTF and Pointing
-
-
+%
+The pointing-based FWHM constitute a time-sampling of the FWHM during
+the whole observation campaign. They can serve to estimate the beam
+size of any observation scans, in particular
+toward sources too faint for a direct FWHM fit to be made on the
+projected map. To mitigate the dispersion, the time-stamped
+pointing-based FWHM is filtered with a running median on a 70-minute
+width time window. Then, the FWHM at the time of the considered scans is
+interpolated from the smoothed pointing-based time-stamped FWHM.
+%
 \begin{figure}[ht!]
   \begin{center}
     \includegraphics[clip=true, trim={0.9cm, 0.5cm, 0.5cm, 0.5cm}, width=0.4725\textwidth]{Figures/Beams/Beam_monitoring_with_otfs_vs_ut_compare_pointings_1mm.pdf}
     \includegraphics[clip=true, trim={0.5cm, 0.5cm, 0.5cm, 0.5cm}, width=0.4875\textwidth]{Figures/Beams/Beam_monitoring_with_otfs_vs_ut_compare_pointings_a2.pdf}
-    \caption[Beam size monitoring comparison]{Beam size monitoring comparison} 
+    \caption[Beam size monitoring comparison]{Beam size monitoring
+      comparison. The FWHM estimates from a 2D Gaussian fit on the map
+      of OTF scans toward bright sources ('OTF'-labeled pink data
+      points) are compared to FWHM estimates that are obtained by
+      interpolating the smoothed pointing-based FWHM at the time of
+      the scans ('Pointing'-labeled light green data points).}
 \label{fig:beam_monitoring_compare}
 \end{center}
 \end{figure}
+%
+Figure~\ref{fig:beam_monitoring_pointing} shows two different FWHM
+estimates for the same data set: the best-fitting FWHM estimates on
+the map are compared with the interpolation from the pointing-based
+FWHM monitoring. The two estimates are well in agreement with each
+other, although the pointing-based estimates have more dispersion and
+a few outliers.
+
+As a summary, we have evidenced a systematic beam size variation with
+the observation time using two different data sets: a series of OTF
+scans of bright sources and pointing scans. The beam size
+variation is i) reproducible from a campaign to another, stable
+with ii) the data set and iii) the sources. It consists of a beam
+broadening during afternoons, as the $30\,\rm{m}$ dish is heated, and
+an increase of the dispersion during sunrises. The most impacted
+observing periods are well discarded using the baseline selection
+criteria discussed in Sect.~\ref{se:data_selection}.
 
 
 

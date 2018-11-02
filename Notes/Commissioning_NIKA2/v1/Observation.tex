@@ -19,18 +19,19 @@ centering of a bright point source on a reference detector and maximize the
 incoming flux on it. With \nika\ , mostly due to absence of horns, this
 procedure is not optimal. Indeed, it was noticed that the position of the source
 moved by several arcsec with the displacement of M2 and this would alter the flux
-measurement on a fixed reference position too much to allow focus
+measurement on a fixed reference position too much to enable focus
 optimization.
 
 To solve this issue we have designed a specific focus procedure that takes
-advantage of the filled array nature of the instrument. We perform a series of
-five successive short raster scans of a bright point source at five M2 position
-offsets, typically $\{-0.8, -0.4, 0, 0.4, 0.8\}$\,mm w.r.t.~the current
-$z$-focus. We then analyse each map to optimize the $z$ position of M2. More
-details are given in Sect.~\ref{se:focus}. Once the focus is correctly
-determined, the pointing corrections are derived from an EMIR like pointing
-calibration scan (Sect.~\ref{se:pointing}). The instrument is then ready to
-observe scientific targets.
+advantage of the dense sampling of the FOV that allows to map a source with only
+a few subscans. We perform a series of five successive short raster scans of a
+bright point source at five M2 position offsets, typically $\{-0.8, -0.4, 0,
+0.4, 0.8\}$\,mm w.r.t.~the current $z$-focus. We then analyse each map to
+optimize the $z$ position of M2. More details are given in
+Sect.~\ref{se:focus_surfaces}. Once the focus is correctly determined, the pointing
+corrections are derived from an EMIR like pointing calibration scan
+(Sect.~\ref{se:pointing}). The instrument is then ready to observe scientific
+targets.
 
 \subsection{Focus}
 % \label{se:focus}
@@ -48,14 +49,18 @@ the geometrical FWHM, defined as the quadratic mean of $\rm{FWHM}_{\rm{major}}$
 and $\rm{FWHM}_{\rm{minor}}$, and iii) $\hat z_{\rm{ellipt}}$ the focus that
 minimizes the beam ellipticity, defined as
 $\rm{FWHM}_{\rm{major}}/\rm{FWHM}_{\rm{minor}}$. Fig.~\ref{fig:focus-example}
-shows an example of such a sequence.
+shows an example of such a sequence. When deciding on the focus to apply, we
+give priority to the optimal flux, taking an average between values on A1 and
+A3: there is little difference between the two, and the the 2\,mm channel is
+less sensitive to focus than the 1\,mm.
 
 As presented in more details in sect.~\ref{sec:focus_surfaces}, the focus
 surface is not strictly flat accross the FOV. The way sources are scanned in
 this \emph{focus\_OTF} sequence is designed to save time but gives more weight
 to the central KIDs. Hence, the optimal focus derived from the fits is
 biased. To account for the curvature of the focus surfaces and optimize the
-average focus accross the FOV, we correct the derived focus by -0.2\,mm.
+average focus accross the FOV, we add -0.2\,mm to the focus value as derived
+in the previous paragraph.
 
 \begin{figure}[hhh]
 \begin{center}
@@ -82,8 +87,7 @@ average focus accross the FOV, we correct the derived focus by -0.2\,mm.
 Once the instrument is correctly focused, we can estimate pointing corrections
 before scientific observations. The procedure that is used is very similar to
 that used for EMIR and is described in the next subsection. It was used
-repeatedly during pointing sessions to derive the pointing model of
-\nika\ (Sect.~\ref{se:pointing_session}).
+repeatedly during pointing sessions to derive the pointing model of.
 
 \paragraph{Pointing monitoring}
 
@@ -92,7 +96,7 @@ repeatedly during pointing sessions to derive the pointing model of
 \includegraphics[clip, angle=0, scale = 0.30]{Figures/plot_20170418s192.png}
 \caption[Summary plots of the reduction of pointing scan.]{There is one combined
   map per array to check the overall quality of the scan, and a set of azimuth
-  and elevation profiles for one reference detector per array. The 2-mm reference
+  and elevation profiles for one reference detector per array. The 2\,mm reference
   detector, highlighed in red, is the pointing reference detector of
   \nika. The location of the peak in azimuth and elevation, as observed by the
   reference detector gives the pointing offsets of the current scan.}
@@ -102,7 +106,8 @@ repeatedly during pointing sessions to derive the pointing model of
 %\begin{figure}[htp]
 \begin{center}
 \includegraphics[clip, angle=0, scale = 0.70]{Figures/pointing_stats_N2R9.eps}
-\caption[Pointing session results]{Pointing offsets during Run9 observations, before and after the
+\caption[Pointing session results]{Pointing offsets during Run9 observations,
+  before (blue to green) and after (yellow to red) the
   derivation of Nasmyth offsets with a pointing session on Feb.~26th, 2017.}
 \label{fig:pointing_stats_n2r9}
 \end{center}
@@ -144,7 +149,7 @@ the elevation range from 19 to 65 degrees, regularly spaced in
 airmass. For each step, we acquire about twenty seconds of time traces
 to ensure a precise monitoring of each KIDs. KIDs are tuned at the beginning of
 each subscan (hence once per airmass). The variation of their resonnance
-frequency follows eq.~(\ref{eq:skydip_1}):
+frequency reads
 
 \begin{equation}
 \ftone^k  = C_0^k - C_1^k T_{atm}[1-e^{-\tau/\sin\delta}]

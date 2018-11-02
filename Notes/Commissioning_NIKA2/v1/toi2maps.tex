@@ -70,32 +70,33 @@ pointing offsets \wrt~this position. We therefore detail here the derivation of
 these offsets.
 
 We store KID pointing offsets \wrt\ the reference position in Nasmyth $(x,y)$
-coordinates (indepent of time) once and for all in our KID database
+coordinates (independent of time) once and for all in our KID database
 (\aka~\kidpar). Sect.~\ref{se:fp_reconstruction} details how these offsets are
 derived. To go from Nasmyth offsets to $(\alpha,\delta)$ offsets, we apply the
 following rotation by the elevation angle:
 
 \begin{eqnarray}
-\Delta\alpha^k_t &=&  \cos\delta_t \Delta x^k + \sin\delta_t \Delta y^k \nonumber\\
-\Delta\delta^k_t &=& -\sin\delta_t \Delta x^k + \cos\delta_t \Delta y^k \nonumber
+\Delta\alpha^k_t &=&  \cos\delta_t \Delta x^k + \sin\delta_t \Delta y^k, \nonumber\\
+\Delta\delta^k_t &=& -\sin\delta_t \Delta x^k + \cos\delta_t \Delta y^k, \nonumber
 \end{eqnarray}
 
-Adding these offsets to the reference $(\Delta \alpha_t, \Delta \delta_t)$ gives the absolute
-pointing of each KID in these coordinates. An extra rotation by the parallactic
-angle $\eta_t$ is required to obtain KID's coordinates in \radec\ coordinates:
+where $k$ is a KID index. Adding these offsets to the reference $(\Delta
+\alpha_t, \Delta \delta_t)$ gives the absolute pointing of each KID in these
+coordinates. An extra rotation by the parallactic angle $\eta_t$ is required to
+obtain KID's coordinates in \radec\ coordinates:
 
 \begin{eqnarray}
-\Delta R.\,A.^k_t &=&  \cos\eta_t \Delta\alpha^k_t + \sin\eta_t \Delta\delta^k_t\\
-\Delta Dec^k_t    &=& -\sin\eta_t \Delta\alpha^k_t + \cos\eta_t \Delta\delta^k_t
+\Delta R.\,A.^k_t &=&  \cos\eta_t \Delta\alpha^k_t + \sin\eta_t \Delta\delta^k_t,\\
+\Delta Dec^k_t    &=& -\sin\eta_t \Delta\alpha^k_t + \cos\eta_t \Delta\delta^k_t.
 \end{eqnarray}
 
 We now have the pointing of each KID at each time relative to the source that we
 usually center on our final map. It then trivial to assign the map pixel
 corresponding to this pointing on a Nearest Grid Point basis.
 
-This pointing reconstruction is done early in the data reductio process because
-the knowledge of when a KID is close or far from the source will be used during
-the timeline processing (sect.~\ref{se:toi_proc}).
+This pointing reconstruction is done early in the data reduction process because
+we'll need to know when a KID is close or far from the source for the timeline
+processing (sect.~\ref{se:toi_proc}).
 
 \subsection{TOI calibration}
 \label{se:flux_calib}
@@ -107,7 +108,7 @@ steps: a standard absolute calibration and a correction for the current opacity
 and elevation.
 
 The standard conversion from Hz to Jy/beam is stored in the
-\kidpar\ database. The derivation of these gains is detailed in
+\kidpar\ database. The derivation of these gains $g(k)$ is detailed in
 Sect.~\ref{se:fp_reconstruction}. Suffice is to say here that simply multiplying
 the TOI's by these gains converts them into Jy/beam. Of course, this individual
 absolute calibration also acts as a relative calibration. This calibration is
@@ -131,61 +132,63 @@ The derivation of opacity is presented in sect.~\ref{se:opacities}.
 \includegraphics[clip, angle=0, scale=0.4]{Figures/matrix_2mm_decorr.eps}
 \caption{\emph{Top-left:} Example of 40 KID raw timelines during an observation
   of Uranus. The low frequency correlated component (atmosphere and electronic
-  noise) is clear. \emph{Top-right:} One of these TOI's and the scaled
-\cm\ that is subtracted from it to remove the low frequency
-component. \emph{Bottom-left:} TOI to TOI correlation matrix for the 2mm array
-before any processing (but for absolute calibration). The cross-correlation is
-large for every pair of KIDs and is dominated by the low frequency content
-presented on the top plots. \emph{Bottom-right:} TOI to TOI correlation matrix
-after the subtraction of the \cm\ in each KID timeline. The improvement is
-significant but residual correlations are observed among electronic boxes or
-electronic subbands and indicate that further improvement is possible.}
+  noise) is clearly seen. \emph{Top-right:} One of these TOIs and the scaled
+  \cm\ that is subtracted from it. \emph{Bottom-left:} TOI to TOI correlation
+  matrix for the 2mm array before any processing (but for absolute
+  calibration). The cross-correlation is large for every pair of KIDs and is
+  dominated by the low frequency content presented on the top
+  plots. \emph{Bottom-right:} TOI to TOI correlation matrix after the
+  subtraction of the \cm\ in each KID timeline. The improvement is significant
+  but residual correlations are observed among electronic boxes or electronic
+  subbands and indicate that further improvement is possible.}
 \label{fig:nika_toi}
 \end{center}
 \end{figure}
 
 As presented on Fig.~\ref{fig:nika_toi}, the atmosphere and the electronic noise
-combine into a large low frequency component that we want to eliminte as much as
-possible. Most of the atmospheric component is common to all KIDs. We have
-investigated several ways of using this information to remove this component
-from the TOI's. We first introduce our prefered choice so far in the case when
-we know that we observe a single point source at the center of the field (as
-relevant for this commissioning document) and then give clues on how it can be
-generalized to any kind of astronomical source. Our reference method for this
-document and for our publications so far has been dubbed \cmoneb:
+combine into a large low frequency component that we want to eliminate as much
+as possible. Most of the atmospheric component is common to all KIDs, which is
+expected because the telescope is a 30\m dish and therefore has a \todo{XXXX
+  near field of XXXXX m}. We have investigated several ways of using this
+information to remove this component from the TOIs. We first introduce our
+prefered choice so far when we observe a single point source at the center of
+the field (as relevant for this commissioning document). We then give clues on
+how it can be generalized to any kind of astronomical source.
+
+Our reference method for this document and for our publications so far has been
+dubbed \cmoneb:
 
 \begin{itemize}
 \item From the pointing information (sect.~\ref{se:ptg}), derive a mask per TOI
-  and for each time $t$ that is 0 if the KID is closer to the source than e.g. 60\,arcsec, 1
+  and for each time $t$ that is 0 if the KID is closer to the source than 60\,arcsec, 1
   otherwise.
-\item Select only samples for which two KIDs are far from the source, compute
-  the KID to KID correlation and for each KID $k$ and store the KID names that are most
+\item Select only samples for which two KIDs are further than 60\,arcsec from the source, compute
+  the KID to KID correlation.
+\item For a KID $k_0$, store the KID names that are most
   correlated to it. We first select the 15 most correlated KIDs, then compute
-  the average and dispersion $\sigma$ of these correlations. When then loop over all KIDs
-  are add to the selection all the KIDs that are as correlated to $k$ than the
+  the average and dispersion $\sigma$ of these correlations. Whe then loop over all KIDs
+  are add to the selection all the KIDs that are as correlated to $k_0$ as the
   15 first, up to $2\,\sigma$.
-\item Derive a median mode for this block of KIDs.
+\item Derive a median mode for this block of 15 or more KIDs.
 \item Cross-calibrate each of these KIDs with the median mode (far from the
-  source) and build an inverse noise weighted average mode with all these
-  KIDs. At each time, we use only KIDs that are far from the source. We make
-  sure to have enough KIDs to produce a continuous mode and to leave no sample
-  without estimation.
-\item Linearly regress this average mode against KID $k$'s TOI (far from the
-  source) and subtract on the entire timeline.
+  source) and build an inverse noise weighted average mode. At each time, we use
+  only KIDs that are further from the source than 60\,arcsec. We make sure to
+  have enough KIDs to produce a continuous mode and to leave no sample without
+  estimation.
+\item Linearly regress this average mode against $k_0$'s TOI (far from the
+  source) and subtract on the entire $k_0$ timeline.
 \end{itemize}
 
-Fig.~\ref{fig:nika_toi} shows an example of such average mode derivation and the
-resulting TOI cross-correlation matrix after that. We have tested on simulations
-that this method does not alter the flux of the source when the distance to the
-source is large enough. This method makes full use of the filled array nature of
-\nika\ and of the coherence of the atmospheric signal accross the focal plane
-due to the 30\,m dish.
+This process is repeated for each KID. Fig.~\ref{fig:nika_toi} shows an example
+of this low frequency mode derivation, together with the resulting TOI
+cross-correlation matrix after its subtraction. We have tested on simulations
+that this method does not alter the flux of the source.
 
 If the observed field contains something else than a single point source at its
 center, then several options are available to generalize this method. In
 particular, the mask can be design to adjust to several point sources. If the
-source is diffuse and extended, then go through a an iterative procedure that
-subtract improved derivations of the signal at each step. For this work about
+source is diffuse and extended, then we may go through an iterative procedure that
+subtracts an improved derivation of the signal at each step. For this work about
 the commissionning of the instrument and the assessment of its performances on
 point sources, we do not need to go into further details about this.
 
@@ -208,19 +211,19 @@ S_p        &=& \frac{1}{\sum_{k,t}1/\sigma_k^2}\sum_{k,t} \frac{m^k_t}{\sigma_k^
 
 where $\sigma^2_p$ is the variance associated to pixel $p$. We systematically
 project one map per array and a combined 1\,mm map and take a small enough
-resolution to respect the Nyquist criterion on the beam sampling. For the sake
-of margin and simplicity, we usuallly take 2\,arcsec resolution pixels.
+resolution to respect the Nyquist criterion on the beam sampling. To keep margin
+and for the sake of simplicity, we usuallly take 2\,arcsec resolution pixels.
 
 In practice, and although the data cleaning procedure described in
 Sect.~\ref{se:toi_proc} significantly reduces the low frequency component of
-TOI's, the residual noise is still not completely white and KID independent. The
+TOIs, the residual noise is still not completely white nor KID independent. The
 correlation matrix is not strictly zero to begin with (Fig.~\ref{fig:nika_toi})
 and when looking at the distribution of the SNR on maps and variance maps
 obtained with Eqs~(\ref{eq:ngp_sum},\ref{eq:ngp_var}), the distribution is
-gaussian, but not normalized (see Fig.~\ref{fig:sigma_boost}). This is due to the
-remaining correlations between TOIs before projection. At this stage,
+gaussian, but not normalized to unity (see Fig.~\ref{fig:sigma_boost}). This is
+due to the remaining correlations between TOIs before projection. At this stage,
 rather than putting more effort in TOI processing, we renormalize the width of
-the gaussian noise, actually increase the map variance but the required factor
+the gaussian noise, actually increase the map variance by the required factor
 so that the SNR distribution becomes normalized. This normalization factor
 varies from scan to scan but is usually between 1.2 and 1.5. It is estimated on
 the background of the map, i.~e. far from the source.
@@ -231,14 +234,14 @@ the background of the map, i.~e. far from the source.
 \caption{Histogram of the SNR per beam on a scan of weak source (G2, see
   sect.~\ref{se:nefd_estimation_methods}). While the histogram is gaussian, its
   width is not normalized to 1 due to residual correlated noise between the
-  TOI's. This factor is accounted for before delivering the final variance map
+  TOIs. This factor is accounted for before delivering the final variance map
   and associated flux estimates.}
 \label{fig:sigma_boost}
 \end{center}
 \end{figure}
 
-We several scans of the same source are averaged, we here too apply an inverse
-variance weighting. Weights are taken from the variance maps of each scan,
+When several scans of the same source are averaged, we apply an inverse
+variance weighting as well. Weights are taken from the variance maps of each scan,
 corrected for the excess variance mentionned in the previous paragraph. The
 final variance map of the sum of scans is also corrected for such a factor if necessary.
 
@@ -250,7 +253,7 @@ is a perfect gaussian of known $FWHM=\sigma\sqrt{8\ln 2}$, the instantaneous
 signal measured by a KID is
 
 \begin{equation}
-m^k(x,y) = \phi e^{-(x^2+y^2)/2\sigma^2}
+m^k(x,y) = \phi e^{-(x^2+y^2)/2\sigma^2} = \phi g(x,y)
 \label{eq:flux_per_beam_def}
 \end{equation}
 
@@ -259,17 +262,19 @@ gaussian and significant side lobes must be accounted for
 (sect.~\ref{se:beams}). If the beam was perfectly known and stable, we could in
 principle replace the gaussian form in eq.~(\ref{eq:flux_per_beam_def}) by the
 beam pattern and fit for the amplitude $\phi$. In practice, we have found that
-it was enough as first approximation to take an equivalent effective gaussian
+it was enough as a first approximation to take an equivalent effective gaussian
 width and use it to derive the beam template. We take 12.5 and 18.5\,arcsec FWHM
 at 1 and 2\,mm respectively and compute all our fluxes with these
 values. We do this for both analyzed point sources and for absolute calibrators
 to be consistent.
 
-The amplitude fit is performed with a usual maximum likelihood
-approach. We assume that the renormalization of the variance map described in
-the previous section is enough to account for the residual noise correlations
-from pixel to pixel and therefore take the pixels to be independent in this
-estimator:
+Let's call $s_p$ the measured signal at pixel $p$ and denote by $g_p$ the
+Gaussian weight give to pixel $p$ as a function of its distance to the source,
+as defined in eq.~(\ref{eq:flux_per_beam_def}). The amplitude fit is performed
+with a usual maximum likelihood approach. We assume that the renormalization of
+the variance map described in the previous section is enough to account for the
+residual noise correlations from pixel to pixel and therefore take the pixels to
+be independent in this estimator:
 
 \begin{eqnarray}
 \hat{\phi} &=& \frac{1}{\sum_p g_p^2/\sigma_p^2}\sum_p
@@ -278,10 +283,9 @@ s_p\frac{g_p}{\sigma_p^2} \label{eq:flux_estim_def} \\
   g_p^2/\sigma_p^2} \label{eq:flux_estim_var_def}
 \end{eqnarray}
 
-where $g$ is the gaussian profile as defined in eq.~(\ref{eq:flux_per_beam_def})
-and $p$ is the index of pixels.
-{\color{blue} FXD: $g$ is not defined in 2.8??? Explain that this fixed-width photometry method gives the best signal to noise ratio for faint sources.}
-
+In the case of gaussian white noise, this maximum likelihood estimator coincides
+with the classical minimum variance estimator and thus provides the best SNR
+estimate of the source flux.
 
 %% \subsection{Opacity correction}
 %% 

@@ -196,12 +196,41 @@ criteria discussed in Sect.~\ref{se:data_selection}.
 \subsection{Data sets}
 \label{se:beammap_set}
 
-The characterization of the IRAM $30\,\rm{m}$ beam pattern observed through NIKA2 detectors is mainly based on observations of strong compact sources, such as planets including Uranus, Neptune and Mars, and bright quasars. We generally use beam-map scans, which we recall, are deep-integration raster-scan observations that consist of 99 sub-scans placed at intervals of $4.8''$ to cover a total of $13.5' \times 7.8'$. Most of our beam-related analysis are beased on the same set of beam-map scans as previously selected to perform the average FOV reconstruction. The set comprises nine beam-map scans that distribute as one from N2R8, '20170125s243', two from N2R9, '20170224s177' and '20170226s415' and six from N2R10, which are '20170226s425', '20170227s84', '20170419s133', '20170420s113', '20170424s116', '20170424s123'. 
+The characterization of the IRAM $30\,\rm{m}$ beam pattern observed
+through NIKA2 detectors is mainly based on observations of strong
+compact sources, such as planets including Uranus, Neptune and Mars,
+and bright quasars. We generally use \bm\ scans, which we recall,
+are deep-integration raster-scan observations that consist of 99
+sub-scans placed at intervals of $4.8''$ to cover a total of $13.5'
+\times 7.8'$ (see also Sect.~\ref{se:beammaps}). Most of our
+beam-related analysis are beased on the same
+set of \bm\ scans as previously selected to perform the average
+FOV reconstruction, as presented in Sect.~\ref{se:fp_reconstruction}.
+The set comprises nine \bm\ scans that distribute as one from N2R8,
+'20170125s243',
+two from N2R9,
+'20170224s177' and '20170226s415' and six from N2R10, which are
+'20170226s425', '20170227s84', '20170419s133', '20170420s113',
+'20170424s116', '20170424s123'.
+
 
 
 \subsection{Deep beam maps}
 \label{se:beammaps}
-We present the two-dimensional distribution of the beam in Fig.~\ref{fig:beam}. We primary use a map obtained from a combination of deep observations of strong point sources collected during \emph{NIKA2-run8} and \emph{run9}. Namely, we use 'beammap' OTF scans of Uranus (scan id '20170125s223' and '20170125s243'),  Neptune ('20170224s177') and the bright quasar 3C84 ('20170226s415'). However, we checked the stability of our results on single scan maps, combinations of scans for a single source, and combinations of shallower scans but spanning a large range of scanning direction. The data processing includes a mitigation of the correlated noise, which mainly originates from the atmosphere.  We primarly use a subtraction of a common mode estimated from the most correlated detectors (the so-called 'cm one block' method). However, other methods are tested for assessing the immunity of our results to noise residuals.
+We present the two-dimensional distribution of the beam in
+Fig.~\ref{fig:beam}. We primary use a map obtained from a combination
+of deep observations of strong point sources collected during
+\emph{NIKA2-run8} and \emph{run9}. Namely, we use 'beammap' OTF scans
+of Uranus (scan id '20170125s223' and '20170125s243'),  Neptune
+('20170224s177') and the bright quasar 3C84 ('20170226s415'). However,
+we checked the stability of our results on single scan maps,
+combinations of scans for a single source, and combinations of
+shallower scans but spanning a large range of scanning direction. The
+data processing includes a mitigation of the correlated noise, which
+mainly originates from the atmosphere.  We primarly use a subtraction
+of a common mode estimated from the most correlated detectors (the
+so-called 'cm one block' method). However, other methods are tested
+for assessing the immunity of our results to noise residuals.
 
 \begin{figure}
 \begin{center}
@@ -211,35 +240,23 @@ We present the two-dimensional distribution of the beam in Fig.~\ref{fig:beam}. 
 \end{center}
 \end{figure}
 
-
 The deep NIKA2 beam maps reveal some noticeable features, which are
-shown in Fig.~\ref{fig:features}.
-
-{\bf Implement Samuel's comments copied below}
-Commentaires faits a Alessandro pour le papier:
+shown in Fig.~\ref{fig:features} and which comprize:
 \begin{itemize}
-\item[(1)] les four symmetrical spokes of the error beam sont normaux
-  et attendu d'apres mes simus comme tu peux voir dans la petite image
-  ci-dessous (c'est le beam obtenu dans Zemax pour la bande 1mm
-  convolu\'e avec une fonction porte de la taille du pixel)
-\item[(2)] par contre les pink ellipse show spikes in this map
-  montrent un effet de diffraction ou de ghost image anormal et
-  inattendu qui est du \'a un probleme optique dans le cryostat ou au
-  niveau de M5 ou M6 ou la fenetre. On le sait car quand on regarde
-  leur position en fonction de l'elevation on voit qu'ils tournent
-  avec l'elevation dans les cartes Az-El
-\item[(3)] quant aux spikes of unknown origin montr\'es sur A3 je pense
-  que les deux en bas et a droite sont juste un des petits lobes de la
-  simu avec un meilleur contraste que ceux du haut et de gauche, alors
-  que pour le petit blob dans la diagonale a peu pres au niveau de
-  la diffraction sur un bras du quadrupode je soupconne un effet
-  d'amplification du a la petite boite qui se trouve sur le cot\'e du
-  secondaire que tu peux voir sur la photo du slide 2 de la
-  presentation qu'Andrea a envoyee aujourd'hui (mais je n'ai pas de
-  preuve)
+\item[(1)] four symmetrical spokes of the error beam as shown by
+  yellow arrows in the A2 panel, which are expected from \emph{Zemax}
+  simulations;
+\item[(2)] shallow spikes of unknown origin, which are circled by pink
+  ellipses. The multiple images on the combined deep beam map indicate
+  a rotation of these spikes with the observing elevation, which in
+  turn point to diffraction related issue or a ghost image that are
+  formed inside the cryostat;
+\item[(3)] other spikes of unknown origin, as pointed with the yellow
+  arrows in the A3 panel. The ones that are close to the vertical and
+  horizontal radii are reproduced by 'Zemax' simulation but with a  
+  shallower, whereas the ones in the diagonal directions may be due to
+  external calibrator installed close to the secondary mirror.  
 \end{itemize}
-
-
 
 \begin{figure}
 \begin{center}
@@ -250,20 +267,36 @@ Commentaires faits a Alessandro pour le papier:
 \end{figure}
 
 
-To gain a first impression of the structure of the Iram 30-m beam as seen with NIKA2, we use radial cuts to evidence the relative level of the main beam, the first error beam and other features seen in the 2D beam pattern using radial cuts. NIKA2 full beam is shown in Fig.~\ref{fig:beam_db} by means of two orthogonal cuts through Uranus
-from a high quality map obtained on 2017 January 25th in excellent conditions
+To gain a first impression of the structure of the Iram 30-m beam as
+seen with NIKA2, we use radial cuts to evidence the relative level of
+the main beam, the first error beam and other features seen in the 2D
+beam pattern using radial cuts. NIKA2 full beam is shown in the left
+panels of Fig.~\ref{fig:beam_structure_example} by means of two
+orthogonal cuts through Uranus from a high quality map obtained on
+2017 January 25th in excellent conditions
 (low opacity $\tau_{225}=0.08$ and elevation $46^{\circ}$).
 
-\begin{figure}[h]
-\begin{center}
-\includegraphics[clip, angle=-90, scale =0.3]{Figures/Array_A1_dB.pdf}
-\includegraphics[clip, angle=-90, scale = 0.3]{Figures/Array_A2_dB.pdf}
-\includegraphics[clip, angle=-90, scale = 0.3]{Figures/Array_A3_dB.pdf}
-\caption[Beam cuts]{Two orthogonal cuts through the beam are shown in red and green and a best fit model made
-of three Gaussians is superimposed in black. These cuts were obtained from the high quality map of Uranus on 2017 January 25th.
-The main beam starts to depart from the first Gaussian at -12dB. }
-\label{fig:beam_db}
-\end{center}
+
+\begin{figure}[ht!]
+  \begin{center}
+    \includegraphics[clip=true, width=0.39\textwidth]{Figures/Array_A1_dB.pdf}
+    \includegraphics[clip=true, trim={-0.5cm, -0.65cm, 0, 0}, width=0.44\textwidth]{Figures/Beam_profiles_A1_FR.pdf}
+    \includegraphics[clip=true, width=0.39\textwidth]{Figures/Array_A3_dB.pdf}
+    \includegraphics[clip=true, trim={-0.5cm, -0.65cm, 0, 0}, width=0.44\textwidth]{Figures/Beam_profiles_A3_FR.pdf}
+    \includegraphics[clip=true, width=0.39\textwidth]{Figures/Array_A2_dB.pdf}
+    \includegraphics[clip=true, trim={-0.5cm, -0.65cm, 0, 0}, width=0.44\textwidth]{Figures/Beam_profiles_A2_FR.pdf}
+    \caption[Beam structure]{\emph{Left column:} Two orthogonal cuts through the
+      beam are shown in red and green and a best fit model made of three
+      Gaussians is superimposed in black.
+      These cuts were obtained from the high quality map of Uranus on 2017
+      January 25th. The main beam starts to depart from the first Gaussian
+      at -12dB. \emph{Right column:} Example of beam radial profile
+      estimated on the same map of Uranus. The Best-fitting curve is show
+      in red using a three Gaussian model.   
+    }
+    \label{fig:beam_structure_example}
+    %\label{fig:beam_profiles_3G}
+  \end{center}
 \end{figure}
 
 A model made of three Gaussians centered on the source peak was best
@@ -324,19 +357,7 @@ We model the beam profile as a three-Gaussian function defined as:
   B(\theta) = \sum_i A_i G_i(\theta) + B_0
 \end{equation}
 
-
-Figure \ref{fig:beam_profiles_3G} shows the beam profile from a beam
-map acquired during {\emph N2R8} (scan ID: 20170125s223), as well as
-the best-fit 3-Gaussian model. 
-
-\begin{figure*}[h!]
-\centering
-\includegraphics[height=6cm]{Figures/Beam_profiles_A1_FR.pdf}
-\hspace{0.5cm}
-\includegraphics[height=6cm]{Figures/Beam_profiles_A2_FR.pdf}
-\hspace{0.5cm}
-\includegraphics[height=6cm]{Figures/Beam_profiles_A3_FR.pdf}
-\caption{Beam profiles for array 1, 2, and 3.}
-\label{fig:beam_profiles_3G}
-\end{figure*}
+Right panels of Fig.~\ref{fig:beam_structure_example} shows the beam
+profile from a beam map acquired during {\emph N2R8} (scan ID:
+20170125s223), as well as the best-fit 3-Gaussian model. 
 

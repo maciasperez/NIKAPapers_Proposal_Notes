@@ -97,10 +97,24 @@ discussed in Sect.~\ref{se:photocorr_calibration}.
 
 
 
-
-
-
 \subsection{Beam monitoring using pointing}
+
+As discussed in Sect.~\ref{se:pointing}, the telescope pointing is
+monitored on a hour basis during observation using pointing
+scans. However, as they comprize two sub-scans in azimuth and
+elevation of about 10 seconds of integration time each, pointing scans
+can be used to make a map of the pointing source. For each campaign,
+we thus have on hand hundreds of maps of mostly point-like bright
+sources. These can be also used to monitor the beam size.
+
+%traitement pointing scans
+For this purpose, pointing scans are reduced as usual OTF scans using
+the data analysis pipeline described in
+Sect.~\ref{se:pipeline_overview} with the same parameter as for
+standard OTF scans, and projected onto maps of $2''$ resolution.
+As previously, an elliptical 2D Gaussian is then fitted from the map
+and a geometrical FWHM is formed from the best-fitting FWHM along the
+two ellipse radii.  
 
 
 \begin{figure}[ht!]
@@ -112,6 +126,11 @@ discussed in Sect.~\ref{se:photocorr_calibration}.
 \end{center}
 \end{figure}
 
+%traitement FWHM per scans
+
+%comparison FWHM OTF and Pointing
+
+
 \begin{figure}[ht!]
   \begin{center}
     \includegraphics[clip=true, trim={0.9cm, 0.5cm, 0.5cm, 0.5cm}, width=0.4725\textwidth]{Figures/Beams/Beam_monitoring_with_otfs_vs_ut_compare_pointings_1mm.pdf}
@@ -120,6 +139,10 @@ discussed in Sect.~\ref{se:photocorr_calibration}.
 \label{fig:beam_monitoring_compare}
 \end{center}
 \end{figure}
+
+
+
+
 
 %% [Full beam pattern]
 %%________________________________________________________

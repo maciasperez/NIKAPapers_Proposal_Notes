@@ -92,10 +92,33 @@ In \nikad\ this additionnal noise is two to three order of magnitude above the n
 
 \subsection{Simulations}
 
+To account for the HWPSS we keep the instrumental parameters of Sect.~\ref{se:kids} and we simulate the observation of a point source, with a flux that varies between 1 and 500 Jy, plus the signal corresponding to HWPSS with a maximum amplitude of 50 Jy. We suppose that the subtraction of the HWPSS template is perfect. Fig.~\ref{fig:histos_epsilon} shows the distribution of non-linearity coefficients for different scanning speed and different method of signal reconstruction (\rf\ and \cf). 
+
 \begin{figure}
-	\includegraphics[clip, angle=0, width=\columnwidth]{Figures/histos_epsilon.eps}
+	\includegraphics[clip, angle=0, width=\columnwidth]{Figures/histos_epsilon_hwp50Jy.eps}
 	\caption{histos epsilon}
 	\label{fig:histos_epsilon}
 \end{figure}
 
-\subsection{NL in NIKA2}
+The average of the non-linearity coefficients are given Tab.~\ref{tab:eps_hwp}, where we can see that on the same flux scale, \cf\ remains more linear than \rf . The non-linearity coefficients derived from the simulations are lower than the non-linearity coefficient required in Sect.~\ref{sec:cmb} to detect B modes without being biaised by non-linearity arising from the detector and the HWPSS. 
+
+\begin{table}
+\center
+\begin{tabular}{|c|c|c|}
+	\hline
+	    & $\frac{3pts}{beam}$ & $\frac{5pts}{beam}$ \\
+	\hline
+\rf\	&  $-4.6 \times 10^{-5}$ & $-2.3 \times 10^{-5}$ \\
+	\hline
+\cf\ & $-2.09 \times 10^{-7}$ & $-1.7 \times 10^{-7}$ \\
+	\hline
+\end{tabular}
+\caption{Non-linearity coefficients $\varepsilon$ from an incoming flux that we vary between 1 and 500 Jy.}
+\label{tab:eps_hwp}
+\end{table}
+
+
+
+
+\subsection{Non-linearity in NIKA2}
+NIKA2 : parfait pour tester la NL KIDs + HWP 

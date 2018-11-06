@@ -199,24 +199,26 @@ criteria discussed in Sect.~\ref{se:data_selection}.
 The characterization of the IRAM $30\,\rm{m}$ beam pattern observed
 through NIKA2 detectors is mainly based on observations of strong
 compact sources, such as planets including Uranus, Neptune and Mars,
-and bright quasars. We generally use \bm\ scans, which we recall,
-are deep-integration raster-scan observations that consist of 99
-sub-scans placed at intervals of $4.8''$ to cover a total of $13.5'
-\times 7.8'$ (see also Sect.~\ref{se:beammaps}). Most of our
-beam-related analysis are beased on the same
-set of \bm\ scans as previously selected to perform the average
-FOV reconstruction, as presented in Sect.~\ref{se:fp_reconstruction}.
-The set comprises nine \bm\ scans that distribute as one from N2R8,
-'20170125s243',
-two from N2R9,
-'20170224s177' and '20170226s415' and six from N2R10, which are
-'20170226s425', '20170227s84', '20170419s133', '20170420s113',
-'20170424s116', '20170424s123'.
+and bright quasars. We generally use \bm\ scans, which are described
+in Sect.~\ref{se:beammaps}.
+Most of our beam-related analysis are based on a
+set of 18 \bm\ scans acquired during the N2R8 and N2R9 commissioning
+campaigns and the N2R12 and N2R14 science pools. Namely, the set
+consists of the N2R8 '20170125s243' scan, the N2R9 '20170224s177',
+'20170226s415', '20170226s425' and '20170227s84' scans, the N2R12
+'20171022s158', '20171023s101', '20171024s105', '20171024s106',
+'20171025s41', '20171025s42',  '20171027s49',  '20171028s310',
+'20171029s266', '20171030s268' and  '20180117s92' and the N2R14
+'20180117s92',  '20180122s82' and  '20180122s309' scans.
+
+This set of \bm\ have been selected from all the available \bm\ at
+optimal focus using the baseline selection criteria, as given in
+Sect.~\ref{se:data_selection}.
 
 
 
 \subsection{Deep beam maps}
-\label{se:beammaps}
+\label{se:deep_beam_maps}
 We present the two-dimensional distribution of the beam in
 Fig.~\ref{fig:beam}. We primary use a map obtained from a combination
 of deep observations of strong point sources collected during
@@ -273,7 +275,7 @@ the main beam, the first error beam and other features seen in the 2D
 beam pattern using radial cuts. NIKA2 full beam is shown in the left
 panels of Fig.~\ref{fig:beam_structure_example} by means of two
 orthogonal cuts through Uranus from a high quality map obtained on
-2017 January 25th in excellent conditions
+2017 January 25th in excellent observing conditions
 (low opacity $\tau_{225}=0.08$ and elevation $46^{\circ}$).
 
 
@@ -341,14 +343,12 @@ in Sect.~\ref{se:fullbeam_prof}.
 \subsection{Beam profile}
 \label{se:fullbeam_prof}
 
-{\bf complete this sub-section}
-
 The beam profile is the azimuthal average of the beam map around the
 main beam center. Although the profile cannot represent the sub-dominant non-axisymetrical
 extended features, which are seen in the beam pattern and discussed in
-Sect.~\ref{se:beammaps} (telescope arms, spikes), it provides us with a useful
+Sect.~\ref{se:deep_beam_maps} (telescope arms, spikes), it provides us with a useful
 representation of the internal and central parts of the beam (about up to
-$100''$). We determine a beam profile from a beam map in centering to
+$120''$). We determine a beam profile from a beam map in centering to
 the fitted value of the main beam center and forming the
 weighted average of the pixels equidistant to the center.
 
@@ -367,21 +367,29 @@ profile from a beam map acquired during {\emph N2R8} (scan ID:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Stability of the beam pattern
 We checked the stability of the beam against various observing
-condition (source intensity, weather condition, focus optimisation) by
-comparing the beam profile of the beam-map set, which comprizes nine
-beam-maps acquired from N2R8 to N2R10, as defined in
-Sect.~\ref{se:beammap_set}.
-The nine beam profiles and their ratio
+conditions (source intensity, weather condition, focus optimisation) by
+comparing the beam profiles of the \bm\ set, as described in
+Sect.~\ref{se:beammap_set}. The 18 beam profiles and their difference
 w.r.t. the median beam profile are shown in Fig.~\ref{fig:beam_prof}.
+The variations of the normalised radial profiles are below $5\%$ at
+both wavelengths.
 
 
 \begin{figure}[ht!]
   \centering
-  \includegraphics[clip=true,width=\textwidth]{Figures/Profile_allscans_mixed}
-  \includegraphics[clip=true,width=\textwidth]{Figures/Profile_allscans_over_median_mixed}
-\caption[Stability of the beam profile]{Beam profiles from various N2R8 to N2R10
-  beam-map scans. The upper panel shows the beam profiles normalised
-  to the maximum value, and the lower panel the ratios w.r.t. the median profile.}
+   \includegraphics[clip, width=0.42\textwidth]{Figures/Beams/plot_profiles_a1.pdf}
+   \includegraphics[clip, width=0.42\textwidth]{Figures/Beams/plot_profile_diff_wrt_median_a1.pdf}
+   \includegraphics[clip, width=0.42\textwidth]{Figures/Beams/plot_profiles_a3.pdf}
+   \includegraphics[clip, width=0.42\textwidth]{Figures/Beams/plot_profile_diff_wrt_median_a3.pdf}
+   \includegraphics[clip, width=0.42\textwidth]{Figures/Beams/plot_profiles_1mm.pdf}
+   \includegraphics[clip, width=0.42\textwidth]{Figures/Beams/plot_profile_diff_wrt_median_1mm.pdf}
+   \includegraphics[clip, width=0.42\textwidth]{Figures/Beams/plot_profiles_a2.pdf}
+   \includegraphics[clip, width=0.42\textwidth]{Figures/Beams/plot_profile_diff_wrt_median_a2.pdf}
+  \caption[Stability of the beam profile]{Beam radial profiles as a
+    function of the radius from the peak for a series of 18
+    \bm\ acquired during the N2R8 and N2R9 calibration campaigns and
+    during the N2R12 and N2R14 science pools. Left column plots: 
+    beam profiles normalised to the maximum value; Right column plots: difference w.r.t. the median normalised profile. The radial profile shapes are stable at better than $5\%$ against observing conditions.}
   \label{fig:beam_prof}
 \end{figure}
 

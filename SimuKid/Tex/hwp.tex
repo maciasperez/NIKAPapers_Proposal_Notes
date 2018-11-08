@@ -56,7 +56,7 @@ This permits to do observation without having to use differencing polarization s
 \item We can achieve an optimal angular coverage as each pixel will be observed over a wide range of orientations. This permits to have a better angular redundancy in a single pixel to measure the Stokes parameters without having to rotate the full instrument.
 \end{itemize}
 
-On the down side, rotating a HWP can also be source of several systematic effects like : mis-estimation of the HWP angles, leakage of temperature into polarization due imperfection in the optical system, differential transmittance in the HWP \citep{2009MNRAS.397..634B,2018SPIE10708E..48S} and the introduction of a strong parasitic signal that is synchronous with the HWP rotation. It is on the latter that we focus it this paper.
+On the down side, rotating a HWP can also be source of several systematic effects like : mis-estimation of the HWP angles, leakage of temperature into polarization due imperfection in the optical system, differential transmittance in the HWP \citep{2009MNRAS.397..634B,2018SPIE10708E..48S} and the introduction of a strong parasitic signal that is synchronous with the HWP rotation. It is on the latter that we focus in this paper.
 
 \subsection{Half Wave Plate Synchronous Signal}
 
@@ -92,12 +92,18 @@ In \nikad\ this additionnal noise is two to three order of magnitude above the n
 
 \subsection{Simulations}
 
-To account for the HWPSS we keep the instrumental parameters of Sect.~\ref{se:kids} and we simulate the observation of a point source, with a flux that varies between 1 and 500 Jy, plus the signal corresponding to HWPSS with a maximum amplitude of 50 Jy. We suppose that the subtraction of the HWPSS template is perfect. Fig.~\ref{fig:histos_epsilon} shows the distribution of non-linearity coefficients for different scanning speed and different method of signal reconstruction (\rf\ and \cf). 
+To account for the HWPSS we keep the instrumental parameters of Sect.~\ref{se:kids} and we simulate the observation of a point source, with a flux that varies between 1 and 500 Jy, plus the signal corresponding to HWPSS with a maximum amplitude of 70 Jy. We suppose that the subtraction of the HWPSS template is perfect. Fig.~\ref{fig:histos_epsilon_rf} and Fig.~\ref{fig:histos_epsilon_cf} show the distribution of non-linearity coefficients for different scanning speed and different method of signal reconstruction (\rf\ and \cf). 
 
 \begin{figure}
-	\includegraphics[clip, angle=0, width=\columnwidth]{Figures/histos_epsilon_hwp50Jy.eps}
-	\caption{histos epsilon}
-	\label{fig:histos_epsilon}
+	\includegraphics[clip, angle=0, width=\columnwidth]{Figures/histos_epsilon_rf.eps}
+	\caption{histogram of non-linearity coefficients derived with \rf\ and scanning speed equal to 3 and 5 points per beam.}
+	\label{fig:histos_epsilon_rf}
+\end{figure}
+
+\begin{figure}
+	\includegraphics[clip, angle=0, width=\columnwidth]{Figures/histos_epsilon_cf.eps}
+	\caption{histogram of non-linearity coefficients derived with \cf\ and scanning speed equal to 3 and 5 points per beam.}
+	\label{fig:histos_epsilon_cf}
 \end{figure}
 
 The average of the non-linearity coefficients are given Tab.~\ref{tab:eps_hwp}, where we can see that on the same flux scale, \cf\ remains more linear than \rf . The non-linearity coefficients derived from the simulations are lower than the non-linearity coefficient required in Sect.~\ref{sec:cmb} to detect B modes without being biaised by non-linearity arising from the detector and the HWPSS. 
@@ -108,9 +114,9 @@ The average of the non-linearity coefficients are given Tab.~\ref{tab:eps_hwp}, 
 	\hline
 	    & $\frac{3pts}{beam}$ & $\frac{5pts}{beam}$ \\
 	\hline
-\rf\	&  $-4.6 \times 10^{-5}$ & $-2.3 \times 10^{-5}$ \\
+\rf\	&  $-4.8 \times 10^{-5}$ & $-2.4 \times 10^{-5}$ \\
 	\hline
-\cf\ & $-2.09 \times 10^{-7}$ & $-1.7 \times 10^{-7}$ \\
+\cf\ & $-6.6 \times 10^{-7}$ & $-5.4 \times 10^{-7}$ \\
 	\hline
 \end{tabular}
 \caption{Non-linearity coefficients $\varepsilon$ from an incoming flux that we vary between 1 and 500 Jy.}
@@ -121,4 +127,4 @@ The average of the non-linearity coefficients are given Tab.~\ref{tab:eps_hwp}, 
 
 
 \subsection{Non-linearity in NIKA2}
-NIKA2 : parfait pour tester la NL KIDs + HWP 
+NIKA2 : parfait pour tester la NL systeme KIDs + HWP 

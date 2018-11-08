@@ -12,12 +12,9 @@
 
 %%%%
 
-
-
-Kinetic Inductance Detectors (KID) are a novel superconducting detector technology
-that provides high sensitivity and ease of multiplexing. In this section we give
-a brief summary of their main features and how photometry can be derived from
-their measurements.
+Kinetic Inductance Detectors (KIDs) are a novel superconducting detector technology
+that provides high sensitivity and ease of multiplexing introduced by \citep{2003Natur.425..817D}. \citep{2016A&A...592A..26C} show that KID arrays behave appropriately in a space-like environment, they present short time constants making them less sensitive to cosmic rays compared to bolometers. This features make KIDs competitive with other technologies to be implemented in futur ground base or space CMB mission.
+In this section we give a brief summary of their main features and how photometry can be derived from their measurements, then we study the KID non-linearity, a systematic effect that must be taken into account in the design of futur experiments.
 
 \subsection{Transfer function}
 
@@ -245,12 +242,12 @@ to integrate.
 \end{figure}
 
 Laboratory measurements with \todo{XXXX describe set up XXX} have shown that
-KIDs are linear over a wide range of backgrounds
-(Fig.~\ref{fig:KID-lin}). However, for these measurements, $\Delta f$ was not
-reconstructed as described in the previous section, and we want to characterize
-our formalism up to $\epsilon$ of the order of $10^{-5}-10^{-6} $ TBC.
+KIDs are linear over a wide range of backgrounds (Fig.~\ref{fig:KID-lin}). However, for these measurements, $\Delta f$ was not reconstructed as described in the previous section, and we want to characterize our formalism up to $\epsilon$ of the order of $10^{-5}-10^{-6} $ TBC.
 
-To characterize KIDs non linearity, we write the non linear detector response as :
+Non-linearity could appear as a consequence of too strong currents inside the resonator or to too strong induced magnetic fields leading to a loss of superconductivity \citep{Calvo2008} \todo{(articles Pippard, Parmenter ?)}. It can also arise when the source is very bright (such as planets of several tens of Jy) and the density of charge carriers is altered. This leads to $(\I,\Q)$ measures that leave the resonance circle, hence invalidating the approximations made in the photometric equations of the previous section. 
+Another possible source of non linearity is the instrument scanning speed. Indeed, even if the source is moderately bright, if it is scanned too fast, $(\Delta\I,\Delta\Q)$ could be far from the tangent vector $(\di,\dq)$ which would alter their linear relation. Induced non-linearities in the two last cases result in a poor reconstruction of the shift of the resonant frequency. In principle this problem should be improved with the \cf\ method. In this paragraph, we explore the two last cases.\\
+
+We simulate the measure of point source by a KID and show how linear this measure remains in various contexts. To characterize KIDs non linearity, we write the non linear detector response as :
 
 \begin{equation}
 m^{Rf,Cf} = m + \varepsilon m^2 +c_{0}.
@@ -258,19 +255,6 @@ m^{Rf,Cf} = m + \varepsilon m^2 +c_{0}.
 \end{equation}
 
 $\varepsilon$ represents the non linearity of the KID.
-
-
-We simulate
-the measure of point source by a KID and show how linear this measure remains in
-various contexts. Non linearity could appear when the source is very bright
-(such as planets of several tens of Jy) and the density of charge carriers is
-altered. This leads to $(\I,\Q)$ measures that leave the resonance circle, hence
-invalidating the approximations made in the photometric equations of the
-previous section. A second possible source of non linearity is the instrument
-scanning speed. Indeed, even if the source is moderately bright, if it is
-scanned too fast, $(\Delta\I,\Delta\Q)$ could be far from the tangent vector
-$(\di,\dq)$ which would alter their linear relation. In this paragraph, we
-explore both cases.\\
 
 We simulate the observation of a point source with a flux
 that we vary between \todo{1 and 2000\,Jy TBC} (fluxes are unrealistically large on purpose for illustration). We assume that our instrument has
@@ -292,7 +276,7 @@ As shown in Fig.~\ref{fig:planet_profiles} and Fig.~\ref{fig:flux_out_vs_in}, no
   \label{fig:flux_out_vs_in}
 \end{figure}
 
-For all simulations we computed the non-linearity coefficient $\varepsilon$ from eq.~\ref{eq:model_kid_nl} by doing a fit of the input fluxes as a fonction of output fluxes. Results are shown in Tab.~\ref{tab:eps}. As in the two figures the non-linearity coefficients show \rf\ method is less linear than \cf\ on the same flux scale.
+For all simulations we computed the non-linearity coefficient $\varepsilon$ from eq.~\ref{eq:model_kid_nl} by doing a fit of the input fluxes as a fonction of output fluxes. Results are shown in Tab.~\ref{tab:eps}. As in the two figures the non-linearity coefficients show \rf\ method is less linear than \cf\ on the same flux scale.\\
 
 \begin{table}
 \center
@@ -309,5 +293,7 @@ For all simulations we computed the non-linearity coefficient $\varepsilon$ from
 \label{tab:eps}
 \end{table}
 
-Simulations of a KID exposed to a point source with a large variation of fluxes have shown that it meets the requirement addressed in Sec.~\ref{sec:cmb}. 
-HWP presente bcp d'avantages pour les futurs experiences cmb, dans la prochaine section on regarde la NL induite par la HWP. 
+
+KIDs are a novel technology successfully used in \nikad . Because of their multiplexing capability and their short time constant, they are one of the best candidates to be implemented on experiments that need larger arrays. In this section we studied KIDs non-linearity and its impact on CMB B mode measures, considering the brightness of a source, the scanning speed of the instrument and the method that we use to follow the shift of the resonant frequency and retrieve the absorbed power.
+Simulations of a KID exposed to a point source with a large variation of fluxes have shown that as expected, the brighter is the source, the more non-linearities appear due to a poor reconstruction of the resonant frequency. Although both reconstruction methods give good results, \cf\ remains more linear at high fluxes than \rf . Plus, KID non-linearity should not impact measures of CMB B modes, in fact the non-linearity coefficients that we found are in the range of $[10^{-5} - 10^{-8}]$, so it meets the requirement addressed in Sec.\ref{sec:cmb}.
+In futur CMB polarization experiments, the use of a half wave plate more and more common. It presents a lot of advantages, but can also be source of various systematic effects. In the next section we will address the non-linearity that can arise from rotating a half wave plate in an instrument.

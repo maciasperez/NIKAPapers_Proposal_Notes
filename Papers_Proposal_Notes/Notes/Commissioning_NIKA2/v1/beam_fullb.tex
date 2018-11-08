@@ -17,7 +17,7 @@ error beams up to angular scales of 10 arcmin.
 
 %% [Full beam pattern]
 %%________________________________________________________
-\section{Full beam pattern {\color{blue} Laurence}}
+\section{Full beam pattern {\color{YellowGreen} Laurence}}
 \label{se:fullbeam}
 
 \subsection{Data sets}
@@ -175,20 +175,23 @@ main beam center. Although the profile cannot represent the sub-dominant non-axi
 extended features, which are seen in the beam pattern and discussed in
 Sect.~\ref{se:deep_beam_maps} (telescope arms, spikes), it provides us with a useful
 representation of the internal and central parts of the beam (about up to
-$120''$). We determine a beam profile from a beam map in centering to
-the fitted value of the main beam center and forming the
+$100''$). We determine a beam profile from a beam map in centering to
+the fitted value of the main beam center and in forming the
 weighted average of the pixels equidistant to the center.
 
 We model the beam profile as a three-Gaussian function defined as:
 \begin{equation}
-  B(\theta) = \sum_i A_i G_i(\theta) + B_0
+  B(r) = \sum_i \mathcal{A}_i G_i(r) + \mathcal{B}_0,
+  \label{eq:3gauss}
 \end{equation}
 
-Right panels of Fig.~\ref{fig:beam_structure_example} shows the beam
-profile from a beam map acquired during {\emph N2R8} (scan ID:
-20170125s223), as well as the best-fit 3-Gaussian model. 
-
-
+where $r$ is the radius from the beam center, $\mathcal{A}_i$ the
+amplitude of the Gaussian $i$ for $i \in {1, 2, 3}$ and
+$\mathcal{B}_0$ a piedestal level accounting for the residual noise
+level in the map.
+An example of the beam profile from a beam map acquired during {\emph N2R8} (scan ID:
+20170125s223), as well as the best-fit 3-Gaussian model, is shown in
+the right panels of Fig.~\ref{fig:beam_structure_example}.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -199,7 +202,7 @@ comparing the beam profiles of the \bm\ set, as described in
 Sect.~\ref{se:beammap_set}. The 18 beam profiles and their difference
 w.r.t. the median beam profile are shown in Fig.~\ref{fig:beam_prof}.
 The variations of the normalised radial profiles are below $5\%$ at
-both wavelengths.
+both wavelengths. 
 
 
 \begin{figure}[ht!]
@@ -220,3 +223,31 @@ both wavelengths.
   \label{fig:beam_prof}
 \end{figure}
 
+We further fit the three-Gaussian model of Eq.~\ref{eq:3gauss} to each
+profile and gather the average best-fitting amplitudes with respest to
+the peak amplitude and FWHM in Table~\ref{tab:mean_3gauss_fit}. The
+errors are evaluated as the standard deviation of the best-fitting
+parameter values of the 18 \bm\ scans, and thus do not account for the
+correlation between parameters. These values are given to gain insight
+of the axisymetrical pattern of the beam, but are not further used for
+the calibration. 
+
+
+% AVERAGE 3-GAUSSIAN FIT
+\begin{table}[th]
+  \begin{center}
+    \begin{tabular}{|c|c|c|c|c|c|c|}
+      \hline
+      & \multicolumn{6}{|c|}{3-Gaussian profile parameters}  \\\cline{1-7}
+      Arrays       & Amp 1 & Amp 2 & Amp 3 & FWHM 1 & FWHM 2 & FWHM 3 \\
+      \hline\hline
+      A1        &  $0.89 \pm 0.01$   &  $0.08 \pm 0.02$  & $5 \times 10^{-3} \pm 2 \times 10^{-3}$  &  $11.0 \pm 0.2 $ & $29 \pm 2 $  & $65 \pm 15 $ \\  
+      A3        &  $0.90 \pm 0.01$   &  $0.07 \pm 0.01$  & $4 \times 10^{-3} \pm 2 \times 10^{-3}$  &  $11.0 \pm 0.2 $ & $30 \pm 3 $  & $72 \pm 23 $ \\  
+      1mm       &  $0.90 \pm 0.01$   &  $0.07 \pm 0.01$  & $4 \times 10^{-3} \pm 2 \times 10^{-3}$  &  $11.0 \pm 0.2 $ & $29 \pm 2 $  & $70 \pm 15 $ \\  
+      2mm       &  $0.96 \pm 0.01$   &  $0.3 \pm 0.3$    & $1 \times 10^{-3} \pm 5 \times 10^{-4}$ &  $17.5 \pm 0.1 $ & $63 \pm 10 $ & $65 \pm 12 $ \\  
+      \hline\hline
+    \end{tabular}
+    \caption[Average 3-Gaussian beam profile parameters]{Average 3-Gaussian beam profile parameters}
+    \label{tab:mean_3gauss_fit}
+  \end{center}
+\end{table}

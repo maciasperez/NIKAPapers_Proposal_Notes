@@ -130,19 +130,30 @@ reported in Table~\ref{tab:fwhm}.
 \subsection{Beammap scan based results}
 \label{se:mb_with_beammap}
 
-We use masked version of the beam maps, which are selected as
-described in Sect.~\ref{se:beammap_set}. 
-Sidelobe masks are defined by a fixed $r_{\rm{out}}$ of $100''$
-and a $r_{\rm{in}}$ that freely varies from $8'$ to $9'$ for the
-$260~\rm{GHz}$-arrays, and from $10'$ to $14'$ for the $150~\rm{GHz}$
-array. We checked, hovewer, that we obtain consistent results but
-larger dispersion when using annulus masks of fixed $r_{\rm{in}}$ of
-$8.5'$ and $12'$ at $260$ and $150~\rm{GHz}$ respectively. The median
-main beam FWHM and the rms error estimate, which have been obtained
-from the nine beam-maps, are given in Table~\ref{tab:fwhm}.
+We select a sub-set of the \bm\ scan selection described in
+Sect.~\ref{se:beammap_set} by discarding scans of Mars.
+The 12 remaining \bm\ scans are analysed using the data reduction
+pipeline of Sect.~\ref{se:pipeline_overview} and projected onto maps
+with a resolution of $1''$ and an angular size of $10'$.    
+The main beam FWHM is estimated using the sidelobe-masked method, as
+described in Sect.~\ref{se:sidelobe_masked_method}. Sidelobe masks are
+defined by a fixed external radius $r_{\rm{out}}$ of $100''$ and a
+fixed internal radius $r_{\rm{in}}$ of $8.5''$ at $1\,\rm{mm}$ and
+$13.5''$ at $2\,\rm{mm}$. We checked we obtain compatible results when
+$r_{\rm{in}}$ is let to freely varies from $8'$ to $10'$ at
+$1\,\rm{mm}$ and from $10'$ to $14'$ at $2\,\rm{mm}$. The fixed
+$r_{\rm{in}}$ values correspond to the average best-fitting
+$r_{\rm{in}}$ of the free-$r_{\rm{in}}$ analysis.   
 
-Table~\ref{tab:fwhm} gathers the main beam FWHM results obtained using the three
-discussed methods and two datasets.  
+
+The main beam FWHM estimates using the sidelobe-masked method on the
+\bm\ scans are gathered in Table~\ref{tab:fwhm}, and compared to
+results obtained using i) the best-fitting first Gaussian FWHM values of the
+three-Gaussian model, as discussed in Sect.~\ref{se:fullbeam_prof} and
+ii) the sidelobe-masked method applied to the shallower OTF scans, as
+presented in Sect.~\ref{se:mb_with_otf}.
+
+
 
 \begin{table}[h]
   \caption[]{FWHM of the NIKA2 main beam in arcsec.}
@@ -156,10 +167,9 @@ discussed methods and two datasets.
     Method & Dataset        &   A1 &  A3 & A1 $\&$ A3 &  A2  \\
     \hline
     \hline
-    Three-Gaussian model G1\tnote{a} &  beam-map &  $10.8 \pm 0.2$  &  $10.8 \pm 0.2$  &  $10.8 \pm 0.3$  &  $17.2 \pm 0.05$  \\
-    Sidelobe-masked profile-based    &  TBD      &    &    &    &   \\
-    Sidelobe-masked map-based        &  OTF       & $11.0 \pm 0.3$  &  $10.9 \pm 0.2$  &  $11.0 \pm 0.2$  &  $17.8 \pm 0.2$ \\ 
-                                     &  beam-map  & $11.3 \pm 0.2$  & $11.2 \pm 0.2$   &  $11.2 \pm 0.2$  &  $17.7 \pm 0.05$ \\ 
+    Three-Gaussian model G1\tnote{a} &  \bm\     & $11.0 \pm 0.2$  &  $11.0 \pm 0.2$  &  $11.0 \pm 0.2$  &  $17.5 \pm 0.1$  \\
+    Sidelobe-masked map-based        &  5x8 OTF  & $11.3 \pm 0.2$  &  $11.1 \pm 0.2$  &  $11.2 \pm 0.2$  &  $17.8 \pm 0.1$  \\ 
+                                     &  \bm\     & $11.2 \pm 0.1$  &  $11.1 \pm 0.1$  &  $11.2 \pm 0.1$  &  $17.6 \pm 0.1$  \\ 
     \hline
   \end{tabular}
   \begin{tablenotes}
@@ -191,7 +201,7 @@ show in red the best Gaussian fit to histogram data. We find an
 average main beam FWHM of $10.9''$ at 260 GHz and $17.5''$ at
 150 GHz in agreement with the main beam estimates gathered in
 Table~\ref{tab:fwhm}.
-The observed dispersion of about $0.6''$ is expected from the optics desing and its associated
+The observed dispersion of about $0.6''$ is expected from the optics design and its associated
 field distortions across the 6.5 arc-minutes FoV, as discussed in
 Sect.~\ref{se:grid_distortion}. This quantifies the impact of the
 non-constant focus across the FoV, which is characterised in

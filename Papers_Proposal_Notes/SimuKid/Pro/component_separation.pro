@@ -44,7 +44,6 @@ if defined(i_cmb) eq 0 then begin
                     i_sync_ref, q_sync_ref, u_sync_ref, noplot=noplot
 endif
 
-stop
 
 ;; no mask (OK)
 npix = nside2npix(nside)

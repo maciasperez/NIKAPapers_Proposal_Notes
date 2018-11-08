@@ -3,10 +3,10 @@
 ;;--------------------
 
 ;; Realizations
-nmc = 30 ;200
+nmc = 500 ;200 ;30
 
 ;; HWP power
-hwp_max_ampl_jy = 1000 ; 100. ; 50.
+hwp_max_ampl_jy = 70. ;1000 ; 100. ; 50.
 
 ;; Conversion Jy to Hz based on N2R11
 jy2hz = 1500./30
@@ -47,14 +47,17 @@ nsn = round(obs_time_hour*3600.d0*f_hf)
 time_hf = dindgen(nsn)/f_hf
 
 ;; Planet fluxes
-nflux = 30
-flux_min = 1.d0
-flux_max = 500.d0
+nflux = 50 ;30
+flux_min = 1   ;1d-3 ;
+flux_max = 500.d0 ;500.d0 ;1.d0 ;
 
 ;;--------------------------------------------------------------
 ;; Scanning speeds
 npts_per_fwhm_list = [3, 5]
 nspeed = n_elements( npts_per_fwhm_list)
+
+; noise
+noise = randomn( seed, nsn, /double)*0.d0
 
 ;; Planet fluxes
 flux_list = dindgen(nflux)/(nflux-1.)*(flux_max-flux_min) + flux_min
@@ -114,9 +117,9 @@ for ispeed=0, nspeed-1 do begin
       for iflux=0, nflux-1 do begin
 
          ;; Planet only
-         freso = -gplanet*flux_list[iflux]*jy2hz
+         freso = -gplanet*flux_list[iflux]*jy2hz + noise
          freso2toi, freso, kid_model, delta_f, toi_rf_hz, toi_cf_hz, $
-                    npts_avg=npts_avg, i=i_hwp, q=q_hwp
+                    npts_avg=npts_avg, i=i_planet, q=q_planet
          toi_rf_jy = toi_rf_hz/jy2hz
          toi_cf_jy = toi_cf_hz/jy2hz
 
@@ -131,7 +134,6 @@ for ispeed=0, nspeed-1 do begin
          planet_rf_flux_results[ispeed,imc,iflux] = a[0]
          junk = gaussfit( time_lf, toi_cf_jy, a, nterms=nterms)
          planet_cf_flux_results[ispeed,imc,iflux] = a[0]
-
          ;; HWP only (for subtraction)
          freso_hwp  =  -hwp_beta_jy*jy2hz
          freso2toi, freso_hwp, kid_model, delta_f, toi_rf_hwp_hz, toi_cf_hwp_hz, $
@@ -214,6 +216,25 @@ legendastro, ['3pts/FWHM', '5pts/FWHM'], line=[2,0], /right
 legendastro, ['Rf', 'Cf'], col=[col_rf, col_cf], line=[0,0], /left
 outplot, /close, /verb
 
+;; yra = [0.96, 1.01]
+;; xra = minmax(flux_list)
+;; imc = 0
+;; if ps eq 0 then wind, 1, 1, /free, /large
+;; outplot, file='flux_out_vs_in', png=png, ps=ps
+;; plot, flux_list, planet_rf_flux_results[0,imc,*]/flux_list, $
+;;       /xs, /ys, xra=xra, yra=yra, xtitle='Input flux', $
+;;       ytitle='Output flux / input flux', /nodata
+;; oplot, xra, xra*0. + 1.d0
+;; oplot, flux_list, ((planet_rf_flux_results[0,imc,*]-const_planet_rf[0,imc])*calib_planet_rf[0,imc]-flux_list)/flux_list,$
+;;        col=col_rf, line=2
+;; oplot, flux_list, planet_rf_flux_results[1,imc,*]/flux_list, col=col_rf
+;; oplot, flux_list, planet_cf_flux_results[0,imc,*]/flux_list, col=col_cf, line=2
+;; oplot, flux_list, planet_cf_flux_results[1,imc,*]/flux_list, col=col_cf
+;; legendastro, ['3pts/FWHM', '5pts/FWHM'], line=[2,0], /right
+;; legendastro, ['Rf', 'Cf'], col=[col_rf, col_cf], line=[0,0], /left
+;; outplot, /close, /verb
+
+
 stop
 
 ;; Distribution of non linearity coeffs
@@ -235,6 +256,34 @@ for ispeed=0, nspeed-1 do begin
                  strtrim(npts_per_fwhm_list[ispeed],2)+" pts/FWHM"]
 endfor
 outplot, /close, /verb
+
+
+if ps eq 0 then wind, 1, 1, /free, /large
+outplot, file='histos_epsilon_rf', png=png, ps=ps
+my_multiplot, 1, 2, pp, pp1, /rev
+for ispeed=0, nspeed-1 do begin 
+   np_histo, reform( epsilon_planet_hwp_rf[ispeed,*], nmc), $
+             position=pp1[ispeed,*], title='Epsilon planet_hwp RF', $
+             /fit, /noerase, /fill, fcol=col_rf
+   legendastro, ['Max. HWP Ampl: '+strtrim(hwp_max_ampl_jy,2)+" Jy", $
+                 strtrim(npts_per_fwhm_list[ispeed],2)+" pts/FWHM"]
+endfor
+outplot, /close, /verb
+
+
+if ps eq 0 then wind, 1, 1, /free, /large
+outplot, file='histos_epsilon_cf', png=png, ps=ps
+my_multiplot, 1, 2, pp, pp1, /rev
+for ispeed=0, nspeed-1 do begin 
+   np_histo, reform( epsilon_planet_hwp_cf[ispeed,*], nmc), $
+             position=pp1[ispeed,*], title='Epsilon planet_hwp CF', $
+             /fit, /noerase, /fill, fcol=col_cf
+   legendastro, ['Max. HWP Ampl: '+strtrim(hwp_max_ampl_jy,2)+" Jy", $
+                 strtrim(npts_per_fwhm_list[ispeed],2)+" pts/FWHM"]
+endfor
+outplot, /close, /verb
+
+
 
 ;; wind, 1, 1, /free, /large
 ;; my_multiplot, 1, 1, ntot=nspeed*2, pp, pp1, /rev

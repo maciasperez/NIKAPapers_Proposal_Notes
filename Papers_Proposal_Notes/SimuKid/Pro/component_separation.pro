@@ -25,7 +25,7 @@ nu = [70.d0, 100.d0, 143.d0, 217.d0, 353.d0];, 545.d0]
 alpha_det_deg = [0.d0, 60.d0, 120.d0]
 
 ;; MC realizations
-nmc = 30
+nmc = 30 ;30
 
 ;; Latitude mask
 latitude_cut = 20 ; 30 ; deg
@@ -43,6 +43,8 @@ if defined(i_cmb) eq 0 then begin
                     i_dust_ref, q_dust_ref, u_dust_ref, $
                     i_sync_ref, q_sync_ref, u_sync_ref, noplot=noplot
 endif
+
+stop
 
 ;; no mask (OK)
 npix = nside2npix(nside)

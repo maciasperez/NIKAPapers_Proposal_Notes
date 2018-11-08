@@ -3,53 +3,64 @@
 %%      SECTION: MAIN BEAM 
 %%
 %%__________________________________________________________________
-\section{Main beam {\color{blue} Laurence $\&$ Jean-Fran\c cois}}
+\section{Main beam {\color{blue} Laurence}}
 \label{se:MB}
 
 
 We define NIKA2 main beam as the principal Gaussian (of the smaller FWHM)
 that encloses most of the measured source flux. The best-fitting value
-of the principal-power smaller-FWHM Gaussian function of the
+of the first Gaussian function of the
 three-Gaussian model, as discussed in Sect.~\ref{se:fullbeam_prof},
-provides us with a first estimate of the main beam, which is given in
-Table~\ref{tab:fwhm}. However,
-this estimate could be biased toward the lower FWHM values due to
+provides us with a first estimate of the main beam. %, which is given in
+%Table~\ref{tab:fwhm}.
+However, this estimate could be biased toward the lower FWHM values due to
 degeneracies between the three-Gaussian model parameters. To ensure
-obtaining robust main beam FWHM estimates, we devise
-{\color{magenta} two} alternative dedicated
-methods, which both resort to masking the side lobes: {\color{magenta}
-  \i) Gaussian fits of the beam profile to benefit from the
-  signal-over-noise increase after azimuthally averaging the signal,}
-ii)
-Elliptical Gaussian fits of the beam map for a better 2D modeling.
+obtaining robust main beam FWHM estimates, we devise %
+% version without JFL method
+an alternative dedicated method, which resorts to a mask of the side
+lobes and is described in Sect.~\ref{se:sidelobe_masked_method}.
+% version including JFL method
+%{\color{magenta} two} alternative dedicated
+%methods, which both resort to masking the side lobes: {\color{magenta}
+%  \i) Gaussian fits of the beam profile to benefit from the
+%  signal-over-noise increase after azimuthally averaging the signal,}
+%ii)
+%Elliptical Gaussian fits of the beam map for a better 2D modeling.
 Cross-checking the outputs from these complementary methods is an
 important robustess test of our results.
 
-We also consider different data sets acquired during \emph{N2R8}, \emph{N2R9}
-and \emph{N2R10}: i) a series of $8' \times 5'$ OTF
-scans of primary and secondary calibrators, ii) beam-map scans of
-Planets.
-{\color{magenta} LP: to repeat this analysis using N2R9, N2R12 and N2R14}
-
-Table~\ref{tab:fwhm} gathers the main beam FWHM results obtained using the three
-discussed methods and two datasets.  
+We also consider different data sets acquired during the N2R9
+commissioning campaign and the N2R12 and N2R14 science pools: i) a
+series of $8' \times 5'$ OTF scans of primary and secondary
+calibrators, as described in Sect.~\ref{se:mb_with_otf}, ii)
+\bm\ scans of bright sources, as discussed in
+Sect.~\ref{se:mb_with_beammap}.
 
 
-\subsection{Sidelobe-masked Profile-based analysis}
+%\subsection{Sidelobe-masked Profile-based analysis}
+%{\bf add a description here [Jean-Francois's method]}
 
-{\bf add a description here [Jean-Francois's method]}
+\subsection{Sidelobe-masked method}
+\label{se:sidelobe_masked_method}
 
-\subsection{Sidelobe-masked Map-based analysis}
-
-\paragraph{Method description}
-
-NIKA2 main beam two-dimensionnal distribution is modeled using an elliptical Gaussian. We characterize NIKA2 resolution by giving the \emph{FWHM}, defined as
+NIKA2 main beam two-dimensionnal distribution is modeled using an
+elliptical Gaussian. We characterize NIKA2 resolution by forming the
+\emph{FWHM}, defined as
 \begin{equation}
   FWHM = 2 \sqrt{2\ln {2}} \sqrt{\sigma_x\sigma_y},
 \end{equation}
-where $\sigma_x$ and $\sigma_y$ are the Gaussian standard deviation along minor- and major-axis. To avoid the side lobes contamination, we use masked versions of the beam map, in which an annulus of inner radius $r_{\rm{in}}$ and outter radius $r_{\rm{out}}$ is cut out. Whereas $r_{\rm{out}}$ is conservately set to be $100 arcsec$, $r_{\rm{in}}$ is let free to vary around a central value about $8'$ for A1 and A3 and about $12'$ for A2 to provide the best 2D Gaussian fit.  
+where $\sigma_x$ and $\sigma_y$ are the Gaussian standard deviation
+along minor and major axis.
+To avoid the side lobes contamination, we use masked versions of the
+beam map. The sidelobe mask consists in cutting an annulus of inner radius
+$r_{\rm{in}}$ and outter radius $r_{\rm{out}}$ centered on the beam
+maximum. Whereas $r_{\rm{out}}$ is conservately set to be $100''$,
+$r_{\rm{in}}$ is let free to vary around a central value about $8''$
+for A1 and A3 and about $12''$ for A2 to provide the best 2D Gaussian
+fit.
 
-\paragraph{Estimates using $8' \times 5'$ OTF scans}
+\subsection{OTF scan based results}
+\label{se:mb_with_otf}
 
 \begin{figure}[ht!]
 \begin{center}
@@ -60,22 +71,49 @@ where $\sigma_x$ and $\sigma_y$ are the Gaussian standard deviation along minor-
 \end{center}
 \end{figure}
 
-We select \emph{N2R9} and \emph{N2R10} $8' \times 5'$ OTF scans of
-bright point sources, including primary and secondary
-calibrators. Namely, we consider scans of Uranus, Neptune, 3C273,
-3C84, 0316+413, Vesta and MWC349, whereas we avoid CRL2688 and
-NGC7027, which are slightly extended. Conservative data selection
-criteria with respect to observing conditions are applied: average
-elevations $\rm{el} \ge 20 \rm{deg}$, zenith opacities as estimated by
-NIKA2 in the 1mm band $\tau_{1\rm{mm}} \le 0.4$, reasonable lateral
-focus settings $x, y \le 0.5$mm. After selection cuts, our data set
-includes 130 OTF scans acquired during \emph{N2R9}, which consists of
-a representative sub-sample of a typical NIKA2 observation campaign,
-as well as {\bf XXX [TBC]} scans of \emph{N2R10}. 
+We select scans of moderately bright to very bright point sources by
+thresholding the flux density estimates at $1~\rm{Jy}$ at both
+wavelenths. Slightly extended sources, such as Mars, NGC7027 and
+CRL2688 are discarded. After the baseline selection cuts, as described in
+Sect.~\ref{se:data_selection}, the data set comprizes 163 scans
+towards the giant planets Uranus and Neptune, the secondary calibrator
+MWC349 and the quasars 3C84, 3C273, 3C345 and 3C454 (aka
+2251+158). The data are reduced using the pipeline described in
+Sect.~\ref{se:pipeline_overview} and projected onto $2''$ resolution
+maps. The FWHM of the main beam is estimated following the
+sidelobe-masked method
+discussed in Sect.~\ref{se:sidelobe_masked_method}. For Uranus, the
+FWHM estimates are further corrected for the beam broadening due to the
+extension of the apparent
+disc. At the IRAM $30\,\rm{m}$ latitude, Uranus disc diameter varies
+from $3.3''$ to $3.7''$. This induces a broadening of the Gaussian main beam of
+$0.19 \pm 0.03\,\rm{arcsec}$ at 1-mm and $0.12 \pm 0.02\,\rm{arcsec}$
+at 2-mm. Uranus FWMH estimates are corrected for the average beam
+widening values.
 
-Figure~\ref{fig:fwhm_map} shows FWHM distributions obtained using
-the elliptical Gaussian fit method from the selected set of $8' \times 5'$ OTF scans.
-We checked a posteriori that $r_{\rm{in}}$ distributes as $7 \pm 1.5$ arcsec at 1mm and $13 \pm 4$ arcsec at 2mm, in agreement with settings defined in the profile-based analysis.
+Figure~\ref{fig:fwhm_map_atmtrans} shows the main beam FWHM estimates
+as a function of the atmospheric transmission, which is modeled as
+$\exp{\left(-\tau \cdot x\right)}$, where $\tau$ is the zenith opacity estimate and
+$x$ the airmass, which is evaluated as the cosecant of the observing
+elevation. The FWHM estimates using data of the three campaigns are in
+agreement within rms errors. Moreover, the main beam FWHM is stable
+against the atmospheric condition at both wavelengths. Slightly lower
+values than average (about $11''$) are observed in the best
+atmospheric conditions at $1\,\rm{mm}$ providing us with a lower limit
+in the absence of correlated atmospheric noise residuals. We note
+three scans acquired during N2R12 with larger FWHM than average at
+$2\,\rm{mm}$ although the atmospheric transmission was excellent: this
+is likely an effect of the abnormalous refraction, which impacted
+a lot of scans during the N2R12 campaign. 
+
+The distributions of the best-fitting FWHM values of array 1, 3, the
+combination of arrays $1\&3$ and array 2 using the OTF scans from the
+three observation campaigns are shown in Fig.~\ref{fig:fwhm_map}. Nine
+scans with outlier $r_{\rm{in}}$ values have been discarded.
+We checked a posteriori that $r_{\rm{in}}$
+distributes as $10 \pm 1$ arcsec at $1\,\rm{mm}$ and $11 \pm 1$ arcsec
+at $2\,\rm{mm}$. The average FWHM estimates and the rms errors are
+reported in Table~\ref{tab:fwhm}.  
 
 
 \begin{figure}[ht!]
@@ -84,16 +122,17 @@ We checked a posteriori that $r_{\rm{in}}$ distributes as $7 \pm 1.5$ arcsec at 
   \includegraphics[clip, width=0.42\textwidth]{Figures/Beams/plot_histo_FWHM_mb_radius_binning2_a3.pdf}
   \includegraphics[clip, width=0.42\textwidth]{Figures/Beams/plot_histo_FWHM_mb_radius_binning2_1mm.pdf}
   \includegraphics[clip, width=0.42\textwidth]{Figures/Beams/plot_histo_FWHM_mb_radius_binning2_a2.pdf}
-  \caption[Main Beam FWHM distributions]{Distribution of the FWHM estimates for Array 1, 3, the comination of Array $1\&3$ and Array 2, including bright source scans from the three campaigns.}
+  \caption[Main Beam FWHM distributions]{Distribution of the FWHM estimates for Array 1, 3, the combination of Array $1\&3$ and Array 2, including bright source scans from the three campaigns.}
 \label{fig:fwhm_map}
 \end{center}
 \end{figure}
 
-\paragraph{Estimates using beam-map scans}
+\subsection{Beammap scan based results}
+\label{se:mb_with_beammap}
 
 We use masked version of the beam maps, which are selected as
 described in Sect.~\ref{se:beammap_set}. 
-Sidelobe masks are defined by a fixed $r_{\rm{out}}$ of $100 arcsec$
+Sidelobe masks are defined by a fixed $r_{\rm{out}}$ of $100''$
 and a $r_{\rm{in}}$ that freely varies from $8'$ to $9'$ for the
 $260~\rm{GHz}$-arrays, and from $10'$ to $14'$ for the $150~\rm{GHz}$
 array. We checked, hovewer, that we obtain consistent results but
@@ -101,6 +140,9 @@ larger dispersion when using annulus masks of fixed $r_{\rm{in}}$ of
 $8.5'$ and $12'$ at $260$ and $150~\rm{GHz}$ respectively. The median
 main beam FWHM and the rms error estimate, which have been obtained
 from the nine beam-maps, are given in Table~\ref{tab:fwhm}.
+
+Table~\ref{tab:fwhm} gathers the main beam FWHM results obtained using the three
+discussed methods and two datasets.  
 
 \begin{table}[h]
   \caption[]{FWHM of the NIKA2 main beam in arcsec.}

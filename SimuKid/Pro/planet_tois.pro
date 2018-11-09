@@ -3,7 +3,7 @@
 ;;--------------------
 
 ;; Realizations
-nmc = 500 ;200 ;30
+nmc = 10 ;200 ;30
 
 ;; HWP power
 hwp_max_ampl_jy = 70. ;1000 ; 100. ; 50.
@@ -48,7 +48,7 @@ time_hf = dindgen(nsn)/f_hf
 
 ;; Planet fluxes
 nflux = 50 ;30
-flux_min = 1   ;1d-3 ;
+flux_min = 1.d-5 ;1d-5   ;1d-3 ;
 flux_max = 500.d0 ;500.d0 ;1.d0 ;
 
 ;;--------------------------------------------------------------
@@ -130,10 +130,52 @@ for ispeed=0, nspeed-1 do begin
             wfit = where( abs(time_lf-t_planet_hf) le 2.d0, nwfit)
          endif
 
-         junk = gaussfit( time_lf, toi_rf_jy, a, nterms=nterms)
-         planet_rf_flux_results[ispeed,imc,iflux] = a[0]
-         junk = gaussfit( time_lf, toi_cf_jy, a, nterms=nterms)
-         planet_cf_flux_results[ispeed,imc,iflux] = a[0]
+         junk_rf = gaussfit( time_lf, toi_rf_jy, a, nterms=nterms)
+         nparams = 4
+         parinfo = replicate({fixed:0, limited:[0,0], $
+                              limits:[0.,0.D0]}, nparams)
+         p_start = [0., a[0], sigma/scan_speed, a[1]]
+         delvarx, e_r
+         silent=1
+         delvarx, myfit
+         w = where(time_lf gt 14 and time_lf lt 16)
+         myfit = mpfitfun("mygauss", time_lf[w], toi_rf_jy[w], $
+                          e_r, p_start, quiet = silent, $
+                          parinfo=parinfo, status=status)
+         
+         planet_rf_flux_results[ispeed, imc, iflux] = myfit[1]
+        
+         junk_cf = gaussfit( time_lf, toi_cf_jy, a, nterms=nterms)
+         nparams = 4
+         parinfo = replicate({fixed:0, limited:[0,0], $
+                              limits:[0.,0.D0]}, nparams)
+         p_start = [0., a[0], sigma/scan_speed, a[1]]
+         delvarx, e_r
+         silent=1
+         delvarx, myfit
+         w = where(time_lf gt 14 and time_lf lt 16)
+         myfit = mpfitfun("mygauss", time_lf[w], toi_cf_jy[w], $
+                          e_r, p_start, quiet = silent, $
+                          parinfo=parinfo, status=status)
+         
+         planet_cf_flux_results[ispeed, imc, iflux] = myfit[1]
+
+;; wind, 1, 1, /f, /l
+;; my_multiplot, 1, 3, pp, pp1, /rev
+;; plot, time_hf, -freso/jy2hz, xra=[14,16], position=pp1[0,*], /noerase
+;; plot, time_lf, toi_rf_jy,  position=pp1[1,*], xra=[14,16], /noerase
+;; oplot,time_lf, junk_rf,  psym=1, col=170
+;; oplot, time_lf, mygauss(time_lf, myfit), col=100
+;; plot, time_lf, toi_cf_jy,  position=pp1[2,*], xra=[14,16], /noerase
+;; oplot, time_lf, junk_cf, psym=1, col=250
+
+;; wind, 1, 1, /f
+;; plot, time_lf, toi_cf_jy, xra=[14,16]
+;; oplot, time_lf, mygauss(time_lf, myfit), col=250
+;; oplot, time_lf, junk_cf, col=100
+
+;; stop
+
          ;; HWP only (for subtraction)
          freso_hwp  =  -hwp_beta_jy*jy2hz
          freso2toi, freso_hwp, kid_model, delta_f, toi_rf_hwp_hz, toi_cf_hwp_hz, $
@@ -148,10 +190,39 @@ for ispeed=0, nspeed-1 do begin
          toi_rf_jy = toi_rf_hz/jy2hz
          toi_cf_jy = toi_cf_hz/jy2hz
          ;; Subtract the HWP timeline not to bias the fit
-         junk = gaussfit( time_lf, (toi_rf_jy-toi_rf_hwp_jy), a, nterms=nterms)
-         planet_hwp_rf_flux_results[ispeed,imc,iflux] = a[0] ; flux
-         junk = gaussfit( time_lf, (toi_cf_jy-toi_cf_hwp_jy), a, nterms=nterms)
-         planet_hwp_cf_flux_results[ispeed,imc,iflux] = a[0] ; flux
+         junk_rf = gaussfit( time_lf, (toi_rf_jy-toi_rf_hwp_jy), a, nterms=nterms)
+
+         nparams = 4
+         parinfo = replicate({fixed:0, limited:[0,0], $
+                              limits:[0.,0.D0]}, nparams)
+         p_start = [0., a[0], sigma/scan_speed, a[1]]
+         delvarx, e_r
+         silent=1
+         delvarx, myfit
+         w = where(time_lf gt 14 and time_lf lt 16)
+         myfit = mpfitfun("mygauss", time_lf[w], toi_rf_jy[w]-toi_rf_hwp_jy[w], $
+                          e_r, p_start, quiet = silent, $
+                          parinfo=parinfo, status=status)
+         
+         planet_hwp_rf_flux_results[ispeed, imc, iflux] = myfit[1]
+
+         junk_cf = gaussfit( time_lf, (toi_cf_jy-toi_cf_hwp_jy), a, nterms=nterms)
+         nparams = 4
+         parinfo = replicate({fixed:0, limited:[0,0], $
+                              limits:[0.,0.D0]}, nparams)
+         p_start = [0., a[0], sigma/scan_speed, a[1]]
+         delvarx, e_r
+         silent=1
+         delvarx, myfit
+         w = where(time_lf gt 14 and time_lf lt 16)
+         myfit = mpfitfun("mygauss", time_lf[w], toi_cf_jy[w]-toi_cf_hwp_jy[w], $
+                          e_r, p_start, quiet = silent, $
+                          parinfo=parinfo, status=status)
+         
+         planet_hwp_cf_flux_results[ispeed, imc, iflux] = myfit[1]
+
+
+
       endfor
    endfor
 endfor

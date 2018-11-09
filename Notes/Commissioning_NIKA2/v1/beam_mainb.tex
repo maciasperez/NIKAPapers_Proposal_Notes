@@ -3,7 +3,7 @@
 %%      SECTION: MAIN BEAM 
 %%
 %%__________________________________________________________________
-\section{Main beam {\color{blue} Laurence}}
+\section{Main beam {\color{YellowGreen} Laurence $\&$ Jean-Fran\c cois}}
 \label{se:MB}
 
 
@@ -17,15 +17,14 @@ However, this estimate could be biased toward the lower FWHM values due to
 degeneracies between the three-Gaussian model parameters. To ensure
 obtaining robust main beam FWHM estimates, we devise %
 % version without JFL method
-an alternative dedicated method, which resorts to a mask of the side
-lobes and is described in Sect.~\ref{se:sidelobe_masked_method}.
+%an alternative dedicated method, which resorts to a mask of the side
+%lobes and is described in Sect.~\ref{se:sidelobe_masked_method}.
 % version including JFL method
-%{\color{magenta} two} alternative dedicated
-%methods, which both resort to masking the side lobes: {\color{magenta}
-%  \i) Gaussian fits of the beam profile to benefit from the
-%  signal-over-noise increase after azimuthally averaging the signal,}
-%ii)
-%Elliptical Gaussian fits of the beam map for a better 2D modeling.
+two alternative dedicated
+methods, which both resort to masking the side lobes: i) Gaussian fits
+of the beam profile to benefit from the signal-to-noise ratio increase
+after azimuthally averaging the signal, ii) Elliptical Gaussian fits
+of the beam map for a better 2D modeling.
 Cross-checking the outputs from these complementary methods is an
 important robustess test of our results.
 
@@ -40,8 +39,34 @@ Sect.~\ref{se:mb_with_beammap}.
 %\subsection{Sidelobe-masked Profile-based analysis}
 %{\bf add a description here [Jean-Francois's method]}
 
-\subsection{Sidelobe-masked method}
-\label{se:sidelobe_masked_method}
+\subsection{Sidelobe-masked 1D method {\color{YellowGreen} Jean-Fran\c cois}}
+\label{se:sidelobe_masked_1D}
+
+The brigthness radial profiles of a primary calibrator (Uranus or
+Neptune) are first computed from their maps with a fine resolution
+($1''$ pixel). Then a single Gaussian is fit to each profile after
+masking data points at radial distances comprised between
+$0.65 \times$ FWHM and $80''$, so that the error beam (side lobes)
+does not bias the fit. In this approach, the data points at radial
+distance beyond $80''$ provide the base level of the Gaussian fit. In
+practice, maps $600'' \times 600''$ in size were made but only the
+inner part within a radius of $180''$ with uniform rms was used to
+compute the profile.
+The best-fitting FWHM of the Gaussian model
+yields the main beam FWHM for each array, as reported in Table
+\ref{tab:fwhm}.
+
+All \bm\ and shallower OTF scans of Uranus and Neptune in the N2R9,
+N2R12 and N2R14 observation campaigns were used to determine the means
+and standard deviations of the main beam fwhms for the three arrays in
+Table \ref{tab:fwhm}.
+
+
+
+\subsection{Sidelobe-masked 2D method {\color{YellowGreen} Laurence}}
+
+\subsubsection{Method desciption}
+\label{se:2D_method}
 
 NIKA2 main beam two-dimensionnal distribution is modeled using an
 elliptical Gaussian. We characterize NIKA2 resolution by forming the
@@ -59,7 +84,7 @@ $r_{\rm{in}}$ is let free to vary around a central value about $8''$
 for A1 and A3 and about $12''$ for A2 to provide the best 2D Gaussian
 fit.
 
-\subsection{OTF scan based results}
+\subsubsection{OTF scan based results}
 \label{se:mb_with_otf}
 
 \begin{figure}[ht!]
@@ -81,8 +106,8 @@ MWC349 and the quasars 3C84, 3C273, 3C345 and 3C454 (aka
 2251+158). The data are reduced using the pipeline described in
 Sect.~\ref{se:pipeline_overview} and projected onto $2''$ resolution
 maps. The FWHM of the main beam is estimated following the
-sidelobe-masked method
-discussed in Sect.~\ref{se:sidelobe_masked_method}. For Uranus, the
+sidelobe-masked 2D method, as described in Sect.~\ref{se:2D_method}.
+For Uranus, the
 FWHM estimates are further corrected for the beam broadening due to the
 extension of the apparent
 disc. At the IRAM $30\,\rm{m}$ latitude, Uranus disc diameter varies
@@ -127,7 +152,7 @@ reported in Table~\ref{tab:fwhm}.
 \end{center}
 \end{figure}
 
-\subsection{Beammap scan based results}
+\subsubsection{Beammap scan based results}
 \label{se:mb_with_beammap}
 
 We select a sub-set of the \bm\ scan selection described in
@@ -135,7 +160,7 @@ Sect.~\ref{se:beammap_set} by discarding scans of Mars.
 The 12 remaining \bm\ scans are analysed using the data reduction
 pipeline of Sect.~\ref{se:pipeline_overview} and projected onto maps
 with a resolution of $1''$ and an angular size of $10'$.    
-The main beam FWHM is estimated using the sidelobe-masked method, as
+The main beam FWHM is estimated using the sidelobe-masked 2D method, as
 described in Sect.~\ref{se:sidelobe_masked_method}. Sidelobe masks are
 defined by a fixed external radius $r_{\rm{out}}$ of $100''$ and a
 fixed internal radius $r_{\rm{in}}$ of $8.5''$ at $1\,\rm{mm}$ and
@@ -143,17 +168,39 @@ $13.5''$ at $2\,\rm{mm}$. We checked we obtain compatible results when
 $r_{\rm{in}}$ is let to freely varies from $8'$ to $10'$ at
 $1\,\rm{mm}$ and from $10'$ to $14'$ at $2\,\rm{mm}$. The fixed
 $r_{\rm{in}}$ values correspond to the average best-fitting
-$r_{\rm{in}}$ of the free-$r_{\rm{in}}$ analysis.   
+$r_{\rm{in}}$ of the free-$r_{\rm{in}}$ analysis. The main beam FWHM
+estimates using the sidelobe-masked 2D method on the \bm\ scans are
+gathered in Table~\ref{tab:fwhm}.
 
 
-The main beam FWHM estimates using the sidelobe-masked method on the
-\bm\ scans are gathered in Table~\ref{tab:fwhm}, and compared to
-results obtained using i) the best-fitting first Gaussian FWHM values of the
-three-Gaussian model, as discussed in Sect.~\ref{se:fullbeam_prof} and
-ii) the sidelobe-masked method applied to the shallower OTF scans, as
-presented in Sect.~\ref{se:mb_with_otf}.
+\subsection{Comparision of the main beam FWHM estimates}
 
+We have derived the main beam FWHM for the three array and the
+$1\,\rm{mm}$ array combination using three methods and three data
+sets. Namely, our main beam FWHM estimates
+consist of i) the median FWHM of the first (lowest-FWHM) Gaussian
+function within the three-Gaussian model fitted from the 12 \bm\ scan
+sub-set described in
+Sect.~\ref{se:mb_with_beammap}, ii) the average FWHM using the
+sidelobe-masked 1D method on a series of \bm\ and $5'x8'$ OTF scans of
+Uranus and Neptune, the sidelobe-masked 2D method average FWHM
+from iii) a series of $5'x8'$ OTF scans of bright point sources and
+iv) from the 12 \bm\ scan sub-set. The results of these analysis are
+gathered in Table~\ref{tab:fwhm}, including error bars evaluated as
+the rms dispersion of single-scan based FWHM estimates.
 
+All the tests based on sidelobe-masked methods yield FWHM estimates
+in agreement within error bars, whereas the test resorting to the
+three-Gaussian model yields slightly smaller FWHM for all arrays. The
+latter provides us with lower limits for the main beam FWHM. The error
+bars are the most robustly derived from the dispersion of the
+best-fitting FWHM over the set of 154 OTF scans, whereas rms errors
+that are estimated from smaller scan sets are likely to be
+underestimated. The combined results are obtained from an error-weighted
+average of the four FWHM estimates for each array. The 12 \bm\ scan
+based rms errors were replaced by the 154 OTF scan based rms errors
+beforehand.
+The combined FWHM estimates are given in Table~\ref{tab:fwhm}.
 
 \begin{table}[h]
   \caption[]{FWHM of the NIKA2 main beam in arcsec.}
@@ -167,9 +214,12 @@ presented in Sect.~\ref{se:mb_with_otf}.
     Method & Dataset        &   A1 &  A3 & A1 $\&$ A3 &  A2  \\
     \hline
     \hline
-    Three-Gaussian model G1\tnote{a} &  \bm\     & $10.8 \pm 0.1$  &  $10.8 \pm 0.1$  &  $10.8 \pm 0.1$  &  $17.4 \pm 0.1$  \\
-    Sidelobe-masked map-based        &  5x8 OTF  & $11.3 \pm 0.2$  &  $11.1 \pm 0.2$  &  $11.2 \pm 0.2$  &  $17.8 \pm 0.1$  \\ 
-                                     &  \bm\     & $11.2 \pm 0.1$  &  $11.1 \pm 0.1$  &  $11.2 \pm 0.1$  &  $17.6 \pm 0.1$  \\ 
+    Three-Gaussian model G1\tnote{a} &  \bm\     & $10.8 \pm 0.1$  &  $10.8 \pm 0.1$  & $10.8 \pm 0.1$  &  $17.4 \pm 0.1$  \\
+    Sidelobe-masked 1D method        &  mixed    & $11.3 \pm 0.4$  &  $11.2 \pm 0.4$  & $11.2 \pm 0.3$   & $17.4 \pm 0.2$  \\ 
+    Sidelobe-masked 2D method        &  5x8 OTF  & $11.3 \pm 0.2$  &  $11.1 \pm 0.2$  & $11.2 \pm 0.2$  &  $17.8 \pm 0.1$  \\ 
+                                     &  \bm\     & $11.2 \pm 0.1$  &  $11.1 \pm 0.1$  & $11.2 \pm 0.1$  &  $17.6 \pm 0.1$  \\
+    \hline
+    \multicolumn{2}{|c|}{Combined}               & $11.1 \pm 0.2$  &  $11.0 \pm 0.2$  & $11.1 \pm 0.2$  &  $17.6 \pm 0.1$  \\
     \hline
   \end{tabular}
   \begin{tablenotes}
@@ -179,6 +229,8 @@ presented in Sect.~\ref{se:mb_with_otf}.
   \end{threeparttable}
   \label{tab:fwhm}
 \end{table}
+
+
 
 \subsection{FWHM distribution across the FoV}
 
@@ -196,7 +248,8 @@ presented in Sect.~\ref{se:mb_with_otf}.
 Figure \ref{fig:focalplane_histo} shows the distribution of the
 main beam FWHMs of the arrays A1, A3 and A2 using a beammap
 scan of Neptune acquired during the April 2017 commissioning
-campaign and for average weather conditions (scan ID: 20170424s123). We also
+campaign and for average weather conditions (scan ID: 20170424s123).
+We also
 show in red the best Gaussian fit to histogram data. We find an
 average main beam FWHM of $10.9''$ at 260 GHz and $17.5''$ at
 150 GHz in agreement with the main beam estimates gathered in
@@ -205,7 +258,7 @@ The observed dispersion of about $0.6''$ is expected from the optics design and 
 field distortions across the 6.5 arc-minutes FoV, as discussed in
 Sect.~\ref{se:grid_distortion}. This quantifies the impact of the
 non-constant focus across the FoV, which is characterised in
-Sect.~\ref{sec:focus-surf}, on the individual detector main beams.  
+Sect.~\ref{se:focus-surf}, on the individual detector main beams.  
 
 
 

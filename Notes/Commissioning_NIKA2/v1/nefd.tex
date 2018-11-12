@@ -1,30 +1,8 @@
-%%
-%%
-%%      SECTION: SENSITIVITY
-%%
 
-%% \begin{figure}[htpb]
-%% \begin{center}
-%% %\includegraphics[clip, angle=0, scale =
-%% %  0.5]{Figures/NEFD_HLS091828_20170226s415_FXDC0C1_GaussPhot.png}
-%% %\includegraphics[clip, angle=0, scale = 0.5]{Figures/nefd_mpfit_HLS091828.eps}
-%% \includegraphics[clip, angle=0, scale = 0.4]{Figures/HLS_fit.eps}
-%% \includegraphics[clip, angle=0, scale = 0.4]{Figures/HLS_residuals.eps}
-%% \caption{Sensitivity on \hls\ vs time of integration. Two power laws are fit:
-%%   one with fixed slope $t^{1/2}$ that provides the estimate of the NEFD, one
-%%   with a free slope $t^\beta$ to monitor the departure of noise integration from
-%%   the canonical $t^{1/2}$. These data come from the integration on \hls\ during
-%%   Run9. The difference between the 1 and 2~mm integration time comes from the
-%%   density of KIDs in the FOV.}
-%% \label{fig:nefd_vs_t}
-%% \end{center}
-%% \end{figure}
-
-%% {\bf The specs/goals ``NEFD on X \% of pixels'' should be understood as : we have
-%% XX\% valid pixels, and with these pixels, we have an NEFD of YY. We should not
-%% discard some fraction of our pixels and estimate an NEFD on this subset.}\\
-
-\section{Methodology {\color{YellowGreen} Nico}}
+In Sect.~\ref{se:toi_proc}, we have introduced the TOI properties of the
+instrument and our reference data reduction scheme. We here go up to the final
+maps while considering the time spent observing to derive the sensitivity of the
+instrument, \aka\ the \emph{Noise Equivalent Flux Density}, (NEFD).\\
 
 The MoU defines the NEFD:  \emph{The Noise Equivalent Flux Density (NEFD)
   is the $1\,\sigma$ sensitivity in one second of effective on-source telescope
@@ -43,9 +21,9 @@ understanding of the time of integration to its actual value is not as trivial
 as it seems because of the dependence on the scanning strategy and the
 distribution of valid KIDs accross the FOV.
 
-\subsection{Estimating the time of integration}
+\section{Estimating the time of integration}
 
-\subsubsection{Time of integration from the density of samples}
+\subsection{Time of integration from the density of samples}
 
 Let's take a map of resolution $r$ (arcsec) and consider the map pixel that is
 centered on the position where we estimate the flux uncertainty
@@ -100,7 +78,7 @@ t_{det}^{req} = \left(\frac{NEFD_{det}}{\sigma_\phi}\right)^2\frac{1}{\eta}
 \label{eq:t_astro}
 \end{equation}
 
-\subsubsection{Time of integration from the matrix footprint}
+\subsection{Time of integration from the matrix footprint}
 
 One can also think of the ``time spent on the source'', for a full matrix
 (ie. all valid KIDs), as the time when the source is inside the circular
@@ -163,7 +141,7 @@ reference time estimator.}
 %% like $1/\sqrt{t_{beam}}$.
 
 
-\subsection{NEFD estimation methods}
+\section{NEFD estimation methods}
 \label{se:nefd_estimation_methods}
 
 With the uncertainty on flux measurements as described in sect.~\ref{se:photometry} and
@@ -206,7 +184,7 @@ detection capacities blindly.
 
 The data were processed according to sect.~\ref{se:pipeline_overview}.
 
-\subsubsection{Deep integration method 1: $\sigma = NEFD/\sqrt{t}$}
+\subsection{Deep integration method 1: $\sigma = NEFD/\sqrt{t}$}
 
 %%  and the
 %% scans have 
@@ -275,7 +253,7 @@ Fig.~\ref{fig:nefd_vst} and in Tab.~\ref{tab:nefd_summary}.
 \end{center}
 \end{figure}
 
-\subsubsection{Deep integration method 2: Jackknife}
+\subsection{Deep integration method 2: Jackknife}
 
 With enough scans of the same soure, it is possible to alternate addition and
 subtraction of the scans and therefore cancel the contribution of the signal to
@@ -323,7 +301,7 @@ $t^{-1/2}$  & A1     & 51.28  & 49.15\\
 \end{center}
 \end{table}
 
-\subsubsection{NEFD per plot vs $e^{\tau/sin\delta}$}
+\subsection{NEFD per plot vs $e^{\tau/sin\delta}$: Scatter}
 
 Performing photometry on each individual scan on G2 or \hls, we can estimate the
 sensitivity on the central flux and measure the time of integration, hence
@@ -345,181 +323,36 @@ zenith opacities are given in Tab.~\ref{tab:nefd_summary}.
 \end{center}
 \end{figure}
 
+While the two first methods require long integration on the same source, this
+\emph{scatter} method can be used on all scans. In practice, noise
+characterization may be biased by residuals of a strong source and the
+instrument far side lobes (Fig.~\ref{fig:nefdvsbackground}). We therefore
+restrict to sources with a flux below
+1\,Jy. Fig.~\ref{fig:nefdvsbackground_below_1Jy} further shows the comparison
+between runs N2R9, N2R12 and N2R14 and their consistency.
 
-
-\newpage
-
-%% Luckily enough, we have observations of Pluto in very stable
-%% atmospheric conditions and at quasi constant elevation. This will allow us to
-%% check this formalism against more intuitive and direct definitions. We can also
-%% extract from the scans on \hls those that were under stable opacity conditions
-%% and at high and quasi-constant elevation as a confirmation of our final
-%% estimates. The other regimes will help us derive uncertainties our estimates.\\
-%% 
-%% \begin{figure}[htpb]
-%% \begin{center}
-%% \includegraphics[clip, angle=0, scale=0.4]{Figures/Pluto_8_sigma_vs_time_matrix_center.png}
-%% \includegraphics[clip, angle=0, scale=0.4]{Figures/Pluto_8_sigma_vs_time_matrix_center_tau_w8.png}
-%% \caption[Noise decrease with the integration time]{\emph{Left:}$1\,\sigma$ sensitivity vs $t_{int}$ during observations of Pluto, {\bf
-%%   without correction for elevation or opacity}. \emph{Right:} Same fit but this
-%%   time considering the effective time, weighted by opacity and elevation as in Eq.~(\ref{eq:sigma_tau_w8}).}
-%% \label{fig:Pluto_8_sigma_vs_time_matrix_center}
-%% \end{center}
-%% \end{figure}
-%% 
-%% 
-%% \begin{figure}[htpb]
-%% \begin{center}
-%% \includegraphics[clip, angle=0, scale=0.4]{Figures/Pluto_5_opacity.eps}
-%% \includegraphics[clip, angle=0, scale=0.4]{Figures/Pluto_5_elevation.eps}
-%% \includegraphics[clip, angle=0, scale=0.4]{Figures/HLS091828_5_opacity.eps}
-%% \includegraphics[clip, angle=0, scale=0.4]{Figures/HLS091828_5_elevation.eps}
-%% \caption[Observing conditions during the noise integration tests]{Opacities and elevations during observations of Pluto and \hls. While
-%%   conditions were stable both in opacity and elevation for Pluto, it was not the
-%% case for \hls.}
-%% \label{fig:pluto_opacities}
-%% \end{center}
-%% \end{figure}
-%% 
-%% \paragraph{Pluto.} We have 28 scans of Pluto, for a total
-%% integration time of XX at 1mm and XX at
-%% 2mm. Fig.~\ref{fig:Pluto_8_sigma_vs_time_matrix_center} shows how the
-%% $1\,\sigma$ sensitivity decreases with $t_{int}$. Considering the small
-%% variations of opacity and elevation during these observations of Pluto
-%% (Fig.~\ref{fig:pluto_opacities}), we can derive an average correction
-%% $exp(-\tau/\sin\delta) = exp(-0.07/\sin(30^\circ)) = 0.87$. This leads to zenith
-%% $NEFD_0^{1mm} = 38.8$ and $NEFD_0^{2mm} = 9.2$\,mJy.s$^{-1/2}$. Using the
-%% jackknife maps and applying the same opacity-elevation correction, one gets
-%% $NEFD_0^{1mm}=38.0$ and $NEFD_0^{2mm}=8.96$.
-%% 
-%% In light what is discussed in the previous paragraph, if we fit the sensitivity
-%% vs $\sum_{n}t_n e^{-2\tau_n/\sin\delta_n}$, we obtain $NEFD_0^{1mm} = 38.5$ and
-%% $NEFD_0^{2mm}=9.2$. These value are summarized in
-%% tables~\ref{tab:nefd_stable_1mm} and \ref{tab:nefd_stable_2mm}. All these
-%% numbers are obtained with the standard reduction method, a.~k.~a. {\tt
-%%   common\_mode\_one\_block, (CMB)}. If we further subtract a polynomial of order
-%% 5 per subscan after this decorrelation (still masking the source), we improve
-%% the results as reported in the tables, while not changing the measured fluxes of
-%% Pluto and HLS (tab.~\ref{tab:fluxes}). We therefore do not change the
-%% calibration with this extra filtering, so the gain in sensitivity does come from
-%% better noise subtraction.
-%% 
-%% \paragraph{\hls.} While we have an overall
-%% longer integration on \hls, it was acquired during distinct periods, over
-%% varying elevation and different (albeit almost constant by plateau)
-%% opacities (Fig.~\ref{fig:hls_opacities}). Still, performing the same analyses, we obtains the results presented
-%% in tables~\ref{tab:nefd_stable_1mm} and \ref{tab:nefd_stable_2mm}. The values
-%% obtained from the fit vs $1/\sqrt{t}$ are recalled to illustrate the impact of
-%% the opacity-elevation correction on this estimator on \hls\ data. One should
-%% focus on the values derived from the Jackknivfe maps and thoses including the
-%% opacity-elevation correction $1/\sqrt{t_{eff}}$: these values are in very good
-%% agreement when derived from the same reduction method, and in good agreement
-%% between Pluto and \hls.\\
-%% 
-%% {\bf Conclusion}: while uncertainties on these values should be further
-%% investigated, the good agreement between alternative estimates and at the same
-%% time their differences indicate that they should be valid at about $\pm 1$\,mJy.s$^{1/2}$.
-%% {\bf With these two estimators (fit vs time of integration and
-%%   Jackknife), we find zenith $NEFDs$ below 35 and 9\,mJy.s$^{1/2}$ at 1 and
-%%   2\,mm respectively.} While less intuitive, the more rigourous definition of
-%% the integration time that enters the estimation of the flux, $t_{beam}$, leads to
-%%   slightly different values. It improves by 5\% at 1\,mm, i.e. puts the upper limit at 33.4, but
-%%   degrades the 2\,mm value by the same amount and raise the upper limit to 9.3.
-%% 
-%% \begin{table}
-%% \begin{tabular}{|l|l|l|l|l|}
-%% \hline
-%% $NEFD_0^{1mm}$~mJy.s$^{1/2}$ & \multicolumn{2}{|c|}{Pluto} & \multicolumn{2}{|c|}{\hls}\\
-%% \hline
-%% Red.~method             & CMB     & CMB+poly5     & CMB & CMB+poly5\\
-%% \hline
-%% $\sim 1/\sqrt{t}$       & 38.8  & 34.3  & 41.7 & 38.2\\
-%% $JK$                    & 35.9  & {\bf 34.7}  & 33.8 & {\bf 33.6} \\
-%% $\sim 1/\sqrt{t_{eff}}$ & 38.5  & {\bf 32.8}  & 37.5 & {\bf 34.4} \\
-%% \hline
-%% \hline
-%% \end{tabular}
-%% \caption[NEFD at 1mm]{Zenith NEFD's in stable elevation and atmospheric conditions on Pluto
-%%   and \hls\ at 1mm.}
-%% \label{tab:nefd_stable_1mm}
-%% \end{table}
-%% 
-%% \begin{table}
-%% \begin{tabular}{|l|l|l|l|l|}
-%% \hline
-%% $NEFD_0^{2mm}$~mJy.s$^{1/2}$ & \multicolumn{2}{|c|}{Pluto} & \multicolumn{2}{|c|}{\hls}\\
-%% \hline
-%% Red.~method             & CMB     & CMB+poly5     & CMB & CMB+poly5\\
-%% \hline
-%% $\sim 1/\sqrt{t}$       & 9.3 & 8.0 & 9.8  & 8.5\\
-%% $JK$                    & 8.8 & {\bf 7.7} & 8.3  & {\bf 7.6} \\
-%% $\sim 1/\sqrt{t_{eff}}$ & 9.2 & {\bf 8.2} & 9.4  & {\bf 8.2} \\
-%% \hline
-%% \hline
-%% \end{tabular}
-%% \caption[NEFD at 2mm]{Zenith NEFD's in stable elevation and atmospheric conditions on Pluto
-%%   and \hls\ at 2mm.}
-%% \label{tab:nefd_stable_2mm}
-%% \end{table}
-%% 
-%% \begin{table}
-%% \begin{tabular}{|l|l|l|l|l|}
-%% \hline
-%% Fluxes (mJy) & \multicolumn{2}{|c|}{Pluto} & \multicolumn{2}{|c|}{\hls}\\
-%% \hline
-%% Red.~method  & CMB           & CMB+poly5     & CMB           & CMB+poly5\\
-%% \hline
-%% 1\,mm        & $15.0\pm 1.1$ & $13.6\pm 0.9$ & $85.2\pm 0.4$ & $85.4\pm 0.4$\\
-%% 2\,mm        & $5.0\pm 0.2$  & $5.0\pm 0.2$  & $14.9\pm 0.1$ & $14.9\pm 0.1$\\
-%% \hline
-%% \hline
-%% \end{tabular}
-%% \caption[Measured fluxes of Pluto and \hls\ with two data reduction methods.]{ The
-%%   extra subtraction of polynomial of order 5 per subscan while masking the
-%%   source does not subtract power to the source, hence the derived sensitivities
-%%   with this methods do not need to be recalibrated.}
-%% \label{tab:fluxes}
-%% \end{table}
-
-
-\section{NEFD Method 3: dependencies on the observed opacity {\color{blue} Juan$\&$Laurence}}
-\label{NEFD_pipeline}
-
-
-\todo{Link this section to the previous one, say it's a generalization of the
-  previous specific case of G2 and \hls\ for instance...}\\
-
-In this section we investigate the astronomer NEFD as a function of
-the atmospheric opacity and air mass.            
-The date sets include all the scans that met the baseline section
-criteria of Sect.~\ref{se:baseline_selection} and for which the flux
-density estimates do not exceed $1~\rm{Jy}$. Indeed we show that the
-measured NEFD from scans of sources brighter than $1~\rm{Jy}$ are
-biased toward high values due to source signal leakage into the noise
-estimates.
-
-\addparag{ Flux cut + Fig. NEFD vs Flux JUAN} 
 \begin{figure}
 \begin{center}
- %\includegraphics[clip, angle=0, scale=0.8]{Figures/NEFDIndScans/nefd_1mm_R9_F1_tau_run22_23.pdf}
- %\includegraphics[clip, angle=0, scale=0.8]{Figures/NEFDIndScans/nefd_2mm_R9_F1_tau_run22_23.pdf}
- \includegraphics[clip=true,width=0.47\textwidth]{Figures/NEFDIndScans/nefd_flux1mm_run22.pdf}
- \caption[Measured NEFD versus source flux for N2R9 at 1 and 2 mm]{Measured NEFD versus source flux for N2R9 at 1 and 2 mm}
+\includegraphics[clip=true,width=0.47\textwidth]{Figures/NEFDIndScans/nefd_flux1mm_run22.pdf}
+\caption[Measured NEFD versus source flux for N2R9 at 1 and 2 mm]{Measured NEFD
+  versus source flux for N2R9 at 1 and 2 mm}
 \label{fig:nefdvsbackground}
 \end{center}
 \end{figure}
 
-
 \begin{figure}
 \begin{center}
- %\includegraphics[clip, angle=0, scale=0.8]{Figures/NEFDIndScans/nefd_1mm_R9_F1_tau_run22_23.pdf}
- %\includegraphics[clip, angle=0, scale=0.8]{Figures/NEFDIndScans/nefd_2mm_R9_F1_tau_run22_23.pdf}
- \includegraphics[clip=true,width=0.47\textwidth]{Figures/NEFD/plot_nefd_vs_obstau_a1.pdf}
- \includegraphics[clip=true,width=0.47\textwidth]{Figures/NEFD/plot_nefd_vs_obstau_a3.pdf}
- \includegraphics[clip=true,width=0.47\textwidth]{Figures/NEFD/plot_nefd_vs_obstau_1mm.pdf}
- \includegraphics[clip=true,width=0.47\textwidth]{Figures/NEFD/plot_nefd_vs_obstau_a2.pdf}
- \caption[Measured NEFD versus observed opacity]{Measured NEFD as a function of atmospheric background for array 1 (upper left), array 3 (upper right), the $1~\rm{mm}$ (lower left) and $2~\rm{mm}$ (lower right) channels. Datapoints are NEFD estimates in $\rm{mJy}\cdot s^{0.5}$ for N2R9 (blue), N2R12 (orange) and N2R14 (chartreuse). We also show in the plots the expected NEFD evolution with atmospheric background as solid curves.}
-\label{fig:nefdvsbackground}
+\includegraphics[clip=true,width=0.47\textwidth]{Figures/NEFD/plot_nefd_vs_obstau_a1.pdf}
+\includegraphics[clip=true,width=0.47\textwidth]{Figures/NEFD/plot_nefd_vs_obstau_a3.pdf}
+\includegraphics[clip=true,width=0.47\textwidth]{Figures/NEFD/plot_nefd_vs_obstau_1mm.pdf}
+\includegraphics[clip=true,width=0.47\textwidth]{Figures/NEFD/plot_nefd_vs_obstau_a2.pdf}
+\caption[Measured NEFD versus observed opacity]{Measured NEFD as a function of
+  atmospheric background for array 1 (upper left), array 3 (upper right), the
+  $1~\rm{mm}$ (lower left) and $2~\rm{mm}$ (lower right) channels. Datapoints
+  are NEFD estimates in mJy.s$^{1/2}$ for N2R9 (blue), N2R12 (orange)
+  and N2R14 (chartreuse). We also show in the plots the expected NEFD evolution
+  with atmospheric background as solid curves.}
+\label{fig:nefdvsbackground_below_1Jy}
 \end{center}
 \end{figure}
  
@@ -549,12 +382,12 @@ estimates.
 %%  
 %%
 
- Figure~\ref{fig:nefdvsbackground} shows the
- measured NEFD, which we refer to as astronomer NEFD, for the 1 and 2 mm as a
- function of the measured atmospheric background in terms of $\tau/sin(El)$. The
- atmospheric opacity was computed as discussed in Section~\ref{se:opacities}. We
- observe that the increase of the astronomer NEFD is in agreement with what we
- would expect for background dominated sensitivity.
+ Figure~\ref{fig:nefdvsbackground} shows the measured NEFD, which we refer to as
+ astronomer NEFD, for the 1 and 2 mm as a function of the measured atmospheric
+ background in terms of $\tau/sin(El)$. The atmospheric opacity was computed as
+ discussed in Section~\ref{se:opacities}. We observe that the increase of the
+ astronomer NEFD is in agreement with what we would expect for background
+ dominated sensitivity.
 
 Baseline astromoner and instrument NEFD results are gathered in
 Table.~\ref{tab:baseline_nefd_pipeline}.

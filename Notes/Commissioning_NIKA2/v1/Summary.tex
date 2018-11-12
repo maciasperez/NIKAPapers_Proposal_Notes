@@ -34,7 +34,7 @@ calibration and performance assessment methods are briefly presented
 in Sect.~\ref{se:pipeline_overview} and further detailed in Chapters 3
 to 8, which are outlined below.
 
-In Chapt.~\ref{se:opacities}, the atmospheric attenuation is corrected
+In Chapter~\ref{se:opacities}, the atmospheric attenuation is corrected
 using two-step method: first, the line-of-sight opacity of each
 observing scans is estimated using a series skydip observations
 performed with the NIKA2 instrument, then a correction coefficient is
@@ -42,7 +42,7 @@ applied to the skydip opacity to ensure the flus density stablity
 against the atmospheric condition. Opacity derivation based on the
 resident IRAM taumeter measures is also tested for consistency checks.
 
-In Chapt.~\ref{se:fp_reconstruction}, \bm\ scans are used to derive
+In Chapter~\ref{se:fp_reconstruction}, \bm\ scans are used to derive
 the position of each KIDs in the FoV and perform a first selection to
 discard noisy and cross-talking KIDs. The KIDs are further selected on
 the comparison between their measured position and the expected
@@ -50,75 +50,142 @@ designed position. Finally, series of defocused \bm\ scans are used to
 reconstruct the focus surfaces and estimate the telescope focus
 setting that optimizes the focus across the arrays.   
 
-In Chapt.~\ref{se:beams}, noticeable features of the beam pattern are
-identified using \bm\ scans. Radial profile of the full beam are
+In Chapter~\ref{se:beams}, noticeable features of the beam pattern are
+identified using \bm\ scans. Radial profiles of the full beam are
 measured up to a radius of $180''$ and are fitted using a
 three-Gaussian model. The main beam of each array is evaluated using
-three complementary methods: the first Gaussian that best fit the full
+three complementary methods: the first Gaussian that best fits the full
 beam profile, a single Gaussian fit on a side-lobe-masked version of
 the profile and a 2D Gaussian fit on a side-lobe-masked version of the
-beam map. Then we use the knowledge we gain on the full beam and main
-beam to derive the main beam efficiency up to $180''$. A more precise
-description of the beam pattern above $180''$, which is useful for
+beam map. Then we use the knowledge we have gained on the full beam
+and main beam to derive the main beam efficiency up to $180''$. A more
+precise description of the beam pattern above $180''$, which is useful for
 diffuse emission studies, is let for a future dedicated study that
 will be conducted as part of the diffuse emission NIKA2 Large
 Programs.
 
-Chapter~\ref{se:calibration}
+Chapter~\ref{se:calibration} deals with all the aspects related to the
+calibration. Sections~\ref{se:cal_HA_reference}
+and \ref{se:cal_HA_main} describe the reference photometric system
+that has been adopted: flux densities rely on a fit
+of a Gaussian with a fixed FWHM at reference values and are given at
+reference frequencies. However, we also tested a method based on aperture
+photometry and reported the conversion coefficients between the
+point-source and aperture photometry calibration in
+Sect.~\ref{se:aperture_photo_calibration}.
+The main primary calibrator is Uranus, although Neptune
+is also considered. In Sect.~\ref{se:ref_flux_primaries}, the flux
+expectations for the primary calibrators are derived using the Moreno
+model, which is precise at a $5\%$ level. In
+Sect.~\ref{se:flatfields}, the KID-to-KID relative calibration is
+performed as part of the FOV reconstruction using the fixed-Gaussian fit on
+individual maps per KID, which are projected from \bm\ scans. We test
+the stability of the KID response across the FoV by considering both
+flat fields toward point sources (a.k.a. main beam flat fields) and
+flat fields of the atmosphere (a.k.a. forward beam flat
+fields). Section~\ref{se:obsdate_variations} deals with the well-known
+effect of the telescope heating during the afternoon. This induces a
+widening of the beam, which comes along with a drop of the measured
+flux densities. We use calibration observations to determine the most
+impacted UT hours of the day. The baseline calibration, as presented
+in Sect.~\ref{se:baseline_calibration}, is drawn from
+scans acquired between 22:00 and 9:00 UT and between 10:00 and 15:00
+UT hours, whereas the Sun-rising and afternoon scans are
+discarded. However, in Sect.~\ref{se:photocorr_calibration}, we also
+tested a calibration method which resorts to a photometric correction
+to retrieve robust flux density estimates while the beam experiences
+instabilities. This method, which is based on a monitoring of the beam
+size throughout an observation campaign, demands dedicated scans to be
+made on an hour basis to reach science-grade level of accuracy and
+robustness. We present a test case based on a beam monitoring using
+the pointing scans, which yields promising results but a mild lake of
+robustness. Thus, we choose to base the sensitivity assessment on the
+baseline calibration only.
 
+The accuracy and stability of the photometry are treaded in
+Chapter~\ref{se:photometry}. We define two calibration performance
+criteria: first we measure the ratio between the measured flux density
+and the expectations for MWC349, a secondary calibrator which is
+monitored at Plateau de Bure, and secondly we estimate the rms errors
+with respect to the median flux density using a series of bright
+point-like sources. This latter criterion provides us with an estimate
+of the statistical uncertainties of the calibration, whiwh includes
+errors sourced by the dispersion in the observing conditions
+(atmosphere, elevation, source brightness, integration time, etc.) and
+in the data analysis.
 
+% first we characterise the features of the noise in the time domain
+% by describing both the noise power spectrum and the full KID-to-KID
+% correlation matrices, and illustrate the impact of various noise
+% decorrelation methods. 
+In Chapter~\ref{se:nefd}, we characterise NIKA2 sensitivity by
+estimating the NEFD. We developped three complementary methods that
+differ in the measurement of the flux density variance but rely on the
+same estimate of the on-source integration time. The first method is
+based on fitting the variance decrease with the integration time, the
+second utilizes statistically equivalent data splits to produce a
+noise map estimate and the third method resorts to measuring the noise
+far from the source. Regarding the integration time, we ensure the
+robustness of the estimate by cross-checking the results of two
+approaches: integration times directly derived from the sample counts
+are compared to integration time estimates with the array footprint
+that best account for the scan strategy.  
 
 
 
 \subsection*{Results}
-The main measured parameters that define the actual NIKA2 performances
-are gathered in Table~\ref{nika2summary}.
+The main measured parameters that define the measured NIKA2 performance
+are gathered in Table~\ref{tab:nika2summary}.
 
 \begin{table}[h]
 \begin{center}    
   \begin{threeparttable}
-    \begin{tabular}{|r|c|c|c|c|}
+    \begin{tabular}{|r|c|c|c|c|l|}
       \hline
-      & Array 1 & Array 3  & Array 1\&3 & Array 2 \\
+      & Array 1 & Array 3  & Array 1\&3 & Array 2 & Reference \\
       \hline
       \hline
-      Reference Wavelength  [mm]  &  1.15   &  1.15  & 1.15 & 2.0   \\
-      Reference Frequency  [GHz]  &  260    &  260   & 260  & 150  \\
-      Central Frequency [GHz]     &  255.5  &    257.8     &     &   151.6  \\
-      Bandwidth         [GHz]     &   47.8  &     45.7     &     &    42.1  \\
+      Reference Wavelength  [mm]  &  1.15   &  1.15  & 1.15 & 2.0   &   \\
+      Reference Frequency  [GHz]  &  260    &  260   & 260  & 150   &  Sect.~\ref{se:cal_HA_reference}  \\
+      Central Frequency [GHz]     &  255.5  &  257.8 &      & 151.6 &  Sect.~\ref{se:bandpasses}  \\
+      Bandwidth         [GHz]     &  47.8   &  45.7  &      & 42.1  &   \\
       \hline
-      Number of designed detectors       & 1140      &  1140    &    &    616  \\
-      Number of valid detectors          &  952      &   961    &    &    553  \\
-      Fraction of valid detectors [$\%$] &           &          &    &         \\
-      Effective FOV\tnote{a}\hspace{1mm} [arcmin]    &   5.39    &   5.61    &    &   4.9  \\
+      Number of designed detectors                   & 1140      &  1140    &    &    616  & Sect.~\ref{se:array}\\
+      Number of valid detectors                      &  952      &   961    &    &    553  & Sect.~\ref{se:fov_geometry}\\
+      Fraction of valid detectors [$\%$]             &           &          &    &         & \\
+      Effective FOV\tnote{a}\hspace{1mm} [arcmin]    &  5.39     &   5.61   &    &    4.9  & \\
       \hline
-      Pixel size in beam sampling unit [F$\lambda$]  &    &   &    &   \\
+      Pixel size in beam sampling unit [F$\lambda$]  & {\bf TBC} & {\bf TBC} &  {\bf TBC}  &  {\bf TBC} & Sect.~\ref{se:array}\\
       \hline
-      FWHM\tnote{b}\hspace{1mm} [arcsec]  &  $11.3 \pm 0.2$   &  $11.2 \pm 0.2$  &   $11.2 \pm 0.1$  &  $17.7 \pm 0.1$ \\
-      Beam efficiency\tnote{c}\hspace{1mm} [\% ]    &        &    &     &    \\
-      rms of the FWHM on the FOV [$\%$]   &   &    &   &  \\
-      \hline 
-      rms calibration error [\%]            & 4.5  & 6.6  &   & 5  \\
+      FWHM\tnote{b}\hspace{1mm} [arcsec]    &  $11.1 \pm 0.2$   &  $11.0 \pm 0.2$  &   $11.1 \pm 0.1$  &  $17.6 \pm 0.1$  &  Sect.~\ref{se:fwhm_results}\\
+      Beam efficiency\tnote{c}\hspace{1mm} [\% ] &  $55 \pm 3$  &  $56 \pm 3$   &  $55 \pm 3$   &  $77 \pm 2$  &  Sect.~\ref{se:beam_efficiency}\\
+      rms of the FWHM on the FOV [$\%$]          &    6         &      6        &       6        &      3        & Sect.~\ref{se:fwhm_fov}\\
       \hline
-      Absolute calibration uncertainty [\%] &  \multicolumn{4}{|c|}{5} \\
+      rms pointing error    [arcsec]             & \multicolumn{4}{|c|}{$<3$} &  Sect.~\ref{se:pointing} \\
       \hline
-      $\alpha$ noise integration in time\tnote{d}\hspace{1mm}  &   &   &   &  \\
+      Absolute calibration uncertainty [\%]      &  \multicolumn{4}{|c|}{5}   & Sect.~\ref{se:ref_flux_primaries} \\
       \hline
-      rms pointing error    [arcsec]    & \multicolumn{4}{|c|}{$<3$}  \\
+      rms calibration error [\%]                 &    5.5       &     6.0       &      5.7       &     3.0       & Sect.~\ref{se:photometry_baseline} \\
       \hline
-      NEFD\tnote{e}\hspace{1mm}   [$\rm{mJy} \cdot \rm{s}^{1/2}/\rm{beam}$]  &  30 (15)   & 30 (15)  &  30 (15)  & 20 (10) \\
-      Mapping speed\tnote{f}\hspace{1mm} [arcmin$^2$/h/mJy$^2$] & 302  & 454  & 775 (1184)  & 7542 (10861)  \\
+      $\alpha$ noise integration in time\tnote{d}\hspace{1mm}  & 0.5  & 0.5  &  0.5 & 0.5 & Sect.~\ref{se:nefd_m1} \\
+      \hline
+      NEFD\tnote{e}\hspace{1mm}   [$\rm{mJy} \cdot \rm{s}^{1/2}/\rm{beam}$]  &  {\bf TBC}  & {\bf TBC} &  {\bf TBC}  & {\bf TBC} & Sect.~\ref{se:nefd_estimation_methods}\\
+      NEFD\tnote{f}\hspace{1mm}   [$\rm{mJy} \cdot \rm{s}^{1/2}/\rm{beam}$]  &  {\bf TBC}  & {\bf TBC} &  {\bf TBC}  & {\bf TBC} & \\
+      Mapping speed\tnote{g}\hspace{1mm} [arcmin$^2$/h/mJy$^2$] & 302  & 454  & 775  & 7542 &  \\
+      Mapping speed\tnote{h}\hspace{1mm} [arcmin$^2$/h/mJy$^2$] & 302  & 454  & 1184 & 10861 & \\
 \hline
 
 \end{tabular}
   \begin{tablenotes}
 {\small     
   \item[(a)] Equivalent FOV covered by the valid detectors
-  \item[(b)] Full-width at half-maximum of the main beam modelled as a two-dimensional Gaussian fitted from sidelobe-masked beam maps.
+  \item[(b)] Full-width at half-maximum of the main beam using the combined results of the three methods
   \item[(c)] Ratio between the main beam power and the total beam power up to a radius of 180 arcsec
   \item[(d)] Effective power law of noise reduction with integration time
-  \item[(e)] NEFD in typical IRAM good sky opacity condition: 2mm pwv, $60^o$ elevation
-  \item[(f)] Average (best) mapping speed at zero opacity for the February 2017 observation campaign. 
+  \item[(e)] NEFD extrapolated at zero opacity
+  \item[(f)] NEFD in typical IRAM good sky opacity condition: 2mm pwv, $60^o$ elevation
+  \item[(g)] Average mapping speed at zero opacity for the February 2017 observation campaign.
+  \item[(h)] Best mapping speed at zero opacity for the February 2017 observation campaign.
 }
   \end{tablenotes}
 \end{threeparttable}
@@ -129,20 +196,20 @@ performances of NIKA2.}
 \end{table}
 
 
-The performance parameters given in Table~\ref{nika2summary} are
+The performance parameters given in Table~\ref{tab:nika2summary} are
 splitted in two different lists: first, the main characteristics, as
-defined in the MOU, are listed in Table~\ref{nika2summary_main},
+defined in the MOU, are listed in Table~\ref{tab:nika2summary_main},
 second, other parameters, which are derived from the instrument
 characteristics described in the MOU, and that need to be
 characterized to complete the commissioning phase are given in
-Table~\ref{nika2summary_second}. Table~\ref{nika2summary_second} is
+Table~\ref{tab:nika2summary_second}. Table~\ref{tab:nika2summary_second} is
 constructed from the 'secondary' and 'tertiary' tables of Samuel's
 summary document.
 
 
 \begin{table}[h]
-  \caption[Main performance requirement]{Summary of the main characteristics describing the measured performances of NIKA2, as listed in MoU}
-  \label{nika2summary_main}
+  \caption[Main performance requirement]{Summary of the main characteristics describing the measured performances of NIKA2, as listed in MoU {\color{magenta} LP to report the up-to-date values of Tab.~\ref{tab:nika2summary} here}}
+  \label{tab:nika2summary_main}
   \begin{threeparttable}
     \begin{tabular}{|r|c|c|c|c|}
       \hline
@@ -171,8 +238,8 @@ summary document.
 
 
 \begin{table}[h]
-  \caption[Secondary performance measurements]{Summary of other NIKA2 performance characteristics either defined in the MoU or extracted from SL's summary document}
-  \label{nika2summary_second}
+  \caption[Secondary performance measurements]{Summary of other NIKA2 performance characteristics either defined in the MoU or extracted from SL's summary document {\color{magenta} LP to report the up-to-date values of Tab.~\ref{tab:nika2summary} here}}
+  \label{tab:nika2summary_second}
   \begin{threeparttable}
     \begin{tabular}{|r|c|c|c|c|}
       \hline
@@ -205,3 +272,19 @@ summary document.
   \end{tablenotes}
 \end{threeparttable}
 \end{table}
+
+\subsection*{Conclusion}
+
+{\color{magenta} To be developped}
+
+\begin{itemize}
+\item{The 6.5 arcmin FoV is well-covered}
+\item{All the designed KIDs detect the signal at least in some observation scans. We conservatively retain only the most stable KIDs, which are immune to the cross-talking effect and yield good signal-to-noise measure, and report 'valid' KID fractions of XXX}
+\item{The angular resolution, as characterized by the main beam FWHM, is better than specifications at both observing frequencies}
+\item{The main beam efficiency is as expected for an instrument that does not resort to feed horns}
+\item{The rms of the main beam FWHM across the FoV meets expectations for a 6.5' FoV. It has been further improved by optimizing the telescope focus settings}
+\item{The rms calibration uncertainties are well better than $10\%$ at 1mm and even better than $5\%$ at 2mm, which are state-of-the -art performance for instrument operated at these wavelengths}
+\item{The noise well integrates as the square root of the integration time for series of scans acquired in similar observing condition}
+\item{The NEFD meets the specification (goal ? ) at 2mm, but are slighlty below the specifications at 1mm due to the absorption of one of the 1-mm polarisation component by the dichroic element, which degrades the sensitivity of Array 1.}
+\item{The mapping speed is excellent}
+\end{itemize}

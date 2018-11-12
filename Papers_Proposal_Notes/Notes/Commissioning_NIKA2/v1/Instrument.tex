@@ -1,57 +1,79 @@
 
 \section{Overview of the NIKA2 instrument {\color{blue} Nico} }
 
+NIKA2 is a millimeter camera able to simultaneously image a field-of-view of
+6.5\,arcmin in diameter at 150 and 260~GHz, with polarimetric capabilities at
+260~GHz. The optics of the telescope receiver cabin have been modified in order
+to increase the telescope field-of-view compared to earlier IRAM instruments. To
+achieve these goals without degrading the telescope angular resolution, it
+employs a total of around 2,900\,detectors split over three distinct arrays of
+Kinetic Inductance Detectors (KID). A KID is a planar superconducting resonator
+properly designed to absorb the incoming radiation and at the same time
+incarnate the multiplexing scheme. The quality factors of the KID used in NIKA2
+are of the order of 15,000. The measurable quantity, proportional to the
+incoming power per pixel, is the shift in frequency of each resonance
+(pixel). This shift is a consequence of variations of the resonator (kinetic)
+inductance with incoming radiation.
+
 \subsection{Optics}
 
-NIKA2 is a millimeter camera able to simultaneously image a
-field-of-view of 6.5\,arcmin at 150 and 260~GHz, with polarimetric
-capabilities at 260~GHz using KIDS. A 30-centimeters diameter air-gap
-dichroic splits the 150 GHz (reflection) from the 260 GHz
-(transmission) beams.  A grid polarizer ensures then the separation of
-the two linear polarisations on the 260 GHz channel.  There are
-therefore three KIDS array in NIKA2, one at 2mm, two at 1mm. 
+The NIKA2 camera optics includes two cold mirrors, and the filtering of unwanted
+(off-band) radiation is provided by a suitable stack of multi-mesh filters
+placed at all temperature stages between 150 mK and room temperature. An air-gap
+dichroic splits the 150\,GHz (reflection) from the 260\,GHz (transmission)
+beams. A grid polariser ensures then the separation of the two linear
+polarizations on the 260\,GHz channel (V and H). Band-defining filters,
+custom-designed to optimally match the atmospheric windows, are installed in
+front of each array. A half-wave polarization modulator is added at room
+temperature when operating the instrument in polarimetric mode.
 
 %-------------------------
 % HERVE
 \input{bandpass}
 %-------------------------
 
-
 \subsection{Cryogenics}
-Further technical details on the NIKA2 instrument can be found in the
-technical paper {\bf REF !}
 
-
+The optimal operation of the detectors is achieved at a temperature of around
+150\,mK, well below the Aluminium superconducting transition. For this reason,
+NIKA2 employs a custom dilution fridge to cool down the focal plane, and the
+refractive portion of the optics, for a total mass around 100 kg, deeply in the
+sub-Kelvin regime. Despite the complexity and size of the system, the operation
+of NIKA2 does not require external cryogenic liquids and is fully remotely
+controllable.
 
 \subsection{KIDs and electronics}
 
-NIKA2 focal plane is equipped with arrays of Kinetic Inductance
-Detectors (KIDs hereafter), which are high-quality factor
-superconducting resonators. They are operated at 150~mK that is well
-below the critical temperature, which ensures their responsivity
-properties ... 
+The 150\,GHz channel is equipped with an array of 616\,pixels, arranged to cover
+a 78\,mm diameter circle. Each pixel has a size of
+$2.8\times2.8\textrm{\,mm}^2$. The array is connected over four different
+readout lines. In the case of the 260\,GHz band detectors, the pixel size is
+$2\times 2\mathrm{\,mm}^2$, to ensure a comparable sampling of the focal
+plane. In order to fill the two 260\,GHz arrays, a total of 1,140 pixels are
+needed in each of them. The focal planes are all based on thin Aluminium films
+deposited by e-beam evaporation under ultra-high vacuum conditions over a
+Silicon substrate.
 
-\addparag{LUMPED KIDS}
+The key advantage of the KID technology is the simplicity of the cold
+electronics and the multiplexing scheme. In NIKA2, each block of around 150
+detectors is connected to single coaxial line providing the excitation and the
+readout at the two ends. Each of the readout lines is linked to the input of a
+cryogenic (4 K) low-noise amplifier. The warm electronics required to digitize
+and process the pixels signals is composed of twenty custom readout cards (one
+per feed-line).
 
-The 2mm array (150~GHz) consist of 616 pixels
-(KIDS), disposed to cover a circle with a 78 mm diameter. Each pixel
-has a size of $2.8 \time 2.8 mm^{2}$ . This is the maximum pixel size that can
-be adopted without significantly degrading the telescope resolution,
-as it corresponds roughly to a 1F$\lambda$ sampling of the focal
-plane.  The array is labelled A2 in all the following.
+In this document, the 2\,mm array is called A2, while the two 1\,mm arrays are
+called A1 and A3.
 
-At 1mm, there are two arrays, labelled A1 and A3, consisting of 1140
-KIDS with a size of $2 \time 2 mm^{2}$ to ensure a comparable 1F$\lambda$
-sampling.
-
-
-\addparag{NIKEL}
-
+%\addparag{NIKEL}
 
 \subsection{KID tuning}
 
 \addparag{$\ftone$ definition}
 
+\subsection{KID photometry}
+
+\todo{With the above definitions, explain RfdIdQ}.
 
 
 

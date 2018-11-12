@@ -97,16 +97,16 @@ straightforward in terms of measurement from the map and design parameters and
 does not require an approximate determination of the FOV radius, it is our
 reference time estimator.}
 
-% \begin{figure}
-% \begin{center}
-% \includegraphics[clip, angle=0, scale =0.8]{Figures/time_of_integration_0.eps}
-% \caption[Time of integration]{Comparison between two estimators of the time of
-%   integration on \hls\ during Run~9 for FOV diameter of 6.2~arcmin. The
-%   difference goes from 2\% to 5\%, hence translating into a NEFD relative difference of 1
-% to 2.5\%.}
-% \label{fig:time_comparison}
-% \end{center}
-% \end{figure}
+\begin{figure}
+\begin{center}
+\includegraphics[clip, angle=0, scale =0.8]{Figures/time_of_integration_0.eps}
+\caption[Time of integration]{Comparison between two estimators of the time of
+  integration on \hls\ during Run~9 for FOV diameter of 6.2~arcmin. The
+  difference goes from 2\% to 5\%, hence translating into a NEFD relative difference of 1
+to 2.5\%.}
+\label{fig:time_comparison}
+\end{center}
+\end{figure}
 
 %% \subsubsection{Time of integration from the flux estimator}
 %% 
@@ -273,33 +273,6 @@ zenith NEFD that are reported in Tab.~\ref{tab:nefd_summary}.
 \end{center}
 \end{figure}
 
-\begin{table}
-\begin{center}
-\begin{tabular}{|l|l|c|c|}
-  \hline
-              &        & \hls               & G2\\
-\hline
-{\it Scatter} & A1     & 51.42  & 52.54 \\
-              & A3     & 39.55  & 40.03 \\
-              & A1\&A3 & 31.32 & 32.71 \\
-              & A2     &  8.10  &  8.76 \\
-\hline
-{\it Jackknife} & A1     & 54.13  & 54.55 \\
-                & A3     & 40.88  & 39.12 \\
-                & A1\&A3 & 31.83 & 32.50\\
-                & A2     &  8.78  &  9.86 \\
-\hline
-$t^{-1/2}$  & A1     & 51.28  & 49.15\\
-            & A3     & 38.79  & 35.54\\
-            & A1\&A3 & 30.77 & 30.24\\
-            & A2     &  8.39  &  7.94\\
-\hline
-\end{tabular}
-\caption{ NEFD's in mJy.s$^{1/2}$ for the three methods described in the text
-  and obtained on G2 and \hls.}
-\label{tab:nefd_summary}
-\end{center}
-\end{table}
 
 \subsection{NEFD per plot vs $e^{\tau/sin\delta}$: Scatter}
 
@@ -356,77 +329,59 @@ between runs N2R9, N2R12 and N2R14 and their consistency.
 \end{center}
 \end{figure}
  
-%% \subsection{NEFD Method 3: scan NEFD vs opacity and air mass}
-%% \begin{figure}
-%% \begin{center}
-%% \includegraphics[clip, angle=0, scale =0.8]{Figures/NEFDIndScans/nefd_evol_run22.pdf}
-%% \caption{Evolution of the measured instrument NEFD across scans for N2R9.}
-%% \label{fig:nefdvsscans}
-%% \end{center}
-%% \end{figure}
-%% 
-%% \begin{figure}
-%% \begin{center}
-%% \includegraphics[clip, angle=0, scale =0.8]{Figures/NEFDIndScans/nefd_flux1mm_run22.pdf}
-%% \caption{Measured instrument NEFD as a function of the flux of the source.}
-%% \label{fig:nefdvsflux}
-%% \end{center}
-%% \end{figure}
-%% \begin{figure}
-%% \begin{center}
-%% \includegraphics[clip, angle=0, scale =0.8]{Figures/NEFDIndScans/hist_nefd_ref_run22.pdf}
-%% \caption{Histogram of the measured reference NEFD across the N2R9 for the 1 (right) and 2 (left) mm channels.}
-%% \label{fig:nefdhist}
-%% \end{center}
-%% \end{figure}
-%%  
-%%
-
- Figure~\ref{fig:nefdvsbackground} shows the measured NEFD, which we refer to as
- astronomer NEFD, for the 1 and 2 mm as a function of the measured atmospheric
- background in terms of $\tau/sin(El)$. The atmospheric opacity was computed as
- discussed in Section~\ref{se:opacities}. We observe that the increase of the
- astronomer NEFD is in agreement with what we would expect for background
- dominated sensitivity.
-
-Baseline astromoner and instrument NEFD results are gathered in
-Table.~\ref{tab:baseline_nefd_pipeline}.
 
 \begin{table}
 \begin{center}
-\begin{tabular}{|c|c|rrrr|}
+\begin{tabular}{|l|l|c|c|c|c|c|c|}
+  \hline
+              &        & \hls               & G2 & (<1\,Jy) N2R9 & (<1\,Jy) N2R12 & (<1\,Jy) N2R14\\
 \hline
-NEFD type & Arrays & N2R9 & N2R12 & N2R14 & Combined  \\
-\hline\hline
-Astronomer  & A1       &  64.8 & 63.6 &  58.7 &  62.7 \\
-            & A3       &  48.3 & 47.3 &  47.7 &  47.7 \\ 
-            & A1 \& A3 &  38.0 & 38.9 &  37.9 &  38.3 \\
-            & A2       &   9.4 &  9.4 &   9.8 &   9.5  \\
+{\it Scatter} & A1     & 51.42  & 52.54          & 54.0 & 53.1 &  49.0 \\
+              & A3     & 39.55  & 40.03          & 40.1 & 39.3 &  39.6 \\
+              & A1\&A3 & 31.32 & 32.71           & 31.6 & 32.3 &  31.5 \\
+              & A2     &  8.10  &  8.76          & 8.5 &  8.5 &  8.9  \\
 \hline
-Instrument  & A1       &   54.0 & 53.1 &  49.0 & 52.3  \\
-            & A3       &   40.1 & 39.3 &  39.6 & 39.6  \\ 
-            & A1 \& A3 &   31.6 & 32.3 &  31.5 & 31.9  \\
-            & A2       &    8.5 &  8.5 &  8.9  &  8.6  \\
-\hline\hline
+{\it Jackknife} & A1     & 54.13  & 54.55 &&&\\
+                & A3     & 40.88  & 39.12 &&&\\
+                & A1\&A3 & 31.83 & 32.50  &&&\\
+                & A2     &  8.78  &  9.86 &&&\\
+\hline
+$t^{-1/2}$  & A1     & 51.28  & 49.15&&&\\
+            & A3     & 38.79  & 35.54&&&\\
+            & A1\&A3 & 30.77 & 30.24 &&&\\
+            & A2     &  8.39  &  7.94&&&\\
+\hline
 \end{tabular}
-\label{tab:baseline_nefd_pipeline}
-\caption[NEFD using method 3]{Astromoner (average IRAM observing conditions) and Instrument (zero opacity) NEFD estimates in mJ.s$^{0.5}$ for N2R9, N2R12 and N2R14 campaigns and for the union of the observations acquired during the three campaigns, that are more than a thousand scans. }
+\caption{NEFD's in mJy.s$^{1/2}$ for the three methods described in the text
+  and obtained on G2, \hls, and all sub-Jy sources of runs N2R9, N2R12, N2R14.}
+\label{tab:nefd_summary}
 \end{center}
 \end{table}
 
+%% Baseline astromoner and instrument NEFD results are gathered in
+%% Table.~\ref{tab:baseline_nefd_pipeline}.
+%% 
+%% \begin{table}
+%% \begin{center}
+%% \begin{tabular}{|c|c|rrrr|}
+%% \hline
+%% NEFD type & Arrays & N2R9 & N2R12 & N2R14 & Combined  \\
+%% \hline\hline
+%% Astronomer  & A1       &  64.8 & 63.6 &  58.7 &  62.7 \\
+%%             & A3       &  48.3 & 47.3 &  47.7 &  47.7 \\ 
+%%             & A1 \& A3 &  38.0 & 38.9 &  37.9 &  38.3 \\
+%%             & A2       &   9.4 &  9.4 &   9.8 &   9.5  \\
+%% \hline
+%% Instrument  & A1       &   54.0 & 53.1 &  49.0 & 52.3  \\
+%%             & A3       &   40.1 & 39.3 &  39.6 & 39.6  \\ 
+%%             & A1 \& A3 &   31.6 & 32.3 &  31.5 & 31.9  \\
+%%             & A2       &    8.5 &  8.5 &  8.9  &  8.6  \\
+%% \hline\hline
+%% \end{tabular}
+%% \label{tab:baseline_nefd_pipeline}
+%% \caption[NEFD using method 3]{Astromoner (average IRAM observing conditions) and Instrument (zero opacity) NEFD estimates in mJ.s$^{0.5}$ for N2R9, N2R12 and N2R14 campaigns and for the union of the observations acquired during the three campaigns, that are more than a thousand scans. }
+%% \end{center}
+%% \end{table}
 
-
- %We observe however some
- %significant deviations from the curve. To investigate this issue we also show in
- %Figure~\ref{fig:nefdvsscans} the evolution of the background corrected NEFD,
- %hereafter instrument NEFD, across the N2R9 campaign for arrays A1 (blue), A3
- %(green) and A2 (cyan), and for the combination of A1 and A3 (red). We globally
- %observe stable NEFD across the run, with A1 sensitivity being worse than for
- %A3. We also show the measured instrument NEFD as a function of the flux of the
- %source in the 1 mm channel in Figure~\ref{fig:nefdvsflux}. We observe that the
- %observed deviations in the instrument NEFD correspond mainly to the large flux
- %source scans. This is more obvious in Figure~\ref{fig:nefdhist} where we present
- %the histogram of the measured NEFD for 2 mm of pwv and at a elevation of 60
- %degrees, hereafter, reference NEFD, for the 1 and 2 mm channels.
 
 

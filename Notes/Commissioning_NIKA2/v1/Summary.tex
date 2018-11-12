@@ -1,7 +1,78 @@
 %----------------------------------------------------------------------------------------
 %	SUMMARY
 %----------------------------------------------------------------------------------------
-The main measured parameters that define the actual NIKA2 performances are gathered in Table~\ref{nika2summary}.
+
+\subsection*{Scope $\&$ objectives}
+NIKA2 performance in intensity have been assessed, as defined in the
+MoU, after the end of the commissioning in intensity (phase 1). This
+commissioning phase ended after the April 2017 technical campaign,
+which included a science verification phase, and was officialised at
+the 'End-of-commissioning' review that took place at the IRAM in September
+2017. This document, which comes along the instrument delivery,
+presents the performance, as well as the methods we developped
+for their assessement and the robustness tests we performed.
+
+\subsection*{Data set}
+The performance assessment is based on observations acquired at
+the February 2017 technical campaign (a.k.a. N2R9), during which NIKA2
+instrumental set-up was in final configuration for the first time, and
+on observations taken during the first science pools of October 2017
+(a.k.a. N2R12) and January 2018 (a.k.a. N2R14). Data acquired during
+April 2017 technical campaign (a.k.a. N2R10) were not considered for
+the sensitivity assessement due to extra noise induced by an
+end-of-life turbo pump, which disappears once the turbo pump was
+replaced. The considered data set allow us to check the performance
+statibility for one year and a large range of atmospheric conditions. 
+
+\subsection*{Methods}
+The performance assessment utilizes an IDL-based data reduction
+pipeline that was internally developed in the NIKA2 collaboration
+to go from raw time-ordered data to calibrated maps. We give a
+synthetic description of the entire pipeline in
+Sect.~\ref{se:pipeline_overview} for the reader convenience. The
+calibration and performance assessment methods are briefly presented
+in Sect.~\ref{se:pipeline_overview} and further detailed in Chapters 3
+to 8, which are outlined below.
+
+In Chapt.~\ref{se:opacities}, the atmospheric attenuation is corrected
+using two-step method: first, the line-of-sight opacity of each
+observing scans is estimated using a series skydip observations
+performed with the NIKA2 instrument, then a correction coefficient is
+applied to the skydip opacity to ensure the flus density stablity
+against the atmospheric condition. Opacity derivation based on the
+resident IRAM taumeter measures is also tested for consistency checks.
+
+In Chapt.~\ref{se:fp_reconstruction}, \bm\ scans are used to derive
+the position of each KIDs in the FoV and perform a first selection to
+discard noisy and cross-talking KIDs. The KIDs are further selected on
+the comparison between their measured position and the expected
+designed position. Finally, series of defocused \bm\ scans are used to
+reconstruct the focus surfaces and estimate the telescope focus
+setting that optimizes the focus across the arrays.   
+
+In Chapt.~\ref{se:beams}, noticeable features of the beam pattern are
+identified using \bm\ scans. Radial profile of the full beam are
+measured up to a radius of $180''$ and are fitted using a
+three-Gaussian model. The main beam of each array is evaluated using
+three complementary methods: the first Gaussian that best fit the full
+beam profile, a single Gaussian fit on a side-lobe-masked version of
+the profile and a 2D Gaussian fit on a side-lobe-masked version of the
+beam map. Then we use the knowledge we gain on the full beam and main
+beam to derive the main beam efficiency up to $180''$. A more precise
+description of the beam pattern above $180''$, which is useful for
+diffuse emission studies, is let for a future dedicated study that
+will be conducted as part of the diffuse emission NIKA2 Large
+Programs.
+
+Chapter~\ref{se:calibration}
+
+
+
+
+
+\subsection*{Results}
+The main measured parameters that define the actual NIKA2 performances
+are gathered in Table~\ref{nika2summary}.
 
 \begin{table}[h]
 \begin{center}    
@@ -11,8 +82,8 @@ The main measured parameters that define the actual NIKA2 performances are gathe
       & Array 1 & Array 3  & Array 1\&3 & Array 2 \\
       \hline
       \hline
-      Reference Wavelength  [mm]  &  1.2   &  1.2  & 1.2 & 2.0   \\
-      Reference Frequency  [GHz]  &  260   &  260  & 260 & 150  \\
+      Reference Wavelength  [mm]  &  1.15   &  1.15  & 1.15 & 2.0   \\
+      Reference Frequency  [GHz]  &  260    &  260   & 260  & 150  \\
       Central Frequency [GHz]     &  255.5  &    257.8     &     &   151.6  \\
       Bandwidth         [GHz]     &   47.8  &     45.7     &     &    42.1  \\
       \hline
@@ -44,7 +115,7 @@ The main measured parameters that define the actual NIKA2 performances are gathe
 {\small     
   \item[(a)] Equivalent FOV covered by the valid detectors
   \item[(b)] Full-width at half-maximum of the main beam modelled as a two-dimensional Gaussian fitted from sidelobe-masked beam maps.
-  \item[(c)]  Ratio between the main beam power and the total beam power up to a radius of XXX arcsec
+  \item[(c)] Ratio between the main beam power and the total beam power up to a radius of 180 arcsec
   \item[(d)] Effective power law of noise reduction with integration time
   \item[(e)] NEFD in typical IRAM good sky opacity condition: 2mm pwv, $60^o$ elevation
   \item[(f)] Average (best) mapping speed at zero opacity for the February 2017 observation campaign. 
@@ -52,13 +123,22 @@ The main measured parameters that define the actual NIKA2 performances are gathe
   \end{tablenotes}
 \end{threeparttable}
 \caption[Main performance measurements]{Summary of the main characteristics describing the measured 
-performances of NIKA2. {\bf FM : 260 GHz is 1.15 mm}.}
+performances of NIKA2.}
 \label{tab:nika2summary}
 \end{center}  
 \end{table}
 
 
-The performance parameters given in Table~\ref{nika2summary} are splitted in two different lists: first, the main characteristics, as defined in the MOU, are listed in Table~\ref{nika2summary_main}, second, other parameters, which are derived from the instrument characteristics described in the MOU, and that need to be characterized to complete the commissioning phase are given in Table~\ref{nika2summary_second}. Table~\ref{nika2summary_second} is constructed from the 'secondary' and 'tertiary' tables of Samuel's summary document. 
+The performance parameters given in Table~\ref{nika2summary} are
+splitted in two different lists: first, the main characteristics, as
+defined in the MOU, are listed in Table~\ref{nika2summary_main},
+second, other parameters, which are derived from the instrument
+characteristics described in the MOU, and that need to be
+characterized to complete the commissioning phase are given in
+Table~\ref{nika2summary_second}. Table~\ref{nika2summary_second} is
+constructed from the 'secondary' and 'tertiary' tables of Samuel's
+summary document.
+
 
 \begin{table}[h]
   \caption[Main performance requirement]{Summary of the main characteristics describing the measured performances of NIKA2, as listed in MoU}

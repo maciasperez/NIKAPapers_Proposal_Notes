@@ -128,35 +128,117 @@ The derivation of opacity is presented in sect.~\ref{se:opacities}.
 \begin{center}
 \includegraphics[clip, angle=0, scale=0.4]{Figures/toi_plot.eps}
 \includegraphics[clip, angle=0, scale=0.4]{Figures/toi_plot_decorr.eps}
-\includegraphics[clip, angle=0, scale=0.4]{Figures/matrix_2mm_raw.eps}
-\includegraphics[clip, angle=0, scale=0.4]{Figures/matrix_2mm_decorr.eps}
-\caption[Example of Time-Ordered-Information]{\emph{Top-left:} Example of 40 KID raw timelines during an observation
+\caption[Example of Time-Ordered-Information]{\emph{Left:} Example of 40 KID raw timelines during an observation
   of Uranus. The low frequency correlated component (atmosphere and electronic
-  noise) is clearly seen. \emph{Top-right:} One of these TOIs and the scaled
-  \cm\ that is subtracted from it. \emph{Bottom-left:} TOI to TOI correlation
-  matrix for the 2mm array before any processing (but for absolute
-  calibration). The cross-correlation is large for every pair of KIDs and is
-  dominated by the low frequency content presented on the top
-  plots. \emph{Bottom-right:} TOI to TOI correlation matrix after the
-  subtraction of the \cm\ in each KID timeline. The improvement is significant
-  but residual correlations are observed among electronic boxes or electronic
-  subbands and indicate that further improvement is possible.}
+  noise) is clearly seen. \emph{Right:} One of these TOIs and the scaled
+  \cm\ that is subtracted from it.}
 \label{fig:nika_toi}
 \end{center}
+\end{figure}
+
+\begin{figure}[ht] % Inline image example
+\begin{center}
+\includegraphics[width=0.3\textwidth]{Figures/NoiseTests/corrmat_TOI_array_1_20170228s151.pdf}
+\includegraphics[width=0.3\textwidth]{Figures/NoiseTests/corrmat_TOI_array_2_20170228s151.pdf}
+\includegraphics[width=0.3\textwidth]{Figures/NoiseTests/corrmat_TOI_array_3_20170228s151.pdf}
+\includegraphics[width=0.3\textwidth]{Figures/NoiseTests/corrmat_TOI_CM_array_1_20170228s151.pdf}
+\includegraphics[width=0.3\textwidth]{Figures/NoiseTests/corrmat_TOI_CM_array_2_20170228s151.pdf}
+\includegraphics[width=0.3\textwidth]{Figures/NoiseTests/corrmat_TOI_CM_array_3_20170228s151.pdf}
+\includegraphics[width=0.3\textwidth]{Figures/NoiseTests/corrmat_TOI_PCA_array_1_20170228s151.pdf}
+\includegraphics[width=0.3\textwidth]{Figures/NoiseTests/corrmat_TOI_PCA_array_2_20170228s151.pdf}
+\includegraphics[width=0.3\textwidth]{Figures/NoiseTests/corrmat_TOI_PCA_array_3_20170228s151.pdf}
+\includegraphics[width=0.3\textwidth]{Figures/NoiseTests/corrmat_TOI_BCP_array_1_20170228s151.pdf}
+\includegraphics[width=0.3\textwidth]{Figures/NoiseTests/corrmat_TOI_BCP_array_2_20170228s151.pdf}
+\includegraphics[width=0.3\textwidth]{Figures/NoiseTests/corrmat_TOI_BCP_array_3_20170228s151.pdf}
+\end{center}
+\caption[KID-to-KID correlation matrices]{\emph{From left to right:} TOI correlation
+  matrices for the three NIKA2 arrays (A1, A2, and A3) for scan
+  20170228s150. From top to bottom we present the correlation of the raw data,
+  after CM, PCA and MCP decorrelation methods. \label{corrmatrix}}
 \end{figure}
 
 As presented on Fig.~\ref{fig:nika_toi}, the atmosphere and the electronic noise
 combine into a large low frequency component that we want to eliminate as much
 as possible. Most of the atmospheric component is common to all KIDs, which is
 expected because the telescope is a $30\,\rm{m}$ dish and therefore has a \todo{XXXX
-  near field of XXXXX m}. We have investigated several ways of using this
-information to remove this component from the TOIs. We first introduce our
-prefered choice so far when we observe a single point source at the center of
-the field (as relevant for this commissioning document). We then give clues on
-how it can be generalized to any kind of astronomical source.
+  near field of XXXXX m}. 
 
-Our reference method for this document and for our publications so far has been
-dubbed \cmoneb:
+On Fig.~\ref{fig:nika_toi}, the planet is visible in the TOIs and serves as
+guide to both the noise relative amplitude and the discussion about TOI
+processing in the following. On Fig.~\ref{corrmatrix}, we take a scan on Pluto
+where the signal is negligible compared to noise on the timescale of a scan to
+focus on the noise properties. We present the KID to KID timeline correlation
+matrices for the three arrays, either before any data reduction or with
+different estimates of the low frequency component:
+
+\begin{itemize}
+\item {\bf Common mode decorrelation (CM)}. We use all detectors of the same
+  array to build an average low frequency component nicknamed \emph{common
+    mode}. This mode is then linearly regressed and subtracted from each KID
+  timeline. In this method, the \emph{common mode} at time $t$ is the median of
+  all KIDs at this time $t$.
+
+\item {\bf Principal Component Analysis (PCA)}. For each NIKA2 array
+  independently we decompose the covariance matrix in principal components. From
+  those we derive up to 10 independent templates corresponding to the largest
+  eigenvalues \todo{that we subtract from the TOIs XXX TBC XXXX}.
+
+\item {\bf Most correlated pixels (\cmoneb)}. For each detector in a given array we
+  identify the detectors that are most correlated to it (a minimum of
+  15). Using those detectors we compute a common mode like in method CM but with
+  more refinements to be valid even on bright sources (see below).
+\end{itemize}
+
+As expected the raw data
+noise correlation is dominated by atmospheric noise and we observe full
+correlation between detectors but for badly behaving detectors which are removed
+from the analysis. Significant residual correlation and anti-correlation is
+observed after CM decorrelation. This is both due to spatial changes in the
+atmospheric emission (overall residuals) and to instrumental and electronic
+noise characteristics (correlation blocks that can be associated to electronic
+boxes).  The PCA decorrelation leads to approximately block-diagonal correlation
+matrices. These observed blocks in the correlation matrix can be associated to
+first order to the different sub-bands in each of the electronic boxes. In the
+case of the MCP decorrelation, for which only those pixels highly correlated to
+the pixel of interest are used, we observe that the correlation matrix is more
+diagonal as in the two other derivations of the common mode.
+
+\begin{figure}[ht] % Inline image example
+\begin{center}
+\includegraphics[width=0.3\textwidth]{Figures/NoiseTests/rms_TOI_array_1_20170228s151.pdf}
+\includegraphics[width=0.3\textwidth]{Figures/NoiseTests/rms_TOI_array_2_20170228s151.pdf}
+\includegraphics[width=0.3\textwidth]{Figures/NoiseTests/rms_TOI_array_3_20170228s151.pdf}
+\includegraphics[width=0.3\textwidth]{Figures/NoiseTests/pws_TOI_array_1_20170228s151.pdf}
+\includegraphics[width=0.3\textwidth]{Figures/NoiseTests/pws_TOI_array_2_20170228s151.pdf}
+\includegraphics[width=0.3\textwidth]{Figures/NoiseTests/pws_TOI_array_3_20170228s151.pdf}
+\end{center}
+\caption[Noise RMS and power spectra]{From top to bottom and from left to right,
+  we show the data rms and power spectra for the three NIKA2 arrays (A1, A2, and
+  A3) for scan 20170228s150. The rms and power spectra are given for the raw
+  data (blue), and for the CM (green), PCA (red) and MCP (cyan) decorrelated
+  data. The vertical lines in the rms noise figures separate detectors from
+  different readout electronic boxes. Whithin each electronic box the pixels are
+  ordered with increasing resonant frequency across the electronic
+  band. \label{rmspws}}
+\end{figure}
+
+In Figure \ref{rmspws} we present the rms noise per kid and the power spectra of
+a typical raw datastream, and the CM, PCA and MCP decorrelated data.  We observe that after
+decorrelation we reduce significantly the rms of the noise. Equivalently, in
+$1/f$-like noise in the power spectra (principally due to atmospheric emission)
+is significantly reduced leading to nearly flat spectra down to 0.05 Hz, with
+larger $1/f$-like residual noise for the CM decorrelation method at lower
+frequencies. This is translated into a larger rms noise for this method with
+respect to the others. For the three arrays we find increasing noise with
+increasing resonant frequency withing each electronic box. This is probably
+related to the difference of gains between subbands in the readout
+electronics. We also find for the three arrays some noise bursts that are not
+fully consistent from one decorrelation method to another. \\
+
+We have investigated several ways of using this information to remove this
+component from the TOIs. Our prefered choice so far, that is the reference
+method for this document, is the \cmoneb\ method, that we describe into further
+details now::
 
 \begin{itemize}
 \item From the pointing information (sect.~\ref{se:ptg}), derive a mask per TOI

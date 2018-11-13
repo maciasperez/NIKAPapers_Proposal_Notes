@@ -11,12 +11,12 @@ necessary pointing information specifies some of the data reduction
 process. In short, the data reduction proceeds as such:
 
 \begin{itemize}
-\item Low level processing (sect.~\ref{se:ll_proc})
-\item Pointing reconstruction (sect.~\ref{se:ptg})
-\item TOI calibration and opacity correction (sect.~\ref{se:flux_calib})
-\item TOI processing (sect.~\ref{se:toi_proc})
-\item Map projection (sect.~\ref{se:map_projection})
-\item Photometry (sect.~\ref{se:intro_photometry})
+\item Low level processing (Sect.~\ref{se:ll_proc})
+\item Pointing reconstruction (Sect.~\ref{se:ptg})
+\item TOI calibration and opacity correction (Sect.~\ref{se:flux_calib})
+\item TOI processing (Sect.~\ref{se:toi_proc})
+\item Map projection (Sect.~\ref{se:map_projection})
+\item Photometry (Sect.~\ref{se:intro_photometry})
 \end{itemize}
 
 \subsection{Low level processing}
@@ -49,7 +49,7 @@ conditions for instance, we systematically check each KID and see if its noise
 is far from the average noise of all other KIDs in the same array, with a
 typical $3\,\sigma$ threshold. This criterion may seem a bit tight, but in any case, KIDs
 are inverse noise variance weighted in the final map projection, so they would
-be given relatively low weight anyway (see sect.~\ref{se:map_projection}).
+be given relatively low weight anyway (see Sect.~\ref{se:map_projection}).
 
 At this stage of the processing, we have isolated the relevant fraction of the
 data for scientific processing and flagged out potentially misbehaving KIDs or
@@ -96,13 +96,13 @@ corresponding to this pointing on a Nearest Grid Point basis.
 
 This pointing reconstruction is done early in the data reduction process because
 we'll need to know when a KID is close or far from the source for the timeline
-processing (sect.~\ref{se:toi_proc}).
+processing (Sect.~\ref{se:toi_proc}).
 
 \subsection{TOI calibration}
 \label{se:flux_calib}
 
 We now focus on the absolute calibration of each TOI. As stated in
-sect.~\ref{se:ll_proc}, at this stage of the reduction each KID \rf~timeline is
+Sect.~\ref{se:ll_proc}, at this stage of the reduction each KID \rf~timeline is
 in Hz. The conversion process to go from these Hz into Jy/beam proceeds in two
 steps: a standard absolute calibration and a correction for the current opacity
 and elevation.
@@ -119,7 +119,7 @@ for the current opacity $\tau$ and elevation. In short, the absolute calibration
 TOI^k(t) [{\rm Jy/beam}] = \rf^k(t)[{\rm Hz}] \times g(k) \times e^{\tau_t/\sin\delta_t}
 \end{equation}
 
-The derivation of opacity is presented in sect.~\ref{se:opacities}.
+The derivation of opacity is presented in Sect.~\ref{se:opacities}.
 
 \subsection{TOI processing}
 \label{se:toi_proc}
@@ -136,7 +136,7 @@ The derivation of opacity is presented in sect.~\ref{se:opacities}.
 \end{center}
 \end{figure}
 
-\begin{figure}[ht] % Inline image example
+\begin{figure}[ht!] % Inline image example
 \begin{center}
 \includegraphics[width=0.3\textwidth]{Figures/NoiseTests/corrmat_TOI_array_1_20170228s151.pdf}
 \includegraphics[width=0.3\textwidth]{Figures/NoiseTests/corrmat_TOI_array_2_20170228s151.pdf}
@@ -203,7 +203,7 @@ case of the MCP decorrelation, for which only those pixels highly correlated to
 the pixel of interest are used, we observe that the correlation matrix is more
 diagonal as in the two other derivations of the common mode.
 
-\begin{figure}[ht] % Inline image example
+\begin{figure}[ht!] % Inline image example
 \begin{center}
 \includegraphics[width=0.3\textwidth]{Figures/NoiseTests/rms_TOI_array_1_20170228s151.pdf}
 \includegraphics[width=0.3\textwidth]{Figures/NoiseTests/rms_TOI_array_2_20170228s151.pdf}
@@ -222,8 +222,8 @@ diagonal as in the two other derivations of the common mode.
   band. \label{rmspws}}
 \end{figure}
 
-In Figure \ref{rmspws} we present the rms noise per kid and the power spectra of
-a typical raw datastream, and the CM, PCA and MCP decorrelated data.  We observe that after
+In Fig.~\ref{rmspws} we present the rms noise per kid and the power spectra of
+a typical raw datastream, and the CM, PCA and MCP decorrelated data. We observe that after
 decorrelation we reduce significantly the rms of the noise. Equivalently, in
 $1/f$-like noise in the power spectra (principally due to atmospheric emission)
 is significantly reduced leading to nearly flat spectra down to 0.05 Hz, with
@@ -241,7 +241,7 @@ method for this document, is the \cmoneb\ method, that we describe into further
 details now::
 
 \begin{itemize}
-\item From the pointing information (sect.~\ref{se:ptg}), derive a mask per TOI
+\item From the pointing information (Sect.~\ref{se:ptg}), derive a mask per TOI
   and for each time $t$ that is 0 if the KID is closer to the source than 60\,arcsec, 1
   otherwise.
 \item Select only samples for which two KIDs are further than 60\,arcsec from the source, compute
@@ -283,7 +283,7 @@ KID, we would be able to produce an optimal map $S_p$ with a simple Nearest Grid
 Point inverse variance noise weighting of all of the measurements $m^k_t$ that
 fall into a map pixel $p$. In this scheme, data samples are coadded with inverse
 variance noise weighting: for each KID, we compute the standard deviation
-$\sigma_k$ of its TOI far from the source (see sect.~\ref{se:toi_proc}). Each
+$\sigma_k$ of its TOI far from the source (see Sect.~\ref{se:toi_proc}). Each
 sample of this KID therefore has a weight of $1/\sigma_k^2$ and
 
 \begin{eqnarray}
@@ -314,7 +314,7 @@ the background of the map, i.~e. far from the source.
 \begin{center}
 \includegraphics[clip, angle=0, scale=1, width=0.75\textwidth]{Figures/sigma_boost.eps}
 \caption[Distribution of the SNR per beam]{Histogram of the SNR per beam on a scan of weak source (G2, see
-  sect.~\ref{se:nefd_estimation_methods}). While the histogram is gaussian, its
+  Sect.~\ref{se:nefd_estimation_methods}). While the histogram is gaussian, its
   width is not normalized to 1 due to residual correlated noise between the
   TOIs. This factor is accounted for before delivering the final variance map
   and associated flux estimates.}
@@ -341,7 +341,7 @@ m^k(x,y) = \phi e^{-(x^2+y^2)/2\sigma^2} = \phi g(x,y)
 
 with $\phi$ the flux of the source. In pratice, the beam is not a perfect
 gaussian and significant side lobes must be accounted for
-(sect.~\ref{se:beams}). If the beam was perfectly known and stable, we could in
+(Sect.~\ref{se:beams}). If the beam was perfectly known and stable, we could in
 principle replace the gaussian form in eq.~(\ref{eq:flux_per_beam_def}) by the
 beam pattern and fit for the amplitude $\phi$. In practice, we have found that
 it was enough as a first approximation to take an equivalent effective gaussian

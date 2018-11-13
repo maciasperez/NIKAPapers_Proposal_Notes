@@ -256,7 +256,7 @@ account. Auxillary information on this work can be found in this wiki post\footn
 
 %% [Optimal Focus]
 %%________________________________________________________
-\section{Reconstruction of the focus surfaces {\color{blue} Laurence} }
+\section{Reconstruction of the focus surfaces {\color{YellowGreen} Laurence} }
 \label{sec:focus_surfaces}
 
 Owing to the NIKA2 $6.5~\rm{arcmin}$ FOV, the focus is expected to
@@ -267,9 +267,8 @@ surfaces. Although all the detectors cannot be individually focalised,
 an optimal axial focus of the telescope can be found to maximize the
 number of detectors at the best focus and hence, maximize the
 resolution of the NIKA2 maps.
-This optimal z-focus setting is obtained
-in measuring the focus at the center of the arrays as described
-Sect.~\ref{sec:focus-meas} and apply a focus shift, which is primary
+This optimal z-focus setting is obtained by measuring the focus at the center of the arrays as described
+Sect.~\ref{se:axial_focus} and apply a focus shift, which is primary
 predicted using Zemax simulation, and ultimately verified by measuring
 the focus surfaces as decribed here.
 
@@ -287,22 +286,26 @@ the focus surfaces as decribed here.
 
 \subsection{Method}
 
-We measure NIKA2 focal surfaces by means of a sequence of five \bms\ of bright
+We measure NIKA2 focal surfaces by means of a sequence of five
+defocused \bms\ of bright
 point-like sources, typically Planets or bright quasars, for various settings of
-the telescope axial focus around the optimal focus $z_{\rm{opt}}$. A \bm\
-scan consists of a deep-integrated $13.5' \times 7.8'$ OTF-scan observation
-comprizing $99$ sub-scans and with a scanning speed of either $65''/s$ whenever
-the mean integration elevation is $< 60$ degree or $39"/s$ at higher
-elevation. The z-focus is changed in step of $0.6~\rm{mm}$ to probe a large
+the telescope axial focus around the optimal focus $z_{\rm{opt}}$.
+%A \bm\ scan consists of a deep-integrated $13.5' \times 7.8'$ OTF-scan observation
+%comprizing $99$ sub-scans and with a scanning speed of either $65''/s$ whenever
+%the mean integration elevation is $< 60$ degree or $39"/s$ at higher
+%elevation.
+The z-focus is changed in step of $0.6~\rm{mm}$ to probe a large
 focus range for measuring even the extreme variation of the focus surfaces,
-namely $z \in \{-1.2, -0.6, 0, 0.6, 1.2 \} + z_{\rm{opt}}$.  Each \bm\
-allows for $4''$-resolution individual maps per kid to be projected. Before the
-projection, the correlated noise is mitigated from each KID timeline in
-subtrating out a common mode, which is obtained using, amongst the other
-detectors, those that correlates the most with this KID and that are located
-outside a radius of $90''$ around the source centroid.  Therefore, a series of
+namely $z \in \{-1.2, -0.6, 0, 0.6, 1.2 \} + z_{\rm{opt}}$.  Each
+\bm\ are analysed using the data reduction pipeline, as described in
+Sect.~\ref{se:pipeline_overview}, and $4''$-resolution individual maps per kid
+are projected. %Before the projection, the correlated noise is mitigated from each KID timeline in
+%subtrating out a common mode, which is obtained using, amongst the other
+%detectors, those that correlates the most with this KID and that are located
+%outside a radius of $90''$ around the source centroid.
+Therefore, a series of
 five cleaned maps at various focus is available for each detector, from which
-the best focus is estimated as described in Sect.~\ref{sec:focus-meas}. The
+the best focus is estimated as described in Sect.~\ref{se:axial_focus}. The
 ensemble of the relative focus estimate per KIDs with respect to the best focus
 at the center of the array constitutes the focus surface. An accurate estimate
 of the center focus is obtained as the weighted average focus estimate of the
@@ -310,12 +313,12 @@ KIDs lying in a $30''$ radius around the geometrical center of the array. This
 average does not induce any sizeable bias thanks to the flatness of the focus
 surface in the innermost regions. For robustness test, we consider three focus
 estimates: the two first ones are the same as discussed in
-Sect.~\ref{sec:focus-meas} -- namely i) $\hat z_{\rm{fwhm}}$ the focus that
+Sect.~\ref{se:axial_focus} -- namely i) $\hat z_{\rm{fwhm}}$ the focus that
 minimizes the geometrical FWHM and ii) $\hat z_{\rm{peak}}$ the focus that
 maximizes the amplitude of the best-fitting ellitical Gaussian -- whereas the
 third one is $\hat z_{\rm{flux}}$ the focus that maximizes the amplitude of the
-best-fitting elliptical Gaussian of fixed FWHM (at $12''$ at $260~\rm{GHz}$ and
-$18''$ at $150~\rm{GHz}$). The comparison between the two amplitude-based
+best-fitting elliptical Gaussian of fixed FWHM (at $12.5''$ at $260~\rm{GHz}$ and
+$18.5''$ at $150~\rm{GHz}$). The comparison between the two amplitude-based
 estimators ($\hat z_{\rm{peak}}$ and $\hat z_{\rm{flux}}$), will test the
 stability of the focus results against the exact choice of the beam fitting
 function. Since the ellipticity-based estimator $\hat z_{\rm{ellip}}$ is less
@@ -323,15 +326,14 @@ sensitive to focus changes and yields larger uncertainties than the others, we
 do not use it for the focus surface reconstruction.
 
 
-\subsection{Data selection}
+\subsection{Data set}
 
-During the three commissioning campaigns that occured after the change of A1
-lens and the improvement of internal optics alignment (hence in the
-final NIKA2 optic configuration),
-nine out-of-focus
-\bms sequences have been acquired, including incomplete
-sequences and sequences hindered by poor atmospheric conditions. We
-select sequences that i) comprises at least four scans, ii) have been
+After the change of A1 lens and the improvement of internal optics
+alignment (hence in the final NIKA2 optic configuration) that is
+during the N2R8 two-day run, N2R9 and N2R10,   
+nine defocused \bm\ sequences have been acquired, including incomplete
+sequences and sequences hindered by poor atmospheric conditions.
+We select sequences that i) comprises at least four scans, ii) have been
 observed at zenith opacity at $225~\rm{GHz}$ (as indicated by
 the IRAM taumeter) below 0.5 and iii) have a maximal central focus
 drift between the starting time and the end of the sequence of
@@ -339,10 +341,10 @@ $0.5~\rm{mm}$. These criteria preserve five sequences from which focus
 surfaces can be reconstructed. Namely, we consider the sequences
 $20170226s415\mbox{--}419$, $20170419s133\mbox{--}137$, $20170420s113\mbox{--}117$,
 $20170421s160\mbox{--}164$ and $20170424s123\mbox{--}127$, which consist of observations
-of the bright quasar '3C84' and Neptune.
+of the bright quasar 3C84 and Neptune.
 
 \subsection{Results}
-For each detector $k$ and each \bm sequence $s$, we obtain for
+For each detector $k$ and each \bm\ sequence $s$, we obtain for
 the array $a$, a focus measurement $z_k^{a, s} \pm \sigma_k^{a, s}$,
 where $\sigma_k^{a, s}$ is the $1\mbox{--}\sigma$ error of the least-square
 polynomial fit. The focus surface measurements per array obtained from the five
@@ -359,15 +361,15 @@ with uncertainties
 \end{equation}
 
 
-We present NIKA2 focus surfaces per arrays obtained as in
+We present NIKA2 focus surfaces per array obtained as in
 Eq.~\ref{eq:mv_focus_surf} 
 %from the inverse-variance weighted combination of the five
 %reconstructed focus surfaces per arrays
 in Fig.~\ref{fig:focus-surfaces}.
 The three flavours of focus-estimators provide us with focus surfaces
-per arrays that are in good agreement with each others and that have a
+per array that are in good agreement with each others and that have a
 non-axisymetrical flatten bowl shape consistent with expectations from
-simulation {\bf [TBA, as discussed further below]}.
+optic simulation. %{\bf [TBA, as discussed further below]}.
 The median defocus (that is the relative focus w.r.t. the center)
 across the detectors is about
 $-0.1~\rm{mm}$ for the three arrays. Maximal defocus values of about
@@ -385,10 +387,10 @@ We primarily estimate the uncertainty of the focus
 surface measurements using the standard deviation between the three
 estimators $z_k^{(a)}|_{\rm{fwhm}}$, $z_k^{(a)}|_{\rm{peak}}$ and
 $z_k^{(a)}|_{\rm{flux}}$. We found approximatively homogeneous
-standard deviation surfaces per arrays, which have median values across
+standard deviation surfaces per array, which have median values across
 the FOV of about $0.03~\rm{mm}$.
 However, we cross-check this error estimate by forming the quadratic mean of
-the three inverse-variance error surfaces per arrays, which are defined in
+the three inverse-variance error surfaces per array, which are defined in
 Eq.~\ref{eq:error_mv_focus_surf} and quoted
 $\sigma_k^{(a)}|_{\rm{fwhm}}$, $\sigma_k^{(a)}|_{\rm{peak}}$ and
 $\sigma_k^{(a)}|_{\rm{flux}}$. This provides us with more optimistic
@@ -398,66 +400,9 @@ $0.015~\rm{mm}$.
 
 %[EXPAND THE DISCUSSION ON COMPARISON WITH SIMULATION]
 
-\paragraph{Focus consistency between arrays}
+%\subsection{Focus consistency between arrays}
 
-\todo{plot de recap sur les differences de focus optimaux observes sur les
-  differents arrays}
+%\todo{plot de recap sur les differences de focus optimaux observes sur les
+%  differents arrays}
 
-\addparag{summary}
-
-\paragraph{Lateral foci estimation}
-\label{sec:focus_X_Y}
-
-Like in the $z$ (optical axis) direction, it is possible to control the position
-of M2 along the $x$ and $y$ directions. We have tried to determine if there was
-an optimal position in the $(x,y)$ plane that would improve further measures
-with \nika. We have applied the same procedure as the one described in
-Sect~\ref{se:focus-meas}, this time varying the position of M2 along $x$ or $y$
-rather than along $z$. Examples of such observations are presented on
-Figs.~\ref{fig:X_focus} and \ref{fig:Y_focus}. While the forced parabola fit
-guides the eye towards optimization, one should note the size of the error bars
-and the relatively low variations compared to M2 displacements along the $z$
-axis. This is expected from optical simulations and experience on
-EMIR. Figs.~\ref{fig:X_focus} and \ref{fig:Y_focus} also show as complement,
-images of the residuals of the intensity maps at each M2 position after the
-subtraction of an elliptical gaussian fitted only on a disk of 6 and 15\,arcsec
-(1 and 2\,mm resp.) around the maximum location and outside a ring of 100\,arcsec
-away from the maximum (to fix the background while not being affected by the
-side lobes). These maps of residuals are meant to help decide on a minimization
-criterion and $x$ or $y$-focus value.
-
-While we have performed ``many'' such observations and explored the entire
-parameter space of the $(x,y,z)$~triplet position in a reasonable range of
-several millimeters around a fixed position, it has not been possible to
-demonstrated that any $(x,y)$ position would improve significantly the
-focalization of the whole system compared to the nominal $(0,0)$ reference
-position. This confirms experience of the IRAM staff who only act on this
-$(x,y)$ position about once a year after specific, dedicted and delicate
-measures. We have therefore concluded that we should not change these parameters
-for \nika\ and only rely on $z$-focus optimization for observations.
-
-\begin{figure*}[h!]
-\centering
-\includegraphics[height=8cm]{Figures/plot_20170223s39.png}
-\hspace{0.5cm}
-\includegraphics[height=8cm]{Figures/residuals_focus_otf_20170223s39.png}
-\caption[Lateral X focus measures]{\textbf{Left:} X-focus measurement using a
-    parabolic fit of the flux, beam fwhm and ellipticity on a sequence
-    of five OTF scans on Uranus (20170223s39-43) \textbf{Right:} Beam residuals
-    after subtracting a model of the main beam for each OTF-scan of the X-focus
-    session. (N2R9)}
-\label{fig:X_focus}
-\end{figure*}
-
-\begin{figure*}[h!]
-\centering
-\includegraphics[height=8cm]{Figures/plot_20170223s44.png}
-\hspace{0.5cm}
-\includegraphics[height=8cm]{Figures/residuals_focus_otf_20170223s44.png}
-\caption[Lateral Y focus measures]{\textbf{Left:} Y-focus measurement using a
-    parabolic fit of the flux, beam fwhm and ellipticity on a sequence
-    of OTF scans on Uranus (20170223s44-48). \textbf{Right:} Beam residuals
-    after subtracting a model of the main beam for each OTF-scan of the Y-focus
-    session. (N2R9)}
-\label{fig:Y_focus}
-\end{figure*}
+%\addparag{summary}

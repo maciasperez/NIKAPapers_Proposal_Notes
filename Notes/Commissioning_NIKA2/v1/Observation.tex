@@ -34,7 +34,22 @@ corrections are derived from an EMIR like pointing calibration scan
 targets.
 
 \subsection{Focus}
-% \label{se:focus}
+\label{se:axial_focus}
+
+\begin{figure}[ht!]
+\begin{center}
+  \includegraphics[clip, angle=0, trim={1.5cm, 1cm, 1.5cm, 1cm}, width=\textwidth]{Figures/plot_20170419s143.png}
+\caption[Axial focus measure]{Example of axial focus measurement using a
+  \emph{focus$\_$OTF} observation of Neptune during N2R10. The blue vertical line
+  locates the optimal value of each fit. The optimal values derived from flux
+  maximization and FWHM minimization agree to better than 0.1\,mm in these
+  conditions of observation. While ellipticity may be regarded as a confirmation
+  more than a decisive criterion (due to larger uncertainty on its measure), the
+  associated minimum is also in good agreement with the values derived from flux
+  and FWHM measurements.}
+\label{fig:focus-example}
+\end{center}
+\end{figure}
 
 The best axial focus in the central region of the arrays is estimated using the
 so-called \emph{focus$\_$OTF} PAKO script, which produces a series of five $1'
@@ -54,7 +69,7 @@ give priority to the optimal flux, taking an average between values on A1 and
 A3: there is little difference between the two, and the the 2\,mm channel is
 less sensitive to focus than the 1\,mm.
 
-As presented in more details in sect.~\ref{sec:focus_surfaces}, the focus
+As presented in more details in Sect.~\ref{sec:focus_surfaces}, the focus
 surface is not strictly flat accross the FOV. The way sources are scanned in
 this \emph{focus\_OTF} sequence is designed to save time but gives more weight
 to the central KIDs. Hence, the optimal focus derived from the fits is
@@ -62,20 +77,62 @@ biased. To account for the curvature of the focus surfaces and optimize the
 average focus accross the FOV, we add -0.2\,mm to the focus value as derived
 in the previous paragraph.
 
-\begin{figure}[ht!]
-\begin{center}
-  \includegraphics[clip, angle=0, scale=0.25]{Figures/plot_20170419s143.png}
-\caption[Axial focus measure]{Example of axial focus measurement using a
-  \emph{focus$\_$OTF} observation of Neptune during N2R10. The blue vertical line
-  locates the optimal value of each fit. The optimal values derived from flux
-  maximization and FWHM minimization agree to better than 0.1\,mm in these
-  conditions of observation. While ellipticity may be regarded as a confirmation
-  more than a decisive criterion (due to larger uncertainty on its measure), the
-  associated minimum is also in good agreement with the values derived from flux
-  and FWHM measurements.}
-\label{fig:focus-example}
-\end{center}
-\end{figure}
+\subsection{Lateral focus}
+\label{sec:focus_X_Y}
+
+Like in the $z$ (optical axis) direction, it is possible to control the position
+of M2 along the $x$ and $y$ directions. We have tried to determine if there was
+an optimal position in the $(x,y)$ plane that would improve further measures
+with \nika. We have applied the same procedure as the one described in
+Sect~\ref{se:axial_focus}, this time varying the position of M2 along $x$ or $y$
+rather than along $z$. Examples of such observations are presented on
+Figs.~\ref{fig:X_focus} and \ref{fig:Y_focus}. While the forced parabola fit
+guides the eye towards optimization, one should note the size of the error bars
+and the relatively low variations compared to M2 displacements along the $z$
+axis. This is expected from optical simulations and experience on
+EMIR. Figs.~\ref{fig:X_focus} and \ref{fig:Y_focus} also show as complement,
+images of the residuals of the intensity maps at each M2 position after the
+subtraction of an elliptical gaussian fitted only on a disk of 6 and 15\,arcsec
+(1 and 2\,mm resp.) around the maximum location and outside a ring of 100\,arcsec
+away from the maximum (to fix the background while not being affected by the
+side lobes). These maps of residuals are meant to help decide on a minimization
+criterion and $x$ or $y$-focus value.
+
+While we have performed ``many'' such observations and explored the entire
+parameter space of the $(x,y,z)$~triplet position in a reasonable range of
+several millimeters around a fixed position, it has not been possible to
+demonstrated that any $(x,y)$ position would improve significantly the
+focalization of the whole system compared to the nominal $(0,0)$ reference
+position. This confirms experience of the IRAM staff who only act on this
+$(x,y)$ position about once a year after specific, dedicated and delicate
+measures. We have therefore concluded that we should not change these parameters
+for \nika\ and only rely on $z$-focus optimization for observations.
+
+\begin{figure*}[h!]
+\centering
+\includegraphics[height=8cm]{Figures/plot_20170223s39.png}
+\hspace{0.5cm}
+\includegraphics[height=8cm]{Figures/residuals_focus_otf_20170223s39.png}
+\caption[Lateral X focus measures]{\textbf{Left:} X-focus measurement using a
+    parabolic fit of the flux, beam fwhm and ellipticity on a sequence
+    of five OTF scans on Uranus (20170223s39-43) \textbf{Right:} Beam residuals
+    after subtracting a model of the main beam for each OTF-scan of the X-focus
+    session. (N2R9)}
+\label{fig:X_focus}
+\end{figure*}
+
+\begin{figure*}[h!]
+\centering
+\includegraphics[height=8cm]{Figures/plot_20170223s44.png}
+\hspace{0.5cm}
+\includegraphics[height=8cm]{Figures/residuals_focus_otf_20170223s44.png}
+\caption[Lateral Y focus measures]{\textbf{Left:} Y-focus measurement using a
+    parabolic fit of the flux, beam fwhm and ellipticity on a sequence
+    of OTF scans on Uranus (20170223s44-48). \textbf{Right:} Beam residuals
+    after subtracting a model of the main beam for each OTF-scan of the Y-focus
+    session. (N2R9)}
+\label{fig:Y_focus}
+\end{figure*}
 
 
 \subsection{Pointing}
@@ -91,7 +148,7 @@ repeatedly during pointing sessions to derive the pointing model of.
 
 \paragraph{Pointing monitoring}
 
-\begin{figure}[p]
+\begin{figure}[ht!]
 \begin{center}
 \includegraphics[clip, angle=0, scale = 0.30]{Figures/plot_20170418s192.png}
 \caption[Summary plots of the reduction of pointing scan.]{There is one combined
@@ -102,10 +159,11 @@ repeatedly during pointing sessions to derive the pointing model of.
   reference detector gives the pointing offsets of the current scan.}
 \label{fig:ptg}
 \end{center}
-%\end{figure}
-%\begin{figure}[htp]
+\end{figure}
+
+\begin{figure}[ht!]
 \begin{center}
-\includegraphics[clip, angle=0, scale = 0.70]{Figures/pointing_stats_N2R9.eps}
+\includegraphics[clip, angle=0, trim={0, 0, 3cm, 0}, width=0.65\textwidth]{Figures/pointing_stats_N2R9.eps}
 \caption[Pointing session results]{Pointing offsets during Run9 observations,
   before (blue to green) and after (yellow to red) the
   derivation of Nasmyth offsets with a pointing session on Feb.~26th, 2017.}
@@ -157,7 +215,7 @@ frequency reads
 \end{equation}
 
 An illustration is presented on Fig.~\ref{fig:ftone_vs_elev}. More details on
-the analysis of these {\tt skydip} scans are given in sect.~\ref{se:opacities}.
+the analysis of these {\tt skydip} scans are given in Sect.~\ref{se:opacities}.
 
 \begin{figure}[ht!]
 \begin{center}

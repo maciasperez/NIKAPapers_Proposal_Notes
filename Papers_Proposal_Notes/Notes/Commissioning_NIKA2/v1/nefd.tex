@@ -144,8 +144,8 @@ to 2.5\%.}
 \section{NEFD estimation methods}
 \label{se:nefd_estimation_methods}
 
-With the uncertainty on flux measurements as described in sect.~\ref{se:photometry} and
-now an esimator of the time of integration, we have everything in hand to derive
+With the uncertainty on flux measurements as described in Sect.~\ref{se:photometry} and
+now an estimator of the time of integration, we have everything in hand to derive
 the NEFD. We have devised several ways to estimate it at the same time as
 checking the good behaviour of the instrument. Two methods are based on deep
 integrations on a source, one is based on the joint analysis of multiple scans
@@ -165,7 +165,7 @@ without combining them:
   integration, hence giving an alternate estimation of the NEFD.
 \item {\bf Scatter method}: analyzing each scan in terms of sensitivity and
   time of integration, we have an NEFD per scan that varies with opacity and
-  elevation. Fitting the distribution of measures against $e^\tau/sin\delta$
+  elevation. Fitting the distribution of measures against $exp[\tau/sin\delta]$
   provides the zenith opacity.
 \end{enumerate}
 
@@ -179,8 +179,8 @@ three nights. The scans were 8x5~arcmin$^2$, alternatively oriented in (ra,dec),
 (dec,ra), (az,el), (el,az).
 
 For Run~12, G2 has become the nickname of an empty target close to sources known
-to IRAM but not to the commissionning team in order to check our source
-detection capacities blindly.
+to IRAM but not to the commissioning team in order to check our source
+detection capabilities blindly.
 
 The data were processed according to sect.~\ref{se:pipeline_overview}.
 
@@ -200,9 +200,9 @@ The data were processed according to sect.~\ref{se:pipeline_overview}.
 %% estimate more conservative.
 
 We co-add the scans one by one and each time perform a photometric analysis on
-the map according to sect.~\ref{se:photometry}. The uncertainty on the flux at
+the map according to Sect.~\ref{se:photometry}. The uncertainty on the flux at
 the center of the field (on source in the case of \hls, off source in the case
-of G2) is plotted and fitted against $\sqrt{t_det}$. It should go like a
+of G2) is plotted and fitted against $\sqrt{t_{\rm{det}}}$. It should go like a
 straight line if scans were all taken in the exact same conditions and stacked
 with equal weights. In pratice, the weights are sensitive to the conditions of
 observations, namely the elevation and opacities (see Fig.~\ref{fig:nefd_plots}
@@ -237,7 +237,7 @@ integration like $\sqrt{t}$. In general, if the observing conditions vary, we
 must fit the integrated sensitivity vs the effective time $\sum_{n}t_n
 e^{-2\tau_n/\sin\delta_n}$ in order to recover an unbiased estimate of
 $NEFD_0$. The method was applied to \hls\ and G2, results are summarized on
-Fig.~\ref{fig:nefd_vst} and in Tab.~\ref{tab:nefd_summary}.
+Fig.~\ref{fig:nefd_plots} and in Tab.~\ref{tab:nefd_summary}.
 
 \begin{figure}
 \begin{center}

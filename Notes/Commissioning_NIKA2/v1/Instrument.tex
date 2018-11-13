@@ -1,5 +1,5 @@
 
-\section{Overview of the NIKA2 instrument {\color{blue} Nico}}
+\section{Overview of the NIKA2 instrument {\color{YellowGreen} Nico}}
 
 NIKA2 is a millimeter camera able to simultaneously image a field-of-view of
 6.5\,arcmin in diameter at 150 and 260~GHz, with polarimetric capabilities at
@@ -66,15 +66,51 @@ per feed-line).
 In this document, the 2\,mm array is called A2, while the two 1\,mm arrays are
 called A1 and A3.
 
-%\addparag{NIKEL}
+\subsection{KID photometry and tuning}
 
-\subsection{KID tuning}
+\begin{figure}[!b]
+\begin{center}
+\includegraphics[width = 0.7\textwidth]{Figures/resoCircle-eps-converted-to.pdf}
+\caption[KID resonance circle]{Sample resonance circle in the IQ plane. Both the
+  tuning procedures are based on the measurement of the angle $\vartheta$
+  between the two vectors ($I, Q$) and ($dI, dQ$)}
+\label{figResoCircle}
+\end{center}
+\end{figure}
 
-\addparag{$\ftone$ definition}
+Kinetic Inductance Detectors are superconducting resonators whose resonance
+frequency shifts linearly depending on the incoming optical power. The measure of such
+frequency shift $\Delta f$ is what allows us to use KID as mm-wave detectors.
 
-\subsection{KID photometry}
+For the KID readout, an excitation signal is sent into the cryostat on the
+feedline coupled to the KID. The transmitted signal can be described by its
+amplitude and phase, or, as is common practice for KID, by its components that
+are In-phase ($I$) and in Quadrature $Q$ with respect to the excitation
+signal. When a frequency sweep is carried around a KID resonance, the
+transmitted signal makes a sort of circle in the $I-Q$ plane, as shown in figure
+\ref{figResoCircle}. The goal is now to relate the variations $(\Delta I, \Delta
+Q)$ along this circle induced by incident light to the $\Delta f$. For this, the
+electronics modulates the excitation frequency at about 1\,kHz with a known
+$\delta f$ frequency variation and the read out gives the induced $(dI,
+dQ)$. Projecting linearly $(\Delta I, \Delta Q)$ on $(dI, dQ)$ therefore
+provides $\Delta f$. This value, in Hz, is the raw input timeline to the
+pipeline and will be futher calibrated into astronomical units
+(sect.~\ref{se:calibration}). For historical reasons, this way of deriving KID
+signals has been nicknamed \emph{RfdIdQ}. More details on this process are given
+in \cite{Calvo13}.\\
 
-\todo{With the above definitions, explain RfdIdQ}.
+Not only incident astronomical light reaches the KIDs and contributes to Cooper
+pair breaking. Any change in the background optical load (due, for example, to changes in
+the atmospheric transmission or in the elevation) contributes as well to the
+shift of the resonances. In order to maximize the sensitivity of a KID, the
+excitation signal used to read it out must always be near its resonance
+frequency. We therefore have developped a tuning algorithm that takes care of
+this optimization. Tunings are performed during the first subscan of each
+observation in order to be optimally tuned at the same elevation and sky
+conditions as the source. It takes only a few seconds when the $f_{tones}$ are
+close to the current functionning point. In order to always be in these
+conditions, continuous tunings are done between two scans when NIKA2 is not observing.
 
-
-
+A specific case is when we do {\tt skydips}. In this cas, we tune all the KIDS
+at the beginning of each subscan/elevation step on purpose to monitor the
+induced variation of $f_{tone}$ by the sky load.

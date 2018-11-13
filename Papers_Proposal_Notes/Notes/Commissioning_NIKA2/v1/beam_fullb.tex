@@ -170,8 +170,11 @@ in Sect.~\ref{se:fullbeam_prof}.
 \subsection{Beam profile}
 \label{se:fullbeam_prof}
 
-The beam profile is the azimuthal average of the beam map around the
-main beam center. Although the profile cannot represent the sub-dominant non-axisymetrical
+The beam profile $B(r)$ is the radial brightness profile normalized so
+that $B(0) = 1$, where $r$ is the radius from the beam center.
+%is the azimuthal average of the beam map around the
+%main beam center.
+Although the profile cannot represent the sub-dominant non-axisymetrical
 extended features, which are seen in the beam pattern and discussed in
 Sect.~\ref{se:deep_beam_maps} (telescope arms, spikes), it provides us with a useful
 representation of the internal and central parts of the beam (about up to
@@ -179,14 +182,13 @@ $100''$). We determine a beam profile from a beam map in centering to
 the fitted value of the main beam center and in forming the
 weighted average of the pixels equidistant to the center.
 
-We model the beam profile as a three-Gaussian function defined as:
+We model the beam profile $B(r)$ as a three-Gaussian function defined as:
 \begin{equation}
   B(r) = \sum_i \mathcal{A}_i G_i(r) + \mathcal{B}_0,
   \label{eq:3gauss}
 \end{equation}
 
-where $r$ is the radius from the beam center, $\mathcal{A}_i$ the
-amplitude of the Gaussian $i$ for $i \in {1, 2, 3}$ and
+where $\mathcal{A}_i$ the amplitude of the Gaussian $i$ for $i \in {1, 2, 3}$ and
 $\mathcal{B}_0$ a piedestal level accounting for the residual noise
 level in the map.
 An example of the beam profile from a beam map acquired during {\emph N2R8} (scan ID:

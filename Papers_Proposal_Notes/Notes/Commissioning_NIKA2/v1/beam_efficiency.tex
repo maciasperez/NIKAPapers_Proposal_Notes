@@ -11,8 +11,8 @@ The total solid angle
 \begin{equation}
   \Omega_{\rm{tot}} (A_i, r_{max}) = \int_0^{r_{max}} B_{A_i}(r) 2 \pi r dr
 \end{equation}
-is estimated from the full beam profile $B_{A_i}(r)$ of the array
-$A_i$ at $r_{max} = 180''$ and the main beam solid angle is
+is estimated from the beam profile $B_{A_i}(r)$ of the array
+$A_i$  at $r_{max} = 180''$ and the main beam solid angle is
 evaluated as the volume of the Gaussian main beam as
 $\Omega_{\rm{mb}} = 2 \pi\,  \sigma_{\rm{mb}}^2$.
 
@@ -69,46 +69,56 @@ $\Omega_{\rm{tot}}$ and $\Omega_{\rm{mb}}$:
     fitted using the sidelobe-masked 2D method, as in Sect.~\ref{se:beam_mb_2D}.}  
 \end{itemize}
 
-The beam efficiency estimates using these three methods are gathered
-in Table~\ref{tab:beam_efficiency}.
-
-% res1 = [0.54, 0.54, 0.53, 0.74]
-% res2 = [0.55, 0.56, 0.55, 0.76]
-% res3 = [0.59, 0.58, 0.59, 0.80]
-% res = [[res1], [res2], [res3]]
-
-% s1 = [0.03, 0.04, 0.03, 0.04]
-% s2 = [0.03, 0.03, 0.03, 0.02]
-% s3 = [0.07, 0.04, 0.04, 0.02]
-% sig = [[s1], [s2], [s3]]
-
+The beam efficiency estimates using the three methods are gathered
+in Table~\ref{tab:beam_efficiency}: central values and error
+bars are evaluated as the median and the rms error of the
+estimates on individual \bms\ respectively. The rms error estimates
+for \emph{method 2}, which are based on 75 \bm\ scans, provide us with
+a robust evaluation of the beam efficiency uncertainties. By contrast, error
+estimates for \emph{methods 1$\&$3} rely on 12 scans and are thus less
+robust. We combined the results of three methods using an error-weighted
+average. \emph{Method 2} rms errors are conservatively used as a lower
+limit of the error estimates for all methods. The combined beam
+efficiency are given in Table~\ref{tab:beam_efficiency}.  
+%res1 = [0.54, 0.54, 0.53, 0.74]
+%res2 = [0.55, 0.56, 0.55, 0.76]
+%res3 = [0.59, 0.58, 0.59, 0.80]
+%res = [[res1], [res2], [res3]]
+%s1 = [0.03, 0.04, 0.03, 0.04]
+%s2 = [0.03, 0.03, 0.03, 0.02]
+%s3 = [0.07, 0.04, 0.04, 0.02]
+%sig = [[s1], [s2], [s3]]
 %for i = 0, 3 do print, total(res[i, *]/sig[i, *]^2)/ total(1d0/sig[i, *]^2)
 %for i = 0, 3 do print, sqrt(1d0/ total(1d0/sig[i, *]^2))
 
-\begin{table}[h]
-  \caption[]{Beam efficiency}
-  \centering
+\begin{table}[!h]
+  \caption[]{Main beam efficiency in $\%$}
+  \begin{center}
   \begin{threeparttable}
-  \begin{tabular}{|l|c|c|c|c|}
-    \hline
-    
-       &    \multicolumn{4}{|c|}{Array or array combination} \\
-    \cline{2-5}
-    Method & A1 &  A3 & A1 $\&$ A3 &  A2  \\
-    \hline
-    \hline
-    method 1\tnote{a} &  $0.54 \pm 0.03$  & $0.54 \pm 0.04$  &  $0.53 \pm 0.03$  &  $0.74 \pm 0.04$  \\
-    method 2\tnote{b} &  $0.55 \pm 0.03$  & $0.56 \pm 0.03$  &  $0.55 \pm 0.03$  &  $0.76 \pm 0.02$  \\
-    method 3\tnote{c} &  $0.59 \pm 0.07$  & $0.58 \pm 0.04$  &  $0.59 \pm 0.04$  &  $0.80 \pm 0.01$  \\
-    combined          &                   &                  &                   &                   \\
-    \hline
-  \end{tabular}
-  \begin{tablenotes}
-  \item[(a)] \small{based on the three-Gaussian model best-fitting parameters}
-  \item[(b)] \small{based on the sidelobe-masked 1D main beam FWHM} 
-  \item[(c)] \small{based on the sidelobe-masked 2D main beam FWHM} 
-  \end{tablenotes}
+    \renewcommand{\TPTminimum}{0.6\textwidth}
+    {\centering
+    \begin{tabular}{l|c|c|c|c}
+      \hline\hline
+      
+      &    \multicolumn{4}{|c}{Array or array combination} \\
+      \cline{2-5}
+      Method & A1 &  A3 & A1 $\&$ A3 &  A2  \\
+      \hline
+      method 1\tnote{a} &  $54 \pm 3$  & $54 \pm 4$  &  $53 \pm 3$  &  $74 \pm 4$  \\
+      method 2\tnote{b} &  $55 \pm 3$  & $56 \pm 3$  &  $55 \pm 3$  &  $76 \pm 2$  \\
+        method 3\tnote{c} &  $59 \pm 7$  & $58 \pm 4$  &  $59 \pm 4$  &  $80 \pm 1$  \\
+        combined          &  $55 \pm 3$  & $56 \pm 3$  &  $55 \pm 3$  &  $77 \pm 2$  \\
+        \hline\hline
+    \end{tabular}
+    }
+    \begin{tablenotes}
+      \small
+    \item[(a)] based on the three-Gaussian model best-fitting parameters
+    \item[(b)] based on the sidelobe-masked 1D main beam FWHM 
+    \item[(c)] based on the sidelobe-masked 2D main beam FWHM 
+    \end{tablenotes}
   \end{threeparttable}
+  \end{center}
   \label{tab:beam_efficiency}
 \end{table}
 
@@ -135,16 +145,16 @@ stable beam efficiencies using observations acquired one year apart.
 \centering
 \begin{tabular}{l| c | c c c | c c c}
 \hline\hline
-\noalign{\smallskip}
-run  & Nber of scans & \multicolumn{3}{c}{Main beam efficiency } & \multicolumn{3}{c}{Error beam level} \\
+%\noalign{\smallskip}
+run  & Nber of scans & \multicolumn{3}{|c|}{Main beam efficiency ($\%$)} & \multicolumn{3}{c}{Error beam level (dB)} \\
 \hline
      &               &  A1    &    A2   &  A3    & A1  &  A2  & A3   \\
             \hline
-N2R9    & 27  &  54.1$\pm$ 3.2\%   &  74.7$\pm$ 2.9\%  & 55.9 $\pm$ 3.7\%   &  -11.5 $\pm$ 0.8    &  -14.9 $\pm$ 0.6   &  -12.0 $\pm$ 0.6   \\
-N2R12   & 20  &  55.7$\pm$ 2.0\%   &  77.4$\pm$ 1.0\%  & 57.1 $\pm$ 2.0\%   &  -13.4 $\pm$ 0.3    &  -16.1 $\pm$ 0.3   &  -13.8 $\pm$ 0.3   \\
-N2R14   & 28  &  55.0$\pm$ 2.7\%   &  76.0$\pm$ 1.8\%  & 56.1 $\pm$ 2.6\%   &  -12.5 $\pm$ 0.6    &  -15.3 $\pm$ 0.6   &  -12.7 $\pm$ 0.8   \\
-            \noalign{\smallskip}
-            \hline
+N2R9    & 27  &  54.1$\pm$ 3.2   &  74.7$\pm$ 2.9  & 55.9 $\pm$ 3.7   &  -11.5 $\pm$ 0.8    &  -14.9 $\pm$ 0.6   &  -12.0 $\pm$ 0.6   \\
+N2R12   & 20  &  55.7$\pm$ 2.0   &  77.4$\pm$ 1.0  & 57.1 $\pm$ 2.0   &  -13.4 $\pm$ 0.3    &  -16.1 $\pm$ 0.3   &  -13.8 $\pm$ 0.3   \\
+N2R14   & 28  &  55.0$\pm$ 2.7   &  76.0$\pm$ 1.8  & 56.1 $\pm$ 2.6   &  -12.5 $\pm$ 0.6    &  -15.3 $\pm$ 0.6   &  -12.7 $\pm$ 0.8   \\
+            %\noalign{\smallskip}
+            \hline\hline
 \end{tabular}
 \end{table*}
 

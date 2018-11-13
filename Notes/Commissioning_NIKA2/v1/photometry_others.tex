@@ -11,16 +11,16 @@ the 'taumeter' and 'skydip' opacity corrections described in
 Sect.~\ref{se:taumeter-method} and Sect.~\ref{se:skydip-method}
 respectively. As the baseline calibration, these methods are based on
 the baseline selection (see Sect.~\ref{se:data_selection}) for
-discarding the scans the most impacted by the telescope-driven beam
+discarding the scans that are the most impacted by the telescope-driven beam
 effect. By contrast, 'photocorr demo' and 'photocorr pointing' use the
 same opacity correction as the baseline method, that is 'corrected
 skydip' (see Sect.~\ref{se:corrected-skydip}), but resort to the
 'demo' and 'pointing' photometric corrections respectively, as
 discussed in Sect.~\ref{se:photocorr_methods}. Using these
 'photocorr' methods aleviate the need of a scan selection on the
-observation date: all the scans that meet the mild criteria based on
+observation date: all scans that meet the mild criteria based on
 the atmospheric condition are included whatever the
-observation date to which they were acquired. 
+observation date at which they have been acquired. 
 
 \subsubsection{Calibration bias}
 
@@ -74,7 +74,7 @@ observation date to which they were acquired.
        &  2mm           &   0.95   &  0.95    &  0.95    &   0.95    &  0.95  \\
   \hline
   Rms  &  $\#$ total    &   487    &    487   &    487    &    396    &  396 \\
-       &  $\#$ selected &   264    &    264   &    264    &    291    &  283 \\
+  $[\%]$     &  $\#$ selected &   264    &    264   &    264    &    291    &  283 \\
        &  A1            &   5.5    &    7.5   &    7.3    &    4.0    &  4.9 \\
        &  A3            &   6.0    &    8.1   &    7.1    &    4.1    &  5.2 \\
        &  1mm           &   5.7    &    7.9   &    7.1    &    3.8    &  4.9 \\
@@ -92,7 +92,7 @@ transmission for the five calibration methods in
 Fig.~\ref{fig:mwc349_obstau_others} and report the results in the row
 labelled 'Bias' of Table~\ref{tab:Calibration_results_all}. 
 
-At $1~\rm{mm}$, all the methods lead to flux density estimates in
+At $1~\rm{mm}$, all methods lead to flux density estimates in
 agreement with expectations within the rms dispersion. However,
 'taumeter' ratios have more dispersion than the baseline method
 ratios, whereas 'skydip' shows some dependency on the atmospheric
@@ -110,8 +110,8 @@ more extensive robustness tests are needed before routinely using the
 practical method, \aka\ 'photocorr pointing'. NOT TRUE ANYMORE AFTER DEBUGGING}   
 
 
-At $2~\rm{mm}$, all the methods result in a similar calibration bias
-of $0.95 \pm 0.5$. We also obtained the same $2\rm{mm}$-calibration
+At $2~\rm{mm}$, all methods result in a similar calibration bias
+of $0.95 \pm 0.05$. We also obtained the same $2\rm{mm}$-calibration
 biases when using scans per campaign. To summarize, the
 $2\rm{mm}$-calibration bias is stable against i) a large range of
 atmospheric conditions, ii) the observation campaign, iii) the
@@ -169,7 +169,7 @@ gather the derived calibration uncertainties in the row labelled 'Rms'
 of Table~\ref{tab:Calibration_results_all}. From both these
 information, we conclude that the 'taumeter' method leads to 
 statistical uncertainty increases of about $40$ and $30\%$ at 1 and 2
-mm. The 'skydip' method show less dispersion but a correlation with
+mm. The 'skydip' method shows less dispersion but a correlation with
 the atmospheric transmission. Although of a low significance (less
 than $3\sigma$), this effect has motivated the development of the
 'corrected skydip' method.
@@ -180,14 +180,14 @@ we notice a clear difference for the bunch of N2R9 scans at an
 atmospheric transmission of about 0.7: whereas the flux density ratios
 are low for these scans in the three first methods, they are with
 $1\sigma$ from unity when using a photometric correction. This further
-validates that the low flux density of these scans is due to
+validates the hypothesis that the low flux density of these scans is due to
 telescope-driven beam effect, as assumed in
 Sect.~\ref{se:photometry_baseline}. This also constitutes an example
 of the calibration improvement obtained from resorting to a
 photometric correction.
 
 Moreover, results based on the 'photocorr demo' method show that calibration
-uncertaintied as low as $3.8$ and $2.2\%$
+uncertainties as low as $3.8$ and $2.2\%$
 at 1 and 2 mm are within the reach of NIKA2 without rejecting any
 observation dates. However, we recall this method relies on 
 accurate beam estimates. Using the 'photocorr pointing', which is the
@@ -196,7 +196,7 @@ w.r.t. the baseline results but by a factor of about $20\%$ in both
 bands. By inspecting the appropriate panels of
 Fig.~\ref{fig:allbright_rms_others}, we notice some differences between
 the flux density ratios from 'photocorr demo' and 'photocorr
-pointing', which are likely due to the photometry correction noise
+pointing', which are likely to be due to the photometry correction noise
 when monitoring the beam from pointing scans. We conclude that more
 control on the beam monitoring is needed before proposing a calibration
 based on photometry correction as the nominal method.

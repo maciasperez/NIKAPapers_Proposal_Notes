@@ -17,7 +17,7 @@ acquired during the N2R9, N2R12 and N2R14 campaigns. Namely, we use
 the 72 scans that met the baseline selection criteria over the 109
 available scans for MWC349.
 Figure~\ref{fig:mwc349_obstau_corrected_skydip} shows the
-bias for Array 1, Array 3, the combination of the $1~\rm{mm}$ arrays and
+bias $b_A$ for Array 1, Array 3, the combination of the $1~\rm{mm}$ arrays and
 Array 2 as a function of the atmospheric transmission. This quantity
 relates to the zenith opacity and the airmass as
 $\exp \left( - \tau \cdot x \right) $.
@@ -43,8 +43,13 @@ For the $1~\rm{mm}$ arrays and array combination, we find calibration
 biases in agreement with unity within the statistical dispersion for
 the three campaigns, whereas a $5\%$ lack of flux with respect to
 expectations is observed at $2~\rm{mm}$, consistently for the three
-campaigns. No sizable dependency of the calibration bias with the
-atmospheric transmission is seen.
+campaigns. This bias has a low significance with respect to the
+absolute calibration precision of both NIKA2 ($5\%$) and PdB.
+No sizable dependency of the calibration bias with the
+atmospheric transmission is seen. Hence we conclude that the NIKA2
+photometry is assessed at the level of $5\%$ on reference sources of
+about one Jy, which corresponds to the same level of accuracy as the
+absolute calibration errors.   
 
 We further test the calibration
 stability against atmospheric condition as described in
@@ -58,7 +63,7 @@ atmospheric transmission.
 
 In addition, the statistical calibration uncertainties are
 estimated using the standard deviation of the flux density ratios
-using all the selected scans. We find uncertainties of $5.5\%$ for A1,
+using all selected scans. We find uncertainties of $5.5\%$ for A1,
 $6.1\%$ for A3, $5.7\%$ for the $1~\rm{mm}$ band and $2.9\%$ for A2.
 These $1~\sigma$ statistical
 errors are shown as the inner dashed lines from either sides of the
@@ -67,8 +72,8 @@ $3\sigma$ errors are shown as the outer dashed lines.
 
 No sizable dependency of the flux density ratio is seen within the
 wide range of atmospheric transmission that have been tested, which goes
-from 0.5 to 0.9. For most of the scans,
-the flux density ratio is well within the $1~\sigma$ errors, whereas
+from 0.5 to 0.9. 
+The flux density ratio is in general well within the $1~\sigma$ errors, whereas
 some scans at atmospheric transmissions of about 0.7 show a mild lack
 of flux density with respect to the median at a significance below
 $3\sigma$.
@@ -84,23 +89,27 @@ selection (see Sect.~\ref{se:data_selection}). These scans are likely
 to be impacted by the telescope-driven beam broadening or by the
 sunrise focus drift respectivelly.
 
-We evaluate the calibration
-uncertainty improvement that would result from a more restrictive
-selection on the observation date. The last row of
+%We evaluate the calibration
+%uncertainty improvement that would result from a more restrictive
+%selection on the observation date.
+The last row of
 Fig.~\ref{fig:allbright_rms_corrected_skydip} shows the flux density
 ratio distribution at 1 and $2~\rm{mm}$. These consist in bulk Gaussian
 distributions, which correspond to the nightly observations and large
 distribution queues toward the low flux density ratio, due to morning
 observations. Gaussian fits of these distributions mainly capture the
 Gaussian bulk and are thus indicative of the uncertainty improvement
-from narrower observation date windows. We find that restricting the
+from narrower observation date windows. We find in
+Fig.~\ref{fig:allbright_rms_corrected_skydip} that restricting the
 used observation dates to the 10 more stable hours (from $22:00$ to
-$08:00$ UT) would result in improving the calibration uncertainties of
-about $60\%$ at $1~\rm{mm}$ and $40\%$ at $2~\rm{mm}$. The baseline
-selection, which i) retains 16 hours of observation time a day and ii)
-results in calibration uncertainties that meet the requirement for a
-millimetric ground-based instrument, constitutes an advantageous
-tradeoff.  
+$08:00$ UT) would result in relative calibration uncertainties of
+$3.6\%$ at $1~\rm{mm}$ and $1.2\%$ at $2~\rm{mm}$, which constitute an
+improvement of about $60\%$ at $1~\rm{mm}$ and $40\%$ at
+$2~\rm{mm}$ of the calibration uncertainties.  
+The baseline selection, which i) retains 16 hours of observation time
+a day and ii) results in calibration uncertainties that meet the
+requirement for a millimetric ground-based instrument, constitutes an
+advantageous tradeoff.  
 
 
 
@@ -129,10 +138,10 @@ tradeoff.
       scans acquired after 8:00 UT hours. Flux density ratio
       distributions for A1$\&$A3 and A2 are plotted in the fourth row
       panels. The Gaussian fits of this distribution, plotted in red,
-      mainly capture the
-      night-time observation scans%Their widths are sizably smaller
+      mainly capture the bulk of night-time observation scans, as seen
+      on the plot of the panel above, %Their widths are sizably smaller
       %than the rms error evaluated from all the scans
-      , indicating the
+       indicating the
       impact of scans acquired after 8:00 UT on the calibration
       uncertainties.}
     \label{fig:allbright_rms_corrected_skydip}
@@ -165,7 +174,7 @@ tradeoff.
        &  2mm           &  0.95  &  0.95   &   0.93   &   0.95    \\
   \hline
   Rms  &  $\#$ total    &  303   &  72     &   112    &    487   \\
-       &  $\#$ selected &  219   &  33     &    12    &    264   \\
+  $[\%]$ &  $\#$ selected &  219   &  33     &    12    &    264   \\
        &  A1            &  5.7   &  4.6    &   2.9    &    5.5   \\
        &  A3            &  6.2   &  5.7    &   2.4    &    6.0   \\
        &  1mm           &  5.9   &  5.0    &   2.5    &    5.7   \\
@@ -173,12 +182,12 @@ tradeoff.
 \hline\hline
 \end{tabular}
 \caption[Baseline calibration results]{Baseline calibration results:
-  photometry accuracy and uncertainties. The first row gives the calibration
-  bias -- defined as the measured-to-expected flux density ratio --
-  and the second row the calibration rms error -- defined as the
-  standard deviation of the measured-to-median flux density of bright
-  sources using observations during N2R9, N2R12, N2R14 and the
-  combination of the three campaigns. }
+  photometry accuracy and uncertainties. The first row gives the
+  calibration bias $b_{\rm A}$ and the second row the calibration
+  rms error $\sigma_{\rm A}$, as defined in
+  Sect.~\ref{se:photometry_criteria},
+  using observations during N2R9, N2R12, N2R14 and the combination of
+  the three campaigns.}
 \label{tab:baseline-photometry}
 \end{center}
 \end{table}

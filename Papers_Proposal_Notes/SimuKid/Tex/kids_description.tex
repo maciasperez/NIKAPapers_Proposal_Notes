@@ -12,20 +12,49 @@
 
 %%%%
 
-Kinetic Inductance Detectors (KIDs) are a novel superconducting detector technology
-that provides high sensitivity and ease of multiplexing introduced by \citep{2003Natur.425..817D}. \citep{2016A&A...592A..26C} show that KID arrays behave appropriately in a space-like environment, they present short time constants making them less sensitive to cosmic rays compared to bolometers. This features make KIDs competitive with other technologies to be implemented in futur ground base or space CMB mission.
-In this section we give a brief summary of their main features and how photometry can be derived from their measurements, then we study the KID non-linearity, a systematic effect that must be taken into account in the design of futur experiments.
+\subsection{Description}
+
+The theory of superconductivity described by \citep{PhysRev.108.1175} show that at low temperature, there is an attraction between electrons due to electron-phonon interactions that bind electrons together to form what we call Cooper pairs \citep{PhysRev.104.1189}. In superconductors this state is primarily responsible for superconductivity. When incident photons with sufficient energy are absorbed by the detector's superconducting film, they break Cooper pairs which increases the quasi-particles density and causes a change in the kinetic inductance $L_{K}$. The shift in the kinetic inductance $\delta L_{K}$ is proportional to the density of quasi-particles $\delta L_{K} \propto \delta n_{qp}$, which is directly proportional to the absorbed incident power : $\delta n_{qp} \propto \delta P_{opt}$.
+Kinetic Inductance Detectors (KIDs) are RLC superconducting resonator introduced by \citep{2003Natur.425..817D} and that use this principle. Their resonant frequency is given by : 
+
+\begin{equation}
+f_{0} = \frac{1}{2\pi \sqrt{(L_{k}+L_{G})C(\varepsilon)}}, 
+\end{equation}
+ 
+where $L_{K}, L_{G}$ and $C$ are the resonator's kinetic inductance, geometric inductance and capacity. $\varepsilon$ is the material permittivity.
+When a KID absorbs photons, its resonant frequency varies like :
+
+\begin{equation}
+\delta f_{0} = -\frac{1}{2}C(\varepsilon)f_{0}^{3} \delta L_{K}.
+\end{equation}
+
+A small change in the kinetic inductance results in a proportional shift of the resonant frequency. As a result, there is a linear relation between the absorbed optical power by the detector and the shift of the resonant frequency :
+
+\begin{equation}
+\delta f_{0} \propto -\delta P_{opt}.
+\end{equation}
+
+This is represented in Fig.~\ref{fig:resonance}. It si then possible to measure a flux variation on the sky by measuring the shift of resonant frequency of a detector. Two methods that are use to follow this shift are described further.
+
+\begin{figure}
+  \includegraphics[clip, angle=0, width=\columnwidth]{Figures/resonance.png}
+  %	\includegraphics[clip, angle=0, width=\columnwidth]{Figures/resonance.pdf}
+  \caption{Schematic representation of a KID resonance in amplitude (left) and phase (right), as a function of the excited tone injected in the feedline. The optical power absorbed by the detector is weak for black curves and increases for red curves. The absorption of a photon shifts the resonance frequency and this is directly proportional to the received power.}
+  \label{fig:resonance}
+\end{figure}
+
+
+%Kinetic Inductance Detectors (KIDs) are RLC superconducting resonator, made from a thin metal film and introduced by \citep{2003Natur.425..817D}. They are based on a novel superconducting detector technology that provides high sensitivity and ease of multiplexing. 
+%
+%\citep{2016A&A...592A..26C} show that KID arrays behave appropriately in a space-like environment, they present short time constants making them less sensitive to cosmic rays compared to bolometers. This features make KIDs competitive with other technologies to be implemented in futur ground base or space CMB mission.
+%In this section we give a brief summary of their main features and how photometry can be derived from their measurements, then we study the KID non-linearity, a systematic effect that must be taken into account in the design of futur experiments.
+%
+%This relation is linear for small variations in $P_{opt}$
+%\citep{2010ApPhL..96z3511S}. 
 
 \subsection{Transfer function}
 
-KIDs are RLC superconducting resonators made from a thin metal film. When
-photons are absorbed by the superconducting film, they break Cooper pairs which
-increases the quasi-particles density and causes a change in the kinetic
-inductance $L_{k}$. This produces a shift $\delta f_{0}$ of the resonant
-frequency of the KID \citep{2013A&A...551L..12C} that can be related to the
-absorbed optical power $\delta P_{opt}$ (cf.~Fig.~\ref{fig:resonance}). This
-relation is linear for small variations in $P_{opt}$
-\citep{2010ApPhL..96z3511S}. The KID transfer function is given by:
+A KID circuit is coupled to a transmission feedline that is expressed by the $S_{21}$ parameter. The KID transfer function reads : 
 
 \begin{equation}
 S_{21}(f) = \mathcal{I} +j\mathcal{Q} .
@@ -55,15 +84,6 @@ this paper, we shall assume typical values of KIDs $X_{1} = X_{2} =
 addresses how the resonance of a KID is monitored and related to the incident
 optical power.
 
-\begin{figure}
-  \includegraphics[clip, angle=0, width=\columnwidth]{Figures/resonance.png}
-  %	\includegraphics[clip, angle=0, width=\columnwidth]{Figures/resonance.pdf}
-  \caption{Schematic representation of a KID resonance in amplitude (left) and phase (right), as a function of the excited tone injected in the feedline. The optical power absorbed by the detector is weak for black curves and increases for red curves. The absorption of a photon shifts the resonance frequency and this is directly proportional to the received power.}
-  \label{fig:resonance}
-\end{figure}
-
-
-
 % \section{Methods of signal reconstruction}
 \subsection{Photometry}
 \label{sec:signal}
@@ -91,22 +111,21 @@ to derive the photometry.
 
 The excitation tone frequency of a KID is modulated by a local oscillator with a
 known frequency shift. This provides two values $f_{\pm} = f_0 \pm \delta
-  f_{LO}/2$ with $\delta f_{LO} \simeq 1$\,kHz. The ``In-phase'' in
-``in-Quadrature'' amplitudes $i(t)$ and $q(t)$ then read:
+  f_{LO}/2$ with $\delta f_{LO} \simeq 1$\,kHz. Time ordered data values $(\mathcal{I}(t),\mathcal{Q}(t))$ are given by :
 
 \begin{equation}
-(i(t), q(t)) = (\frac{i(f_{+}) +
-    i(f_{-})}{2},
-\frac{q(f_{+}) + qf_{-})}{2}),
+(\mathcal{I}(t), \mathcal{Q}(t)) = (\frac{\mathcal{I}(f_{+}) +
+    \mathcal{I}(f_{-})}{2},
+\frac{\mathcal{Q}(f_{+}) + \mathcal{Q}(f_{-})}{2}),
 \end{equation}
 
 and the differential values are :
 
 \begin{equation}
 \label{gradient}
-(\di(t), \dq(t)) =
-\left(\frac{i(f_{+}) - i(f_{-})}{\delta f_{LO}},
-\frac{q(f_{+}) - q(f_{-})}{\delta f_{LO}}\right).
+(\frac{\di}{df}(t), \frac{\dq}{df}(t)) =
+\left(\frac{\I(f_{+}) - \I(f_{-})}{\delta f_{LO}},
+\frac{\Q(f_{+}) - \Q(f_{-})}{\delta f_{LO}}\right).
 \end{equation}
 
 These quantities are represented on Fig. \ref{circle-iq}. In this paper, we take
@@ -123,14 +142,14 @@ d\I &=& \sum^{N_{m}/2=20}_{p=1} i_{2p} - i_{2p-1},\\
 d\Q &=& \sum^{N_{m}/2=20}_{p=1} q_{2p} - q_{2p-1}.
 \end{eqnarray}
 
-With these quantities in hand we have several ways to derive the transmitted
-signal. They are presented in the following paragraph.
+With these quantities in hand we have two methods to derive the transmitted
+signal. They are presented in the following paragraphs.
 
-\subsubsection{\rf}
+\subsubsection{Method 1}
 If a variation $\Delta\I(t)$, $\Delta\Q(t)$ is observed between successive ($\I$,
 $\Q$) points, it is possible to estimate the shift of the resonant frequency
 $\Delta f_{0}$ between these two samples by comparing ($\Delta \I$, $\Delta \Q$)
-with the gradient $(\di,\dq)$ induced by the known $\delta
+with the gradient $(\di,\dq)$ induced by the known and small $\delta
 f_{0}$ of the local oscillator. This is done by a scalar projection of ($\Delta\I$,
 $\Delta\Q$) on $(\di,\dq)$ that is tangent to the resonance circle. To have a
 cleaner estimation of the latter, we take its running average over 50
@@ -147,19 +166,9 @@ points that we write $\langle . \rangle_{50}$ \citep{2014A&A...569A...9C}:
 
 Note that this average is performed only on the tangent vector $(\di,\dq)$ so
 that $\Delta f_0$ is sampled like $\I$ and $\Q$ at 22\,Hz. This method has been
-successfully used in \todo{XXXX}, but can be affected by some systematic
-uncertainty and be a source of non-linearity. Indeed, $(\di,\dq)$ is tangent to
-the $(\I,\Q)$ circle for a fixed background optical power, while, in principle,
-the incident optical power that induces the observable $(\Delta \I, \Delta \Q)$
-should distort the resonance circle to some extent. As a consequence, the
-observed $(\I,\Q)$ trajectory is not precisely parallel to the $(\di,\dq)$
-direction. Early laboratory and on-site tests have shown that this approximaton
-leads to a reconstruction of point source fluxes better than 2\%
-\citep{2013A&A...551L..12C}. In this work, we improve this upper limit on
-simulations and assess the impact of this error on futures CMB polarization
-measurements.
+successfully used in \nika\ and \nika2. Under large incoming power, the resonances can be shifted far from their excitation frequency. The $(\I, \Q)$ circle is then distorted and the tangent approximation of $(\di, \dq)$ no longer holds which can be the source of non-linearity. In the next paragraph we present an improved method to follow the shift of the resonant frequency.
 
-\subsubsection{Circle fit : Cf}
+\subsubsection{Method 2}
 
 \begin{figure}
 \includegraphics[clip, angle=0, width=\columnwidth]{Figures/circle_zres.eps}
@@ -174,11 +183,11 @@ measurements.
 
 \todo{ref to the circular nature of (I,Q): \cite{2011ApJS..194...24M}}.\\
 
-To improve \rf, we developed a new technique that fully exploits the circular
+To improve method 1, we developed a new technique that fully exploits the circular
 nature of the $(\I,\Q)$ trajectory, hereafter called \cf. It is
   based on the transformation property of a circle in the complex plane into a
   straight line. Indeed, let us consider a circle centered on $(0,1/2)$ with a
-  radius $1/2$ and compute its inverse:
+  radius of $1/2$ and compute its inverse:
 
 \begin{eqnarray}
 Z_{ref} &\equiv&\frac{1}{2} + \frac{1}{2}e^{i\phi}\,, \\
@@ -261,22 +270,22 @@ that we vary between \todo{1 and 2000\,Jy TBC} (fluxes are unrealistically large
 a 11\,arcsec FWHM Gaussian beam like the polarized 1\,mm channel of \nikad. We
 also vary the scanning speed of our virtual instrument while keeping a minimum
 of 3~samples per FWHM to respect the Nyquist criterion.
-As shown in Fig.~\ref{fig:planet_profiles} and Fig.~\ref{fig:flux_out_vs_in}, non linearity appears with the distortion of the input gaussian profile in the case of \rf\ method whereas \cf\ remains linear on the same flux scale.
+As shown in Fig.~\ref{fig:planet_profiles} and Fig.~\ref{fig:flux_out_vs_in}, non linearity appears with the distortion of the input gaussian profile in the case of method 1\ method whereas \cf\ remains linear on the same flux scale.
 
 \begin{figure}
   \includegraphics[clip, angle=0, width=\columnwidth]{Figures/planet_profiles.eps}
-  \caption{Comparison of an incoming flux that we vary between 1 and 2000 Jy TBC (in black), with flux reconstructed by \rf\ and \cf. Fluxes are unrealistically large on purpose for illustration. }
+  \caption{Comparison of an incoming flux that we vary between 1 and 2000 Jy TBC (in black), with flux reconstructed by method 1\ and \cf. Fluxes are unrealistically large on purpose for illustration. }
   \label{fig:planet_profiles}
 \end{figure}
 
 
 \begin{figure}
   \includegraphics[clip, angle=0, width=\columnwidth]{Figures/flux_out_vs_in.eps}
-  \caption{Comparison of an incoming flux that we vary between 1 and 2000 Jy TBC (in black), with flux reconstructed by \rf\ and \cf. Fluxes are unrealistically large on purpose for illustration. }
+  \caption{Comparison of an incoming flux that we vary between 1 and 2000 Jy TBC (in black), with flux reconstructed by method 1\ and \cf. Fluxes are unrealistically large on purpose for illustration. }
   \label{fig:flux_out_vs_in}
 \end{figure}
 
-For all simulations we computed the non-linearity coefficient $\varepsilon$ from eq.~\ref{eq:model_kid_nl} by doing a fit of the input fluxes as a fonction of output fluxes. Results are shown in Tab.~\ref{tab:eps}. As in the two figures the non-linearity coefficients show \rf\ method is less linear than \cf\ on the same flux scale.\\
+For all simulations we computed the non-linearity coefficient $\varepsilon$ from eq.~\ref{eq:model_kid_nl} by doing a fit of the input fluxes as a fonction of output fluxes. Results are shown in Tab.~\ref{tab:eps}. As in the two figures the non-linearity coefficients show method 1\ method is less linear than \cf\ on the same flux scale.\\
 
 \begin{table}
 \center
@@ -284,7 +293,7 @@ For all simulations we computed the non-linearity coefficient $\varepsilon$ from
 	\hline
 	    & $\frac{3pts}{beam}$ & $\frac{5pts}{beam}$ \\
 	\hline
-\rf\	&  $-4.58 \times 10^{-5}$ & $-2.33 \times 10^{-5}$ \\
+method 1\	&  $-4.58 \times 10^{-5}$ & $-2.33 \times 10^{-5}$ \\
 	\hline
 \cf\ & $1.09 \times 10^{-7}$   & $8.90 \times 10^{-8}$ \\
 	\hline
@@ -295,5 +304,5 @@ For all simulations we computed the non-linearity coefficient $\varepsilon$ from
 
 
 KIDs are a novel technology successfully used in \nikad . Because of their multiplexing capability and their short time constant, they are one of the best candidates to be implemented on experiments that need larger arrays. In this section we studied KIDs non-linearity and its impact on CMB B mode measures, considering the brightness of a source, the scanning speed of the instrument and the method that we use to follow the shift of the resonant frequency and retrieve the absorbed power.
-Simulations of a KID exposed to a point source with a large variation of fluxes have shown that as expected, the brighter is the source, the more non-linearities appear due to a poor reconstruction of the resonant frequency. Although both reconstruction methods give good results, \cf\ remains more linear at high fluxes than \rf . Plus, KID non-linearity should not impact measures of CMB B modes, in fact the non-linearity coefficients that we found are in the range of $[10^{-5} - 10^{-8}]$, so it meets the requirement addressed in Sec.\ref{sec:cmb}.
+Simulations of a KID exposed to a point source with a large variation of fluxes have shown that as expected, the brighter is the source, the more non-linearities appear due to a poor reconstruction of the resonant frequency. Although both reconstruction methods give good results, \cf\ remains more linear at high fluxes than method 1 . Plus, KID non-linearity should not impact measures of CMB B modes, in fact the non-linearity coefficients that we found are in the range of $[10^{-5} - 10^{-8}]$, so it meets the requirement addressed in Sec.\ref{sec:cmb}.
 In futur CMB polarization experiments, the use of a half wave plate more and more common. It presents a lot of advantages, but can also be source of various systematic effects. In the next section we will address the non-linearity that can arise from rotating a half wave plate in an instrument.

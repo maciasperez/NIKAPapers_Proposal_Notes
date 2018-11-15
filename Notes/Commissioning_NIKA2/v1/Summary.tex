@@ -119,7 +119,8 @@ in the data analysis.
 % correlation matrices, and illustrate the impact of various noise
 % decorrelation methods. 
 In Chapter~\ref{se:nefd}, we characterise NIKA2 sensitivity by
-estimating the NEFD. We developped three complementary methods that
+estimating the Noise Equivalent Flux Density (NEFD). We developped
+three complementary methods that
 differ in the measurement of the flux density variance but rely on the
 same estimate of the on-source integration time. The first method is
 based on fitting the variance decrease with the integration time, the
@@ -131,9 +132,59 @@ approaches: integration times directly derived from the sample counts
 are compared to integration time estimates with the array footprint
 that best account for the scan strategy.  
 
-
-
 \subsection*{Results}
+
+All the designed KIDs detect the signal at least in some observation
+scans. We conservatively retain only the most stable KIDs, which are
+immune to the cross-talking effect and yield good signal-to-noise
+measurement. We defined 'valid' KIDs as the detectors that have been
+retained in at least two independent KID selection, as discussed in
+Sect.~\ref{se:fov_geometry}. We report valid KID fractions of $84\%$
+for the $1\,\rm{mm}$ channel arrays and $90\%$ for Array 2. The other
+KIDs, which do not meet the defined validity criterion, ramdomly
+distribute across the FoV, so that the whole $6.5\,\rm{arcmin}$ FoV is
+covered. Considering the designed KID grid as discussed in
+Sect.~\ref{se:grid_distortion}, the distance between
+neighbour KIDs is $9.8''$, $9.7''$ and $13.3''$ for Array 1, 3 and 2
+respectively, which defined an occupation surface per KID. The surface
+covered by all valid KID is in turn associated to an effective FoV of
+$5.7'$ for Array 1$\&$3 and of $5.9'$ for Array 2.       
+%gs   = [9.8, 9.7, 13.3] ;; gridstep in arcsec
+%ndet = [952, 961, 553]
+%print, sqrt((ndet*(gs/60.0)^2)/!dpi*4.0)
+%% F\lambda = gridstep\times D(30m)/\lambda
+
+While the full beam pattern presents a complexe structure as discussed
+in Sect.~\ref{se:fullbeam}, the main beam is well described with a 2D
+Gaussian of FWHM of $11$ for the $1\,\rm{mm}$ channel arrays
+and $17.6''$ for Array 2, with uncertainties of  $0.2''$ for the
+combination of Array 1$\&$3 and for Array 2, as presented in
+Sect.~\ref{se:fwhm_results}.
+Comparing the main beam fit to the measured full beam, we derive the
+main beam efficiency up to a radius of $180''$. We find beam
+efficiencies of $55 \pm 3 \%$ at $1\,\rm{mm}$ and $77 \pm 2 \%$ at
+$2\,\rm{mm}$. These meet the expectations for an instrument that does not
+resort to feed horns. The chosen $180''$ cutting radius ensures an accurate
+measure of the beam patterning using a single \bm\ scan. However,
+dedicated studies based on the Lunar edge observations showed that
+a sizable fraction of the full beam stems from beyond this
+radius. This fraction is about $35\%$ at $1\,\rm{mm}$ and about $20\%$
+at $2\,\rm{mm}$ (using Kramer et al 2013). 
+
+
+\begin{itemize}
+\item{The rms of the main beam FWHM across the FoV meets expectations for a 6.5' FoV. It has been further improved by optimizing the telescope focus settings}
+\item{The rms calibration uncertainties are well better than $10\%$ at 1mm and even better than $5\%$ at 2mm, which are state-of-the -art performance for instrument operated at these wavelengths}
+\item{The noise well integrates as the square root of the integration time for series of scans acquired in similar observing condition}
+\item{The NEFD meets the specification (goal ? ) at 2mm, but are slighlty below the specifications at 1mm due to the absorption of one of the 1-mm polarisation component by the dichroic element, which degrades the sensitivity of Array 1.}
+\item{The mapping speed is defined as the sky area that is covered in
+one hour of observations to a noise level of 1 mJy.  NIKA2 mapping
+speed is an order of magnitude better than the previous generation of
+resident instruments.}
+\end{itemize}
+
+
+
 The main measured parameters that define the measured NIKA2 performance
 are gathered in Table~\ref{tab:nika2summary}.
 
@@ -153,9 +204,8 @@ are gathered in Table~\ref{tab:nika2summary}.
       Number of designed detectors                   & 1140      &  1140    &    &    616  & Sect.~\ref{se:array}\\
       Number of valid detectors                      &  952      &   961    &    &    553  & Sect.~\ref{se:fov_geometry}\\
       Fraction of valid detectors [$\%$]             &  84       &   84     &    &     90  & \\
-      Effective FOV\tnote{a}\hspace{1mm} [arcmin]    &  5.39     &   5.61   &    &    4.9  & \\
-      \hline
-      Pixel size in beam sampling unit\tnote{b}\hspace{1mm} [F$\lambda$] & 0.9 & 0.9  &  &  1.1 & Sect.~\ref{se:array}\\
+      Effective FOV\tnote{a}\hspace{1mm} [arcmin]    &  5.7      &   5.7    &    &    5.9  & Sect.~\ref{se:grid_distortion}\\
+      Pixel size in beam sampling unit\tnote{b}\hspace{1mm} [F$\lambda$] & 0.9 & 0.9  &  &  1.1 & \\
       \hline
       FWHM\tnote{c}\hspace{1mm} [arcsec]    &  $11.1 \pm 0.2$   &  $11.0 \pm 0.2$  &   $11.1 \pm 0.1$  &  $17.6 \pm 0.1$  &  Sect.~\ref{se:fwhm_results}\\
       Beam efficiency\tnote{d}\hspace{1mm} [\% ] &  $55 \pm 3$  &  $56 \pm 3$   &  $55 \pm 3$   &  $77 \pm 2$  &  Sect.~\ref{se:beam_efficiency}\\
@@ -197,95 +247,90 @@ performances of NIKA2.}
 \end{table}
 
 
-The performance parameters given in Table~\ref{tab:nika2summary} are
-splitted in two different lists: first, the main characteristics, as
-defined in the MOU, are listed in Table~\ref{tab:nika2summary_main},
-second, other parameters, which are derived from the instrument
-characteristics described in the MOU, and that need to be
-characterized to complete the commissioning phase are given in
-Table~\ref{tab:nika2summary_second}. Table~\ref{tab:nika2summary_second} is
-constructed from the 'secondary' and 'tertiary' tables of Samuel's
-summary document.
+The main characteristics, as defined in the MOU, are listed in
+Table~\ref{tab:nika2summary_main}, along with a reminder of
+the \emph{specifications} that are the requirements to be met by the
+instrument, and the \emph{goals} that are the values targeted by the
+collaboration.
+%The performance parameters given in Table~\ref{tab:nika2summary} are
+%splitted in two different lists: first, the main characteristics, as
+%defined in the MOU, are listed in Table~\ref{tab:nika2summary_main},
+%second, other parameters, which are derived from the instrument
+%characteristics described in the MOU, and that need to be
+%characterized to complete the commissioning phase are given in
+%Table~\ref{tab:nika2summary_second}. Table~\ref{tab:nika2summary_second} is
+%constructed from the 'secondary' and 'tertiary' tables of Samuel's
+%summary document.
 
 
 \begin{table}[h]
-  \caption[Main performance requirement]{Summary of the main characteristics describing the measured performances of NIKA2, as listed in MoU {\color{magenta} LP to report the up-to-date values of Tab.~\ref{tab:nika2summary} here}}
+  \caption[Main performance requirement]{Summary of the main characteristics describing the measured performances of NIKA2, as listed in MoU}
   \label{tab:nika2summary_main}
   \begin{threeparttable}
-    \begin{tabular}{|r|c|c|c|c|}
+    \begin{tabular}{|r|r|c|c|c|c|}
       \hline
-      & Array 1 & Array 3  & Array 1\&3 & Array 2 \\
+      \multicolumn{2}{|r|}{}           & Array 1 & Array 3  & Array 1\&3 & Array 2 \\
       \hline
       \hline
-      NEFD\tnote{a}\hspace{1mm}   [$\rm{mJy} \cdot \rm{s}^{1/2}/\rm{beam}$]  &  30 (15)   & 30 (15)  &  30 (15)  & 20 (10) \\
-      Number of designed detectors       & 1140      &  1140    &    &    616  \\
-      Number of valid detectors          &  952      &   961    &    &    553  \\
-      Fraction of valid detectors [$\%$] &   84      &    84    &    &     90  \\
+      FOV diameter [arcmin] & Goal     &  6.5 & 6.5  & 6.5 & 6.5   \\
+                            & Specs    &   5  &   5  &   5 &   5   \\
+                            & Measure  &  6.5 & 6.5  & 6.5 &  6.5  \\
       \hline
-      FWHM\tnote{b}\hspace{1mm} [arcsec]  &  $11.3 \pm 0.2$   &  $11.2 \pm 0.2$  &   $11.2 \pm 0.1$  &  $17.7 \pm 0.1$ \\
+      Pixel size in beam sampling unit [F$\lambda$]  & Goal    & 0.6  &  0.6 &    &  0.6 \\
+                                                     & Specs   & 0.9  &  0.9 &    &  0.9 \\
+                                                     & Measure & 1.1  &  1.1 &    &  0.9 \\
       \hline
-      Effective FOV\tnote{c}\hspace{1mm} [arcmin]    &   5.39    &   5.61    &    &   4.9  \\
+      Fraction of valid detectors [$\%$] & Goal     &   90      &    90    &      &     90  \\
+                                         & Specs    &   50     &    50    &      &     50  \\
+                                         & Measure  &   84     &    84    &      &     90  \\
       \hline
-      Pixel size in beam sampling unit [F$\lambda$]  &    &   &    &   \\
-      \hline      
+      \multicolumn{2}{|r|}{NEFD\tnote{a}\hspace{1mm} [$\rm{mJy} \cdot \rm{s}^{1/2}/\rm{beam}$] goal on $90\%$ of the KIDs} &  &  &  15  & 10 \\
+      \multicolumn{2}{|r|}{NEFD\tnote{a}\hspace{1mm} [$\rm{mJy} \cdot \rm{s}^{1/2}/\rm{beam}$] specification on $50\%$ of the KIDs}  &       &     &  30  & 20 \\
+      \multicolumn{2}{|r|}{Measured NEFD\tnote{a}\hspace{1mm} on all valid KIDs [$\rm{mJy} \cdot \rm{s}^{1/2}/\rm{beam}$]}           &       &     &  36  & 10 \\
+      \hline\hline      
 \end{tabular}
   \begin{tablenotes}
   \item[(a)] NEFD in typical IRAM good sky opacity condition: 2mm pwv, $60^o$ elevation
-  \item[(b)] Full-width at half-maximum of the main beam modelled as a two-dimensional Gaussian fitted from sidelobe-masked beam maps.
-  \item[(c)] Equivalent FOV covered by the valid detectors
     \end{tablenotes}
 \end{threeparttable}
 \end{table} 
 
 
-\begin{table}[h]
-  \caption[Secondary performance measurements]{Summary of other NIKA2 performance characteristics either defined in the MoU or extracted from SL's summary document {\color{magenta} LP to report the up-to-date values of Tab.~\ref{tab:nika2summary} here}}
-  \label{tab:nika2summary_second}
-  \begin{threeparttable}
-    \begin{tabular}{|r|c|c|c|c|}
-      \hline
-      & Array 1 & Array 3  & Array 1\&3 & Array 2 \\
-      \hline
-      \hline
-      Reference Wavelength  [mm]  &  1.2   &  1.2  & 1.2 & 2.0   \\
-      Reference Frequency  [GHz]  &  260   &  260  & 260 & 150  \\
-      Central Frequency [GHz]     &  255.5  &    257.8     &     &   151.6  \\
-      Bandwidth         [GHz]     &   47.8  &     45.7     &     &    42.1  \\
-      \hline
-      Beam efficiency\tnote{a}\hspace{1mm} [\% ]    &        &    &     &    \\
-      rms of the FWHM on the FOV [$\%$]   &   &    &   &  \\
-      \hline 
-      rms calibration error [\%]            & 4.5  & 6.6  &   & 5  \\
-      \hline
-      Absolute calibration uncertainty [\%] &  \multicolumn{4}{|c|}{5} \\
-      \hline
-      $\alpha$ noise integration in time\tnote{d}\hspace{1mm}  &   &   &   &  \\
-      \hline
-      rms pointing error    [arcsec]    & \multicolumn{4}{|c|}{$<3$}  \\
-      \hline
-      Mapping speed\tnote{b}\hspace{1mm} [arcmin$^2$/h/mJy$^2$] & 302  & 454  & 775 (1184)  & 7542 (10861)  \\
-\hline
+%\begin{table}[h]
+%  \caption[Secondary performance measurements]{Summary of other NIKA2 performance characteristics either defined in the MoU or extracted from SL's summary document {\color{magenta} LP to report the up-to-date values of Tab.~\ref{tab:nika2summary} here}}
+%  \label{tab:nika2summary_second}
+%  \begin{threeparttable}
+%    \begin{tabular}{|r|c|c|c|c|}
+%      \hline
+%      & Array 1 & Array 3  & Array 1\&3 & Array 2 \\
+%      \hline
+%      \hline
+%      Reference Wavelength  [mm]  &  1.2   &  1.2  & 1.2 & 2.0   \\
+%      Reference Frequency  [GHz]  &  260   &  260  & 260 & 150  \\
+%      Central Frequency [GHz]     &  255.5  &    257.8     &     &   151.6  \\
+%      Bandwidth         [GHz]     &   47.8  &     45.7     &     &    42.1  \\
+%      \hline
+%      Beam efficiency\tnote{a}\hspace{1mm} [\% ]    &        &    &     &    \\
+%      rms of the FWHM on the FOV [$\%$]   &   &    &   &  \\
+%      \hline 
+%      rms calibration error [\%]            & 4.5  & 6.6  &   & 5  \\
+%      \hline
+%     Absolute calibration uncertainty [\%] &  \multicolumn{4}{|c|}{5} \\
+%      \hline
+%      $\alpha$ noise integration in time\tnote{d}\hspace{1mm}  &   &   &   &  \\
+%      \hline
+%      rms pointing error    [arcsec]    & \multicolumn{4}{|c|}{$<3$}  \\
+%      \hline
+%      Mapping speed\tnote{b}\hspace{1mm} [arcmin$^2$/h/mJy$^2$] & 302  & 454  & 775 (1184)  & 7542 (10861)  \\
+%\hline
+%\end{tabular}
+%  \begin{tablenotes}
+%  \item[(a)] Ratio between the main beam power and the total beam power up to a radius of XXX arcsec
+%  \item[(b)] Average (best) mapping speed at zero opacity for the February 2017 observation campaign. 
+%  \end{tablenotes}
+%\end{threeparttable}
+%\end{table}
 
-\end{tabular}
-  \begin{tablenotes}
-  \item[(a)] Ratio between the main beam power and the total beam power up to a radius of XXX arcsec
-  \item[(b)] Average (best) mapping speed at zero opacity for the February 2017 observation campaign. 
-  \end{tablenotes}
-\end{threeparttable}
-\end{table}
+%\subsection*{Conclusion}
 
-\subsection*{Conclusion}
 
-{\color{magenta} To be developped}
-
-\begin{itemize}
-\item{The 6.5 arcmin FoV is well-covered}
-\item{All the designed KIDs detect the signal at least in some observation scans. We conservatively retain only the most stable KIDs, which are immune to the cross-talking effect and yield good signal-to-noise measure, and report 'valid' KID fractions of XXX}
-\item{The angular resolution, as characterized by the main beam FWHM, is better than specifications at both observing frequencies}
-\item{The main beam efficiency is as expected for an instrument that does not resort to feed horns}
-\item{The rms of the main beam FWHM across the FoV meets expectations for a 6.5' FoV. It has been further improved by optimizing the telescope focus settings}
-\item{The rms calibration uncertainties are well better than $10\%$ at 1mm and even better than $5\%$ at 2mm, which are state-of-the -art performance for instrument operated at these wavelengths}
-\item{The noise well integrates as the square root of the integration time for series of scans acquired in similar observing condition}
-\item{The NEFD meets the specification (goal ? ) at 2mm, but are slighlty below the specifications at 1mm due to the absorption of one of the 1-mm polarisation component by the dichroic element, which degrades the sensitivity of Array 1.}
-\item{The mapping speed is defined as the sky area that is covered in one hour of observations to a noise level of 1 mJy.  NIKA2 mapping speed is excellent}
-\end{itemize}

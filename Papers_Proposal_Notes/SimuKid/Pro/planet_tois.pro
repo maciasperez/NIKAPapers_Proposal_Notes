@@ -48,7 +48,7 @@ time_hf = dindgen(nsn)/f_hf
 
 ;; Planet fluxes
 nflux = 50 ;30
-flux_min = 1.d-5 ;1d-5   ;1d-3 ;
+flux_min = 1.d-3 ;1d-5   ;1d-3 ;
 flux_max = 500.d0 ;500.d0 ;1.d0 ;
 
 ;;--------------------------------------------------------------
@@ -130,6 +130,7 @@ for ispeed=0, nspeed-1 do begin
             wfit = where( abs(time_lf-t_planet_hf) le 2.d0, nwfit)
          endif
 
+         ;; Rf
          junk_rf = gaussfit( time_lf, toi_rf_jy, a, nterms=nterms)
          nparams = 4
          parinfo = replicate({fixed:0, limited:[0,0], $
@@ -144,7 +145,8 @@ for ispeed=0, nspeed-1 do begin
                           parinfo=parinfo, status=status)
          
          planet_rf_flux_results[ispeed, imc, iflux] = myfit[1]
-        
+
+         ;; Cf
          junk_cf = gaussfit( time_lf, toi_cf_jy, a, nterms=nterms)
          nparams = 4
          parinfo = replicate({fixed:0, limited:[0,0], $
@@ -159,6 +161,10 @@ for ispeed=0, nspeed-1 do begin
                           parinfo=parinfo, status=status)
          
          planet_cf_flux_results[ispeed, imc, iflux] = myfit[1]
+
+
+
+
 
 ;; wind, 1, 1, /f, /l
 ;; my_multiplot, 1, 3, pp, pp1, /rev

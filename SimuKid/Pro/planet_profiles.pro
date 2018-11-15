@@ -130,6 +130,41 @@ for ispeed=0, nspeed-1 do begin
 endfor
 outplot, /close, /verb
 
+
+my_multiplot, 1, 2, pp, pp1, /rev
+if ps eq 0 then wind, 1, 1, /free, /large
+
+flux_col = [70, 150, 200, 250]
+
+xra = [14,16]
+yra = [0,1]
+symlist = [1,4,5,6]
+ispeed  = 0
+outplot, file='planet_profiles_2', png=png, ps=ps
+plot, time_hf, gplanet_speed[ispeed,*], xra=xra, yra=yra, /xs, /ys, $
+      position=pp1[0,*], xtitle='time (sec)', ytitle='Output/input Flux', /noerase
+for iflux=0, nflux-1 do begin
+   norm = in_flux_list[iflux]
+   oplot, time_lf, toi_rf_res_jy[ispeed,iflux,*]/norm, $
+          col=flux_col[iflux], psym=symlist[iflux]
+endfor
+legendastro, strtrim(in_flux_list,2)+" Jy", col=flux_col, psym=symlist
+legendastro, 'Method 1', /right
+plot, time_hf, gplanet_speed[ispeed,*], xra=xra, yra=yra, /xs, /ys, $
+      position=pp1[1,*], /noerase, xtitle='time (sec)', $
+      ytitle='Output/input Flux'
+for iflux=0, nflux-1 do begin
+   norm = in_flux_list[iflux]
+   oplot, time_lf, toi_cf_res_jy[ispeed,iflux,*]/norm, $
+          col=flux_col[iflux], psym=symlist[iflux]
+endfor
+legendastro, strtrim(in_flux_list,2)+" Jy", col=flux_col, psym=symlist
+legendastro, 'Method 2', /right
+outplot, /close, /verb
+
+
+
+
 ;; 
 ;; 
 ;;    xra = t_planet_hf + [-1, 1]*0.5

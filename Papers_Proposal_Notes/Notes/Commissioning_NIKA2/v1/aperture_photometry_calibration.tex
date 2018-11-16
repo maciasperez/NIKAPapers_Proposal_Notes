@@ -1,7 +1,7 @@
-\section{Aperture Photometry Calibration {\color{green} Jean-Fran\c cois}}
+\section{Aperture Photometry Calibration}% {\color{green} Jean-Fran\c cois}}
 
 The total flux density of a source can be measured in the NIKA2 image
-over a large circular aperture to recover  the source power incident on the telescope  through its main
+over a large circular aperture to recover the source power incident on the telescope through its main
 beam as well as its side lobes. It is computed as :
 
 \begin{equation}
@@ -9,54 +9,66 @@ S_{\nu} = \sum_{m} \sum_{n}  I_{m,n} ({\rm Jy/beam}) \times {dx^2 \over {\Omega_
 \label{eq:ApPh_7_7}
 \end{equation}
 
-\noindent  $I_{m,n}$ is the brightness in Jy/beam measured in each pixel $(m,n)$  ; $dx$ is the pixel size ;
-$\Omega_{tot}$ is the solid angle of the {\it total} beam ; pixel
-indices ($m,n$) are such that the radial distance $dx \times \sqrt{(m-m_c)^2 + (n-n_c)^2}$ from the map center $(m_c,n_c)$
+\noindent  $I_{m,n}$ is the brightness in Jy/beam measured in each pixel $(m,n)$; $dx$ is the pixel size;
+$\Omega_{tot}$ is the solid angle of the {\it total} beam; pixel
+indices ($m,n$) are such that the radial distance $dx \times
+\sqrt{(m-m_c)^2 + (n-n_c)^2}$ from the map center $(m_c,n_c)$
 is within the aperture radius. 
 
-Since flux density uncertainty grows with aperture radius, we have tried various aperture size from $60''$
-to $250''$ and found that $150''$  is  a good compromise between  uncertainty and full saturation of the flux density (see Figure \ref{fig:Uranus_s308}). 
-We note however that the power uncounted for beyond an aperture radius of $250''$ is between 30\% at 260 GHz 
-in using parameters in Tables 1 and 4 of Kramer et al
-(2013) (amplitudes of the three error beams at 280GHz and 210GHz, $\eta_{fss}$ and 1-Feff and Carsten's email).
+Since flux density uncertainty grows with aperture radius, we have tested various aperture size from $60''$
+to $250''$ and found that $150''$ is a good compromise between
+uncertainty and full saturation of the flux density (see Figure
+\ref{fig:Uranus_s308}).
+We note however that the power uncounted for beyond an aperture radius
+of $250''$ is about 30\% at 260 GHz in using parameters in Tables 1 and 4 of Kramer~et~al.
+(2013). %(amplitudes of the three error beams at 280GHz and 210GHz,
+%$\eta_{fss}$ and 1-Feff and Carsten's email).
 
 In each pixel, brightness $I_{m,n}$ is naturally expressed in unit of
 Jy/beam, where  {\it beam} stands for the {\it total} beam.
-Hence, prior to summing all pixels within the aperture with eq. \ref{eq:ApPh_7_7}, brightness $I_{m,n}$
+Hence, prior to summing all pixels within the aperture with
+Eq.~\ref{eq:ApPh_7_7}, brightness $I_{m,n}$
 must be converted from  Jy/beam to Jy/pixel. This
-conversation is done with the factor $dx^2 \over {\Omega_{tot}}$
-which is, effectively, {\bf the pixel area $dx^2$  in unit of fractional beam}
+conversion is done with the factor $dx^2 \over {\Omega_{tot}}$
+which is, effectively, the pixel area $dx^2$ in unit of fractional
+beam. 
 
-The solid angle of the total beam $\Omega_{tot}$ has been assumed constant and taken as the mean value 
-computed from observations of Uranus and Neptune of runs 9, 12, and 14 at elevations between $45^{\circ}$ and $65^{\circ}$. It is : 
-
+The solid angle of the total beam $\Omega_{tot}$ has been assumed
+constant and taken as the mean value computed from the series of 75
+\bm\ scans of Uranus and Neptune that are described in
+Sect.~\ref{se:beam_efficiency}.
+%observations of Uranus and Neptune of runs 9, 12, and 14 at
+%elevations between $45^{\circ}$ and $65^{\circ}$.
+It is : 
 \begin{equation}
  \Omega_{tot} (r_{max}) = \int_0^{r_{max}} B(r) 2 \pi r dr
 \label{eq:Otrue}
 \end{equation}
 
-\noindent where $B(r)$ is the radial brightness profile obtained in azimuthally averaging brigthness over narrow annuli
+\noindent where $B(r)$ is the full beam profile as defined in
+Sect.~\ref{se:fullbeam_prof} and have been obtained in azimuthally averaging brigthness over narrow annuli
 $dr$ in width, and normalised so that B(0)=1 (R. Adam's thesis (2016) or J.D. Kraus (1980)).
-We have used $r_{max}=180''$ which is the maximum extent allowed for uniform rms in the maps acquired during observations of runs 9, 12 and 14.
+We have used $r_{max}=180''$ which is the maximum extent allowed for
+uniform rms in the maps acquired during observations of N2R9, N2R12
+and N2R14. Results are given in Table \ref{tab:solid}.
 
 The excess of the total beam relative to the Gaussian main beam is the ratio
-$\Omega_{tot} / 2 \pi (\sigma_{Gauss})^2$, with  $\sigma_{Gauss}$ derived from the $FWHM$ of the main beam determined
-in \S \ref{se:beams}.
+$\Omega_{tot} / 2 \pi (\sigma_{Gauss})^2$, with $\sigma_{Gauss}$
+derived from the $FWHM$ of the main beam determined in Sect.~\ref{se:MB}.
 
-Observations of Uranus and Neptune during runs 9, 12 and 14 have been used to estimate $\Omega_{tot}$ and results
-are in Table \ref{tab:solid}. The mean values in this Table have been adopted for aperture photometry of secondary calibrators presented below.  
-
-
+%Observations of Uranus and Neptune during runs 9, 12 and 14 have been used to estimate $\Omega_{tot}$ and results
+%are in Table \ref{tab:solid}. The mean values in this Table have been
+%adopted for aperture photometry of secondary calibrators presented
+%below.
 
 \begin{figure}[ht!]
   \begin{center}
     \includegraphics[clip=true,width=0.6\textwidth, trim={8cm, 3cm, 8cm, 4cm}]{Figures/Aperture_photo/Uranus_s308_A1.pdf}
-    \caption{Aperture photometry of Uranus (20170227s308). Integrated flux density is the red curve that
+    \caption[Aperture photometry of Uranus]{Aperture photometry of Uranus (20170227s308). Integrated flux density is the red curve that
 saturates at an aperture radius of $ \sim 150''$. Uncertainty over this aperture is $\sim$ 2\% of the total flux density.}
     \label{fig:Uranus_s308}
   \end{center}
 \end{figure}
-
 
 \begin{table*}[!h]
 \caption{Solid angle of total beam based on Uranus and Neptune observations}
@@ -78,38 +90,32 @@ mean  &     &  248            &  453         &  239         &  1.74             
 \end{tabular}
 \end{table*}
 
+%If the main beam efficiency is defined as the ratio between the power in the gaussian main beam fitted and
+%all the power out to $r_{max}=180''$, it is easy to show that this efficiency is the $ 1 / (\Omega_{tot}/\Omega_{gauss}$).
+%These efficiences for the three arrays are provided in Table \ref{tab:MB} as well as the level of the error beam (side lobes)
+%relative to the main beam peak in dB (we recall that -12dB as found is 6\%).
 
-If the main beam efficiency is defined as the ratio between the power in the gaussian main beam fitted and
-all the power out to $r_{max}=180''$, it is easy to show that this efficiency is the $ 1 / (\Omega_{tot}/\Omega_{gauss}$).
-These efficiences for the three arrays are provided in Table \ref{tab:MB} as well as the level of the error beam (side lobes)
-relative to the main beam peak in dB (we recall that -12dB as found is 6\%).
-
-\begin{table*}[!h]
-\caption{Main beam efficiency (\%) and level of error beam (dB)}
-\label{tab:MB}
-\centering
-\begin{tabular}{l| c | c c c | c c c}
-\hline\hline
-\noalign{\smallskip}
-run  & Nber of scans & \multicolumn{3}{c}{Main beam efficiency } & \multicolumn{3}{c}{Error beam level (dB)} \\
-\hline
-     &               &  A1    &    A2   &  A3  & A1  &  A2  & A3   \\
-            \hline
-r9    & 27  &  54.1$\pm$ 3.2\%    &  74.7$\pm$ 2.9\% & 55.9 $\pm$ 3.7\%   &  -11.5 $\pm$ 0.8    &  -14.9 $\pm$ 0.6   &  -12.0 $\pm$ 0.6  \
- \\
-r12   & 20  &  55.7$\pm$ 2.0\%    &  77.4$\pm$ 1.0\% & 57.1 $\pm$ 2.0\%   &  -13.4 $\pm$ 0.3    &  -16.1 $\pm$ 0.3   &  -13.8 $\pm$ 0.3  \
- \\
-r14   & 28  &  55.0$\pm$ 2.7\%    &  76.0$\pm$ 1.8\% & 56.1 $\pm$ 2.6\%   &  -12.5 $\pm$ 0.6    &  -15.3 $\pm$ 0.6   &  -12.7 $\pm$ 0.8  \
- \\
-            \noalign{\smallskip}
-            \hline
-\end{tabular}
-\end{table*}
-
-
-
-
-
+%\begin{table*}[!h]
+%\caption{Main beam efficiency (\%) and level of error beam (dB)}
+%\label{tab:MB}
+%\centering
+%\begin{tabular}{l| c | c c c | c c c}
+%\hline\hline
+%\noalign{\smallskip}
+%run  & Nber of scans & \multicolumn{3}{c}{Main beam efficiency } & \multicolumn{3}{c}{Error beam level (dB)} \\
+%\hline
+%     &               &  A1    &    A2   &  A3  & A1  &  A2  & A3   \\
+%            \hline
+%r9    & 27  &  54.1$\pm$ 3.2\%    &  74.7$\pm$ 2.9\% & 55.9 $\pm$ 3.7\%   &  -11.5 $\pm$ 0.8    &  -14.9 $\pm$ 0.6   &  -12.0 $\pm$ 0.6  \
+% \\
+%r12   & 20  &  55.7$\pm$ 2.0\%    &  77.4$\pm$ 1.0\% & 57.1 $\pm$ 2.0\%   &  -13.4 $\pm$ 0.3    &  -16.1 $\pm$ 0.3   &  -13.8 $\pm$ 0.3  \
+% \\
+%r14   & 28  &  55.0$\pm$ 2.7\%    &  76.0$\pm$ 1.8\% & 56.1 $\pm$ 2.6\%   &  -12.5 $\pm$ 0.6    &  -15.3 $\pm$ 0.6   &  -12.7 $\pm$ 0.8  \
+% \\
+%            \noalign{\smallskip}
+%            \hline
+%\end{tabular}
+%\end{table*}
 
 
 %  LP
@@ -122,16 +128,20 @@ r14   & 28  &  55.0$\pm$ 2.7\%    &  76.0$\pm$ 1.8\% & 56.1 $\pm$ 2.6\%   &  -12
 %  JFL
 %  --> extracted from results_Ap.tex
 
+Finally, in Table~\ref{tab:ratio}, we provide the ratio between the
+flux densities derived by aperture photometry
+and derived using the fixed-width Gaussian photometry, as defined in
+Sect.~\ref{se:flux_density_equation}.
+%by a simple Gaussian fit to the source (Uranus or Neptune) with the fixed fwhms $12.5''$ and $18.0''$
+%at 1mm and 2mm.
+These ratios are larger than unity and indicate that aperture
+photometry recovers more flux density than a Gaussian fit as
+expected.
 
-
-
-Finally, in Table \ref{tab:ratio}, we provide the ratio between the 
-the flux densities derived by aperture photometry and by a simple Gaussian fit to the source (Uranus or Neptune) with the fixed fwhms $12.5''$ and $18.0''$
-at 1mm and 2mm.
-These ratios are larger than unity and indique that aperture photometry recovers more flux density than  a gaussian fit as expected. A  full analysis
-of these ratios would require to take into account the fact that KIDs (kidpars) have actually been calibrated by fitting a fixed gaussian to Uranus 
-or Neptune. Hence, there is a slight inconsistency in applying aperture photometry in these conditions.    
-
+%A full analysis of these ratios would require to take into
+%account the fact that KIDs (kidpars) have actually been calibrated by
+%fitting a fixed gaussian to Uranusor Neptune. Hence, there is a slight
+%inconsistency in applying aperture photometry in these conditions.
 
 
 %\begin{figure}[ht!]
@@ -143,10 +153,8 @@ or Neptune. Hence, there is a slight inconsistency in applying aperture photomet
 %  \end{center}
 %\end{figure}
 
-
-
 \begin{table*}[!h]
-\caption{ratio aperture photometry / gaussian fit flux densities   }
+\caption{ratio aperture photometry / fixed-width Gaussian flux densities   }
 \label{tab:ratio}
 \centering
 \begin{tabular}{l| c | c c c }

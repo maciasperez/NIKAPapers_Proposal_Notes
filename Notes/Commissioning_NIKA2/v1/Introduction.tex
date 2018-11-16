@@ -88,108 +88,11 @@ the instrument and of the data reduction that will be used in the remaining of
 the document for all performance derivations. It also lists and introduces the necessary inputs
 that are required for the full data reduction and that are discussed in details
 in the following sections.
+We start with atmospheric opacity in
+chapter~\ref{se:opacities}, then proceed to detector positional offsets in
+chapter~\ref{se:fp_reconstruction} and beam characterization in chapter~\ref{se:beams}.
+Chapter~\ref{se:calibration} addresses the overall calibration of
+observations. At last, chapters~\ref{se:photometry}~and~\ref{se:nefd} address
+the final performances of the instrument in terms of photometry and sensitivity,
+before the final summary section~\ref{se:summary}.
 
-%We start with atmospheric opacity in
-%chapter~\ref{se:opacities}, then proceed to detector positional offsets in
-%chapter~\ref{se:fp_reconstruction} and beam characterization in chapter~\ref{se:beams}.
-%Chapter~\ref{se:calibration} addresses the overall calibration of
-%observations. At last, chapters~\ref{se:photometry}~and~\ref{se:nefd} address
-%the final performances of the instrument in terms of photometry and sensitivity,
-%before the final summary section~\ref{se:summary}.
-In Chapter~\ref{se:opacities}, the atmospheric attenuation is corrected
-using two-step method: first, the line-of-sight opacity of each
-observing scans is estimated using a series skydip observations
-performed with the NIKA2 instrument, then a correction coefficient is
-applied to the skydip opacity to ensure the flus density stablity
-against the atmospheric condition. Opacity derivation based on the
-resident IRAM taumeter measures is also tested for consistency checks.
-
-In Chapter~\ref{se:fp_reconstruction}, \bm\ scans are used to derive
-the position of each KIDs in the FoV and perform a first selection to
-discard noisy and cross-talking KIDs. The KIDs are further selected on
-the comparison between their measured position and the expected
-designed position. Finally, series of defocused \bm\ scans are used to
-reconstruct the focus surfaces and estimate the telescope focus
-setting that optimizes the focus across the arrays.   
-
-In Chapter~\ref{se:beams}, noticeable features of the beam pattern are
-identified using \bm\ scans. Radial profiles of the full beam are
-measured up to a radius of $180''$ and are fitted using a
-three-Gaussian model. The main beam of each array is evaluated using
-three complementary methods: the first Gaussian that best fits the full
-beam profile, a single Gaussian fit on a side-lobe-masked version of
-the profile and a 2D Gaussian fit on a side-lobe-masked version of the
-beam map. Then we use the knowledge we have gained on the full beam
-and main beam to derive the main beam efficiency up to $180''$. A more
-precise description of the beam pattern above $180''$, which is useful for
-diffuse emission studies, is let for a future dedicated study that
-will be conducted as part of the diffuse emission NIKA2 Large
-Programs.
-
-Chapter~\ref{se:calibration} deals with all the aspects related to the
-calibration. Sections~\ref{se:cal_HA_reference}
-and \ref{se:cal_HA_main} describe the reference photometric system
-that has been adopted: flux densities rely on a fit
-of a Gaussian with a fixed FWHM at reference values and are given at
-reference frequencies. However, we also tested a method based on aperture
-photometry and reported the conversion coefficients between the
-point-source and aperture photometry calibration in
-Sect.~\ref{se:aperture_photo_calibration}.
-The main primary calibrator is Uranus, although Neptune
-is also considered. In Sect.~\ref{se:ref_flux_primaries}, the flux
-expectations for the primary calibrators are derived using the Moreno
-model, which is precise at a $5\%$ level. In
-Sect.~\ref{se:flatfields}, the KID-to-KID relative calibration is
-performed as part of the FOV reconstruction using the fixed-Gaussian fit on
-individual maps per KID, which are projected from \bm\ scans. We test
-the stability of the KID response across the FoV by considering both
-flat fields toward point sources (a.k.a. main beam flat fields) and
-flat fields of the atmosphere (a.k.a. forward beam flat
-fields). Section~\ref{se:obsdate_variations} deals with the well-known
-effect of the telescope heating during the afternoon. This induces a
-widening of the beam, which comes along with a drop of the measured
-flux densities. We use calibration observations to determine the most
-impacted UT hours of the day. The baseline calibration, as presented
-in Sect.~\ref{se:baseline_calibration}, is drawn from
-scans acquired between 22:00 and 9:00 UT and between 10:00 and 15:00
-UT hours, whereas the Sun-rising and afternoon scans are
-discarded. However, in Sect.~\ref{se:photocorr_calibration}, we also
-tested a calibration method which resorts to a photometric correction
-to retrieve robust flux density estimates while the beam experiences
-instabilities. This method, which is based on a monitoring of the beam
-size throughout an observation campaign, demands dedicated scans to be
-made on an hour basis to reach science-grade level of accuracy and
-robustness. We present a test case based on a beam monitoring using
-the pointing scans, which yields promising results but a mild lake of
-robustness. Thus, we choose to base the sensitivity assessment on the
-baseline calibration only.
-
-The accuracy and stability of the photometry are treaded in
-Chapter~\ref{se:photometry}. We define two calibration performance
-criteria: first we measure the ratio between the measured flux density
-and the expectations for MWC349, a secondary calibrator which is
-monitored at Plateau de Bure, and secondly we estimate the rms errors
-with respect to the median flux density using a series of bright
-point-like sources. This latter criterion provides us with an estimate
-of the statistical uncertainties of the calibration, whiwh includes
-errors sourced by the dispersion in the observing conditions
-(atmosphere, elevation, source brightness, integration time, etc.) and
-in the data analysis.
-
-% first we characterise the features of the noise in the time domain
-% by describing both the noise power spectrum and the full KID-to-KID
-% correlation matrices, and illustrate the impact of various noise
-% decorrelation methods. 
-In Chapter~\ref{se:nefd}, we characterise NIKA2 sensitivity by
-estimating the Noise Equivalent Flux Density (NEFD). We developped
-three complementary methods that differ in the measurement of the flux
-density variance but rely on the
-same estimate of the on-source integration time. The first method is
-based on fitting the variance decrease with the integration time, the
-second utilizes statistically equivalent data splits to produce a
-noise map estimate and the third method resorts to measuring the noise
-far from the source. Regarding the integration time, we ensure the
-robustness of the estimate by cross-checking the results of two
-approaches: integration times directly derived from the sample counts
-are compared to integration time estimates with the array footprint
-that best account for the scan strategy.  

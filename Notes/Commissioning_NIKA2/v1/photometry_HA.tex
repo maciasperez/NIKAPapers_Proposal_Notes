@@ -28,7 +28,7 @@ R(\theta, \phi, \am, mm_{H_{2}O}) = G_{k} \int_{0}^{+\infty} I(\nu)
 \label{eq:basicphot}
 \end{equation}
 
-\noindent {\bf FM: if $k$ is the kid number, then it should be $R_k$}
+%\noindent {\bf FM: if $k$ is the kid number, then it should be $R_k$}
 
 where the different factors in the integral are:
 \begin{itemize}
@@ -37,13 +37,12 @@ where the different factors in the integral are:
   section~\ref{se:bandpasses} with a Rayleigh-Jeans source. It is
   divided by $\left(\frac{\nu}{\nu_{0}}\right)^{2}$ to correct for the
   incident spectrum.
-   
-   \noindent {\bf FM: in section 2, we define $T$ note $T^\prime$}\\
+   %\noindent {\bf FM: in section 2, we define $T$ note $T^\prime$}\\
 
 \item $e^{\left(-\am . \tau(\nu,  mm_{H_{2}O} )\right)}$: the
   atmospheric transmission at airmass  $\am$ for an amount of
   precipitable water vapor $mm_{H_{2}O}$ generating an opacity $\tau(\nu)$.
-\item $A\Omega (\nu) $: the KID etendue   {\bf FM: extent ? etendue is not english as far as i know}, {\it i. e.} the product of
+\item $A\Omega (\nu) $: the KID etendue, {\it i. e.} the product of
   its light collecting area by the solid angle it intercepts on the
   sky. While the step between  pixels is well known and is measured (see Sect.~\ref{se:fov}), the
   actual solid angle is not known precisely and is {\em probably} a function of the
@@ -53,8 +52,8 @@ where the different factors in the integral are:
   known very accurately.
 \end{itemize}
 The integral in eq~\ref{eq:basicphot} gives the total power (units of $\rm W$)
-falling on a pixel. The factor $G_{k}$ (units of  $\rm W^{-1}$) converts this
-power to ADU. {\bf FM:  ADU ?}
+falling on a KID. The factor $G_{k}$ (units of  $\rm W^{-1}$) converts this
+power to Hertz.%ADU. {\bf FM:  ADU ?}
 
 By virtue of the conservation of specific intensity in a telescope,
 equation~\ref{eq:basicphot} can be rewritten as:
@@ -87,68 +86,66 @@ atmosphere.
 
 \subsection{Effect of the atmosphere}
 
-In order to study the effects of the atmosphere, let us define the
-effective frequency of a source as the weighted frequency of the
-passband, taking into account the system and atmospheric transmission,
-as well as the shape of the incident spectrum:
-\begin{equation}
-\nu_{eff}( \am, mm_{H_{2}O}) = \frac{ \int_{0}^{+\infty} I(\nu) \frac{T'(\nu)}{\left(\frac{\nu}{\nu_{0}}\right)^{2}} e^{\left(-\am
-  . \tau(\nu,  mm_{H_{2}O})\right)} \nu d\nu } { \int_{0}^{+\infty} I(\nu) \frac{T'(\nu)}{\left(\frac{\nu}{\nu_{0}}\right)^{2}} e^{\left(-\am
-  . \tau(\nu,  mm_{H_{2}O})\right)}  d\nu}
-\label{eq:nueff}
-\end{equation}
+Tthe effects of the atmosphere have been discussed in
+Sect.~\ref{se:bandpasses}, in which we have defined an
+effective frequency $\nu_{\rm{eff}}$, as given in
+Eq.~\ref{eq:nueff0}. 
 
+%let us define the
+%effective frequency of a source as the weighted frequency of the
+%passband, taking into account the system and atmospheric transmission,
+%as well as the shape of the incident spectrum:
+%\begin{equation}
+%\nu_{\rm{eff}}( \am, mm_{H_{2}O}) = \frac{ \int_{0}^{+\infty} I(\nu) \frac{T'(\nu)}{\left(\frac{\nu}{\nu_{0}}\right)^{2}} e^{\left(-\am
+%  . \tau(\nu,  mm_{H_{2}O})\right)} \nu d\nu } { \int_{0}^{+\infty} I(\nu) \frac{T'(\nu)}{\left(\frac{\nu}{\nu_{0}}\right)^{2}} e^{\left(-\am
+%  . \tau(\nu,  mm_{H_{2}O})\right)}  d\nu}
+%\label{eq:nueff}
+%\end{equation}
 
-\noindent {\bf FM: already defined in eq \ref{eq:nueff0}...}\\
+%\noindent {\bf FM: already defined in eq \ref{eq:nueff0}...}\\
 
+%In order to compute the atmospheric transmission, we have used
+%the IRAM atmosphere 2009 models provided in GILDAS, computed for
+%so called {\em midlatwinter} conditions, a temperature of 268 K  and a pressure of 703.5
+%hPa. $\nu_{\rm{eff}}$ allows us to characterise the impact of the variation of
+%the atmospheric transmission on the full system transmissison.  Note
+%that the instrument transmission $T'(\nu)$ is the one measured in
+%Sect.~\ref{se:bandpasses}. 
+%\noindent {\bf FM: but we called it $T$...}\\
 
-In order to compute the atmospheric transmission, we have used
-the IRAM atmosphere 2009 models provided in GILDAS, computed for
-so called {\em midlatwinter} conditions, a temperature of 268 K  and a pressure of 703.5
-hPa. $\nu_{eff}$ allows us to characterise the impact of the variation of
-the atmospheric transmission on the full system transmissison.  Note
-that the instrument transmission $T'(\nu)$ is the one measured in
-sec~\ref{se:bandpasses}. 
+%Figure~\ref{fig:nueff} shows the variations of
+%$\nu_{eff}$ as a function of the water content of the atmosphere for
+%two elevations (zenith and 20 degree) and two spectral shape (RJ and
+%flat spectrum), in the two 1mm passbands and in the 2mm passband. 
 
-\noindent {\bf FM: but we called it $T$...}\\
-
-
-Figure~\ref{fig:nueff} shows the variations of
-$\nu_{eff}$ as a function of the water content of the atmosphere for
-two elevations (zenith and 20 degree) and two spectral shape (RJ and
-flat spectrum), in the two 1mm passbands and in the 2mm passband. 
-
-Typical variations of $\nu_{eff}$ with the spectral shape of the
-source range between 1\% and 3\%, and are relatively stable between good
-($\tau_{225GHz} \simeq 0.1$) and
+As seen in Fig.~\ref{fig:atmosphereimpact}, typical variations of $\nu_{\rm{eff}}$ with the spectral shape of the
+source range between $1\%$ and $3\%$, and are relatively stable
+between good ($\tau_{225GHz} \simeq 0.1$) and
 poor  ($\tau_{225GHz} \simeq 1.0$) atmospheric conditions for both the
 1mm and 2mm bands. Let us now examine the effect of elevation.
 Under good atmospheric conditions ($\tau_{225GHz} \simeq 0.1$), $\nu_{eff}$ changes by
 less than 0.3\% between zenith and 20 degree elevation. Under poor
 conditions ($\tau_{225GHz} \simeq 1.0$), this rises to almost 3\% for
 a Rayleigh-Jeans spectrum in the 2 mm band, {\it i.e.} larger than the
-  variations due to the spectral shape of the source.
+variations due to the spectral shape of the source.
 
-
-
-\begin{figure}[h]
-\begin{tabular}{cc}
-\includegraphics[width=0.5\textwidth]{Figures/atm_nueff_1mm.pdf}
-  & \includegraphics[width=0.5\textwidth]{Figures/atm_nueff_2mm.pdf}
-  \\
-a) 1 mm & b) 2 mm \\
-\end{tabular}
-\caption[Effective frequency as a function of the sky opacity.]{ The
-  effective frequency (see text) have been computed for two source
-  spectra (RJ and constant), and for two elevations.}
-\label{fig:nueff}
-\end{figure}
+%\begin{figure}[h]
+%\begin{tabular}{cc}
+%\includegraphics[width=0.5\textwidth]{Figures/atm_nueff_1mm.pdf}
+%  & \includegraphics[width=0.5\textwidth]{Figures/atm_nueff_2mm.pdf}
+%  \\
+%a) 1 mm & b) 2 mm \\
+%\end{tabular}
+%\caption[Effective frequency as a function of the sky opacity.]{ The
+%  effective frequency (see text) have been computed for two source
+%  spectra (RJ and constant), and for two elevations.}
+%\label{fig:nueff}
+%\end{figure}
 
 Nevertheless, to a first approximation, we consider the shape of the atmospheric
 transmission independent of the elevation and water content, so that  an
-effective zenith opacity $\tau_{eff}$
-used. 
-Equation~\ref{eq:basicphot2} becomes under this assumption: 
+effective zenith opacity $\tau_{\rm{eff}}$
+used. Equation~\ref{eq:basicphot2} becomes under this assumption: 
 \begin{equation}
 R(\theta, \phi, \am, mm_{H_{2}O}) \simeq G_{k}  A_{p}\Omega_{s} e^{\left(-\am
   . \tau_{eff}(mm_{H_{2}O})\right)} \int_{0}^{+\infty} I(\nu)
@@ -162,7 +159,7 @@ plot figure~\ref{fig:nueff}, we derive that this approximation
 is valid below the percent level for $\tau_{225GHz} < 0.35$
 
 The dependance on elevation and opacity can be corrected as shown in
-section~\ref{se:opacities}, so that a response outside of atmosphere (in
+Sect.~\ref{se:opacities}, so that a response outside of atmosphere (in
 terms of airmass, but not in terms of transmission) can be derived:
 \begin{equation}
 R(\theta, \phi) \simeq G_{k}  A_{p}\Omega_{s} \int_{0}^{+\infty} I(\nu)
@@ -182,8 +179,6 @@ calibrator.
 A primary calibrator is a source whose spectral irradiance is
 known. For NIKA2, we use two planets as primary calibrators, Uranus
 and Neptune.
-
-
 
 The specific intensity $I_{c}(\nu)$ of the
 calibrator is:
@@ -255,8 +250,6 @@ convention. By construction, integrating over the map we have:
 \int\int M_{c}(\theta, \phi) \sin \theta d\theta d\phi = S_{c}(\nu_{0})
 \end{equation}
 
-
-
 Similarly, a point source with spectral irradiance $S_{s}(\nu)$ will
 generate a response at position $(\theta, \phi)$
 \begin{equation}
@@ -316,7 +309,6 @@ When a source is measured
 C_{s} = S_{s} (\nu_{0}) / S_{q}(\nu_{0}) = S_{s}(\nu_0) / S_{c} (\nu_{0})  \times \frac{A_{c}}{A_{s}}
 \end{equation}
 
-
 \begin{equation} 
 C_{s} = S_{s}(\nu_{0}) / S_{c} (\nu_{0})  \times \frac{\int \int
 R_{c}(\theta, \phi) \sin \theta d\theta d\phi }{\int \int
@@ -363,15 +355,13 @@ T_{atm}(\nu) d\nu}
 \int_{0}^{+\infty} S_{s}(\nu)  \frac{T'(\nu)}{\left(\frac{\nu}{\nu_{0}}\right)^{2}} 
 T_{atm}(\nu) d\nu 
 }
+\label{eq:color_corr_atm}
 \end{equation}
 
-
-\subsection{Calibration for aperture photometry}
-
-For aperture photometry, the map calibrated in Jy / $FWHM_{0}$ must be
-converted in a map in Jy / pixel. 
-
-\subsection{Calibration in surface brightness}
+%\subsection{Calibration for aperture photometry}
+%For aperture photometry, the map calibrated in Jy / $FWHM_{0}$ must be
+%converted in a map in Jy / pixel. 
+%\subsection{Calibration in surface brightness}
 
 
 

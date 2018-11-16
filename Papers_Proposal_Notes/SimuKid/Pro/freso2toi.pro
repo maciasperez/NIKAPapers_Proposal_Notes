@@ -1,6 +1,7 @@
 
-pro freso2toi, freso_in, kid_model, delta_f, toi_rf, toi_cf, epsilon_qi=epsilon_qi, $
-               i=i, q=q, di=di, dq=dq, npts_avg=npts_avg, test=test, apply_shift=apply_shift, $
+pro freso2toi, freso_in, kid_model, freso_signal=freso_signal, delta_f, toi_rf, toi_cf, epsilon_qi=epsilon_qi, $
+               i=i, q=q, di=di, dq=dq, $
+               npts_avg=npts_avg, test=test, apply_shift=apply_shift, $
                stop=stop, xc=xc, yc=yc, r=r
   
 f_m = kid_model.f0 - delta_f/2.
@@ -28,6 +29,19 @@ if not keyword_set(test) then toi_rf = toi_rf - toi_rf[npn-1]
 ; iqfit = linfit(i,q, chisqr=khi2)
 circlefit, I, Q, xc, yc, r, avgdist, zzmin=1d-6
 toi_cf = -cftoi(i, q, di, dq, delta_f, xc, yc, r, polydeg = 2, stop=stop)
+if keyword_set(freso_signal) then begin
+   freso = freso_signal + kid_model.f0
+
+   s21_m = resonance( kid_model, freso, f_m, epsilon_qi=epsilon_qi)
+   s21_p = resonance( kid_model, freso, f_p, epsilon_qi=epsilon_qi)
+   
+   s21 = dcomplexarr(2*nsn)
+   s21[2*pt]   = s21_p
+   s21[2*pt+1] = s21_m
+
+   iqdidq, kid_model, s21, signali, signalq, disignal, dqsignal, npts_avg=npts_avg
+   toi_cf = -cftoi(signali, signalq, disignal, dqsignal, delta_f, xc, yc, r, polydeg = 2, stop=stop)
+endif
 if not keyword_set(test) then toi_cf = toi_cf - toi_cf[npn-1]
 
 ;; ;;===============

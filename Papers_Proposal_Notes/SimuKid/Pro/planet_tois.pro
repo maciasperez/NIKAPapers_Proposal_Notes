@@ -47,17 +47,17 @@ nsn = round(obs_time_hour*3600.d0*f_hf)
 time_hf = dindgen(nsn)/f_hf
 
 ;; Planet fluxes
-nflux = 50 ;30
-flux_min = 1.d-3 ;1d-5   ;1d-3 ;
+nflux = 100 ;30
+flux_min = 1.d0 ;10d0   ;1d-3 ;
 flux_max = 500.d0 ;500.d0 ;1.d0 ;
 
 ;;--------------------------------------------------------------
 ;; Scanning speeds
-npts_per_fwhm_list = [3, 5]
+npts_per_fwhm_list = [3, 5] ;,10]
 nspeed = n_elements( npts_per_fwhm_list)
 
 ; noise
-noise = randomn( seed, nsn, /double)*0.d0
+noise = randomn( seed, nsn, /double);*1d-1
 
 ;; Planet fluxes
 flux_list = dindgen(nflux)/(nflux-1.)*(flux_max-flux_min) + flux_min
@@ -117,8 +117,11 @@ for ispeed=0, nspeed-1 do begin
       for iflux=0, nflux-1 do begin
 
          ;; Planet only
-         freso = -gplanet*flux_list[iflux]*jy2hz + noise
-         freso2toi, freso, kid_model, delta_f, toi_rf_hz, toi_cf_hz, $
+         freso        = -gplanet*flux_list[iflux]*jy2hz + noise
+         ;freso_signal = -gplanet*flux_list[iflux]*jy2hz
+         delvarx, freso_signal
+
+         freso2toi, freso, freso_signal=freso_signal, kid_model, delta_f, toi_rf_hz, toi_cf_hz, $
                     npts_avg=npts_avg, i=i_planet, q=q_planet
          toi_rf_jy = toi_rf_hz/jy2hz
          toi_cf_jy = toi_cf_hz/jy2hz
@@ -140,12 +143,15 @@ for ispeed=0, nspeed-1 do begin
          silent=1
          delvarx, myfit
          w = where(time_lf gt 14 and time_lf lt 16)
-         myfit = mpfitfun("mygauss", time_lf[w], toi_rf_jy[w], $
+         myfit_rf = mpfitfun("mygauss", time_lf[w], toi_rf_jy[w], $
                           e_r, p_start, quiet = silent, $
                           parinfo=parinfo, status=status)
          
-         planet_rf_flux_results[ispeed, imc, iflux] = myfit[1]
+         planet_rf_flux_results[ispeed, imc, iflux] = myfit_rf[1]
+;         planet_rf_flux_results[ispeed, imc, iflux] = a[0]
 
+
+;stop
          ;; Cf
          junk_cf = gaussfit( time_lf, toi_cf_jy, a, nterms=nterms)
          nparams = 4
@@ -156,31 +162,31 @@ for ispeed=0, nspeed-1 do begin
          silent=1
          delvarx, myfit
          w = where(time_lf gt 14 and time_lf lt 16)
-         myfit = mpfitfun("mygauss", time_lf[w], toi_cf_jy[w], $
+         myfit_cf = mpfitfun("mygauss", time_lf[w], toi_cf_jy[w], $
                           e_r, p_start, quiet = silent, $
                           parinfo=parinfo, status=status)
          
-         planet_cf_flux_results[ispeed, imc, iflux] = myfit[1]
-
-
-
-
-
-;; wind, 1, 1, /f, /l
-;; my_multiplot, 1, 3, pp, pp1, /rev
-;; plot, time_hf, -freso/jy2hz, xra=[14,16], position=pp1[0,*], /noerase
-;; plot, time_lf, toi_rf_jy,  position=pp1[1,*], xra=[14,16], /noerase
-;; oplot,time_lf, junk_rf,  psym=1, col=170
-;; oplot, time_lf, mygauss(time_lf, myfit), col=100
-;; plot, time_lf, toi_cf_jy,  position=pp1[2,*], xra=[14,16], /noerase
-;; oplot, time_lf, junk_cf, psym=1, col=250
-
-;; wind, 1, 1, /f
-;; plot, time_lf, toi_cf_jy, xra=[14,16]
-;; oplot, time_lf, mygauss(time_lf, myfit), col=250
-;; oplot, time_lf, junk_cf, col=100
-
+         planet_cf_flux_results[ispeed, imc, iflux] = myfit_cf[1]
+;         planet_cf_flux_results[ispeed, imc, iflux] = a[0]
+;; print, myfit_cf[1]/flux_list[iflux]
 ;; stop
+
+;; wind, 1, 1, /free, /large
+;; my_multiplot, 1, 2, pp, pp1, /rev
+;; plot, time_lf, toi_rf_jy,  position=pp1[0,*], xra=[14,16], /noerase
+;; oplot,time_lf, junk_rf,  psym=1, col=170
+;; oplot, time_lf, mygauss(time_lf, myfit_rf), psym=1, col=250
+;; legendastro, 'Rf', /left
+;; legendastro, ['gaussfit','mpfitfun'], col=[170,250], /right
+
+;; plot, time_lf, toi_cf_jy,  position=pp1[1,*], xra=[14,16], /noerase
+;; oplot, time_lf, junk_cf, psym=1, col=170
+;; oplot, time_lf, mygauss(time_lf, myfit_cf), psym=1, col=250
+;; legendastro, 'Cf', /left
+;; legendastro, ['gaussfit','mpfitfun'], col=[170,250], /right
+
+;stop
+
 
          ;; HWP only (for subtraction)
          freso_hwp  =  -hwp_beta_jy*jy2hz
@@ -276,7 +282,7 @@ for ispeed=0, nspeed-1 do begin
 endfor
 
 ;; Output vs input flux
-yra = [0.96, 1.01]
+yra = [0.98, 1.01]
 xra = minmax(flux_list)
 imc = 0
 if ps eq 0 then wind, 1, 1, /free, /large
@@ -290,7 +296,7 @@ oplot, flux_list, planet_rf_flux_results[1,imc,*]/flux_list, col=col_rf
 oplot, flux_list, planet_cf_flux_results[0,imc,*]/flux_list, col=col_cf, line=2
 oplot, flux_list, planet_cf_flux_results[1,imc,*]/flux_list, col=col_cf
 legendastro, ['3pts/FWHM', '5pts/FWHM'], line=[2,0], /right
-legendastro, ['Rf', 'Cf'], col=[col_rf, col_cf], line=[0,0], /left
+legendastro, ['Method 1', 'Method 2'], col=[col_rf, col_cf], line=[0,0], /left
 outplot, /close, /verb
 
 ;; yra = [0.96, 1.01]
@@ -313,8 +319,14 @@ outplot, /close, /verb
 
 
 stop
+;; Non linearity coeffs : Planet only 
+print, 'eps_rf (3pts/fwhm) = ', epsilon_planet_rf[0,imc]
+print, 'eps_rf (5pts/fwhm) = ', epsilon_planet_rf[1,imc]
+print, 'eps_cf (3pts/fwhm) = ', epsilon_planet_cf[0,imc]
+print, 'eps_cf (5pts/fwhm) = ', epsilon_planet_cf[1,imc]
 
-;; Distribution of non linearity coeffs
+
+;; Distribution of non linearity coeffs : Planet + HWP
 gap_x = 0.05
 if ps eq 0 then wind, 1, 1, /free, /large
 outplot, file='histos_epsilon', png=png, ps=ps

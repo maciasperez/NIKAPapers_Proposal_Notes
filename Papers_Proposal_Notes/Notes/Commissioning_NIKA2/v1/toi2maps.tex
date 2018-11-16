@@ -271,7 +271,7 @@ center, then several options are available to generalize this method. In
 particular, the mask can be design to adjust to several point sources. If the
 source is diffuse and extended, then we may go through an iterative procedure that
 subtracts an improved derivation of the signal at each step. For this work about
-the commissionning of the instrument and the assessment of its performances on
+the commissioning of the instrument and the assessment of its performances on
 point sources, we do not need to go into further details about this.
 
 \subsection{Map projection}
@@ -294,7 +294,7 @@ S_p        &=& \frac{1}{\sum_{k,t}1/\sigma_k^2}\sum_{k,t} \frac{m^k_t}{\sigma_k^
 where $\sigma^2_p$ is the variance associated to pixel $p$. We systematically
 project one map per array and a combined 1\,mm map and take a small enough
 resolution to respect the Nyquist criterion on the beam sampling. To keep margin
-and for the sake of simplicity, we usuallly take 2\,arcsec resolution pixels.
+and for the sake of simplicity, we usually take 2\,arcsec resolution pixels.
 
 In practice, and although the data cleaning procedure described in
 Sect.~\ref{se:toi_proc} significantly reduces the low frequency component of
@@ -302,10 +302,10 @@ TOIs, the residual noise is still not completely white nor KID independent. The
 correlation matrix is not strictly zero to begin with (Fig.~\ref{fig:nika_toi})
 and when looking at the distribution of the SNR on maps and variance maps
 obtained with Eqs~(\ref{eq:ngp_sum},\ref{eq:ngp_var}), the distribution is
-gaussian, but not normalized to unity (see Fig.~\ref{fig:sigma_boost}). This is
+Gaussian, but not normalized to unity (see Fig.~\ref{fig:sigma_boost}). This is
 due to the remaining correlations between TOIs before projection. At this stage,
 rather than putting more effort in TOI processing, we renormalize the width of
-the gaussian noise, actually increase the map variance by the required factor
+the Gaussian noise, actually increase the map variance by the required factor
 so that the SNR distribution becomes normalized. This normalization factor
 varies from scan to scan but is usually between 1.2 and 1.5. It is estimated on
 the background of the map, i.~e. far from the source.
@@ -314,7 +314,7 @@ the background of the map, i.~e. far from the source.
 \begin{center}
 \includegraphics[clip, angle=0, scale=1, width=0.75\textwidth]{Figures/sigma_boost.eps}
 \caption[Distribution of the SNR per beam]{Histogram of the SNR per beam on a scan of weak source (G2, see
-  Sect.~\ref{se:nefd_estimation_methods}). While the histogram is gaussian, its
+  Sect.~\ref{se:nefd_estimation_methods}). While the histogram is Gaussian, its
   width is not normalized to 1 due to residual correlated noise between the
   TOIs. This factor is accounted for before delivering the final variance map
   and associated flux estimates.}
@@ -331,7 +331,7 @@ final variance map of the sum of scans is also corrected for such a factor if ne
 \label{se:intro_photometry}
 
 Throughout this document, we adopt the following convention. Assuming the beam
-is a perfect gaussian of known $FWHM=\sigma\sqrt{8\ln 2}$, the instantaneous
+is a perfect Gaussian of known $FWHM=\sigma\sqrt{8\ln 2}$, the instantaneous
 signal measured by a KID is
 
 \begin{equation}
@@ -340,11 +340,11 @@ m^k(x,y) = \phi e^{-(x^2+y^2)/2\sigma^2} = \phi g(x,y)
 \end{equation}
 
 with $\phi$ the flux of the source. In pratice, the beam is not a perfect
-gaussian and significant side lobes must be accounted for
+Gaussian and significant side lobes must be accounted for
 (Sect.~\ref{se:beams}). If the beam was perfectly known and stable, we could in
-principle replace the gaussian form in eq.~(\ref{eq:flux_per_beam_def}) by the
+principle replace the Gaussian form in eq.~(\ref{eq:flux_per_beam_def}) by the
 beam pattern and fit for the amplitude $\phi$. In practice, we have found that
-it was enough as a first approximation to take an equivalent effective gaussian
+it was enough as a first approximation to take an equivalent effective Gaussian
 width and use it to derive the beam template. We take 12.5 and 18.5\,arcsec FWHM
 at 1 and 2\,mm respectively and compute all our fluxes with these
 values. We do this for both analyzed point sources and for absolute calibrators

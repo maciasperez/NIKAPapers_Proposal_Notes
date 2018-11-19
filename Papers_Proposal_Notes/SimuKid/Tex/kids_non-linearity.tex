@@ -73,7 +73,7 @@ Simulations of a KID non-linearity in total power meets the requirements (see Se
 %satellite designs such as \emph{LiteBIRD} \todo{add ref}. Such a background must
 %be accounted for in the simulations.}
 
-After early tests by \citep{1984ApJ...284L..51H}, modulation of the polarization by a rotating Half Wave Plate (HWP) has been left aside for \todo{20~TBC} years in the context of millimetric observations. With the improvement of technologies it progressively came back in the landscape, in particular with pioneering experiments like \emph{Maxipol} \citep{2007ApJ...665...42J}, \emph{SPIDER} \citep{2008SPIE.7010E..2PC}, \emph{EBEX} \citep{2010SPIE.7741E..1CR}, \emph{Polarbear} \citep{2012SPIE.8452E..1CK} \emph{BLAST-Pol} \citep{2014MNRAS.437.2772M}, \emph{ABS} \citep{2014RScI...85c9901K} and \emph{Advanced ACTPol} \citep{2016JLTP..184..772H}. It is now more and more common and is considered as the leading option for future satellite designs such as \emph{LiteBIRD} \citep{2014JLTP..176..733M} and next generation ground based experiments such as \emph{CMB-S4} \citep{2016arXiv161002743A}. The rotation of the HWP can be stepped (\emph{POLARBEAR} \citep{2014ApJ...794..171P}) or continuous  (\emph{EBEX}, \emph{ABS} and \nikad\  \citep{2015fers.confE..16R}).
+After early tests by \citep{1984ApJ...284L..51H}, modulation of the polarization by a rotating Half Wave Plate (HWP) has been left aside for \todo{20~TBC} years in the context of millimetric observations. With the improvement of technologies it progressively came back in the landscape, in particular with pioneering experiments like \emph{Maxipol} \citep{2007ApJ...665...42J}, \emph{SPIDER} \citep{2008SPIE.7010E..2PC}, \emph{EBEX} \citep{2010SPIE.7741E..1CR}, \emph{Polarbear} \citep{2012SPIE.8452E..1CK} \emph{BLAST-Pol} \citep{2014MNRAS.437.2772M}, \emph{ABS} \citep{2014RScI...85c9901K} and \emph{Advanced ACTPol} \citep{2016JLTP..184..772H}. It is now more and more common and is considered as the leading option for future satellite designs such as \emph{LiteBIRD} \citep{2014JLTP..176..733M} and next generation ground based experiments such as \emph{CMB-S4} \citep{2016arXiv161002743A}. The rotation of the HWP can be stepped (\emph{POLARBEAR} \citep{2014ApJ...794..171P}) or continuous  (\emph{EBEX}, \emph{ABS} and \nikad\  \citep{2015fers.confE..16R}). There exist different mechanism to rotate a HWP. For example, the HWP of \nikad\ is mounted inside a holder and coupled with a step motor, whereas \emph{EBEX} HWP is levitated with a superconducting magnetic bearing.
 Using a HWP to modulate the polarization is a powerful tool to mitigate several instrumental systematics \citep{2009MNRAS.397..634B}. In fact, with a HWP :
 
 \begin{itemize}
@@ -87,28 +87,26 @@ m_{k}(t) = \frac{1}{2} [I + \rho [Q \cos (4 \omega t + 2 \alpha(t)) + U \sin (4 
 \end{equation}
 
 with $\alpha$ the angle between the telescope reference frame and the local meridian on the sky and $\omega t$ is the position angle of the HWP.
-This allows to do observations without having to use differencing polarization sensitive detectors and thus avoid systematic effects such as intensity to polarization leakage from mismatch of the detector beams.
+This allows to do observations without having to use differencing polarization sensitive detectors and thus avoid systematic effects such as intensity to polarization leakage from mismatch of the detector beams \citep{2008PhRvD..77h3003S, 2015ApJ...814..110B}
 
 \item We can achieve an optimal angular coverage as each pixel will be observed over a wide range of orientations. This allows to have a better angular redundancy in a single pixel to measure the Stokes parameters without having to rotate the full instrument.
 \end{itemize}
 
-On the down side, rotating a HWP can also be source of several systematic effects like : mis-estimation of the HWP angles, leakage of temperature into polarization due imperfection in the optical system, differential transmittance in the HWP \citep{2009MNRAS.397..634B,2018SPIE10708E..48S} and the introduction of a strong parasitic signal that is synchronous with the HWP rotation. It is on the latter that we focus in this paper.
+On the downside, this kind of modulation can give rise to a systematic effect that is specific to instruments using a continuously rotating HWP : the Half Wave Plate Synchronuous Signal (HWPSS). In the next paragraph, we study non-linearity that are induced by this additional signal.
 
 \subsection{Half Wave Plate Synchronous Signal}
-
-Modulation of the polarization by a rotating HWP like in \nika\ and \nikad\ creates a background modulation equivalent to several tens to hundreds of Jy at frequencies close to the HWP rotation harmonics \citep{2017A&A...599A..34R} (see Fig. \ref{fig:hwp_power_spectrum}).
 
 \begin{figure}[h]
 \center
 \includegraphics[clip, angle=0, width=\columnwidth]{Figures/hwp_power_spectrum.png}
-\caption{Power spectrum of an observation of Orion OMC-1 for one KID. The observations were done with \nika . Black and green lines represent respectively the raw data and the raw data after subtraction of the HWP parasitic signal. Credits : \citet{2017A&A...599A..34R} }
+\caption{Power spectrum of an observation of Orion OMC-1 for one KID. The observations were done with \nika . Black and green lines represent respectively the raw data and the raw data after subtraction of the HWP parasitic signal \citep{2017A&A...599A..34R}. }
 \label{fig:hwp_power_spectrum}
 \end{figure}
 
-This additional parasitic signal was observed by experiments like \nika2\ , \emph{EBEX} \citep{2010SPIE.7741E..1CR} and \emph{MAXIPOL} \citep{2007ApJ...665...42J}. This Half Wave Plate Synchronous Signal (HWPSS) can be modelled by a sum of $n$ harmonics of the HWP rotation frequency $\nu_{p}$ with amplitudes $A_{n}$ and $B_{n}$ that are linearly drifting :
+Non-idealities of the HWP can create a background modulation equivalent to several tens of Jy at frequencies close to the HWP rotation harmonics \citep{2017A&A...599A..34R} (see Fig.~\ref{fig:hwp_power_spectrum}). This HWP synchronous signal (HWPSS) was observed by \emph{MAXIPol} \citep{2007ApJ...665...42J}, \emph{EBEX} \citep{2010SPIE.7741E..1CR}, \emph{POLARBEAR} \citep{2017JCAP...05..008T} or \nika\ \citep{2017A&A...599A..34R}, although they have different HWP and HWP rotation mechanism. This signal must be subtracted from observations or it will dominate polarization. To do that, we model it by a sum of $n$ harmonics of the HWP rotation frequency $\nu_{p}$ with amplitudes $A_{n}$ and $B_{n}$ that are linearly drifting :
 
 \begin{equation}
-HWPSS(t) = \sum_{n=1} A_{n} \cos nwt + B_{n} \sin nwt , 
+H(t) = \sum_{n=1} A_{n} \cos nwt + B_{n} \sin nwt , 
 \label{eq:hwp-template}
 \end{equation}
 
@@ -118,10 +116,10 @@ A_{n}  &=& A_{n}^{0} + \varepsilon_{A_{n}}t,\\
 B_{n}  &=& B_{n}^{0} + \varepsilon_{B_{n}}t, 
 \end{eqnarray}
 
-with $w = 2 \pi \nu_{p}$.
+with $\omega = 2 \pi \nu_{p}(t)$.
 This effect can then be corrected by subtracting observations by the model presented in eq.~\ref{eq:hwp-template}. 
 
-A large amplitude of the HWPSS can cause non-linearity in the detector response. This non-linear response can then be the source of coupling between intensity and polarization signals. Systematic effects arising from detector non-linearity have been studied in \emph{Simon's Observatory} \citep{2018SPIE10708E..48S}, \emph{POLARBEAR} \citep{2017JCAP...05..008T} and \emph{EBEX} \citep{2017arXiv171101314D}. In the latter, it was shown that the dominant source of intensity to polarization leakage is due to detector non-linearity caused by a large HWPSS. 
+A large amplitude of the HWPSS can cause non-linearity in the detector response. This non-linear response can then be the source of coupling between intensity and polarization signals. Systematic effects arising from detector non-linearity have been studied in \emph{Simon's Observatory} \citep{2018SPIE10708E..48S}, \emph{POLARBEAR} \citep{2017JCAP...05..008T} and \emph{EBEX} \citep{2017arXiv171101314D}. In the latter, it was shown that the dominant source of intensity to polarization leakage is due to detector non-linearity caused by a large HWPSS \citep{2017arXiv171101314D}.
 
 In \nikad\ this additionnal noise is two to three order of magnitude above the noise level, making it one of the strongest noise contributor in polarization observations, such a bakground must be accounted for in the simulations. In the next paragraph, we study the non-linearity of a KID caused by a large HWPSS. 
 

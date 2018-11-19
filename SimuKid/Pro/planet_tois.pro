@@ -201,6 +201,23 @@ for ispeed=0, nspeed-1 do begin
                     npts_avg=npts_avg, i=i_hwp, q=q_hwp, di=di, dq=dq
          toi_rf_jy = toi_rf_hz/jy2hz
          toi_cf_jy = toi_cf_hz/jy2hz
+
+;;          omega  = (2.d0*!dpi*hwp_rot_freq*time_hf) mod (2*!dpi)
+;;          omega1 = (2.d0*!dpi*hwp_rot_freq*time_lf) mod (2*!dpi)
+;; stop
+;;          hwp_subtract, toi_rf_hz, f_sampling, omega1, n_harmonics, toi_out, hwp_beta_out
+;;          toi_f = toi_rf_hz-avg(toi_rf_hz)-hwp_beta_out
+
+;; stop
+;;          wind, 1, 1, /free, /large
+;;          !p.multi=[0,1,3]
+;;          plot,time, toi_rf_planet_hwp
+;;          plot, time, toi_out
+;;          plot, hwp_beta_out
+
+
+
+
          ;; Subtract the HWP timeline not to bias the fit
          junk_rf = gaussfit( time_lf, (toi_rf_jy-toi_rf_hwp_jy), a, nterms=nterms)
 
@@ -282,7 +299,7 @@ for ispeed=0, nspeed-1 do begin
 endfor
 
 ;; Output vs input flux
-yra = [0.98, 1.01]
+yra = [0.96, 1.01]
 xra = minmax(flux_list)
 imc = 0
 if ps eq 0 then wind, 1, 1, /free, /large

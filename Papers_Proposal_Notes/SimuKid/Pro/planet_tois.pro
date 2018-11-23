@@ -2,8 +2,10 @@
 ;; From hwp_flux.pro
 ;;--------------------
 
+drift = 1
+
 ;; Realizations
-nmc = 10 ;200 ;30
+nmc = 200 ;200 ;30
 
 ;; HWP power
 hwp_max_ampl_jy = 70. ;1000 ; 100. ; 50.
@@ -47,7 +49,7 @@ nsn = round(obs_time_hour*3600.d0*f_hf)
 time_hf = dindgen(nsn)/f_hf
 
 ;; Planet fluxes
-nflux = 100 ;30
+nflux = 50 ;30
 flux_min = 1.d0 ;10d0   ;1d-3 ;
 flux_max = 500.d0 ;500.d0 ;1.d0 ;
 
@@ -86,7 +88,7 @@ const_planet_hwp_cf   = dblarr(nspeed,nmc)
 xn = reform( randomn( seed, n_harmonics*2*nmc), 2, n_harmonics*nmc) * hwp_max_ampl_jy
 
 ;; Gaussian fit parameters
-nterms = 3
+nterms = 5 ;3
 
 ;; Main loop: produced TOI's and fit output fluxes
 for ispeed=0, nspeed-1 do begin
@@ -151,7 +153,6 @@ for ispeed=0, nspeed-1 do begin
 ;         planet_rf_flux_results[ispeed, imc, iflux] = a[0]
 
 
-;stop
          ;; Cf
          junk_cf = gaussfit( time_lf, toi_cf_jy, a, nterms=nterms)
          nparams = 4
@@ -196,31 +197,78 @@ for ispeed=0, nspeed-1 do begin
          toi_cf_hwp_jy = toi_cf_hwp_hz/jy2hz
 
          ;; Planet + HWP
-         freso = -(gplanet*flux_list[iflux]+hwp_beta_jy) * jy2hz
-         freso2toi, freso, kid_model, delta_f, toi_rf_hz, toi_cf_hz, $
+         freso_planet_hwp = -(gplanet*flux_list[iflux]+hwp_beta_jy) * jy2hz
+         freso2toi, freso_planet_hwp, kid_model, delta_f, toi_rf_hz, toi_cf_hz, $
                     npts_avg=npts_avg, i=i_hwp, q=q_hwp, di=di, dq=dq
          toi_rf_jy = toi_rf_hz/jy2hz
          toi_cf_jy = toi_cf_hz/jy2hz
 
-;;          omega  = (2.d0*!dpi*hwp_rot_freq*time_hf) mod (2*!dpi)
-;;          omega1 = (2.d0*!dpi*hwp_rot_freq*time_lf) mod (2*!dpi)
-;; stop
-;;          hwp_subtract, toi_rf_hz, f_sampling, omega1, n_harmonics, toi_out, hwp_beta_out
-;;          toi_f = toi_rf_hz-avg(toi_rf_hz)-hwp_beta_out
-
-;; stop
-;;          wind, 1, 1, /free, /large
-;;          !p.multi=[0,1,3]
-;;          plot,time, toi_rf_planet_hwp
-;;          plot, time, toi_out
-;;          plot, hwp_beta_out
-
-
-
 
          ;; Subtract the HWP timeline not to bias the fit
-         junk_rf = gaussfit( time_lf, (toi_rf_jy-toi_rf_hwp_jy), a, nterms=nterms)
+;;          junk_rf = gaussfit( time_lf, (toi_rf_jy-toi_rf_hwp_jy), a, nterms=nterms)
 
+;;          nparams = 4
+;;          parinfo = replicate({fixed:0, limited:[0,0], $
+;;                               limits:[0.,0.D0]}, nparams)
+;;          p_start = [0., a[0], sigma/scan_speed, a[1]]
+;;          delvarx, e_r
+;;          silent=1
+;;          delvarx, myfit
+;;          w = where(time_lf gt 14 and time_lf lt 16)
+;;          myfit = mpfitfun("mygauss", time_lf[w], toi_rf_jy[w]-toi_rf_hwp_jy[w], $
+;;                           e_r, p_start, quiet = silent, $
+;;                           parinfo=parinfo, status=status)
+         
+;;          planet_hwp_rf_flux_results[ispeed, imc, iflux] = myfit[1]
+
+;;          junk_cf = gaussfit( time_lf, (toi_cf_jy-toi_cf_hwp_jy), a, nterms=nterms)
+;;          nparams = 4
+;;          parinfo = replicate({fixed:0, limited:[0,0], $
+;;                               limits:[0.,0.D0]}, nparams)
+;;          p_start = [0., a[0], sigma/scan_speed, a[1]]
+;;          delvarx, e_r
+;;          silent=1
+;;          delvarx, myfit
+;;          w = where(time_lf gt 14 and time_lf lt 16)
+;;          myfit = mpfitfun("mygauss", time_lf[w], toi_cf_jy[w]-toi_cf_hwp_jy[w], $
+;;                           e_r, p_start, quiet = silent, $
+;;                           parinfo=parinfo, status=status)
+         
+;;          planet_hwp_cf_flux_results[ispeed, imc, iflux] = myfit[1]
+
+
+         ;; ;; Subtraction of HWP template using NIKA fit
+
+         omega  = (2.d0*!dpi*hwp_rot_freq*time_hf) mod (2*!dpi)
+         omega1 = (2.d0*!dpi*hwp_rot_freq*time_lf) mod (2*!dpi)
+
+         ;; Rf 
+         hwp_subtract, toi_rf_hz, f_sampling, omega1, n_harmonics, toi_out, hwp_beta_out, drift=drift
+         toi_rf_sub_hz = toi_rf_hz-avg(toi_rf_hz)-hwp_beta_out
+
+         toi_rf_sub_jy = toi_rf_sub_hz/jy2hz
+         w = where(time_lf gt 14 and time_lf lt 16)
+         junk_rf = gaussfit( time_lf[w], toi_rf_sub_jy[w], a, nterms=nterms)
+         nparams = 4
+         parinfo = replicate({fixed:0, limited:[0,0], $
+                              limits:[0.,0.D0]}, nparams)
+         p_start = [0., a[0], sigma/scan_speed, a[1]]
+         delvarx, e_r
+         silent=1
+         delvarx, myfit
+         myfit_rf = mpfitfun("mygauss", time_lf[w], toi_rf_sub_jy[w], $
+                             e_r, p_start, quiet = silent, $
+                             parinfo=parinfo, status=status)
+         
+         planet_hwp_rf_flux_results[ispeed, imc, iflux] = myfit_rf[1]
+
+         ;; Cf
+         hwp_subtract, toi_cf_hz, f_sampling, omega1, n_harmonics, toi_out, hwp_beta_out, drift=drift
+         toi_cf_sub_hz = toi_cf_hz-avg(toi_cf_hz)-hwp_beta_out
+
+         toi_cf_sub_jy = toi_cf_sub_hz/jy2hz
+
+         junk_cf = gaussfit( time_lf[w], toi_cf_sub_jy[w], a, nterms=nterms)
          nparams = 4
          parinfo = replicate({fixed:0, limited:[0,0], $
                               limits:[0.,0.D0]}, nparams)
@@ -229,28 +277,24 @@ for ispeed=0, nspeed-1 do begin
          silent=1
          delvarx, myfit
          w = where(time_lf gt 14 and time_lf lt 16)
-         myfit = mpfitfun("mygauss", time_lf[w], toi_rf_jy[w]-toi_rf_hwp_jy[w], $
+         myfit_cf = mpfitfun("mygauss", time_lf[w], toi_cf_sub_jy[w], $
                           e_r, p_start, quiet = silent, $
                           parinfo=parinfo, status=status)
          
-         planet_hwp_rf_flux_results[ispeed, imc, iflux] = myfit[1]
-
-         junk_cf = gaussfit( time_lf, (toi_cf_jy-toi_cf_hwp_jy), a, nterms=nterms)
-         nparams = 4
-         parinfo = replicate({fixed:0, limited:[0,0], $
-                              limits:[0.,0.D0]}, nparams)
-         p_start = [0., a[0], sigma/scan_speed, a[1]]
-         delvarx, e_r
-         silent=1
-         delvarx, myfit
-         w = where(time_lf gt 14 and time_lf lt 16)
-         myfit = mpfitfun("mygauss", time_lf[w], toi_cf_jy[w]-toi_cf_hwp_jy[w], $
-                          e_r, p_start, quiet = silent, $
-                          parinfo=parinfo, status=status)
-         
-         planet_hwp_cf_flux_results[ispeed, imc, iflux] = myfit[1]
+         planet_hwp_cf_flux_results[ispeed, imc, iflux] = myfit_cf[1]
 
 
+;;          wind, 1, 1, /f
+;;          my_multiplot, 1, 2, pp, pp1, /rev
+;;          plot , time_hf, -freso/jy2hz, xra=[14,16], position=pp1[0,*]
+;;          oplot, time_lf, toi_rf_sub_jy, col=250, psym=1
+;;          oplot, time_lf, mygauss(time_lf, myfit_rf), col=100
+;;          legendastro, 'amplitude = '+strtrim(myfit_rf[1],2)
+
+;;          plot , time_hf, -freso/jy2hz, xra=[14,16], position=pp1[1,*], /noerase
+;;          oplot, time_lf, toi_cf_sub_jy , col=250, psym=1
+;;          oplot, time_lf, mygauss(time_lf, myfit_cf), col=100
+;;          legendastro, 'amplitude = '+strtrim(myfit_cf[1],2)
 
       endfor
    endfor

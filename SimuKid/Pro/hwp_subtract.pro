@@ -1,7 +1,8 @@
 ; from nk_hwp_rm4.pro
 ;----------------------
 
-pro hwp_subtract, toi, f_sampling, omega_rad, n_harmonics, toi_out, hwp_beta_out, toi_mask=toi_mask
+pro hwp_subtract, toi, f_sampling, omega_rad, n_harmonics, toi_out, hwp_beta_out, toi_mask=toi_mask, $
+                  drift=drift
 
 nsn = n_elements(toi)
 if not keyword_set(toi_mask) then begin
@@ -44,6 +45,7 @@ ncoeff = 2 + 4*n_harmonics
 time = dindgen(nsn)/f_sampling
 
 ;; Build model harmonics
+
 amplitudes = dblarr( ncoeff-2)
 outtemp = dblarr( ncoeff-2, nsn)
 for i=0, n_harmonics-1 do begin
@@ -52,6 +54,23 @@ for i=0, n_harmonics-1 do begin
    outtemp[ i*4 + 2, *] =      sin( (i+1)*omega_rad)
    outtemp[ i*4 + 3, *] = time*sin( (i+1)*omega_rad)
 endfor
+
+
+if drift eq 1 then begin 
+   amplitudes = dblarr( ncoeff)
+   outtemp = dblarr( ncoeff, nsn)
+   outtemp[0,*] = 1.0d0
+   outtemp[1,*] = time
+   for i=0, n_harmonics-1 do begin
+      outtemp[ 2 + i*4,     *] =   cos( (i+1)*omega_rad)
+      outtemp[ 2 + i*4 + 1, *] = time*cos( (i+1)*omega_rad)
+      outtemp[ 2 + i*4 + 2, *] =   sin( (i+1)*omega_rad)
+      outtemp[ 2 + i*4 + 3, *] = time*sin( (i+1)*omega_rad)
+   endfor
+endif
+
+
+
 
 ;; Subtract my_interpol and the constant to prepare HWP
 ;; fit outside the source

@@ -94,19 +94,26 @@ This allows to do observations without having to use differencing polarization s
 
 On the downside, this kind of modulation can give rise to a systematic effect that is specific to instruments using a continuously rotating HWP : the Half Wave Plate Synchronuous Signal (HWPSS). In the next paragraph, we study non-linearity that are induced by this additional signal.
 
-\subsection{Half Wave Plate Synchronous Signal}
+\subsubsection{Half Wave Plate Synchronous Signal}
 
 \begin{figure}[h]
 \center
 \includegraphics[clip, angle=0, width=\columnwidth]{Figures/hwp_power_spectrum.png}
-\caption{Power spectrum of an observation of Orion OMC-1 for one KID. The observations were done with \nika . Black and green lines represent respectively the raw data and the raw data after subtraction of the HWP parasitic signal \citep{2017A&A...599A..34R}. }
+\caption{Power spectrum of an observation of Orion OMC-1 for one KID. The parasitic signal is highly peaked at harmonics of the HWP rotation frequency. The observations were done with \nika . Black and green lines represent respectively the raw data and the raw data after subtraction of the HWP parasitic signal \citep{2017A&A...599A..34R}. }
 \label{fig:hwp_power_spectrum}
 \end{figure}
 
-Non-idealities of the HWP can create a background modulation equivalent to several tens of Jy at frequencies close to the HWP rotation harmonics \citep{2017A&A...599A..34R} (see Fig.~\ref{fig:hwp_power_spectrum}). This HWP synchronous signal (HWPSS) was observed by \emph{MAXIPol} \citep{2007ApJ...665...42J}, \emph{EBEX} \citep{2010SPIE.7741E..1CR}, \emph{POLARBEAR} \citep{2017JCAP...05..008T} or \nika\ \citep{2017A&A...599A..34R}, although they have different HWP and HWP rotation mechanism. This signal must be subtracted from observations or it will dominate polarization. To do that, we model it by a sum of $n$ harmonics of the HWP rotation frequency $\nu_{p}$ with amplitudes $A_{n}$ and $B_{n}$ that are linearly drifting :
+\begin{figure}[h]
+\center
+\includegraphics[clip, angle=0, width=\columnwidth]{Figures/hwpss_2pi.eps}
+\caption{Representation of the parasitic signal as a function of angles of the HWP. The points are gathered around precise values of angles because the acquisition is synchrnous with the HWP rotation. Red dots correspond to the points reconstructed by the model of eq.~\ref{eq:hwp-template}. Blue curve corresponds to the model on one period.}
+\label{fig:hwpss_2pi}
+\end{figure}
+
+Non-idealities of the HWP can create a background modulation equivalent to several tens of Jy at frequencies close to the HWP rotation harmonics \citep{2017A&A...599A..34R} (see Fig.~\ref{fig:hwp_power_spectrum} and Fig.~\ref{fig:hwpss_2pi}). This HWP synchronous signal (HWPSS) was observed by \emph{MAXIPol} \citep{2007ApJ...665...42J}, \emph{EBEX} \citep{2010SPIE.7741E..1CR}, \emph{POLARBEAR} \citep{2017JCAP...05..008T} and \nika\ \citep{2017A&A...599A..34R}, although they have different HWP and HWP rotation mechanism. This signal must be subtracted from observations or it will dominate polarization. To do that, we can model it by a sum of $n$ harmonics of the HWP rotation frequency $\nu_{p}$ with amplitudes $A_{n}$ and $B_{n}$ that are linearly drifting :
 
 \begin{equation}
-H(t) = \sum_{n=1} A_{n} \cos nwt + B_{n} \sin nwt , 
+H(t) = \sum_{n=1} A_{n} \cos n\omega t + B_{n} \sin n \omega t , 
 \label{eq:hwp-template}
 \end{equation}
 
@@ -124,23 +131,23 @@ A large amplitude of the HWPSS can cause non-linearity in the detector response.
 In \nikad\ this additionnal noise is two to three order of magnitude above the noise level, making it one of the strongest noise contributor in polarization observations, such a bakground must be accounted for in the simulations. In the next paragraph, we study the non-linearity of a KID caused by a large HWPSS. 
 
 
-\subsection{Simulations}
+\subsubsection{Simulations}
 
-To account for the HWPSS we keep the instrumental parameters of Sect.~\ref{se:kids} and we simulate the observation of a point source, with a flux that varies between 1 and 500 Jy, plus the signal corresponding to HWPSS with a maximum amplitude of 70 Jy. We suppose that the subtraction of the HWPSS template is perfect. Fig.~\ref{fig:histos_epsilon_rf} and Fig.~\ref{fig:histos_epsilon_cf} show the distribution of non-linearity coefficients for different scanning speed and different method of signal reconstruction (\rf\ and \cf). 
+To account for the HWPSS we keep the instrumental parameters of Sect.~\ref{se:kids} and we simulate the observation of a point source, with a flux that varies between 1 and 500 Jy, plus the signal corresponding to HWPSS with a maximum amplitude of 70 Jy. We suppose that the subtraction of the HWPSS template is perfect. Fig.~\ref{fig:histos_epsilon_rf} and Fig.~\ref{fig:histos_epsilon_cf} show the distribution of non-linearity coefficients for different scanning speed and different method of signal reconstruction (\methodu\ and \methodd). 
 
 \begin{figure}
 	\includegraphics[clip, angle=0, width=\columnwidth]{Figures/histos_epsilon_rf.eps}
-	\caption{histogram of non-linearity coefficients derived with \rf\ and scanning speed equal to 3 and 5 points per beam.}
+	\caption{histogram of non-linearity coefficients derived with \methodu\ and scanning speed equal to 3 and 5 points per beam.}
 	\label{fig:histos_epsilon_rf}
 \end{figure}
 
 \begin{figure}
 	\includegraphics[clip, angle=0, width=\columnwidth]{Figures/histos_epsilon_cf.eps}
-	\caption{histogram of non-linearity coefficients derived with \cf\ and scanning speed equal to 3 and 5 points per beam.}
+	\caption{histogram of non-linearity coefficients derived with \methodd\ and scanning speed equal to 3 and 5 points per beam.}
 	\label{fig:histos_epsilon_cf}
 \end{figure}
 
-The average of the non-linearity coefficients are given Tab.~\ref{tab:eps_hwp}, where we can see that on the same flux scale, \cf\ remains more linear than \rf . The non-linearity coefficients derived from the simulations are lower than the non-linearity coefficient required in Sect.~\ref{sec:cmb} to detect B modes without being biaised by non-linearity arising from the detector and the HWPSS. 
+The average of the non-linearity coefficients are given Tab.~\ref{tab:eps_hwp}, where we can see that on the same flux scale, \methodd\ remains more linear than \methodu . The non-linearity coefficients derived from the simulations are lower than the non-linearity coefficient required in Sect.~\ref{sec:cmb} to detect B modes without being biaised by non-linearity arising from the detector and the HWPSS. 
 
 \begin{table}
 \center
@@ -148,9 +155,9 @@ The average of the non-linearity coefficients are given Tab.~\ref{tab:eps_hwp}, 
 	\hline
 	    & $\frac{3pts}{beam}$ & $\frac{5pts}{beam}$ \\
 	\hline
-\rf\	&  $-4.8 \times 10^{-5}$ & $-2.4 \times 10^{-5}$ \\
+\methodu\	&  $-4.8 \times 10^{-5}$ & $-2.4 \times 10^{-5}$ \\
 	\hline
-\cf\ & $-6.6 \times 10^{-7}$ & $-5.4 \times 10^{-7}$ \\
+\methodd\ & $-6.6 \times 10^{-7}$ & $-5.4 \times 10^{-7}$ \\
 	\hline
 \end{tabular}
 \caption{Non-linearity coefficients $\varepsilon$ from an incoming flux that we vary between 1 and 500 Jy.}
@@ -160,7 +167,6 @@ The average of the non-linearity coefficients are given Tab.~\ref{tab:eps_hwp}, 
 
 
 
-\subsubsection{Simulations}
 
 
 

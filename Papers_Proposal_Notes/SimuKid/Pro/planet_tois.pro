@@ -5,10 +5,10 @@
 drift = 1
 
 ;; Realizations
-nmc = 200 ;200 ;30
+nmc = 50 ;200 ;30
 
 ;; HWP power
-hwp_max_ampl_jy = 70. ;1000 ; 100. ; 50.
+hwp_max_ampl_jy = 70. ;50. ;100.
 
 ;; Conversion Jy to Hz based on N2R11
 jy2hz = 1500./30
@@ -49,9 +49,9 @@ nsn = round(obs_time_hour*3600.d0*f_hf)
 time_hf = dindgen(nsn)/f_hf
 
 ;; Planet fluxes
-nflux = 50 ;30
-flux_min = 1.d0 ;10d0   ;1d-3 ;
-flux_max = 500.d0 ;500.d0 ;1.d0 ;
+nflux = 50 
+flux_min = 1.d0 ;10d0   ;1d-3 
+flux_max = 500.d0 ;500.d0 ;1.d0 
 
 ;;--------------------------------------------------------------
 ;; Scanning speeds
@@ -115,7 +115,7 @@ for ispeed=0, nspeed-1 do begin
          hwp_beta_jy += an[n]*cos(n*2.d0*!dpi*hwp_rot_freq*time_hf)
          hwp_beta_jy += bn[n]*sin(n*2.d0*!dpi*hwp_rot_freq*time_hf)
       endfor
-      
+
       for iflux=0, nflux-1 do begin
 
          ;; Planet only
@@ -137,10 +137,10 @@ for ispeed=0, nspeed-1 do begin
 
          ;; Rf
          junk_rf = gaussfit( time_lf, toi_rf_jy, a, nterms=nterms)
-         nparams = 4
+         nparams = 5 ;4
          parinfo = replicate({fixed:0, limited:[0,0], $
                               limits:[0.,0.D0]}, nparams)
-         p_start = [0., a[0], sigma/scan_speed, a[1]]
+         p_start = [0., a[0], sigma/scan_speed, a[1], a[3]]
          delvarx, e_r
          silent=1
          delvarx, myfit
@@ -155,10 +155,10 @@ for ispeed=0, nspeed-1 do begin
 
          ;; Cf
          junk_cf = gaussfit( time_lf, toi_cf_jy, a, nterms=nterms)
-         nparams = 4
+         nparams = 5 ; 4
          parinfo = replicate({fixed:0, limited:[0,0], $
                               limits:[0.,0.D0]}, nparams)
-         p_start = [0., a[0], sigma/scan_speed, a[1]]
+         p_start = [0., a[0], sigma/scan_speed, a[1], a[3]]
          delvarx, e_r
          silent=1
          delvarx, myfit
@@ -186,7 +186,7 @@ for ispeed=0, nspeed-1 do begin
 ;; legendastro, 'Cf', /left
 ;; legendastro, ['gaussfit','mpfitfun'], col=[170,250], /right
 
-;stop
+;; stop
 
 
          ;; HWP only (for subtraction)
@@ -249,10 +249,10 @@ for ispeed=0, nspeed-1 do begin
          toi_rf_sub_jy = toi_rf_sub_hz/jy2hz
          w = where(time_lf gt 14 and time_lf lt 16)
          junk_rf = gaussfit( time_lf[w], toi_rf_sub_jy[w], a, nterms=nterms)
-         nparams = 4
+         nparams = 5 ;4
          parinfo = replicate({fixed:0, limited:[0,0], $
                               limits:[0.,0.D0]}, nparams)
-         p_start = [0., a[0], sigma/scan_speed, a[1]]
+         p_start = [0., a[0], sigma/scan_speed, a[1], a[3]]
          delvarx, e_r
          silent=1
          delvarx, myfit
@@ -269,14 +269,13 @@ for ispeed=0, nspeed-1 do begin
          toi_cf_sub_jy = toi_cf_sub_hz/jy2hz
 
          junk_cf = gaussfit( time_lf[w], toi_cf_sub_jy[w], a, nterms=nterms)
-         nparams = 4
+         nparams = 5 ;4
          parinfo = replicate({fixed:0, limited:[0,0], $
                               limits:[0.,0.D0]}, nparams)
-         p_start = [0., a[0], sigma/scan_speed, a[1]]
+         p_start = [0., a[0], sigma/scan_speed, a[1], a[3]]
          delvarx, e_r
          silent=1
          delvarx, myfit
-         w = where(time_lf gt 14 and time_lf lt 16)
          myfit_cf = mpfitfun("mygauss", time_lf[w], toi_cf_sub_jy[w], $
                           e_r, p_start, quiet = silent, $
                           parinfo=parinfo, status=status)
@@ -286,8 +285,7 @@ for ispeed=0, nspeed-1 do begin
 
 ;;          wind, 1, 1, /f
 ;;          my_multiplot, 1, 2, pp, pp1, /rev
-;;          plot , time_hf, -freso/jy2hz, xra=[14,16], position=pp1[0,*]
-;;          oplot, time_lf, toi_rf_sub_jy, col=250, psym=1
+;;          plot , time_lf, toi_rf_sub_jy, psym=1, xra=[14,16], position=pp1[0,*]
 ;;          oplot, time_lf, mygauss(time_lf, myfit_rf), col=100
 ;;          legendastro, 'amplitude = '+strtrim(myfit_rf[1],2)
 
@@ -295,6 +293,8 @@ for ispeed=0, nspeed-1 do begin
 ;;          oplot, time_lf, toi_cf_sub_jy , col=250, psym=1
 ;;          oplot, time_lf, mygauss(time_lf, myfit_cf), col=100
 ;;          legendastro, 'amplitude = '+strtrim(myfit_cf[1],2)
+
+;; stop
 
       endfor
    endfor

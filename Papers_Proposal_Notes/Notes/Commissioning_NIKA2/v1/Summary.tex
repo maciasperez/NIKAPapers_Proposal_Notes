@@ -144,13 +144,17 @@ retained in at least two independent KID selections, as discussed in
 Sect.~\ref{se:fov_geometry}. We report valid KID fractions of $84\%$
 for the $1\,\rm{mm}$ channel arrays and $90\%$ for Array 2. The other
 KIDs, which do not meet the validity criterion, are ramdomly
-distributed across the FoV, so that the whole $6.5\,\rm{arcmin}$ FoV is
+distributed across the FoV, so that the whole $6.6\,\rm{arcmin}$ FoV is
 covered. Considering the designed KID grid as discussed in
 Sect.~\ref{se:grid_distortion}, the distance between
 neighbour KIDs is $9.8''$, $9.7''$ and $13.3''$ for Array 1, 3 and 2
-respectively, which defined an occupation surface per KID. The surface
-covered by all valid KID is in turn associated to an effective FoV of
-$5.7'$ for Array 1$\&$3 and of $5.9'$ for Array 2.       
+respectively, which defined an occupation surface per KID.
+
+The area covered by all KIDs is in turn associated to a measured total FoV of
+$6.6$~arcmin. diameter for each array.
+%The surface
+%covered by all valid KID is in turn associated to an effective FoV of
+%$5.7'$ for Array 1$\&$3 and of $5.9'$ for Array 2.       
 %gs   = [9.8, 9.7, 13.3] ;; gridstep in arcsec
 %ndet = [952, 961, 553]
 %print, sqrt((ndet*(gs/60.0)^2)/!dpi*4.0)
@@ -222,7 +226,7 @@ are gathered in Table~\ref{tab:nika2summary}.
       & Array 1 & Array 3  & Array 1\&3 & Array 2 & Reference \\
       \hline
       \hline
-      Reference Wavelength  [mm]  &  1.2    &  1.2   & 1.2  & 2.0   &   \\
+      Reference Wavelength  [mm]  &  1.15    &  1.15   & 1.15  & 2.00   &   \\
       Reference Frequency  [GHz]  &  260    &  260   & 260  & 150   &  Sect.~\ref{se:cal_HA_reference}  \\
       Central Frequency [GHz]     &  255.5  &  257.8 &      & 151.6 &  Sect.~\ref{se:bandpasses}  \\
       Bandwidth         [GHz]     &  47.8   &  45.7  &      & 42.1  &   \\
@@ -230,11 +234,13 @@ are gathered in Table~\ref{tab:nika2summary}.
       Number of designed detectors                   & 1140      &  1140    &    &    616  & Sect.~\ref{se:array}\\
       Number of valid detectors                      &  952      &   961    &    &    553  & Sect.~\ref{se:fov_geometry}\\
       Fraction of valid detectors [$\%$]             &  84       &   84     &    &     90  & \\
-      Effective FOV\tnote{a}\hspace{1mm} [arcmin]    &  5.7      &   5.7    &    &    5.9  & Sect.~\ref{se:grid_distortion}\\
-      Pixel size in beam sampling unit\tnote{b}\hspace{1mm} [$F\lambda$] & 1.09 & 1.09  &  &  0.93 & \\
+      %%% I find this number useless and misleading FXD 30 nov 2018
+      %%% Effective FOV\tnote{a}\hspace{1mm} [arcmin]    &  5.7      &   5.7    &    &    5.9  & Sect.~\ref{se:grid_distortion}\\
+      % Here I put the measured value (the modeled values are in the the field-of-view section) FXD
+      Pixel size in beam sampling unit\tnote{a}\hspace{1mm} [$F\lambda$] & 1.11 & 1.10  &  &  0.87 & \\
       \hline
-      FWHM\tnote{c}\hspace{1mm} [arcsec]    &  $11.1 \pm 0.2$   &  $11.0 \pm 0.2$  &   $11.1 \pm 0.1$  &  $17.6 \pm 0.1$  &  Sect.~\ref{se:fwhm_results}\\
-      Beam efficiency\tnote{d}\hspace{1mm} [\% ] &  $55 \pm 3$  &  $56 \pm 3$   &  $55 \pm 3$   &  $77 \pm 2$  &  Sect.~\ref{se:beam_efficiency}\\
+      FWHM\tnote{b}\hspace{1mm} [arcsec]    &  $11.1 \pm 0.2$   &  $11.0 \pm 0.2$  &   $11.1 \pm 0.1$  &  $17.6 \pm 0.1$  &  Sect.~\ref{se:fwhm_results}\\
+      Beam efficiency\tnote{c}\hspace{1mm} [\% ] &  $55 \pm 3$  &  $56 \pm 3$   &  $55 \pm 3$   &  $77 \pm 2$  &  Sect.~\ref{se:beam_efficiency}\\
       rms of the FWHM on the FOV [$\%$]          &    6         &      6        &       6        &      3        & Sect.~\ref{se:fwhm_fov}\\
       \hline
       rms pointing error    [arcsec]             & \multicolumn{4}{|c|}{$<3$} &  Sect.~\ref{se:pointing} \\
@@ -243,26 +249,26 @@ are gathered in Table~\ref{tab:nika2summary}.
       \hline
       rms calibration error [\%]                 &    5.5       &     6.0       &      5.7       &     3.0       & Sect.~\ref{se:photometry_baseline} \\
       \hline
-      $\alpha$ noise integration in time\tnote{d}\hspace{1mm}  & 0.5  & 0.5  &  0.5 & 0.5 & Sect.~\ref{se:nefd_m1} \\
+      $\alpha$ noise integration in time\tnote{c}\hspace{1mm}  & 0.5  & 0.5  &  0.5 & 0.5 & Sect.~\ref{se:nefd_m1} \\
       \hline
-      NEFD\tnote{f}\hspace{1mm} [$\rm{mJy} \cdot \rm{s}^{1/2}/\rm{beam}$]  & $47 \pm 4$ & $38 \pm 3$  & $30 \pm 3$  & $9 \pm 1$ & Sect.~\ref{se:nefd_estimation_methods}\\
-      NEFD\tnote{g}\hspace{1mm} [$\rm{mJy} \cdot \rm{s}^{1/2}/\rm{beam}$]  & $57 \pm 5$ & $46 \pm 4$  & $36 \pm 3$  & $10 \pm 1$ & \\
-      Mapping speed\tnote{h}\hspace{1mm} [arcmin$^2$/h/mJy$^2$] & 45  & 70  & 111  &  1388 &  \\
-      Mapping speed\tnote{i}\hspace{1mm} [arcmin$^2$/h/mJy$^2$] & 31  & 48  &  77  &  1119 &  \\
+      NEFD\tnote{e}\hspace{1mm} [$\rm{mJy} \cdot \rm{s}^{1/2}/\rm{beam}$]  & $47 \pm 4$ & $38 \pm 3$  & $30 \pm 3$  & $9 \pm 1$ & Sect.~\ref{se:nefd_estimation_methods}\\
+      NEFD\tnote{f}\hspace{1mm} [$\rm{mJy} \cdot \rm{s}^{1/2}/\rm{beam}$]  & $57 \pm 5$ & $46 \pm 4$  & $36 \pm 3$  & $10 \pm 1$ & \\
+      Mapping speed\tnote{g}\hspace{1mm} [arcmin$^2$/h/mJy$^2$] & 45  & 70  & 111  &  1388 &  \\
+      Mapping speed\tnote{h}\hspace{1mm} [arcmin$^2$/h/mJy$^2$] & 31  & 48  &  77  &  1119 &  \\
 \hline
 
 \end{tabular}
   \begin{tablenotes}
 {\small     
-  \item[(a)] Equivalent FOV covered by the valid detectors
-  \item[(b)] Calculated from real array pixel size [2.75 mm / 2.0 mm] and unvignetted pupil diameter [27m]
-  \item[(c)] Full-width at half-maximum of the main beam using the combined results of the three methods
-  \item[(d)] Ratio between the main beam power and the total beam power up to a radius of 180 arcsec
-  \item[(e)] Effective power law of noise reduction with integration time
-  \item[(f)] NEFD extrapolated at zero opacity
-  \item[(g)] NEFD in typical IRAM good sky opacity condition: 2mm pwv, $60^o$ elevation
-  \item[(h)] Mapping speed at zero opacity
-  \item[(i)] Mapping speed in typical IRAM good sky opacity condition: 2mm pwv, $60^o$ elevation
+%%%%  \item[(a)] Equivalent FOV covered by the valid detectors
+  \item[(a)] Calculated from real array pixel size [2.75 mm / 2.0 mm] and unvignetted pupil diameter [27m]
+  \item[(b)] Full-width at half-maximum of the main beam using the combined results of the three methods
+  \item[(c)] Ratio between the main beam power and the total beam power up to a radius of 180 arcsec
+  \item[(d)] Effective power law of noise reduction with integration time
+  \item[(e)] NEFD extrapolated at zero opacity
+  \item[(f)] NEFD in typical IRAM good sky opacity condition: 2mm pwv, $60^o$ elevation
+  \item[(g)] Mapping speed at zero opacity
+  \item[(h)] Mapping speed in typical IRAM good sky opacity condition: 2mm pwv, $60^o$ elevation
 }
   \end{tablenotes}
 \end{threeparttable}
@@ -300,7 +306,7 @@ collaboration.
       \hline
       FOV diameter [arcmin] & Goal     &  6.5 & 6.5  & 6.5 & 6.5   \\
                             & Specs    &   5  &   5  &   5 &   5   \\
-                            & Measure  &  6.5 & 6.5  & 6.5 &  6.5  \\
+                            & Measure  &  6.6 & 6.6  & 6.6 &  6.6  \\
       \hline
       Pixel size in beam sampling unit\tnote{b}\hspace{1mm} [F$\lambda$]  & Goal    & 0.6  &  0.6  &    &  0.6 \\
                                                      & Specs   & 0.9  &  0.9  &    &  0.9 \\

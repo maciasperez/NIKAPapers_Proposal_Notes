@@ -24,7 +24,7 @@ process. In short, the data reduction proceeds as such:
 
 A first step of the analysis is to read the data produced by \nika's
 acquisition. The data as such comprise various quantities that describe the
-variations of the KID's resonnance frequencies, such as $I$, $Q$, $dI$,
+variations of the KID's resonance frequencies, such as $I$, $Q$, $dI$,
 $dQ$. From these quantities, and throughout this work, we use our so called
 \rf\ photometric estimator that combines them into a quantity that is
 proportionnal to the flux absorbed by a KID \cite{Calvo13} and homogeneous to Hz.
@@ -160,8 +160,9 @@ The derivation of opacity is presented in Sect.~\ref{se:opacities}.
 As presented on Fig.~\ref{fig:nika_toi}, the atmosphere and the electronic noise
 combine into a large low frequency component that we want to eliminate as much
 as possible. Most of the atmospheric component is common to all KIDs, which is
-expected because the telescope is a $30\,\rm{m}$ dish and therefore has a \todo{XXXX
-  near field of XXXXX m}. 
+expected because the telescope is a $30\,\rm{m}$ dish and therefore
+has a \todo{Carsten comments: XXXX near field of XXXXX m $->$
+  effective collecting area of $170~\rm{m}^2$ at 1.2~mm ?}. 
 
 On Fig.~\ref{fig:nika_toi}, the planet is visible in the TOIs and serves as
 guide to both the noise relative amplitude and the discussion about TOI
@@ -335,20 +336,21 @@ is a perfect Gaussian of known $FWHM=\sigma\sqrt{8\ln 2}$, the instantaneous
 signal measured by a KID is
 
 \begin{equation}
-m^k(x,y) = \phi e^{-(x^2+y^2)/2\sigma^2} = \phi g(x,y)
+m^k(x,y) = \phi e^{-(x^2+y^2)/2\sigma^2} = \phi G(x,y)
 \label{eq:flux_per_beam_def}
 \end{equation}
 
 with $\phi$ the flux of the source. In pratice, the beam is not a perfect
 Gaussian and significant side lobes must be accounted for
 (Sect.~\ref{se:beams}). If the beam was perfectly known and stable, we could in
-principle replace the Gaussian form in eq.~(\ref{eq:flux_per_beam_def}) by the
+principle replace the Gaussian form in Eq.~\ref{eq:flux_per_beam_def} by the
 beam pattern and fit for the amplitude $\phi$. In practice, we have found that
 it was enough as a first approximation to take an equivalent effective Gaussian
 width and use it to derive the beam template. We take 12.5 and 18.5\,arcsec FWHM
 at 1 and 2\,mm respectively and compute all our fluxes with these
 values. We do this for both analyzed point sources and for absolute calibrators
-to be consistent.
+to be consistent. Our photometric system is further detailed in
+Sects.~\ref{se:cal_HA_reference}$\&$\ref{se:cal_HA_main}. 
 
 Let's call $s_p$ the measured signal at pixel $p$ and denote by $g_p$ the
 Gaussian weight give to pixel $p$ as a function of its distance to the source,

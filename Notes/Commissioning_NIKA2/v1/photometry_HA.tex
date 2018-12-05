@@ -6,7 +6,7 @@
 %% LP: full section by HA moved to appendices. Synthetic version created in photometric_system.tex 
 
 The definitions and the assumptions that have been used to derive the
-NIKA2 photometric system discussed in Sect.~\ref{se:cal_HA} are
+NIKA2 photometric system discussed in Sect.~\ref{se:cal_HA_main} are
 thoroughtly reported here.
 
 
@@ -34,7 +34,7 @@ where the different factors in the integral are:
 \begin{itemize}
 \item $\frac{T'(\nu)}{\left(\frac{\nu}{\nu_{0}}\right)^{2}}$:  the
   system transmission. $T'(\nu)$ is the transmission as measured in
-  section~\ref{se:bandpasses} with a Rayleigh-Jeans source. It is
+  Sect.~\ref{se:bandpasses} with a Rayleigh-Jeans source. It is
   divided by $\left(\frac{\nu}{\nu_{0}}\right)^{2}$ to correct for the
   incident spectrum.
    %\noindent {\bf FM: in section 2, we define $T$ note $T^\prime$}\\
@@ -42,16 +42,17 @@ where the different factors in the integral are:
 \item $e^{\left(-\am . \tau(\nu,  mm_{H_{2}O} )\right)}$: the
   atmospheric transmission at airmass  $\am$ for an amount of
   precipitable water vapor $mm_{H_{2}O}$ generating an opacity $\tau(\nu)$.
-\item $A\Omega (\nu) $: the KID etendue, {\it i. e.} the product of
+\item $A\Omega (\nu) $: the KID \emph{etendue}, {\it i. e.} the product of
   its light collecting area by the solid angle it intercepts on the
-  sky. While the step between  pixels is well known and is measured (see Sect.~\ref{se:fov}), the
+  sky. While the step between pixels is well known and is measured
+  (see Sect.~\ref{se:grid_distortion}), the
   actual solid angle is not known precisely and is {\em probably} a function of the
   frequency  because the pixels sizes are close to the wavelength of
   operation (2.75 mm at 2 mm for example). The collecting $A$ area is the
   projection of the IRAM primary on the cold pupil and is also not
   known very accurately.
 \end{itemize}
-The integral in eq~\ref{eq:basicphot} gives the total power (units of $\rm W$)
+The integral in Eq.~\ref{eq:basicphot} gives the total power (units of $\rm W$)
 falling on a KID. The factor $G_{k}$ (units of  $\rm W^{-1}$) converts this
 power to Hertz.%ADU. {\bf FM:  ADU ?}
 
@@ -86,7 +87,7 @@ atmosphere.
 
 \subsection{Effect of the atmosphere}
 
-Tthe effects of the atmosphere have been discussed in
+The effects of the atmosphere have been discussed in
 Sect.~\ref{se:bandpasses}, in which we have defined an
 effective frequency $\nu_{\rm{eff}}$, as given in
 Eq.~\ref{eq:nueff0}. 
@@ -143,9 +144,9 @@ variations due to the spectral shape of the source.
 %\end{figure}
 
 Nevertheless, to a first approximation, we consider the shape of the atmospheric
-transmission independent of the elevation and water content, so that  an
-effective zenith opacity $\tau_{\rm{eff}}$
-used. Equation~\ref{eq:basicphot2} becomes under this assumption: 
+transmission independent of the elevation and water content, so that an
+effective zenith opacity $\tau_{\rm{eff}}$ is used.
+Equation~\ref{eq:basicphot2} becomes under this assumption: 
 \begin{equation}
 R(\theta, \phi, \am, mm_{H_{2}O}) \simeq G_{k}  A_{p}\Omega_{s} e^{\left(-\am
   . \tau_{eff}(mm_{H_{2}O})\right)} \int_{0}^{+\infty} I(\nu)
@@ -155,7 +156,7 @@ R(\theta, \phi, \am, mm_{H_{2}O}) \simeq G_{k}  A_{p}\Omega_{s} e^{\left(-\am
 \end{equation}
 where $T_{atm}(\nu)$ is the transmission of the atmosphere at zenith,
 and is a function of the frequency only. From the computations made to
-plot figure~\ref{fig:nueff}, we derive that this approximation 
+plot figure~\ref{fig:atmosphereimpact}, we derive that this approximation 
 is valid below the percent level for $\tau_{225GHz} < 0.35$
 
 The dependance on elevation and opacity can be corrected as shown in
@@ -170,7 +171,7 @@ Equation~\ref{eq:basicphot4} is the main photometric equation.
 
 Because both $A_{p}$ and $ \Omega_{b} $ are not known with good
 accuracy, it is not possible to compute all the terms of
-eq.~\ref{eq:basicphot4} from first principles, and a practical way of
+Eq.~\ref{eq:basicphot4} from first principles, and a practical way of
 calibrating the system must be used: it is done by observing a primary
 calibrator.
 
@@ -201,12 +202,12 @@ R(\theta, \phi) \simeq G_{k}  A_{p}  S_{c} (\nu_{0}) \int_{0}^{+\infty} f(\frac{
 \end{equation}
 
 Let further parametrize the beam as a function
-of the effective frequency as defined in eq~\ref{eq:nueff},
+of the effective frequency as defined in Eq.~\ref{eq:nueff0},
 considering that its frequency dependency is only due to the diffraction law,
 hence a variation as $1/\nu$.
 
 With this in hand, we can write the equation of a beammap using a
-single KID with eq~\ref{eq:basicphot3}. At each position ($\theta,
+single KID with Eq.~\ref{eq:basicphot3}. At each position ($\theta,
 \phi$) on the beam map we have:
 \begin{equation}
 R_{c}(\theta, \phi) =  G_{k} A_{p} S_{c} (\nu_{0})  \int_{0}^{+\infty}
@@ -219,7 +220,7 @@ T_{atm}(\nu) d\nu
 \subsection{Calibration in FWHM$_{0}$ beam}
 \label{ap:flux_density_equation}
 
-This map is fitted with a gaussian of fixed width: FWHM$_{0}$ (we
+This map is fitted with a Gaussian of fixed width: FWHM$_{0}$ (we
 recall that $2 \sqrt{2\ln{2}} \sigma_{0} =  {\rm FWHM}_{0}$).
 \begin{equation} 
 R_{c}(\theta, \phi) = \frac{A_{c}}{2 \pi \sigma_{o}^{2}}
@@ -242,7 +243,7 @@ M_{c}(\theta, \phi) = R_{c}(\theta, \phi)   S_{c} (\nu_{0}) / A_{c}
 \end{equation}
 where  $S_{c} (\nu_{0})$ is the spectral irradiance of the calibrator
 at a reference frequency $\nu_{0}$ given in
-table~\ref{tab:definitions}. This map has units of $\rm W/m^{2}/Hz$. Note
+Table~\ref{tab:definitions}. This map has units of $\rm W/m^{2}/Hz$. Note
 that the choice of the reference frequency is arbitrary, it is a
 convention. By construction, integrating over the map we have:
 

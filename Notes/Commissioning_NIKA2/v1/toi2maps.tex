@@ -3,8 +3,8 @@
 \section{Overview of the data reduction pipeline}% {\color{YellowGreen} Nico}}
 \label{se:pipeline_overview}
 
-Because each matrix of \nika\ is a filled array with more than one detector per
-PSF on average, and because the atmosphere and electronic noise act as
+Because each matrix of \nika\ is a filled array with more than one
+detector per \new{main beam} PSF on average, and because the atmosphere and electronic noise act as
 correlated low frequency parasites, the data reduction of \nika\ does not
 proceed on an individual KID basis in general. This, in addition to the
 necessary pointing information specifies some of the data reduction
@@ -164,7 +164,7 @@ expected because the telescope is a $30\,\rm{m}$ dish and therefore
 has a \todo{Carsten comments: XXXX near field of XXXXX m $->$
   effective collecting area of $170~\rm{m}^2$ at 1.2~mm ?}. 
 
-On Fig.~\ref{fig:nika_toi}, the planet is visible in the TOIs and serves as
+On Fig.~\ref{fig:nika_toi}, the planet Uranus is visible in the TOIs and serves as
 guide to both the noise relative amplitude and the discussion about TOI
 processing in the following. On Fig.~\ref{corrmatrix}, we take a scan on Pluto
 where the signal is negligible compared to noise on the timescale of a scan to
@@ -173,7 +173,7 @@ matrices for the three arrays, either before any data reduction or with
 different estimates of the low frequency component:
 
 \begin{itemize}
-\item {\bf Common mode decorrelation (CM)}. We use all detectors of the same
+\item {\bf Common Mode decorrelation (CM)}. We use all detectors of the same
   array to build an average low frequency component nicknamed \emph{common
     mode}. This mode is then linearly regressed and subtracted from each KID
   timeline. In this method, the \emph{common mode} at time $t$ is the median of
@@ -206,12 +206,12 @@ diagonal as in the two other derivations of the common mode.
 
 \begin{figure}[ht!] % Inline image example
 \begin{center}
-\includegraphics[width=0.3\textwidth]{Figures/NoiseTests/rms_TOI_array_1_20170228s151.pdf}
-\includegraphics[width=0.3\textwidth]{Figures/NoiseTests/rms_TOI_array_2_20170228s151.pdf}
-\includegraphics[width=0.3\textwidth]{Figures/NoiseTests/rms_TOI_array_3_20170228s151.pdf}
-\includegraphics[width=0.3\textwidth]{Figures/NoiseTests/pws_TOI_array_1_20170228s151.pdf}
-\includegraphics[width=0.3\textwidth]{Figures/NoiseTests/pws_TOI_array_2_20170228s151.pdf}
-\includegraphics[width=0.3\textwidth]{Figures/NoiseTests/pws_TOI_array_3_20170228s151.pdf}
+\includegraphics[clip=true, trim={0.5cm, 0, 0, 0.6cm},width=0.32\textwidth]{Figures/NoiseTests/rms_TOI_array_1_20170228s151.pdf}
+\includegraphics[clip=true, trim={0.5cm, 0, 0, 0.6cm},width=0.32\textwidth]{Figures/NoiseTests/rms_TOI_array_2_20170228s151.pdf}
+\includegraphics[clip=true, trim={0.5cm, 0, 0, 0.5cm},width=0.32\textwidth]{Figures/NoiseTests/rms_TOI_array_3_20170228s151.pdf}
+\includegraphics[clip=true, trim={0.5cm, 0, 0, 0.5cm},width=0.32\textwidth]{Figures/NoiseTests/pws_TOI_array_1_20170228s151.pdf}
+\includegraphics[clip=true, trim={0.5cm, 0, 0, 0.5cm},width=0.32\textwidth]{Figures/NoiseTests/pws_TOI_array_2_20170228s151.pdf}
+\includegraphics[clip=true, trim={0.5cm, 0, 0, 0.5cm},width=0.32\textwidth]{Figures/NoiseTests/pws_TOI_array_3_20170228s151.pdf}
 \end{center}
 \caption[Noise RMS and power spectra]{From top to bottom and from left to right,
   we show the data rms and power spectra for the three NIKA2 arrays (A1, A2, and
@@ -220,13 +220,15 @@ diagonal as in the two other derivations of the common mode.
   data. The vertical lines in the rms noise figures separate detectors from
   different readout electronic boxes. Within each electronic box the pixels are
   ordered with increasing resonant frequency across the electronic
-  band. \label{rmspws}}
+  band. \todo{To enlarge the y- and x- title}
+  \label{rmspws}}
 \end{figure}
 
-In Fig.~\ref{rmspws} we present the rms noise per kid and the power spectra of
+In Fig.~\ref{rmspws} we present the rms noise per KID and the power spectra of
 a typical raw datastream, and the CM, PCA and MCP decorrelated data. We observe that after
-decorrelation we reduce significantly the rms of the noise. Equivalently, in
-$1/f$-like noise in the power spectra (principally due to atmospheric emission)
+decorrelation we reduce significantly the rms of the
+noise. Equivalently, the $1/f$-like noise in the power spectra
+(principally due to atmospheric emission)
 is significantly reduced leading to nearly flat spectra down to 0.05 Hz, with
 larger $1/f$-like residual noise for the CM decorrelation method at lower
 frequencies. This is translated into a larger rms noise for this method with
@@ -243,20 +245,25 @@ details below:
 
 \begin{itemize}
 \item From the pointing information (Sect.~\ref{se:ptg}), we derive a mask per TOI
-  and for each time $t$ that is 0 if the KID is closer to the source than 60\,arcsec, 1
-  otherwise.
-\item Only samples for which two KIDs are further than 60\,arcsec from
-  the source are selected and the KID-to-KID correlation is computed.
+  and for each time $t$ that is 0 if the KID is close to the source, 1
+  otherwise. \new{In the case of a point source, the mask consists in 
+    a radius of 60\,arcsec centered on the source, whereas for
+    diffuse emission, tailored masks are build.}
+\item Only samples for which two KIDs are far from the source,
+  \new{hence which are not discarded using the mask,} are selected and the KID-to-KID
+  correlation is computed.
+  
 \item For a KID $k_0$, we store the KID identifiers that are most
   correlated to it. We first select the 15 most correlated KIDs, then 
   the average and the dispersion $\sigma$ of these correlations are
   computed. \new{Then we add to the selection all the KIDs that are as correlated to $k_0$ as the
   15 first, up to $2\,\sigma$.}
-\item A median common mode (far from the source) for this block of 15 or more KIDs is derived.
+\item A median common mode (far from the source) for this block of 15
+  or more KIDs is derived. \todo{Marco's comment: How many ?}
 \item A cross-calibration to each of these KIDs is computed using the
   median common mode. Then an inverse noise weighted average mode is build. At each time, we use
-  only KIDs that are further from the source than 60\,arcsec. At this
-  stage it is important to verify to have enough KIDs to produce a
+  only KIDs \new{that are not discarded with the source mask.} %that are further from the source than 60\,arcsec.
+  At this stage it is important to verify to have enough KIDs to produce a
   continuous mode and to do not leave samples without any estimation.
 \item We linearly regress this average mode against $k_0$'s TOI (far from the
   source) and subtract on the entire $k_0$ timeline.
@@ -329,7 +336,7 @@ the background of the map, i.~e. far from the source.
 
 When several scans of the same source are averaged, we apply an inverse
 variance weighting as well. Weights are taken from the variance maps of each scan,
-corrected for the excess variance mentionned in the previous paragraph. The
+corrected for the excess variance mentioned in the previous paragraph. The
 final variance map of the sum of scans is also corrected for such a factor if necessary.
 
 \subsection{Photometry}
@@ -344,8 +351,9 @@ m^k(x,y) = \phi e^{-(x^2+y^2)/2\sigma^2} = \phi G(x,y)
 \label{eq:flux_per_beam_def}
 \end{equation}
 
-with $\phi$ the flux of the source. In pratice, the beam is not a perfect
-Gaussian and significant side lobes must be accounted for
+with $\phi$ the flux of the source \new{and $(x,\, y)$ the coordinates in
+the chosen system.} In practice, the beam is not a perfect Gaussian
+and significant side lobes must be accounted for
 (Sect.~\ref{se:beams}). If the beam was perfectly known and stable, we could in
 principle replace the Gaussian form in Eq.~\ref{eq:flux_per_beam_def} by the
 beam pattern and fit for the amplitude $\phi$. In practice, we have found that
@@ -356,12 +364,12 @@ values. We do this for both analyzed point sources and for absolute calibrators
 to be consistent. Our photometric system is further detailed in
 Sects.~(\ref{se:cal_HA_reference}, \ref{se:cal_HA_main}). 
 
-Let's call $s_p$ the measured signal at pixel $p$ and denote by $g_p$ the
+Let's call $s_p$ the measured signal at map pixel $p$ and denote by $g_p$ the
 Gaussian weight given to pixel $p$ as a function of its distance to the source,
 as defined in Eq.~\ref{eq:flux_per_beam_def}. The amplitude fit is performed
 with an usual maximum likelihood approach. We assume that the renormalization of
 the variance map described in the previous section is enough to account for the
-residual noise correlations from pixel to pixel and therefore take the pixels to
+residual noise correlations from pixel to pixel and therefore assume the pixels to
 be independent in this estimator:
 
 \begin{eqnarray}

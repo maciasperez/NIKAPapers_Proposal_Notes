@@ -8,8 +8,7 @@
 \begin{center}
 \includegraphics[clip,trim={0, 1cm, 0, 2cm},width=0.75\textwidth]{Figures/SpectralBands/bandpasses_nika2_colorsok.png}
 \caption[NIKA2 transmission]{Relative system response of the three NIKA2 arrays as a
-  function of frequency. For illustration we also plot atmospheric transmission obtained with the ATM model 
- \cite{ATM} for different values of precipitable water vapor. The spectra of ESA4 model of Uranus and ESA5 model of Neptune \cite{ESAmodel} in the frequency range are overplotted with arbitrary normalization.} 
+  function of frequency. For illustration we also plot in black atmospheric transmission obtained with the ATM model \cite{ATM, Pardo2002} for two values of precipitable water vapor. The spectra of ESA4 model of Uranus (pink) and ESA5 model of Neptune \cite{ESAmodel} (forest green) in the frequency range are overplotted with arbitrary normalization with respect to NIKA2 transmission.} 
  \label{spectralband1}
 \end{center}
 \end{figure}
@@ -26,7 +25,7 @@ the three arrays (corrected of the RJ term).  Notice that array A2 was
 replaced by a new one in N2R5 and that the spectral transmissions are
 not the same (red and orange lines in the figure).
 
-The two arrays operating at 260 GHz, mapping different polarisations,
+The two arrays operating at 260 GHz, mapping different linear polarisations,
 exhibit a slightly different spectral behaviour as can be
 seen on figure~\ref{spectralband1}. This may be explained by a tiny
 difference in the silicon wafer and/or Aluminium film thicknesses. For
@@ -35,14 +34,15 @@ instance, the observed shift of the peak frequency, 265 GHz for the V
 about 5 microns change in the substrate thickness. 
 
 It is clear from figure~\ref{spectralband1} that the atmosphere will
-modify the overall transmission of the system, especially at the edges
-of the A2 array. For each array, we define reference frequencies that are chosen
+modify the overall transmission of the system, especially at the tails
+for the A2 array.
+For each array, we define reference frequencies that are chosen
 as round numbers in the middle of the bands to define NIKA2
 photometric system as will be discussed in
 Sect.~\ref{se:cal_HA_reference}. These are 260~GHz for the A1 and A3 and
 150~GHz for the A2 arrray.
 
-Given an array, an atmosphere, an elevation and a source, we can
+Given an array, an atmosphere, an elevation $\delta$ and a source, we can
 define an effective frequency such that:
 \begin{equation}
 \nu_{\rm{eff}}( \sec \delta, mm_{H_{2}O}) = \frac{ \int_{0}^{+\infty} S_{\nu}
@@ -51,7 +51,10 @@ define an effective frequency such that:
 \end{equation}
 Where $S_{\nu}$ is the source spectrum, $T_{\nu}$ is the system
 transmission without atmosphere, and $T_{\nu}(\sec \delta,
-mm_{H_{2}O})$ is the system transmission including the atmosphere.
+mm_{H_{2}O})$ is the system transmission including the atmosphere,
+which is characterized by the amount of precipitable water vapour
+$mm_{H_{2}O}$ it contains. 
+
 
 Similarly, we can define a bandwidth for each array, as a function of
 the elevation and atmosphere water content.
@@ -59,13 +62,13 @@ the elevation and atmosphere water content.
 \Delta\nu ( \sec \delta, mm_{H_{2}O}) = \int_{0}^{+\infty} \frac{T_{\nu}( \sec \delta, mm_{H_{2}O})}{Max(T_{\nu}( \sec \delta, mm_{H_{2}O}))}d\nu
 \end{equation}
 
-Figure~\ref{fig:atmosphereimpact} shows the variation of $\nu_{\rm{eff}}$
+As an illustrative example, Figure~\ref{fig:atmosphereimpact} shows the variation of $\nu_{\rm{eff}}$
 with respect to the reference frequency for NIKA2 primary calibrator Neptune and $\Delta\nu$ for the three
 arrays. For the atmosphere, we used GILDAS ATM 2009 model \cite{ATM}, computed for
 the IRAM 30-m telescope, with so called {\it midlatwinter} conditions. We select in the model
 grid an atmosphere with $T=268.3 \ {\rm K}$ and a pressure of $703.5 \
 {\rm hPa}$. The atmosphere introduces variations of the effective
-frequency at the few percent level, and large bandwidth variations for
+frequency at the few percent level, and sizable bandwidth variations for
 Array 2. This is the reason why great care should be put in
 correcting for atmospheric effect that will be addressed in Chapter~\ref{se:opacities}.
 
@@ -80,10 +83,11 @@ correcting for atmospheric effect that will be addressed in Chapter~\ref{se:opac
   2cm},width=0.5\textwidth]{Figures/SpectralBands/nika2_bandwidths.png}\\
 (a) & (b) \\
 \end{tabular}
-\caption[Atmosphere effect on system transmission]{Variations of the
-  (a) effective frequency of each bandpass for Neptune and (b)
-  bandwidth as a function of the atmosphere opacity for different
-  elevations e. } 
+\caption[Atmosphere effect on system transmission]{Variations of (a) the
+  effective frequency and (b) the bandwidth for each observing band for Neptune
+  as a function of the atmosphere opacity at 225 GHz for different
+  elevations referred to as $e$ in the legend. \todo{modifier le titre y en $(\nu_{eff} - \nu) \ \nu$
+    et la legende e en $\delta$} }  
  \label{fig:atmosphereimpact}
 \end{center}
 \end{figure}

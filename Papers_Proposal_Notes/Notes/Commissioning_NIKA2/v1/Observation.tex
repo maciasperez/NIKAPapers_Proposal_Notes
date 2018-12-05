@@ -56,8 +56,9 @@ targets.
 The best axial focus in the central region of the arrays is estimated using the
 so-called \emph{focus$\_$OTF} PAKO script, which produces a series of five $1'
 \times 5'$ OTF scans at various values of the focus in $0.4~\rm{mm}$ steps
-around an \emph{a priori} value $z_0$, namely $z \in \{-0.8, -0.4, 0, 0.4, 0.8\}
-+ z_0$. Elliptical Gaussian fits on the reconstructed maps provide estimates of
+around an \emph{a priori} value $z_0$, namely
+$z \in \{-0.8, -0.4, 0, 0.4, 0.8\} + z_0$.
+Elliptical Gaussian fits on the reconstructed maps provide estimates of
 the flux and FWHM along minor - and major - axes for each focus. Parabolic fits are
 then used to determine the best focus. We consider three estimates: i) $\hat
 z_{\rm{peak}}$ the focus that maximizes the estimated flux, which is the
@@ -68,16 +69,18 @@ minimizes the beam ellipticity, defined as
 $\rm{FWHM}_{\rm{major}}/\rm{FWHM}_{\rm{minor}}$. Fig.~\ref{fig:focus-example}
 shows an example of such a sequence. When deciding on the focus to apply, we
 give priority to the optimal flux, taking an average between values on A1 and
-A3: there is little difference between the two, and the the 2\,mm channel is
-less sensitive to focus than the 1\,mm.
+A3: there is little difference between the two and the 2\,mm channel is
+less sensitive to the focus change than the 1\,mm.
 
 As presented in more details in Sect.~\ref{sec:focus_surfaces}, the focus
-surface is not strictly flat accross the FOV. The way sources are scanned in
-this \emph{focus\_OTF} sequence is designed to save time but gives more weight
+surface is not strictly flat across the FOV. The way sources are scanned in
+this \emph{focus\_OTF} sequence is designed to save time but it gives more weight
 to the central KIDs. Hence, the optimal focus derived from the fits is
 biased. To account for the curvature of the focus surfaces and optimize the
-average focus accross the FOV, we add -0.2\,mm to the focus value as derived
-in the previous paragraph.
+average focus across the FOV, we add -0.2\,mm to the focus value as derived
+in the previous paragraph. \new{This focus offset is derived using ZEMAX
+simulation and it is verified on data as discussed in
+Sect.~\ref{sec:focus_surfaces}.}
 
 \subsection{Lateral focus}
 \label{sec:focus_X_Y}
@@ -105,7 +108,7 @@ parameter space of the $(x,y,z)$~triplet position in a reasonable range of
 several millimeters around a fixed position, it has not been possible to
 demonstrated that any $(x,y)$ positions would improve significantly the
 focalization of the whole system compared to the nominal $(0,0)$ reference
-position. \new{This confirms experience of the IRAM staff with EMIR and
+position. \new{This confirms the experience of the IRAM staff with EMIR and
 HERA who only act on this $(x,y)$ position about once a year after
 specific, dedicated and delicate measures. This effort is necessary
 to find an optimum lateral focus position which is stable with
@@ -218,7 +221,7 @@ Sect.~\ref{se:opacities}.  Namely, a skydip comprizes eleven steps in
 the elevation range from 19 to 65 degrees, regularly spaced in
 airmass. For each step, we acquire about twenty seconds of time traces
 to ensure a precise monitoring of each KIDs. KIDs are tuned at the beginning of
-each subscan (hence once per airmass). The variation of their resonnance
+each subscan (hence once per airmass). The variation of their resonance
 frequency reads
 
 \begin{equation}
@@ -249,15 +252,16 @@ fixed azimuth subscans. The former has the advantage of low air mass variation
 across a subscan, the latter offers an orthogonal scan direction to the former:
 the combination of both gives a more accurate determination of the far side
 lobes. The scan size ensures that the entire FOV is observed with good margins
-for beam mapping even on the edges and good margin for baseline derivation and
+for beam mapping even on the edges and good margins for baseline derivation and
 subtraction in the scanning direction. During subscans, the telescope travels at
-65\,arcsec/s. This values results of a compromise between the need to scan as
-fast as possible to minimize atmospheric contamination while keeping subscans no
-shorter than 10\,s (telescope constraint). The need to have Nyquist sampling of
-the beams along the scan direction translates into a maximum speed 110\,arcsec/s
+65\,arcsec/s. This value results of a tradeoff between the need to scan as
+fast as possible to minimize atmospheric contamination and the
+necessity to keep subscans no shorter than 10\,s (telescope
+constraint). The need to have Nyquist sampling of
+the beams along the scan direction translates into a maximum speed of 110\,arcsec/s
 for our nominal acquisition rate of 23.8\,Hz and is thus largely met. Subscans
-last 12\,s, the entire scan lasts about 25\,mn, which is short enough to prevent
-to much variation of KID tuning under stable weather conditions on this
+last 12\,s, the entire scan lasts about 25\,min, which is short enough to prevent
+too much variation of KID tuning under stable weather conditions on this
 timescale.
 
 More details on these observations are given in Sect.~\ref{se:fp_reconstruction}

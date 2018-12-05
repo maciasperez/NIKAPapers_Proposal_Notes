@@ -63,15 +63,15 @@ of  ${\rm W/m^{2}/sr/Hz}$) in the direction $\theta, \phi$, where $\theta$
 is the off-axis distance and $\phi$ the position angle, illuminating the KID $k$. 
 The dependance on elevation and opacity is corrected, as discussed in
 section~\ref{se:opacities}, so that Eq.~\ref{eq:mainphot} is the KID
-response outside of atmosphere (in terms of airmass, but not in terms
+response outside of the atmosphere (in terms of airmass, but not in terms
 of transmission).
 
 The integral in the right-hand part of Eq.~\ref{eq:mainphot} gives the total power (units of $\rm W$)
 falling on the KID, where the factors are:
 \begin{itemize}
-\item $T(\nu)$, NIKA2 bandpasses, which are measured and corrected for the Raighleigh-Jeans term as discussed in Sect.~\ref{se:bandpasses}
+\item $T(\nu)$, NIKA2 bandpasses, which are measured and corrected for the Rayleigh-Jeans term as discussed in Sect.~\ref{se:bandpasses}
 \item $T_{atm}(\nu)$, the transmission of the atmosphere at zenith. 
-\item $B_{k} (\theta, \phi, \nu)$, the fraction of source signal illuminating the KID, that is the beam function. It has been parametrized as a function of the effective frequency as defined in eq~\ref{eq:nueff} of Sect.~\ref{ap:cal_HA},
+\item $B_{k} (\theta, \phi, \nu)$, the fraction of source signal illuminating the KID, that is the beam function. It has been parametrized as a function of the effective frequency as defined in Eq~\ref{eq:nueff0} of Sect.~\ref{se:bandpasses},
 considering that its frequency dependency is only due to the diffraction law, hence a variation as $1/\nu$ from a reference frequency $\nu_0$.  
 \end{itemize}
 
@@ -191,8 +191,8 @@ The map $M_{s}(\theta, \phi)$ is said to be calibrated in Jy / FWHM$_{0}$
 beam. The factor $S_{c} (\nu_{0})/A_{c}$ is referred to as the
 absolute calibration factor.
 
-If we have a single point source in $M$, we have when we fit a Gaussian
-of fixed width:
+In the case of a single point source in $M$, fitting a Gaussian of fixed
+width, we have:
 \begin{equation}
 \int \int M_{s}(\theta, \phi) \sin \theta d\theta d\phi = \hat{A_{s}}  S_{c} (\nu_{0}) /
 A_{c} = \hat{S}(\nu_{0})

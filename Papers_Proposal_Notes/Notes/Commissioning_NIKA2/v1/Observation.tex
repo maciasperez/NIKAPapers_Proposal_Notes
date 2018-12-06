@@ -225,7 +225,7 @@ offsets. The dispersion of the offsets is the figure of merit of the pointing
 corrections. Their distribution after the corrections (in yellow to
 red) is clearly more symmetric and narrower than before. During N2R9 run, the
 pointing accuracy was 1.62\,arcsec rms in azimuth and 1.37\,arcsec rms in
-elevation.
+elevation. \todo{Marco's question: est-ce que les offsets trouvés sont les memes qu'EMIR ? Are the best parameters "only telescope" or "telescope+instrument at focal plane" dependent?}
 
 \subsection{Skydip}
 \label{se:skydip}
@@ -241,7 +241,8 @@ each subscan (hence once per airmass). The variation of their resonance
 frequency reads
 
 \begin{equation}
-\ftone^k  = C_0^k - C_1^k T_{atm}[1-e^{-\tau/\sin\delta}]
+  %\ftone^k  = C_0^k - C_1^k T_{atm}[1-e^{-\tau/\sin\delta}]
+  f_{\rm{reso}}^k  = C_0^k - C_1^k T_{atm}[1-e^{-\tau/\sin\delta}]
 \label{eq:skydip_1}
 \end{equation}
 
@@ -251,8 +252,10 @@ the analysis of these {\tt skydip} scans are given in Sect.~\ref{se:opacities}.
 \begin{figure}[ht!]
 \begin{center}
   \includegraphics[clip, angle=0, scale=0.75]{Figures/skydip_report.eps}
-\caption[skydip]{Variation of the resonnance frequency of kid as a function of
-  the elevation during a {\tt skydip} scan.}
+\caption[skydip]{Variation of the resonance frequency of a KID
+  \new{$f_{\rm{reso}} = \ftone + \delta \ftone$},  as a function of the
+  elevation during a {\tt skydip} scan. \todo{Marco's comment: Why is
+    it negative ?}}
 \label{fig:ftone_vs_elev}
 \end{center}
 \end{figure}
@@ -260,9 +263,10 @@ the analysis of these {\tt skydip} scans are given in Sect.~\ref{se:opacities}.
 \subsection{\bms}
 \label{se:beammaps}
 
-A \bm\ is a map of a bright and compact source, most of the time a planet, with
+A \bm\ is \new{a scan procedure to map} a bright and compact
+source, most of the time a planet, with
 an elevation step small enough to meet Nyquist sampling of the 1\,mm beam,
-namely 4.8~arcsec. We observe this planet with a raster scan in (az,el)
+namely 4.8~arcsec. We observe the planet with a raster scan in (az,el)
 coordinates of $13\times7.8$~arcmin$^2$, either with fixed elevation subscans or
 fixed azimuth subscans. The former has the advantage of low air mass variation
 across a subscan, the latter offers an orthogonal scan direction to the former:

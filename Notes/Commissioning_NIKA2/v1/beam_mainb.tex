@@ -13,7 +13,7 @@ of the first Gaussian function of the
 three-Gaussian model, as discussed in Sect.~\ref{se:fullbeam_prof},
 provides us with a first estimate of the main beam. %, which is given in
 %Table~\ref{tab:fwhm}.
-However, this estimate could be biased toward the lower FWHM values due to
+However, this estimate could be biased towards the lower FWHM values due to
 degeneracies between the three-Gaussian model parameters. To ensure
 obtaining robust main beam FWHM estimates, we devise %
 % version without JFL method
@@ -69,7 +69,7 @@ Table~\ref{tab:fwhm}.
 \subsubsection{Method desciption}
 \label{se:2D_method}
 
-NIKA2 main beam two-dimensionnal distribution is modeled using an
+NIKA2 main beam two-dimensional distribution is modeled using an
 elliptical Gaussian. We characterize NIKA2 resolution by forming the
 \emph{FWHM}, defined as
 \begin{equation}
@@ -79,7 +79,7 @@ where $\sigma_x$ and $\sigma_y$ are the Gaussian standard deviation
 along minor and major axis.
 To avoid the side lobes contamination, we use masked versions of the
 beam map. The sidelobe mask consists in cutting an annulus of inner radius
-$r_{\rm{in}}$ and outter radius $r_{\rm{out}}$ centered on the beam
+$r_{\rm{in}}$ and outer radius $r_{\rm{out}}$ centered on the beam
 maximum. Whereas $r_{\rm{out}}$ is conservately set to be $100''$,
 $r_{\rm{in}}$ is let free to vary around a central value about $8''$
 for A1 and A3 and about $12''$ for A2 to provide the best 2D Gaussian
@@ -92,7 +92,10 @@ fit.
 \begin{center}
   \includegraphics[clip, width=0.45\textwidth]{Figures/Beams/plot_FWHM_vs_atmtrans_mb_radius_binning2_1mm.pdf}
   \includegraphics[clip, width=0.45\textwidth]{Figures/Beams/plot_FWHM_vs_atmtrans_mb_radius_binning2_a2.pdf}
-  \caption[Main Beam FWHM]{Main beam FWHM estimates for the $1\,\rm{mm}$ (left) and $2\,\rm{mm}$ (right) channels are shown as a function of the atmospheric transmission using bright source scans acquired during N2R9, N2R12 and N2R14. }
+  \caption[Main Beam FWHM]{Main beam FWHM estimates for the
+    $1\,\rm{mm}$ (left) and $2\,\rm{mm}$ (right) channels are shown as
+    a function of the atmospheric transmission estimated at the
+    corresponding wavelengths using bright source scans acquired during N2R9, N2R12 and N2R14. }
 \label{fig:fwhm_map_atmtrans}
 \end{center}
 \end{figure}
@@ -129,7 +132,7 @@ atmospheric conditions at $1\,\rm{mm}$ providing us with a lower limit
 in the absence of correlated atmospheric noise residuals. We note
 three scans acquired during N2R12 with larger FWHM than average at
 $2\,\rm{mm}$ although the atmospheric transmission was excellent: this
-is likely an effect of the abnormalous refraction, which impacted
+is likely an effect of the anomalous refraction, which impacted
 a lot of scans during the N2R12 campaign. 
 
 The distributions of the best-fitting FWHM values of array 1, 3, the
@@ -148,7 +151,12 @@ reported in Table~\ref{tab:fwhm}.
   \includegraphics[clip, width=0.42\textwidth]{Figures/Beams/plot_histo_FWHM_mb_radius_binning2_a3.pdf}
   \includegraphics[clip, width=0.42\textwidth]{Figures/Beams/plot_histo_FWHM_mb_radius_binning2_1mm.pdf}
   \includegraphics[clip, width=0.42\textwidth]{Figures/Beams/plot_histo_FWHM_mb_radius_binning2_a2.pdf}
-  \caption[Main Beam FWHM distributions]{Distribution of the FWHM estimates for Array 1, 3, the combination of Array $1\&3$ and Array 2, including bright source scans from the three campaigns.}
+  \caption[Main Beam FWHM distributions]{Distribution of the FWHM
+    estimates for Array 1, 3, the combination of Array $1\&3$ and
+    Array 2, including 154 bright source scans from the N2R9, N2R12 and
+    N2R14 campaigns (see text). \new{The red curves show a Gaussian fit of
+    the distribution; the corresponding best-fitting position of the maximum and
+    $\sigma$ are given in the legend in units of arcsec}}
 \label{fig:fwhm_map}
 \end{center}
 \end{figure}
@@ -166,7 +174,7 @@ described in Sect.~\ref{se:2D_method}. Sidelobe masks are
 defined by a fixed external radius $r_{\rm{out}}$ of $100''$ and a
 fixed internal radius $r_{\rm{in}}$ of $8.5''$ at $1\,\rm{mm}$ and
 $13.5''$ at $2\,\rm{mm}$. We checked that we obtain compatible results when
-$r_{\rm{in}}$ is let to freely varies from $8'$ to $10'$ at
+$r_{\rm{in}}$ is let to freely vary from $8'$ to $10'$ at
 $1\,\rm{mm}$ and from $10'$ to $14'$ at $2\,\rm{mm}$. The fixed
 $r_{\rm{in}}$ values correspond to the average best-fitting
 $r_{\rm{in}}$ of the free-$r_{\rm{in}}$ analysis. The main beam FWHM
@@ -234,7 +242,7 @@ The combined FWHM estimates are given in Table~\ref{tab:fwhm}.
 
 
 
-\subsection{FWHM distribution across the FoV}
+\subsection{FWHM distribution across the FOV}
 \label{se:fwhm_fov}
 
 % COPY FROM THE 'INSTRUMENT' PAPER
@@ -244,7 +252,14 @@ The combined FWHM estimates are given in Table~\ref{tab:fwhm}.
   \includegraphics[clip=true,width=0.45\textwidth]{Figures/Papier2017/plot_histo_A3_fwhm_20170424s123.pdf}
   \includegraphics[clip=true,width=0.45\textwidth]{Figures/Papier2017/plot_histo_A2_fwhm_20170424s123.pdf}
   
-\caption[Main beam FWHM distribution across the array]{Main beam FWHM distribution of all valid KID detectors of arrays A1, A3, and A2. The main beam FWHM is the geometrical combination of the two-orthogonal FWHM estimates obtained from an elliptical Gaussian fit on side-lobe masked individual maps per KID using a \bm\ scan of N2R9 (scan ID: 20170424s123). The red curves show a Gaussian fit to the histogram data.}
+\caption[Main beam FWHM distribution across the array]{Main beam FWHM
+  distribution of all valid KID detectors of arrays A1, A3, and
+  A2. The main beam FWHM is the geometrical combination of the
+  two-orthogonal FWHM estimates obtained from an elliptical Gaussian
+  fit on side-lobe masked individual maps per KID using a \bm\ scan of
+  N2R9 (scan ID: 20170424s123). The red curves show a Gaussian fit to
+  the histogram data\new{, from which the average (Avg) and rms (Sig)
+  given in the legend in arcsec are derived.}}
   \label{fig:focalplane_histo}
 \end{figure}
 
@@ -258,9 +273,9 @@ average main beam FWHM of $10.9''$ at 260 GHz and $17.5''$ at
 150 GHz in agreement with the main beam estimates gathered in
 Table~\ref{tab:fwhm}.
 The observed dispersion of about $0.6''$ is expected from the optics design and its associated
-field distortions across the 6.5 arc-minutes FoV, as discussed in
+field distortions across the 6.5 arc-minutes FOV, as discussed in
 Sect.~\ref{se:grid_distortion}. This quantifies the impact of the
-non-constant focus across the FoV, which is characterised in
+non-constant focus across the FOV, which is characterised in
 Sect.~\ref{sec:focus_surfaces}, on the individual detector main beams.  
 
 

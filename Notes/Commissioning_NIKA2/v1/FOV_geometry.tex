@@ -41,9 +41,10 @@ then need to know the relative pointing offsets of each detector. We use
 KID offsets in the focal plane proceeds in two steps.
 
 \paragraph{Step 1.} We apply a median filter per
-KID timeline whose width is equivalent to 4~FWHM and we project one
-map per KID in Nasmyth coordinates. This median filter removes
-efficiently most of the atmospheric and low frequency electronic
+KID timeline whose width \new{is of 31 samples, that is equivalent to about 
+5~FWHM at 65 arcsec/s,} and we project one map per KID in Nasmyth
+coordinates. This median filter removes
+efficiently most of the low frequency atmospheric and electronic
 noise, albeit with a slight ringing and flux loss on the
 source. However, at this stage, we are only interested in the location
 of the observed planet. To derive the Nasmyth coordinates from the
@@ -58,7 +59,7 @@ coordinates, we build the following quantities at time~$t$ :
 Note that $\Delta\alpha_t$ is already corrected by the $\cos\delta_t$ factor to
 have orthonormal coordinates in the tangent plane of the sky and be immune to
 the geodesic convergence at the poles. We then fit a 2D elliptical Gaussian on
-each kid map. The centroid of this Gaussian is a first estimate of the KID
+each KID map. The centroid of this Gaussian is a first estimate of the KID
 offsets, FWHM's, ellipticity and sensitivity. We apply a first KID selection by
 removing outliers to the statistics on these parameters. We also discard
 manually KIDs that show a cross-talk counterpart on their map.
@@ -97,10 +98,12 @@ performance stability, as discussed in the next sections.
   the sky and passed the quality criteria for at least two \bms\ during Run10, 9
   and 8: 952, 961, and 553 for A1, A3 and A2, respectively. The inner and outer
   dash-line circles correspond to a FOV of 5.5\,arcmin and 6.5\,arcmin,
-  respectively. Units are arcseconds. \emph{Right column:} For valid detectors,
-  we show the positions of each pixel, as obtained from each \bm. Some of them
-  are not found at the same position for all the \bms\ and are discarded. Units
-  are arcseconds.}
+  respectively. Units are arcseconds. \emph{Right column:} We show the
+  positions of each valid KID, as obtained from each \bm. \new{For each
+  KID, positions estimated in consecutive \bms are linked with
+  a solid line to highlight those that are not found at the same position
+  for all the \bms\. These KIDs, which change positions in the FoV,
+  are discarded.} Units are arcseconds.}
 \label{fig:avg_fov_color}
 \end{center}
 \end{figure}
@@ -113,7 +116,7 @@ the times that it has been considered as valid and at the same position. Indeed,
 a few KIDs have close resonances and can be tuned and switched on some scans. A
 few others must also be discarded because they appear identical numerically due
 to a remaining artefact in the acquisition. These KIDs are flagged out (less
-than 1\% of the designed KIDs). In Fig. \ref{fig:avg_fov_color} we show the
+than 1\% of the designed KIDs). In Fig.~\ref{fig:avg_fov_color} we show the
 average focal plane reconstruction, from green to red depending on the number of
 times that the pixel has been considered as valid. For A1, A3 and A2,
 respectively, we have 952, 961, and 553 pixels that have been considered as
@@ -179,28 +182,30 @@ array. They are described in Table~\ref{ta:gridmatch}.
 \hline
 Array 1  &	Array 3   &	Array 2   &	Comment \\
 \hline
-1.25     &      1.25      &     2.05     &     $\lambda$ in mm \\
-1140 	 &      1140 	   &        616  &	Total of designed Kids (TDK) \\
-673/736  &	734/758  &	437/444  &	Well-placed Kids (WPK)/Found Kids (FK) \\
-91/59 	 &    96/64 	 &      98/71 	 & Ratio [\%] of WPK/FK and WPK/TDK \\
-0.87 	 &     0.84 	  & 0.66     &	Median deviation (arcsec) for detectors deviating by less than 5~arcsec. \\
-0.52 	 &     0.69 	 &        0.68 	 & Mean distortion across the FoV in arcsec \\
-2.3 -4.5  &	2.0 -5.8  &	9.3 -7.5  &	Array center in Nasmyth coordinates (arcsec) \\
-4.90  &	4.88  &	4.88  &	Plate scaling (arcsec/mm) in the Design x and y (averaged) \\
-77.3  &	76.4  &	78.2  &	Plate rotation angle (degree) from the Design to Nasmyth coordinates \\
-6.6  &	6.6  &	6.6  &	FOV [arcmin] (Total kids) \\
-9.8/2.00  &	9.7/2.00  &	13.3/2.75  &	Distance between near detectors [arcsec, mm] \\
+1.25     &      1.25      &     2.05     &     \small{$\lambda$ in mm} \\
+1140 	 &      1140 	   &        616  &     \small{Total of designed KIDs (TDK)} \\
+673/736  &	734/758  &	437/444  &     \small{Well-placed KIDs (WPK)/Found KIDs (FK)} \\
+91/59 	 &    96/64 	 &      98/71 	 & \small{Ratio [\%] of WPK/FK and WPK/TDK} \\
+0.87 	 &     0.84 	  & 0.66     &	\small{Median deviation [arcsec] for detectors deviating by less than 5~arcsec} \\
+0.52 	 &     0.69 	 &        0.68 	 & \small{Mean distortion across the FoV in arcsec} \\
+2.3 -4.5  &	2.0 -5.8  &	9.3 -7.5  &	\small{Array center in Nasmyth coordinates [arcsec]} \\
+4.90  &	4.88  &	4.88  &	\small{Plate scaling [arcsec/mm] in the Design x and y (averaged)} \\
+77.3  &	76.4  &	78.2  &	\small{Plate rotation angle [degree] from the Design to Nasmyth coordinates} \\
+6.6  &	6.6  &	6.6  &	\small{FOV [arcmin] (Total KIDs)} \\
+9.8/2.00  &	9.7/2.00  &	13.3/2.75  &	\small{Distance between near detectors [arcsec, mm]} \\
 % Old values, rechecked (difference comes from lambda and D)
 %   1.24  &	1.22  &	0.97  &	Distance between near detectors with $30\,\rm{m}$ diameter aperture [in $\lambda$/D] \\
 % here new values checked FXD 30 Nov 2018:
-1.11  &	1.10  &	0.87  &	Measured Distance between near detectors with $27\,\rm{m}$ effective diameter aperture [in $\lambda$/D] \\
-1.09  & 1.09  & 0.93  & Modeled Distance with Zemax\\
+1.11  &	1.10  &	0.87  &	\small{Measured Distance between near
+  detectors [in $\lambda$/D] } \\
+%\new{with $27\,\rm{m}$ effective diameter aperture} [in $\lambda$/D]} \\
+1.09  & 1.09  & 0.93  & \small{Modeled Distance with ZEMAX}\\
 \hline
 \end{tabular}
 \end{center}
 \caption[Field-of-view deformations]{Linear 2D fit of the observed
-  position of the detectors in the sky against their mechanically
-  designed position for N2R9. The initial table of Found Kids is given
+  position of the detectors in the sky for N2R9 against their mechanically
+  designed position. The initial table of Found KIDs is given
   by the focal plane geometry procedure, as described in
   Sect.~\ref{se:fov_geometry},
   applied to N2R9 \bm\ scans. More than 90\% of the detectors (WPK/FK) are
@@ -210,7 +215,7 @@ Array 1  &	Array 3   &	Array 2   &	Comment \\
 It shows that on average the position of each detector is known to better than
 an arcsecond. The 1\,mm arrays have almost the same center but this center
 differs by 7 and 2\,arcsec from the 2\,mm array center. The sampling is above
-$\lambda/D$ at 1\,mm, assuming a 30\,m diameter aperture. Note that
+$\lambda/D$ at 1\,mm, assuming \new{a 27\,m effective diameter aperture.} Note that
 the plate rotation angle was designed as 76.2\,degrees, less than 2
 degrees from what is observed. We find that array 1
 has some of the most deviant detectors (above 4\,arcsec from their expected
@@ -239,14 +244,15 @@ optical system.
 \begin{center}
 \includegraphics[width=0.9\textwidth]{Figures/NIKA2_Final_grid.png}
 \caption[Simulated FOV grid]{NIKA2 grid diagram simulated using ZEMAX. Crosses indicate
-  the real coordinates on the Nasmyth image plan. \todo{{\bf question a
+  the real coordinates on the Nasmyth image plan. \todo{question a
     Samuel: pourquoi les dimensions indiquees sont environs 4.5 arcmin
-    de cote (et pas 6.5)?}}}
+    de cote (et pas 6.5)?}  \todo{Marco: This Grid Distortion has been generated with M2 in the nominal position.
+Does it change along the explored M2 movements?}}
  \label{fig:fov_grid_distortion_zemax}
 \end{center}
 \end{figure}
 
-Figure \ref{fig:fov_grid_distortion_zemax} show the ZEMAX grid diagram for
+Figure \ref{fig:fov_grid_distortion_zemax} shows the ZEMAX grid diagram for
 NIKA2 simulated optic system. The maximum grid distortion is expected
 to be of $2.7\%$ in NIKA2 $6.5'$ FOV. The distortion is the most
 noticeable in the upper right corner of the Nasmyth plan, which is
@@ -286,16 +292,18 @@ the focus surfaces as decribed here.
   right. From top to bottom, the focus estimates rely on
   FWHM-minimization, amplitude-maximization of an elliptical
   Gaussian of fixed FWHMs and amplitude-maximization of an elliptical
-  Gaussian.}
+  Gaussian. \new{On each plot, the x and y axis are the Nasmyth offsets
+  w.r.t. the center of the array in arcsec, while the color-code represents
+  the relative focus estimate to the central focus, given in mm.} }
 \label{fig:focus-surfaces}
 \end{center}
 \end{figure}
 
 \subsection{Method}
 
-We measure NIKA2 focal surfaces by means of a sequence of five
+We estimate NIKA2 focal surfaces by means of a sequence of five
 defocused \bms\ of bright
-point-like sources, typically Planets or bright quasars, for various settings of
+point-like sources, typically planets or bright quasars, for various settings of
 the telescope axial focus around the optimal focus $z_{\rm{opt}}$.
 %A \bm\ scan consists of a deep-integrated $13.5' \times 7.8'$ OTF-scan observation
 %comprizing $99$ sub-scans and with a scanning speed of either $65''/s$ whenever
@@ -304,8 +312,8 @@ the telescope axial focus around the optimal focus $z_{\rm{opt}}$.
 The z-focus is changed in step of $0.6~\rm{mm}$ to probe a large
 focus range for measuring even the extreme variation of the focus surfaces,
 namely $z \in \{-1.2, -0.6, 0, 0.6, 1.2 \} + z_{\rm{opt}}$.  Each
-\bm\ are analysed using the data reduction pipeline, as described in
-Sect.~\ref{se:pipeline_overview}, and $4''$-resolution individual maps per kid
+\bm\ is analysed using the data reduction pipeline, as described in
+Sect.~\ref{se:pipeline_overview}, and $4''$-resolution individual maps per KID
 are projected. %Before the projection, the correlated noise is mitigated from each KID timeline in
 %subtrating out a common mode, which is obtained using, amongst the other
 %detectors, those that correlates the most with this KID and that are located
@@ -375,7 +383,7 @@ Eq.~\ref{eq:mv_focus_surf}
 in Fig.~\ref{fig:focus-surfaces}.
 The three flavours of focus-estimators provide us with focus surfaces
 per array that are in good agreement with each others and that have a
-non-axisymetrical flatten bowl shape consistent with expectations from
+non-axisymmetrical flatten bowl shape consistent with expectations from
 optical simulation. %{\bf [TBA, as discussed further below]}.
 The median defocus (that is the relative focus w.r.t. the center)
 across the detectors is about
@@ -403,7 +411,8 @@ $\sigma_k^{(a)}|_{\rm{fwhm}}$, $\sigma_k^{(a)}|_{\rm{peak}}$ and
 $\sigma_k^{(a)}|_{\rm{flux}}$. This provides us with more optimistic
 error surfaces per array, which do not show any clear pattern across
 the FOV and which have a median value across the detectors of about
-$0.015~\rm{mm}$.  
+$0.015~\rm{mm}$. \todo{Marco: to be compared to the precision of the
+  setting of M2 position.} 
 
 %[EXPAND THE DISCUSSION ON COMPARISON WITH SIMULATION]
 

@@ -73,7 +73,7 @@ To illustrate the baseline selection efficiency, we present Uranus
 measured-to-predicted flux density ratios as a function of the 2D
 Gaussian FWHM estimates and color-coded from the observation dates
 given in UT hours in the first panels of
-Fig.~\ref{fig:calib_uranus_vs_fwhm_all}
+Fig.~\ref{fig:calib_uranus_vs_fwhm_all}.
 We note that the flux density estimates have been corrected by the
 rescaling factors, so that the flux density ratios are equal to unity
 in average by construction. First row panels of
@@ -115,8 +115,8 @@ section criteria.
   \hline\hline
   \multicolumn{2}{|c|}{Total}       &   27   &   25    &   40    &    92  \\
   \hline
-  Selected & Baseline               &   2    &   22    &    2    &    26  \\
-           & Photocorr              &   2    &   24    &   12    &    38  \\
+  \multicolumn{2}{|c|}{Baseline selection}     &   2    &   22    &    2    &    26  \\
+  \multicolumn{2}{|c|}{Photocorr}              &   2    &   24    &   12    &    38  \\
 \hline\hline
 \end{tabular}
 \caption[Absolute calibration scan numbers]{Number of scans for the absolute calibration}
@@ -131,22 +131,35 @@ section criteria.
 \begin{figure}[ht!]
   \begin{center}
     % corrected skydip
-    \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.35\textwidth]{Figures/Calibration/plot_flux_density_ratio_fwhm_uranus_corrected_skydip_narrow_1mm.pdf}
+    \begin{overpic}[clip=true, trim={0, -0.3cm, -0.3cm, 0},
+        width=0.35\textwidth]{Figures/Calibration/plot_flux_density_ratio_fwhm_uranus_corrected_skydip_narrow_1mm.pdf}
+      \put(18,25){\footnotesize Baseline}
+      \end{overpic}
     \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.3337\textwidth]{Figures/Calibration/plot_flux_density_ratio_fwhm_uranus_corrected_skydip_narrow_a2.pdf}
     % taumeter
-    \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.35\textwidth]{Figures/Calibration/plot_flux_density_ratio_fwhm_uranus_tau225_narrow_1mm.pdf}
+    \begin{overpic}[clip=true, trim={0, -0.3cm, -0.3cm, 0},
+        width=0.35\textwidth]{Figures/Calibration/plot_flux_density_ratio_fwhm_uranus_tau225_narrow_1mm.pdf}
+      \put(18,25){\footnotesize Taumeter}
+    \end{overpic}
     \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.3337\textwidth]{Figures/Calibration/plot_flux_density_ratio_fwhm_uranus_tau225_narrow_a2.pdf}
     % skydip
-    \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.35\textwidth]{Figures/Calibration/plot_flux_density_ratio_fwhm_uranus_skydip_narrow_1mm.pdf}
+    \begin{overpic}[clip=true, trim={0, -0.3cm, -0.3cm, 0},
+        width=0.35\textwidth]{Figures/Calibration/plot_flux_density_ratio_fwhm_uranus_skydip_narrow_1mm.pdf}
+      \put(18,25){\footnotesize Skydip}
+    \end{overpic}
     \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.3337\textwidth]{Figures/Calibration/plot_flux_density_ratio_fwhm_uranus_skydip_narrow_a2.pdf}
     % corr. sky. photocorr demo
-    \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.35\textwidth]{Figures/Calibration/plot_flux_density_ratio_fwhm_uranus_corrected_skydip_photocorr_demo_narrow_1mm.pdf}
+    \begin{overpic}[clip=true, trim={0, -0.3cm, -0.3cm, 0},width=0.35\textwidth]{Figures/Calibration/plot_flux_density_ratio_fwhm_uranus_corrected_skydip_photocorr_demo_narrow_1mm.pdf}
+       \put(18,25){\footnotesize Photocorr Demo}
+    \end{overpic}
     \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.3337\textwidth]{Figures/Calibration/plot_flux_density_ratio_fwhm_uranus_corrected_skydip_photocorr_demo_narrow_a2.pdf}
     % corr. sky. photocorr pointing
-    \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.35\textwidth]{Figures/Calibration/plot_flux_density_ratio_fwhm_uranus_corrected_skydip_photocorr_pointing_narrow_1mm.pdf}
+    \begin{overpic}[clip=true, trim={0, -0.3cm, -0.3cm, 0},width=0.35\textwidth]{Figures/Calibration/plot_flux_density_ratio_fwhm_uranus_corrected_skydip_photocorr_pointing_narrow_1mm.pdf}
+      \put(18,25){\footnotesize Photocorr Pointing}
+    \end{overpic}
     \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.3337\textwidth]{Figures/Calibration/plot_flux_density_ratio_fwhm_uranus_corrected_skydip_photocorr_pointing_narrow_a2.pdf}
     \caption[Uranus flux density stability against FWHM]{
-      Uranus flux density ratio vs beam size for five
+      \small{Uranus flux density ratio vs beam size for five
       calibration methods. The ratio of 
       Uranus measured flux densities to expectations in function of the
       measured 2D Gaussian beam FWHM is shown for the $1$-mm array
@@ -160,7 +173,7 @@ section criteria.
       campaigns and whose beam FWHM are below the threshold indicated
       by the vertical red lines, (open circles), as
       well as the scans that met the baseline selection criteria (filled
-      circles).}
+      circles).}}
 \label{fig:calib_uranus_vs_fwhm_all}
 \end{center}
 \end{figure}
@@ -172,7 +185,7 @@ section criteria.
 We test the stability of Uranus flux density ratio
 against the atmospheric transmission. The later quantity, we
 recall, depends on the measured zenith opacity $\tau$ and the scan
-average airmass $x = $cosec$(\delta)$ as $\exp{-\tau \cdot x}$. In
+average airmass $x = $cosec$(\delta)$ as $\exp{(-\tau \cdot x)}$. In
 Fig.~\ref{fig:uranus_flux_obstau}, Uranus flux ratios of Array 1,
 Array 3, the $1$-mm array combination and Array 2 are plotted as a
 function of the atmospheric transmission for the three considered
@@ -185,6 +198,11 @@ indication of the robustness of the flux density estimates against the
 atmospheric conditions using the baseline calibration. This will be
 further tested using more scans in Sect.~\ref{se:photometry_baseline}.   
 
+\new{Moreover, we note the lower dispersion of the flux density ratio in the
+  $1\,\rm{mm}$ waveband with respect to the $2\,\rm{mm}$ band. This is
+due to a lesser impact of the atmospheric attenuation uncertainties on
+the measured flux density at $2\,\rm{mm}$. The calibration
+uncertainties will be assessed in Sect.~\ref{se:photometry_baseline}}
 
 \begin{figure}[ht!]
   \begin{center}

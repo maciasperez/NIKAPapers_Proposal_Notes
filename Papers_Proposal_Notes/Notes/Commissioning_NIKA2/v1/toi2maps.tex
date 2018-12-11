@@ -60,7 +60,7 @@ timeline accidents (glitches).
 
 This step consists in addressing each sample of each KID to the correct sky
 coordinates and their associated map pixel. The pointing data are passed to the
-\nika\ raw data via ELVIN \todo{XXX TBC XXX}. They describe the absolute
+\nika\ raw data. They describe the absolute
 pointing of a reference point in the focal plane in various quantities, the
 absolute azimuth and elevation $(\alpha,\delta)$ of the source, together with
 offsets $(\Delta\alpha_t, \Delta\delta_t)$ \wrt~these. Because our final maps
@@ -182,7 +182,7 @@ different estimates of the low frequency component:
 \item {\bf Principal Component Analysis (PCA)}. For each NIKA2 array
   independently we decompose the covariance matrix in principal components. From
   those we derive up to 10 independent templates corresponding to the largest
-  eigenvalues \todo{that we subtract from the TOIs XXX TBC XXXX}.
+  eigenvalues that we subtract from the TOIs.
 
 \item {\bf Most correlated pixels (\cmoneb)}. For each detector in a given array we
   identify the detectors that are most correlated to it (a minimum of
@@ -246,23 +246,23 @@ details below:
 \begin{itemize}
 \item From the pointing information (Sect.~\ref{se:ptg}), we derive a mask per TOI
   and for each time $t$ that is 0 if the KID is close to the source, 1
-  otherwise. \new{In the case of a point source, the mask consists in 
+  otherwise. \vu{In the case of a point source, the mask consists in 
     a radius of 60\,arcsec centered on the source, whereas for
     diffuse emission, tailored masks are build.}
 \item Only samples for which two KIDs are far from the source,
-  \new{hence which are not discarded using the mask,} are selected and the KID-to-KID
+  \vu{hence which are not discarded using the mask,} are selected and the KID-to-KID
   correlation is computed.
   
 \item For a KID $k_0$, we store the KID identifiers that are most
   correlated to it. We first select the 15 most correlated KIDs, then 
   the average and the dispersion $\sigma$ of these correlations are
-  computed. \new{Then we add to the selection all the KIDs that are as correlated to $k_0$ as the
+  computed. \vu{Then we add to the selection all the KIDs that are as correlated to $k_0$ as the
   15 first, up to $2\,\sigma$.}
 \item A median common mode (far from the source) for this block of 15
-  or more KIDs is derived. \todo{Marco's comment: How many ?}
+  or more KIDs is derived.
 \item A cross-calibration to each of these KIDs is computed using the
   median common mode. Then an inverse noise weighted average mode is build. At each time, we use
-  only KIDs \new{that are not discarded with the source mask.} %that are further from the source than 60\,arcsec.
+  only KIDs \vu{that are not discarded with the source mask.}
   At this stage it is important to verify to have enough KIDs to produce a
   continuous mode and to do not leave samples without any estimation.
 \item We linearly regress this average mode against $k_0$'s TOI (far from the
@@ -273,7 +273,7 @@ This process is repeated for each KID. Fig.~\ref{fig:nika_toi} shows an example
 of this low frequency mode derivation, together with the resulting TOI
 cross-correlation matrix after its subtraction. We have tested on simulations
 that this method does not alter the flux of the
-source. \todo{Alessia's comment: Do we have a plot to show this ?}
+source.
 
 If the observed field contains something else than a single point source at its
 center, then several options are available to generalize this method. In
@@ -351,7 +351,7 @@ m^k(x,y) = \phi e^{-(x^2+y^2)/2\sigma^2} = \phi G(x,y)
 \label{eq:flux_per_beam_def}
 \end{equation}
 
-with $\phi$ the flux of the source \new{and $(x,\, y)$ the coordinates in
+with $\phi$ the flux of the source \vu{and $(x,\, y)$ the coordinates in
 the chosen system.} In practice, the beam is not a perfect Gaussian
 and significant side lobes must be accounted for
 (Sect.~\ref{se:beams}). If the beam was perfectly known and stable, we could in

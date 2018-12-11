@@ -7,9 +7,12 @@
 \label{se:ref_flux_primaries}
 
 % HA text
-The two main calibrators of NIKA2 are the giant planets Uranus and
-Neptune. Mars can also be used as primary calibrator, but care must be
-taken to use a flux corresponding to the date of the observations.  
+The main primary calibrators of NIKA2 are the giant planets Uranus and
+Neptune. \new{The latter is used when the former is not visible in the most
+stable observing conditions.} Mars can also be used as primary
+calibrator, but care must be taken to use a flux corresponding to the
+date of the observations.
+
 
 \subsection{Uranus and Neptune}
 \label{se:ref_flux_uranus_neptune}
@@ -22,7 +25,8 @@ resulting flux is therefore:
 S_{\nu} = \Omega \times \frac{2 \nu^{2} k T_{RJ}}{c^2}
 \end{equation}
 where $\Omega$ is the solid angle of the planet on the sky. Following
-Bendo et al. (2013) and correcting their equation 12 we have:
+\cite{bendo2013} and correcting their equation 12 we have:
+%
 \begin{equation}
 \Omega = \pi \frac{r_{e} r_{p-a}}{D^{2}} 
 \label{eq:omega}
@@ -30,7 +34,7 @@ Bendo et al. (2013) and correcting their equation 12 we have:
 where $r_{e}$ is the equatorial radius of the planet and $r_{p-a}$ is
 its apparent polar radius, and $D$ the distance to the
 planet. $r_{p-a}$ can be computed from the sub-observer latitude $\phi$
-({\it e.g.} the latitude of the 30-m telescope as seen from the planet in the
+({\it e.g.} the latitude of \new{the 30-m telescope} as seen from the planet in the
 planet equatorial reference frame) and $r_{p}$ the polar radius of the
 planet as:
 \begin{equation}
@@ -75,7 +79,7 @@ is the ESA V2, and it is found to overpredict by 4 K (about 4\%) the
 observed RJ temperature at 143~GHz, to agree at 217 GHz, and
 to underpredict at 353 GHz. We use for NIKA2 calibration ESA model V4,
 that predict a flux respectively -3.3\%, 0.3\% and 4.7\% higher in the
-the 143, 217 and 353 GHz, that would lead to a percent
+143, 217 and 353 GHz bands, that would lead to a percent
 accuracy with respect to Planck observations. 
 
 For Neptune, the same study compared Planck observation with the ESA V5
@@ -95,9 +99,13 @@ distributed with the software.
 
 
 
-\begin{table}[p]
+\begin{table*}[!h]
+  \caption[NIKA2 planet flux expectations]{NIKA2 planet flux
+    expectations. Notes: (a) NIKA2 Run, (b) Julian Date when the model
+    is computed, (c) Run duration, (d, e) total fluxes at 260 and 150
+    GHz, (f) variation of the 150 GHz flux density over the duration of the run}
 \centering
-\begin{tabular}{|l|r|r|r|r|r|r|}
+\begin{tabular}{|l|r|r|r|r|r|}
 \hline
 NR$^{a}$  & JD$^{b}$ & $\Delta t$ $^{c}$ & $S_{\nu}$(260 GHz)  $^{d}$& $S_{\nu}$(150  GHz)$^{e}$  & $\Delta S_{\nu}/  S_{\nu} ^{f}$  \\
 \hline
@@ -145,13 +153,16 @@ NR$^{a}$  & JD$^{b}$ & $\Delta t$ $^{c}$ & $S_{\nu}$(260 GHz)  $^{d}$& $S_{\nu}$
 23 & 2457865.0 &  7 & 123.61 & 40.61 & -5.44\\
 24 & 2457915.4 &  5 & 102.08 & 33.68 & +0.59 \\
 \hline
+
+%\multicolumn{6}{c}{Notes: (a) NIKA2 Run}\\
+%\multicolumn{6}{c}{(b) Julian Date when the model is computed}\\
+%\multicolumn{6}{c}{(c) Run duration}\\
+%\multicolumn{6}{c}{(d, e) total fluxes at 260 and 150 GHz}\\
+%\multicolumn{6}{c}{(f) variation of the 150 GHz flux density over the
+%  duration of the run}\\
 \end{tabular}
-\caption[NIKA2 Planet flux expectations]{ a: Nika Run, b: Julian Date when the
-  model are computed, c: Run duration, d, e: total fluxes at 260 and
-  150 GHz, f: variation of the 150 GHz flux density over the duration
-  of the run}
 \label{tab:fluxPred}
-\end{table}
+\end{table*}
 
 
 \subsection{Mars}

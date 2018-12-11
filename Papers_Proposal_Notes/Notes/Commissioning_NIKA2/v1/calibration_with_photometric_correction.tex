@@ -64,13 +64,13 @@ $\sigma_\star$ with the source flux density is given in
 Sect.~\ref{se:photometric_correction}.
 
 The photometric correction thus relies on the measure of the current beam
-size $\sigma ’$. The induced uncertitude on the flux density
+size $\sigma ’$. The induced uncertainties on the flux density
 measurements depends on the precision of which we are able to monitor
 the beam size. 
 
-We perform two case studies: Sect.~\ref{se:photocorr_demo} presents a demonstration
+We perform two case studies: \new{the paragraph titled ``Demonstration case''} presents a demonstration
 calibration assuming the beam is precisely monitored, whereas
-Sect.~\ref{se:photocorr_pointing} addresses a practical calibration relying
+the ``Practical case using pointing scans'' paragraph addresses a practical calibration relying
 on a beam monitoring using pointing scans. 
 
 \subsubsection{Demonstration case}
@@ -84,7 +84,9 @@ obtained using a single scan.
 
 The beam size is estimated by fitting a 2D Gaussian from the map and
 forming the geometrical $\sigma$,
-$\sigma_{\rm{geom}} = (\sigma_x \sigma_y)^{1/2}$. 
+$\sigma_{\rm{geom}} = (\sigma_x \sigma_y)^{1/2}$\new{, where
+  $\sigma_x$ and $\sigma_y$ are the 2D Gaussian standard deviation
+  along the $x-$ and $y-$axis respectively.}
 
 In order to capture only the beam size variations driven by the
 telescope, a small correction $\delta_{\rm{geom}}$ has to be made to
@@ -103,8 +105,8 @@ For Uranus, $\delta_{\rm{geom}}$ includes also the beam widening due
 to Uranus disc, which is seen with a diameter of about $3.5''$ at the
 IRAM 30-m telescope latitude. We measure Uranus $\delta_{\rm{geom}}$
 by comparing the average $\sigma_{\rm{geom}}$ estimates using Uranus
-scans and using MWC349 scans, we found $\delta_{\rm{geom}} = 0.4$ at
-1-mm and $\delta_{\rm{geom}} = 0.25$ at 2-mm, in consistency with the empirical
+scans and using MWC349 scans, we found $\delta_{\rm{geom}} = 0.9''$ at
+1-mm and $\delta_{\rm{geom}} = 0.6''$ at 2-mm, in consistency with the empirical
 $\sigma_\star$ variations with flux discussed in
 Sect.~\ref{se:photometric_correction}.
 
@@ -128,11 +130,11 @@ of integration time each, they can be used to project a map of the
 pointing source. The beam size is estimated by fitting a 2D Gaussian
 and forming the geometrical FWHM, labeled $FWHM_{\rm{p}}$. No
 significant offset is observed for bright sources because, unlike maps
-based on OTF scans,
-pointing scan maps have not enough signal to noise for a significant
-impact of side lobes on the geometrical FWHM. However, the beam
-widening due to the apparent diameter is corrected in the case of
-Uranus.
+based on OTF scans, \new{pointing scan maps have a low signal-to-noise
+ratio that prevents the geometrical FWHM from being sizably affected by the
+side lobes.}
+However, the beam widening due to the apparent diameter has been taken
+into account in the case of Uranus.
 As a summary, for the pointing-based photometry correction method,
 shortened as 'pointing' hereafter, the
 beam variations are monitored using the estimate of the
@@ -144,7 +146,7 @@ where $\sigma_{\rm{p}}$ is the geometrical $\sigma$ corresponding to
 $FWHM_{\rm{p}}$ and the offset $\delta_{\rm{p}}$ is null for
 point-like sources and equals to $0.2''$ at 1mm and $0.13''$ at 2mm
 for pointing scan of Uranus. The beam variation monitoring using
-pointing scans is further detailed in
+pointing scans has been detailed in
 Sect.~\ref{se:obsdate_variations}.
 
 
@@ -152,7 +154,7 @@ Sect.~\ref{se:obsdate_variations}.
 \subsection{Stability against observing conditions}
 
 Here we check the stability of Uranus measured-to-predicted flux
-density ratio against the beam size and the atmopsheric transmission
+density ratio against the beam size and the atmospheric transmission
 when using a photometric correction for the beam variations.
 The measured flux density relies on the 'corrected skydip' opacity
 measurements to correct for the atmospheric attenuation.  
@@ -168,7 +170,7 @@ Table.~\ref{tab:absolute_calibration_scan_numbers}, including scans
 acquired in the early afternoon.
 
 In Fig.~\ref{fig:calib_uranus_vs_atmtrans_all}, we check the stability
-of Uranus flux density ratios againts the atmospheric transmission using
+of Uranus flux density ratios against the atmospheric transmission using
 the 'demo' (fourth row) and 'pointing' (last row) photometric
 corrections. The atmospheric transmission model and the colour
 conventions are the same as in Sect.~\ref{se:baseline_calibration_atm}.
@@ -176,7 +178,7 @@ The flux ratios at both wavelengths are consistent with the
 unity within statistical errors for the whole tested range of
 atmospheric transmissions using both the 'demo' and the 'pointing'
 photometric correction. Average absolute calibration factors normalised
-to the baseline calibration factor, as well as the rms errors are
+to the baseline calibration factor, as well as the \new{relative} rms errors are
 gathered in Table~\ref{tab:Abs_calibration_results_all} in the columns
 labeled 'photocorr demo' and 'photocorr pointing'. We find that,
 resorting to a photometric correction i) allows us to use $45\%$ more
@@ -193,19 +195,29 @@ correction will be further tested in Sect.~\ref{se:photometry_others}.
 \begin{figure}[ht!]
 \begin{center}
   % corrected skydip
-  \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.35\textwidth]{Figures/Calibration/plot_flux_density_ratio_obstau_uranus_corrected_skydip_narrow_1mm.pdf}
+  \begin{overpic}[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.35\textwidth]{Figures/Calibration/plot_flux_density_ratio_obstau_uranus_corrected_skydip_narrow_1mm.pdf}
+    \put(20,23){\footnotesize Baseline}
+  \end{overpic}
   \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.35\textwidth]{Figures/Calibration/plot_flux_density_ratio_obstau_uranus_corrected_skydip_narrow_a2.pdf}
   % taumeter
-  \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.35\textwidth]{Figures/Calibration/plot_flux_density_ratio_obstau_uranus_tau225_narrow_1mm.pdf}
+  \begin{overpic}[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.35\textwidth]{Figures/Calibration/plot_flux_density_ratio_obstau_uranus_tau225_narrow_1mm.pdf}
+    \put(20,23){\footnotesize Taumeter}
+  \end{overpic}
   \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.35\textwidth]{Figures/Calibration/plot_flux_density_ratio_obstau_uranus_tau225_narrow_a2.pdf}
   % skydip
-  \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.35\textwidth]{Figures/Calibration/plot_flux_density_ratio_obstau_uranus_skydip_narrow_1mm.pdf}
+  \begin{overpic}[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.35\textwidth]{Figures/Calibration/plot_flux_density_ratio_obstau_uranus_skydip_narrow_1mm.pdf}
+    \put(20,23){\footnotesize Skydip}
+  \end{overpic}
   \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.35\textwidth]{Figures/Calibration/plot_flux_density_ratio_obstau_uranus_skydip_narrow_a2.pdf}
   % corr. sky. photocorr demo
-  \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.35\textwidth]{Figures/Calibration/plot_flux_density_ratio_obstau_uranus_corrected_skydip_photocorr_demo_narrow_1mm.pdf}
+  \begin{overpic}[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.35\textwidth]{Figures/Calibration/plot_flux_density_ratio_obstau_uranus_corrected_skydip_photocorr_demo_narrow_1mm.pdf}
+    \put(20,23){\footnotesize Photocorr Demo}
+  \end{overpic}
   \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.35\textwidth]{Figures/Calibration/plot_flux_density_ratio_obstau_uranus_corrected_skydip_photocorr_demo_narrow_a2.pdf}
   % corr. sky. photocorr pointing
-  \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.35\textwidth]{Figures/Calibration/plot_flux_density_ratio_obstau_uranus_corrected_skydip_photocorr_pointing_narrow_1mm.pdf}
+  \begin{overpic}[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.35\textwidth]{Figures/Calibration/plot_flux_density_ratio_obstau_uranus_corrected_skydip_photocorr_pointing_narrow_1mm.pdf}
+    \put(20,23){\footnotesize Photocorr Pointing}
+  \end{overpic}
   \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.35\textwidth]{Figures/Calibration/plot_flux_density_ratio_obstau_uranus_corrected_skydip_photocorr_pointing_narrow_a2.pdf}
   \caption[Uranus flux density stability against atmospheric
     transmission]{Uranus flux density ratio vs atmospheric transmission
@@ -221,7 +233,6 @@ correction will be further tested in Sect.~\ref{se:photometry_others}.
   \label{fig:calib_uranus_vs_atmtrans_all}
 \end{center}
 \end{figure}
-
 
 
 % ALL METHOD RESULTS 
@@ -240,7 +251,7 @@ correction will be further tested in Sect.~\ref{se:photometry_others}.
        &  2mm           &   1.00  &  0.94   &  0.99    &   1.01    &   1.01  \\
   \hline
   RMS  &  A1            &  3.2    &   4.2   &   3.4    &    3.5    &   3.0 \\
-       &  A3            &  3.6    &   4.3   &   3.3    &    3.5    &   3.0 \\
+  $[\%]$     &  A3            &  3.6    &   4.3   &   3.3    &    3.5    &   3.0 \\
        &  1mm           &  3.3    &   4.5   &   3.3    &    3.1    &   2.6 \\
        &  2mm           &  1.6    &   2.6   &   1.5    &    1.5    &   1.5 \\
 \hline\hline

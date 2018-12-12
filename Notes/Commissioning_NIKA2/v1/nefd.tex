@@ -19,7 +19,7 @@ integration'' and relate it to the ``time of observation'' which is the time
 actually spent by an astronomer at the observing desk. Going from the intuitive
 understanding of the time of integration to its actual value is not as trivial
 as it seems because of the dependence on the scanning strategy and the
-distribution of valid KIDs accross the FOV.
+distribution of valid KIDs across the FOV.
 
 \section{Estimating the time of integration}
 
@@ -27,7 +27,7 @@ distribution of valid KIDs accross the FOV.
 
 Let's take a map of resolution $r$ (arcsec) and consider the map pixel that is
 centered on the position where we estimate the flux uncertainty
-$\sigma_\phi$. The number of hits in this pixel $N_h(r)$ allows us to define a
+$\sigma_\phi$. The number of hits in this pixel $N_{\rm{h}}(r)$ allows us to define a
 time of integration on this pixel via the sampling frequency $\nu$
 
 \begin{equation}
@@ -36,30 +36,30 @@ t_{pix} = N_h(r)/\nu
 
 To estimate how much wall clock time was necessary to the entire matrix to
 produce this density of samples, we need to account for how many KIDs, on
-average, contribute to $N_h(r)$ at the same time, that is to say the average
+average, contribute to $N_{\rm{h}}(r)$ at the same time, that is to say the average
 number of KIDs per map pixel. Indeed, if the pixel is large enough to contain
 $n$ KIDs at each time, the number of samples in this pixel will be $n$ times
 larger for the same time of observation. The same is true if we combine A1 and
 A3 for instance. We therefore note $S$ the surface of the FOV, $g$ the distance
-between adjacent KIDs and note that $S = N_{pix} \times r^2 = N_{kids} \times
+between adjacent KIDs and note that $S = N_{\rm{pix}} \times r^2 = N_{\rm{KID}} \times
 g^2$. The number of KIDs per pixel of $r$\,arcsec resolution is thus $r^2/g^2$,
 so the actual observation time reads
 
 \begin{equation}
-t_{det} = t_{pix}\frac{g^2}{r^2} = \frac{N_h(r)}{\nu}\frac{g^2}{r^2}
+t_{\rm{det}} = t_{\rm{pix}}\frac{g^2}{r^2} = \frac{N_{\rm{h}}(r)}{\nu}\frac{g^2}{r^2}
 \end{equation}
 
 For the combination of arrays 1 and 3, the number of KIDs per pixel is the sum
 of the two contributions that impact the number of KIDs per pixel:
 
 \begin{equation}
-t_{det}^{1mm} = \frac{1}{2}\frac{N^{1mm}_h(r)}{\nu}\frac{g^2}{r^2}
+t_{\rm{det}}^{1mm} = \frac{1}{2}\frac{N^{1\rm{mm}}_{\rm{h}}(r)}{\nu}\frac{g^2}{r^2}
 \end{equation}
 
-So finally, if $\sigma$ is the uncertainty on the flux estimate, the detector NEFD reads
+So finally, if $\sigma_\phi$ is the uncertainty on the flux estimate, the detector NEFD reads
 
 \begin{equation}
-NEFD_{det} = \sigma_\phi\sqrt{t_{det}}
+NEFD_{\rm{det}} = \sigma_\phi\sqrt{t_{\rm{det}}}
 \label{eq:nefd_t_int}
 \end{equation}
 
@@ -68,13 +68,13 @@ fraction of valid pixels actually used to derive the map. Indeed, the
 integration time per pixel goes like $\eta$ for the same observation, thus:
 
 \begin{equation}
-NEFD_{det}^{eff} = \sigma_\phi\sqrt{t_{det}/\eta}
+NEFD_{\rm{det}}^{\rm{eff}} = \sigma_\phi\sqrt{t_{\rm{det}}/\eta}
 \end{equation}
 
 which in turn translates into a time requirement to reach the same level of integration:
 
 \begin{equation}
-t_{det}^{req} = \left(\frac{NEFD_{det}}{\sigma_\phi}\right)^2\frac{1}{\eta}
+t_{\rm{det}}^{\rm{req}} = \left(\frac{NEFD_{\rm{det}}}{\sigma_\phi}\right)^2\frac{1}{\eta}
 \label{eq:t_astro}
 \end{equation}
 
@@ -88,14 +88,23 @@ radius. This time, $t_{geom}$ is a direct estimate of the time ``at the desk'',
 so it enters the definition of effective NEFD, not the detector NEFD, hence:
 
 \begin{equation}
-NEFD^{eff}_{geom} = \sigma_\phi \sqrt{t_{geom}}
+NEFD^{\rm{eff}}_{\rm{geom}} = \sigma_\phi \sqrt{t_{\rm{geom}}}
 \end{equation}
 
-Fig.~\ref{fig:time_comparison} compares $\eta t_{geom}$ to $t_{det}$ and shows
-the good agreement between the two. Because the definition of $t_{det}$ is more
+Fig.~\ref{fig:time_comparison} compares $\eta t_{\rm{geom}}$ to $t_{\rm{det}}$ and shows
+the good agreement between the two. Because the definition of $t_{\rm{det}}$ is more
 straightforward in terms of measurement from the map and design parameters and
 does not require an approximate determination of the FOV radius, it is 
 \emph{our reference time estimator}.
+
+\todo{MARCO'S COMMENT: $t_{det}$ is always lower than $\eta*t_{geom}$
+(see Fig.8.1); a possible origin of that should be that $t_{det}$ is
+underestimated.
+In fact, the number of KIDs per pixel of $r$ arcsec resolution is
+estimated as $r^2/g^2$ but, due to pixel interspaces, this number is
+overstimated and so $t_{det}$ underestimated. LP: oui, ou alors
+certains samples ont ete flaggues et ne sont pas comptes dasn la carte
+de hits (Nico, tu penses qu'il faut ajouter un commentaire ?)}
 
 \begin{figure}
 \begin{center}
@@ -153,25 +162,29 @@ without combining them:
 
 \begin{enumerate}
 \item {\bf Deep Integration method 1}: the error on the flux of a point source for an
-  integration time $t$ is $\sigma = NEFD/\sqrt{t}$. Co-adding several scans of
-  the same source and fitting $\sigma$ as a function of the square root of the
+  integration time $t$ is $\sigma_\phi(t) = NEFD/\sqrt{t}$. Co-adding several scans of
+  the same source and fitting $\sigma_\phi$ as a function of the
+  inverse of the square root of the
   time of integration must therefore give a straight line whose
   amplitude is the NEFD if correctly corrected for the different elevation and
   opacity conditions of observations.
 \item {\bf Deep Integration method 2}: by summing a large and even number of scans
-  with alternative positive and negative weights, we cancel the signal while
+  with alternate positive and negative weights, we cancel the signal while
   keeping the noise properties. This final ``Jackknife'' map can then be analyzed
   to provide estimates of flux uncertainties for a the effective time of
-  integration, hence giving an alternate estimation of the NEFD.
+  integration, hence giving an alternative estimation of the NEFD.
 \item {\bf Scatter method}: analyzing each scan in terms of sensitivity and
   time of integration, we have a NEFD per scan that varies with opacity and
-  elevation. Fitting the distribution of measures against $exp[\tau/sin\delta]$
-  provides the zenith opacity.
+  elevation. Fitting the distribution of measures against $exp(\tau/sin\delta)$
+  provides the zenith NEFD.
 \end{enumerate}
 
-In this section, we use two data sets from Runs 9 and 12.
+In this section, we use first two data sets from Runs 9 and 12 and
+\new{then all the scans of sub-Jy sources acquired during Runs 9, 12 and
+14.} 
 
-For Run~9, \hls\ is moderately faint source \cite{hls_combes}, expected to be
+For Run~9, we use observation scans towards \hls\, which is a
+moderately faint source \cite{hls_combes}, expected to be
 74.5\,mJy at 1mm and 15.7\,mJy at 2mm (M.~Bethermin, private
 communication). This source was chosen for its flux and its availability during
 Run9 for long integration. It has been observed for about 9\,h in total over
@@ -182,7 +195,7 @@ For Run~12, G2 has become the nickname of an empty target close to sources known
 to IRAM but not to the commissioning team in order to check our source
 detection capabilities blindly.
 
-The data were processed according to sect.~\ref{se:pipeline_overview}.
+The data were processed according to Sect.~\ref{se:pipeline_overview}.
 
 \subsection{Deep integration method 1: $\sigma = NEFD/\sqrt{t}$}
 \label{se:nefd_m1}
@@ -204,12 +217,13 @@ the map according to Sect.~\ref{se:photometry}. The uncertainty on the flux at
 the center of the field (on source in the case of \hls, off source in the case
 of G2) is plotted and fitted against $\sqrt{t_{\rm{det}}}$. It should go like a
 straight line if scans were all taken in the exact same conditions and stacked
-with equal weights. In pratice, the weights are sensitive to the conditions of
-observations, namely the elevation and opacities (see Fig.~\ref{fig:nefd_plots}
-and they must be accounted for. The uncertainty on the central flux reads
+with equal weights. In practice, the weights are sensitive to the conditions of
+observation, namely the elevation and opacities (see Fig.~\ref{fig:nefd_plots})
+and this weight variation must be accounted for. The uncertainty on
+the central flux reads
 
 \begin{equation}
-\sigma = NEFD_{det}\times e^{\tau/\sin\delta}\,t^{-1/2}
+\sigma = NEFD_{\rm{det}}\times e^{\tau/\sin\delta}\,t^{-1/2}
 \label{eq:sigma_nefd}
 \end{equation}
 
@@ -232,7 +246,7 @@ which, according to Eq.~(\ref{eq:sigma_nefd}) becomes
 \label{eq:sigma_tau_w8}
 \end{equation}
 
-If the opacity and the elevations are the same for all scans, we recover the
+If the opacity and the elevation were the same for all scans, we recover the
 integration like $\sqrt{t}$. In general, if the observing conditions vary, we
 must fit the integrated sensitivity vs the effective time $\sum_{n}t_n
 e^{-2\tau_n/\sin\delta_n}$ in order to recover an unbiased estimate of
@@ -249,7 +263,8 @@ Fig.~\ref{fig:nefd_plots} and in Tab.~\ref{tab:nefd_summary}.
   measure of the flux of a point source vs the time of integration on this
   source in two cases. The sensitivity goes like $t^{-1/2}$ as
   expected. \emph{Bottom row:} Opacities and elevations of the scans used in
-  this analysis.}
+  this analysis. \new{The average opacities at $1$ and $2\,\rm{mm}$ are
+  given in the legend.}}
 \label{fig:nefd_plots}
 \end{center}
 \end{figure}
@@ -259,7 +274,7 @@ Fig.~\ref{fig:nefd_plots} and in Tab.~\ref{tab:nefd_summary}.
 With enough scans of the same source, it is possible to alternate addition and
 subtraction of the scans and therefore cancel the contribution of the signal to
 the final combination, while preserving the noise properties. This method is
-often refered to as ``Jackknife'' and is a powerful test for residual
+often referred to as ``Jackknife'' and is a powerful test for residual
 systematics. The Jaccknife maps of \hls\ and G2 are presented on
 Fig.~\ref{fig:jk_maps}. Photometry at their center provides estimates of the
 zenith NEFD that are reported in Tab.~\ref{tab:nefd_summary}.
@@ -268,7 +283,8 @@ zenith NEFD that are reported in Tab.~\ref{tab:nefd_summary}.
 \begin{center}
 \includegraphics[clip, angle=0, scale=0.5]{Figures/nefd_jackknife.png}
 \caption[Jackknife maps of G2 and \hls]{\emph{Top row:} Maps of \hls\ and G2 at
-  1mm. \emph{Bottom row:} \emph{Jackknife} maps :After the sum of scans with alternative positive and negative
+  $1\,\rm{mm}$. \emph{Bottom row:} \emph{Jackknife} maps at
+  $1\,\rm{mm}$. After the sum of scans with alternate positive and negative
   weights, signal residuals are negligible while noise properties are preserved.}
 \label{fig:jk_maps}
 \end{center}
@@ -288,12 +304,13 @@ zenith NEFD are given in Tab.~\ref{tab:nefd_summary}.
 
 \begin{figure}[hhh]
 \begin{center}
-\includegraphics[clip, angle=0, scale =0.42]{Figures/hls_NEFD_vs_TauElev_all.eps}
-\includegraphics[clip, angle=0, scale =0.42]{Figures/g2_NEFD_vs_TauElev_all.eps}
+\includegraphics[clip, angle=0, scale =0.42]{Figures/hls_NEFD_vs_TauElev_all_mod.pdf}
+\includegraphics[clip, angle=0, scale =0.42]{Figures/g2_NEFD_vs_TauElev_all_mod.pdf}
 \caption[NEFD per scan]{1\,$\sigma$ sensitivity on the central flux for each
-  observation of G2 and \hls. The solid black line is the theoretical fit of
-  $\sigma = \sigma_{ref}e^{\tau/\sin\delta}$ and gives the zenith NEFD when
-  extrapolated to $\tau/\sin\delta = 0$.}
+  observation of G2 and \hls. The solid black line is the theoretical
+  fit of $\rm{NEFD} = \rm{NEFD}_0$ $e^{(\tau/\sin\delta)}$
+  %$\sigma = \sigma_{ref}e^{\tau/\sin\delta}$
+  and gives the zenith NEFD when extrapolated to $\tau/\sin\delta = 0$.}
 \label{fig:nefd_scatter}
 \end{center}
 \end{figure}
@@ -310,7 +327,7 @@ between runs N2R9, N2R12 and N2R14 and their consistency.
 \begin{center}
 \includegraphics[clip=true,width=0.47\textwidth]{Figures/NEFDIndScans/nefd_flux1mm_run22.pdf}
 \caption[Measured NEFD versus source flux for N2R9 at 1 and 2 mm]{Measured NEFD
-  versus source flux for N2R9 at 1 and 2 mm}
+  versus source flux for N2R9 at 1 and 2 mm using the \emph{scatter} method}
 \label{fig:nefdvsbackground}
 \end{center}
 \end{figure}
@@ -322,12 +339,13 @@ between runs N2R9, N2R12 and N2R14 and their consistency.
 \includegraphics[clip=true,width=0.47\textwidth]{Figures/NEFD/plot_nefd_vs_obstau_corrected_skydip_vfinal_1mm.pdf}
 \includegraphics[clip=true,width=0.47\textwidth]{Figures/NEFD/plot_nefd_vs_obstau_corrected_skydip_vfinal_a2.pdf}
 \caption[Measured NEFD versus observed opacity]{Measured NEFD as a function of
-  atmospheric background for array 1 (upper left), array 3 (upper right), the
+  line-of-sight opacity ($\tau/sin(\delta)$) for array 1 (upper left), array 3 (upper right), the
   $1~\rm{mm}$ (lower left) and $2~\rm{mm}$ (lower right)
   channels. Data points
   are NEFD estimates in mJy.s$^{1/2}$ for N2R9 (blue), N2R12 (orange)
   and N2R14 (chartreuse). We also show in the plots the expected NEFD evolution
-  with atmospheric background as solid curves.}
+  with the line-of-sight opacity as solid curves \new{using the median
+  zenith opacity derived from all the scans acquired during a campaign.}}
 \label{fig:nefdvsbackground_below_1Jy}
 \end{center}
 \end{figure}

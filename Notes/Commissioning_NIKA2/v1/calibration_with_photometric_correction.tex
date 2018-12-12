@@ -90,10 +90,10 @@ $\sigma_{\rm{geom}} = (\sigma_x \sigma_y)^{1/2}$\new{, where
 
 In order to capture only the beam size variations driven by the
 telescope, a small correction $\delta_{\rm{geom}}$ has to be made to
-the 2D Gaussian beam estimate for bright sources. The estimate of the
+the 2D Gaussian beam FWHM estimate for bright sources. The estimate of the
 actual Gaussian size $\sigma '$ is
 \begin{equation}
-  \hat{\sigma '} = \sigma_{\rm{geom}} - \delta_{\rm{geom}}, 
+  \hat{\sigma '} = \sigma_{\rm{geom}} - \frac{\delta_{\rm{geom}}}{2\sqrt{2 \ln{2}}}, 
 \end{equation} 
 
 where the offset $\delta_{\rm{geom}}$ is null for faint or moderately
@@ -105,10 +105,13 @@ For Uranus, $\delta_{\rm{geom}}$ includes also the beam widening due
 to Uranus disc, which is seen with a diameter of about $3.5''$ at the
 IRAM 30-m telescope latitude. We measure Uranus $\delta_{\rm{geom}}$
 by comparing the average $\sigma_{\rm{geom}}$ estimates using Uranus
-scans and using MWC349 scans, we found $\delta_{\rm{geom}} = 0.9''$ at
-1-mm and $\delta_{\rm{geom}} = 0.6''$ at 2-mm, in consistency with the empirical
-$\sigma_\star$ variations with flux discussed in
-Sect.~\ref{se:photometric_correction}.
+scans and using MWC349 scans, we found $\delta_{\rm{geom}} = 0.4''$ at
+1-mm and $\delta_{\rm{geom}} = 0.25''$ at 2-mm, which basically
+distributes as one half being due to Uranus finite extension and the
+other half stemming from the side lobes. 
+%, in consistency with
+%the empirical $\sigma_\star$ variations with flux discussed in
+%Sect.~\ref{se:photometric_correction}.
 
 
 \subsubsection{Practical case using pointing scans}
@@ -140,11 +143,12 @@ shortened as 'pointing' hereafter, the
 beam variations are monitored using the estimate of the
 actual Gaussian size $\sigma '$ 
 \begin{equation}
-  \hat{\sigma '} = \sigma_{\rm{p}} - \delta_{\rm{p}}, 
+  \hat{\sigma '} = \sigma_{\rm{p}} - \frac{\delta_{\rm{p}}}{2\sqrt{2 \ln{2}}}, 
 \end{equation} 
 where $\sigma_{\rm{p}}$ is the geometrical $\sigma$ corresponding to
 $FWHM_{\rm{p}}$ and the offset $\delta_{\rm{p}}$ is null for
-point-like sources and equals to $0.2''$ at 1mm and $0.13''$ at 2mm
+point-like sources and equals to $0.2''$ at $1\,\rm{mm}$ and $0.13''$
+at $2\,\rm{mm}$
 for pointing scan of Uranus. The beam variation monitoring using
 pointing scans has been detailed in
 Sect.~\ref{se:obsdate_variations}.

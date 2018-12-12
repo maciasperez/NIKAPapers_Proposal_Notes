@@ -13,7 +13,12 @@ photometric correction.
     \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.45\textwidth]{Figures/Photocorr/FWHM_stable_empiric_ref_a2.pdf}
     \caption[Photometric correction pivot Gaussian
       size]{Flux-dependency of the photometric correction pivot
-      Gaussian size $\sigma_\star$. This is measured as the 2D Gaussian fit of the map observed in stable conditions}
+      Gaussian size $\sigma_\star$. This is measured as the 2D
+      Gaussian fit of the map observed in stable conditions.
+      The vertical dashed lines correspond to Uranus flux densities in
+      the two bands, and the horizontal dashed lines are the
+      corresponding measured
+      $\sigma_\star$ for Uranus.}
     \label{fig:sigma_stable_vs_flux}
   \end{center}
 \end{figure}
@@ -46,7 +51,7 @@ width $\sigma_\star$ corresponding basically to the main beam size:
   M(\theta, \phi) = \frac{A}{2 \pi \sigma_\star^{2}} e^{-\frac{\theta^{2}}{2\sigma_\star^{2}}}.
   \label{eq:pointsource_map}
 \end{equation}
-Ingesting Eq.~\ref{eq:broader_beam_map} in
+Ingesting Eq.~\ref{eq:pointsource_map} in
 Eq.~\ref{eq:flux_density_estimator}, we find that the flux density
 estimator depends on the beam size as
 \begin{equation}
@@ -92,8 +97,9 @@ source flux density. Whereas it basically corresponds to the main beam
 size for faint to moderately bright point source, it is slightly
 larger for sources bright enought for the error beams to be well above
 the noise level. In Fig.~\ref{fig:sigma_stable_vs_flux}, we give an
-empirical model for the flux dependency of $\sigma_{\star}$: it
-smoothly goes from $11.2''$ at 1-mm and $17.4''$ at 2-mm for
-moderately bright sources to
-$11.6''$ at 1-mm and $17.65''$ at 2-mm at the flux density of Uranus,
+empirical model for the flux dependency of \new{the FWHM derived from}
+$\sigma_{\star}$: it
+smoothly goes from $11.2''$ at $1\,\rm{mm}$ and $17.4''$ at $2\,\rm{mm}$ for
+moderately bright sources to $11.6''$ at $1\,\rm{mm}$ and $17.65''$ at
+$2\,\rm{mm}$ at the flux density of Uranus,
 then slightly continues increasing for sources brighter than Uranus.

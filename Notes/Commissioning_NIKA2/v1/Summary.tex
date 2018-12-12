@@ -208,13 +208,13 @@ Table~\ref{tab:nefd_summary}.  The conservative NEFD estimate reaches
 the goal value at $2\,\rm{mm}$. However, it is measured as slightly
 above the specifications at $1\,\rm{mm}$.
 
-We have identified several areas of improvement that will make NIKA2
+\new{We have identified several areas of improvement that will make NIKA2
 more sensitive at 1~mm: 1)~change the dichroic element (one of
 the 1~mm polarization components (A1) is absorbed more than the other (A3)
 with the present dichroic), 2)~improve the data processing and in
 particular the noise decorrelation methods, 3)~upgrade the 1~mm
 arrays, 4)~increase the bandwidth of the 1~mm arrays, and 5)~upgrade
-the surface of the telescope.
+the surface of the telescope.}
 
 NIKA2 mapping capabilities are better estimated by evaluating the
 mapping speed, which is defined as the sky area that is covered in one
@@ -249,20 +249,23 @@ are gathered in Table~\ref{tab:nika2summary}.
       \hline
       FWHM\tnote{(b)}\hspace{3mm} [arcsec]    &  $11.1 \pm 0.2$   &  $11.0 \pm 0.2$  &   $11.1 \pm 0.1$  &  $17.6 \pm 0.1$  &  Sect.~\ref{se:fwhm_results}\\
       Beam efficiency\tnote{(c)}\hspace{3mm} [\% ] &  $55 \pm 3$  &  $56 \pm 3$   &  $55 \pm 3$   &  $77 \pm 2$  &  Sect.~\ref{se:beam_efficiency}\\
-      rms of the FWHM on the FOV [$\%$]          &    6         &      6        &       6        &      3        & Sect.~\ref{se:fwhm_fov}\\
+      relative rms of the FWHM on the FOV [$\%$]          &    6         &      6        &       6        &      3        & Sect.~\ref{se:fwhm_fov}\\
+      \hline
+      \new{Reference FWHM\tnote{(d)}\hspace{3mm} [arcsec]}          &  $12.5$   &  $12.5$  &   $12.5$  &   $18.5$  &  Sect.~\ref{se:cal_HA_reference}\\
+      \new{Reference Beam efficiency\tnote{(e)}\hspace{3mm}  [\% ]} &           &          &           &           &  Sect.~\ref{se:aperture_photo_calibration}\\
       \hline
       rms pointing error    [arcsec]             & \multicolumn{4}{|c|}{$<3$} &  Sect.~\ref{se:pointing} \\
       \hline
       Absolute calibration uncertainty [\%]      &  \multicolumn{4}{|c|}{5}   & Sect.~\ref{se:ref_flux_primaries} \\
       \hline
-      rms calibration error [\%]                 &    5.5       &     6.0       &      5.7       &     3.0       & Sect.~\ref{se:photometry_baseline} \\
+      relative rms calibration error [\%]                 &    5.5       &     6.0       &      5.7       &     3.0       & Sect.~\ref{se:photometry_baseline} \\
       \hline
-      $\alpha$ noise integration in time\tnote{(d)}\hspace{3mm}  & 0.5  & 0.5  &  0.5 & 0.5 & Sect.~\ref{se:nefd_m1} \\
+      $\alpha$ noise integration in time\tnote{(f)}\hspace{3mm}  & 0.5  & 0.5  &  0.5 & 0.5 & Sect.~\ref{se:nefd_m1} \\
       \hline
-      NEFD\tnote{(e)}\hspace{3mm} [$\rm{mJy} \cdot \rm{s}^{1/2}/\rm{beam}$]  & $47 \pm 4$ & $38 \pm 3$  & $30 \pm 3$  & $9 \pm 1$ & Sect.~\ref{se:nefd_estimation_methods}\\
-      NEFD\tnote{(f)}\hspace{3mm} [$\rm{mJy} \cdot \rm{s}^{1/2}/\rm{beam}$]  & $57 \pm 5$ & $46 \pm 4$  & $36 \pm 3$  & $10 \pm 1$ & \\
-      Mapping speed\tnote{(g)}\hspace{3mm} [arcmin$^2$/h/mJy$^2$] & 45  & 70  & 111  &  1388 &  \\
-      Mapping speed\tnote{(h)}\hspace{3mm} [arcmin$^2$/h/mJy$^2$] & 31  & 48  &  77  &  1119 &  \\
+      NEFD$_0$\tnote{(g)}\hspace{3mm} [$\rm{mJy} \cdot \rm{s}^{1/2}/\rm{beam}$]  & $47 \pm 4$ & $38 \pm 3$  & $30 \pm 3$  & $9 \pm 1$ & Sect.~\ref{se:nefd_estimation_methods}\\
+      NEFD\tnote{(h)}\hspace{3mm} [$\rm{mJy} \cdot \rm{s}^{1/2}/\rm{beam}$]  & $57 \pm 5$ & $46 \pm 4$  & $36 \pm 3$  & $10 \pm 1$ & \\
+      Mapping speed(0)\tnote{(i)}\hspace{3mm} [arcmin$^2$/h/mJy$^2$] & 45  & 70  & 111  &  1388 &  \\
+      Mapping speed\tnote{(j)}\hspace{3mm} [arcmin$^2$/h/mJy$^2$] & 31  & 48  &  77  &  1119 &  \\
 \hline
 
 \end{tabular}
@@ -272,11 +275,13 @@ are gathered in Table~\ref{tab:nika2summary}.
   \item[(a)] Calculated from real array pixel size [2.75 mm / 2.0 mm] and unvignetted entrance pupil diameter [27m]
   \item[(b)] Full-width at half-maximum of the main beam using the combined results of the three methods
   \item[(c)] Ratio between the main beam power and the total beam power up to a radius of 180 arcsec
-  \item[(d)] Effective power law of noise reduction with integration time
-  \item[(e)] NEFD extrapolated at zero opacity
-  \item[(f)] NEFD in typical IRAM good sky opacity condition: 2mm pwv, $60^o$ elevation
-  \item[(g)] Mapping speed at zero opacity
-  \item[(h)] Mapping speed in typical IRAM good sky opacity condition: 2mm pwv, $60^o$ elevation
+  \item[(d)] Full-width at half-maximum of the beam used in our reference photometric system
+  \item[(e)] Ratio between the reference FWHM beam power and the total beam power up to a radius of 180 arcsec 
+  \item[(f)] Effective power law of noise reduction with integration time
+  \item[(g)] NEFD extrapolated at zero opacity
+  \item[(h)] NEFD in typical IRAM good sky opacity condition: 2mm pwv, $60^o$ elevation
+  \item[(i)] Mapping speed at zero opacity
+  \item[(j)] Mapping speed in typical IRAM good sky opacity condition: 2mm pwv, $60^o$ elevation
 }
   \end{tablenotes}
 \end{threeparttable}

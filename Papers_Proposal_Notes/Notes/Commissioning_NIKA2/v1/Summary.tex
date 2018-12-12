@@ -21,8 +21,8 @@ on observations taken during the first science pools of October 2017
 April 2017 technical campaign (a.k.a. N2R10) were not considered for
 the sensitivity assessement due to extra noise induced by an
 end-of-life turbo pump, which disappears once the turbo pump was
-replaced. The considered data set allow us to check the performance
-statibility for one year and a large range of atmospheric conditions. 
+replaced. The considered data set allows us to check the performance
+stability for one year and a large range of atmospheric conditions. 
 
 \subsection*{Methods}
 
@@ -37,9 +37,10 @@ to 8, which are summarized below.
 
 In Chapter~\ref{se:opacities}, the atmospheric attenuation is corrected
 using two-step method: first, the line-of-sight opacity of each
-observing scans is estimated using a series skydip observations
-performed with the NIKA2 instrument, then a correction coefficient is
-applied to the skydip opacity to ensure the flux density stablity
+observing scans is estimated using a \new{total power-to-opacity
+  calibration that relies on a series of skydip observations
+performed with the NIKA2 instrument}, then a correction coefficient is
+applied to the skydip-based opacity to ensure the flux density stability
 against the atmospheric condition. Opacity derivation based on the
 resident IRAM taumeter measures is also tested for consistency checks.
 
@@ -244,10 +245,10 @@ are gathered in Table~\ref{tab:nika2summary}.
       %%% I find this number useless and misleading FXD 30 nov 2018
       %%% Effective FOV\tnote{a}\hspace{1mm} [arcmin]    &  5.7      &   5.7    &    &    5.9  & Sect.~\ref{se:grid_distortion}\\
       % Here I put the measured value (the modeled values are in the the field-of-view section) FXD
-      Pixel size in beam sampling unit\tnote{a}\hspace{1mm} [$F\lambda$] & 1.11 & 1.10  &  &  0.87 & \\
+      Pixel size in beam sampling unit\tnote{(a)}\hspace{1mm} [$F\lambda$] & 1.11 & 1.10  &  &  0.87 & \\
       \hline
-      FWHM\tnote{b}\hspace{1mm} [arcsec]    &  $11.1 \pm 0.2$   &  $11.0 \pm 0.2$  &   $11.1 \pm 0.1$  &  $17.6 \pm 0.1$  &  Sect.~\ref{se:fwhm_results}\\
-      Beam efficiency\tnote{c}\hspace{1mm} [\% ] &  $55 \pm 3$  &  $56 \pm 3$   &  $55 \pm 3$   &  $77 \pm 2$  &  Sect.~\ref{se:beam_efficiency}\\
+      FWHM\tnote{(b)}\hspace{1mm} [arcsec]    &  $11.1 \pm 0.2$   &  $11.0 \pm 0.2$  &   $11.1 \pm 0.1$  &  $17.6 \pm 0.1$  &  Sect.~\ref{se:fwhm_results}\\
+      Beam efficiency\tnote{(c)}\hspace{1mm} [\% ] &  $55 \pm 3$  &  $56 \pm 3$   &  $55 \pm 3$   &  $77 \pm 2$  &  Sect.~\ref{se:beam_efficiency}\\
       rms of the FWHM on the FOV [$\%$]          &    6         &      6        &       6        &      3        & Sect.~\ref{se:fwhm_fov}\\
       \hline
       rms pointing error    [arcsec]             & \multicolumn{4}{|c|}{$<3$} &  Sect.~\ref{se:pointing} \\
@@ -256,19 +257,19 @@ are gathered in Table~\ref{tab:nika2summary}.
       \hline
       rms calibration error [\%]                 &    5.5       &     6.0       &      5.7       &     3.0       & Sect.~\ref{se:photometry_baseline} \\
       \hline
-      $\alpha$ noise integration in time\tnote{c}\hspace{1mm}  & 0.5  & 0.5  &  0.5 & 0.5 & Sect.~\ref{se:nefd_m1} \\
+      $\alpha$ noise integration in time\tnote{(d)}\hspace{1mm}  & 0.5  & 0.5  &  0.5 & 0.5 & Sect.~\ref{se:nefd_m1} \\
       \hline
-      NEFD\tnote{e}\hspace{1mm} [$\rm{mJy} \cdot \rm{s}^{1/2}/\rm{beam}$]  & $47 \pm 4$ & $38 \pm 3$  & $30 \pm 3$  & $9 \pm 1$ & Sect.~\ref{se:nefd_estimation_methods}\\
-      NEFD\tnote{f}\hspace{1mm} [$\rm{mJy} \cdot \rm{s}^{1/2}/\rm{beam}$]  & $57 \pm 5$ & $46 \pm 4$  & $36 \pm 3$  & $10 \pm 1$ & \\
-      Mapping speed\tnote{g}\hspace{1mm} [arcmin$^2$/h/mJy$^2$] & 45  & 70  & 111  &  1388 &  \\
-      Mapping speed\tnote{h}\hspace{1mm} [arcmin$^2$/h/mJy$^2$] & 31  & 48  &  77  &  1119 &  \\
+      NEFD\tnote{(e)}\hspace{1mm} [$\rm{mJy} \cdot \rm{s}^{1/2}/\rm{beam}$]  & $47 \pm 4$ & $38 \pm 3$  & $30 \pm 3$  & $9 \pm 1$ & Sect.~\ref{se:nefd_estimation_methods}\\
+      NEFD\tnote{(f)}\hspace{1mm} [$\rm{mJy} \cdot \rm{s}^{1/2}/\rm{beam}$]  & $57 \pm 5$ & $46 \pm 4$  & $36 \pm 3$  & $10 \pm 1$ & \\
+      Mapping speed\tnote{(g)}\hspace{1mm} [arcmin$^2$/h/mJy$^2$] & 45  & 70  & 111  &  1388 &  \\
+      Mapping speed\tnote{(h)}\hspace{1mm} [arcmin$^2$/h/mJy$^2$] & 31  & 48  &  77  &  1119 &  \\
 \hline
 
 \end{tabular}
   \begin{tablenotes}
 {\small     
 %%%%  \item[(a)] Equivalent FOV covered by the valid detectors
-  \item[(a)] Calculated from real array pixel size [2.75 mm / 2.0 mm] and unvignetted pupil diameter [27m]
+  \item[(a)] Calculated from real array pixel size [2.75 mm / 2.0 mm] and unvignetted entrance pupil diameter [27m]
   \item[(b)] Full-width at half-maximum of the main beam using the combined results of the three methods
   \item[(c)] Ratio between the main beam power and the total beam power up to a radius of 180 arcsec
   \item[(d)] Effective power law of noise reduction with integration time

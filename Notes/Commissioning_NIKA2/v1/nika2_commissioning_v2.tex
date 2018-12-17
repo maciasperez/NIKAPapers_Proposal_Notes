@@ -1,0 +1,463 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Thin Sectioned Essay
+% LaTeX Template
+% Version 1.0 (3/8/11)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original Author:
+% Nicolas Diaz (nsdiaz@uc.cl) with extensive modifications by:
+% Vel (vel@latextemplates.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[a4paper, 11pt]{report} 
+\usepackage{hyperref}
+
+\usepackage[protrusion=true,expansion=true]{microtype} % Better typography
+\usepackage{graphicx} % Required for including pictures
+\usepackage{wrapfig} % Allows in-line images
+\usepackage{tablefootnote} % to display footnotes in tables
+\usepackage{threeparttable}
+\usepackage[toc,page]{appendix}
+\usepackage{multirow}
+\usepackage[usenames, dvipsnames]{color}
+\usepackage{overpic} % add text to fig
+
+\usepackage{mathpazo} % Use the Palatino font
+\usepackage[T1]{fontenc} % Required for accented characters
+\linespread{1.05} % Change line spacing here, Palatino benefits from a slight increase by default
+
+% To have DRAFT displayed accross all pages
+%\usepackage{draftwatermark}
+%\SetWatermarkText{DRAFT}
+%\SetWatermarkScale{1}
+%\SetWatermarkLightness{0.95}
+
+\usepackage{background}
+\backgroundsetup{
+  position=current page.west,
+  angle=90,
+  nodeanchor=west,
+  vshift=-5mm,
+  opacity=1,
+  scale=4,
+  contents=Draft
+}
+
+% SPECIAL COMMANDS  
+
+\newcommand{\hls}{HLS\,J0918+5142}
+\makeatletter
+%\renewcommand\@biblabel[1]{\textbf{#1.}} % Change the square brackets for each bibliography item from '[1]' to '1.'
+\renewcommand{\@listI}{\itemsep=0pt} % Reduce the space between items in the itemize and enumerate environments and the bibliography
+
+% TITLE
+
+\renewcommand{\maketitle}{ % Customize the title - do not edit title and author name here, see the TITLE block below
+\begin{flushleft} % Right align
+{\LARGE\@title} % Increase the font size of the title
+
+\vspace{50pt} % Some vertical space between the title and author name
+
+{\large\@author} % Author name
+\\\@date % Date
+
+\vspace{40pt} % Some vertical space between the author block and abstract
+\end{flushleft}
+}
+
+
+% NOTATION
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\ftone}{f_{\rm{tone}}}
+\newcommand{\am}{x}
+\newcommand{\elev}{\delta}
+\newcommand{\nika}{NIKA2}
+\newcommand{\aka}{a.\,k.\,a.}
+\newcommand{\wrt}{w.\,r.\,t.}
+\newcommand{\bm}{\emph{beammap}}
+\newcommand{\bms}{\emph{beammaps}}
+\newcommand{\rf}{\emph{RfdIdQ}}
+\newcommand{\kidpar}{\emph{kidpar}}
+\newcommand{\radec}{\emph{R.\,A.,\,Dec}}
+\newcommand{\cm}{\emph{common~mode}}
+\newcommand{\cmoneb}{\emph{common~mode~one~block}}
+\newcommand{\afternoon}{temperature-induced}
+\newcommand{\Afternoon}{Temperature-induced}
+
+% COMMENTAIRES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\addparag}[1]{ {\color{magenta} $[$ ADD A PARAGRAPH ON: $]$ #1} }
+%\newcommand{\todo}[1]{\textcolor{magenta}{\textbf{TODO: #1}}}
+\newcommand{\todo}[1]{}
+\newcommand{\new}[1]{\textbf{#1}}
+\newcommand{\vu}[1]{\textbf{#1}}
+
+%
+% PAGE STYLE
+%
+\setlength{\textwidth}{16cm}
+\setlength{\textheight}{23cm}
+\oddsidemargin +0.5cm
+\evensidemargin +0.5cm
+\topmargin 0.1cm
+
+%\setcounter{secnumdepth}{1}
+\setcounter{tocdepth}{1}
+
+\begin{document}
+
+%----------------------------------------------------------------------------------------
+%	TITLE
+%----------------------------------------------------------------------------------------
+\title{\parbox{16cm}{
+    \includegraphics[width=5.5cm]{Figures/Logo_NIKA2.pdf} \\ [5mm]   
+    \textbf{NIKA2 research note} \\ [5cm]   
+    \begin{center}\sf\bfseries\huge
+      NIKA2 Commissioning Phase One Results \\ [-4mm]
+      \rule{16cm}{1pt}\\ [2cm]   
+    \end{center}
+    \begin{center} \small
+      Prepared by the \emph{NIKA2 Commissioning Tiger team}: \\
+      Laurence Perotto,  Nicolas Ponthieu, Juan-F. Mac\'ias-P\'erez,
+      F.-Xavier D\'esert, Jean-Fran\c cois Lestrade, Herv\'e Aussel,
+      Fr\'ed\'eric Mayet and Florian Ruppin\\ [4cm]     
+    \end{center}
+    %\hfill
+    %\scriptsize Prepared by The NIKA2 Commissioning Tiger team \\ [5cm]
+%    September 2018
+  }
+}
+\author{{\textit{NIKA2 collaboration}}  }
+\date{\today}
+
+\maketitle % Print the title section
+%
+%
+%
+
+\pagenumbering{roman}
+
+\tableofcontents
+
+\clearpage
+\listoffigures
+\listoftables
+
+%----------------------------------------------------------------------------------------
+%	ABSTRACT AND KEYWORDS
+%----------------------------------------------------------------------------------------
+
+%\renewcommand{\abstractname}{Summary} % Uncomment to change the name of the abstract to something else
+\newpage
+\pagenumbering{arabic}
+
+\begin{abstract}
+
+  The commissioning in intensity of the NIKA2 camera operated at the
+  IRAM $30\,\rm{m}$ telescope was completed in April 2017, the
+  instrument delivery to IRAM was officialised at the
+  'End-of-commissioning' review that took place at the IRAM-Grenoble
+  in September 2017, and scientific purpose operations began in
+  October 2017.
+  This document comes along with the instrument delivery and presents
+  NIKA2 performance assessment in intensity, as defined in the
+  MoU.
+  The characterisation of the performance is based on several
+  thousands of observation scans that were acquired at the February
+  2017 technical campaign, during which NIKA2 instrumental set-up was
+  in the final configuration for the first time,
+  and at the first science pools that took place in October 2017 and
+  January 2018. This vast data set allows us to check the performance
+  stability for one year and against a large range of observing
+  elevations and atmospheric conditions. The calibration and
+  performance assessment methods that we have developed are also
+  thoroughly described, as well as the robustness tests that we have
+  performed. 
+  
+\end{abstract}
+
+%\hspace*{3,6mm}\textit{Version:}  % Version
+
+%\vspace{30pt} % Some vertical space between the abstract and first section
+
+\newpage
+%----------------------------------------------------------------------------------------
+%
+%	ESSAY BODY
+%
+%----------------------------------------------------------------------------------------
+%\tableofcontents
+
+
+
+%----------------------------------------------------------------------------------------
+%	INTRODUCTION
+%----------------------------------------------------------------------------------------
+\chapter{Total power Commissioning Introduction}% {\color{blue} Nico}}
+\label{se:intro}
+\input{Introduction.tex}
+
+\clearpage
+%----------------------------------------------------------------------------------------
+%	GENERALITIES: INSTRUMENT, OBSERVATION AND METHODS
+%----------------------------------------------------------------------------------------
+\chapter{Intrument, observations and methods}
+\label{se:chap_instru_obs_methods}
+
+This chapter is meant to be an introduction to the instrument and the data
+reduction from an astronomer point of view. It summarizes the intrument
+parameters that are relevant for the data processing and the different steps
+required to go from raw data to scientific maps. The details of each of these
+parameters and their derivation is the object of the following sections.
+
+%%	INSTRUMENT
+\input{Instrument.tex}
+
+%% Data reduction: explain what is needed to go from raw timelines to maps.
+%% it will be a list of what is needed with very little description that will
+%% announce the details on each item that is developped in the following
+%% sections.
+\input{toi2maps.tex}
+
+%%	OBSERVATION MODES
+%% This section presents the different kind of observations that we have
+%% performed to derive the pipeline parameters and performances that are
+%% presented in details in the followin sections.
+%\label{se:observation}
+\input{Observation.tex}
+
+%%	CALIBRATION PIPELINE, DATA REDUCTION, DATA SELECTION
+%\section{Data reduction: from timelines to maps {\color{blue} Nico et al.} }
+%\label{se:toi2maps}
+\input{Baseline_selection.tex}
+
+\clearpage
+%----------------------------------------------------------------------------------------
+%	OPACITY
+%----------------------------------------------------------------------------------------
+\chapter{Opacity derivation}% {\color{YellowGreen} Laurence et al.}}
+\label{se:opacities}
+\input{Opacity_methods}  % Xavier&Laurence
+\input{Opacity_measures} % Juan&Laurence
+
+
+\clearpage
+%----------------------------------------------------------------------------------------
+%	FOCAL PLANE RECONSTRUCTION
+%----------------------------------------------------------------------------------------
+\chapter{Focal Plane Reconstruction}% {\color{blue} Nico et al.}}
+\label{se:fp_reconstruction}
+\input{FOV_geometry}
+% + Focal Plane Geometry
+% + KID selection and average geometry
+% + FOV grid distortion
+% + Reconstruction of the focus surfaces
+
+
+\clearpage
+%----------------------------------------------------------------------------------------
+%	BEAM PATTERN
+%----------------------------------------------------------------------------------------
+\chapter{Beam pattern}% {\color{blue} Laurence et al.} }
+\label{se:beams}
+% Full Beam Pattern + beam variations
+\input{beam_fullb.tex}
+\clearpage
+% Main Beam
+\input{beam_mainb.tex} % Laurence&Jean-Francois
+% Beam efficiency 
+\input{beam_efficiency.tex} % Laurence&Jean-Francois
+% Stability of the Beam Pattern
+%\input{beam_stability.tex}
+
+\clearpage
+%----------------------------------------------------------------------------------------
+%	INTER-CALIBRATION
+%----------------------------------------------------------------------------------------
+%\chapter{Relative calibration {\color{YellowGreen} Laurence et Nico}}
+%\input{Flat_fields.tex}
+%\clearpage
+%----------------------------------------------------------------------------------------
+%	ABSOLUTE CALIBRATION
+%----------------------------------------------------------------------------------------
+\chapter{Calibration}% {\color{blue} Laurence et al}}
+\label{se:calibration}
+
+% Paragraphe Intro
+% NIKA2 Photometric System
+\input{photometric_system.tex}
+\input{color_correction.tex}
+
+% Reference flux densities of the calibrators
+\input{reference_flux.tex}
+%\label{se:ref_flux_primaries}
+
+% inter-calibration
+\input{Flat_fields.tex}
+
+% telescope-driven beam variation
+\input{beam_variations.tex}
+%\label{se:obsdate_variations}
+
+% Baseline calibration
+\input{baseline_calibration.tex}
+%\label{se:baseline_calibration}
+
+% Calibration with photometric correction
+\input{calibration_with_photometric_correction.tex}
+%\label{se:photocorr_calibration}
+  
+% Calibration in aperture photometry
+\input{aperture_photometry_calibration.tex}
+\label{se:aperture_photo_calibration}
+
+\clearpage
+%----------------------------------------------------------------------------------------
+%     PHOTOMETRY 
+%----------------------------------------------------------------------------------------
+\chapter{Photometry accuracy and stability assessments}% {\color{blue} Laurence et al}}
+\label{se:photometry}
+
+\input{photometry_criteria.tex}
+%\label{se:photometry_criteria}
+
+% Intro + reference fluxes
+\input{reference_flux_secondaries.tex}
+%\label{se:ref_flux_secondaries}
+
+% Calibration bias using MWC349
+%\input{validation_baseline_cal.tex}
+%\label{se:valid_baseline_cal}
+\input{photometry_baseline.tex}
+%\label{se:photometry_baseline}
+
+% Calibration rms error using bright sources
+%\input{validation_photocorr_cal.tex}
+%\label{se:valid_photocorr_cal}
+\input{photometry_others.tex}
+%\label{se:photometry_others}
+
+% Aperture photometry
+% Stability of the flux density scale with the primary calibrators Uranus and Neptune
+% Stability of the flux density scale with three secondary calibrators 
+%\input{cal_JFL_shortened.tex}
+%\label{se:aperture_photometry}
+
+
+\clearpage
+%----------------------------------------------------------------------------------------
+%	NOISE 
+%----------------------------------------------------------------------------------------
+%\chapter{Noise characteristics {\color{blue} Juan}}
+%\label{se:noise}
+%\input{Noise}
+
+
+\clearpage
+%----------------------------------------------------------------------------------------
+%	SENSITIVITY 
+%----------------------------------------------------------------------------------------
+\chapter{Sensitivity}% {\color{YellowGreen} Nico}}
+\label{se:nefd}
+% the content of Noise.tex was moved into section 2 where TOI processing and
+% common mode one block are introduced (rev. 20603)
+%\input{Noise}
+
+% NEFD_methodology and NEFD_vs_opa have been merged into nefd.tex in rev. 20603
+%\input{NEFD_methodology}
+%\input{NEFD_vs_opa}
+\input{nefd}
+
+
+\clearpage
+%----------------------------------------------------------------------------------------
+%	SUMMARY
+%----------------------------------------------------------------------------------------
+%\chapter{Summary of performance {\color{blue} Laurence et al.}}
+\chapter{Performance of NIKA2 at the IRAM 30\,m telescope}
+\label{se:summary}
+\input{Summary}
+
+
+\clearpage
+%-----------------------------------------------------------------------------------------
+%     APPENDICES
+%-----------------------------------------------------------------------------------------
+\appendix
+%\begin{appendix}
+
+\chapter{APPENDIX}
+
+  \section{Synchronization with the telescope}
+  \label{ap:synchro}
+  \input{Synchro.tex}
+  
+  \section{Reference to technical documentation}
+  \label{ap:doc}
+  \input{Documentation}
+
+  %\section{Opacity measurement consistency tests}
+  %\label{ap:opacity}
+  %\input{Appendix_opacity}
+  %\clearpage
+  
+  % NIKA2 Photometric System
+  \section{Photometric system definitions}
+  \label{ap:cal_HA}
+  \input{photometry_HA.tex}
+  %% color correction JFL
+  %\input{color_corr.tex}
+  %\label{ap:color_correction_JFL}
+  %% photometric correction LP
+  \input{photometric_correction.tex}
+  
+  % Focus surface stability checks
+  %\label{ap:focus_surfaces}
+  \input{appendix_focus_surfaces}
+  \clearpage
+  
+  % JFL photometry N2R9 & N2R10
+%  \input{cal_JFL.tex}
+%  \label{ap:cal_JFL}
+%  \clearpage
+  %
+  % Calibration stability across the run
+  %\input{Calib_stability.tex}
+  %
+  %\clearpage
+  %----------------------------------------------------------------------------------------
+  %	ERROR BUDGET
+  %----------------------------------------------------------------------------------------
+  %\input{error_budget}
+%
+  % Reference codes
+  \input{calibration_software.tex}
+
+  % KIDPARS
+  %\input{calibration_implementation.tex}
+
+  
+%\end{appendix}
+
+\clearpage
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY
+%----------------------------------------------------------------------------------------
+
+%\bibliographystyle{unsrt}
+
+\input{biblio}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}

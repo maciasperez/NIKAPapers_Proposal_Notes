@@ -136,7 +136,7 @@ The derivation of opacity is presented in Sect.~\ref{se:opacities}.
 \end{center}
 \end{figure}
 
-\begin{figure}[ht!] % Inline image example
+\begin{figure}[ht!] 
 \begin{center}
 \includegraphics[width=0.3\textwidth]{Figures/NoiseTests/corrmat_TOI_array_1_20170228s151.pdf}
 \includegraphics[width=0.3\textwidth]{Figures/NoiseTests/corrmat_TOI_array_2_20170228s151.pdf}
@@ -204,22 +204,37 @@ the pixel of interest are used, we observe that the correlation matrix is more
 diagonal as in the two other derivations of the common mode.
 
 \begin{figure}[ht!] % Inline image example
-\begin{center}
-\includegraphics[clip=true, trim={0.5cm, 0, 0, 0.6cm},width=0.32\textwidth]{Figures/NoiseTests/rms_TOI_array_1_20170228s151.pdf}
-\includegraphics[clip=true, trim={0.5cm, 0, 0, 0.6cm},width=0.32\textwidth]{Figures/NoiseTests/rms_TOI_array_2_20170228s151.pdf}
-\includegraphics[clip=true, trim={0.5cm, 0, 0, 0.5cm},width=0.32\textwidth]{Figures/NoiseTests/rms_TOI_array_3_20170228s151.pdf}
-\includegraphics[clip=true, trim={0.5cm, 0, 0, 0.5cm},width=0.32\textwidth]{Figures/NoiseTests/pws_TOI_array_1_20170228s151_mod.pdf}
-\includegraphics[clip=true, trim={0.5cm, 0, 0, 0.5cm},width=0.32\textwidth]{Figures/NoiseTests/pws_TOI_array_2_20170228s151_mod.pdf}
-\includegraphics[clip=true, trim={0.5cm, 0, 0, 0.5cm},width=0.32\textwidth]{Figures/NoiseTests/pws_TOI_array_3_20170228s151_mod.pdf}
-\end{center}
-\caption[Noise RMS and power spectra]{From top to bottom and from left to right,
-  we show the data rms and power spectra for the three NIKA2 arrays (A1, A2, and
-  A3) for scan 20170228s150. The rms and power spectra are given for the raw
+  \begin{center}
+    % A1
+    \begin{overpic}[clip=true, trim={0.5cm, 0, 0, 0.6cm},width=0.59\textwidth]{Figures/NoiseTests/rms_TOI_array_1_20170228s151_mod.pdf}
+      \put(3,5){\rotatebox{90}{\scriptsize Noise RMS [arbitrary units]}}
+  \end{overpic}
+    \begin{overpic}[clip=true, trim={0.5cm, 0, 0, 0.5cm},width=0.40\textwidth]{Figures/NoiseTests/pws_TOI_array_1_20170228s151_mod.pdf}
+      \put(2,15){\rotatebox{90}{\scriptsize P$_{\nu}$ [arbitrary units]}}
+  \end{overpic}
+% A3
+    \begin{overpic}[clip=true, trim={0.5cm, 0, 0, 0.5cm},width=0.59\textwidth]{Figures/NoiseTests/rms_TOI_array_3_20170228s151_mod.pdf}
+      \put(3,5){\rotatebox{90}{\scriptsize Noise RMS [arbitrary units]}}
+    \end{overpic}
+    \begin{overpic}[clip=true, trim={0.5cm, 0, 0, 0.5cm},width=0.40\textwidth]{Figures/NoiseTests/pws_TOI_array_3_20170228s151_mod.pdf}
+      \put(2,15){\rotatebox{90}{\scriptsize P$_{\nu}$ [arbitrary units]}}
+    \end{overpic}
+    % A2
+    \begin{overpic}[clip=true, trim={0.5cm, 0, 0, 0.6cm},width=0.59\textwidth]{Figures/NoiseTests/rms_TOI_array_2_20170228s151_mod.pdf}
+      \put(3,5){\rotatebox{90}{\scriptsize Noise RMS [arbitrary units]}}
+    \end{overpic}
+    \begin{overpic}[clip=true, trim={0.5cm, 0, 0, 0.5cm},width=0.40\textwidth]{Figures/NoiseTests/pws_TOI_array_2_20170228s151_mod.pdf}
+      \put(2,15){\rotatebox{90}{\scriptsize P$_{\nu}$ [arbitrary units]}}
+    \end{overpic}
+  \end{center}
+\caption[Noise RMS and power spectra]{
+  The data noise rms (left column) and power spectra (right column) are shown for the three NIKA2 arrays (A1, A3, and
+  A2 from top to bottom) for scan 20170228s151. The rms and power spectra are given for the raw
   data (blue), and for the CM (green), PCA (red) and MCP (cyan) decorrelated
   data. The vertical lines in the rms noise figures separate detectors from
   different readout electronic boxes. Within each electronic box the pixels are
   ordered with increasing resonant frequency across the electronic
-  band. \todo{To enlarge the y- and x- title}
+  band. 
   \label{rmspws}}
 \end{figure}
 

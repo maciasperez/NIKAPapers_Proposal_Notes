@@ -64,33 +64,43 @@ for assessing the immunity of our results to noise residuals.
 \begin{figure}[ht!]
 \begin{center}
   \includegraphics[clip, angle=0, scale=0.4]{Figures/Lobe_map_Combo_v2_dB.pdf}
- \caption[Beam pattern.]{From upper left to lower right, beam maps of array 1 (labeled 'A1'), array 3 ('A3'), the combination of the 1.15mm arrays ('A1$\&$3') and the 2mm array ('A2') are shown in decibel. These maps, which consist of normalized combination of four long OTF scans of bright point sources, are in celestial coordinates and cover a sky area which extend over 10 arcmin.}
+ \caption[Beam pattern.]{From upper left to lower right, beam maps of array 1 (labeled 'A1'), array 3 ('A3'), the combination of the 1.15mm arrays ('A1$\&$3') and the 2mm array ('A2') are shown in decibel. These maps, which consist of normalized combination of four long OTF scans of bright point sources, are in \new{horizontal} coordinates and cover a sky area which extends over 10 arcmin.}
 \label{fig:beam}
 \end{center}
 \end{figure}
 
-i.e. start with the main beam and the underlying Gaussian error beams,
-continue with the diffraction ring by panel buckling
 
-, and only then start to discuss non-axial symmetric features like the diffraction pattern of the quadruped secondary support structure, spokes, spikes, etc.
+%SAMUEL : diffraction on primary and quadrupod = side lobes. The squarish green feature around the main beam is due to a convolution of the M1/quadrupod diffraction pattern with the pixel transfert function. So from diffraction you have at 1mm: 1st side lobe = 20" diameter, squarish bloc from convolutin with pixel = 60" diameter. And from primary mirror aberrations: 1st error beam due to large scale deformation = 60" diameter, pannel buckling wheel = 120" diameter, 2nd error beam due to frame misalignment (structure below panels) = 220" diamter, 3rd error beam due to individual pannels deformations = 800" diameter. 
 
 The deep NIKA2 beam maps reveal some noticeable features, which are
-shown in Fig.~\ref{fig:features}. Ranging from strong and extended to
-weak and spiky, they include:
+shown in Fig.~\ref{fig:features}. Ranging from strong and/or extended to
+weak and/or spiky, they include:
 \begin{itemize}
-\item[(1)] \new{the main beam and the underlying Gaussian error
-  beams}. The four symmetrical spokes of the error beam as shown by
-  yellow arrows in the A2 panel, are expected from ZEMAX
-  simulations;
-\item[(2)] \new{the diffraction ring by panel buckling, as shown with
+\item[(1)] \new{the main beam and the underlying first error
+  beam, which is due to the large scale deformations of the primary
+  mirror, and the first side lobes. \new{The latter include 
+  the 20" diameter first side lobe and the 60" diameter (squarish)
+  side lobe, which is due to the convolution of the primary mirror and quadrupod
+  diffraction pattern with the pixel transfert function}; }.
+  %The four symmetrical spokes of the error beam as shown by
+  %yellow arrows in the A2 panel, are expected from ZEMAX
+  %simulations;
+\item[(2)] \new{the diffraction ring by panel buckling of the primary mirror, as shown with
   a red circle in the A1 panel};
-\item[(3)] spikes of unknown origin, as pointed with the yellow
-  arrows in the A3 panel. The ones that are close to the vertical and
-  horizontal radii are reproduced by ZEMAX simulation but 
-  shallower, whereas the ones in the diagonal directions may be due to
-  external calibrator, \new{which was installed in the vertex tunnel
-    for tests during these observations};
-\item[(4)] shallow spikes of unknown origin, which are circled by pink
+\item[(3)] \new{the side lobes shown with green
+  diagonal lines in the A2 panel are due to diffraction on the
+  quadrupod holding the secondary mirror of the telescope, as expected
+  from ZEMAX simulations};  
+\item[(4)] spikes of not fully understood origin pointed with yellow
+  arrows. The ones that are along the vertical and
+  horizontal axes are reproduced by ZEMAX simulation but at a 
+  shallower level, whereas the ones shown in the A3 panel in the
+  diagonal directions may be due to the external calibrator,
+  \new{which was installed in the vertex tunnel
+    for tests during these observations. The origin of the asymetry on
+    the 1mm arrays is unknown but most probably due to internal optics
+    aberrations};
+\item[(5)] shallow spikes of unknown origin, which are circled by pink
   ellipses. The multiple images on the combined deep beam map indicate
   a rotation of these spikes with the observing elevation, which in
   turn point to diffraction related issue or a ghost image that are
@@ -102,22 +112,22 @@ weak and spiky, they include:
   \includegraphics[clip, angle=0, scale=0.4]{Figures/Beams_features.pdf}
 \caption[Noticeable features of NIKA2 beam pattern.]{\new{Same maps as in
   Fig.~\ref{fig:beam} with some noticeable features.} Red circle in the
-  A1 map (upper left panel): diffraction ring seen in 1-mm maps (the spokes are presumably
-  caused by radial and azimuthal panel buckling (cf. Fig.4 in Greve et
+  A1 map (upper left panel): diffraction ring seen in 1-mm maps
+  (the spokes are presumably caused by radial and azimuthal panel buckling (cf. Fig.4 in Greve et
   al. 2010)); Orthogonal green lines in the A2 map (lower right panel): diffraction
   pattern caused by quadrupod secondary support structure (prominently
   seen in A2 map); Yellow arrows in the A3 map (upper right panel):
   pattern of 3 spikes seen in 1mm maps of unknown origin; Yellow
-  arrows in A2 map (lower right panel): four symmetrical spokes of the
-  first errorbeam; Pink ellipses: 4 spikes seen in A2 maps.}
+  arrows in A2 map (lower right panel): four symmetrical spikes of the
+  first sidelobes; Pink ellipses: 4 spikes seen in A2 maps.}
 \label{fig:features}
 \end{center}
 \end{figure}
 
 
 To gain a first impression of the structure of the IRAM 30-m beam as
-seen with NIKA2, we use radial cuts to evidence the relative level of
-the main beam, the first error beam and other features seen in the 2D
+seen with NIKA2, we use radial cuts to put in evidence the relative level of
+the main beam, the first side lobes and error beam and other features seen in the 2D
 beam pattern. NIKA2 full beam is shown in the left
 panels of Fig.~\ref{fig:beam_structure_example} by means of two
 orthogonal cuts through Uranus from a high quality map obtained on
@@ -154,13 +164,12 @@ fitted {\it by hand} to these cuts.
 We observe that the main beam starts to depart from the first
 Gaussian at the level of about -12dB for the three arrays.
 We note that for the instrument EMIR on the radiotelescope,
-this departure is about -20dB (Kramer, Penalver and Greve
-2013). However, this
+this departure is about -20dB~\cite{Kramer2013}. However, this
 discrepancy between a feedhorn-based experiment and a bare pixels one
 is expected since the main effect of the feedhorns is to lower the
 side lobes of the Airy diffraction pattern.
-The precise characterization of the full beam structure is discussed
-in Sect.~\ref{se:fullbeam_prof}.  
+%The precise characterization of the full beam structure is discussed
+%in Sect.~\ref{se:fullbeam_prof}.  
 
 %From parameters in Table \ref{tab:3gauss}, one can estimate that
 %the source incident power is split about equally between the main beam
@@ -189,12 +198,15 @@ in Sect.~\ref{se:fullbeam_prof}.
 \subsection{Beam profile}
 \label{se:fullbeam_prof}
 
-The beam profile $B(r)$ is the normalised radial brightness profile, where $r$ is the radius from the beam center.
+\new{We further quantify the respective level of the axi-symmetrical
+  features of the beam pattern in evaluating the beam radial profile}
+ $B(r)$, which is the normalised radial brightness profile,
+where $r$ is the radius from the beam center.
 %is the azimuthal average of the beam map around the
 %main beam center.
 Although the profile cannot represent the sub-dominant non-axisymmetrical
-extended features, which are seen in the beam pattern and discussed in
-Sect.~\ref{se:deep_beam_maps} (telescope arms, spikes), it provides us with a useful
+features, which are seen in the beam pattern and discussed in
+Sect.~\ref{se:deep_beam_maps} (quadrupod diffraction pattern, spikes), it provides us with a useful
 representation of the internal and central parts of the beam (about up to
 $100''$). We determine a beam profile from a beam map in centering to
 the fitted value of the main beam center and in forming the

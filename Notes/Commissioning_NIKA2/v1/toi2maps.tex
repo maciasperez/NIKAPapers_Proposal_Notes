@@ -59,7 +59,8 @@ timeline accidents (glitches).
 \label{se:ptg}
 
 This step consists in addressing each sample of each KID to the correct sky
-coordinates and their associated map pixel. The pointing data are passed to the
+coordinates and their associated map pixel. The pointing data\sam{, as
+produced by the control system of the telescope, \aka\ NCS, } are passed to the
 \nika\ raw data. They describe the absolute
 pointing of a reference point in the focal plane in various quantities, the
 absolute azimuth and elevation $(\alpha,\delta)$ of the source, together with
@@ -91,7 +92,7 @@ obtain KID's coordinates in \radec\ coordinates:
 \end{eqnarray}
 
 We now have the pointing of each KID at each time relative to the source that we
-usually center on our final map. It then trivial to assign the map pixel
+usually center on our final map. It is then trivial to assign the map pixel
 corresponding to this pointing on a Nearest Grid Point basis.
 
 This pointing reconstruction is done early in the data reduction process because
@@ -201,7 +202,7 @@ matrices. These observed blocks in the correlation matrix can be associated to
 first order to the different sub-bands in each of the electronic boxes. In the
 case of the MCP decorrelation, for which only those pixels highly correlated to
 the pixel of interest are used, we observe that the correlation matrix is more
-diagonal as in the two other derivations of the common mode.
+diagonal than in the two other derivations of the common mode.
 
 \begin{figure}[ht!] % Inline image example
   \begin{center}
@@ -266,7 +267,6 @@ details below:
 \item Only samples for which two KIDs are far from the source,
   \vu{hence which are not discarded using the mask,} are selected and the KID-to-KID
   correlation is computed.
-  
 \item For a KID $k_0$, we store the KID identifiers that are most
   correlated to it. We first select the 15 most correlated KIDs, then 
   the average and the dispersion $\sigma$ of these correlations are
@@ -370,13 +370,27 @@ the chosen system.} In practice, the beam is not a perfect Gaussian
 and significant side lobes must be accounted for
 (Sect.~\ref{se:beams}). If the beam was perfectly known and stable, we could in
 principle replace the Gaussian form in Eq.~\ref{eq:flux_per_beam_def} by the
-beam pattern and fit for the amplitude $\phi$. In practice, we have found that
-it was enough as a first approximation to take an equivalent effective Gaussian
-width and use it to derive the beam template. We take 12.5 and 18.5\,arcsec FWHM
-at 1 and 2\,mm respectively and compute all our fluxes with these
-values. We do this for both analyzed point sources and for absolute calibrators
-to be consistent. Our photometric system is further detailed in
-Sects.~(\ref{se:cal_HA_reference}, \ref{se:cal_HA_main}). 
+beam pattern and fit for the amplitude $\phi$.
+%In practice, we have found that
+%it was enough as a first approximation to take an equivalent effective Gaussian
+%width and use it to derive the beam template.
+\sam{In practice, the beam pattern i) has a complexe structure, including
+features which can rotate with the observation elevation (as presented
+in Sect.~\ref{se:fullbeam}), ii) has a few percent dispersion across the FOV (see
+Sect.~\ref{se:MB}) and iii) shows some variations with the observation date
+(see Sect.~\ref{se:obsdate_variations}). However, we have found that using an equivalent
+effective fixed-width Gaussian for the photometry, as presented in
+Sect.~\ref{se:cal_HA_main}, is sufficient to ensure accurate, stable and robust flux
+measurements, as assessed in Chapt.~\ref{se:photometry}. The reference fixed-width
+Gaussian is chosen sizably larger than the measured main beam width
+(see Sect.~\ref{se:MB}) to account for a fraction of the
+signal stemming from the error beams and side lobes.} Namely, we take
+12.5 and 18.5\,arcsec FWHM at 1 and 2\,mm respectively and compute all our fluxes with these
+values. We do this for both absolute calibrators (see Chapt.~\ref{se:calibration})
+and analyzed point sources (see Chapt.~\ref{se:photometry}) to be consistent. Our
+photometric system is further detailed in
+Sects.~(\ref{se:cal_HA_reference}, \ref{se:cal_HA_main}).
+
 
 Let's call $s_p$ the measured signal at map pixel $p$ and denote by $g_p$ the
 Gaussian weight given to pixel $p$ as a function of its distance to the source,

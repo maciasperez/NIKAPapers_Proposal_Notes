@@ -5,7 +5,7 @@
 drift = 1
 
 ;; Realizations
-nmc = 50 ;200 ;30
+nmc = 10 ;200 ;30
 
 ;; HWP power
 hwp_max_ampl_jy = 70. ;50. ;100.
@@ -281,7 +281,6 @@ for ispeed=0, nspeed-1 do begin
                           parinfo=parinfo, status=status)
          
          planet_hwp_cf_flux_results[ispeed, imc, iflux] = myfit_cf[1]
-
 
 ;;          wind, 1, 1, /f
 ;;          my_multiplot, 1, 2, pp, pp1, /rev

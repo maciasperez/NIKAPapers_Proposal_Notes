@@ -71,7 +71,6 @@ endif
 
 
 
-
 ;; Subtract my_interpol and the constant to prepare HWP
 ;; fit outside the source
 ;; The constant is computed on the correct range but
@@ -91,7 +90,6 @@ atd        = transpose(temp) ## toi1
 amplitudes = atam1##atd
 hwp_beta_out    = outtemp##amplitudes
 
-;stop
 
 toi_out = toi - hwp_beta_out - a
 

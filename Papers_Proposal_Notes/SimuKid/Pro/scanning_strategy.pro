@@ -35,13 +35,20 @@ scan_strat, alpha_deg, beta_deg, gamma_deg, t_pre_sec, $
             toi_dust_dipole_jy=toi_dust_dipole_epic_jy
 
 
-my_multiplot, 1, 2, pp, pp1, /rev
+;; my_multiplot, 1, 2, pp, pp1, /rev
+;; if ps eq 0 then wind, 1, 1, /free, /large
+;; outplot, file='histo_galaxy_dipole', png=png, ps=ps
+;; np_histo, toi_dust_dipole_planck_jy, xtitle='Flux (Jy)', position=pp1[0,*]
+;; np_histo, toi_dust_dipole_epic_jy, xtitle='Flux (Jy)', position=pp1[1,*], /noerase
+;; outplot, /close, /verb
+
 
 if ps eq 0 then wind, 1, 1, /free, /large
-outplot, file='histo_galaxy_dipole', png=png, ps=ps
-np_histo, toi_dust_dipole_planck_jy, xtitle='Flux (Jy)', position=pp1[0,*]
-np_histo, toi_dust_dipole_epic_jy, xtitle='Flux (Jy)', position=pp1[1,*], /noerase
+outplot, file='histo_galaxy_dipole_planck', png=png, ps=ps
+np_histo, toi_dust_dipole_planck_jy, xtitle='Flux (Jy)'
 outplot, /close, /verb
+
+
 
 
 

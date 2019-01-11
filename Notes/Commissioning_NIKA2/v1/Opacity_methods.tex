@@ -94,7 +94,9 @@ interpolated to the NIKA2 scan times.
 We fit the relations between the IRAM
 $225\,\rm{GHz}$ taumeter opacities and NIKA2 band pass opacities using
 observation of calibration sources which spans a large range of air
-masses. We use a series of 64 scans of MWC349, which consists of the
+masses. {\samu This method has the advantages of not relying on
+any atmosphere model nor on the bandpass measurements in laboratory.}
+We use a series of 64 scans of MWC349, which consists of the
 baseline selected subset of scans from the 68 available scans for
 this source during N2R9.
 It constitutes an homogeneous data set in flux density but
@@ -192,18 +194,23 @@ f_{reso}^k  = c_0^k - c_1^k T_{atm}[1-e^{-\tau x}]
 \label{eq:skydip}
 \end{equation}
 
-%FXD corrected 
-%{\bf LP: pourquoi signe plus alors qu'on utilise un signe moins dans
-%  Eq. 2 du papier instru ?}
-
 where $c_0^k$ is a constant equal to the resonance frequency at zero
 opacity, $c_1^k$ is the calibration conversion factor in Hz$/$K,
 $T_{atm}$ is the temperature of the atmosphere (taken as a constant at
-270~K, we therefore neglect the atmospheric temperature variations),
+270~K),
 $\tau$ the zenith opacity and $\delta$ the elevation of the
 telescope.  By assuming a homogeneous plane-parallel atmosphere, the
 airmass $x$ is defined from the elevation as $x
 = \left(\sin\delta\right)^{-1}$ (we neglect the Earth sphericity).
+{\samu We note that the opacity is expected to slightly depend
+on the atmospheric temperature. For example, in poor weather conditions
+(6 mm of water vapor contents), the zenith opacity in the $1~\rm{mm}$
+observing bands can vary by about 10\% for temperature variations of
+10~K. We neglect the atmospheric temperature variations. However, the
+effect of the temperature variations on the final
+calibration of NIKA2 response to the sky load is mitigating by using
+several dedicated observation scans regularly distributed all along an
+observation campaign.}
 
 \new{We identified the main cause of variations in time of the $c_0^k$
 and $c_1^k$ coefficients as the ageing of the arrays between two
@@ -249,6 +256,8 @@ compute (while fixing the $\tau$) the $c_0$ and $c_1$ final values for
 each KID with a simple linear fit. We thus retrieve the coefficients
 of all the KIDs even though some of them could not contribute to the
 $\tau$ determination (flagged in the first step).
+
+
 
 
 \begin{figure}[ht!]
@@ -334,10 +343,15 @@ quality per skydip. First, the standard deviation of the
 measure-to-model difference is calculated over all the KIDs in a
 bunch. For each skydip, we evaluate the median rms, which is the
 median over the KID bunches of the standard deviation per bunch, given
-in Hz. Secondly, for each scan, we compute the average
+in Hz. {\samu This fit quality indicator is thus also sensitive to the noise
+level during the skydip. We therefore devise an additional fit quality
+indicator to further measure the bias between measures and model fits}.
+Namely, for each scan, we compute the average
 measure-to-model difference of each KID $k$, labelled $dT_k$, which is
 then converted from Hertz to Kelvin using the $c_1$ parameter of the
-KID $k$. Median $dT$ is the median of $dT_k$ over all the KID of an
+KID $k$.  {\samu This cross-calibration allows for assembling the
+measure-to-model difference estimates of all the KIDs.}
+Median $dT$ is the median of $dT_k$ over all the KIDs of an
 array. With these two indicators in hands, we discard the skydip scans
 that are noisy or that yield a poor fit by applying the selection
 criteria that have to be satisfied:
@@ -439,9 +453,11 @@ selection suffices to reduce the relative difference below $10\%$ at
 As a summary, the $\tau$ estimates are robust against the exact skydip
 selection as long as the selection includes good
 skydips in high opacity condition $(\tau_{1\rm{mm}} > 0.44)$ and as the poor
-fitting skydips are excluded. When these conditions are met, the
-skydip selection induced uncertainties are below $10\%$ at 1mm and
-below $15\%$ at 2mm. 
+fitting skydips, {\samu which mostly correspond to deviation from the
+atmosphere plane-parallel model in high opacity skydips (as seen in
+Fig.~\ref{fig:skydip-stability}),} are excluded. When these conditions are met, the
+skydip selection induced uncertainties on the zenith opacities are
+below $10\%$ at 1mm and below $15\%$ at 2mm. 
 
 We conclude that opacities at both wavelengths can be reliably
 estimated from a series of skydip scans using the ($c_0$, $c_1$) model.

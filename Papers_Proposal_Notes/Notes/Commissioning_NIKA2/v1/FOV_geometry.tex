@@ -42,13 +42,14 @@ KID offsets in the focal plane proceeds in two steps.
 
 \paragraph{Step 1.} We apply a median filter per
 KID timeline whose width \new{is of 31 samples, that is equivalent to about 
-5~FWHM at 65 arcsec/s given that the sampling frequency is 23.84
-Hertz,} and we project one map per KID in Nasmyth
+5~FWHM at 65 arcsec/s given that the sampling frequency is 23.84Hz,}
+and we project one map per KID in Nasmyth
 coordinates. This median filter removes
 efficiently most of the low frequency atmospheric and electronic
 noise, albeit with a slight ringing and flux loss on the
 source. However, at this stage, we are only interested in the location
-of the observed planet. To derive the Nasmyth coordinates from the
+of the observed planet.
+To derive the Nasmyth coordinates from the
 provided $(\alpha_t,\delta_t)$ and $(\Delta\alpha_t,\Delta\delta_t)$
 coordinates, we build the following quantities at time~$t$:
 
@@ -59,10 +60,21 @@ coordinates, we build the following quantities at time~$t$:
 
 Note that $\Delta\alpha_t$ is already corrected by the $\cos\delta_t$ factor to
 have orthonormal coordinates in the tangent plane of the sky and be immune to
-the geodesic convergence at the poles. \samu{Moreover, basic tests on
-  the time stamping of the samples are performed and used to flag out
-  time-stamping failures, so that the impacted samples are not
-  projected onto the map}. We then fit a 2D elliptical Gaussian on
+the geodesic convergence at the poles.
+\samu{Moreover, before projecting the time-ordered data onto maps, we check
+  the accuracy of the time-stamping and the consistency between the
+  telescope time and NIKA2 time. First, we test the
+  synchronisation of the electronic boxes and the regularity of the
+  time increase. In case of detection of an anomaly, the
+  time-stamping of the impacted data samples are
+  recalculated by interpolating from the accurately stamped
+  neighbour samples. Then, a so-called \emph{zigzag}
+  procedure is used to test for delay between the telescope pointing
+  information and NIKA2 timelines: we fit a constant shift between the
+  source positions estimated using the subscans in one direction and
+  using the subscans in the opposite direction. The data timelines are
+  then projected onto maps.} 
+We fit a 2D elliptical Gaussian on
 each KID map. The centroid of this Gaussian is a first estimate of the KID
 offsets, FWHM's, ellipticity and sensitivity. We apply a first KID selection by
 removing outliers to the statistics on these parameters. We also discard
@@ -119,8 +131,10 @@ compute the average position on the focal plane and the average FWHM, counting
 the times that it has been considered as valid and at the same position. Indeed,
 a few KIDs have close resonances and can be tuned and switched on some scans. A
 few others must also be discarded because they appear identical numerically due
-to a remaining artefact in the acquisition. These KIDs are flagged out (less
-than 1\% of the designed KIDs).
+to \samu{the fact that a same (noisy) KID can sometimes be associated
+  to two different frequency tone in the acquisition.}
+%a remaining artefact in the acquisition.
+These KIDs are flagged out (less than 1\% of the designed KIDs).
 
 In Fig.~\ref{fig:avg_fov_color} we show the
 average focal plane reconstruction, from green to red depending on the number of

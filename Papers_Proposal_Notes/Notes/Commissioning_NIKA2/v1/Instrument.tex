@@ -70,6 +70,7 @@ per feed-line).
 
 
 \subsection{KID photometry and tuning}
+\label{se:tuning}
 
 \begin{figure}[!b]
 \begin{center}
@@ -82,7 +83,7 @@ per feed-line).
 \end{figure}
 
 Kinetic Inductance Detectors are superconducting resonators whose resonance
-frequency shifts linearly depending on the incoming optical power. The
+frequency shifts linearly depend on the incoming optical power. The
 measure of such frequency shift $\Delta f$ is what allows us to use
 KID as mm-wave detectors.
 
@@ -100,9 +101,10 @@ frequency at about 1\,kHz with a known frequency variation $\delta f$
 and the read out gives the induced transmitted signal variations
 $(dI, dQ)$. Projecting linearly
 $(\Delta I, \Delta Q)$ on $(dI, dQ)$ therefore
-provides $\Delta f$. This value, in Hz, is the raw input timeline to the
-pipeline and will be futher calibrated into astronomical units
-(sect.~\ref{se:calibration}). For historical reasons, this way of deriving KID
+provides $\Delta f$. This value, in Hz, constitutes the raw
+time-ordered data, which are sampled at a frequency of 23.84
+Hz. Ingested into the calibration pipeline, it will be futher calibrated into astronomical units
+(Sect.~\ref{se:calibration}). For historical reasons, this way of deriving KID
 signals has been nicknamed \emph{RfdIdQ}. More details on this process are given
 in \cite{Calvo13}.\\
 
@@ -114,10 +116,13 @@ excitation signal used to read it out must always be near its resonance
 frequency. We therefore have developped a tuning algorithm that takes care of
 this optimization. Tunings are performed during the first subscan of each
 observation in order to be optimally tuned at the same elevation and sky
-conditions as the source. It takes only a few seconds when the $f_{tones}$ are
+conditions as the source. It takes only a few seconds when the $\ftone$ are
 close to the current functionning point. In order to always be in these
 conditions, continuous tunings are done between two scans when NIKA2 is not observing.
 
-A specific case is when we do {\tt skydips}. In this case, we tune all the KIDS
-at the beginning of each subscan/elevation step on purpose to monitor the
-induced variation of $f_{tone}$ by the sky load.
+A specific case is when we do {\tt skydip} scans (see
+Sect.~\ref{se:skydip}). In this case, we tune all the KIDs
+at the beginning of each subscan, which corresponds to an elevation
+step, on purpose to monitor the induced variation of $\ftone$ by the
+sky load.
+

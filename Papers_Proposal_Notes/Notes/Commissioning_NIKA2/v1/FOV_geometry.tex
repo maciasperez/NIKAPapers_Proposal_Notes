@@ -42,14 +42,15 @@ KID offsets in the focal plane proceeds in two steps.
 
 \paragraph{Step 1.} We apply a median filter per
 KID timeline whose width \new{is of 31 samples, that is equivalent to about 
-5~FWHM at 65 arcsec/s,} and we project one map per KID in Nasmyth
+5~FWHM at 65 arcsec/s given that the sampling frequency is 23.84
+Hertz,} and we project one map per KID in Nasmyth
 coordinates. This median filter removes
 efficiently most of the low frequency atmospheric and electronic
 noise, albeit with a slight ringing and flux loss on the
 source. However, at this stage, we are only interested in the location
 of the observed planet. To derive the Nasmyth coordinates from the
 provided $(\alpha_t,\delta_t)$ and $(\Delta\alpha_t,\Delta\delta_t)$
-coordinates, we build the following quantities at time~$t$ :
+coordinates, we build the following quantities at time~$t$:
 
 \begin{eqnarray}
 \Delta x_t &=& \cos\delta_t \Delta\alpha_t - \sin \delta_t\Delta \delta_t \nonumber \\
@@ -58,7 +59,10 @@ coordinates, we build the following quantities at time~$t$ :
 
 Note that $\Delta\alpha_t$ is already corrected by the $\cos\delta_t$ factor to
 have orthonormal coordinates in the tangent plane of the sky and be immune to
-the geodesic convergence at the poles. We then fit a 2D elliptical Gaussian on
+the geodesic convergence at the poles. \samu{Moreover, basic tests on
+  the time stamping of the samples are performed and used to flag out
+  time-stamping failures, so that the impacted samples are not
+  projected onto the map}. We then fit a 2D elliptical Gaussian on
 each KID map. The centroid of this Gaussian is a first estimate of the KID
 offsets, FWHM's, ellipticity and sensitivity. We apply a first KID selection by
 removing outliers to the statistics on these parameters. We also discard
@@ -225,7 +229,7 @@ Array 1  &	Array 3   &	Array 2   &	Comment \\
 
 It shows that on average the position of each detector is known to better than
 an arcsecond. The 1\,mm arrays have almost the same center but this center
-differs by 7 and 2\,arcsec from the 2\,mm array center. The sampling is above
+differs by 7 and 2\,arcsec \samu{in Nasmyth coordinates} from the 2\,mm array center. The sampling is above
 $\lambda/D$ at 1\,mm, assuming \new{a 27\,m effective diameter aperture.} Note that
 the plate rotation angle was designed as 76.2\,degrees, less than 2
 degrees from what is observed. We find that array 1
@@ -272,9 +276,14 @@ noticeable in the upper right corner of the Nasmyth plan, which is
 also the area of the largest defocus w.r.t. to the center. 
 
 An expected distortion of $2.7\%$ is at most a 5 arcsecond shift from the
-center to the outside of the array.  The quoted measured distortions are not
-too dissimilar once the different fitting methods have been taken into
-account. Auxillary information on this work can be found in this wiki post\footnote{\tiny
+center to the outside of the array.
+%The quoted measured distortions are not
+%too dissimilar once the different fitting methods have been taken into
+%account.
+\samu{The quoted distortions between the measured and designed positions are
+consistent with the expected maximum distortions from the NIKA2
+optics.}
+Auxillary information on this work can be found in this wiki post\footnote{\tiny
   {\tt http$://$www.iram.fr$/$wiki$/$nika2$/$index.php$/$April$\_$19,$\_$2017,$\_$FXD,$\_$KID$\_$position$\_$mapping$\_$and$\_$Field$\_$distortion$\_$for$\_$Run9}}.
 
 % FXD: this would need to be more ascertained. Lack of time to go further.
@@ -395,10 +404,11 @@ Eq.~\ref{eq:mv_focus_surf}
 %reconstructed focus surfaces per arrays
 in Fig.~\ref{fig:focus-surfaces}.
 The three flavours of focus-estimators provide us with focus surfaces
-per array that are in good agreement with each others and that have a
-non-axisymmetrical flatten bowl shape consistent with expectations from
-optical simulation. %{\bf [TBA, as discussed further below]}.
-The median defocus (that is the relative focus w.r.t. the center)
+per array that are in good agreement with each others. \samu{Furthermore,
+they have a non-axisymmetrical flatten bowl shape, which is well
+consistent with expectations from optical simulation using ZEMAX but
+with slightly higher curvature amplitude.} %{\bf [TBA, as discussed further below]}.
+Namely, the median defocus (that is the relative focus w.r.t. the center)
 across the detectors is about
 $-0.1~\rm{mm}$ for the three arrays. Maximal defocus values of about
 $-0.6~\rm{mm}$ are found for detectors located in the outer top and
@@ -417,7 +427,7 @@ estimators $z_k^{(a)}|_{\rm{fwhm}}$, $z_k^{(a)}|_{\rm{peak}}$ and
 $z_k^{(a)}|_{\rm{flux}}$. We found approximatively homogeneous
 standard deviation surfaces per array, which have median values across
 the FOV of about $0.03~\rm{mm}$.
-However, we cross-check this error estimate by forming the quadratic mean of
+Moreover, we cross-check this error estimate by forming the quadratic mean of
 the three inverse-variance error surfaces per array, which are defined in
 Eq.~\ref{eq:error_mv_focus_surf} and quoted
 $\sigma_k^{(a)}|_{\rm{fwhm}}$, $\sigma_k^{(a)}|_{\rm{peak}}$ and

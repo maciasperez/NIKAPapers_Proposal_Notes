@@ -16,6 +16,7 @@ date of the observations.
 
 \subsection{Uranus and Neptune}
 \label{se:ref_flux_uranus_neptune}
+
 For the flux densities of the giant planets, we use the ESA model from
 \cite{ESAmodel}: Version 5 for Neptune and Version 4 for Uranus. 
 Both models provide the planet brightness temperature in the
@@ -42,7 +43,7 @@ r_{p-a} = \sqrt{r_{p}^2 \cos^{2}\phi + r_{e}^2 \sin^{2} \phi}
 \end{equation}
 All quantities to compute the planet flux are obtained from the NASA
 Horizons web site \cite{NASAHorizon}, and are
-listed in table~\ref{tab:planetphysparam}. To compute the planet fluxes for a given date, we use the python
+listed in Table~\ref{tab:planetphysparam}. To compute the planet fluxes for a given date, we use the python
 photometry package available at \cite{gith-Haussel}.
 
 \begin{table}[ht]
@@ -70,17 +71,20 @@ $D$   [AU]    & delta   & delta \\
 
 The model spectra are linearly interpolated in log space at the
 reference frequencies of the NIKA2 bandpasses. Fluxes for all NIKA2
-calibration runs are listed in table~\ref{tab:fluxPred}, together with
+calibration runs are listed in Table~\ref{tab:fluxPred}, together with
 the expected variation between the start and end of a run. 
 
-The Uranus and Neptune models have been compared to Planck
-observations of these planets \cite{PLCK-LII}. For Uranus, the model used in the comparison
+The Uranus and Neptune models have been compared to 
+observations of these planets with the \emph{Planck}
+satellite~\cite{PLCK-LII}.
+For Uranus, the model used in the comparison
 is the ESA V2, and it is found to overpredict by 4 K (about 4\%) the
 observed RJ temperature at 143~GHz, to agree at 217 GHz, and
 to underpredict at 353 GHz. We use for NIKA2 calibration ESA model V4,
 that predict a flux respectively -3.3\%, 0.3\% and 4.7\% higher in the
-143, 217 and 353 GHz bands, that would lead to a percent
-accuracy with respect to Planck observations. 
+143, 217 and 353 GHz bands, that would lead to \samu{a few percents accuracy}
+with respect to \emph{Planck} observations.
+
 
 For Neptune, the same study compared Planck observation with the ESA V5
 model, {\it i. e.} the same one used for NIKA2 calibration. For this
@@ -98,21 +102,16 @@ between 1 and 2\% as illustrated in the Python notebook
 distributed with the software. 
 
 
-
-\begin{table*}[!h]
-  \caption[NIKA2 planet flux expectations]{NIKA2 planet flux
-    expectations. Notes: (a) NIKA2 Run, (b) Julian Date when the model
-    is computed, (c) Run duration, (d, e) total fluxes at 260 and 150
-    GHz, (f) variation of the 150 GHz flux density over the duration of the run}
-\centering
-\begin{tabular}{|l|r|r|r|r|r|}
-\hline
-NR$^{a}$  & JD$^{b}$ & $\Delta t$ $^{c}$ & $S_{\nu}$(260 GHz)  $^{d}$& $S_{\nu}$(150  GHz)$^{e}$  & $\Delta S_{\nu}/  S_{\nu} ^{f}$  \\
-\hline
-         & d  &  d        & Jy               & Jy                 &                                                                    \%  \\
-\hline
-         &    &            & \multicolumn{3}{|c|}{Uranus}\\
-\hline
+\begin{table}[!ht]
+  \begin{center}
+    \begin{tabular}{|l|r|r|r|r|r|}
+      \hline
+      NR$^{a}$  & JD$^{b}$ & $\Delta t$ $^{c}$ & $S_{\nu}$(260 GHz)  $^{d}$& $S_{\nu}$(150  GHz)$^{e}$  & $\Delta S_{\nu}/  S_{\nu} ^{f}$  \\
+      \hline
+      & d  &  d        & Jy               & Jy                 &                                                                    \%  \\
+      \hline
+      &    &            & \multicolumn{3}{|c|}{Uranus}\\
+      \hline
 13 & 2457330.5 &  12 & 45.59 & 17.65 & -0.89\\
 14 & 2457354.5 &  8 & 44.44 & 17.21 & -1.07\\
 15 & 2457409.5 &  20 & 40.62 & 15.73 & -3.22\\
@@ -153,16 +152,17 @@ NR$^{a}$  & JD$^{b}$ & $\Delta t$ $^{c}$ & $S_{\nu}$(260 GHz)  $^{d}$& $S_{\nu}$
 23 & 2457865.0 &  7 & 123.61 & 40.61 & -5.44\\
 24 & 2457915.4 &  5 & 102.08 & 33.68 & +0.59 \\
 \hline
-
 %\multicolumn{6}{c}{Notes: (a) NIKA2 Run}\\
 %\multicolumn{6}{c}{(b) Julian Date when the model is computed}\\
 %\multicolumn{6}{c}{(c) Run duration}\\
 %\multicolumn{6}{c}{(d, e) total fluxes at 260 and 150 GHz}\\
 %\multicolumn{6}{c}{(f) variation of the 150 GHz flux density over the
 %  duration of the run}\\
-\end{tabular}
-\label{tab:fluxPred}
-\end{table*}
+    \end{tabular}
+    \caption[NIKA2 planet flux expectations]{NIKA2 planet flux expectations. Notes: (a) NIKA2 Run, (b) Julian Date when the model is computed, (c) Run duration, (d, e) total fluxes at 260 and 150~GHz, (f) variation of the 150~GHz flux density over the duration of the run}
+  \end{center}
+  \label{tab:fluxPred}
+\end{table}
 
 
 \subsection{Mars}
@@ -171,7 +171,7 @@ For Mars, we use the model of Belloche \&  Amri (2006) available at
 with default parameters. Model output is computed at the two reference
 frequencies of NIKA2, 150 and 260~GHz.
 
-Fluxes of Mars are tabulated in table~\ref{tab:fluxPred}. In many
+Fluxes of Mars are tabulated in Table~\ref{tab:fluxPred}. In many
 cases, the variations of Mars flux during the course of a run are
 larger than the model uncertainty (5\%), and should be recomputed at
 more frequent times. 

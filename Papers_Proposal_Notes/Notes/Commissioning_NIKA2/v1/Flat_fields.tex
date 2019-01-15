@@ -16,10 +16,10 @@ Fields) has been characterized in several ways:
 % because \bms\ are properly sampled and map high SNR point sources (see
 % sect.~\ref{se:beammaps}). We have considered different kinds of flat fields:
 \begin{itemize}
-\item {\bf Main beam flat field.} This is the relative calibration of the KID main
-  beam. It is the PSF response to a point source in the far field of the
+\item {\bf Main beam flat field:} This is the relative calibration of the main
+  beam of each KID. It is the PSF response to a point source in the far field of the
   telescope. It is estimated per KID using \bms\ on bright sources that have the
-  required sampling to give maps per individual KID (sect~\ref{se:beammaps}). We
+  required sampling to give maps per individual KID (Sect.~\ref{se:beammaps}). We
   derive these ``gains'' $G_k$ as:
   \begin{equation}
     G_k = \frac{S_{th}(\nu_0)\, e^{-\tau/sin(\delta)}}{A_k}, 
@@ -30,41 +30,42 @@ Fields) has been characterized in several ways:
   \emph{skydip} method (sect.~\ref{se:opacities}) and $A_k$ is the
   amplitude of a Gaussian of fixed FWHM fitted from the detector $k$ map (as
   $\phi$ in Eq.~\ref{eq:flux_per_beam_def}).
-\item {\bf Forward beam flat field:} the relative calibration of the response of
+\item {\bf Forward beam flat field:} This is the relative calibration of the response of
   each KID to the near field atmospheric background. It is estimated
   using the correlation factor of each detector TOI (apart from a bright source)
-  to a median common mode estimated off-source (see sect.~\ref{se:toi_proc} for
+  to a median common mode estimated off-source (see Sect.~\ref{se:toi_proc} for
   more details on common modes).
 \end{itemize}
 
 Figures \ref{fig:avg_mbff} and \ref{fig:avg_fbff} show the average main beam and
 forward beam flat fields for the three arrays. These have been constructed by
 combining the normalized flat fields of five \bms, which were
-selected by thresholding the line-of-sight opacity measured in the 1\,mm band,
-such as $\tau/sin(\delta) \leq 0.85$. The distributions for the average flat
+selected by thresholding the line-of-sight opacity measured in the
+1\,mm band to $\tau/sin(\delta) \leq 0.85$. The distributions for the average flat
 fields are shown in the bottom panel of Fig.~\ref{fig:avg_mbff} and
 \ref{fig:avg_fbff}.
 
 We observe a sizable variation of the flat fields for A1 from the left-most side
 to the right-most side of the FOV: this reveals a significant change of A1
 detector responsivities depending on their position in the FOV. Namely, this
-effect mainly impacts the South-West third of the array, which will be referred to
-as the "shadow-zone''. \new{This is caused by more absorption
-of the $1\,\rm{mm}$ polarisation component that illuminates A1 than of
-the other component (A3) by the dichroic element.} 
-This variation of the flat field translates into a broadening of the
-distribution. However, we verified that A1's
-flat field dispersions are in line
-with the ones of A3 after the detectors within the shadow-zone were flagged out
-using a crescent-shaped mask. The masked flat field distributions are shown in
+effect mainly impacts the South-West third of the array, which is
+referred to as the "shadow-zone''. This variation of the
+flat field translates into a broadening of the distribution. However, we verified that A1's
+flat field dispersions are in line with the ones of A3 after the
+detectors within the shadow-zone were flagged out using a
+crescent-shaped mask. The masked flat field distributions are shown in
 green in Fig.~\ref{fig:avg_mbff} and \ref{fig:avg_fbff}, whereas shadow-zone
 distributions are in red. In addition to the average flat fields, we further
 characterize the flat fields for individual \bms. Fig.~\ref{fig:stddev_ff}
 shows the dispersion of the flat fields for nine \bms\ using
 either the whole FOV or masking the shadow-zone. The dispersion estimates for
-this two cases are gathered in Table~\ref{tab:flatfields}.
+this two cases are gathered in Table~\ref{tab:flatfield_res}.
+%While the
+%shadow zone is exluded, the A1 flat field dispersions are reduced by a
+%factor of about two, and reached values close to that of the A3 flat
+%field dispersions, while the latters are unchanged. 
 
-\begin{table}[h]
+\begin{table}[!h]
 \begin{center}
 \begin{tabular}{|l|l|c|c|c|}
 \hline
@@ -78,10 +79,9 @@ Forward beam flat field  & all the FOV           & $21.6 \pm 1.4$  & $10.1 \pm 1
 \hline
 \end{tabular}
 \caption[Flat field dispersions]{Average flat field dispersions in percent for
-  nine \bms\ over all the FOV and after masking out the
-  shadow-zone}
+  nine \bms\ over all the FOV and after masking out the shadow-zone}
+\label{tab:flatfield_res}
 \end{center}
-\label{tab:flatfields}
 \end{table}
 
 
@@ -119,8 +119,29 @@ Forward beam flat field  & all the FOV           & $21.6 \pm 1.4$  & $10.1 \pm 1
   dispersion of the normalised main beam flat field (upper panel) and forward beam flat
   field (lower panel) are shown using all valid KIDs of Array 1 (red circles),
   Array 3 (orange circles) and Array 2 (blue circles), and using the KIDs
-  located outside the Array 1 "shadow area'', which was discarded using a left
+  located outside the Array 1 "shadow zone'', which was discarded using a left
   crescent-shaped mask (red crosses).}
  \label{fig:stddev_ff}
 \end{center}
 \end{figure}
+
+\samu{The shadow zone effect is caused by more absorption
+of the $1\,\rm{mm}$ polarisation component that illuminates A1 than of
+the other component (A3) by the dichroic element. This effect,
+which implies a wrong placement of the transition zone of the dichroic
+that depends on frequency, incidence angle and polarisation, is 
+reproduced using optics simulation. This explanation has then been
+verified using obervation at the technical campaign of September
+2018. During this test campaign, a new \emph{hot-pressed} dichroic had
+been installed in place of the current \emph{air-gap} dichroic.
+Whereas the latter is made of a series of very thin
+micron-like membranes separated by calibrated rings and mounted on
+a native ring in inox, the new hot-pressed dichroic consisted of a
+rigid disk of plastic with a thickness of about 2~mm mounted on a
+plastic ring. The shadow zone variations of the 1~mm flat field were
+not observed during the September 2018 campaign, while huge distortions
+across the 2~mm field of view were reported. The air-gap dichroic,
+which is more immune to deformation than the hot-pressed one, has been
+re-installed at the end of the September 2018 run. This test has
+confirmed that the shadow zone effect was due to incoming radiation
+absorption by the current air-gap dichroic.} 

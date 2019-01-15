@@ -28,6 +28,31 @@ in the absolute calibration in order not to include twice the
 photometric correction uncertainties in the error budget (once for the
 absolute calibration and once for the photometry).
 
+% ALL METHOD RESULTS 
+\begin{table}[!thbp]
+\begin{center}
+\begin{tabular}{|c|l|c|c|c|c|c|}
+  \hline
+  \multicolumn{2}{|c|}{}  &  \multicolumn{5}{|c|}{Methods} \\\cline{3-7}
+  \multicolumn{2}{|c|}{Characteristics} &  baseline  & taumeter  &  skydip  &  photocorr demo & photocorr pointing \\
+  \hline\hline
+   \multicolumn{2}{|c|}{$\#$ selected scans} & 26    &       26  &    26    &    38           &    38 \\ 
+  \hline 
+  Factor &  A1          &   1.00  &  0.97   &  1.13    &   1.01    &   1.02  \\
+       &  A3            &   1.00  &  0.97   &  1.02    &   1.01    &   1.00  \\
+       &  1mm           &   1.00  &  0.95   &  1.06    &   1.01    &   1.01  \\
+       &  2mm           &   1.00  &  0.94   &  0.99    &   1.01    &   1.01  \\
+  \hline
+  RMS  &  A1            &  3.2    &   4.2   &   3.4    &    3.5    &   3.0 \\
+  $[\%]$     &  A3            &  3.6    &   4.3   &   3.3    &    3.5    &   3.0 \\
+       &  1mm           &  3.3    &   4.5   &   3.3    &    3.1    &   2.6 \\
+       &  2mm           &  1.6    &   2.6   &   1.5    &    1.5    &   1.5 \\
+\hline\hline
+\end{tabular}
+\caption[Comparison of calibration results using five methods]{Comparison of calibration results using five methods}
+\label{tab:Abs_calibration_results_all}
+\end{center}
+\end{table}
 
 \subsection{Photometric correction methods}
 \label{se:photocorr_methods}
@@ -42,8 +67,9 @@ Considering only the main beam broadening, modeled as a Gaussian of
 size $FWHM' = 2 \sqrt{2\ln{2}} \, \sigma '$, we show in
 Sect.~\ref{se:photometric_correction} that
 the flux density estimator depends on the size of the convolution
-function between the enlarged $\sigma '$ Gaussian and the 
-$\sigma_0$ fixed width Gaussian of our reference system. An unbiaised
+function between the enlarged $\sigma '$-Gaussian\samu{, which can be
+  monitored as in Sect.~\ref{se:obsdate_variations}}, and the 
+$\sigma_0$ fixed-width Gaussian of our reference system. An unbiaised
 flux density $\hat{S}_{pc}$ can be derived from the flux density
 estimate $\hat{S}$ as
 \begin{equation}
@@ -64,7 +90,7 @@ $\sigma_\star$ with the source flux density is given in
 Sect.~\ref{se:photometric_correction}.
 
 The photometric correction thus relies on the measure of the current beam
-size $\sigma ’$. The induced uncertainties on the flux density
+size $\sigma'$. The induced uncertainties on the flux density
 measurements depends on the precision of which we are able to monitor
 the beam size. 
 
@@ -197,7 +223,7 @@ correction will be further tested in Sect.~\ref{se:photometry_others}.
 
 
 
-\begin{figure}[ht!]
+\begin{figure}[!htbp]
 \begin{center}
   % corrected skydip
   \begin{overpic}[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.35\textwidth]{Figures/Calibration/plot_flux_density_ratio_obstau_uranus_corrected_skydip_narrow_1mm.pdf}
@@ -239,32 +265,6 @@ correction will be further tested in Sect.~\ref{se:photometry_others}.
 \end{center}
 \end{figure}
 
-
-% ALL METHOD RESULTS 
-\begin{table}[th]
-\begin{center}
-\begin{tabular}{|c|l|c|c|c|c|c|}
-  \hline
-  \multicolumn{2}{|c|}{}  &  \multicolumn{5}{|c|}{Methods} \\\cline{3-7}
-  \multicolumn{2}{|c|}{Characteristics} &  baseline  & taumeter  &  skydip  &  photocorr demo & photocorr pointing \\
-  \hline\hline
-   \multicolumn{2}{|c|}{$\#$ selected scans} & 26    &       26  &    26    &    38           &    38 \\ 
-  \hline 
-  Factor &  A1          &   1.00  &  0.97   &  1.13    &   1.01    &   1.02  \\
-       &  A3            &   1.00  &  0.97   &  1.02    &   1.01    &   1.00  \\
-       &  1mm           &   1.00  &  0.95   &  1.06    &   1.01    &   1.01  \\
-       &  2mm           &   1.00  &  0.94   &  0.99    &   1.01    &   1.01  \\
-  \hline
-  RMS  &  A1            &  3.2    &   4.2   &   3.4    &    3.5    &   3.0 \\
-  $[\%]$     &  A3            &  3.6    &   4.3   &   3.3    &    3.5    &   3.0 \\
-       &  1mm           &  3.3    &   4.5   &   3.3    &    3.1    &   2.6 \\
-       &  2mm           &  1.6    &   2.6   &   1.5    &    1.5    &   1.5 \\
-\hline\hline
-\end{tabular}
-\caption[Comparison of calibration results using five methods]{Comparison of calibration results using five methods}
-\label{tab:Abs_calibration_results_all}
-\end{center}
-\end{table}
 
 
 

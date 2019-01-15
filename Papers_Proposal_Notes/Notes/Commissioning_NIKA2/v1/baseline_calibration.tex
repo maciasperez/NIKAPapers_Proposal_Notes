@@ -16,7 +16,7 @@ amplitude $A_c$ is estimated as the average amplitude of the $FWHM_0$
 Gaussian fitted from a series of calibrator maps.
 
 Before the flux density estimation, the calibrator raw data are i)
-intercalibrated as decribed in Sect.~\ref{se:flatfields} and ii) corrected of the
+intercalibrated as decribed in Sect.~\ref{se:flatfields} and ii) corrected for the
 atmospheric attenuation as described in Chapter~\ref{se:opacities}. To
 refine the intercalibration between the two $1$-mm arrays after the
 KID Hertz to Jy/beam conversion factor estimates, a flux rescaling
@@ -74,8 +74,9 @@ measured-to-predicted flux density ratios as a function of the 2D
 Gaussian FWHM estimates and color-coded from the observation dates
 given in UT hours in the first panels of
 Fig.~\ref{fig:calib_uranus_vs_fwhm_all}.
-We note that the flux density estimates have been corrected by the
-rescaling factors, so that the flux density ratios are equal to unity
+We note that the flux density estimates have been
+% corrected by the rescaling factors
+\samu{calibrated beforehands}, so that the flux density ratios are equal to unity
 in average by construction. First row panels of
 Fig.~\ref{fig:calib_uranus_vs_fwhm_all} show the flux ratio after
 correction from the baseline rescaling factors, whereas second and
@@ -102,11 +103,10 @@ derive the absolute calibration. However, we will verify in
 Sect.~\ref{se:photometry_baseline} that this suffices to obtain an
 accurate photometry. By contrast, due to the night time visibility of
 Uranus during N2R12, almost all the available scans meet the baseline
-section criteria. 
-
+selection criteria. 
 
 % ALL METHOD RESULTS 
-\begin{table}[th]
+\begin{table}[!thbp]
 \begin{center}
 \begin{tabular}{|c|c|c|c|c|c|}
   \hline
@@ -124,11 +124,10 @@ section criteria.
 \end{center}
 \end{table}
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %    Flux ratio vs FWHM
 
-\begin{figure}[ht!]
+\begin{figure}[!htbp]
   \begin{center}
     % corrected skydip
     \begin{overpic}[clip=true, trim={0, -0.3cm, -0.3cm, 0},
@@ -158,6 +157,7 @@ section criteria.
       \put(18,25){\footnotesize Photocorr Pointing}
     \end{overpic}
     \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.3337\textwidth]{Figures/Calibration/plot_flux_density_ratio_fwhm_uranus_corrected_skydip_photocorr_pointing_narrow_a2.pdf}
+    \vspace{-0.5cm}
     \caption[Uranus flux density stability against FWHM]{
       \small{Uranus flux density ratio vs beam size for five
       calibration methods. The ratio of 
@@ -177,7 +177,6 @@ section criteria.
 \label{fig:calib_uranus_vs_fwhm_all}
 \end{center}
 \end{figure}
-
 
 \subsection{Stability against the atmospheric transmission}
 \label{se:baseline_calibration_atm}
@@ -204,7 +203,7 @@ due to a lesser impact of the atmospheric attenuation uncertainties on
 the measured flux density at $2\,\rm{mm}$. The calibration
 uncertainties will be assessed in Sect.~\ref{se:photometry_baseline}}
 
-\begin{figure}[ht!]
+\begin{figure}[!htbp]
   \begin{center}
     \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.35\textwidth]{Figures/Calibration/plot_flux_density_ratio_obstau_uranus_corrected_skydip_narrow_a1.pdf}
     \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.35\textwidth]{Figures/Calibration/plot_flux_density_ratio_obstau_uranus_corrected_skydip_narrow_a3.pdf}
@@ -237,7 +236,10 @@ atmospheric attenuation using the 'corrected skydip' method described
 in Sect.~\ref{se:corrected-skydip}, here we derive the absolute
 calibration factor using the 'taumeter' and the 'skydip' opacity
 correction methods, as discussed in Sect.~\ref{se:taumeter-method} and
-Sect.~\ref{se:skydip-method}. The baseline Uranus measured-to-modeled
+Sect.~\ref{se:skydip-method}. \samu{We then compare measured Uranus
+  flux density estimates after absolute calibration using these three
+  methods.}
+The baseline Uranus measured-to-modeled
 flux ratio as a function of the atmospheric transmission for A1$\&$A3
 and for A2 are copied in the first row of
 Fig.~\ref{fig:calib_uranus_vs_atmtrans_all}, and are

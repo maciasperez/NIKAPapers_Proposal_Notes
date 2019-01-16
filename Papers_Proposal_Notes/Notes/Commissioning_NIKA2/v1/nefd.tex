@@ -106,7 +106,7 @@ overstimated and so $t_{det}$ underestimated. LP: oui, ou alors
 certains samples ont ete flaggues et ne sont pas comptes dasn la carte
 de hits (Nico, tu penses qu'il faut ajouter un commentaire ?)}
 
-\begin{figure}
+\begin{figure}[!thbp]
 \begin{center}
 \includegraphics[clip, angle=0, scale =0.8]{Figures/time_of_integration_0.eps}
 \caption[Time of integration]{Comparison between two estimators of the time of
@@ -189,7 +189,11 @@ moderately faint source \cite{hls_combes}, expected to be
 communication). This source was chosen for its flux and its availability during
 Run9 for long integration. It has been observed for about 9\,h in total over
 three nights. The scans were 8x5~arcmin$^2$, alternatively oriented in (ra,dec),
-(dec,ra), (az,el), (el,az).
+(dec,ra), (az,el), (el,az). \samu{The rational for this scan strategy
+is twofold. First, it makes the filtering due to the data
+reduction more isotropic to avoid the presence of spurious priviledged directions in
+the map. Second, it provides the required redundancy in the mapping
+to allow the use of dedicated denoising algorithms (a.k.a. destriping codes).}
 
 For Run~12, G2 has become the nickname of an empty target close to sources known
 to IRAM but not to the commissioning team in order to check our source
@@ -253,7 +257,7 @@ e^{-2\tau_n/\sin\delta_n}$ in order to recover an unbiased estimate of
 $NEFD_0$. The method was applied to \hls\ and G2, results are summarized on
 Fig.~\ref{fig:nefd_plots} and in Tab.~\ref{tab:nefd_summary}.
 
-\begin{figure}
+\begin{figure}[!thbp]
 \begin{center}
 \includegraphics[clip, angle=0, scale =0.42]{Figures/hls_nefd_vst.eps}
 \includegraphics[clip, angle=0, scale =0.42]{Figures/g2_nefd_vst.eps}
@@ -277,9 +281,9 @@ the final combination, while preserving the noise properties. This method is
 often referred to as ``Jackknife'' and is a powerful test for residual
 systematics. The Jaccknife maps of \hls\ and G2 are presented on
 Fig.~\ref{fig:jk_maps}. Photometry at their center provides estimates of the
-zenith NEFD that are reported in Tab.~\ref{tab:nefd_summary}.
+\samu{top-of-atmosphere} NEFD that are reported in Tab.~\ref{tab:nefd_summary}.
 
-\begin{figure}[hhh]
+\begin{figure}[!thbp]
 \begin{center}
 \includegraphics[clip, angle=0, scale=0.5]{Figures/nefd_jackknife.png}
 \caption[Jackknife maps of G2 and \hls]{\emph{Top row:} Maps of \hls\ and G2 at
@@ -300,9 +304,9 @@ derive the NEFD for this scan. This determination is intrinsically noisier than
 the two previous maps because of the variance associated to each scan. However,
 taken all together, the scans provide another estimate of the instrument
 NEFD. Results are presented on Fig.~\ref{fig:nefd_scatter} and the derived
-zenith NEFD are given in Tab.~\ref{tab:nefd_summary}.
+\samu{top-of-atmosphere} NEFD are given in Tab.~\ref{tab:nefd_summary}.
 
-\begin{figure}[hhh]
+\begin{figure}[!thbp]
 \begin{center}
 \includegraphics[clip, angle=0, scale =0.42]{Figures/hls_NEFD_vs_TauElev_all.eps}
 \includegraphics[clip, angle=0, scale =0.42]{Figures/g2_NEFD_vs_TauElev_all.eps}
@@ -310,7 +314,7 @@ zenith NEFD are given in Tab.~\ref{tab:nefd_summary}.
   observation of G2 and \hls. The solid black line is the theoretical
   fit of $\rm{NEFD} = \rm{NEFD}_0$ $e^{(\tau/\sin\delta)}$
   %$\sigma = \sigma_{ref}e^{\tau/\sin\delta}$
-  and gives the zenith NEFD when extrapolated to $\tau/\sin\delta = 0$.}
+  and gives the NEFD when extrapolated to $\tau/\sin\delta = 0$.}
 \label{fig:nefd_scatter}
 \end{center}
 \end{figure}
@@ -323,7 +327,7 @@ restrict to sources with a flux below
 1\,Jy. Fig.~\ref{fig:nefdvsbackground_below_1Jy} further shows the comparison
 between runs N2R9, N2R12 and N2R14 and their consistency.
 
-\begin{figure}
+\begin{figure}[!thbp]
 \begin{center}
 \includegraphics[clip=true,width=0.47\textwidth]{Figures/NEFDIndScans/nefd_flux1mm_run22.pdf}
 \caption[Measured NEFD versus source flux for N2R9 at 1 and 2 mm]{Measured NEFD
@@ -332,7 +336,7 @@ between runs N2R9, N2R12 and N2R14 and their consistency.
 \end{center}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[!thbp]
 \begin{center}
 \includegraphics[clip=true,width=0.47\textwidth]{Figures/NEFD/plot_nefd_vs_obstau_corrected_skydip_vfinal_a1.pdf}
 \includegraphics[clip=true,width=0.47\textwidth]{Figures/NEFD/plot_nefd_vs_obstau_corrected_skydip_vfinal_a3.pdf}
@@ -351,7 +355,7 @@ between runs N2R9, N2R12 and N2R14 and their consistency.
 \end{figure}
  
 
-\begin{table}
+\begin{table}[!thbp]
 \begin{center}
 \begin{tabular}{|l|l|c|c|c|c|c|c|}
   \hline
@@ -390,7 +394,7 @@ baseline selection criteria (see Sect.~\ref{se:data_selection}),
 providing us with robust NEFD estimates that are representative of
 average NIKA2 performance, which are gathered in
 Tab.~\ref{tab:nefd_astro}.
-The zenith NEFD and RMS uncertainties are evaluated as the median and
+The \samu{top-of-atmosphere} NEFD and RMS uncertainties are evaluated as the median and
 the scatter of the individual NEFD corrected with
 $\exp[\tau/sin(\delta)]$. These values are then extrapolated at the
 reference IRAM observing conditions, which consists of $2~\rm{mm}$
@@ -400,15 +404,15 @@ elevation.
 
 %% LP
 To further estimate the mapping capabilities, we also evaluate the
-mapping speed $m_{\rm{s}}$, which is defined as the sky area that is covered in one
+mapping speed $M_{\rm{s}}$, which is defined as the sky area that is covered in one
 hour of observation to a noise level of $1\,\rm{mJy}$, using
 \begin{equation}
-m_{\rm{s}} = \frac{\pi}{4} d_{\rm{FoV}}^2 \, \frac{\eta}{\rm{NEFD}^2},
+M_{\rm{s}} = \frac{\pi}{4} d_{\rm{FoV}}^2 \, \frac{\eta}{\rm{NEFD}^2},
 \end{equation}
 where $d_{\rm{FoV}} = 6.5'$ is the FoV diameter and $\eta$ the
 fraction of valid KIDs, as given in Tab.~\ref{tab:number_of_kids} in
 Sect.~\ref{se:fov_geometry}.
-The zenith mapping speed that is extrapolated at zero opacity, and the astronomer
+The mapping speed that is extrapolated at zero opacity, and the astronomer
 mapping speed that is extrapolated at the reference IRAM observing conditions are
 given in Tab.~\ref{tab:nefd_astro}.   
 %eta  = [0.84, 0.84, 0.84, 0.90]
@@ -419,19 +423,19 @@ given in Tab.~\ref{tab:nefd_astro}.
 %msa   = !dpi/4.0d0*6.5d0^2*eta/nefda^2*60.0d0^2 ;; arcmin^2/h/mJy^2
 %print, msa
 
-\begin{table}
+\begin{table}[!thbp]
 \begin{center}
 \begin{tabular}{|l|c|c|c|c|}
   \hline
  <1 Jy               & A1      &   A3    &   A1\&A3 &    A2    \\  
 \hline\hline
-NEFD$_0$             & 47.2    & 37.9    &    30.1  &    8.8   \\
-RMS NEFD$_0$         &  3.9    &  3.5    &     2.9  &    1.1   \\
-$m_{\rm{s}}^{(0)}$     & 45      &  70     &    111   &   1388   \\
+NEFD\small{(0mm, 90deg)}             & 47.2    & 37.9    &    30.1  &    8.8   \\
+RMS NEFD\small{(0mm, 90deg)}         &  3.9    &  3.5    &     2.9  &    1.1   \\
+M$_{\rm{s}}$\small{(0mm, 90deg)}      & 45      &  70     &    111   &   1388   \\
 \hline
-NEFD$_{\rm{A}}$        & 56.6    & 45.6    &    36.1  &    9.8   \\
-RMS NEFD$_{\rm{A}}$    &  4.7    & 4.2     &     3.5  &    1.2   \\
-$m_{\rm{s}}^{(\rm{A})}$  &  31    & 48       &    77   &   1119   \\
+NEFD\small{(2mm, 60deg)}         & 56.6    & 45.6    &    36.1  &    9.8   \\
+RMS NEFD\small{(2mm, 60deg)}     &  4.7    & 4.2     &     3.5  &    1.2   \\
+M$_{\rm{s}}$\small{(2mm, 60deg)}  &  31    & 48       &    77   &   1119   \\
 \hline
 \hline
 \end{tabular}
@@ -439,8 +443,8 @@ $m_{\rm{s}}^{(\rm{A})}$  &  31    & 48       &    77   &   1119   \\
 uncertainties in $\rm{mJy}\cdot \rm{s}^{1/2}$, as well as the derived mapping
 speed in $\rm{arcmin}^2\cdot\rm{mJy}^{-2}\cdot\rm{h}^{-1}$, evaluated
 in using the scatter method on all sub-Jy sources of runs N2R9, N2R12
-and N2R14, given at zenith (first two rows) and extrapolated at the
-reference IRAM observing conditions (last two rows), which are defined
+and N2R14, given at pwv=0 and 90 degrees elevation (first three rows) and extrapolated at the
+reference IRAM observing conditions (last three rows), which are defined
 as $2\,\rm{mm}$ pwv and 60 degrees elevation.}
 \label{tab:nefd_astro}
 \end{center}

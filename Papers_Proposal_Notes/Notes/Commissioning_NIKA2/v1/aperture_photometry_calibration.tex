@@ -1,6 +1,6 @@
 \section{Aperture Photometry Calibration}% {\color{green} Jean-Fran\c cois}}
 
-The total flux density of a source can be measured in the NIKA2 image
+The total flux density of a source can be measured in the NIKA2 map
 over a large circular aperture to recover the source power incident on the telescope through its main
 beam as well as its side lobes. It is computed as :
 
@@ -9,14 +9,16 @@ S(\nu) = \sum_{m} \sum_{n}  I_{m,n} ({\rm Jy/beam}) \times {dx^2 \over {\Omega_{
 \label{eq:ApPh_7_7}
 \end{equation}
 
-\noindent  $I_{m,n}$ is the brightness in Jy/beam measured in each pixel $(m,n)$; $dx$ is the pixel size;
+\noindent  $I_{m,n}$ is the brightness map in Jy/beam measured in the
+map pixel $(m,n)$; $dx$ is the pixel size \samu{as defined by the chosen map resolution;}
 $\Omega_{tot}$ is the solid angle of the {\it total} beam; pixel
 indices ($m,n$) are such that the radial distance $dx \times
 \sqrt{(m-m_c)^2 + (n-n_c)^2}$ from the map center $(m_c,n_c)$
 is within the aperture radius. 
 
-Since flux density uncertainty grows with aperture radius, we have tested various aperture size from $60''$
-to $250''$ and found that $150''$ is a good compromise between
+Since flux density uncertainty grows with aperture radius, we have
+tested various aperture size from $60''$ to $250''$ and found that
+$150''$ is a good compromise between
 uncertainty and full saturation of the flux density (see Figure
 \ref{fig:Uranus_s308}).
 %We note however that the power unaccounted for beyond an aperture radius
@@ -32,10 +34,9 @@ limb of the Moon~\cite{Kramer2013}.}
 %(amplitudes of the three error beams at 280GHz and 210GHz,
 %$\eta_{fss}$ and 1-Feff and Carsten's email).
 
-In each pixel, brightness $I_{m,n}$ is naturally expressed in unit of
-Jy/beam, where  {\it beam} stands for the {\it total} beam.
-Hence, prior to summing all pixels within the aperture with
-Eq.~\ref{eq:ApPh_7_7}, brightness $I_{m,n}$
+The brightness map $I_{m,n}$ in Eq.~\ref{eq:ApPh_7_7} is in unit of
+Jy/beam, where {\it beam} stands for the {\it total} beam.
+Hence, prior to summing all \samu{map pixels} within the aperture, $I_{m,n}$
 must be converted from  Jy/beam to Jy/pixel. This
 conversion is done with the factor $dx^2 \over {\Omega_{tot}}$
 which is, effectively, the pixel area $dx^2$ in unit of fractional

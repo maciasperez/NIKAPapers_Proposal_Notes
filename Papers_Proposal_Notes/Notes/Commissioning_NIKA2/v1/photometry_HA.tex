@@ -48,12 +48,21 @@ where the different factors in the integral are:
   (see Sect.~\ref{se:grid_distortion}), the
   actual solid angle is not known precisely and is {\em probably} a function of the
   frequency  because the pixels sizes are close to the wavelength of
-  operation (2.75 mm at 2 mm for example). The collecting area $A$, \new{
+  operation (2.75 mm at 2 mm for example). The collecting area $A$, \samu{
   that is the entrance pupil of the system, is the image of the
-  aperture stop (\aka\ the cold stop) realised by the optics before it
+  aperture stop (\aka\ the cold stop) through 
+  the optical system from the front. The entrance pupil is made such
+  that the edges of the primary mirror (M1)
+  are vignetted in order to avoid strong diffraction effects due to
+  the high contrast between the sky effective Rayleigh-Jeans
+  temperature inside M1, which is about 30~K and
+  the ground temperature behind M1 (~ 300K). 
+  %So the KID never seed the M1 edges, but only the sky up to the cold
+  %pupil edge. So in fact
+  %AOmega = A_KID* Omega_cold_pupil_projection_on_last_lens
+  %       = A_cold_pupil_projection_on_M1 * Omega_KID_projection_on_sky
   } 
-  %is the projection of the IRAM primary on the cold pupil
-  and is also not known very accurately.
+  This is also not known very accurately.
 \end{itemize}
 The integral in Eq.~\ref{eq:basicphot} gives the total power (units of $\rm W$)
 falling on a KID. The factor $G_{k}$ (units of  $\rm W^{-1}$) converts this
@@ -122,7 +131,8 @@ Eq.~\ref{eq:nueff0}.
 %two elevations (zenith and 20 degree) and two spectral shape (RJ and
 %flat spectrum), in the two 1mm passbands and in the 2mm passband. 
 
-As seen in Fig.~\ref{fig:atmosphereimpact}, typical variations of $\nu_{\rm{eff}}$ with the spectral shape of the
+As seen in Fig.~\ref{fig:atmosphereimpact}, typical variations of
+$\nu_{\rm{eff}}$ with the spectral shape of the
 source range between $1\%$ and $3\%$, and are relatively stable
 between good ($\tau_{225GHz} \simeq 0.1$) and
 poor  ($\tau_{225GHz} \simeq 1.0$) atmospheric conditions for both the
@@ -130,7 +140,7 @@ poor  ($\tau_{225GHz} \simeq 1.0$) atmospheric conditions for both the
 Under good atmospheric conditions ($\tau_{225GHz} \simeq 0.1$), $\nu_{\rm{eff}}$ changes by
 less than 0.3\% between zenith and 20 degree elevation. Under poor
 conditions ($\tau_{225GHz} \simeq 1.0$), this rises to almost 3\% for
-a Rayleigh-Jeans spectrum in the 2 mm band, {\it i.e.} larger than the
+a Rayleigh-Jeans spectrum in the 2~mm band, {\it i.e.} larger than the
 variations due to the spectral shape of the source.
 
 %\begin{figure}[h]
@@ -148,7 +158,7 @@ variations due to the spectral shape of the source.
 
 Nevertheless, to a first approximation, we consider the shape of the atmospheric
 transmission independent of the elevation and water content, so that an
-effective zenith opacity $\tau_{\rm{eff}}$ is used.
+effective zenith opacity $\tau_{\rm{eff}}$ can be used.
 Equation~\ref{eq:basicphot2} becomes under this assumption: 
 \begin{equation}
 R(\theta, \phi, \am, mm_{H_{2}O}) \simeq G_{k}  A_{p}\Omega_{s} e^{\left(-\am
@@ -159,7 +169,7 @@ R(\theta, \phi, \am, mm_{H_{2}O}) \simeq G_{k}  A_{p}\Omega_{s} e^{\left(-\am
 \end{equation}
 where $T_{atm}(\nu)$ is the transmission of the atmosphere at zenith,
 and is a function of the frequency only. From the computations made to
-plot figure~\ref{fig:atmosphereimpact}, we derive that this approximation 
+plot Fig.~\ref{fig:atmosphereimpact}, we derive that this approximation 
 is valid below the percent level for $\tau_{225GHz} < 0.35$
 
 The dependance on elevation and opacity can be corrected as shown in
@@ -191,7 +201,7 @@ I_{c}(\nu) =  \frac{S_{c}(\nu)}{\Omega_{s}} =\frac{ S_{c}
 (\nu_{0})}{\Omega_{S}} f(\frac{\nu}{\nu_{0}})  
 \end{equation}
 Where $S_{c}(\nu)$ is the spectral irradiance of the calibrator (units
-of $\rm W/m^{2}/Hz$) or Jy. We parametrize the source spectral irradiance
+of $\rm W/m^{2}/Hz$ or Jy). We parametrize the source spectral irradiance
 as a function of a reference frequency $\nu_{0}$ that we choose
 arbitrarily to be: $\nu_{0} = 150$~GHz for the 2mm array and $\nu_{0}
 = 260$~GHz for both 1mm arrays. 

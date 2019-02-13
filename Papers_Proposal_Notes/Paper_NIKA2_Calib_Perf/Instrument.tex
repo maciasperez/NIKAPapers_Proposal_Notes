@@ -1,0 +1,138 @@
+%----------------------------------------------------------------------------------------
+%	2./ INSTRUMENT
+%----------------------------------------------------------------------------------------
+%\section{General view of the instrument}
+%\label{se:instru}
+
+NIKA2 simultaneously images a field-of-view of
+6.5\,arcmin in diameter at 150 and 260~GHz, with polarimetric capabilities at
+260~GHz. The optics of the telescope receiver cabin have been modified in order
+to increase the telescope field-of-view compared to earlier IRAM instruments. To
+achieve these goals without degrading the telescope angular resolution, it
+employs a total of around 2,900\,detectors split over three distinct arrays of
+Kinetic Inductance Detectors (KID).
+
+\subsection{Optics}
+
+The NIKA2 camera optics include two cold mirrors, and the filtering of unwanted
+(off-band) radiation is provided by a suitable stack of multi-mesh filters
+placed at all temperature stages between 150 mK and room temperature. An air-gap
+dichroic splits the 150\,GHz (reflection) from the 260\,GHz (transmission)
+beams. A grid polariser ensures then the separation of the two linear
+polarizations on the 260\,GHz channel (V and H). Band-defining filters,
+custom-designed to optimally match the atmospheric windows, are installed in
+front of each array. A half-wave polarization modulator is added at room
+temperature when operating the instrument in polarimetric mode.
+
+\subsection{Bandpasses}
+
+\begin{figure}[ht!] % Inline image example
+\begin{center}
+\includegraphics[clip,trim={0, 1cm, 0, 2cm},width=0.5\textwidth]{Figures/bandpasses_nika2_colorsok.png}
+\caption[NIKA2 transmission]{Relative system response of the three NIKA2 arrays as a
+  function of frequency. For illustration we also plot in black atmospheric transmission obtained with the ATM model \cite{ATM, Pardo2002} for two values of precipitable water vapor. The spectra of ESA4 model of Uranus (pink) and ESA5 model of Neptune \cite{ESAmodel} (forest green) in the frequency range are overplotted with arbitrary normalization with respect to NIKA2 transmission.} 
+ \label{spectralband1}
+\end{center}
+\end{figure}
+
+The NIKA2 spectral bands were measured in the laboratory using a
+Martin-Puplett interferometer built in-house \cite{durand}.  Both
+arrays and filter bands were considered in the measurements. These
+were obtained from the difference of two black bodies, hence they
+include a $\nu^2$ Rayleigh-Jeans (RJ) spectral term.
+Figure~\ref{spectralband1} shows the relative spectral response for
+the three arrays (corrected of the RJ term).  Notice that array A2 was
+replaced by a new one in N2R5 and that the spectral transmissions are
+not the same (red and orange lines in the figure).
+
+The two arrays operating at 260 GHz, mapping different linear polarisations,
+exhibit a slightly different spectral behaviour as can be
+seen on Fig.~\ref{spectralband1}. This may be explained by a tiny
+difference in the silicon wafer and/or Aluminium film thicknesses. For
+instance, the observed shift of the peak frequency, 265 GHz for the V
+(A1) array versus 258 GHz for the H one (A3), can be explained by
+about 5 microns change in the substrate thickness. 
+
+It is clear from Fig.~\ref{spectralband1} that the atmosphere will
+modify the overall transmission of the system, especially at the tails
+for the A2 array.
+For each array, we define reference frequencies that are chosen
+as round numbers in the middle of the bands to define NIKA2
+photometric system as will be discussed in
+Sect.~\ref{se:calibration}. These are 260~GHz for the A1 and A3 and
+150~GHz for the A2 arrray.
+
+\subsection{Cryogenics}
+
+The optimal operation of the detectors is achieved at a temperature of around
+150\,mK, well below the Aluminium superconducting transition. For this reason,
+NIKA2 employs a custom dilution fridge to cool down the focal plane, and the
+refractive portion of the optics, for a total mass around 100 kg, deeply in the
+sub-Kelvin regime. Despite the complexity and size of the system, the operation
+of NIKA2 does not require external cryogenic liquids and is fully remotely
+controllable.
+
+\subsection{KIDs and electronics}
+\label{se:array}
+
+The 150\,GHz channel is equipped with A2 that is an array of
+616\,pixels, arranged to cover a 78\,mm diameter circle. Each pixel has a size of
+$2.8\times2.8\textrm{\,mm}^2$. The array A2 is connected over four different
+readout lines. In the case of the 260\,GHz band detectors, the pixel size is
+$2\times 2\mathrm{\,mm}^2$, to ensure a comparable sampling of the focal
+plane. In order to fill the two 260\,GHz arrays A1 and A3, a total of 1,140 pixels are
+needed in each of them. The focal planes are all based on thin Aluminium films
+deposited by e-beam evaporation under ultra-high vacuum conditions over a
+Silicon substrate.
+
+The key advantage of the KID technology is the simplicity of the cold
+electronics and the multiplexing scheme. In NIKA2, each block of around 150
+detectors is connected to single coaxial line providing the excitation and the
+readout at the two ends. Each of the readout lines is linked to the input of a
+cryogenic (4 K) low-noise amplifier. The warm electronics required to digitize
+and process the pixels signals is composed of twenty custom readout cards (one
+per feed-line).
+
+%In this document, the 2\,mm array is called A2, while the two 1\,mm arrays are
+%called A1 and A3.
+
+
+\subsection{KID photometry and tuning}
+\label{se:tuning}
+
+Kinetic Inductance Detectors are superconducting resonators whose resonance
+frequency shifts linearly depend on the incoming optical power. The
+measure of such frequency shift $\Delta f$ is what allows us to use
+KID as mm-wave detectors.
+
+For the KID readout, an excitation signal is sent into the cryostat on the
+feedline coupled to the KID. The transmitted signal can be described by its
+amplitude and phase, or, as is common practice for KID, by its components that
+are In-phase ($I$) and in Quadrature $Q$ with respect to the excitation
+signal. The goal is now to relate the measured variations of the KID response
+to excitation signal $(\Delta I, \Delta Q)$, which are induced by incident light, to
+$\Delta f$. For this, the electronics modulates the excitation
+frequency at about 1\,kHz with a known frequency variation $\delta f$
+and the read out gives the induced transmitted signal variations
+$(dI, dQ)$. Projecting linearly
+$(\Delta I, \Delta Q)$ on $(dI, dQ)$ therefore
+provides $\Delta f$. This value, in Hz, constitutes the raw
+time-ordered data, which are sampled at a frequency of 23.84
+Hz. Ingested into the calibration pipeline, it will be futher calibrated into astronomical units
+(Sect.~\ref{se:calibration}). For historical reasons, this way of deriving KID
+signals has been nicknamed \emph{RfdIdQ}. More details on this process are given
+in \cite{Calvo13}.\\
+
+Not only incident astronomical light reaches the KIDs and contributes to Cooper
+pair breaking. Any change in the background optical load (due, for example, to changes in
+the atmospheric transmission or in the elevation) contributes as well to the
+shift of the resonances. In order to maximize the sensitivity of a KID, the
+excitation signal used to read it out must always be near its resonance
+frequency. We therefore have developped a tuning algorithm that takes care of
+this optimization. Tunings are performed during the first subscan of each
+observation in order to be optimally tuned at the same elevation and sky
+conditions as the source. It takes only a few seconds when the $\ftone$ are
+close to the current functionning point. In order to always be in these
+conditions, continuous tunings are done between two scans when NIKA2 is not observing.
+
+

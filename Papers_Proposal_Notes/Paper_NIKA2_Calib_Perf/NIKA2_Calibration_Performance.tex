@@ -23,6 +23,33 @@
 % To add links in your PDF file, use the package "hyperref"
 % with options according to your LaTeX or PDFLaTeX drivers.
 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[usenames, dvipsnames]{color}
+\usepackage{overpic} % add text to fig
+
+
+% NOTATION
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\hls}{HLS\,J0918+5142}
+\newcommand{\ftone}{f_{\rm{tone}}}
+\newcommand{\am}{x}
+\newcommand{\elev}{\delta}
+\newcommand{\nika}{NIKA2}
+\newcommand{\aka}{a.\,k.\,a.}
+\newcommand{\wrt}{w.\,r.\,t.}
+\newcommand{\bm}{\emph{beammap}}
+\newcommand{\bms}{\emph{beammaps}}
+\newcommand{\rf}{\emph{RfdIdQ}}
+\newcommand{\kidpar}{\emph{kidpar}}
+\newcommand{\radec}{\emph{R.\,A.,\,Dec}}
+\newcommand{\cm}{\emph{common~mode}}
+\newcommand{\cmoneb}{\emph{common~mode~one~block}}
+\newcommand{\afternoon}{temperature-induced}
+\newcommand{\Afternoon}{Temperature-induced}
+
+
+
+
 \begin{document} 
 
 
@@ -121,34 +148,244 @@
    \maketitle
 
    
-%
-%-------------------------------------------------------------------
-
+%----------------------------------------------------------------------------------------
+%	1./ INTRODUCTION
+%----------------------------------------------------------------------------------------
 \section{Introduction}
+\label{se:intro}
+\input{Introduction.tex}
 
-   
+
+%----------------------------------------------------------------------------------------
+%	2./ INSTRUMENT
+%----------------------------------------------------------------------------------------
+\section{General view of the instrument}
+\label{se:instru}
+\input{Instrument.tex}
+
+
+%----------------------------------------------------------------------------------------
+%	3./ Observing mode
+%----------------------------------------------------------------------------------------
+\section{Observations}
+\label{se:observations}
+\input{Observations.tex}
+
+
+%----------------------------------------------------------------------------------------
+%	4./ Data reduction
+%----------------------------------------------------------------------------------------
+\section{Data Reduction}
+\label{se:dataproc}
+\input{Pipeline.tex}
+
+%----------------------------------------------------------------------------------------
+%	5./ Focal Plane Geometry
+%----------------------------------------------------------------------------------------
+\section{Focal Plane Geometry}
+\label{se:geometry}
+%\input{FP_Geometry.tex}
+
+%----------------------------------------------------------------------------------------
+%	6./ Beam Pattern
+%----------------------------------------------------------------------------------------
+\section{Beam Pattern}
+\label{se:beam}
+%\input{Beam.tex}
+
+%----------------------------------------------------------------------------------------
+%	7./ Opacity derivation
+%----------------------------------------------------------------------------------------
+\section{Opacity derivation}
+\label{se:opacity}
+%\input{Opacity.tex}
+
+%----------------------------------------------------------------------------------------
+%	8./ Calibration
+%----------------------------------------------------------------------------------------
+\section{Calibration}
+\label{se:calibration}
+%\input{Calibration.tex}
+
+%----------------------------------------------------------------------------------------
+%	9./ Photometry&Stability
+%----------------------------------------------------------------------------------------
+\section{Photometry \& Stability Assessment}
+\label{se:photometry}
+%\input{Photometry.tex}
+
+%----------------------------------------------------------------------------------------
+%	10./ Sensitivity
+%----------------------------------------------------------------------------------------
+\section{Sensitivity}
+\label{se:sensitivity}
+%\input{Sensitivity.tex}
+
+
+%  CONCLU
+%-------------------------------------------------------------------
 \section{Conclusions}
+ 
+All the designed KIDs detect the signal at least in some observation
+scans. We conservatively retain only the most stable KIDs, which are
+immune to the cross-talking effect and yield good signal-to-noise
+measurement. We defined 'valid' KIDs as the detectors that have been
+retained in at least two independent KID selections, as discussed in
+Sect.~\ref{se:fov_geometry}. We report valid KID fractions of $84\%$
+for the $1\,\rm{mm}$ channel arrays and $90\%$ for Array 2. The other
+KIDs, which do not meet the validity criterion, are ramdomly
+distributed across the FoV, so that the whole $6.6\,\rm{arcmin}$ FoV is
+covered. Considering the designed KID grid as discussed in
+Sect.~\ref{se:grid_distortion}, the distance between
+neighbour KIDs is $9.8''$, $9.7''$ and $13.3''$ for Array 1, 3 and 2
+respectively, which defined an occupation surface per KID.
 
-   \begin{enumerate}
-      \item The conditions for the stability of static, radiative
-         layers in gas spheres, as described by Baker's
-         standard one-zone model, can be expressed as stability
-         equations of state. These stability equations of state depend
-         only on the local thermodynamic state of the layer.
-      \item If the constitutive relations -- equations of state and
-         Rosseland mean opacities -- are specified, the stability
-         equations of state can be evaluated without specifying
-         properties of the layer.
-      \item For solar composition gas the $\kappa$-mechanism is
-         working in the regions of the ice and dust features
-         in the opacities, the $\mathrm{H}_2$ dissociation and the
-         combined H, first He ionization zone, as
-         indicated by vibrational instability. These regions
-         of instability are much larger in extent and degree of
-         instability than the second He ionization zone
-         that drives the Cephe{\"\i}d pulsations.
-   \end{enumerate}
+The area covered by all KIDs is in turn associated to a measured total FoV of
+$6.6$~arcmin. diameter for each array.
+%The surface
+%covered by all valid KID is in turn associated to an effective FoV of
+%$5.7'$ for Array 1$\&$3 and of $5.9'$ for Array 2.       
+%gs   = [9.8, 9.7, 13.3] ;; gridstep in arcsec
+%ndet = [952, 961, 553]
+%print, sqrt((ndet*(gs/60.0)^2)/!dpi*4.0)
+%% F\lambda = gridstep\times D(30m)/\lambda
 
+While the full beam pattern presents a complexe structure as discussed
+in Sect.~\ref{se:fullbeam}, the main beam is well described with a 2D
+Gaussian of FWHM of $11''$ for the $1\,\rm{mm}$ channel arrays
+and $17.6''$ for Array 2, with uncertainties of  $0.2''$ for the
+combination of Array 1$\&$3 and for Array 2, as presented in
+Sect.~\ref{se:fwhm_results}.
+Comparing the main beam fit to the measured full beam, we derive the
+main beam efficiency up to a radius of $180''$. We find beam
+efficiencies of $55 \pm 3 \%$ at $1\,\rm{mm}$ and $77 \pm 2 \%$ at
+$2\,\rm{mm}$. %These meet the expectations for an instrument that does not
+%resort to feed horns.
+The chosen $180''$ cutting radius ensures an accurate
+measure of the beam patterning using a single \bm\ scan. However,
+dedicated studies based on the Lunar edge observations showed that
+a sizable fraction of the full beam stems from beyond this
+radius. This fraction is about $35\%$ at $1\,\rm{mm}$ and about $20\%$
+at $2\,\rm{mm}$ (using Kramer et al 2013). Using individual map per
+KID, we evaluate the rms dispersion of the main beam FWHM across the
+FoV, as discussed in Sect.~\ref{se:fwhm_fov}. We measured rms
+dispersions of about $0.6''$ at both wavelengths using N2R9 data. These
+constitute a conservative estimate since the rms dispersion has been
+further improved by optimizing the telescope focus settings from N2R12
+on.  
+
+% calib
+We evaluated the statistical calibration uncertainties using 264 
+scans of sources, whose flux density is above about one Jy/beam,
+  acquired during N2R9, N2R12 and N2R14, and selected on the observing UT hour basis, as discussed in
+Sect.~\ref{se:photometry_baseline}. We find rms calibration
+uncertainties of about $6\%$ at $1\,\rm{mm}$ and about $3\%$ at
+$2\,\rm{mm}$, which are state-of-the-art performance for instrument
+operated at these wavelengths. 
+
+
+% noise&sensitivity
+The noise well integrates as the square root of the integration time
+for series of scans acquired in similar observing conditions as
+discussed in Sect.~\ref{se:nefd_m1}. The NEFD estimates reported in
+Table~\ref{tab:nika2summary} are based on more than one thousand scans
+acquired during N2R9, N2R12 and N2R14, and thus constitute
+conservative estimates that encompass a large range of observing
+conditions, as addressed in Sect.~\ref{se:nefd_scatter}. However,
+better NEFD have been found using homogeneous series of about one
+hundred scans of e.g. \hls\, as reported in
+Table~\ref{tab:nefd_summary}.  The conservative NEFD estimate reaches
+the goal value at $2\,\rm{mm}$. However, it is measured as slightly
+above the specifications at $1\,\rm{mm}$.
+
+%\new{We have identified several areas of improvement that will make NIKA2
+%more sensitive at 1~mm: 1)~change the dichroic element (one of
+%the 1~mm polarization components (A1) is absorbed more than the other (A3)
+%with the present dichroic), 2)~improve the data processing and in
+%particular the noise decorrelation methods, 3)~upgrade the 1~mm
+%arrays, 4)~increase the bandwidth of the 1~mm arrays, and 5)~upgrade
+%the surface of the telescope.}
+
+The instrumental sensitivity at $1\,\rm{mm}$ is at present mainly
+limited by the non-optimised transmission of the air-gap dichroic,
+mostly prominent in one polarisation (A1) but affecting the other
+(A3) as well. Actions are on-going to produce and test new
+hot-pressed dichroics. We warn however that this task is far from
+trivial.
+Further possible areas of improvements for the $1\,\rm{mm}$
+observation channel are: 1) improve the data processing and in
+particular the noise decorrelation methods, 2) increase the
+bandwidth of the $1\,\rm{mm}$ mm arrays (subjected to the
+improvement of the dichroic) and 3) upgrade the surface of the
+telescope.
+  
+NIKA2 mapping capabilities are better estimated by evaluating the
+mapping speed, which is defined as the sky area that is covered in one
+hour of observation to a noise level of $1\,\rm{mJy}$. NIKA2 mapping
+speed is an order of magnitude better than the previous generation of
+the IRAM $30\,\rm{mm}$ resident instruments. 
+
+The main measured parameters that define the measured NIKA2 performance
+are gathered in Table~\ref{tab:nika2summary}.
+
+\begin{table}[!thbp]
+  \caption[Main performance measurements]{Summary of the main characteristics describing the measured 
+    performances of NIKA2.}
+  \label{tab:nika2summary}
+  \centering    
+  \begin{tabular}{|r|c|c|c|c|l|}
+    \hline\hline
+    & Array 1 & Array 3  & Array 1\&3 & Array 2 & Reference \\
+    \hline
+    \hline
+    Reference Wavelength  [mm]  &  1.15    &  1.15   & 1.15  & 2.00   &   \\
+    Reference Frequency  [GHz]  &  260    &  260   & 260  & 150   &  Sect.~\ref{se:cal_HA_reference}  \\
+    Central Frequency [GHz]     &  255.5  &  257.8 &      & 151.6 &  Sect.~\ref{se:bandpasses}  \\
+    Bandwidth         [GHz]     &  47.8   &  45.7  &      & 42.1  &   \\
+    \hline
+    Number of designed detectors                   & 1140      &  1140    &    &    616  & Sect.~\ref{se:array}\\
+    Number of valid detectors                      &  952      &   961    &    &    553  & Sect.~\ref{se:fov_geometry}\\
+    Fraction of valid detectors [$\%$]             &  84       &   84     &    &     90  & \\
+    %%% I find this number useless and misleading FXD 30 nov 2018
+    %%% Effective FOV\tnote{a}\hspace{1mm} [arcmin]    &  5.7      &   5.7    &    &    5.9  & Sect.~\ref{se:grid_distortion}\\
+    % Here I put the measured value (the modeled values are in the the field-of-view section) FXD
+    Pixel size in beam sampling unit\tablefootmark{a}\hspace{3mm} [$F\lambda$] & 1.11 & 1.10  &  &  0.87 & \\
+    \hline
+    FWHM\tablefootmark{b}\hspace{3mm} [arcsec]    &  $11.1 \pm 0.2$   &  $11.0 \pm 0.2$  &   $11.1 \pm 0.1$  &  $17.6 \pm 0.1$  &  Sect.~\ref{se:fwhm_results}\\
+    Beam efficiency\tablefootmark{c}\hspace{3mm} [\% ] &  $55 \pm 3$  &  $56 \pm 3$   &  $55 \pm 3$   &  $77 \pm 2$  &  Sect.~\ref{se:beam_efficiency}\\
+    Relative rms FWHM on the FOV [$\%$]          &    6         &      6        &       6        &      3        & Sect.~\ref{se:fwhm_fov}\\
+    \hline
+    Reference FWHM\tablefootmark{d}\hspace{3mm} [arcsec]          &  $12.5$   &  $12.5$  &   $12.5$  &   $18.5$  &  Sect.~\ref{se:cal_HA_reference}\\
+    Reference Beam efficiency\tablefootmark{e}\hspace{3mm}  [\% ] & $70 \pm 4$ & $72 \pm 4$ & $70 \pm 4$ & $85 \pm 3$ &  Sect.~\ref{se:beam_efficiency}\\
+    \hline
+    rms pointing error    [arcsec]             & \multicolumn{4}{|c|}{$<3$} &  Sect.~\ref{se:pointing} \\
+    \hline
+    Absolute calibration uncertainty [\%]      &  \multicolumn{4}{|c|}{5}   & Sect.~\ref{se:ref_flux_primaries} \\
+    \hline
+    relative rms calibration error [\%]                 &    5.5       &     6.0       &      5.7       &     3.0       & Sect.~\ref{se:photometry_baseline} \\
+    \hline
+    $\alpha$ noise integration in time\tablefootmark{f}\hspace{3mm}  & 0.5  & 0.5  &  0.5 & 0.5 & Sect.~\ref{se:nefd_m1} \\
+    \hline
+    NEFD\small{(0mm, 90deg)}\tablefootmark{g}\hspace{3mm} [$\rm{mJy} \cdot \rm{s}^{1/2}/\rm{beam}$]  & $47 \pm 4$ & $38 \pm 3$  & $30 \pm 3$  & $9 \pm 1$ & Sect.~\ref{se:nefd_estimation_methods}\\
+    NEFD\small{(2mm, 60deg)}\tablefootmark{h}\hspace{3mm} [$\rm{mJy} \cdot \rm{s}^{1/2}/\rm{beam}$]  & $57 \pm 5$ & $46 \pm 4$  & $36 \pm 3$  & $10 \pm 1$ & \\
+    M$_{\rm{s}}$\small{(0mm, 90deg)}\tablefootmark{i}\hspace{3mm} [arcmin$^2$/h/mJy$^2$] & 45  & 70  & 111  &  1388 &  \\
+    M$_{\rm{s}}$\small{(2mm, 60deg)}\tablefootmark{j}\hspace{3mm} [arcmin$^2$/h/mJy$^2$] & 31  & 48  &  77  &  1119 &  \\
+    \hline
+  \end{tabular}
+  \tablefoot{ Coucou\\
+    \tablefoottext{a}{Calculated from real array pixel size [2.75 mm / 2.0 mm] and unvignetted entrance pupil diameter [27m]}
+    \tablefoottext{b}{Full-width at half-maximum of the main beam using the combined results of the three methods}
+    \tablefoottext{c}{Ratio between the main beam power and the total beam power up to a radius of 180 arcsec}
+    \tablefoottext{d}{Full-width at half-maximum of the beam used in our reference photometric system}
+    \tablefoottext{e}{Ratio between the reference FWHM beam power and the total beam power up to a radius of 180 arcsec} 
+    \tablefoottext{f}{Effective power law of noise reduction with integration time}
+    \tablefoottext{g}{NEFD extrapolated at zero opacity}
+    \tablefoottext{h}{NEFD in typical IRAM good sky opacity condition: 2mm pwv, $60^o$ elevation}
+    \tablefoottext{i}{Mapping speed at zero opacity}
+    \tablefoottext{j}{Mapping speed in typical IRAM good sky opacity condition: 2mm pwv, $60^o$ elevation}
+  }
+\end{table}
+ 
 \begin{acknowledgements}
      
 \end{acknowledgements}

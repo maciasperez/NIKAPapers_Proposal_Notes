@@ -2,6 +2,24 @@
 %----------------------------------------------------------------------------------------
 %	4./ Data reduction
 %----------------------------------------------------------------------------------------
+
+For each observing scan, NIKA2 produce a datastream via the data
+acquisition software, which synchronises with the telescope using
+pulses per second. These time ordered information (TOI) together with
+the time-stamped pointing information produced by the telescope
+constitute the raw data. We have developed a dedicated data reduction pipeline to
+produce calibrated sky maps from NIKA2 raw data. This pipeline was first 
+installed for the data analysis during the commissioning campaigns and is
+now currently used for science-purpose data reduction. It implements
+the baseline methods for the calibration and performance assessment.
+A detailed description of this software will be presented in a companion
+paper \citep{Ponthieu2019}, as well as an application to blind source
+dectection. In this section, we summarize the main steps of the data
+reduction.
+\todo{Summarize the following sub-sections}
+ 
+
+
 %\section{Data Reduction}
 %\label{se:dataproc}
 
@@ -20,49 +38,6 @@
 %\item Map projection (Sect.~\ref{se:map_projection})
 %\item Photometry (Sect.~\ref{se:intro_photometry})
 %\end{itemize}
-
-\subsection{Data selection}
-\label{se:data_selection}
-
-For calibration and performance assessment, we select scans in average
-observing conditions by performing mild selection cuts. These scan
-cuts rely on zenith opacity estimates in NIKA2 bands $\tau$, as
-described in Sect.~\ref{se:opacities}, and on the observation date
-conditions where:
-%
-\begin{itemize}
-\item[i)] $\tau_{3} < 0.5$, where $\tau_{3}$ is the $\tau$ estimate for
-  Array 3, corresponding to a decrease of the signal by a factor of
-  two at $45^{o}$ of elevation;
-\item[ii)] $x\, \tau_{3} < 0.7$ and $\elev > 20^{o}$, where $\elev$ is the
-  elevation of the telescope and $x$ the
-  air mass, which depends on the elevation as $x=(\sin{\elev})^{-1}$. This
-  threshold corresponds to a decrease of the signal by a factor of two;
-\item[iii)] observation date from 22:00 to 9:00 UT and from 10:00 to
-  15:00, that is excluding the sunrise period and the late afternoon.
-\end{itemize}
-%
-As discussed in Sect.~\ref{se:obsdate_variations}, the late afternoon
-observation are often affected by time-variable broadening of the
-telescope beams caused by (partial) solar irradiation of the primary
-mirror and/or anomalous atmospheric refraction.
-Around sunrise, the focus shifts continuously due to the ambient temperature
-change until the temperature stabilizes, so that the scans taken from
-9:00 to 10:00 UT are likely not to be optimally focused.
-After the focus stabilisation, morning period 
-from 10:00 to 15:00 UT offers stable observing conditions
-if the telescope is not heated due to observations in a
-direction close to the Sun. Otherwise, further scan selection based on
-the exact sequence of observations and on beam monitoring might be needed before using these
-observations for performance assessment.
-
-   
-In addition to the above scan selection cuts, we use a Gaussian beam
-size criterion for the absolute calibration on planets
-(e.g. Uranus). Namely, the FWHM estimated from the planet observation
-map is asked to be lower than $12.5''$ at $1\,\rm{mm}$ and lower than $18''$ at
-$2\,\rm{mm}$. In further mitigating the flux scatter due to beam broadening, we
-ensure better accuracy of the absolute calibration.  
 
 
 \subsection{Low level processing}
@@ -504,3 +479,48 @@ estimate of the source flux.
 %% \item[] substraction of the correlated part of the noise 
 %% \item[] projection of the timeline onto maps
 %% \end{itemize}
+
+
+\subsection{Data selection}
+\label{se:data_selection}
+
+For calibration and performance assessment, we select scans in average
+observing conditions by performing mild selection cuts. These scan
+cuts rely on zenith opacity estimates in NIKA2 bands $\tau$, as
+described in Sect.~\ref{se:opacities}, and on the observation date
+conditions where:
+%
+\begin{itemize}
+\item[i)] $\tau_{3} < 0.5$, where $\tau_{3}$ is the $\tau$ estimate for
+  Array 3, corresponding to a decrease of the signal by a factor of
+  two at $45^{o}$ of elevation;
+\item[ii)] $x\, \tau_{3} < 0.7$ and $\elev > 20^{o}$, where $\elev$ is the
+  elevation of the telescope and $x$ the
+  air mass, which depends on the elevation as $x=(\sin{\elev})^{-1}$. This
+  threshold corresponds to a decrease of the signal by a factor of two;
+\item[iii)] observation date from 22:00 to 9:00 UT and from 10:00 to
+  15:00, that is excluding the sunrise period and the late afternoon.
+\end{itemize}
+%
+As discussed in Sect.~\ref{se:obsdate_variations}, the late afternoon
+observation are often affected by time-variable broadening of the
+telescope beams caused by (partial) solar irradiation of the primary
+mirror and/or anomalous atmospheric refraction.
+Around sunrise, the focus shifts continuously due to the ambient temperature
+change until the temperature stabilizes, so that the scans taken from
+9:00 to 10:00 UT are likely not to be optimally focused.
+After the focus stabilisation, morning period 
+from 10:00 to 15:00 UT offers stable observing conditions
+if the telescope is not heated due to observations in a
+direction close to the Sun. Otherwise, further scan selection based on
+the exact sequence of observations and on beam monitoring might be needed before using these
+observations for performance assessment.
+
+   
+In addition to the above scan selection cuts, we use a Gaussian beam
+size criterion for the absolute calibration on planets
+(e.g. Uranus). Namely, the FWHM estimated from the planet observation
+map is asked to be lower than $12.5''$ at $1\,\rm{mm}$ and lower than $18''$ at
+$2\,\rm{mm}$. In further mitigating the flux scatter due to beam broadening, we
+ensure better accuracy of the absolute calibration.  
+

@@ -58,13 +58,16 @@ the TOI a few second window. These affected samples are remplaced by a simple
 linear interpolation of their surrounding (not to leave holes in the TOI) but
 are flagged in order not to project false data on the final map.
 
-We also have a series of tests that read flags from the acquisition
-overall. These flags monitor potential jumps in the cryostat or acquisition
-monitoring. Most important are the flags related to the tuning. Because the
-acquisition file boundaries are not strictly linked to the beginning and the end of
-a scan, we must discard everything that happens before the last tuning of the
-beginning, and everything after the first automatic tuning that happens when the
-scan is done.
+We also have a series of tests that read the flags produced by the acquisition
+overall: discontinuity in the temperature within the cryostat as well
+as detector tuning that automatically trigger at the beginning and the
+end of each scans are discarded.  
+%potential jumps in the cryostat or acquisition
+%monitoring. Most important are the flags related to the tuning. Because the
+%acquisition file boundaries are not strictly linked to the beginning and the end of
+%a scan, we must discard everything that happens before the last tuning of the
+%beginning, and everything after the first automatic tuning that happens when the
+%scan is done.
 
 Because the tuning of KIDs might fail from time to time depending on the weather
 conditions for instance, we systematically check each KID and see if its noise
@@ -83,14 +86,14 @@ timeline accidents (glitches).
 This step consists in addressing each sample of each KID to the correct sky
 coordinates and their associated map pixel. The pointing data, as
 produced by the control system of the telescope, \aka\ NCS, are passed to the
-\nika\ raw data. They describe the absolute
-pointing of a reference point in the focal plane in various quantities, the
+\nika\ raw data. They describe the absolute pointing of a reference
+point in the focal plane in various quantities, the
 absolute azimuth and elevation $(\alpha,\delta)$ of the source, together with
 offsets $(\Delta\alpha_t, \Delta\delta_t)$ \wrt~these. Because our final maps
 will be centered on a fixed position (typically the center of the source that is
 aimed by the focal plane reference position), we are especially interested in
-pointing offsets \wrt~this position. We therefore detail here the derivation of
-these offsets.
+pointing offsets \wrt~this position. We therefore detail here the
+derivation of these offsets.
 
 We store KID pointing offsets \wrt\ the reference position in Nasmyth $(x,y)$
 coordinates (independent of time) once and for all in our KID database

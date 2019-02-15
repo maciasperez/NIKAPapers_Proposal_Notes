@@ -7,10 +7,29 @@
 NIKA2 simultaneously images a field-of-view of
 6.5\,arcmin in diameter at 150 and 260~GHz, with polarimetric capabilities at
 260~GHz. The optics of the telescope receiver cabin have been modified in order
-to increase the telescope field-of-view compared to earlier IRAM instruments. To
-achieve these goals without degrading the telescope angular resolution, it
-employs a total of around 2,900\,detectors split over three distinct arrays of
-Kinetic Inductance Detectors (KID).
+to increase the IRAM 30-m telescope field-of-view compared to earlier
+resident instruments. To achieve these goals without degrading the
+telescope angular resolution, it employs a total of around
+2,900\,detectors split over three distinct arrays of Kinetic
+Inductance Detectors (KID).
+
+A detailed description of the instrument can be found in
+\citet{Adam2018}. We brefly present the main sub-systems in this
+section with a focus on the elements which are specific to NIKA2 or
+which drive dedicated developpements in the data reduction or
+calibration methods.
+
+
+\subsection{Cryogenics}
+
+The optimal operation of the detectors is achieved at a temperature of around
+150\,mK, well below the Aluminium superconducting transition. For this reason,
+NIKA2 employs a custom dilution fridge to cool down the focal plane, and the
+refractive portion of the optics, for a total mass around 100 kg, deeply in the
+sub-Kelvin regime. Despite the complexity and size of the system, the operation
+of NIKA2 does not require external cryogenic liquids and is fully remotely
+controllable.
+
 
 \subsection{Optics}
 
@@ -30,7 +49,12 @@ temperature when operating the instrument in polarimetric mode.
 \begin{center}
 \includegraphics[clip,trim={0, 1cm, 0, 2cm},width=0.5\textwidth]{Figures/bandpasses_nika2_colorsok.png}
 \caption[NIKA2 transmission]{Relative system response of the three NIKA2 arrays as a
-  function of frequency. For illustration we also plot in black atmospheric transmission obtained with the ATM model \cite{ATM, Pardo2002} for two values of precipitable water vapor. The spectra of ESA4 model of Uranus (pink) and ESA5 model of Neptune \cite{ESAmodel} (forest green) in the frequency range are overplotted with arbitrary normalization with respect to NIKA2 transmission.} 
+  function of frequency. For illustration we also plot in black
+  atmospheric transmission obtained with the ATM model \citep{ATM,
+    Pardo2002} for two values of precipitable water vapor. The spectra
+  of ESA4 model of Uranus (pink) and ESA5 model of
+  Neptune\footnote{The ESA4 and ESA5 model are available in the Herschel
+    Calibrator web page at \url{https://www.cosmos.esa.int/web/herschel/calibrator-models}} (forest green) in the frequency range are overplotted with arbitrary normalization with respect to NIKA2 transmission.} 
  \label{spectralband1}
 \end{center}
 \end{figure}
@@ -61,16 +85,6 @@ as round numbers in the middle of the bands to define NIKA2
 photometric system as will be discussed in
 Sect.~\ref{se:calibration}. These are 260~GHz for the A1 and A3 and
 150~GHz for the A2 arrray.
-
-\subsection{Cryogenics}
-
-The optimal operation of the detectors is achieved at a temperature of around
-150\,mK, well below the Aluminium superconducting transition. For this reason,
-NIKA2 employs a custom dilution fridge to cool down the focal plane, and the
-refractive portion of the optics, for a total mass around 100 kg, deeply in the
-sub-Kelvin regime. Despite the complexity and size of the system, the operation
-of NIKA2 does not require external cryogenic liquids and is fully remotely
-controllable.
 
 \subsection{KIDs and electronics}
 \label{se:array}

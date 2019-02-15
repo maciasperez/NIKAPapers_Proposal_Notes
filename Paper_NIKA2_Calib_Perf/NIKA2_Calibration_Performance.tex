@@ -227,105 +227,6 @@
 %  CONCLU
 %-------------------------------------------------------------------
 \section{Conclusions}
- 
-All the designed KIDs detect the signal at least in some observation
-scans. We conservatively retain only the most stable KIDs, which are
-immune to the cross-talking effect and yield good signal-to-noise
-measurement. We defined 'valid' KIDs as the detectors that have been
-retained in at least two independent KID selections, as discussed in
-Sect.~\ref{se:fov_geometry}. We report valid KID fractions of $84\%$
-for the $1\,\rm{mm}$ channel arrays and $90\%$ for Array 2. The other
-KIDs, which do not meet the validity criterion, are ramdomly
-distributed across the FoV, so that the whole $6.6\,\rm{arcmin}$ FoV is
-covered. Considering the designed KID grid as discussed in
-Sect.~\ref{se:grid_distortion}, the distance between
-neighbour KIDs is $9.8''$, $9.7''$ and $13.3''$ for Array 1, 3 and 2
-respectively, which defined an occupation surface per KID.
-
-The area covered by all KIDs is in turn associated to a measured total FoV of
-$6.6$~arcmin. diameter for each array.
-%The surface
-%covered by all valid KID is in turn associated to an effective FoV of
-%$5.7'$ for Array 1$\&$3 and of $5.9'$ for Array 2.       
-%gs   = [9.8, 9.7, 13.3] ;; gridstep in arcsec
-%ndet = [952, 961, 553]
-%print, sqrt((ndet*(gs/60.0)^2)/!dpi*4.0)
-%% F\lambda = gridstep\times D(30m)/\lambda
-
-While the full beam pattern presents a complexe structure as discussed
-in Sect.~\ref{se:fullbeam}, the main beam is well described with a 2D
-Gaussian of FWHM of $11''$ for the $1\,\rm{mm}$ channel arrays
-and $17.6''$ for Array 2, with uncertainties of  $0.2''$ for the
-combination of Array 1$\&$3 and for Array 2, as presented in
-Sect.~\ref{se:fwhm_results}.
-Comparing the main beam fit to the measured full beam, we derive the
-main beam efficiency up to a radius of $180''$. We find beam
-efficiencies of $55 \pm 3 \%$ at $1\,\rm{mm}$ and $77 \pm 2 \%$ at
-$2\,\rm{mm}$. %These meet the expectations for an instrument that does not
-%resort to feed horns.
-The chosen $180''$ cutting radius ensures an accurate
-measure of the beam patterning using a single \bm\ scan. However,
-dedicated studies based on the Lunar edge observations showed that
-a sizable fraction of the full beam stems from beyond this
-radius. This fraction is about $35\%$ at $1\,\rm{mm}$ and about $20\%$
-at $2\,\rm{mm}$ (using Kramer et al 2013). Using individual map per
-KID, we evaluate the rms dispersion of the main beam FWHM across the
-FoV, as discussed in Sect.~\ref{se:fwhm_fov}. We measured rms
-dispersions of about $0.6''$ at both wavelengths using N2R9 data. These
-constitute a conservative estimate since the rms dispersion has been
-further improved by optimizing the telescope focus settings from N2R12
-on.  
-
-% calib
-We evaluated the statistical calibration uncertainties using 264 
-scans of sources, whose flux density is above about one Jy/beam,
-  acquired during N2R9, N2R12 and N2R14, and selected on the observing UT hour basis, as discussed in
-Sect.~\ref{se:photometry_baseline}. We find rms calibration
-uncertainties of about $6\%$ at $1\,\rm{mm}$ and about $3\%$ at
-$2\,\rm{mm}$, which are state-of-the-art performance for instrument
-operated at these wavelengths. 
-
-
-% noise&sensitivity
-The noise well integrates as the square root of the integration time
-for series of scans acquired in similar observing conditions as
-discussed in Sect.~\ref{se:nefd_m1}. The NEFD estimates reported in
-Table~\ref{tab:nika2summary} are based on more than one thousand scans
-acquired during N2R9, N2R12 and N2R14, and thus constitute
-conservative estimates that encompass a large range of observing
-conditions, as addressed in Sect.~\ref{se:nefd_scatter}. However,
-better NEFD have been found using homogeneous series of about one
-hundred scans of e.g. \hls\, as reported in
-Table~\ref{tab:nefd_summary}.  The conservative NEFD estimate reaches
-the goal value at $2\,\rm{mm}$. However, it is measured as slightly
-above the specifications at $1\,\rm{mm}$.
-
-%\new{We have identified several areas of improvement that will make NIKA2
-%more sensitive at 1~mm: 1)~change the dichroic element (one of
-%the 1~mm polarization components (A1) is absorbed more than the other (A3)
-%with the present dichroic), 2)~improve the data processing and in
-%particular the noise decorrelation methods, 3)~upgrade the 1~mm
-%arrays, 4)~increase the bandwidth of the 1~mm arrays, and 5)~upgrade
-%the surface of the telescope.}
-
-The instrumental sensitivity at $1\,\rm{mm}$ is at present mainly
-limited by the non-optimised transmission of the air-gap dichroic,
-mostly prominent in one polarisation (A1) but affecting the other
-(A3) as well. Actions are on-going to produce and test new
-hot-pressed dichroics. We warn however that this task is far from
-trivial.
-Further possible areas of improvements for the $1\,\rm{mm}$
-observation channel are: 1) improve the data processing and in
-particular the noise decorrelation methods, 2) increase the
-bandwidth of the $1\,\rm{mm}$ mm arrays (subjected to the
-improvement of the dichroic) and 3) upgrade the surface of the
-telescope.
-  
-NIKA2 mapping capabilities are better estimated by evaluating the
-mapping speed, which is defined as the sky area that is covered in one
-hour of observation to a noise level of $1\,\rm{mJy}$. NIKA2 mapping
-speed is an order of magnitude better than the previous generation of
-the IRAM $30\,\rm{mm}$ resident instruments. 
 
 The main measured parameters that define the measured NIKA2 performance
 are gathered in Table~\ref{tab:nika2summary}.
@@ -387,6 +288,108 @@ are gathered in Table~\ref{tab:nika2summary}.
     \tablefoottext{j}{Mapping speed in typical IRAM good sky opacity condition: 2mm pwv, $60^o$ elevation}
   }
 \end{table}
+
+
+\begin{enumerate}
+\item[FOV reconstruction] All the designed KIDs detect the signal at least in some observation
+  scans. We conservatively retain only the most stable KIDs, which are
+  immune to the cross-talking effect and yield good signal-to-noise
+  measurement. We defined 'valid' KIDs as the detectors that have been
+  retained in at least two independent KID selections, as discussed in
+  Sect.~\ref{se:fov_geometry}. We report valid KID fractions of $84\%$
+  for the $1\,\rm{mm}$ channel arrays and $90\%$ for Array 2. The other
+  KIDs, which do not meet the validity criterion, are ramdomly
+  distributed across the FoV, so that the whole $6.6\,\rm{arcmin}$ FoV is
+  covered. Considering the designed KID grid as discussed in
+  Sect.~\ref{se:grid_distortion}, the distance between
+  neighbour KIDs is $9.8''$, $9.7''$ and $13.3''$ for Array 1, 3 and 2
+  respectively, which defined an occupation surface per KID. The area
+  covered by all KIDs is in turn associated to a measured total FoV of
+  $6.6$~arcmin diameter for each array.
+  %The surface
+  %covered by all valid KID is in turn associated to an effective FoV of
+  %$5.7'$ for Array 1$\&$3 and of $5.9'$ for Array 2.       
+  %gs   = [9.8, 9.7, 13.3] ;; gridstep in arcsec
+  %ndet = [952, 961, 553]
+  %print, sqrt((ndet*(gs/60.0)^2)/!dpi*4.0)
+  %% F\lambda = gridstep\times D(30m)/\lambda
+  
+\item[Beam] While the full beam pattern presents a complexe structure as discussed
+  in Sect.~\ref{se:fullbeam}, the main beam is well described with a 2D
+  Gaussian of FWHM of $11''$ for the $1\,\rm{mm}$ channel arrays
+  and $17.6''$ for Array 2, with uncertainties of  $0.2''$ for the
+  combination of Array 1$\&$3 and for Array 2, as presented in
+  Sect.~\ref{se:fwhm_results}.
+  Comparing the main beam fit to the measured full beam, we derive the
+  main beam efficiency up to a radius of $180''$. We find beam
+  efficiencies of $55 \pm 3 \%$ at $1\,\rm{mm}$ and $77 \pm 2 \%$ at
+  $2\,\rm{mm}$. %These meet the expectations for an instrument that does not
+  %resort to feed horns.
+  The chosen $180''$ cutting radius ensures an accurate
+  measure of the beam patterning using a single \bm\ scan. However,
+  dedicated studies based on the Lunar edge observations showed that
+  a sizable fraction of the full beam stems from beyond this
+  radius. This fraction is about $35\%$ at $1\,\rm{mm}$ and about $20\%$
+  at $2\,\rm{mm}$ (using Kramer et al 2013). Using individual map per
+  KID, we evaluate the rms dispersion of the main beam FWHM across the
+  FoV, as discussed in Sect.~\ref{se:fwhm_fov}. We measured rms
+  dispersions of about $0.6''$ at both wavelengths using N2R9 data. These
+  constitute a conservative estimate since the rms dispersion has been
+  further improved by optimizing the telescope focus settings from N2R12
+  on.  
+
+  % calib
+\item[Calibration uncertainties] We evaluated the statistical calibration uncertainties using 264 
+  scans of sources, whose flux density is above about one Jy/beam,
+  acquired during N2R9, N2R12 and N2R14, and selected on the observing UT hour basis, as discussed in
+  Sect.~\ref{se:photometry_baseline}. We find rms calibration
+  uncertainties of about $6\%$ at $1\,\rm{mm}$ and about $3\%$ at
+  $2\,\rm{mm}$, which are state-of-the-art performance for instrument
+  operated at these wavelengths. 
+  
+
+  % noise&sensitivity
+\item[Sensitivity] The noise well integrates as the square root of the integration time
+  for series of scans acquired in similar observing conditions as
+  discussed in Sect.~\ref{se:nefd_m1}. The NEFD estimates reported in
+  Table~\ref{tab:nika2summary} are based on more than one thousand scans
+  acquired during N2R9, N2R12 and N2R14, and thus constitute
+  conservative estimates that encompass a large range of observing
+  conditions, as addressed in Sect.~\ref{se:nefd_scatter}. However,
+  better NEFD have been found using homogeneous series of about one
+  hundred scans of e.g. \hls\, as reported in
+  Table~\ref{tab:nefd_summary}.  The conservative NEFD estimate reaches
+  the goal value at $2\,\rm{mm}$. However, it is measured as slightly
+  above the specifications at $1\,\rm{mm}$.
+%\new{We have identified several areas of improvement that will make NIKA2
+%more sensitive at 1~mm: 1)~change the dichroic element (one of
+%the 1~mm polarization components (A1) is absorbed more than the other (A3)
+%with the present dichroic), 2)~improve the data processing and in
+%particular the noise decorrelation methods, 3)~upgrade the 1~mm
+%arrays, 4)~increase the bandwidth of the 1~mm arrays, and 5)~upgrade
+%the surface of the telescope.}
+  NIKA2 mapping capabilities are better estimated by evaluating the
+  mapping speed, which is defined as the sky area that is covered in one
+  hour of observation to a noise level of $1\,\rm{mJy}$. NIKA2 mapping
+  speed is an order of magnitude better than the previous generation of
+  the IRAM $30\,\rm{mm}$ resident instruments. 
+\end{enumerate}
+
+\subsection*{Future plans}
+The instrumental sensitivity at $1\,\rm{mm}$ is at present mainly
+limited by the non-optimised transmission of the air-gap dichroic,
+mostly prominent in one polarisation (A1) but affecting the other
+(A3) as well. Actions are on-going to produce and test new
+hot-pressed dichroics. We warn however that this task is far from
+trivial.
+Further possible areas of improvements for the $1\,\rm{mm}$
+observation channel are: 1) improve the data processing and in
+particular the noise decorrelation methods, 2) increase the
+bandwidth of the $1\,\rm{mm}$ mm arrays (subjected to the
+improvement of the dichroic) and 3) upgrade the surface of the
+telescope.
+  
+
  
 \begin{acknowledgements}
      

@@ -37,8 +37,8 @@
 \newcommand{\nika}{NIKA2}
 \newcommand{\aka}{a.\,k.\,a.}
 \newcommand{\wrt}{w.\,r.\,t.}
-\newcommand{\bm}{\emph{beammap}}
-\newcommand{\bms}{\emph{beammaps}}
+\newcommand{\bm}{{\tt beammap}}
+\newcommand{\bms}{{\tt beammaps}}
 \newcommand{\rf}{\emph{RfdIdQ}}
 \newcommand{\kidpar}{\emph{kidpar}}
 \newcommand{\radec}{\emph{R.\,A.,\,Dec}}
@@ -57,40 +57,41 @@
 
    \title{NIKA2 Calibration and Performance at the IRAM 30-m Telescope}
 
-   \author{ Laurence Perotto
-     \inst{1}
-     \and 
-     Nicolas Ponthieu
-     \inst{2}
-     \and Juan-F. Mac\'ias-P\'erez
-     \inst{1}
-     \and 
-     F.-Xavier D\'esert
-     \inst{2}
-     \and 
-     Jean-Fran\c cois Lestrade
-     \inst{3}
-     \and
-     Herv\'e Aussel
-     \inst{4}
-     \and
-     Fr\'ed\'eric Mayet
+   \author{Laurence Perotto
      \inst{1}
      \and
-     Florian Ruppin
-     \inst{1}
+     Others ToBeDiscussed
+%     Nicolas Ponthieu
+%     \inst{2}
+%     \and Juan-F. Mac\'ias-P\'erez
+%     \inst{1}
+%     \and 
+%     F.-Xavier D\'esert
+%     \inst{2}
+%     \and 
+%     Jean-Fran\c cois Lestrade
+%     \inst{3}
+%     \and
+%     Herv\'e Aussel
+%     \inst{4}
+%     \and
+%     Fr\'ed\'eric Mayet
+%     \inst{1}
+%     \and
+%     Florian Ruppin
+%     \inst{1}
      \and
      NIKA2 CORE TEAM
    }
 
    \institute{Univ. Grenoble Alpes, CNRS, Grenoble INP, LPSC-IN2P3, 53, avenue des Martyrs, F-38000 Grenoble, France \\
      \email{laurence.perotto@lpsc.in2p3.fr}
-     \and
-     Univ. Grenoble Alpes, CNRS, IPAG, F-38000 Grenoble, France\\
-     \and
-     LERMA, Observatoire de Paris, PSL Research University, CNRS, Sorbonne Universités, UPMC Univ. Paris 06, F-75014, Paris, France\\
-     \and
-     AIM, CEA, CNRS, Universit\'e Paris-Saclay, Universit\'e Paris Diderot, Sorbonne Paris Cit\'e, F-91191 Gif-sur-Yvette, France
+    % \and
+    % Univ. Grenoble Alpes, CNRS, IPAG, F-38000 Grenoble, France\\
+    % \and
+    % LERMA, Observatoire de Paris, PSL Research University, CNRS, Sorbonne Universités, UPMC Univ. Paris 06, F-75014, Paris, France\\
+    % \and
+    % AIM, CEA, CNRS, Universit\'e Paris-Saclay, Universit\'e Paris Diderot, Sorbonne Paris Cit\'e, F-91191 Gif-sur-Yvette, France
    }
 
    \date{Received April XX, 2019; Accepted XXXX XX, 2019}
@@ -101,18 +102,23 @@
    \abstract
    % context heading (optional)
    % {} leave it empty if necessary  
-       {The New IRAM KID Array, NIKA2, is a dual-band millimetric camera of thousands of Kinetic
+       {The New IRAM KID Array, NIKA2, is a dual-band millimetric
+         camera of thousands of Kinetic
          Inductance Detectors (KID) installed at the IRAM 30-meter
-         telescope in the Spanish Sierra Nevada. The instrument
-         commissioning  was completed in September 2017, and NIKA2 is now
-         open to the scientific community and will operate for the next
-         decade. NIKA2 will be a key experiment for a vast variety of
+         telescope at Pico Veleta (Spain). The instrument
+         commissioning  was successfully completed in September
+         2017. NIKA2 is now open to the scientific community and will
+         operate for the next decade. NIKA2 will be a key experiment for a vast variety of
          astrophysic and cosmology purposes, including planet
          formation, star formation in the Milky Way, gas in
          nearby galaxies, galaxy formation at high redshift and
-         cosmology with galaxy cluster.}
+         cosmology with galaxy clusters. The success of this ambitious science
+         program will depend on the accuracy of the calibration and
+         its stability againts observing conditions.}
        % aims heading (mandatory)
-       {We present NIKA2 calibration and on-sky performance.}
+       {We present the methods that have been developped for NIKA2
+         calibration and their application to the first year of final
+         set-up operation to assess the on-sky performance.}
        % methods heading (mandatory)
        {We used several
          thousands of observation scans that were acquired at the February
@@ -121,10 +127,11 @@
          and at the first science pools that took place in October 2017 and
          January 2018. This vast data set allows us to check the performance
          stability for one year and against a large range of observing
-         elevations and atmospheric conditions. The calibration and
-         performance assessment methods that we have developed are also
-         thoroughly described, as well as the robustness tests that we have
-         performed.}
+         elevations and atmospheric conditions. %The calibration and
+         %performance assessment methods that we have developed are also
+         %thoroughly described, as well as the robustness tests that we have
+         %performed.
+       }
        % results heading (mandatory)
        {We find an average fraction of usable detectors during a
          typical observing scan of 84 per cent in the 260~GHz bands and 90 per cent in the
@@ -193,7 +200,7 @@
 %----------------------------------------------------------------------------------------
 \section{Beam Pattern}
 \label{se:beam}
-%\input{Beam.tex}
+\input{Beam.tex}
 
 %----------------------------------------------------------------------------------------
 %	7./ Opacity derivation
@@ -240,7 +247,6 @@ are gathered in Table~\ref{tab:nika2summary}.
     \hline\hline
     & Array 1 & Array 3  & Array 1\&3 & Array 2 & Reference \\
     \hline
-    \hline
     Reference Wavelength  [mm]  &  1.15    &  1.15   & 1.15  & 2.00   &   \\
     Reference Frequency  [GHz]  &  260    &  260   & 260  & 150   &  Sect.~\ref{se:cal_HA_reference}  \\
     Central Frequency [GHz]     &  255.5  &  257.8 &      & 151.6 &  Sect.~\ref{se:bandpasses}  \\
@@ -275,7 +281,7 @@ are gathered in Table~\ref{tab:nika2summary}.
     M$_{\rm{s}}$\small{(2mm, 60deg)}\tablefootmark{j}\hspace{3mm} [arcmin$^2$/h/mJy$^2$] & 31  & 48  &  77  &  1119 &  \\
     \hline
   \end{tabular}
-  \tablefoot{ Coucou\\
+  \tablefoot{ \\
     \tablefoottext{a}{Calculated from real array pixel size [2.75 mm / 2.0 mm] and unvignetted entrance pupil diameter [27m]}
     \tablefoottext{b}{Full-width at half-maximum of the main beam using the combined results of the three methods}
     \tablefoottext{c}{Ratio between the main beam power and the total beam power up to a radius of 180 arcsec}

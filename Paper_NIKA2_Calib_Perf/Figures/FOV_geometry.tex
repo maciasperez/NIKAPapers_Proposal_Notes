@@ -4,24 +4,10 @@
 %\section{Focal Plane Geometry}
 %\label{se:geometry}
 
-The FOV reconstruction consists in matching the KID frequency tones
-to positions in the sky and in performing a KID selection. Although all
-the (2,900) design KID are responsive, some of them are affected by
-cross-talk or are noisy due to an inacurrate tuning of their
-frequency, and must be discarded for further analysis. We use \bms\,
-which allow projecting an individual map per KID, to measure the KID
-positions and relative gains, as discussed in
-Sect.~\ref{se:fov_geometry}. The measured KID positions are further
-checked by matching with the design positions, as presented in
-Sect.~\ref{se:grid_distortion}. In Sect.~\ref{se:avg_kidpar}, we
-present the final KID selection and FOV geometry, as obtained by
-repeating the procedure on a series of \bms\ .  
-
-
 
 %   Methods
 %----------------------------------------------------------------------------------------
-\subsection{Reconstruction of the FOV positions}
+\subsection{FOV position reconstruction}
 \label{se:fov_geometry}
 
 In order to be able to produce a map, one needs to associate a pointing
@@ -34,7 +20,8 @@ KID offsets in the focal plane proceeds in two steps.
 \paragraph{Step 1.} We apply a median filter per
 KID timeline whose width is of 31 samples, that is equivalent to about 
 5~FWHM at 65 arcsec/s given that the sampling frequency is 23.84~Hz,
-and we project one map per KID in Nasmyth coordinates. This median filter removes
+and we project one map per KID in Nasmyth
+coordinates. This median filter removes
 efficiently most of the low frequency atmospheric and electronic
 noise, albeit with a slight ringing and flux loss on the
 source. However, at this stage, we are only interested in the location
@@ -86,95 +73,48 @@ This analysis is repeated on all \bms\ to obtain statistics and
 precision on each KID parameter, together with estimates on KID
 performance stability, as discussed in the next sections.
 
-\begin{figure*}[!thbp]
-\begin{center}
-\includegraphics[trim=3cm 14cm 6cm 4cm, clip=true, width=0.32\linewidth]{Figures/A1_fwhm_color_count.pdf}
-%\includegraphics[trim=2cm 14cm 5cm 4cm, clip=true,width=0.45\linewidth]{Figures/A1_positions.pdf}
-\includegraphics[trim=3cm 14cm 6cm 4cm, clip=true, width=0.32\linewidth]{Figures/A3_fwhm_color_count.pdf}
-%\includegraphics[trim=2cm 14cm 5cm 4cm, clip=true,width=0.45\linewidth]{Figures/A3_positions.pdf}
-\includegraphics[trim=3cm 14cm 6cm 4cm, clip=true, width=0.32\linewidth]{Figures/A2_fwhm_color_count.pdf}
-%\includegraphics[trim=2cm 14cm 5cm 4cm, clip=true,width=0.45\linewidth]{Figures/A2_positions.pdf}
-\caption[KID selection in the FOV]{Average detector positions
-  for arrays A1, A3, and A2. The three plots show the detectors that have seen
-  the sky and passed the quality criteria for at least two \bms\ during Run10, 9
-  and 8: 952, 961, and 553 for A1, A3 and A2, respectively. The color
-  indicates, from green to red, how many times a KID was
-  identified as valid on a \bm. The inner and outer
-  dash-line circles correspond to a FOV of 5.5\,arcmin and 6.5\,arcmin,
-  respectively. Units are arcseconds.}
-\label{fig:avg_fov_color}
-\end{center}
-\end{figure*}
-
 \subsection{FOV grid distortion}
 \label{se:grid_distortion}
 
-We compare the reconstructed KID position in the FOV to their design
-position in the array. We fit the field translation and rotation that allow
-matching the measured KID positions with the design positions using a 2D
-polynomial function of degree one. We call distortion cross-term
-between the two spacial coordinates in the polynomial fit.
+We studied the matching of the KID position on the sky to the
+design position. The global result is scaling, rotation, and shift
+parameters for each array. They are described in Table~\ref{ta:gridmatch}.
 
-The aim is twofold. First we obtain a detailed
-characterisation of the real geometry of NIKA2 focal plane. Secondly,
-this analysis constitutes the last step of the KID
-selection, and the most deviant KIDs, whose measured position is found
-above $4''$ from the design position are discarded. 
-
-
-We present the global results of the grid distortion
-analysis using the KID positions given
-by the focal plane geometry procedure, as described in
-Sect.~\ref{se:fov_geometry}, applied to N2R9 \bm\ scans. 
-They are described in Table~\ref{ta:gridmatch}.
-
-\begin{table}[!htbp]
-  \caption[Field-of-view deformations]{Linear 2D fit of the observed
-    position of the detectors in the sky for N2R9 against their mechanically
-    designed position. The initial table of Found KIDs is given
-    by the focal plane geometry procedure, as described in
-    Sect.~\ref{se:fov_geometry},
-    applied to N2R9 \bm\ scans. More than 90\% of the detectors (WPK/FK) are
+\begin{table}[ht]
+\label{ta:gridmatch}
+\begin{center}
+\begin{tabular}{|c|c|c|l|}
+\hline
+Array 1  &	Array 3   &	Array 2   &	Comment \\
+\hline
+1.25     &      1.25      &     2.05     &     \small{$\lambda$ in mm} \\
+1140 	 &      1140 	   &        616  &     \small{Total of designed KIDs (TDK)} \\
+673/736  &	734/758  &	437/444  &     \small{Well-placed KIDs (WPK)/Found KIDs (FK)} \\
+91/59 	 &    96/64 	 &      98/71 	 & \small{Ratio [\%] of WPK/FK and WPK/TDK} \\
+0.87 	 &     0.84 	  & 0.66     &	\small{Median deviation [arcsec] for detectors deviating by less than 5~arcsec} \\
+0.52 	 &     0.69 	 &        0.68 	 & \small{Mean distortion across the FoV in arcsec} \\
+2.3 -4.5  &	2.0 -5.8  &	9.3 -7.5  &	\small{Array center in Nasmyth coordinates [arcsec]} \\
+4.90  &	4.88  &	4.88  &	\small{Plate scaling [arcsec/mm] in the Design x and y (averaged)} \\
+77.3  &	76.4  &	78.2  &	\small{Plate rotation angle [degree] from the Design to Nasmyth coordinates} \\
+6.6  &	6.6  &	6.6  &	\small{FOV [arcmin] (Total KIDs)} \\
+9.8/2.00  &	9.7/2.00  &	13.3/2.75  &	\small{Distance between near detectors [arcsec, mm]} \\
+% Old values, rechecked (difference comes from lambda and D)
+%   1.24  &	1.22  &	0.97  &	Distance between near detectors with $30\,\rm{m}$ diameter aperture [in $\lambda$/D] \\
+% here new values checked FXD 30 Nov 2018:
+1.11  &	1.10  &	0.87  &	\small{Measured Distance between near
+  detectors [in $\lambda$/D] } \\
+%\new{with $27\,\rm{m}$ effective diameter aperture} [in $\lambda$/D]} \\
+1.09  & 1.09  & 0.93  & \small{Modeled Distance with ZEMAX}\\
+\hline
+\end{tabular}
+\end{center}
+\caption[Field-of-view deformations]{Linear 2D fit of the observed
+  position of the detectors in the sky for N2R9 against their mechanically
+  designed position. The initial table of Found KIDs is given
+  by the focal plane geometry procedure, as described in
+  Sect.~\ref{se:fov_geometry},
+  applied to N2R9 \bm\ scans. More than 90\% of the detectors (WPK/FK) are
   within less than 5 arcseconds of their expected position. }
-  \label{ta:gridmatch}
-  \centering
-  \begin{tabular}{r|c|c|c}
-    \hline
-    \hline
-    Characteristic &  Array 1  &	Array 3   &	Array 2  \\
-    \hline
-    \small{$\lambda$ [mm]}  &1.25     &      1.25      &    2.05   \\
-    %&1140 	 &      1140 	  &    616       & \small{Total of designed KIDs (TDK)} \\
-    \small{Found KID}\tablefootmark{a}       &  736   & 758   & 444  \\
-    \small{Well-placed KID}                  &  673   & 734   & 437  \\
-    \small{Ratio [\%]}                       &  91   & 96   & 98  \\
-    %&673/736  &	734/758   &    437/444   & \small{Well-placed KIDs (WPK)/Found KIDs (FK)} \\
-    %&91/59 	 &      96/64 	  &    98/71 	 & \small{Ratio [\%] of WPK/FK and WPK/TDK} \\
-    \small{Median deviation\tablefootmark{b}  [arcsec]}    &   0.87 	 &      0.84 	  &    0.66  \\
-    \small{Mean distortion [arcsec]}                       &   0.52 	 &      0.69 	  &    0.68  \\
-    \small{Array center\tablefootmark{c} [arcsec]}  & (2.3,4.5) &	(2.0,5.8)  &   (9.3, 7.5)  \\
-    \small{Plate scaling\tablefootmark{d} [arcsec/mm]}   &  4.90     &	4.88      &    4.88 \\
-    %& \small{Plate scaling [arcsec/mm] in the Design x and y (averaged)} \\
-    \small{Plate rotation angle\tablefootmark{e} [degree]} & 77.3     &	76.4      &    78.2  \\
-    %\small{FOV [arcmin] (Total KIDs)}                      & 6.6      &	6.6       &    6.6   \\
-    \small{Grid step\tablefootmark{f} [arcsec, mm] }   & 9.8, 2.00 &	9.7, 2.00  &    13.3, 2.75 \\
-    % Old values, rechecked (difference comes from lambda and D)
-    %   1.24  &	1.22  &	0.97  &	Distance between near detectors with $30\,\rm{m}$ diameter aperture [in $\lambda$/D] \\
-    % here new values checked FXD 30 Nov 2018:
-    \small{Measured grid step[$\lambda$/D] } & 1.11     &	1.10      &	0.87  \\
-    %\new{with $27\,\rm{m}$ effective diameter aperture} [in $\lambda$/D]} \\
-    \small{Modeled grid step\tablefootmark{g} [$\lambda$/D]}  & 1.09     &      1.09      & 0.93    \\
-    \hline
-  \end{tabular}
-  \tablefoot{ \\
-    \tablefoottext{a}{Initial number of KIDs given in a FOV geometry for the N2R9 campaign.}
-    \tablefoottext{b}{Median deviation [arcsec] for detectors deviating by less than 5~arcsec}
-    \tablefoottext{c}{Array center in Nasmyth coordinates}
-    \tablefoottext{d}{Averaged scaling between the measured grid and the design grid}
-    \tablefoottext{e}{Plate rotation from the design to Nasmyth coordinates}
-    \tablefoottext{f}{Distance between neighbour detectors}
-    \tablefoottext{g}{Distance between neighbour detectors modeled using ZEMAX simulation}
-  }
 \end{table}
 
 It shows that on average the position of each detector is known to better than
@@ -185,7 +125,10 @@ $\lambda/D$ at 1\,mm, assuming a 27\,m effective diameter aperture. Note that
 the plate rotation angle was designed as 76.2\,degrees, less than 2
 degrees from what is observed. We find that array 1
 has some of the most deviant detectors (above 4\,arcsec from their expected
-position). These detectors should be excluded from further analysis.
+position). These detectors should be excluded from further analysis. We call
+distortion (in the table) the $x.y$ term in the polynomial fitting between the
+design grid and the observed position (the fitting is done with the $x$ and
+$y$ linear terms and the $x.y$ term). 
 
 This has been compared to expectations obtained using ZEMAX
 simulation. 
@@ -231,7 +174,7 @@ also the area of the largest defocus w.r.t. to the center (see
 Sect.~\ref{sec:focus_surfaces}).
 An expected distortion of $2.7\%$ is at most a 5'' shift from the
 center to the outside of the array. The quoted distortions between the
-measured and designed positions are thus consistent with the expected
+measured and designed positions are consistent with the expected
 maximum distortions from the NIKA2 optics.
 
 %Auxillary information on this work can be found in this wiki post\footnote{\tiny
@@ -240,7 +183,27 @@ maximum distortions from the NIKA2 optics.
 
 
 \subsection{KID selection and average geometry}
-\label{se:avg_kidpar}
+\label{avg_kidpar}
+
+\begin{figure*}[!tp]
+\begin{center}
+\includegraphics[trim=2cm 14cm 4cm 4cm, clip=true,width=0.45\linewidth]{Figures/A1_fwhm_color_count.pdf}
+%\includegraphics[trim=2cm 14cm 5cm 4cm, clip=true,width=0.45\linewidth]{Figures/A1_positions.pdf}
+\includegraphics[trim=2cm 14cm 4cm 4cm, clip=true,width=0.45\linewidth]{Figures/A3_fwhm_color_count.pdf}
+%\includegraphics[trim=2cm 14cm 5cm 4cm, clip=true,width=0.45\linewidth]{Figures/A3_positions.pdf}
+\includegraphics[trim=2cm 14cm 4cm 4cm, clip=true,width=0.45\linewidth]{Figures/A2_fwhm_color_count.pdf}
+%\includegraphics[trim=2cm 14cm 5cm 4cm, clip=true,width=0.45\linewidth]{Figures/A2_positions.pdf}
+\caption[KID selection in the FOV]{Average detector positions
+  for arrays A1, A3, and A2. The three plots show the detectors that have seen
+  the sky and passed the quality criteria for at least two \bms\ during Run10, 9
+  and 8: 952, 961, and 553 for A1, A3 and A2, respectively. The color
+  indicates, from green to red, how many times a KID was
+  identified as valid on a \bm. The inner and outer
+  dash-line circles correspond to a FOV of 5.5\,arcmin and 6.5\,arcmin,
+  respectively. Units are arcseconds.}
+\label{fig:avg_fov_color}
+\end{center}
+\end{figure}
 
 In order to identify the most stable KIDs, we compare the KID parameters
 obtained with several \bms.  In the following, we show results as obtained using
@@ -249,21 +212,22 @@ compute the average position on the focal plane and the average FWHM, counting
 the times that it has been considered as valid and at the same position. Indeed,
 a few KIDs have close resonances and can be tuned and switched on some scans. A
 few others must also be discarded because they appear identical numerically due
-to the fact that a same (noisy) KID can sometimes be associated
-to two different frequency tone in the acquisition.
+to \samu{the fact that a same (noisy) KID can sometimes be associated
+  to two different frequency tone in the acquisition.}
+%a remaining artefact in the acquisition.
 These KIDs are flagged out (less than 1\% of the designed KIDs).
 
 In Fig.~\ref{fig:avg_fov_color} we show the
 average focal plane reconstruction, from green to red depending on the number of
 times that the KID has been considered as valid.
-The eight internal readout feed lines that connect each of the two
-$1\,\rm{mm}$ arrays are also noticeable in this figure: first, slightly
-larger spaces are seen between KID rows connected to different
-feed-lines than between KID rows of the same feed line and second, KIDs at the end of a
-feed line are less often valid than others (see e.g. the FOV of
-Array 3). For A1, this end-of-feedline effect is mixed with the
-effect of the KID gain variation across the FOV, which mainly affects
-the South-West third of the array, as discussed in Sect.~\ref{se:flatfields}.
+\new{The eight internal readout feed lines that connect each of the two
+  $1\,\rm{mm}$ arrays are also noticeable in this figure: first, slightly
+  larger spaces are seen between KID rows connected to different
+  feed-lines than between KID rows of the same feed line and second, KIDs at the end of a
+  feed line are less often valid than others (see e.g. the FOV of
+  Array 3). For A1, this end-of-feedline effect is mixed with the
+  effect of the KID gain variation across the FOV, which mainly affects
+  the South-West third of the array, as discussed in Sect.~\ref{se:flatfields}.}
 
 For A1, A3 and A2, respectively, we have 952, 961, and 553 KIDs that
 have been considered as valid at least twice (840, 508, 868 valid at
@@ -297,24 +261,19 @@ valid detectors over the designed ones, as given in Table~\ref{tab:number_of_kid
 %\end{center}
 %\end{figure}
 
-\begin{table}[!htbp]
-  \begin{center}
-    \caption[Number of detectors]{Summary of the number of valid detectors per array.}
-    \label{tab:number_of_kids}  
-    \begin{tabular}{lrrr}
-      \hline
-      \hline
-      \noalign{\smallskip}
-      Characteristics & Array 1 & Array 3  & Array 2  \\
-      \noalign{\smallskip}
-      \hline
-      \noalign{\smallskip}
-      Designed detectors & 1140  & 1140   & 616  \\
-      Valid detectors    & 952   & 961    & 553  \\ 
-      Ratio  [\%]        & 84    & 84     & 90   \\
-      \noalign{\smallskip}
-      \hline
-    \end{tabular}
-  \end{center}    
+\begin{table}[ht]
+\begin{center}  
+  \begin{tabular}{|c|c|c|c|}
+    \hline
+    Array & Designed detectors &  Valid detectors & Fraction\\
+    \hline\hline
+    A1 & 1140 & 952 &  84\%\\
+    A3 & 1140 & 961 &  84\%\\
+    A2 & 616  & 553 &  90\%\\
+    \hline
+  \end{tabular}
+  \caption[Number of detectors]{Summary of the number of valid detectors per array.}
+  \label{tab:number_of_kids}
+\end{center}    
 \end{table}
 

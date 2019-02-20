@@ -48,7 +48,7 @@ acquisition. The data as such comprise various quantities that describe the
 variations of the KID's resonance frequencies, such as $I$, $Q$, $dI$,
 $dQ$. From these quantities, and throughout this work, we use our so called
 \rf\ photometric estimator that combines them into a quantity that is
-proportionnal to the flux absorbed by a KID \cite{Calvo13} and
+proportionnal to the flux absorbed by a KID \citep[see]{Calvo2013} and
 homogeneous to Hz, as discussed in Sect.~\ref{se:tuning}.
 
 In addition to this, we look for and remove the - rare - cosmic rays
@@ -97,7 +97,7 @@ derivation of these offsets.
 
 We store KID pointing offsets \wrt\ the reference position in Nasmyth $(x,y)$
 coordinates (independent of time) once and for all in our KID database
-(\aka~\kidpar). Sect.~\ref{se:fp_reconstruction} details how these offsets are
+(\aka~\kidpar). Sect.~\ref{se:geometry} details how these offsets are
 derived. To go from Nasmyth offsets to $(\alpha,\delta)$ offsets, we apply the
 following rotation by the elevation angle:
 
@@ -135,7 +135,7 @@ and elevation.
 
 The standard conversion from Hz to Jy/beam is stored in the
 \kidpar\ database. The derivation of these gains $g(k)$ is detailed in
-Sect.~\ref{se:fp_reconstruction}. Suffice is to say here that simply multiplying
+Sect.~\ref{se:geometry}. Suffice is to say here that simply multiplying
 the TOI's by these gains converts them into Jy/beam. Of course, this individual
 absolute calibration also acts as a relative calibration. This calibration is
 meant to work at zero opacity and 90$^\circ$ elevation. We thus need to correct
@@ -145,7 +145,7 @@ for the current opacity $\tau$ and elevation. In short, the absolute calibration
 TOI^k(t) [{\rm Jy/beam}] = \rf^k(t)[{\rm Hz}] \times g(k) \times e^{\tau_t/\sin\delta_t}
 \end{equation}
 
-The derivation of opacity is presented in Sect.~\ref{se:opacities}.
+The derivation of opacity is presented in Sect.~\ref{se:opacity}.
 
 \subsection{TOI processing}
 \label{se:toi_proc}
@@ -396,7 +396,7 @@ m^k(x,y) = \phi e^{-(x^2+y^2)/2\sigma^2} = \phi G(x,y)
 with $\phi$ the flux of the source and $(x,\, y)$ the coordinates in
 the chosen system. In practice, the beam is not a perfect Gaussian
 and significant side lobes must be accounted for
-(Sect.~\ref{se:beams}). If the beam was perfectly known and stable, we could in
+(Sect.~\ref{se:beam}). If the beam was perfectly known and stable, we could in
 principle replace the Gaussian form in Eq.~\ref{eq:flux_per_beam_def} by the
 beam pattern and fit for the amplitude $\phi$.
 %In practice, we have found that
@@ -405,18 +405,18 @@ beam pattern and fit for the amplitude $\phi$.
 In practice, the beam pattern i) has a complexe structure, including
 features which can rotate with the observation elevation (as presented
 in Sect.~\ref{se:fullbeam}), ii) has a few percent dispersion across the FOV (see
-Sect.~\ref{se:MB}) and iii) shows some variations with the observation date
+Sect.~\ref{se:mainbeam}) and iii) shows some variations with the observation date
 (see Sect.~\ref{se:obsdate_variations}). However, we have found that using an equivalent
 effective fixed-width Gaussian for the photometry, as presented in
-Sect.~\ref{se:cal_HA_main}, is sufficient to ensure accurate, stable and robust flux
-measurements, as assessed in Chapt.~\ref{se:photometry}. The reference fixed-width
+Sect.~\ref{se:calibration}, is sufficient to ensure accurate, stable and robust flux
+measurements, as assessed in Sect.~\ref{se:photometry}. The reference fixed-width
 Gaussian is chosen sizably larger than the measured main beam width
-(see Sect.~\ref{se:MB}) to account for a fraction of the
+(see Sect.~\ref{se:mainbeam}) to account for a fraction of the
 signal stemming from the error beams and side lobes. Namely, we take
 12.5 and 18.5\,arcsec FWHM at 1 and 2\,mm respectively and compute all our fluxes with these
-values. We do this for both absolute calibrators (see Chapt.~\ref{se:calibration})
-and analyzed point sources (see Chapt.~\ref{se:photometry}) to be consistent. Our
-photometric system is further detailed in Sects.~(\ref{se:cal_HA_reference}, \ref{se:cal_HA_main}).
+values. We do this for both absolute calibrators (see Sect.~\ref{se:calibration})
+and analyzed point sources (see Sect.~\ref{se:photometry}) to be consistent. Our
+photometric system is further detailed in Sects.~(\ref{se:calibration}).
 
 
 Let's call $s_p$ the measured signal at map pixel $p$ and denote by $g_p$ the
@@ -490,7 +490,7 @@ estimate of the source flux.
 For calibration and performance assessment, we select scans in average
 observing conditions by performing mild selection cuts. These scan
 cuts rely on zenith opacity estimates in NIKA2 bands $\tau$, as
-described in Sect.~\ref{se:opacities}, and on the observation date
+described in Sect.~\ref{se:opacity}, and on the observation date
 conditions where:
 %
 \begin{itemize}

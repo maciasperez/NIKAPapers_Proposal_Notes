@@ -1,0 +1,119 @@
+%----------------------------------------------------------------------------------------
+%	8./ Calibration
+%----------------------------------------------------------------------------------------
+%\section{Calibration}
+%\label{se:calibration}
+
+We present the calibration of the NIKA2 instrument in this section in using Uranus as the
+main primary calibrator. Neptune and Mars are also considered as
+valuable alternatives to calibrate when Uranus is not visible.
+
+
+\subsection{Photometric System}
+
+We detail here the procedure for the calibrating the absolute scale of
+the flux density and the chosen photometric system.
+
+We parametrize the primary calibrator flux density
+$S_{\rm{c}}(\nu) = S_{\rm{c}}(\nu_0)\, f(\nu/\nu_{0})$, where $f(\nu/\nu_{0})$
+encloses the spectral dependence, 
+as a function of a reference frequency $\nu_{0}$ that we choose
+arbitrarily to be: $\nu_{0} = 150$~GHz for the 2mm array and
+$\nu_{0}= 260$~GHz for both 1mm arrays. Projecting the raw data (in
+units of the KID resonance frequency shift or $\rm Hz$) of a
+calibrator, we model the raw map with a fixed-width Gaussian
+\begin{equation}
+  R_{\rm{c}}(\theta, \phi)  = \frac{A_{\rm{c}}}{2 \pi \sigma_{0}^{2}}
+e^{-\frac{\theta^{2}}{2\sigma_{0}^{2}}},
+\end{equation}
+where $\sigma_{0}$ is derived from the
+reference FWHM, labelled FWHM$_{0}$, which are $12.5''$ for the 1mm
+arrays and $18.5''$ for the 2mm array. These values have
+been chosen sizably larger than the main beam values, as reported in
+Sect.~\ref{se:beam}, to account for a fraction of the signal smeared 
+in the first error beam and first side lobes.
+Both the reference frequency and FWHM, $\nu_0$ and FWHM$_{0}$, define our reference photometric system, as
+summarized in Table~\ref{tab:definitions}.
+
+\begin{table}[!htbp]
+  \begin{center}
+    \caption{NIKA2 reference frequencies and FWHM}
+    \begin{tabular}{lcc}
+      \hline\hline
+      \noalign{\smallskip}
+      & 1 mm & 2 mm \\
+      \noalign{\smallskip}
+      \hline
+      \noalign{\smallskip}
+      Reference frequency $\nu_{0}$ & 260 GHz & 150 GHz \\
+      Reference FWHM  FWHM$_{0}$    & 12.5'' & 18.5'' \\
+      \noalign{\smallskip}
+      \hline
+    \end{tabular}
+  \end{center}
+  \label{tab:definitions}
+\end{table}
+
+The absolute calibration coefficients are estimated as the ratio of
+the flux density expectations at the reference frequency
+$S_{\rm{c}}(\nu_0)$ and the amplitude estimate of the fixed-width reference
+FWHM Gaussian $A_{\rm{c}}$. For any point-like source $\rm{s}$, the map
+\begin{equation}
+  M_{\rm{s}}(\theta, \phi) = \frac{S_{\rm{c}} (\nu_{0})}{A_{\rm{c}}}
+  R_{\rm{s}}(\theta,\phi),
+\end{equation}
+where $R_{\rm{s}}(\theta,\phi)$ is the raw data projection, is calibrated in Jy/FWHM$_{0}$
+beam. The flux density estimate for the source is then:
+\begin{equation}
+S(\nu_{0})  = \frac{S_{\rm{c}}(\nu_{0})}{A_{\rm{c}}} \, A_{\rm{s}},
+\label{eq:pointsourcephot}
+\end{equation}
+where $A_{\rm{s}}$ is the amplitude estimate of a FWHM$_0$ Gaussian.
+
+
+The flux density estimate $S(\nu_{0})$ gives the
+flux of the source at the reference frequency only if the source has
+the same spectral index as the calibrator. In general, to retrieve the
+flux of the source at the reference frequency, a color correction
+$C_{\rm{s}}$ has to be applied
+\begin{equation}
+S_{\rm{s}}(\nu_{0}) = S(\nu_{0})  C_{\rm{s}}(\nu_{0}, \alpha_{\rm{s}}),
+\end{equation}
+which depends on the reference frequency $\nu_{0}$ and the source
+spectral index $\alpha_{\rm{s}}$.
+Neglecting the effect of the atmosphere on NIKA2 transmission, we compute the color correction
+factor for target sources of spectral indices $\alpha_{\rm{s}}$ that are
+different from Uranus using
+\begin{equation}
+  C_{\rm{s}}(\nu_{0}, \alpha_{\rm{s}}) = \frac{\int_{0}^{+\infty} (\nu/\nu_0)^{1.6} ~T({\nu}) d\nu}{ \int_{0}^{+\infty} (\nu
+    /\nu_0)^{\alpha_S} ~ T({\nu}) d\nu}.
+\end{equation}
+
+Color correction factors for eight values of $\alpha_{\rm{s}}$, and in particular
+for $\alpha_{\rm{s}}= 0.6$ which is the spectral index of MWC349, are
+given in Table~\ref{tab:mod}. 
+
+\begin{table*}[!h]
+\caption{Color correction factor for a target source  $S \propto \nu ^{\alpha_{\rm{s}}}$}
+\label{tab:mod}
+\centering 
+\begin{tabular}{l| c c c c c c c c}
+\hline\hline
+\noalign{\smallskip}
+Array  & \multicolumn{8}{c}{$\alpha_{\rm{s}}$} \\
+\noalign{\smallskip}
+\hline
+          &  -2 &  -1    &    0  & + 0.6 & +1  &  +2  & +3 & +4  \\
+%            \noalign{\smallskip}
+            \hline
+%            \noalign{\smallskip}
+          A1   & 0.876  &  0.916   &   0.951  & 0.969 &  0.981   &  1.005  &    1.024  &  1.037   \\
+          A2   & 0.945  &  0.972   &   0.990  & 0.996 &  0.998   &  0.997  &    0.986  &  0.966      \\ 
+          A3   & 0.907  &  0.940   &   0.967  & 0.980 &  0.987   &  1.001  &    1.009  &  1.011     \\
+            \noalign{\smallskip}
+            \hline
+\multicolumn{8}{c}{Note : Uranus/Moreno model used for Uranus in this
+  Table.}
+\end{tabular}
+\end{table*}
+

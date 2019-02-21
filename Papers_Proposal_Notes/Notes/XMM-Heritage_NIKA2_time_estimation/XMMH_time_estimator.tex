@@ -1,0 +1,197 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=2.5cm, tmargin=1.5cm]{geometry}
+\usepackage{natbib}
+\usepackage{hyperref}
+\usepackage{inputenc}
+\usepackage{amsmath}
+\usepackage{txfonts}
+\usepackage{gensymb}
+\usepackage{xcolor}
+\usepackage{multirow}
+\usepackage{booktabs}
+
+\newcommand{\fh}{_{500}}
+\newcommand{\com}[1]{\textbf{\color{red}[#1]}}
+
+\title{\textbf{NIKA2 observation time estimation for XMM-\textit{Heritage} galaxy clusters}}
+\author{F. K\'eruzor\'e, F. Mayet, J.F. Mac\'ias-P\'erez, L. Perotto}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+
+This document describes the rationale behind the NIKA2 observing time estimation for XMM-\textit{Heritage} galaxy clusters.
+As requested by the SZ Working Group, we will work with two mock galaxy clusters, C1 and C2, with input parameters :
+    \begin{align*}
+        \text{C1 :}\;& z = 0.3, \; M\fh = 7\times 10^{14} \,\mathrm{M}_\odot \; ; \\
+        \text{C2 :}\;& z = 0.3, \; M\fh = 15\times 10^{14}\, \mathrm{M}_\odot
+    \end{align*}
+The IRAM time observation estimator \citep{Ladjelate2018} has to be used for any NIKA2 open-time proposal.
+Indeed, IRAM requires that the output of its time estimator be written in any proposal ; therefore, the aim of this document is to define the inputs of this program and to compute them in the case of our mock galaxy clusters.
+
+Throughout this document, we use a standard $\Lambda$CDM cosmology, with $\Omega_\mathrm{m}=0.3$, $\Omega_\Lambda=0.7$, and $H_0=70\;\mathrm{km\,s^{-1}\,Mpc^{-1}}$.
+
+\section{Galaxy cluster modeling} \label{cluster}
+
+To estimate the time needed to reach the goal signal-to-noise ratio (SNR) for a galaxy cluster, we take as input the redshift $z$ of the cluster and its mass $M\fh$ enclosed within a radius of $R\fh$.
+We then use these inputs to compute a pressure profile for the cluster, using eq. (12) of \citet[][hereafter A10]{Arnaud2010},
+    \begin{equation}
+        P(r) = 1.65\times 10^{-3} \,E(z)^{8/3} \left[ \frac{M\fh\,h_{70}}{3\times 10^{14} \,\mathrm{M}_\odot} \right]^{\,\alpha'_p(r)+0.787} \times \mathbb{P}(r) \quad h_{70}^2 \;\mathrm{keV\,cm^{-3}}
+    \end{equation}
+where $E(z)$ is the reduced Hubble parameter $E(z) \equiv H(z)/H_0$, $\alpha'_p(x)$ is defined as 
+    \begin{equation}
+        \alpha'_p(x) \equiv 0.1 - 0.22\frac{(2x)^3}{1+(2x)^3}
+    \end{equation}
+and $\mathbb{P}(r)$ is the universal pressure profile from A10 :
+    \begin{equation}
+        \mathbb{P}(r) \equiv \frac{P_0}{\left(c\fh x\right)^c \times \left[1+\left(c\fh x\right)^a\right]^\frac{b-c}{a}}
+    \end{equation}
+where $x = r/R\fh$ and $[P_0,\, c\fh,\, a,\, b,\, c] = [8.403\,h_{70}^{-3/2},\, 1.177,\, 1.0510,\, 5.4905,\, 0.3081]$.
+
+This pressure profile is then integrated along the line of sight to infer a Compton parameter profile, $y(r)$, which is directly proportional to the SZ observable, and converted to surface brightness units using the NIKA2 $y$-to-Jy/beam coefficient published in \cite{Ruppin2018}, giving us an estimation of the expected surface brightness profile for the cluster.
+
+Using this toy pressure model for our two mock clusters, we are able to infer more properties, in particular their respective characteristic sizes :
+    \begin{align*}
+        \text{C1 :}\;& R\fh = 1218.3 \;\mathrm{kpc},\; \theta\fh = 4.56 \;\mathrm{arcmin}\; ; \\
+        \text{C2 :}\;& R\fh = 1570.7 \;\mathrm{kpc},\; \theta\fh = 5.88 \;\mathrm{arcmin}
+    \end{align*}
+
+\section{NIKA2 observing strategy} \label{strategy}
+
+The preferred observing pattern for NIKA2 observations is on-the-fly (OTF) scans, where the objects are scanned by a series of ``subscans'', all parallel to a given axis and separated by a step value of a few arcseconds.
+These scans can be performed either in azimuthal coordinates, with all subscans parallel to the azimuth axis, or in equatorial coordinates, where the scans are performed at different angles with respect to the right ascension axis.
+
+Most NIKA2 galaxy cluster observations choose the latter option with scans in four directions, at $[0\degree$, $45\degree$, $90\degree$, $135\degree]$ from the RA axis, as it ensures an isotropic coverage of the cluster (needed for a proper estimation of a 1D transfer function) with no need to worry about getting observations at different points of the elevation curve of the cluster.
+We suggest to keep this strategy, although the fact that the clusters from this program require quite a long time to achieve the standard quality criteria makes it a debatable choice.
+
+\vspace{11pt}
+Regardless of whether we choose azimuthal or equatorial scans, the definition of an observing strategy implies that we need to choose the dimensions of our scans.
+The speed of the telescope and step between subscans being strongly recommended by IRAM, the free parameters are the number of subscans and the length of each one, related respectively to the ``Y-'' and ``X-size'' of our scans. 
+Assuming no clusters larger than C2 in the XMM-\textit{Heritage} sample, we propose scans of $(18 \times 10)$ (arcmin)$^2$, ensuring that there will be no need for larger scans in the future.
+
+\section{Observation time computation} \label{time}
+
+As we mentioned at the beginning of the document, we need to follow the IRAM rules and to use their NIKA2 observation time estimator.
+In this section, we give a quick review of the principal features of this program for convenience ; deeper explanations are given in \cite{Ladjelate2018}.
+
+The quality criterion used thus far for NIKA2 cluster observations was that one should be able to get a $3\sigma$ detection on the pressure profile at a radius $R\fh$.
+Here, we investigate how to reach a $3\sigma$ detection at $\left[1,\, 0.7,\, 0.3\right]\times R\fh$, in order to judge \textit{a posteriori} which gives the best compromise between detection quality and time spent on cluster.
+Considering that we want an average $3\sigma$ on pressure at radius $r$, with a corresponding angle in the map $\theta_r \equiv \mathrm{arctan}(r/\mathcal{D}_A)$, the maximum RMS of the noise in our map is 
+    \begin{equation}
+        \sigma_\mathrm{tot} = \frac{\sqrt{N(r)}}{3} \times S_b(r)
+        \label{eq:sigma}
+    \end{equation}
+where $S_b(r)$ is the cluster's surface brightness at radius $r$, as estimated in section \ref{cluster}, and $N(r)$ is the number of NIKA2 beams that form a ring of radius $r$, \textit{i.e.}
+    \begin{equation}
+        N(r) = \frac{2\pi\,\theta_r}{\theta_\mathrm{beam}}
+    \end{equation}
+where $\mathcal{D}_A$ is the angular diameter distance to the cluster, and $\theta_\mathrm{beam}$ is the FWHM of the instrumental beam.
+
+The time evolution of the noise is given by :
+    \begin{equation}
+        \sigma = t_\mathrm{beam}^{-1/2} \times \mathrm{NEFD}_0 \times e^{\tau/\mathrm{sin}(e\ell)} \times h_\mathrm{filter}
+    \end{equation}
+where NEFD$_0$ is the instrumental noise equivalent flux density at zenith with no atmospheric absorption (from the NIKA2 commissioning results, NEFD$_0$ = 8 mJy/beam/s$^{1/2}$), $\tau$ is the zenith atmospheric opacity measured at the frequency of observation, $e\ell$ is the elevation at which observations are performed, and $h_\mathrm{filter}$ is a factor to account for the post-processing noise filtering (effectively acting as a uniform transfer function).
+Given the fact that no accurate measurements of the transfer function exist for this new scan strategy, we chose the pessimistic value of $h_\mathrm{filter} = 2$.
+
+The time integration per beam, $t_\mathrm{beam}$, can be infered from the geometry of the scan ; considering rectangular scans of $\theta_x \times \theta_y$, where $\theta_x$ and $\theta_y$ are the angles travelled by the central pixel of the camera in the $x$ and $y$ directions, the area of the whole scan is approximated by the IRAM time estimator as $A_\mathrm{scan} \sim \theta_x \theta_y + A_\mathrm{FoV}$, where $A_\mathrm{FoV}$ is the field of view of the camera, \textit{i.e.} the projection of the focal plane on the sky ; for NIKA2, $A_\mathrm{FoV} =$ 33.2 arcmin$^2$.
+Then, the average time spent per beam is given by :
+    \begin{equation}
+        t_\mathrm{beam} = \frac{f_\mathrm{pix}A_\mathrm{FoV}}{f_\mathrm{pix}A_\mathrm{FoV} + \theta_x \theta_y}\times t_\mathrm{tot}
+    \end{equation}
+where $f_\mathrm{pix}$ is the fraction of valid pixels in the NIKA2 2mm array, typically $\simeq 0.75$.
+
+The last parameter for time estimation is the percentage of overheads.
+We chose to stay in a pessimistic assumption and to anticipate 100\% of overheads, as is usually done within the NIKA2 collaboration.
+Then, putting everything together, the total time needed to observe a cluster is given by :
+    \begin{equation}
+        t_\mathrm{tot} = h_\mathrm{overhead}\times\left[\frac{\mathrm{NEFD}_0}{\sigma_\mathrm{tot}}e^{\tau/\mathrm{sin}(e\ell)}h_\mathrm{filter}\right]^2 \left[1+\frac{\theta_x \theta_y}{f_\mathrm{pix}A_\mathrm{FoV}}\right]
+    \end{equation}
+Table \ref{tab:params} gives a summary of all the parameters of this equation and their suggested values in the case of NIKA2 XMM-\textit{Heritage} clusters.
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{c c}
+        \toprule
+        %\textbf{Parameter}  &  \textbf{Value} \\
+        %\midrule\midrule
+        \multicolumn{2}{c}{NIKA2 specs} \\ 
+        \midrule
+        NEFD$_0$  &  8 mJy/beam/s$^{1/2}$ \\
+        $A_\mathrm{FoV}$  &  33.2 arcmin$^2$ \\
+        $\theta_\mathrm{beam}$  &  17.7 arcsec \\
+        $f_\mathrm{pix}$  &  75\% \\
+        $y$-to-Jy/beam  &  -11.9 (Jy/beam)/$y$ \\
+        \midrule
+        \multicolumn{2}{c}{Observation parameters} \\ 
+        \midrule
+        PWV  &  6 mm \\
+        $\Rightarrow\,\tau(\text{150 GHz})$  &  0.15 \\
+        Elevation $e\ell$  &  $60\degree$ \\
+        $(\theta_x, \theta_y)$  &  (18, 10) arcmin \\
+        $\Rightarrow\,A_\mathrm{scan}$  &  $\simeq$ 213.2 arcmin$^2$ \\
+        $h_\mathrm{filter}$  &  2 \\
+        $h_\mathrm{overhead}$  &  2 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Summary of the NIKA2 specifications and parameters used for the observation time estimation and their value. The elevation is arbitrarily fixed to $60\degree$ and the atmospheric conditions are taken as average summer conditions for the 30m telescope.}
+    \label{tab:params}
+\end{table}
+
+\newpage
+\section{Results for mock galaxy clusters}
+
+We give a summary of the results obtained for C1 and C2 for different SNR criteria in Table \ref{tab:results}.
+As an output, the time estimator gives us the time needed to reach the desired SNR level, as well as a sentence to include in the NIKA2 proposal, summarizing all the hypothesis that were made when using the estimator as well as it result.
+For example, for the first line of Table \ref{tab:results} (C1 with $3\sigma$ on pressure at $R\fh$), the output sentence is :
+
+\vspace{15pt}
+\begin{minipage}{0.9\textwidth}
+    \textit{According to the published commissioning results of the NIKA2 instrument, the total observing time using the NIKA2 2 mm band to map a region of 180.0 [arcmin\^\,2] to reach an rms of 0.251 [mJy/beam], assuming 6 [mm] pwv, 60 [deg] elevation, Filter = 2, Overhead = 2, was estimated to be *22.4 hours*, using the time estimator v 2018.OCT.17.}
+\end{minipage}
+\vspace{15pt}
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{c c c c c}
+        \toprule
+        Cluster  &  Radius $r$  &  $S_b(r)$ [mJy/beam]  &  $\sigma$ [mJy/beam]  &  \textbf{Time [hours]} \\
+        \midrule\midrule
+        \multirow{3}{60pt}{\centering C1}  &  $R\fh$  &  0.076  &  0.251 &  \textbf{22.4}\\
+            &  $0.7\times R\fh$  &  0.17  & 0.466 & \textbf{6.52} \\
+            &  $0.3\times R\fh$  &  0.651 & 1.171 & \textbf{1.03} \\
+        \midrule
+        \multirow{3}{60pt}{\centering C2}  &  $R\fh$  &  0.166 & 0.619 & \textbf{3.7} \\
+            &  $0.7\times R\fh$  &  0.374 & 1.168 & \textbf{1.04} \\
+            &  $0.3\times R\fh$  &  1.546 & 3.158 & \textbf{0.14} \\
+        \bottomrule
+    \end{tabular}
+    \caption{Results of the time estimator for C1 and C2. $r$ is the radius at which we impose to have $3\sigma$ on the profile pressure ; $S_b(r)$ is the cluster's surface brightness at $r$, and $\sigma$ the maximum noise RMS defined in eq. (\ref{eq:sigma}).}
+    \label{tab:results}
+\end{table}
+
+\section{Refining the time estimations}
+
+We saw that the IRAM requirements for proposals imply that we need to use their tool to estimate the observation times.
+If it was not for this restriction, we could have worked for a more subtle estimation.
+
+First, when giving a maximum noise RMS as input to the IRAM time estimator, we have no choice but to assume a homogeneous noise distribution in the maps.
+This is known to be inaccurate, as the latter depends on the time spent in each part of the map.
+One improvement could be to account for the noise distribution in the scans, allowing for a maximum noise RMS that would be a function of the size of the cluster.
+Another possibility would be to add the effect of correlated noise.
+By simulating some more complete noise maps, we could get an idea of how much the expected correlated noise would increase the time needed for a $3\sigma$ detection on the pressure profile at a given radius.
+
+Finally, another improvement could be to use the NIKA2 pipeline transfer function to estimate how much the signal is filtered out at large angular scales, for a more precise idea of the cluster-surface brightness profile.
+This cannot be done yet, as we do not know how the pipeline will behave at angular scales as large as those that will be imaged with the proposed scan strategy.
+For now, this is modeled by the $h_\mathrm{filter}$ factor, effectively acting as a 1D, homogeneous transfer function TF$(k)$ = 0.5 $\forall\,k$.
+More precise knowledge will only be achievable after observations.
+
+\newpage
+\addcontentsline{toc}{chapter}{Bibliography}
+\bibpunct{(}{)}{;}{a}{}{,} % to follow the A&A style
+\bibliography{main}
+\bibliographystyle{aa}
+
+\end{document}

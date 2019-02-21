@@ -1,0 +1,158 @@
+
+%*************************************************************************
+%
+%   SEE CALIBRATION_1 FOR THE FIRST PART (COMMENTED HEREAFTER)
+%
+%************************************************************************
+
+
+%----------------------------------------------------------------------------------------
+%	8./ Calibration
+%----------------------------------------------------------------------------------------
+%\section{Calibration}
+%\label{se:calibration}
+
+%We present the calibration of the absolute scale of the flux densities
+%for the NIKA2 instrument in this section using Uranus as the main
+%primary calibrator. Practically, at the stage of the FOV
+%reconstruction (see Sect.~\ref{se:geometry}), an absolute
+%coefficient factor per detectors is derived using a \bm\ scan of
+%Uranus. This step realizes also the inter-calibration of all the KID,
+%as the coefficient factors give the KID gains. Secondly, the flux
+%density absolute scale is further refined by monitoring the primary
+%calibrator all along the observation campaign to estimate an
+%absolute calibration correction.
+
+%We have evidenced a daily variation of the absolute calibration
+%coefficients as a function of the observation date, which is related
+%to temperature-induced variation of the beam size. If left uncorrected, this variation
+%induces a sizable increase of the calibration uncertainties. To
+%overcome this issue, we primarily flag the most impacted observation
+%dates and exclude the observations acquired during these periods. This
+%conservative approach constitutes the baseline calibration method,
+%which is further used for the performance assessment. For cross-check,
+%we also proposed an alternative method relying on a photometric
+%correction depending on the beam size. Both approaches require an
+%accurate monitoring of the beam size as a function of the observation
+%date.
+
+
+%First we describe the method for the absolute calibration in
+%Sect.~\ref{se:calibration_method}, then we present the
+%inter-calibration and the flat fields in
+%Sect.~\ref{se:flat_field}. The temperature-induced variation and the
+%beam size monitoring are then discussed in
+%Sect.~\ref{se:beam_variation}. Finally, the baseline calibration is
+%presented in Sect.~\ref{se:baseline_calibration} and the calibration
+%with a photometric correction in
+%Sect.~\ref{se:photometric_correction}.  
+
+
+
+%---------------------------------------------------------------------
+%	Method
+%---------------------------------------------------------------------
+
+%\subsection{Absolute calibration procedure and photometric system}
+%\label{se:calibration_method}
+
+%\subsubsection{Photometric system}
+%\label{se:photometric_system}
+
+%\subsubsection{Color correction}
+%
+
+%\subsubsection{Diffuse source}
+%\label{se:extended_source_calib}
+
+%\subsubsection{Practical calibration}
+%
+
+%---------------------------------------------------------------------
+%	INTERCALIBRATION
+%---------------------------------------------------------------------
+%\subsection{Relative calibration \& flat fields}
+%\label{se:flat_field}
+
+
+%---------------------------------------------------------------------
+%	TEMPERATURE-INDUCED VARIATION
+%---------------------------------------------------------------------
+%\subsection{Temperature-induced variations}
+%\label{se:beam_variation}
+
+%\subsubsection{Beam monitoring using bright source scans}
+%\label{se:beam_monitoring_otf}
+
+%\subsubsection{Beam monitoring using pointing}
+%\label{se:beam_monitoring_pointing}
+
+
+%---------------------------------------------------------------------
+%	BASELINE CALIBRATION
+%---------------------------------------------------------------------
+\subsection{Baseline calibration}
+\label{se:baseline_calibration}
+
+To assess NIKA2 performance, we rely on a baseline calibration that
+resorts to the following methods: i) the calibration in FWHM$_0$ Gaussian
+as detailed in Sect.~\ref{se:calibration_method} is implemented, ii)
+the temperature-induced variation effect is mitigated using the scan
+selection described in Sect.~\ref{se:data_selection} and iii) the
+atmospheric attenuation is corrected using the {\tt corrected skydip}
+opacity derivation described in Sect.~\ref{se:corrected-skydip}.
+
+In this section, we check the stability of Uranus flux density
+estimates againts the beam size in
+Sect.~\ref{se:baseline_calibration_scans} and againts the
+atmospheric transmission in
+Sect.~\ref{se:baseline_calibration_atm}. In
+Sect.~\ref{se:baseline_calibration_opacity}, we compare
+Uranus flux density estimates after absolute calibration using other
+opacity correction methods.
+
+\subsubsection{Flux stability against the beam size}
+\label{se:baseline_calibration_scans}
+We present Uranus measured-to-predicted flux density ratios as a
+function of the 2D Gaussian FWHM estimates and color-coded from the
+observation dates given in UT hours in
+Fig.~\ref{fig:calib_uranus_vs_fwhm_all}.
+
+\begin{figure}[!htbp]
+\begin{center}
+\includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.525\linewidth]{Figures/plot_flux_density_ratio_fwhm_uranus_corrected_skydip_narrow_1mm.pdf}
+\includegraphics[clip=true, trim={0.7cm, -0.3cm, -0.25cm, 0}, width=0.465\linewidth]{Figures/plot_flux_density_ratio_fwhm_uranus_corrected_skydip_narrow_a2.pdf}
+\caption[Uranus flux density stability against FWHM]{ Uranus flux
+density ratio vs beam size after the baseline calibration. The ratio
+of Uranus measured flux densities to expectations in function of the
+measured 2D Gaussian beam FWHM is shown for the $1$-mm array
+combination and for array 2 after absolute calibration using the
+baseline method. These plots include all Uranus scans acquired during
+N2R9, N2R12 and N2R14 campaigns and whose beam FWHM are below the threshold indicated
+by the vertical red lines (open circles), as well as the scans that
+met the baseline selection criteria (filled circles).}
+\label{fig:calib_uranus_vs_fwhm_all}
+\end{center}
+\end{figure}
+
+The flux density estimates have been calibrated beforehands, so that
+the flux density ratios are equal to unity in average by construction.
+The selected scan flux ratios (shown as full circles) are stable
+against the beam FWHM. The baseline scan selection of
+Sect.~\ref{se:data_selection} is thus efficient to mitigate the
+temperature-induced beam variation effect.
+
+
+\subsubsection{Flux stability against the atmospheric transmission}
+\label{se:baseline_calibration_atm}
+
+
+\subsubsection{Comparison with other opacity correction methods}
+\label{se:baseline_calibration_opacity}
+
+
+%---------------------------------------------------------------------
+%	PHOTOMETRIC CORRECTION
+%---------------------------------------------------------------------
+\subsection{Photometric correction}
+\label{se:photometric_correction}

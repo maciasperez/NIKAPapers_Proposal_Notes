@@ -4,13 +4,54 @@
 %\section{Calibration}
 %\label{se:calibration}
 
-We present the calibration of the NIKA2 instrument in this section.
+We present the calibration of the absolute scale of the flux densities
+for the NIKA2 instrument in this section using Uranus as the main
+primary calibrator. Practically, at the stage of the FOV
+reconstruction (see Sect.~\ref{se:geometry}), an absolute
+coefficient factor per detectors is derived using a \bm\ scan of
+Uranus. This step realizes also the inter-calibration of all the KID,
+as the coefficient factors give the KID gains. Secondly, the flux
+density absolute scale is further refined by monitoring the primary
+calibrator all along the observation campaign to estimate an
+absolute calibration correction.
 
+We have evidenced a daily variation of the absolute calibration
+coefficients as a function of the observation date, which is related
+to temperature-induced variation of the beam size. If left uncorrected, this variation
+induces a sizable increase of the calibration uncertainties. To
+overcome this issue, we primarily flag the most impacted observation
+dates and exclude the observations acquired during these periods. This
+conservative approach constitutes the baseline calibration method,
+which is further used for the performance assessment. For cross-check,
+we also proposed an alternative method relying on a photometric
+correction depending on the beam size. Both approaches require an
+accurate monitoring of the beam size as a function of the observation
+date.
+
+
+First we describe the method for the absolute calibration in
+Sect.~\ref{se:calibration_method}, then we present the
+inter-calibration and the flat fields in
+Sect.~\ref{se:flat_field}. The temperature-induced variation and the
+beam size monitoring are then discussed in
+Sect.~\ref{se:beam_variation}. Finally, the baseline calibration is
+presented in Sect.~\ref{se:baseline_calibration} and the calibration
+with a photometric correction in
+Sect.~\ref{se:photometric_correction}.  
+
+
+
+%---------------------------------------------------------------------
+%	Method
+%---------------------------------------------------------------------
 
 \subsection{Absolute calibration procedure and photometric system}
+\label{se:calibration_method}
 
 We detail here the procedure for the calibrating the absolute scale of
 the flux density and the chosen photometric system.
+
+\subsubsection{Photometric system}
 
 The main primary calibrators of NIKA2 are the giant planets Uranus and
 Neptune. The latter is used when the former is not visible in the most
@@ -73,6 +114,7 @@ S(\nu_{0})  = \frac{S_{\rm{c}}(\nu_{0})}{A_{\rm{c}}} \, A_{\rm{s}},
 \end{equation}
 where $A_{\rm{s}}$ is the amplitude estimate of a FWHM$_0$ Gaussian.
 
+\subsubsection{Color correction}
 
 The flux density estimate $S(\nu_{0})$ gives the
 flux of the source at the reference frequency only if the source has
@@ -120,3 +162,69 @@ Array  & \multicolumn{8}{c}{$\alpha_{\rm{s}}$} \\
 \end{tabular}
 \end{table*}
 
+
+\subsubsection{Diffuse source}
+For aperture photometry or for extended sources, the map calibrated in
+Jy/FWHM$_{0}$ must be converted in a map in Jy/sr, that is corrected
+with the reference beam efficiency, defined as the ratio of the solid
+angle enclosed in the reference fixed-width Gaussian beam and the
+solid angle of the total beam. The total solid angle estimates are
+presented in Sect.~\ref{se:beam_efficiency}. The reference beam efficiencies
+are given in Table~\ref{tab:reference_beam_efficiency}.
+
+
+\begin{table}[!thbp]
+  \caption[]{Reference beam efficiencies}
+  \label{tab:reference_beam_efficiency}
+  \centering    
+  \begin{tabular}{lrrrr}
+    \hline\hline
+    \noalign{\smallskip}
+    & Array 1 & Array 3  & Array 1\&3 & Array 2 \\
+    \noalign{\smallskip}
+    \hline
+    \noalign{\smallskip}
+    FWHM$_{0}$ [arcsec]          &  $12.5$   &  $12.5$  &   $12.5$  &   $18.5$  \\
+    B.E$_{0}$\tablefootmark{a}\hspace{3mm}  [\% ] & $70 \pm 4$ & $72 \pm 4$ & $70 \pm 4$ & $85 \pm 3$ \\
+    \hline
+  \end{tabular}
+  \tablefoot{ \\
+    \tablefoottext{a}{Reference Beam Efficiency, estimated as the ratio between the reference FWHM beam power and the total beam power up to a radius of 180 arcsec} 
+  }
+\end{table}
+
+
+\subsubsection{Practical calibration}
+
+
+
+%---------------------------------------------------------------------
+%	INTERCALIBRATION
+%---------------------------------------------------------------------
+\subsection{Relative calibration \& flat fields}
+\label{se:flat_field}
+
+
+
+
+%---------------------------------------------------------------------
+%	TEMPERATURE-INDUCED VARIATION
+%---------------------------------------------------------------------
+\subsection{Temperature-induced variation}
+\label{se:beam_variation}
+
+
+
+%---------------------------------------------------------------------
+%	BASELINE CALIBRATION
+%---------------------------------------------------------------------
+\subsection{Baseline calibration}
+\label{se:baseline_calibration}
+
+
+
+%---------------------------------------------------------------------
+%	PHOTOMETRIC CORRECTION
+%---------------------------------------------------------------------
+\subsection{Photometric correction}
+\label{se:photometric_correction}

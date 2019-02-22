@@ -221,3 +221,223 @@ perform robustness tests as in Sect.~\ref{se:photometry}.
 %---------------------------------------------------------------------
 \subsection{Photometric correction}
 \label{se:photometric_correction}
+
+The baseline calibration (Sect.~\ref{se:baseline_calibration}) relies
+on the scan selection, as defined in Sect.~\ref{se:data_selection}, to
+mitigate the \afternoon\ beam size variations, which is discussed in
+Sect.~\ref{se:beam_variation}. By contrast, in this section, we
+address the issue of calibrating even during the observing periods
+impacted by the \afternoon\ beam variation effect. We discuss an
+alternative calibration method that
+relies on a photometric correction depending on the beam size. The
+objective is both to cross-check the baseline calibration results
+using more observation scans and to anticipate on future developments
+that could be deployed if an accurate beam monitoring is performed.
+
+
+\subsubsection{Photometric correction method}
+\label{se:photometric_correction_method}
+
+When the beam size broadens due to e.g. \afternoon\ beam effect, the
+flux density is smeared in a larger solid angle and
+the flux density estimator, which is based on the amplitude fit of a
+Gaussian beam of fixed FWHM (see
+Sect.~\ref{se:photometric_system}) is biased toward low flux
+densities.
+
+Considering only the main beam broadening, modeled as a Gaussian of
+size $FWHM' = 2 \sqrt{2\ln{2}} \, \sigma '$, we show in
+Sect.~\ref{se:photometric_correction} that
+the flux density estimator depends on the size of the convolution
+function between the enlarged $\sigma '$-Gaussian, which can be
+monitored as in Sect.~\ref{se:beam_variation}, and the 
+$\sigma_0$ fixed-width Gaussian of our reference system.
+
+An unbiaised
+flux density $\hat{S}_{\rm{pc}}$ can be derived from the flux density
+estimate $\hat{S}$ as
+\begin{equation}
+  \hat{S}_{\rm{pc}} = f(\sigma')\hat{S},
+\end{equation}
+where $f(\sigma')$ is a photometric correction of the beam variation
+effect. Within the Gaussian model, it reads:
+\begin{equation}
+  f(\sigma') = \frac{(\sigma'^2 + \sigma_0^2)}{\sigma_{\star}^2 + \sigma_0^2}. 
+\end{equation} 
+
+The beam size in stable observing condition $\sigma_\star$ is
+determined by measuring the 2D Gaussian beam on the series of scans of
+source with various flux density, which has been used for the beam
+characterization in Sect.~\ref{se:mainbeam}. However, the side lobes
+and first error beams are not masked for the beam size
+monitoring. The $\sigma_\star$ estimates are slightly
+larger for sources bright enough for the side lobes to be well above
+the noise level. An empirical model for the induced correlation of
+$\sigma_\star$ with the source flux density is given in
+Sect.~\ref{se:photometric_correction}.
+
+The photometric correction thus relies on the measure of the current beam
+size $\sigma'$. The induced uncertainties on the flux density
+measurements depends on the precision of which we are able to monitor
+the beam size. We perform two case studies, which correspond to the
+two beam monitoring methods discussed in
+Sect.~\ref{se:beam_variation}.\\
+%\new{the paragraph titled ``Demonstration case''} presents a demonstration
+%calibration assuming the beam is precisely monitored, whereas
+%the ``Practical case using pointing scans'' paragraph addresses a practical calibration relying
+%on a beam monitoring using pointing scans. 
+
+\noindent \emph{Demonstration case:} This method, shortened as 'demo'
+hereafter, uses a photometric correction based on the beam monitoring
+with bright source scans. Both the 2D Gaussian FWHM fit and the
+fixed-FWHM Gaussian photometry are performed on the map of the
+source. This method thus applies only on point-like
+sources that are bright enough for an accurate fit of the beam to be
+obtained using a single scan.
+
+To capture only the beam size variations driven by the
+observing conditions (primary mirror deformations, anomalous
+refraction, elevation), a small correction $\delta_{\rm{geom}}$ has to be made to
+the 2D Gaussian beam FWHM estimate for bright sources. The estimate of the
+actual Gaussian size $\sigma '$ is
+\begin{equation}
+  \hat{\sigma '} = \sigma_{\rm{geom}} - \frac{\delta_{\rm{geom}}}{2\sqrt{2 \ln{2}}}, 
+\end{equation} 
+where the offset $\delta_{\rm{geom}}$ is null for faint or moderately
+bright point sources, and non-zero for bright sources.
+As for $\sigma_\star$,  the 2D Gaussian fit yields slightly broaden
+$\sigma_{\rm{geom}}$ for bright sources (e.g. planets) to accomodate
+for the side lobes, which are measured with high signal-to-noise.
+For Uranus, $\delta_{\rm{geom}}$ includes also the beam widening due
+to Uranus disc, which is seen with a diameter of about $3.5''$ at the
+IRAM 30-m telescope latitude. We measure Uranus $\delta_{\rm{geom}}$
+by comparing the average $\sigma_{\rm{geom}}$ estimates using Uranus
+scans and using MWC349 scans, we found $\delta_{\rm{geom}} = 0.4''$ at
+1-mm and $\delta_{\rm{geom}} = 0.25''$ at 2-mm, which basically
+distributes as one half being due to Uranus finite extension and the
+other half stemming from the side lobes.\\
+
+\noindent \emph{Practical case using pointing scans:} This method,
+shortened as 'pointing' hereafter, performs a photometric correction
+based on the beam monitoring with pointing scans. Unlike the 'demo'
+method, this method is thus usable even for sources fainter than about
+one Jy. The actual Gaussian beam size $\sigma '$ is estimated using
+\begin{equation}
+  \hat{\sigma '} = \sigma_{\rm{p}} - \frac{\delta_{\rm{p}}}{2\sqrt{2 \ln{2}}}, 
+\end{equation} 
+where $\sigma_{\rm{p}}$ is the beam size estimate interpolated from
+the pointing-based beam monitoring and the offset $\delta_{\rm{p}}$
+only accounts for the source finite extension. It is null for
+point-like sources and equals to $0.2''$ at $1\,\rm{mm}$ and $0.13''$
+at $2\,\rm{mm}$ for pointing scan of Uranus. No other contribution
+enters $\delta_{\rm{p}}$ since pointing scan maps have a low signal-to-noise
+ratio that prevents the geometrical FWHM from being sizably affected by the
+side lobes.
+
+
+\subsubsection{Absolute calibration with a photometric correction}
+
+We perform the absolute calibration by i) implementing the practical
+method described in Sect.~\ref{se:practical_calib}, ii) correcting the
+atmospheric attenuation using the {\tt corrected skydip} opacity
+estimates, and iii) using the photometric correction of
+Sect.~\ref{se:photometric_correction_method}.
+
+Using the photometric correction alleviates the need of
+performing a scan selection based on the observation date. However,
+the scans from which the absolute calibration is derived, are selected
+on the FWHM estimate using the same criteria as for the baseline
+calibration, that are FWHM thresholds of $12.5''$ at 1mm and $18''$ at
+2mm.  Thus, only the scans that are moderately affected by the beam
+effect are included in the absolute calibration in order not to
+include twice the photometric correction uncertainties in the error
+budget (once for the absolute calibration and once for the photometry).
+
+Figure~\ref{fig:calib_uranus_vs_fwhm_photocorr} presents Uranus
+measured-to-predicted flux density ratio as a function of the beam FWHM
+after the photometric correction with the 'demo' and 'pointing'
+methods.The flux density is stable against the beam FWHM within rms
+errors for both wavelengths. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%    Flux ratio vs FWHM
+\begin{figure}[!htbp]
+  \begin{center}
+    % corr. sky. photocorr demo
+    \begin{overpic}[clip=true, trim={0, -0.3cm, -0.3cm, 0},width=0.525\linewidth]{Figures/plot_flux_density_ratio_fwhm_uranus_corrected_skydip_photocorr_demo_narrow_1mm.pdf}
+       \put(18,25){\footnotesize Photocorr Demo}
+    \end{overpic}
+    \includegraphics[clip=true, trim={0.7cm, -0.3cm, -0.25cm, 0}, width=0.465\linewidth]{Figures/plot_flux_density_ratio_fwhm_uranus_corrected_skydip_photocorr_demo_narrow_a2.pdf}
+    % corr. sky. photocorr pointing
+    \begin{overpic}[clip=true, trim={0, -0.3cm, -0.3cm, 0},width=0.525\linewidth]{Figures/plot_flux_density_ratio_fwhm_uranus_corrected_skydip_photocorr_pointing_narrow_1mm.pdf}
+      \put(18,25){\footnotesize Photocorr Pointing}
+    \end{overpic}
+    \includegraphics[clip=true, trim={0.7cm, -0.3cm, -0.25cm, 0}, width=0.465\linewidth]{Figures/plot_flux_density_ratio_fwhm_uranus_corrected_skydip_photocorr_pointing_narrow_a2.pdf}
+    \vspace{-0.5cm}
+    \caption[Uranus flux density stability against FWHM]{
+      \small{Uranus flux density ratio vs beam size for calibration
+  with photometric correction. The ratio of 
+      Uranus measured flux densities to expectations as a function of the
+      measured 2D Gaussian beam FWHM is shown for the $1$-mm array
+      combination (left column) and for array 2 (right column) after absolute
+      calibration using (\emph{first row}:) the 'demo' and (\emph{second
+        row}:) the 'pointing' photometric corrections. These plots
+      include all Uranus scans acquired during N2R9, N2R12 and N2R14
+      campaigns and whose beam FWHM are below the threshold indicated
+      by the vertical red lines, (open circles), as
+      well as the scans that met the baseline selection criteria (filled
+      circles).}}
+\label{fig:calib_uranus_vs_fwhm_photocorr}
+\end{center}
+\end{figure}
+
+% ALL METHOD RESULTS 
+\begin{table}[!htbp]
+\caption[Comparison of calibration results using five methods]{Comparison of absolute calibration results using five methods}
+\label{tab:Abs_calibration_results_all}
+\centering
+\begin{tabular}{clrrrrr}
+  \hline\hline
+  \noalign{\smallskip}
+%  \multicolumn{2}{c}{}  &  \multicolumn{5}{|c|}{Methods} \\\cline{3-7}
+  \multicolumn{2}{c}{}  &  baseline  & TM\tablefootmark{a}  &  SD\tablefootmark{b} & PC-d\tablefootmark{c} & PC-p\tablefootmark{d}  \\
+  \noalign{\smallskip}
+  \hline\hline
+   \multicolumn{2}{c}{$\#$ used scans} & 26    &       26  &    26    &    38           &    38 \\ 
+  \hline
+  \noalign{\smallskip}
+%  Factor &  A1          &   1.00  &  0.97   &  1.13    &   1.01    &   1.02  \\
+%         &  A3            &   1.00  &  0.97   &  1.02    &   1.01    &   1.00  \\
+   Factor &  1mm           &   1.00  &  0.95   &  1.06    &   1.01    &   1.01  \\
+          &  2mm           &   1.00  &  0.94   &  0.99    &   1.01    &   1.01  \\
+  \hline
+  \noalign{\smallskip}
+%  RMS  &  A1            &  3.2    &   4.2   &   3.4    &    3.5    &   3.0 \\
+%  $[\%]$     &  A3      &  3.6    &   4.3   &   3.3    &    3.5    &   3.0 \\
+   RMS    &  1mm           &  3.3    &   4.5   &   3.3    &    3.1    &   2.6 \\
+   $[\%]$ &  2mm           &  1.6    &   2.6   &   1.5    &    1.5    &   1.5 \\
+\hline
+\end{tabular}
+\tablefoot{ \\
+    \tablefoottext{a}{Taumeter}
+    \tablefoottext{b}{Skydip}
+    \tablefoottext{c}{Demo photometric correction}
+    \tablefoottext{d}{Pointing photometric correction}
+    }
+\end{table}
+
+ We further quantify the
+difference between all the calibration methods that have been tested
+in evalutating i) the average absolute calibration factor
+with respect to the baseline calibration factor and
+ii) the rms dispersion of the measured-to-modeled flux ratio. These
+quantities are gathered in Table~\ref{tab:Abs_calibration_results_all}
+in the rows labeled 'Factor' and 'RMS' respectively. 
+
+We find that, resorting to a photometric correction i) allows us to use $45\%$ more
+scans for the absolute calibration, ii) has a negligeable impact on
+the absolute calibration factor and iii) yields a small reduction of
+the flux density ratio dispersion. For the absolute calibration, the
+'pointing' photometric correction performs as well as the 'demo' case.
+Photometry capability and stability when using a photometric
+correction will be further tested in Sect.~\ref{se:photometry}. 

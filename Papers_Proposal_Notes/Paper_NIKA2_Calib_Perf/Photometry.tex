@@ -1,0 +1,237 @@
+%----------------------------------------------------------------------------------------
+%	9./ Photometry&Stability
+%----------------------------------------------------------------------------------------
+%\section{Photometry \& Stability Assessment}
+%\label{se:photometry}
+%\input{Photometry.tex}
+
+NIKA2 photometric capabilities after the calibration presented in
+Sect.~\ref{se:calibration}, are assessed in this section. Firstly,
+we use observation of secondary calibrators (planetary nebulae NGC7027, CRL2688, and
+MWC349A) to test the consistency of the flux density estimates with
+expectations. The flux density expectations
+in NIKA2 bands for these calibrators are given in
+Sect.~\ref{se:ref_flux_secondaries}. Then,
+we verify the stability of the photometry with
+respect to the atmospheric conditions using a large amount of
+observations toward a large variety of sources. 
+
+The quality criteria used to assess the photometric
+capabilities and calibration results are defined in
+Sect.~\ref{se:photometry_criteria}.
+In Sect.~\ref{se:photometry_baseline}, these criteria are evaluated
+for the baseline calibration, and in Sect.~\ref{se:photometry_others},
+we compare these results with other calibration method results. 
+
+
+%---------------------------------------------------------------------
+%	Criteria
+%---------------------------------------------------------------------
+\subsection{Photometry quality assessment criteria}
+\label{se:photometry_criteria}
+
+We assess the photometric performance by evaluating two
+quality criteria: first, the calibration bias checks the accuracy of
+the absolute calibration and then the calibration relative
+uncertainties test the stability of the flux densities. \\
+
+\noindent \emph{Calibration bias: }We define the calibration bias
+$b_{\nu}$ per array or array combination as
+the ratio between the measured flux density $\hat{S}_{\nu}$ using the
+fixed-width Gaussian beam photometry
+(Sect.~\ref{se:photometric_system}) and the flux density
+expectations $S^{0}_{\nu}$ as given in
+Sect.~\ref{se:ref_flux_secondaries}. From a series of
+secondary calibrator scans, we evaluate the average calibration bias
+$b_{\nu}$, which by construction, should be equal to
+unity within the precision with which the expected flux densities are
+known. Moreover, the calibration bias stability against the observed
+opacity provides us with a robustness test of the opacity correction,
+and the stability againts the measured beam size, a test of the
+photometric susceptibility to optical variations.\\
+
+\noindent \emph{Calibration uncertainties: }We evaluate the standard
+deviation of the bright source measured-to-median flux density ratio
+$\sigma_{\nu}$, where $\nu$ stands for Array 1, 2, 3 and the
+$1\,\rm{mm}$ array combination. This quantity constitutes an estimate
+of the statistical calibration uncertainties that encloses errors of
+optical, atmospheric, noise and data processing origins.
+Added in quadrature with the model uncertainties on the primary
+calibrator flux density expectations reported
+in~\cite{Morenothesis},~\cite{bendo2013}, %and with the bandpass
+%uncertainties,
+it represents a conservative estimate of the total absolute
+calibration errors.
+
+As the flux density of most of the considered sources is unknown a priori, we
+compare the flux density estimate in a single observation scan to the
+average flux density thorough an observation campaign. This method
+requires the selection of sources that are bright enought to be detected with a high
+signal-to-noise ratio with a single repetition of an usual
+$8'\times 5'$ OTF raster scan. Namely, we perform a source
+selection by thresholding the flux estimate to $800~\rm{mJy}$ at
+$1~\rm{mm}$ and $400~\rm{mJy}$ at $2~\rm{mm}$. Moreover, we consider
+only the sources for which a minimum of $10$ scans are available after
+selection to ensure a precise average flux density
+estimation. Finally, the selected source scans must meet the baseline
+selection criteria given in Sect.~\ref{se:data_selection}.
+
+
+%---------------------------------------------------------------------
+%	Baseline results
+%---------------------------------------------------------------------
+\subsection{Baseline calibration photometry results}
+\label{se:photometry_baseline}
+
+%  BASELINE RESULTS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{table}[!thbp]
+  \begin{center}
+    \caption[Baseline calibration results]{Baseline calibration results:
+  photometry accuracy and uncertainties. The first row gives the
+  calibration bias $b_{\nu}$ and the second row the calibration
+  rms error $\sigma_{\nu}$, as defined in
+  Sect.~\ref{se:photometry_criteria},
+  using observations during N2R9, N2R12, N2R14 and the combination of
+  the three campaigns.}
+\label{tab:baseline-photometry}
+\begin{tabular}{clrrrr}
+  \hline\hline
+  \noalign{\smallskip}
+ % \multicolumn{2}{c}{}  &  \multicolumn{4}{|c}{Datasets}  \\\cline{3-6}
+  \multicolumn{2}{c}{Characteristics} &  N2R9  & N2R12   &  N2R14 & Combined \\
+  \noalign{\smallskip}
+  \hline
+  \noalign{\smallskip}
+%  Bias &  $\#$ total    &  68    &  14     &   27     &    109    \\
+%       &  $\#$ selected &  64    &   1     &   7      &     72    \\
+%       &  A1            &  0.99  &  1.06   &   0.98   &   0.98    \\
+%       &  A3            &  1.01  &  1.08   &   1.04   &   1.00    \\
+%       &  1mm           &  1.00  &  1.07   &   1.01   &   0.99    \\
+%       &  2mm           &  0.95  &  0.96   &   0.94   &   0.95    \\
+%  \hline
+%  \multicolumn{6}{|l|}{using color corrections as of Table A.1}  \\
+%  \hline
+  Bias &  $\#$ total    &  68    &  14     &   27     &    109    \\
+       &  $\#$ selected &  64    &   1     &   7      &     72    \\
+       &  A1            &  0.95  &  1.03   &   0.94   &   0.95    \\
+       &  A3            &  0.99  &  1.07   &   1.00   &   1.00    \\
+       &  1mm           &  0.97  &  1.05   &   0.97   &   0.98    \\
+       &  2mm           &  0.95  &  0.95   &   0.93   &   0.95    \\
+  \hline
+  \noalign{\smallskip}
+  Rms  &  $\#$ total    &  303   &  72     &   112    &    487   \\
+  $[\%]$ &  $\#$ selected &  219   &  33     &    12    &    264   \\
+       &  A1            &  5.7   &  4.6    &   2.9    &    5.5   \\
+       &  A3            &  6.2   &  5.7    &   2.4    &    6.0   \\
+       &  1mm           &  5.9   &  5.0    &   2.5    &    5.7   \\
+       &  2mm           &  3.2   &  2.1    &   1.1    &    3.0   \\  
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+%
+\begin{figure}[!thbp]
+  \begin{center}
+    \includegraphics[clip=true, trim={0.9cm, 0.2cm, 0, 0.7cm},width=0.532\linewidth]{Figures/plot_flux_density_ratio_obstau_allbright_obsdate_corrected_skydip_narrow_1mm.pdf}
+    \includegraphics[clip=true, trim={1.8cm, 0.2cm, 0.5cm, 0.7cm},width=0.457\linewidth]{Figures/plot_flux_density_ratio_obstau_allbright_obsdate_corrected_skydip_narrow_a2.pdf}
+    \caption[Baseline calibration rms error estimate]{Baseline
+      calibration uncertainties. The
+      measured-to-median flux density ratio of bright sources is
+      plotted as a function of the atmospheric transmission and color-coded from the UT
+      observation time of the scans for the combination of A1$\&$A3
+      and for A2. 
+      The dashed lines from either sides of the
+      unity-ratio line
+      show the $1\sigma$ (inner lines) and $3\sigma$ (outer lines) errors.
+      Lower flux ratio datapoints correspond to
+      scans acquired after 8:00 UT hours.
+    }
+    \label{fig:allbright_rms_corrected_skydip}
+  \end{center}
+\end{figure}
+
+
+
+
+%---------------------------------------------------------------------
+%	Comparaison
+%---------------------------------------------------------------------
+\subsection{Comparison with other calibration methods}
+\label{se:photometry_others}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                              bias
+\begin{figure}[!thbp]
+  \begin{center}
+    \begin{overpic}[clip=true, trim={0.9cm, 0.2cm, 0, 0.6cm},width=0.532\linewidth]{Figures/plot_flux_density_ratio_MWC349_obstau_corrected_skydip_narrow_1mm.pdf}
+      \put(20,60){\footnotesize Baseline}
+    \end{overpic}
+    \includegraphics[clip=true, trim={1.8cm, 0.2cm, 0.5cm, 0.7cm},width=0.457\linewidth]{Figures/plot_flux_density_ratio_MWC349_obstau_corrected_skydip_narrow_a2.pdf}
+    \begin{overpic}[clip=true, trim={0.9cm, 0.2cm, 0, 0.6cm},width=0.532\linewidth]{Figures/plot_flux_density_ratio_MWC349_obstau_tau225_narrow_1mm.pdf}
+      \put(20,60){\footnotesize Taumeter}
+    \end{overpic}
+    \includegraphics[clip=true, trim={1.8cm, 0.2cm, 0.5cm, 0.7cm},width=0.457\linewidth]{Figures/plot_flux_density_ratio_MWC349_obstau_tau225_narrow_a2.pdf}
+    \begin{overpic}[clip=true, trim={0.9cm, 0.2cm, 0, 0.6cm},width=0.532\linewidth]{Figures/plot_flux_density_ratio_MWC349_obstau_skydip_narrow_1mm.pdf}
+      \put(20,60){\footnotesize Skydip}
+    \end{overpic}
+    \includegraphics[clip=true, trim={1.8cm, 0.2cm, 0.5cm, 0.7cm},width=0.457\linewidth]{Figures/plot_flux_density_ratio_MWC349_obstau_skydip_narrow_a2.pdf}
+    \begin{overpic}[clip=true, trim={0.9cm, 0.2cm, 0, 0.6cm},width=0.532\linewidth]{Figures/plot_flux_density_ratio_MWC349_obstau_corrected_skydip_photocorr_demo_narrow_1mm.pdf}
+      \put(20,60){\footnotesize Photocorr Demo}
+    \end{overpic}
+    \includegraphics[clip=true, trim={1.8cm, 0.2cm, 0.5cm, 0.7cm},width=0.457\linewidth]{Figures/plot_flux_density_ratio_MWC349_obstau_corrected_skydip_photocorr_demo_narrow_a2.pdf}
+    \begin{overpic}[clip=true, trim={0.9cm, 0.4cm, 0, 0.6cm},width=0.532\linewidth]{Figures/plot_flux_density_ratio_MWC349_obstau_corrected_skydip_photocorr_pointing_narrow_1mm.pdf}
+      \put(20,60){\footnotesize Photocorr Pointing}
+    \end{overpic}
+    \includegraphics[clip=true, trim={1.8cm, 0.4cm, 0.5cm, 0.7cm},width=0.457\linewidth]{Figures/plot_flux_density_ratio_MWC349_obstau_corrected_skydip_photocorr_pointing_narrow_a2.pdf}
+    \vspace{-0.3cm}
+    \caption[Calibration bias comparison]{Comparison of the
+        calibration bias for five calibration methods using
+          observations of MWC349.
+       The measured-to-expected flux density ratio is shown as a
+      function of the atmospheric transmission for the baseline method
+      (first row) as well as for methods using the 'taumeter' (second
+      row) and 'skydip' (third) opacity correction, and for methods
+      resorting to the 'demo' (fourth) and 'pointing' (fifth)
+      photometric correction. Dashed lines
+      show the flux density ratio $1 \sigma $ dispersion.}
+    \label{fig:mwc349_obstau_others}
+  \end{center}
+\end{figure}
+
+
+% ALL METHOD RESULTS 
+\begin{table*}[!thbp]
+\begin{center}
+\begin{tabular}{|c|l|c|c|c|c|c|}
+  \hline
+  \multicolumn{2}{|c|}{}  &  \multicolumn{5}{|c|}{Methods} \\\cline{3-7}
+  \multicolumn{2}{|c|}{Characteristics} &  baseline  & taumeter  &  skydip  &  photocorr demo & photocorr pointing \\
+  \hline\hline
+  %Bias &  $\#$ total    &   109   &   109    &   109    &    109    &  109   \\
+  %     &  $\#$ selected &    72   &   72     &    72    &     96    &   95   \\
+  %     &  A1            &   0.98  &  1.01    &  0.99    &   0.98    &  1.00  \\
+  %     &  A3            &   1.00  &  1.04    &  1.01    &   1.01    &  1.02  \\
+  %     &  1mm           &   1.00  &  1.03    &  1.00    &   1.00    &  1.01  \\
+  %     &  2mm           &   0.95  &  0.96    &  0.95    &   0.95    &  0.95  \\
+  %\hline
+  %\multicolumn{7}{|l|}{Using color corrections as of Table A.1} \\
+  %\hline
+  Bias &  A1            &   0.95   &  0.98    &  0.97    &   0.95    &  0.97  \\
+       &  A3            &   1.00   &  1.02    &  1.02    &   0.99    &  1.00  \\
+       &  1mm           &   0.98   &  1.01    &  1.00    &   0.97    &  0.99  \\
+       &  2mm           &   0.95   &  0.95    &  0.95    &   0.95    &  0.95  \\
+  \hline
+  Rms  &  $\#$ total    &   487    &    487   &    487    &    396    &  396 \\
+  $[\%]$ &  $\#$ selected &   264    &    264   &    264    &    291    &  283 \\
+       &  A1            &   5.5    &    7.5   &    7.3    &    4.0    &  4.9 \\
+       &  A3            &   6.0    &    8.1   &    7.1    &    4.1    &  5.2 \\
+       &  1mm           &   5.7    &    7.9   &    7.1    &    3.8    &  4.9 \\
+       &  2mm           &   3.0    &    3.8   &    3.0    &    2.2    &  2.4 \\
+\hline\hline
+\end{tabular}
+\caption[Comparison of calibration results using five methods]{Comparison of calibration results using five methods}
+\label{tab:Calibration_results_all}
+\end{center}
+\end{table*}

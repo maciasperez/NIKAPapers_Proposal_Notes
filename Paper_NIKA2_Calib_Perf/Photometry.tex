@@ -58,7 +58,7 @@ of the statistical calibration uncertainties that encloses errors of
 optical, atmospheric, noise and data processing origins.
 Added in quadrature with the model uncertainties on the primary
 calibrator flux density expectations reported
-in~\cite{Morenothesis},~\cite{bendo2013}, %and with the bandpass
+in~\citet{Morenothesis,Bendo2013}, %and with the bandpass
 %uncertainties,
 it represents a conservative estimate of the total absolute
 calibration errors.
@@ -82,6 +82,11 @@ selection criteria given in Sect.~\ref{se:data_selection}.
 %---------------------------------------------------------------------
 \subsection{Baseline calibration photometry results}
 \label{se:photometry_baseline}
+
+We test the calibration bias and statistical uncertainties, as defined
+in the previous section (Sect.~\ref{se:photometry_criteria}) using the
+baseline calibration method, which is described in
+Sect.~\ref{se:baseline_calibration}.
 
 %  BASELINE RESULTS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -131,6 +136,78 @@ selection criteria given in Sect.~\ref{se:data_selection}.
 \end{center}
 \end{table}
 
+The calibration bias is evaluated using a
+series of scans of MWC349 acquired during the N2R9, N2R12 and N2R14
+campaigns. Namely, we use the 72 scans that met the baseline selection
+criteria (see Sect.~\ref{se:data_selection}) over the 109 available
+scans for MWC349. The first row of
+Fig.~\ref{fig:mwc349_obstau_others}, labelled 'baseline', shows the
+calibration bias $b_{\nu}$ for the combination of the $1~\rm{mm}$ arrays and
+Array 2 as a function of the atmospheric transmission, which is
+evaluated with the zenith opacity $\tau$ and the airmass $x$ as
+$\exp \left( - \tau \cdot x \right)$. No sizable dependency of the
+calibration bias with the atmospheric transmission is seen. 
+
+Table~\ref{tab:baseline-photometry} gathers the calibration bias
+estimates for the three observation campaigns and for all the scans.
+In the $1~\rm{mm}$ band, we find
+$b_\nu$ in agreement with unity within the statistical dispersion for
+the three campaigns,
+whereas a $5\%$ lack of flux with respect to expectations is observed
+at $2~\rm{mm}$, consistently for the three campaigns. This bias has a
+low significance with respect to the absolute calibration precision of
+both NIKA2 and PdBI, which depend on the precicision with which the
+primary calibrator flux densities are known. For Uranus, the model
+uncertainties are of about $5\%$, as reported
+in~\citet{Morenothesis,Bendo2013}. This will be further investigated
+by using other calibration methods in Sect.~\ref{se:photometry_others}.
+
+%The baseline calibration relative uncertaintes, as defined in
+%Sect.~\ref{se:photometry_criteria}, are evaluated using bright
+%sources. From a total of 487 scans
+%flux-selected sources acquired during N2R9, N2R12 and N2R14, 264 met
+%the baseline selection criteria and are used for testing stability.
+Figure~\ref{fig:allbright_rms_corrected_skydip} shows the
+measured-to-median flux densities evaluated from bright source scans
+for the combination of Array $1\&3$ and Array 2 as a function of the
+atmospheric transmission and color-coded as a function of the
+observation date. From a total of 487 scans
+flux-selected sources acquired during N2R9, N2R12 and N2R14, 264 met
+the baseline selection criteria and are included in
+Fig.~\ref{fig:allbright_rms_corrected_skydip} for testing the
+calibration stability. The statistical calibration uncertainties are
+estimated using the standard deviation of the flux density ratios for
+the three campaigns. Results are gathered in
+Table~\ref{tab:baseline-photometry}.
+Combining all the scans, we find uncertainties of $5.5\%$ for A1,
+$6.1\%$ for A3, $5.7\%$ for the $1~\rm{mm}$ band and $2.9\%$ for A2.
+These $1~\sigma$ statistical errors are shown the dashed lines from
+either sides of the unity lines in
+Fig.~\ref{fig:allbright_rms_corrected_skydip}.
+
+
+No sizable dependency of the flux density ratio is seen within the
+wide range of atmospheric transmission that have been tested, which goes
+from 0.5 to 0.9 at $1\,\rm{mm}$: the flux density ratio is constant
+within the $1~\sigma$ errors. However, some scans at atmospheric
+transmissions of about 0.7 at $1\,\rm{mm}$ show a mild lack
+of flux density with respect to the median at a significance below
+$3\sigma$. The scans affected by the lack of flux have all been observed 
+either between 12:00 and 14:00 UT or between 8:00 and 9:00 UT hours,
+that are close to the observation date cut thresholds of the baseline
+selection (see Sect.~\ref{se:data_selection}). These scans are likely
+to be impacted by the \afternoon\ beam broadening or by the
+sunrise focus drift respectively. Furthermore, we find that restricting the
+used observation dates to the 10 more stable hours (from $22:00$ to
+$08:00$ UT) would result in relative calibration uncertainties of
+$3.6\%$ at $1~\rm{mm}$ and $1.2\%$ at $2~\rm{mm}$, which constitute an
+improvement of about $60\%$ at $1~\rm{mm}$ and $40\%$ at
+$2~\rm{mm}$ of the calibration uncertainties.  
+The baseline selection, which i) retains 16 hours of observation time
+a day and ii) results in calibration uncertainties that meet the
+requirement for a millimetric ground-based instrument, constitutes an
+advantageous tradeoff.  
+
 %
 \begin{figure}[!thbp]
   \begin{center}
@@ -144,9 +221,10 @@ selection criteria given in Sect.~\ref{se:data_selection}.
       and for A2. 
       The dashed lines from either sides of the
       unity-ratio line
-      show the $1\sigma$ (inner lines) and $3\sigma$ (outer lines) errors.
-      Lower flux ratio datapoints correspond to
-      scans acquired after 8:00 UT hours.
+      show the $1\sigma$ % (inner lines) and $3\sigma$ (outer lines)
+      errors.
+      The lowest flux ratio datapoints correspond to some of the
+      scans acquired during daytime after 8:00 UT hours.
     }
     \label{fig:allbright_rms_corrected_skydip}
   \end{center}
@@ -160,6 +238,15 @@ selection criteria given in Sect.~\ref{se:data_selection}.
 %---------------------------------------------------------------------
 \subsection{Comparison with other calibration methods}
 \label{se:photometry_others}
+
+The baseline calibration results are compared to
+results drawn using other calibration methods that either resort to different
+opacity correction, that are {\tt taumeter} and {\tt skydip} methods
+discussed in Sect.~\ref{se:baseline_calibration_opacity}, or include a photometric correction to correct for
+the beam impact, that are {\tt demo} and {\tt pointing}, as described
+in Sect.~\ref{se:photometric_correction}. For robustness test, we
+evaluate and compare the photometry quality critera of
+Sect.~\ref{se:photometry_criteria} for the five calibration methods.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                              bias
@@ -200,9 +287,16 @@ selection criteria given in Sect.~\ref{se:data_selection}.
   \end{center}
 \end{figure}
 
+\subsubsection{Calibration bias}
+\label{se:calibration_bias_all}
+
+We present the calibration bias as a function of the atmospheric
+transmission for the five calibration methods in
+Fig.~\ref{fig:mwc349_obstau_others} and report the results in the row
+labelled 'Bias' of Table~\ref{tab:Calibration_results_all}.
 
 % ALL METHOD RESULTS 
-\begin{table*}[!thbp]
+\begin{table*}[!htbp]
 \begin{center}
 \begin{tabular}{|c|l|c|c|c|c|c|}
   \hline
@@ -235,3 +329,85 @@ selection criteria given in Sect.~\ref{se:data_selection}.
 \label{tab:Calibration_results_all}
 \end{center}
 \end{table*}
+
+At $1~\rm{mm}$, all methods lead to flux density estimates in
+agreement with expectations within the rms dispersion. However,
+{\tt taumeter} ratios have more dispersion than the baseline method
+ratios whereas {\tt skydip} shows some dependency on the atmospheric
+transmission, with a 10 to $15\%$ excess of the flux density with
+respect to expectations at high transmission. Indeed, this residual
+systematic effect has motivated the development of the {\tt corrected
+  skydip} method, as discussed in
+Sect.~\ref{se:corrected-skydip}. These features, which are
+already noticeable from Fig.~\ref{fig:mwc349_obstau_others}, will be
+confirmed and further discussed below using more scans. On an other hand,
+the calibration methods based on photometric correction yield an
+unbiased photometry (calibration bias in agreement with the unity
+within the rms error) while using $30\%$ more scans. These results are
+encouraging for the exploitation of scans acquired in difficult
+observing condition.
+
+At $2~\rm{mm}$, all methods result in a similar calibration bias
+of $0.95 \pm 0.05$. We also obtained the same $2\rm{mm}$-calibration
+biases for each observation campaign (see
+Table~\ref{tab:baseline-photometry}). To summarize, the
+$2\rm{mm}$-calibration bias is stable against i) a large range of
+atmospheric conditions, ii) the observation campaign, iii) the
+opacity correction method, iv) the method to treat the
+temperature-induced beam variation effect. An explanation for the
+$5\%$ lack of flux density toward
+MWC349 is probably to be seeked on the side of the flux density
+expectations for this source. Uncertainties on the
+derivation of the flux density expectation comes in two flavours:
+firstly, the accuracy of the SED fitted from PdBI and VLA observations
+(see Sect.~\ref{se:ref_flux_secondaries})
+depends on these instruments absolute flux density calibration, which
+is at least greater than the $5\%$ primary calibrator model accuracy, 
+and secondly, the NIKA2 flux density extrapolation from
+interferometer data may be not straightforward for MWC349 (e.g. due to
+the contamination by strong masers in the radio recombination
+lines~\citep{masingRRL}).
+
+\subsubsection{Calibration uncertainties}
+
+The calibration uncertainties for the five methds evaluated using
+flux-selected source scans are gathered in the row labelled 'Rms'
+of Table~\ref{tab:Calibration_results_all}.
+
+Compared to the baseline method, the 'taumeter' method leads to 
+statistical uncertainty increases of about $40$ and $30\%$ at 1 and 2
+mm. The {\tt skydip} method shows less dispersion but a mild
+($<3\sigma$) correlation with the atmospheric transmission, as
+discussed in Sect.~\ref{se:calibration_bias_all}.
+
+In addition, we have checked the flux density ratios for the bunch of
+scans at an atmospheric transmission of about 0.7, which were
+discussed in Sect.~\ref{se:photometry_baseline}, by comparing
+calibration methods with or without photometry correction. Whereas the
+flux density ratios are low for these scans in the three first
+methods, they are within $1\sigma$ from unity when using a photometric
+correction. This further validates the hypothesis that the low flux
+density of these scans is due to \afternoon\ beam effect, as assumed in
+Sect.~\ref{se:photometry_baseline}. This also constitutes an example
+of the calibration improvement obtained from resorting to a
+photometric correction.
+
+Moreover, results based on the {\tt photocorr demo} method show that calibration
+uncertainties as low as $3.8$ and $2.2\%$
+at 1 and 2 mm are within the reach of NIKA2 without rejecting any
+observation dates. However, we recall this method relies on 
+accurate beam estimates. Using the {\tt photocorr pointing}, which is the
+practical case, still decreases the calibration uncertainties
+w.r.t. the baseline results but by a factor of about $20\%$ in both
+bands. However, the differences between
+the flux density ratios from {\tt demo} and {\tt pointing}, which are
+seen e.g. from the 'photocorr demo' and 'photocorr pointing' of
+Fig.~\ref{fig:mwc349_obstau_others}, are likely
+to be due to the photometry correction noise
+when monitoring the beam from pointing scans. We conclude that more
+control on the beam monitoring is needed before routinely using a calibration
+based on photometry correction. By contast, the baseline method
+combines good performance with robustness.
+
+
+

@@ -64,7 +64,7 @@ The preferred observing pattern for NIKA2 observations is on-the-fly (OTF) scans
 These scans can be performed either in azimuthal coordinates, with all subscans parallel to the azimuth axis, or in equatorial coordinates, where the scans are performed at different angles with respect to the right ascension axis.
 
 Most NIKA2 galaxy cluster observations choose the latter option with scans in four directions, at $[0\degree$, $45\degree$, $90\degree$, $135\degree]$ from the RA axis, as it ensures an isotropic coverage of the cluster (needed for a proper estimation of a 1D transfer function) with no need to worry about getting observations at different points of the elevation curve of the cluster.
-We suggest to keep this strategy, although the fact that the clusters from this program require quite a long time to achieve the standard quality criteria makes it a debatable choice.
+Since the observation time for the clusters we consider here is quite short, we suggest to keep this strategy, although it would become a debatable choice for longer observations.
 
 \vspace{11pt}
 Regardless of whether we choose azimuthal or equatorial scans, the definition of an observing strategy implies that we need to choose the dimensions of our scans.
@@ -78,22 +78,22 @@ In this section, we give a quick review of the principal features of this progra
 
 The quality criterion used thus far for NIKA2 cluster observations was that one should be able to get a $3\sigma$ detection on the pressure profile at a radius $R\fh$.
 Here, we investigate how to reach a $3\sigma$ detection at $\left[1,\, 0.7,\, 0.3\right]\times R\fh$, in order to judge \textit{a posteriori} which gives the best compromise between detection quality and time spent on cluster.
-Considering that we want an average $3\sigma$ on pressure at radius $r$, with a corresponding angle in the map $\theta_r \equiv \mathrm{arctan}(r/\mathcal{D}_A)$, the maximum RMS of the noise in our map is 
+Considering that we want an average $3\sigma$ on pressure at radius $r$, with a corresponding angle in the map $\theta_r \equiv \mathrm{arctan}(r/\mathcal{D}_A)$, where $\mathcal{D}_A$ is the angular diameter distance to the cluster, the maximum RMS of the noise in our map is 
     \begin{equation}
-        \sigma_\mathrm{tot} = \frac{\sqrt{N(r)}}{3} \times S_b(r)
+        \sigma_\mathrm{tot} = \frac{\sqrt{N(\theta_r)}}{3} \times S_b(r)
         \label{eq:sigma}
     \end{equation}
-where $S_b(r)$ is the cluster's surface brightness at radius $r$, as estimated in section \ref{cluster}, and $N(r)$ is the number of NIKA2 beams that form a ring of radius $r$, \textit{i.e.}
+where $S_b(r)$ is the cluster's surface brightness at radius $r$, as estimated in section \ref{cluster}, and $N(\theta_r)$ is the number of NIKA2 beams that form a ring of radius $\theta_r$, \textit{i.e.}
     \begin{equation}
-        N(r) = \frac{2\pi\,\theta_r}{\theta_\mathrm{beam}}
+        N(\theta_r) = \frac{2\pi\,\theta_r}{\theta_\mathrm{beam}}
     \end{equation}
-where $\mathcal{D}_A$ is the angular diameter distance to the cluster, and $\theta_\mathrm{beam}$ is the FWHM of the instrumental beam.
+where $\theta_\mathrm{beam}$ is the FWHM of the instrumental beam.
 
 The time evolution of the noise is given by :
     \begin{equation}
         \sigma = t_\mathrm{beam}^{-1/2} \times \mathrm{NEFD}_0 \times e^{\tau/\mathrm{sin}(e\ell)} \times h_\mathrm{filter}
     \end{equation}
-where NEFD$_0$ is the instrumental noise equivalent flux density at zenith with no atmospheric absorption (from the NIKA2 commissioning results, NEFD$_0$ = 8 mJy/beam/s$^{1/2}$), $\tau$ is the zenith atmospheric opacity measured at the frequency of observation, $e\ell$ is the elevation at which observations are performed, and $h_\mathrm{filter}$ is a factor to account for the post-processing noise filtering (effectively acting as a uniform transfer function).
+where NEFD$_0$ is the instrumental top-of-atmosphere noise equivalent flux density (from the NIKA2 commissioning results, NEFD$_0$ = 8 mJy/beam/s$^{1/2}$ at 2mm), $\tau$ is the zenith atmospheric opacity measured at the frequency of observation, $e\ell$ is the elevation at which observations are performed, and $h_\mathrm{filter}$ is a factor to account for the post-processing noise filtering (effectively acting as a uniform transfer function).
 Given the fact that no accurate measurements of the transfer function exist for this new scan strategy, we chose the pessimistic value of $h_\mathrm{filter} = 2$.
 
 The time integration per beam, $t_\mathrm{beam}$, can be infered from the geometry of the scan ; considering rectangular scans of $\theta_x \times \theta_y$, where $\theta_x$ and $\theta_y$ are the angles travelled by the central pixel of the camera in the $x$ and $y$ directions, the area of the whole scan is approximated by the IRAM time estimator as $A_\mathrm{scan} \sim \theta_x \theta_y + A_\mathrm{FoV}$, where $A_\mathrm{FoV}$ is the field of view of the camera, \textit{i.e.} the projection of the focal plane on the sky ; for NIKA2, $A_\mathrm{FoV} =$ 33.2 arcmin$^2$.
@@ -127,8 +127,8 @@ Table \ref{tab:params} gives a summary of all the parameters of this equation an
         \midrule
         \multicolumn{2}{c}{Observation parameters} \\ 
         \midrule
-        PWV  &  6 mm \\
-        $\Rightarrow\,\tau(\text{150 GHz})$  &  0.15 \\
+        PWV  &  2 mm \\
+        $\Rightarrow\,\tau(\text{2 mm})$  &  0.05 \\
         Elevation $e\ell$  &  $60\degree$ \\
         $(\theta_x, \theta_y)$  &  (18, 10) arcmin \\
         $\Rightarrow\,A_\mathrm{scan}$  &  $\simeq$ 213.2 arcmin$^2$ \\
@@ -136,7 +136,7 @@ Table \ref{tab:params} gives a summary of all the parameters of this equation an
         $h_\mathrm{overhead}$  &  2 \\
         \bottomrule
     \end{tabular}
-    \caption{Summary of the NIKA2 specifications and parameters used for the observation time estimation and their value. The elevation is arbitrarily fixed to $60\degree$ and the atmospheric conditions are taken as average summer conditions for the 30m telescope.}
+    \caption{Summary of the NIKA2 specifications and parameters used for the observation time estimation and their value. The elevation is arbitrarily fixed to $60\degree$ and the atmospheric conditions are chosen as good winter conditions for the 30m telescope.}
     \label{tab:params}
 \end{table}
 
@@ -145,11 +145,11 @@ Table \ref{tab:params} gives a summary of all the parameters of this equation an
 
 We give a summary of the results obtained for C1 and C2 for different SNR criteria in Table \ref{tab:results}.
 As an output, the time estimator gives us the time needed to reach the desired SNR level, as well as a sentence to include in the NIKA2 proposal, summarizing all the hypothesis that were made when using the estimator as well as it result.
-For example, for the first line of Table \ref{tab:results} (C1 with $3\sigma$ on pressure at $R\fh$), the output sentence is :
+For example, for the first entry of Table \ref{tab:results} (C1 with $3\sigma$ on pressure at $R\fh$), the output sentence is :
 
 \vspace{15pt}
 \begin{minipage}{0.9\textwidth}
-    \textit{According to the published commissioning results of the NIKA2 instrument, the total observing time using the NIKA2 2 mm band to map a region of 180.0 [arcmin\^\,2] to reach an rms of 0.251 [mJy/beam], assuming 6 [mm] pwv, 60 [deg] elevation, Filter = 2, Overhead = 2, was estimated to be *22.4 hours*, using the time estimator v 2018.OCT.17.}
+    \textit{According to the published commissioning results of the NIKA2 instrument, the total observing time using the NIKA2 2 mm band to map a region of 180.0 [arcmin\^\,2] to reach an rms of 0.251 [mJy/beam], assuming 2 [mm] pwv, 60 [deg] elevation, Filter = 2, Overhead = 2, was estimated to be *17.82 hours*, using the time estimator v 2018.OCT.17.}
 \end{minipage}
 \vspace{15pt}
 
@@ -159,13 +159,15 @@ For example, for the first line of Table \ref{tab:results} (C1 with $3\sigma$ on
         \toprule
         Cluster  &  Radius $r$  &  $S_b(r)$ [mJy/beam]  &  $\sigma$ [mJy/beam]  &  \textbf{Time [hours]} \\
         \midrule\midrule
-        \multirow{3}{60pt}{\centering C1}  &  $R\fh$  &  0.076  &  0.251 &  \textbf{22.4}\\
-            &  $0.7\times R\fh$  &  0.17  & 0.466 & \textbf{6.52} \\
-            &  $0.3\times R\fh$  &  0.651 & 1.171 & \textbf{1.03} \\
+        \multirow{3}{60pt}{\centering C1}  
+            &  $R\fh$            & 0.076  &  0.251  &  \textbf{17.82}  \\ 
+            &  $0.7\times R\fh$  & 0.17   &  0.466  &  \textbf{5.18}  \\ 
+            &  $0.3\times R\fh$  & 0.651  &  1.171  &  \textbf{0.82}  \\ 
         \midrule
-        \multirow{3}{60pt}{\centering C2}  &  $R\fh$  &  0.166 & 0.619 & \textbf{3.7} \\
-            &  $0.7\times R\fh$  &  0.374 & 1.168 & \textbf{1.04} \\
-            &  $0.3\times R\fh$  &  1.546 & 3.158 & \textbf{0.14} \\
+        \multirow{3}{60pt}{\centering C2}  
+            &  $R\fh$            & 0.166  &  0.619  &  \textbf{2.94}  \\ 
+            &  $0.7\times R\fh$  & 0.374  &  1.168  &  \textbf{0.82}  \\ 
+            &  $0.3\times R\fh$  & 1.546  &  3.158  &  \textbf{0.11}  \\ 
         \bottomrule
     \end{tabular}
     \caption{Results of the time estimator for C1 and C2. $r$ is the radius at which we impose to have $3\sigma$ on the profile pressure ; $S_b(r)$ is the cluster's surface brightness at $r$, and $\sigma$ the maximum noise RMS defined in eq. (\ref{eq:sigma}).}

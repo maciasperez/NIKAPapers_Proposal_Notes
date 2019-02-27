@@ -68,7 +68,7 @@ time estimates to better than $5\%$. We conclude the $t_{\rm{beam}}$
 estimates to be reliable and use it for the NEFD derivation.  
 
 
-\subsection{NEFD estimation methods}
+\subsection{NEFD estimation methods and source selection}
 \label{se:nefd_method}
 
 We have devised three complementary methods for the
@@ -108,14 +108,6 @@ moderately faint source \citep{hls_combes}, expected to be
 communication). It has been observed for about 9\,h in total over
 three nights using 8x5~arcmin$^2$ OTF scans of various orientations. 
 
-
-\subsection{NEFD estimation and robustness tests}
-\label{se:nefd_results}
-
-%  comparison entre methods
-First, we compare the results of the two NEFD derivation methods on a
-same data set in Fig.~\ref{fig:nefd_twomethods}.
-
 \begin{figure*}[!thbp]
   \begin{center}
     \includegraphics[trim={0.5cm, 0.5cm, 1.5cm, 1.8cm}, clip, angle=0, width=0.495\textwidth]{Figures/hls_nefd_vst.eps}
@@ -126,11 +118,54 @@ same data set in Fig.~\ref{fig:nefd_twomethods}.
   \end{center}
 \end{figure*}
 
-%  comparison entre datasets
+\subsection{NEFD estimation and robustness tests}
+\label{se:nefd_results}
 
-Figure~\ref{fig:nefdvsbackground_below_1Jy} shows the comparison of
-the NEFD measurements for runs N2R9, N2R12 and N2R14 and their
-consistency.
+%  comparison entre methods
+First we test the stability of the NEFD estimates using the two
+methods on a same data sets. In Fig.~\ref{fig:nefd_twomethods}, we
+present an application of the deep integration method (left panel) and
+the scatter method (right panel) on
+%the NEFD estimates for Array 1, 3, the combination of A1$\&$A3
+%and Array 2 using
+the series of \hls\ observation scans.
+
+The left panel of Fig.~\ref{fig:nefd_twomethods} shows the flux density
+uncertainties as a function of the integration time. This plot has
+been obtained in calculating the variance of the map produced by an
+inverse-variance co-addition of more and more scans. The small
+variations of the slope of the $1\sigma$ flux errors, which are visible on the
+plot, correspond to variations of line-of-sight opacity during the
+integration. To derive an estimate of the out-of-atmosphere
+NEFD, quoted $NEFD_0$, we account for these variations by fitting the
+$1\sigma$ flux errors with
+\begin{equation}
+  \sigma = \frac{NEFD_0}{\sqrt{\sum_{n}t_n e^{-2\tau_n/\sin\delta_n}}},
+  \label{eq:sigma_tau_w8}
+\end{equation}
+where $t_n$, $\tau_n$ and $\delta_n$ are the integration time, the
+zenith opacity and the observing elevation of the scan $n$. The
+quantity $\sum_{n}t_n e^{-2\tau_n/\sin\delta_n}$ consists in an
+estimate of the effective integration time for the series of scans
+that enter the inverse-variance co-addition. The NEFD estimates for
+Array 1, 3, the combination of A1$\&$A3 and Array 2 using the deep
+integration method are given in the first row of
+Table.~\ref{tab:nefd_summary}.
+
+In addition, we verify that the noise integrates down as expected with
+respect to the integration time. Black lines in the left panel of
+Fig.~\ref{fig:nefd_twomethods} show the $1\sigma$ error fit with the
+inverse of the square root of the integration time. The noise
+integration is well consistent with $t^{-1/2}$.
+
+The right panel of Fig.~\ref{fig:nefd_twomethods} [...]
+
+%  comparison entre datasets
+As a second robustness test, we check the stability of the NEFD for
+three observation
+campaigns. Figure~\ref{fig:nefdvsbackground_below_1Jy} shows the
+measured NEFD using the scatter method for runs N2R9, N2R12 and
+N2R14. 
 
 \begin{figure*}[!thbp]
 \begin{center}
@@ -149,7 +184,6 @@ consistency.
 \end{center}
 \end{figure*}
  
-
 \begin{table}[!htbp]
   \centering
   \caption[Comparison of the NEFD estimates using three methods]{Stability of the NEFD estimates. Top-of-atmosphere NEFD in mJy.s$^{1/2}$ for the two methods described in the text and obtained on G2, \hls, and all sub-Jy sources of runs N2R9,
@@ -197,11 +231,11 @@ To further estimate the mapping capabilities, we also evaluate the
 mapping speed $M_{\rm{s}}$, which is defined as the sky area that is covered in one
 hour of observation to a noise level of $1\,\rm{mJy}$, using
 \begin{equation}
-M_{\rm{s}} = \frac{\pi}{4} d_{\rm{FoV}}^2 \, \frac{\eta}{\rm{NEFD}^2},
+M_{\rm{s}} = \eta \, \frac{\pi}{4} d_{\rm{FoV}}^2 \, \frac{\Delta_t}{\rm{NEFD}^2},
 \end{equation}
-where $d_{\rm{FoV}} = 6.5'$ is the FoV diameter and $\eta$ the
+where $d_{\rm{FoV}} = 6.5'$ is the FoV diameter, $\eta$ the
 fraction of valid KIDs, as given in Tab.~\ref{tab:number_of_kids} in
-Sect.~\ref{se:fov_geometry}.
+Sect.~\ref{se:fov_geometry} and $\Delta_t$ a time period of one hour.
 The mapping speed that is extrapolated at zero opacity, and the astronomer
 mapping speed that is extrapolated at the reference IRAM observing conditions are
 given in Tab.~\ref{tab:nefd_astro}.   

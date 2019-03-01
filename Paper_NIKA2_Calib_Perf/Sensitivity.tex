@@ -217,10 +217,32 @@ wavelength.
 
 %  comparison entre datasets
 As a second robustness test, we check the stability of the NEFD for
-three observation
-campaigns. Figure~\ref{fig:nefdvsbackground_below_1Jy} shows the
-measured NEFD using the scatter method for runs N2R9, N2R12 and
-N2R14. 
+three observation campaigns. Figure~\ref{fig:nefdvsbackground_below_1Jy} shows the
+measured NEFD using the scatter method (see Sect.~\ref{se:nefd_method}) for the
+sub-Jansky sources acquired at the N2R9, N2R12 and N2R14
+campaigns. The NEFD estimates for the
+three campaigns are in agreement within uncertainties for the whole
+range of line-of-sight opacities that have been tested.
+The solid lines show the expected dependance with
+exp${[\tau/sin(\delta)]}$ for a background-limited sensitivity
+model. Since the measured NEFD are not Gaussian distributed, we
+derive the top-of-atmosphere NEFD as the median of the measured NEFD
+per scans after correction of the atmospheric attenuation, which provides us
+with a more robust estimate compared to a fit. The NEFD$_0$ estimates
+are given in Table~\ref{tab:nefd_summary}.
+
+Combining the data set of N2R9, N2R12 and N2R14 campaigns,
+more than one thousand observations scans of sub-Jy sources meet the
+baseline selection criteria (see Sect.~\ref{se:data_selection}),
+providing us with robust NEFD estimates that are representative of
+average NIKA2 performance, which are gathered in
+Table~\ref{tab:nefd_astro}.
+The RMS uncertainties are evaluated as the rms scatter of the
+individual NEFD estimates after correction with
+$\exp[\tau/sin(\delta)]$. These values are then extrapolated at the
+reference IRAM observing conditions, which consists of $2~\rm{mm}$
+of precipitable water vapor (pwv) in the atmosphere and $60$ degrees
+elevation.  
 
 \begin{figure*}[!thbp]
 \begin{center}
@@ -239,34 +261,24 @@ N2R14.
 \end{center}
 \end{figure*}
 
-Combining the data set of N2R9, N2R12 and N2R14 campaigns,
-more than one thousand observations scans of sub-Jy sources meet the
-baseline selection criteria (see Sect.~\ref{se:data_selection}),
-providing us with robust NEFD estimates that are representative of
-average NIKA2 performance, which are gathered in
-Tab.~\ref{tab:nefd_astro}.
-The top-of-atmosphere NEFD and RMS uncertainties are evaluated as the median and
-the scatter of the individual NEFD corrected with
-$\exp[\tau/sin(\delta)]$. These values are then extrapolated at the
-reference IRAM observing conditions, which consists of $2~\rm{mm}$
-of precipitable water vapor (pwv) in the atmosphere and $60$ degrees
-elevation.
-
 
 \subsubsection{Mapping speed}
 
 To further estimate the mapping capabilities, we also evaluate the
-mapping speed $M_{\rm{s}}$, which is defined as the sky area that is covered in one
-hour of observation to a noise level of $1\,\rm{mJy}$, using
+mapping speed $M_{\rm{s}}$, which is defined as the sky area
+$\mathcal{A}_{\rm{scan}}$ that can
+be mapped at a noise level $\Delta_\sigma$ of $1\,\rm{mJy}$ in an
+integration time $\Delta_t$ of one hour, using
 \begin{equation}
-M_{\rm{s}} = \eta \, \frac{\pi}{4} d_{\rm{FoV}}^2 \, \frac{\Delta_t}{\rm{NEFD}^2},
+M_{\rm{s}} = \frac{\mathcal{A}_{\rm{scan}}}{\Delta_\sigma\Delta_t} = \eta \, \frac{\pi}{4} d_{\rm{FoV}}^2 \, \frac{1}{\rm{NEFD}^2},
 \end{equation}
 where $d_{\rm{FoV}} = 6.5'$ is the FoV diameter, $\eta$ the
 fraction of valid KIDs, as given in Tab.~\ref{tab:number_of_kids} in
-Sect.~\ref{se:fov_geometry} and $\Delta_t$ a time period of one hour.
-The mapping speed that is extrapolated at zero opacity, and the astronomer
-mapping speed that is extrapolated at the reference IRAM observing conditions are
-given in Tab.~\ref{tab:nefd_astro}.   
+Sect.~\ref{se:fov_geometry}. This indicates the speed at which the sky
+can be surveyed at a flux density rms error level of $1\,\rm{mJy}$.
+The top-of-atmosphere mapping speed, which is extrapolated at zero opacity, and the astronomer
+mapping speed, which is extrapolated at the reference IRAM observing conditions, are
+given in Table~\ref{tab:nefd_astro}.   
 %eta  = [0.84, 0.84, 0.84, 0.90]
 %nefd0 = [47.2, 37.9, 30.1, 8.8]
 %ms0   = !dpi/4.0d0*6.5d0^2*eta/nefd0^2*60.0d0^2 ;; arcmin^2/h/mJy^2

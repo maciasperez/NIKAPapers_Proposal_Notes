@@ -5,9 +5,15 @@
 
 For each observing scan, NIKA2 produce a datastream via the data
 acquisition software, which synchronises with the telescope using
-pulses per second. These time ordered information (TOI) together with
+pulses per second. Using the \rf\ photometric
+estimator, as discussed in Sect.~\ref{se:tuning}, we derive the
+timeline of a quantity that is proportionnal to the flux
+absorbed by a KID \citep[see]{Calvo2013} and homogeneous to Hz.
+These time ordered information (TOI) together with
 the time-stamped pointing information produced by the telescope
-constitute the raw data. We have developed a dedicated data reduction pipeline to
+constitute the raw data.
+
+We have developed a dedicated data reduction pipeline to
 produce calibrated sky maps from NIKA2 raw data. This pipeline was first 
 installed for the data analysis during the commissioning campaigns and is
 now currently used for science-purpose data reduction. It implements
@@ -15,21 +21,17 @@ the baseline methods for the calibration and performance assessment.
 A detailed description of this software will be presented in a companion
 paper \citep{Ponthieu2019}, as well as an application to blind source
 dectection. In this section, we summarize the main steps of the data
-reduction.
-\todo{Summarize the following sub-sections}
- 
-
-
+reduction, which comprises:\\
 %\section{Data Reduction}
 %\label{se:dataproc}
-
+%
 %Because each matrix of \nika\ is a filled array with more than one
 %detector per \new{main beam} PSF on average, and because the atmosphere and electronic noise act as
 %correlated low frequency parasites, the data reduction of \nika\ does not
 %proceed on an individual KID basis in general. This, in addition to the
 %necessary pointing information specifies some of the data reduction
 %process. In short, the data reduction proceeds as such:
-
+%
 %\begin{itemize}
 %\item Low level processing (Sect.~\ref{se:ll_proc})
 %\item Pointing reconstruction (Sect.~\ref{se:ptg})
@@ -40,16 +42,16 @@ reduction.
 %\end{itemize}
 
 
-\subsection{Low level processing}
+\noindent \emph{Low level processing:}
 \label{se:ll_proc}
 
-A first step of the analysis is to read the data produced by \nika's
-acquisition. The data as such comprise various quantities that describe the
-variations of the KID's resonance frequencies, such as $I$, $Q$, $dI$,
-$dQ$. From these quantities, and throughout this work, we use our so called
-\rf\ photometric estimator that combines them into a quantity that is
-proportionnal to the flux absorbed by a KID \citep[see]{Calvo2013} and
-homogeneous to Hz, as discussed in Sect.~\ref{se:tuning}.
+%A first step of the analysis is to read the data produced by \nika's
+%acquisition. The data as such comprise various quantities that describe the
+%variations of the KID's resonance frequencies, such as $I$, $Q$, $dI$,
+%$dQ$. From these quantities, and throughout this work, we use our so called
+%\rf\ photometric estimator that combines them into a quantity that is
+%proportionnal to the flux absorbed by a KID \citep[see]{Calvo2013} and
+%homogeneous to Hz, as discussed in Sect.~\ref{se:tuning}.
 
 In addition to this, we look for and remove the - rare - cosmic rays
 events. KIDs have such fast time constants that unlike bolometers, these events
@@ -78,9 +80,9 @@ be given relatively low weight anyway (see Sect.~\ref{se:map_projection}).
 
 At this stage of the processing, we have isolated the relevant fraction of the
 data for scientific processing and flagged out potentially misbehaving KIDs or
-timeline accidents (glitches).
+timeline accidents (glitches).\\
 
-\subsection{Pointing reconstruction}
+\noindent \emph{Pointing reconstruction}
 \label{se:ptg}
 
 This step consists in addressing each sample of each KID to the correct sky
@@ -122,9 +124,9 @@ corresponding to this pointing on a Nearest Grid Point basis.
 
 This pointing reconstruction is done early in the data reduction process because
 we'll need to know when a KID is close or far from the source for the timeline
-processing (Sect.~\ref{se:toi_proc}).
+processing (Sect.~\ref{se:toi_proc}).\\
 
-\subsection{TOI calibration}
+\noindent \emph{TOI calibration}
 \label{se:flux_calib}
 
 We now focus on the absolute calibration of each TOI. As stated in
@@ -145,9 +147,9 @@ for the current opacity $\tau$ and elevation. In short, the absolute calibration
 TOI^k(t) [{\rm Jy/beam}] = \rf^k(t)[{\rm Hz}] \times g(k) \times e^{\tau_t/\sin\delta_t}
 \end{equation}
 
-The derivation of opacity is presented in Sect.~\ref{se:opacity}.
+The derivation of opacity is presented in Sect.~\ref{se:opacity}. \\
 
-\subsection{TOI processing}
+\noindent \emph{TOI processing}
 \label{se:toi_proc}
 
 \begin{figure}[ht!]
@@ -322,9 +324,9 @@ particular, the mask can be designed to adjust to several point sources. If the
 source is diffuse and extended, then we may go through an iterative procedure that
 subtracts an improved derivation of the signal at each step. For this work about
 the commissioning of the instrument and the assessment of its performances on
-point sources, we do not need to go into further details about this.
+point sources, we do not need to go into further details about this.\\
 
-\subsection{Map projection}
+\noindent \emph{Map projection}
 \label{se:map_projection}
 
 At this stage, data have been calibrated and cleaned and we have the pointing
@@ -381,7 +383,7 @@ variance weighting as well. Weights are taken from the variance maps of each sca
 corrected for the excess variance mentioned in the previous paragraph. The
 final variance map of the sum of scans is also corrected for such a factor if necessary.
 
-\subsection{Photometry}
+\noindent \emph{Photometry}
 \label{se:intro_photometry}
 
 Throughout this document, we adopt the following convention. Assuming the beam

@@ -52,9 +52,9 @@ spend in a map pixel of the center of the map. As all the KIDs of an
 array produce a data sample at the same time, we need to correct the
 total time of integration from the fraction of the KID that
 contributes to a map pixel at the same time. For this purpose, first
-we estimate the number of KID per map pixel as the ratio of $g^2$,
-where $g$ is the distance between neighbour KIDs (see
-Sect.~\ref{se:grid_distortion}), to $\Delta_r^2$. Then, we multiply
+we estimate the number of KID per map pixel as the ratio of $g^2$ to
+$\Delta_r^2$, where $g$ is the distance between neighbour KIDs (see
+Sect.~\ref{se:grid_distortion}). Then, we multiply
 this quantity by the fraction of valid KID $\eta$ that actually
 contribute to the map (see Sect.~\ref{se:avg_kidpar}). 
 
@@ -76,16 +76,34 @@ NEFD estimation, which come in two different flavours. First, we
 use deep integrations on faint sources, and second we resort to 
 joint analysis of multiple scans without combining them. An
 extensive discussion of these methods will be given in
-\citet{Ponthieu2019}. In this section, we briefly describe a single method
-for the two different approaches: \\
+\citet{Ponthieu2019}. In this section, we briefly describe one method
+for each of the two approaches: \\
 
-\noindent \emph{Deep integration method:} The error on the flux of a point source for an
-integration time $t$ is $\sigma_\phi(t) = NEFD/\sqrt{t}$. Co-adding several scans of
-the same source and fitting $\sigma_\phi$ as a function of the
-inverse of the square root of the
-time of integration must therefore give a straight line whose
-amplitude is the NEFD if correctly corrected for the different
-elevation and opacity conditions of observations.\\
+\noindent \emph{Deep integration method:} The error on the flux
+density of a point source for an integration time $t$ is
+$\sigma_\phi(t) = NEFD/\sqrt{t}$. Using long-time integration
+observation on a source, we can study the decrease of $\sigma_\phi$
+with increasing $t$, and therefore estimate the NEFD if the
+different elevation and opacity conditions of observations are
+correctly accounted for.
+We produce a series of maps using an inverse-variance co-addition of
+more and more observation scans, and perform a photometric analysis on
+each map according to Sect.~\ref{se:photometry}. Since all the scans
+are not acquired in the exact same conditions of atmospheric opacity
+and observing elevation, they do not contribute with the same weight
+to the co-addition. To derive the top-of-atmosphere NEFD, quoted
+NEFD$_0$, we account for the scan-to-scan weighting variations by fitting
+the $1\sigma$ flux errors with
+\begin{equation}
+  \sigma(n) = \frac{NEFD_0}{\sqrt{\sum_{i=1}^{n}t_i e^{-2\tau_i/\sin\delta_i}}},
+  \label{eq:sigma_tau_w8}
+\end{equation}
+where $t_i$, $\tau_i$ and $\delta_i$ are the integration time, the
+zenith opacity and the observing elevation of the $i$-th scan of the
+$n$-scan co-addition. The quantity $\sum_{i=1}^{n}t_i
+e^{-2\tau_i/\sin\delta_i}$ thus consists in an
+estimate of the effective integration time for the series of scans
+that enter the $n$-scan co-addition. \\
 
 \noindent \emph{Scatter method:} Performing photometry on each
 individual scan, we can estimate the sensitivity on the central flux
@@ -123,7 +141,7 @@ three nights using 8x5~arcmin$^2$ OTF scans of various orientations.
 
 %  comparison entre methods
 First we test the stability of the NEFD estimates using the two
-methods on a same data sets. In Fig.~\ref{fig:nefd_twomethods}, we
+methods on a same data set. In Fig.~\ref{fig:nefd_twomethods}, we
 present an application of the deep integration method (left panel) and
 the scatter method (right panel) on
 %the NEFD estimates for Array 1, 3, the combination of A1$\&$A3
@@ -132,25 +150,44 @@ the series of \hls\ observation scans.
 
 The left panel of Fig.~\ref{fig:nefd_twomethods} shows the flux density
 uncertainties as a function of the integration time. This plot has
-been obtained in calculating the variance of the map produced by an
-inverse-variance co-addition of more and more scans. The small
-variations of the slope of the $1\sigma$ flux errors, which are visible on the
-plot, correspond to variations of line-of-sight opacity during the
-integration. To derive an estimate of the out-of-atmosphere
-NEFD, quoted $NEFD_0$, we account for these variations by fitting the
-$1\sigma$ flux errors with
-\begin{equation}
-  \sigma = \frac{NEFD_0}{\sqrt{\sum_{n}t_n e^{-2\tau_n/\sin\delta_n}}},
-  \label{eq:sigma_tau_w8}
-\end{equation}
-where $t_n$, $\tau_n$ and $\delta_n$ are the integration time, the
-zenith opacity and the observing elevation of the scan $n$. The
-quantity $\sum_{n}t_n e^{-2\tau_n/\sin\delta_n}$ consists in an
-estimate of the effective integration time for the series of scans
-that enter the inverse-variance co-addition. The NEFD estimates for
-Array 1, 3, the combination of A1$\&$A3 and Array 2 using the deep
+been obtained as discussed in Sect.~\ref{se:nefd_method}. The small
+variations of the slope of the $1\sigma$ flux errors, which are
+visible on the plot, correspond to variations of line-of-sight opacity
+during the integration. These variations are taken into account for
+evaluating the top-of-atmosphere NEFD using
+Eq.~\ref{eq:sigma_tau_w8}. The NEFD estimates for Array 1, 3, the
+combination of A1$\&$A3 and Array 2 using the deep  
 integration method are given in the first row of
-Table.~\ref{tab:nefd_summary}.
+Table~\ref{tab:nefd_summary}.
+ 
+\begin{table}[!htbp]
+  \centering
+  \caption[]{Stability of the NEFD estimates. Top-of-atmosphere NEFD
+    in mJy.s$^{1/2}$ for the two methods described in the text and
+    obtained on \hls\ and all sub-Jy sources of runs N2R9,
+  N2R12, N2R14. The results given in the last row are based on more
+  than a thousand scans, which distribute as 202, 481 and 430 scans of
+  N2R9, N2R12 and N2R14 respectively.}
+  \label{tab:nefd_summary}
+  \begin{tabular}{llrrrr}
+    \hline\hline
+    \noalign{\smallskip}
+    Data set   & Method   & A1      &   A3    &   A1\&A3 &    A2 \\
+    \noalign{\smallskip}
+    \hline
+    \noalign{\smallskip}
+    \hls &     $t^{-1/2}$  &  46.6  &    38.4  &    30.4  &   8.5  \\
+    %   G2   &    $t^{-1/2}$  &  44.0  &    34.7  &    29.6  &  7.8  \\
+         &     Scatter    &  45.7  &    36.3  &    28.5  &   8.2  \\
+    \hline
+    \noalign{\smallskip}
+    N2R9     & Scatter    & 47.0 &  36.9  & 28.8  & 8.4 \\
+    N2R12    &            & 47.3 &  36.4  & 30.2  & 8.5 \\
+    N2R14    &            & 47.3 &  39.8  & 30.9  & 9.3 \\
+    Combined &            & 47.2 &  37.9  & 30.1  & 8.8 \\
+    \hline
+  \end{tabular}
+\end{table}
 
 In addition, we verify that the noise integrates down as expected with
 respect to the integration time. Black lines in the left panel of
@@ -158,7 +195,25 @@ Fig.~\ref{fig:nefd_twomethods} show the $1\sigma$ error fit with the
 inverse of the square root of the integration time. The noise
 integration is well consistent with $t^{-1/2}$.
 
-The right panel of Fig.~\ref{fig:nefd_twomethods} [...]
+The right panel of Fig.~\ref{fig:nefd_twomethods} show the NEFD
+estimates for  Array 1, 3, the combination of A1$\&$A3 and Array 2
+using the scatter method, as discussed in Sect.~\ref{se:nefd_method},
+as a function of the line-of-sight opacities, $\tau/sin(\delta)$,
+where $\tau$ is the zenith opacity and $\delta$ the observing
+elevation. The solid lines show the best fit of the model for a
+background-dominated sensitivity,
+defined as NEFD = NEFD$_0$ exp${[\tau/sin(\delta)]}$. The best-fitting
+NEFD$_0$ amplitude give us estimates of the
+top-of-atmosphere NEFD, which are gathered in
+Table~\ref{tab:nefd_summary}.
+
+We observe systematically higher NEFD for A1 compared to
+A3, which is a mainly due to the dichroic-induced 'shadow effect' that
+also impacts the flat fields, as discussed in
+Sect.~\ref{se:flat_field}. Furthermore, the NEFDs are well consistent
+with being background dominated for each array and each observing
+wavelength. 
+
 
 %  comparison entre datasets
 As a second robustness test, we check the stability of the NEFD for
@@ -183,33 +238,6 @@ N2R14.
 \label{fig:nefdvsbackground_below_1Jy}
 \end{center}
 \end{figure*}
- 
-\begin{table}[!htbp]
-  \centering
-  \caption[Comparison of the NEFD estimates using three methods]{Stability of the NEFD estimates. Top-of-atmosphere NEFD in mJy.s$^{1/2}$ for the two methods described in the text and obtained on G2, \hls, and all sub-Jy sources of runs N2R9,
-  N2R12, N2R14. The results given in the last row are based on more
-  than a thousand scans, which distribute as 202, 481 and 430 scans of
-  N2R9, N2R12 and N2R14 respectively.}
-  \label{tab:nefd_summary}
-  \begin{tabular}{llrrrr}
-    \hline\hline
-    \noalign{\smallskip}
-    Method     & Data set  & A1      &   A3    &   A1\&A3 &    A2 \\
-    \noalign{\smallskip}
-    \hline
-    \noalign{\smallskip}
-    $t^{-1/2}$  & \hls      &  46.6  &    38.4  &    30.4  &   8.5  \\
-               &  G2       &  44.0  &    34.7  &    29.6  &  7.8  \\
-    \hline
-    \noalign{\smallskip}
-    Scatter    &  N2R9     &  47.0 &  36.9  & 28.8  & 8.4 \\
-               &  N2R12    &  47.3 &  36.4  & 30.2  & 8.5 \\
-               &  N2R14    &  47.3 &  39.8  & 30.9  & 9.3 \\
-               &  Combined &  47.2 &  37.9  & 30.1  & 8.8 \\
-    \hline
-  \end{tabular}
-\end{table}
-
 
 Combining the data set of N2R9, N2R12 and N2R14 campaigns,
 more than one thousand observations scans of sub-Jy sources meet the

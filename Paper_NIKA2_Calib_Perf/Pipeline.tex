@@ -45,7 +45,6 @@ reduction, which comprizes:\\
 
 \noindent \emph{Low level processing:}
 \label{se:ll_proc}
-
 %A first step of the analysis is to read the data produced by \nika's
 %acquisition. The data as such comprise various quantities that describe the
 %variations of the KID's resonance frequencies, such as $I$, $Q$, $dI$,
@@ -53,105 +52,110 @@ reduction, which comprizes:\\
 %\rf\ photometric estimator that combines them into a quantity that is
 %proportionnal to the flux absorbed by a KID \citep[see]{Calvo2013} and
 %homogeneous to Hz, as discussed in Sect.~\ref{se:tuning}.
+We isolate the relevant fraction of the data for scientific
+utilisation and flagged out potentially misbehaving KIDs or
+timeline accidents (glitches). Specifically, we flag out cosmic rays,
+which impact only one sample due to the KID fast time constant, periods
+dedicated to the tuning of the KID tones to their resonance frequency, and
+the timeline of KIDs whose noise level exceed $3\sigma$ of the average
+noise level of all other KIDs of the same array.\\    
 
-In addition to this, we look for and remove the - rare - cosmic rays
-events. KIDs have such fast time constants that unlike bolometers, these events
-affect a sole sample that is easy to detect by a simple comparison to the rms of
-the TOI a few second window. These affected samples are remplaced by a simple
-linear interpolation of their surrounding (not to leave holes in the TOI) but
-are flagged in order not to project false data on the final map.
-
-We also have a series of tests that read the flags produced by the acquisition
-overall: discontinuity in the temperature within the cryostat as well
-as detector tuning that automatically trigger at the beginning and the
-end of each scans are discarded.  
+%In addition to this, we look for and remove the - rare - cosmic rays
+%events. KIDs have such fast time constants that unlike bolometers, these events
+%affect a sole sample that is easy to detect by a simple comparison to the rms of
+%the TOI a few second window. These affected samples are remplaced by a simple
+%linear interpolation of their surrounding (not to leave holes in the TOI) but
+%are flagged in order not to project false data on the final map.
+%
+%We also have a series of tests that read the flags produced by the acquisition
+%overall: discontinuity in the temperature within the cryostat as well
+%as detector tuning that automatically trigger at the beginning and the
+%end of each scans are discarded.  
 %potential jumps in the cryostat or acquisition
 %monitoring. Most important are the flags related to the tuning. Because the
 %acquisition file boundaries are not strictly linked to the beginning and the end of
 %a scan, we must discard everything that happens before the last tuning of the
 %beginning, and everything after the first automatic tuning that happens when the
 %scan is done.
+%
+%Because the tuning of KIDs might fail from time to time depending on the weather
+%conditions for instance, we systematically check each KID and see if its noise
+%is far from the average noise of all other KIDs in the same array, with a
+%typical $3\,\sigma$ threshold. This criterion may seem a bit tight, but in any case, KIDs
+%are inverse noise variance weighted in the final map projection, so they would
+%be given relatively low weight anyway (see Sect.~\ref{se:map_projection}).
+%
 
-Because the tuning of KIDs might fail from time to time depending on the weather
-conditions for instance, we systematically check each KID and see if its noise
-is far from the average noise of all other KIDs in the same array, with a
-typical $3\,\sigma$ threshold. This criterion may seem a bit tight, but in any case, KIDs
-are inverse noise variance weighted in the final map projection, so they would
-be given relatively low weight anyway (see Sect.~\ref{se:map_projection}).
-
-At this stage of the processing, we have isolated the relevant fraction of the
-data for scientific processing and flagged out potentially misbehaving KIDs or
-timeline accidents (glitches).\\
-
-\noindent \emph{Pointing reconstruction}
+\noindent \emph{Pointing reconstruction:} 
 \label{se:ptg}
+We produce a timeline of the pointing positions of each KID with
+respect to the target source (usually located at the center of the
+scan) using two sets of information. First, the control system of the
+telescope provides us with the absolute pointing of a reference point
+of the focal point, which is coincident with the reference KID after
+the pointing correction are applied, as described in
+Sect.~\ref{se:pointing}. Second, we estimate the offset positions of
+each KID with respect with the reference KID using a dedicated
+procedure that is referred to as the focal plane reconstruction, as
+presented in Sect.~\ref{se:geometry}. After this step, we are able to
+distinguish KIDs that are on-source from those that are off-source,
+which is a key information for the treatment of correlated noises.\\
 
-This step consists in addressing each sample of each KID to the correct sky
-coordinates and their associated map pixel. The pointing data, as
-produced by the control system of the telescope, \aka\ NCS, are passed to the
-\nika\ raw data. They describe the absolute pointing of a reference
-point in the focal plane in various quantities, the
-absolute azimuth and elevation $(\alpha,\delta)$ of the source, together with
-offsets $(\Delta\alpha_t, \Delta\delta_t)$ \wrt~these. Because our final maps
-will be centered on a fixed position (typically the center of the source that is
-aimed by the focal plane reference position), we are especially interested in
-pointing offsets \wrt~this position. We therefore detail here the
-derivation of these offsets.
+%This step consists in addressing each sample of each KID to the correct sky
+%coordinates and their associated map pixel. The pointing data, as
+%produced by the control system of the telescope, \aka\ NCS, are passed to the
+%\nika\ raw data. They describe the absolute pointing of a reference
+%point in the focal plane in various quantities, the
+%absolute azimuth and elevation $(\alpha,\delta)$ of the source, together with
+%offsets $(\Delta\alpha_t, \Delta\delta_t)$ \wrt~these. Because our final maps
+%will be centered on a fixed position (typically the center of the source that is
+%aimed by the focal plane reference position), we are especially interested in
+%pointing offsets \wrt~this position. We therefore detail here the
+%derivation of these offsets.
+%
+%We store KID pointing offsets \wrt\ the reference position in Nasmyth $(x,y)$
+%coordinates (independent of time) once and for all in our KID database
+%(\aka~\kidpar). Sect.~\ref{se:geometry} details how these offsets are
+%derived. To go from Nasmyth offsets to $(\alpha,\delta)$ offsets, we apply the
+%following rotation by the elevation angle:
+%
+%\begin{eqnarray}
+%\Delta\alpha^k_t &=&  \cos\delta_t \Delta x^k + \sin\delta_t \Delta y^k, \nonumber\\
+%\Delta\delta^k_t &=& -\sin\delta_t \Delta x^k + \cos\delta_t \Delta y^k, \nonumber
+%\end{eqnarray}
+%
+%where $k$ is a KID index. Adding these offsets to the reference $(\Delta
+%\alpha_t, \Delta \delta_t)$ gives the absolute pointing of each KID in these
+%coordinates. An extra rotation by the parallactic angle $\eta_t$ is required to
+%obtain KID's coordinates in \radec\ coordinates:
+%
+%\begin{eqnarray}
+%\Delta R.\,A.^k_t &=&  \cos\eta_t \Delta\alpha^k_t + \sin\eta_t \Delta\delta^k_t,\\
+%\Delta Dec^k_t    &=& -\sin\eta_t \Delta\alpha^k_t + \cos\eta_t \Delta\delta^k_t.
+%\end{eqnarray}
+%
+%We now have the pointing of each KID at each time relative to the source that we
+%usually center on our final map. It is then trivial to assign the map pixel
+%corresponding to this pointing on a Nearest Grid Point basis.
+%
+%This pointing reconstruction is done early in the data reduction process because
+%we'll need to know when a KID is close or far from the source for the timeline
+%processing (Sect.~\ref{se:toi_proc}).\\
 
-We store KID pointing offsets \wrt\ the reference position in Nasmyth $(x,y)$
-coordinates (independent of time) once and for all in our KID database
-(\aka~\kidpar). Sect.~\ref{se:geometry} details how these offsets are
-derived. To go from Nasmyth offsets to $(\alpha,\delta)$ offsets, we apply the
-following rotation by the elevation angle:
 
-\begin{eqnarray}
-\Delta\alpha^k_t &=&  \cos\delta_t \Delta x^k + \sin\delta_t \Delta y^k, \nonumber\\
-\Delta\delta^k_t &=& -\sin\delta_t \Delta x^k + \cos\delta_t \Delta y^k, \nonumber
-\end{eqnarray}
-
-where $k$ is a KID index. Adding these offsets to the reference $(\Delta
-\alpha_t, \Delta \delta_t)$ gives the absolute pointing of each KID in these
-coordinates. An extra rotation by the parallactic angle $\eta_t$ is required to
-obtain KID's coordinates in \radec\ coordinates:
-
-\begin{eqnarray}
-\Delta R.\,A.^k_t &=&  \cos\eta_t \Delta\alpha^k_t + \sin\eta_t \Delta\delta^k_t,\\
-\Delta Dec^k_t    &=& -\sin\eta_t \Delta\alpha^k_t + \cos\eta_t \Delta\delta^k_t.
-\end{eqnarray}
-
-We now have the pointing of each KID at each time relative to the source that we
-usually center on our final map. It is then trivial to assign the map pixel
-corresponding to this pointing on a Nearest Grid Point basis.
-
-This pointing reconstruction is done early in the data reduction process because
-we'll need to know when a KID is close or far from the source for the timeline
-processing (Sect.~\ref{se:toi_proc}).\\
-
-\noindent \emph{TOI calibration}
-\label{se:flux_calib}
-
-We now focus on the absolute calibration of each TOI. As stated in
-Sect.~\ref{se:ll_proc}, at this stage of the reduction each KID \rf~timeline is
-in Hz. The conversion process to go from these Hz into Jy/beam proceeds in two
-steps: a standard absolute calibration and a correction for the current opacity
-and elevation.
-
-The standard conversion from Hz to Jy/beam is stored in the
-\kidpar\ database. The derivation of these gains $g(k)$ is detailed in
-Sect.~\ref{se:geometry}. Suffice is to say here that simply multiplying
-the TOI's by these gains converts them into Jy/beam. Of course, this individual
-absolute calibration also acts as a relative calibration. This calibration is
-meant to work at zero opacity and 90$^\circ$ elevation. We thus need to correct
-for the current opacity $\tau$ and elevation. In short, the absolute calibration reads
-
-\begin{equation}
-TOI^k(t) [{\rm Jy/beam}] = \rf^k(t)[{\rm Hz}] \times g(k) \times e^{\tau_t/\sin\delta_t}
-\end{equation}
-
-The derivation of opacity is presented in Sect.~\ref{se:opacity}. \\
-
-\noindent \emph{TOI processing}
+\noindent \emph{Correlated noise subtraction:}
 \label{se:toi_proc}
+The TOI of each KID include a large low-frequency component of correlated noise of two
+different origins: the atmospheric component, which is common to all
+KIDs, and the electronic noise, which is common to the KIDs connected
+to a same electronic readout feed-line (see
+Sect.~\ref{se:array}). The subtraction of this correlated noise is a key
+step of the data processing, as correlated noise residuals are an
+important limiting factor of the sensitivity. We have devised several
+dedicated methods for this endavour. This will be thoroughtly
+discussed in \citet{Ponthieu2019}, whereas here we illustrate the
+general principle and only discussed the method routinely used for
+the calibration.   
 
 \begin{figure}[ht!]
 \begin{center}
@@ -185,55 +189,64 @@ The derivation of opacity is presented in Sect.~\ref{se:opacity}. \\
 %  20170228s150. From top to bottom we present the correlation of the raw data,
 %  after CM, PCA and MCP decorrelation methods. \label{corrmatrix}}
 %\end{figure}
+%
+%As presented on Fig.~\ref{fig:nika_toi}, the atmosphere and the electronic noise
+%combine into a large low frequency component that we want to eliminate as much
+%as possible. Most of the atmospheric component is common to all KIDs, which is
+%expected because the telescope is a $30\,\rm{m}$ dish and therefore
+%has a near field limit at 900\,km.
 
-As presented on Fig.~\ref{fig:nika_toi}, the atmosphere and the electronic noise
-combine into a large low frequency component that we want to eliminate as much
-as possible. Most of the atmospheric component is common to all KIDs, which is
-expected because the telescope is a $30\,\rm{m}$ dish and therefore
-has a near field limit at 900\,km.
+A illustrated on the first panel of Fig.~\ref{fig:nika_toi}, the
+scaled-version of the low-frequency noise component is seen by all KIDs
+at the same time, while the signal is shifted from one KID to
+another. A simple co-addition of the KID timelines provides us with an
+estimate of the low-frequency noise component, that we referred to as
+a \emph{common mode}, while the signal is attenuated. The common mode
+estimate is then subtracted to each KID timeline, as illustrated in
+the lower panel of Fig.~\ref{fig:nika_toi}.
 
-On Fig.~\ref{fig:nika_toi}, the planet Uranus is visible in the TOIs and serves as
-guide to both the noise relative amplitude and the discussion about TOI
-processing in the following.
+%On Fig.~\ref{fig:nika_toi}, the planet Uranus is visible in the TOIs and serves as
+%guide to both the noise relative amplitude and the discussion about TOI
+%processing in the following.
 
 %On Fig.~\ref{corrmatrix}, we take a scan on Pluto
 %where the signal is negligible compared to noise on the timescale of a scan to
 %focus on the noise properties. We present the KID to KID timeline correlation
 %matrices for the three arrays,
 
-In Fig.~\ref{rmspws} we present the noise power spectra of
-a typical datastream, 
-either before any data reduction or with
-different estimates of the low frequency component:
+%In Fig.~\ref{rmspws} we present the noise power spectra of
+%a typical datastream, 
+%either before any data reduction or with
+%different estimates of the low frequency component:
 
-\begin{itemize}
-\item {\bf Common Mode decorrelation (CM)}. We use all detectors of the same
-  array to build an average low frequency component nicknamed \emph{common
-    mode}. This mode is then linearly regressed and subtracted from each KID
-  timeline. In this method, the \emph{common mode} at time $t$ is the median of
-  all KIDs at this time $t$.
+%\begin{itemize}
+%\item {\bf Common Mode decorrelation (CM)}. We use all detectors of the same
+%  array to build an average low frequency component nicknamed \emph{common
+%    mode}. This mode is then linearly regressed and subtracted from each KID
+%  timeline. In this method, the \emph{common mode} at time $t$ is the median of
+%  all KIDs at this time $t$.
+%
+%\item {\bf Principal Component Analysis (PCA)}. For each NIKA2 array
+%  independently we decompose the covariance matrix in principal components. From
+%  those we derive up to 10 independent templates corresponding to the largest
+%  eigenvalues that we subtract from the TOIs.
+%
+%\item {\bf Most correlated pixels (\cmoneb)}. For each detector in a given array we
+%  identify the detectors that are most correlated to it (a minimum of
+%  15). Using those detectors we compute a common mode like in method CM but with
+%  more refinements to be valid even on bright sources (see below).
+%\end{itemize}
 
-\item {\bf Principal Component Analysis (PCA)}. For each NIKA2 array
-  independently we decompose the covariance matrix in principal components. From
-  those we derive up to 10 independent templates corresponding to the largest
-  eigenvalues that we subtract from the TOIs.
-
-\item {\bf Most correlated pixels (\cmoneb)}. For each detector in a given array we
-  identify the detectors that are most correlated to it (a minimum of
-  15). Using those detectors we compute a common mode like in method CM but with
-  more refinements to be valid even on bright sources (see below).
-\end{itemize}
-
- We observe that after decorrelation we reduce significantly the rms of the
-noise. Equivalently, the $1/f$-like noise in the power spectra
-(principally due to atmospheric emission)
-is significantly reduced leading to nearly flat spectra down to 0.05 Hz, with
-larger $1/f$-like residual noise for the CM decorrelation method at lower
-frequencies. This is translated into a larger rms noise for this method with
-respect to the others. For the three arrays we find increasing noise with
-increasing resonant frequency within each electronic box. This is probably
-related to the difference of gains between subbands in the readout
-electronics. %We also find for the three arrays some noise bursts that are not
+% We observe that after decorrelation we reduce significantly the rms of the
+%noise. Equivalently, the $1/f$-like noise in the power spectra
+%(principally due to atmospheric emission)
+%is significantly reduced leading to nearly flat spectra down to 0.05 Hz, with
+%larger $1/f$-like residual noise for the CM decorrelation method at lower
+%frequencies. This is translated into a larger rms noise for this method with
+%respect to the others. For the three arrays we find increasing noise with
+%increasing resonant frequency within each electronic box. This is probably
+%related to the difference of gains between subbands in the readout
+%electronics. %We also find for the three arrays some noise bursts that are not
 %fully consistent from one decorrelation method to another. 
 
 %Studies of the KID to KID timeline correlation matrices
@@ -283,49 +296,95 @@ electronics. %We also find for the three arrays some noise bursts that are not
   \label{rmspws}}
 \end{figure}
 
-We have investigated several ways of using this information to remove this
-component from the TOIs. Our prefered choice so far, that is the reference
-method for this document, is the \cmoneb\ method, that we describe into further
-details below:
+The reference method that is used for the calibration and performance
+assessment, which is called the \cmoneb\ method, comprizes two
+additional technicalities with respect to the common mode
+method. First, the signal contamination of the common mode estimate
+is mitigated by discarding on-source KID timelines from the
+co-addition. Second, instead of a single common mode subtraction to
+all KIDs, we estimate an accurate common mode for each
+KID. Calculating the KID-to-KID cross-correlation matrix, we
+identify the most correlated KIDs. Then, we build an
+inverse noise weighted co-addition of the timelines of the off-source
+KID that are the most correlated with the KID under
+concern. Furthermore, we have tested on simulations that this method
+does not alter the flux of the source.
 
-\begin{itemize}
-\item From the pointing information (Sect.~\ref{se:ptg}), we derive a mask per TOI
-  and for each time $t$ that is 0 if the KID is close to the source, 1
-  otherwise. In the case of a point source, the mask consists in 
-    a radius of 60\,arcsec centered on the source, whereas for
-    diffuse emission, tailored masks are build.
-\item Only samples for which two KIDs are far from the source,
-  hence which are not discarded using the mask, are selected and the KID-to-KID
-  correlation is computed.
-\item For a KID $k_0$, we store the KID identifiers that are most
-  correlated to it. We first select the 15 most correlated KIDs, then 
-  the average and the dispersion $\sigma$ of these correlations are
-  computed. Then we add to the selection all the KIDs that are as correlated to $k_0$ as the
-  15 first, up to $2\,\sigma$.
-\item A median common mode (far from the source) for this block of 15
-  or more KIDs is derived.
-\item A cross-calibration to each of these KIDs is computed using the
-  median common mode. Then an inverse noise weighted average mode is build. At each time, we use
-  only KIDs that are not discarded with the source mask.
-  At this stage it is important to verify to have enough KIDs to produce a
-  continuous mode and to do not leave samples without any estimation.
-\item We linearly regress this average mode against $k_0$'s TOI (far from the
-  source) and subtract on the entire $k_0$ timeline.
-\end{itemize}
+In Fig.~\ref{rmspws} we present the noise power spectra of
+a typical datastream, either before any data reduction or using the
+simple common mode method, a method using Principal Component Analysis
+(PCA) and the \cmoneb\ method. We observe that after decorrelation the
+$1/f$-like noise in the power spectra (principally due to atmospheric emission)
+is significantly reduced leading to nearly flat spectra down to 0.05 Hz, with
+lower $1/f$-like residual noise for the PCA and the \cmoneb\ methods
+than the common mode decorrelation at low frequencies.\\ 
 
-This process is repeated for each KID. Fig.~\ref{fig:nika_toi} shows an example
-of this low frequency mode derivation, together with the resulting TOI
-cross-correlation matrix after its subtraction. We have tested on simulations
-that this method does not alter the flux of the
-source.
+%We have investigated several ways of using this information to remove this
+%component from the TOIs. Our prefered choice so far, that is the reference
+%method for this document, is the \cmoneb\ method, that we describe into further
+%details below:
+%
+%\begin{itemize}
+%\item From the pointing information (Sect.~\ref{se:ptg}), we derive a mask per TOI
+%  and for each time $t$ that is 0 if the KID is close to the source, 1
+%  otherwise. In the case of a point source, the mask consists in 
+%    a radius of 60\,arcsec centered on the source, whereas for
+%    diffuse emission, tailored masks are build.
+%\item Only samples for which two KIDs are far from the source,
+%  hence which are not discarded using the mask, are selected and the KID-to-KID
+%  correlation is computed.
+%\item For a KID $k_0$, we store the KID identifiers that are most
+%  correlated to it. We first select the 15 most correlated KIDs, then 
+%  the average and the dispersion $\sigma$ of these correlations are
+%  computed. Then we add to the selection all the KIDs that are as correlated to $k_0$ as the
+%  15 first, up to $2\,\sigma$.
+%\item A median common mode (far from the source) for this block of 15
+%  or more KIDs is derived.
+%\item A cross-calibration to each of these KIDs is computed using the
+%  median common mode. Then an inverse noise weighted average mode is build. At each time, we use
+%  only KIDs that are not discarded with the source mask.
+%  At this stage it is important to verify to have enough KIDs to produce a
+%  continuous mode and to do not leave samples without any estimation.
+%\item We linearly regress this average mode against $k_0$'s TOI (far from the
+%  source) and subtract on the entire $k_0$ timeline.
+%\end{itemize}
+%
+%This process is repeated for each KID. Fig.~\ref{fig:nika_toi} shows an example
+%of this low frequency mode derivation, together with the resulting TOI
+%cross-correlation matrix after its subtraction. We have tested on simulations
+%that this method does not alter the flux of the
+%source.
+%
+%If the observed field contains something else than a single point source at its
+%center, then several options are available to generalize this method. In
+%particular, the mask can be designed to adjust to several point sources. If the
+%source is diffuse and extended, then we may go through an iterative procedure that
+%subtracts an improved derivation of the signal at each step. For this work about
+%the commissioning of the instrument and the assessment of its performances on
+%point sources, we do not need to go into further details about this.\\
 
-If the observed field contains something else than a single point source at its
-center, then several options are available to generalize this method. In
-particular, the mask can be designed to adjust to several point sources. If the
-source is diffuse and extended, then we may go through an iterative procedure that
-subtracts an improved derivation of the signal at each step. For this work about
-the commissioning of the instrument and the assessment of its performances on
-point sources, we do not need to go into further details about this.\\
+\noindent \emph{TOI calibration}
+\label{se:flux_calib}
+
+We now focus on the absolute calibration of each TOI. As stated in
+Sect.~\ref{se:ll_proc}, at this stage of the reduction each KID \rf~timeline is
+in Hz. The conversion process to go from these Hz into Jy/beam proceeds in two
+steps: a standard absolute calibration and a correction for the current opacity
+and elevation.
+
+The standard conversion from Hz to Jy/beam is stored in the
+\kidpar\ database. The derivation of these gains $g(k)$ is detailed in
+Sect.~\ref{se:geometry}. Suffice is to say here that simply multiplying
+the TOI's by these gains converts them into Jy/beam. Of course, this individual
+absolute calibration also acts as a relative calibration. This calibration is
+meant to work at zero opacity and 90$^\circ$ elevation. We thus need to correct
+for the current opacity $\tau$ and elevation. In short, the absolute calibration reads
+
+\begin{equation}
+TOI^k(t) [{\rm Jy/beam}] = \rf^k(t)[{\rm Hz}] \times g(k) \times e^{\tau_t/\sin\delta_t}
+\end{equation}
+
+The derivation of opacity is presented in Sect.~\ref{se:opacity}. \\
 
 \noindent \emph{Map projection}
 \label{se:map_projection}

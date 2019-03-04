@@ -8,14 +8,15 @@ The FOV reconstruction consists in matching the KID frequency tones
 to positions in the sky and in performing a KID selection. Although all
 the (2,900) design KID are responsive, some of them are affected by
 cross-talk or are noisy due to an inacurrate tuning of their
-frequency, and must be discarded for further analysis. We use \bms\,
-which allow projecting an individual map per KID, to measure the KID
-positions and relative gains, as discussed in
-Sect.~\ref{se:fov_geometry}. The measured KID positions are further
+frequency, and must be discarded for further analysis. We use \bms,
+which allow projecting an individual map per KID as discussed in
+Sect.~\ref{se:beammaps}, to measure the KID positions and relative gains, as
+discussed in Sect.~\ref{se:fov_geometry}. The measured KID positions
+are further
 checked by matching with the design positions, as presented in
 Sect.~\ref{se:grid_distortion}. In Sect.~\ref{se:avg_kidpar}, we
 present the final KID selection and FOV geometry, as obtained by
-repeating the procedure on a series of \bms\ .  
+repeating the procedure on a series of \bms.  
 
 
 
@@ -33,8 +34,9 @@ KID offsets in the focal plane proceeds in two steps.
 
 \paragraph{Step 1.} We apply a median filter per
 KID timeline whose width is of 31 samples, that is equivalent to about 
-5~FWHM at 65 arcsec/s given that the sampling frequency is 23.84~Hz,
-and we project one map per KID in Nasmyth coordinates. This median filter removes
+5~FWHM at 65 arcsec/s given that the sampling frequency is
+23.84~Hz. Then, we project one map per KID in Nasmyth
+coordinates. The median filter removes
 efficiently most of the low frequency atmospheric and electronic
 noise, albeit with a slight ringing and flux loss on the
 source. However, at this stage, we are only interested in the location
@@ -66,7 +68,7 @@ using the subscans in the opposite direction. The data timelines are
 then projected onto maps. 
 We fit a 2D elliptical Gaussian on
 each KID map. The centroid of this Gaussian is a first estimate of the KID
-offsets, FWHM's, ellipticity and sensitivity. We apply a first KID selection by
+offsets, FWHM, ellipticity and sensitivity. We apply a first KID selection by
 removing outliers to the statistics on these parameters. We also discard
 manually KIDs that show a cross-talk counterpart on their map.
 
@@ -130,11 +132,11 @@ They are described in Table~\ref{ta:gridmatch}.
 
 \begin{table}[!htbp]
   \caption[Field-of-view deformations]{Linear 2D fit of the observed
-    position of the detectors in the sky for N2R9 against their mechanically
+    position of the detectors in the sky for the N2R9 campaign against their mechanically
     designed position. The initial table of Found KIDs is given
     by the focal plane geometry procedure, as described in
     Sect.~\ref{se:fov_geometry},
-    applied to N2R9 \bm\ scans. More than 90\% of the detectors (WPK/FK) are
+    applied to N2R9 \bm\ scans. More than 90\% of the detectors are
   within less than 5 arcseconds of their expected position. }
   \label{ta:gridmatch}
   \centering
@@ -244,7 +246,10 @@ maximum distortions from the NIKA2 optics.
 
 In order to identify the most stable KIDs, we compare the KID parameters
 obtained with several \bms.  In the following, we show results as obtained using
-seven \bms\ from Run10, two from Run9 and one from Run8.  For each KID we
+seven \bms\ acquired during two technical observation campaigns in
+2017.
+%from Run10, two from Run9 and one from Run8.
+For each KID we
 compute the average position on the focal plane and the average FWHM, counting
 the times that it has been considered as valid and at the same position. Indeed,
 a few KIDs have close resonances and can be tuned and switched on some scans. A
@@ -263,7 +268,7 @@ feed-lines than between KID rows of the same feed line and second, KIDs at the e
 feed line are less often valid than others (see e.g. the FOV of
 Array 3). For A1, this end-of-feedline effect is mixed with the
 effect of the KID gain variation across the FOV, which mainly affects
-the South-West third of the array, as discussed in Sect.~\ref{se:flatfields}.
+the South-West third of the array, as discussed in Sect.~\ref{se:flat_field}.
 
 For A1, A3 and A2, respectively, we have 952, 961, and 553 KIDs that
 have been considered as valid at least twice (840, 508, 868 valid at

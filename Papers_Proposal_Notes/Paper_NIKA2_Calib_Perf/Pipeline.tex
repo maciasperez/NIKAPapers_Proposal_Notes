@@ -363,68 +363,92 @@ than the common mode decorrelation at low frequencies.\\
 %the commissioning of the instrument and the assessment of its performances on
 %point sources, we do not need to go into further details about this.\\
 
-\noindent \emph{TOI calibration}
+\noindent \emph{TOI calibration:}
 \label{se:flux_calib}
+The KID TOI in Herz are converted to Jy/beam in two steps: i) the KID
+are inter-calibrated using the calibration coefficients,
+\aka\ relative gains, the derivation of which
+is discussed in Sect.~\ref{se:flat_field} and the
+absolute scale of the flux density is set using the absolute
+calibration method discussed in Sect.~\ref{se:calibration_method} and
+ii) the instantaneous line-of-sight
+atmospheric attenuation $\rm{exp}[{-\tau/\sin\delta_t}]$ is corrected
+using the zenith opacity estimate for the scan $\tau$, which is
+derived as discussed in Sect.~\ref{se:opacity} and the instantaneous observing
+elevation $\delta_t$, as given using the pointing reconstruction.\\     
 
-We now focus on the absolute calibration of each TOI. As stated in
-Sect.~\ref{se:ll_proc}, at this stage of the reduction each KID \rf~timeline is
-in Hz. The conversion process to go from these Hz into Jy/beam proceeds in two
-steps: a standard absolute calibration and a correction for the current opacity
-and elevation.
+%We now focus on the absolute calibration of each TOI. As stated in
+%Sect.~\ref{se:ll_proc}, at this stage of the reduction each KID \rf~timeline is
+%in Hz. The conversion process to go from these Hz into Jy/beam proceeds in two
+%steps: a standard absolute calibration and a correction for the current opacity
+%and elevation.
+%
+%The standard conversion from Hz to Jy/beam is stored in the
+%\kidpar\ database. The derivation of these gains $g(k)$ is detailed in
+%Sect.~\ref{se:geometry}. Suffice is to say here that simply multiplying
+%the TOI's by these gains converts them into Jy/beam. Of course, this individual
+%absolute calibration also acts as a relative calibration. This calibration is
+%meant to work at zero opacity and 90$^\circ$ elevation. We thus need to correct
+%for the current opacity $\tau$ and elevation. In short, the absolute calibration reads
+%
+%\begin{equation}
+%TOI^k(t) [{\rm Jy/beam}] = \rf^k(t)[{\rm Hz}] \times g(k) \times e^{\tau_t/\sin\delta_t}
+%\end{equation}
+%
+%The derivation of opacity is presented in Sect.~\ref{se:opacity}. \\
 
-The standard conversion from Hz to Jy/beam is stored in the
-\kidpar\ database. The derivation of these gains $g(k)$ is detailed in
-Sect.~\ref{se:geometry}. Suffice is to say here that simply multiplying
-the TOI's by these gains converts them into Jy/beam. Of course, this individual
-absolute calibration also acts as a relative calibration. This calibration is
-meant to work at zero opacity and 90$^\circ$ elevation. We thus need to correct
-for the current opacity $\tau$ and elevation. In short, the absolute calibration reads
-
-\begin{equation}
-TOI^k(t) [{\rm Jy/beam}] = \rf^k(t)[{\rm Hz}] \times g(k) \times e^{\tau_t/\sin\delta_t}
-\end{equation}
-
-The derivation of opacity is presented in Sect.~\ref{se:opacity}. \\
-
-\noindent \emph{Map projection}
+\noindent \emph{Map projection:}
 \label{se:map_projection}
+We use the pointing information to project the cleaned calibrated TOI of all the
+KIDs of an array onto a map. The map is produced using an inverse
+variance noise weighting of all of the data samples that fall into a map
+pixel as defined using a nearest grid point scheme. The noise variance of a
+KID is evaluated as the standard deviation of its TOI far from the
+source. Therefore, we neglect the KID-to-KID correlated noise
+residuals in this procedure. We verify however that the
+signal-to-noise ratio (SNR) distribution of the map is well-approximated
+with a Gaussian but not normalised to unity. We correct the SNR
+distribution by increasing the noise variance by a factor that goes
+from 1.2 to 1.5. This constitutes an effective approach to correct
+for the KID-to-KID correlation matrix off-diagonal terms alleviating
+the need of accurately measure them. 
 
-At this stage, data have been calibrated and cleaned and we have the pointing
-information for each sample. If the noise was white and uncorrelated from KID to
-KID, we would be able to produce an optimal map $S_p$ using an inverse
-variance noise weighting of all of the measurements $m^k_t$ that fall
-into a map pixel $p$ with a simple Nearest Grid Point procedure. In
-this scheme, data samples are coadded with inverse variance noise
-weighting: for each KID, we compute the standard deviation
-$\sigma_k$ of its TOI far from the source (see Sect.~\ref{se:toi_proc}). Each
-sample of this KID therefore has a weight of $1/\sigma_k^2$ and
+%At this stage, data have been calibrated and cleaned and we have the pointing
+%information for each sample. If the noise was white and uncorrelated from KID to
+%KID, we would be able to produce an optimal map $S_p$ using an inverse
+%variance noise weighting of all of the measurements $m^k_t$ that fall
+%into a map pixel $p$ with a simple Nearest Grid Point procedure. In
+%this scheme, data samples are coadded with inverse variance noise
+%weighting: for each KID, we compute the standard deviation
+%$\sigma_k$ of its TOI far from the source (see Sect.~\ref{se:toi_proc}). Each
+%sample of this KID therefore has a weight of $1/\sigma_k^2$ and
+%
+%\begin{eqnarray}
+%S_p        &=& \frac{1}{\sum_{k,t}1/\sigma_k^2}\sum_{k,t} \frac{m^k_t}{\sigma_k^2}\,, \label{eq:ngp_sum}\\
+%\sigma^2_p &=& \sum_{k,t}1/\sigma_k^2\,, \label{eq:ngp_var}
+%\end{eqnarray}
+%
+%where $\sigma^2_p$ is the variance associated to pixel $p$. The
+%pipeline automatically projects one map per array and a combined 1\,mm
+%map and takes a small enough resolution to respect the Nyquist
+%criterion on the beam sampling.
+%To keep margin
+%and for the sake of simplicity, we usually take 2\,arcsec resolution pixels.
 
-\begin{eqnarray}
-S_p        &=& \frac{1}{\sum_{k,t}1/\sigma_k^2}\sum_{k,t} \frac{m^k_t}{\sigma_k^2}\,, \label{eq:ngp_sum}\\
-\sigma^2_p &=& \sum_{k,t}1/\sigma_k^2\,, \label{eq:ngp_var}
-\end{eqnarray}
-
-where $\sigma^2_p$ is the variance associated to pixel $p$. The
-pipeline automatically projects one map per array and a combined 1\,mm
-map and takes a small enough resolution to respect the Nyquist
-criterion on the beam sampling.
-To keep margin
-and for the sake of simplicity, we usually take 2\,arcsec resolution pixels.
-
-In practice, and although the data cleaning procedure described in
-Sect.~\ref{se:toi_proc} significantly reduces the low frequency component of
-TOIs, the residual noise is still not completely white nor KID independent. The
-correlation matrix is not strictly zero to begin with (Fig.~\ref{fig:nika_toi})
-and when looking at the distribution of the SNR on maps and variance maps
-obtained with Eqs~(\ref{eq:ngp_sum},\ref{eq:ngp_var}), the distribution is
-Gaussian, but not normalized to unity. %(see
+%In practice, and although the data cleaning procedure described in
+%Sect.~\ref{se:toi_proc} significantly reduces the low frequency component of
+%TOIs, the residual noise is still not completely white nor KID independent. The
+%correlation matrix is not strictly zero to begin with (Fig.~\ref{fig:nika_toi})
+%and when looking at the distribution of the SNR on maps and variance maps
+%obtained with Eqs~(\ref{eq:ngp_sum},\ref{eq:ngp_var}), the distribution is
+%Gaussian, but not normalized to unity. %(see
 %Fig.~\ref{fig:sigma_boost}).
-This is due to the remaining correlations between TOIs before projection. At this stage,
-rather than putting more effort in TOI processing, we renormalize the width of
-the Gaussian noise, which actually increases the map variance by the required factor
-so that the SNR distribution becomes normalized. This normalization factor
-varies from scan to scan but it is usually between 1.2 and 1.5. It is estimated on
-the background of the map, i.~e. far from the source.
+%This is due to the remaining correlations between TOIs before projection. At this stage,
+%rather than putting more effort in TOI processing, we renormalize the width of
+%the Gaussian noise, which actually increases the map variance by the required factor
+%so that the SNR distribution becomes normalized. This normalization factor
+%varies from scan to scan but it is usually between 1.2 and 1.5. It is estimated on
+%the background of the map, i.~e. far from the source.
 
 %\begin{figure}[ht!]
 %\begin{center}
@@ -439,66 +463,71 @@ the background of the map, i.~e. far from the source.
 %\end{figure}
 
 When several scans of the same source are averaged, we apply an inverse
-variance weighting as well. Weights are taken from the variance maps of each scan,
-corrected for the excess variance mentioned in the previous paragraph. The
-final variance map of the sum of scans is also corrected for such a factor if necessary.
+variance weighting as well. %Weights are taken from the variance maps of each scan,
+%corrected for the excess variance mentioned in the previous
+%paragraph.
+The variance map of the sum of scans is also corrected to ensure unity
+SNR distribution.
 
-\noindent \emph{Photometry}
-\label{se:intro_photometry}
+As described in Sect.~\ref{se:photometric_system}, the flux density of
+point-like sources is estimated as the amplitude of a
+fixed-width reference Gaussian fitted on the map.
 
-Throughout this document, we adopt the following convention. Assuming the beam
-is a perfect Gaussian of known $FWHM=\sigma\sqrt{8\ln 2}$, the instantaneous
-signal measured by a KID is
+%\noindent \emph{Photometry}
+%\label{se:intro_photometry}
 
-\begin{equation}
-m^k(x,y) = \phi e^{-(x^2+y^2)/2\sigma^2} = \phi G(x,y)
-\label{eq:flux_per_beam_def}
-\end{equation}
+%Throughout this document, we adopt the following convention. Assuming the beam
+%is a perfect Gaussian of known $FWHM=\sigma\sqrt{8\ln 2}$, the instantaneous
+%signal measured by a KID is
 
-with $\phi$ the flux of the source and $(x,\, y)$ the coordinates in
-the chosen system. In practice, the beam is not a perfect Gaussian
-and significant side lobes must be accounted for
-(Sect.~\ref{se:beam}). If the beam was perfectly known and stable, we could in
-principle replace the Gaussian form in Eq.~\ref{eq:flux_per_beam_def} by the
-beam pattern and fit for the amplitude $\phi$.
+%\begin{equation}
+%m^k(x,y) = \phi e^{-(x^2+y^2)/2\sigma^2} = \phi G(x,y)
+%\label{eq:flux_per_beam_def}
+%\end{equation}
+
+%with $\phi$ the flux of the source and $(x,\, y)$ the coordinates in
+%the chosen system. In practice, the beam is not a perfect Gaussian
+%and significant side lobes must be accounted for
+%(Sect.~\ref{se:beam}). If the beam was perfectly known and stable, we could in
+%principle replace the Gaussian form in Eq.~\ref{eq:flux_per_beam_def} by the
+%beam pattern and fit for the amplitude $\phi$.
 %In practice, we have found that
 %it was enough as a first approximation to take an equivalent effective Gaussian
 %width and use it to derive the beam template.
-In practice, the beam pattern i) has a complexe structure, including
-features which can rotate with the observation elevation (as presented
-in Sect.~\ref{se:fullbeam}), ii) has a few percent dispersion across the FOV (see
-Sect.~\ref{se:mainbeam}) and iii) shows some variations with the observation date
-(see Sect.~\ref{se:obsdate_variations}). However, we have found that using an equivalent
-effective fixed-width Gaussian for the photometry, as presented in
-Sect.~\ref{se:calibration}, is sufficient to ensure accurate, stable and robust flux
-measurements, as assessed in Sect.~\ref{se:photometry}. The reference fixed-width
-Gaussian is chosen sizably larger than the measured main beam width
-(see Sect.~\ref{se:mainbeam}) to account for a fraction of the
-signal stemming from the error beams and side lobes. Namely, we take
-12.5 and 18.5\,arcsec FWHM at 1 and 2\,mm respectively and compute all our fluxes with these
-values. We do this for both absolute calibrators (see Sect.~\ref{se:calibration})
-and analyzed point sources (see Sect.~\ref{se:photometry}) to be consistent. Our
-photometric system is further detailed in Sects.~(\ref{se:calibration}).
+%In practice, the beam pattern i) has a complexe structure, including
+%features which can rotate with the observation elevation (as presented
+%in Sect.~\ref{se:fullbeam}), ii) has a few percent dispersion across the FOV (see
+%Sect.~\ref{se:mainbeam}) and iii) shows some variations with the observation date
+%(see Sect.~\ref{se:obsdate_variations}). However, we have found that using an equivalent
+%effective fixed-width Gaussian for the photometry, as presented in
+%Sect.~\ref{se:calibration}, is sufficient to ensure accurate, stable and robust flux
+%measurements, as assessed in Sect.~\ref{se:photometry}. The reference fixed-width
+%Gaussian is chosen sizably larger than the measured main beam width
+%(see Sect.~\ref{se:mainbeam}) to account for a fraction of the
+%signal stemming from the error beams and side lobes. Namely, we take
+%12.5 and 18.5\,arcsec FWHM at 1 and 2\,mm respectively and compute all our fluxes with these
+%values. We do this for both absolute calibrators (see Sect.~\ref{se:calibration})
+%and analyzed point sources (see Sect.~\ref{se:photometry}) to be consistent. Our
+%photometric system is further detailed in Sects.~(\ref{se:calibration}).
 
-
-Let's call $s_p$ the measured signal at map pixel $p$ and denote by $g_p$ the
-Gaussian weight given to pixel $p$ as a function of its distance to the source,
-as defined in Eq.~\ref{eq:flux_per_beam_def}. The amplitude fit is performed
-with an usual maximum likelihood approach. We assume that the renormalization of
-the variance map described in the previous section is enough to account for the
-residual noise correlations from pixel to pixel and therefore assume the pixels to
-be independent in this estimator:
-
-\begin{eqnarray}
-\hat{\phi} &=& \frac{1}{\sum_p g_p^2/\sigma_p^2}\sum_p
-s_p\frac{g_p}{\sigma_p^2} \label{eq:flux_estim_def} \\
-\sigma^2(\hat{\phi}) &=& \frac{1}{\sum_p
-  g_p^2/\sigma_p^2} \label{eq:flux_estim_var_def}
-\end{eqnarray}
-
-In the case of Gaussian white noise, this maximum likelihood estimator coincides
-with the classical minimum variance estimator and thus provides the best SNR
-estimate of the source flux.
+%Let's call $s_p$ the measured signal at map pixel $p$ and denote by $g_p$ the
+%Gaussian weight given to pixel $p$ as a function of its distance to the source,
+%as defined in Eq.~\ref{eq:flux_per_beam_def}. The amplitude fit is performed
+%with an usual maximum likelihood approach. We assume that the renormalization of
+%the variance map described in the previous section is enough to account for the
+%residual noise correlations from pixel to pixel and therefore assume the pixels to
+%be independent in this estimator:
+%
+%\begin{eqnarray}
+%\hat{\phi} &=& \frac{1}{\sum_p g_p^2/\sigma_p^2}\sum_p
+%s_p\frac{g_p}{\sigma_p^2} \label{eq:flux_estim_def} \\
+%\sigma^2(\hat{\phi}) &=& \frac{1}{\sum_p
+%  g_p^2/\sigma_p^2} \label{eq:flux_estim_var_def}
+%\end{eqnarray}
+%
+%In the case of Gaussian white noise, this maximum likelihood estimator coincides
+%with the classical minimum variance estimator and thus provides the best SNR
+%estimate of the source flux.
 
 %% \subsection{Opacity correction}
 %% 
@@ -567,7 +596,7 @@ conditions where:
   15:00, that is excluding the sunrise period and the late afternoon.
 \end{itemize}
 %
-As discussed in Sect.~\ref{se:obsdate_variations}, the late afternoon
+As discussed in Sect.~\ref{se:beam_variation}, the late afternoon
 observation are often affected by time-variable broadening of the
 telescope beams caused by (partial) solar irradiation of the primary
 mirror and/or anomalous atmospheric refraction.

@@ -120,12 +120,14 @@ weighted average of the map pixels in annular rings.
 We checked the stability of the beam against various observing
 conditions (source intensity, weather condition, focus optimisation) by
 comparing the beam profiles of a series of \bm\ observations.
-This \bms\ set has been selected from all the available \bms\ at
+This \bm\ set has been selected from all the available \bm\ scans at
 optimal focus using the baseline selection criteria, as given in
 Sect.~\ref{se:data_selection}.
-The 18 beam profiles and their difference w.r.t. the median beam
-profile are shown in Fig.~\ref{fig:beam_prof}.
-The variations of the normalised radial profiles are below $5\%$ at
+%The 18 beam profiles and their difference w.r.t. the median beam
+%profile are shown in Fig.~\ref{fig:beam_prof}.
+The 18 beam profiles are shown in
+Fig.~\ref{fig:beam_prof}. Calculating the difference of the beam
+profiles to the median beam profile, we find a dispersion below $5\%$ at
 $1\,\rm{mm}$ and below $2\%$ at $2\,\rm{mm}$. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -142,14 +144,14 @@ $1\,\rm{mm}$ and below $2\%$ at $2\,\rm{mm}$.
 %   \includegraphics[clip, width=\linewidth]{Figures/plot_profile_diff_wrt_median_a2.pdf}
   \caption[Stability of the beam profile]{Beam radial profiles as a
     function of the radius from the peak for a series of 18
-    \bm\ scans %acquired during the N2R8 and N2R9 calibration campaigns and
-    %during the N2R12 and N2R14 science pools.
+    \bm\ scans acquired during the N2R8 and N2R9 calibration campaigns and
+    during the N2R12 and N2R14 science pools.}
     %Left column plots: 
     %Beam profiles normalised to the maximum value; Right column plots:
     %difference w.r.t. the median normalised profile.
-    The radial
-    profile shapes are stable at better than $5\%$ 
-    against observing conditions.}
+    %The radial
+    %profile shapes are stable at better than $5\%$ 
+    %against observing conditions.}
   \label{fig:beam_prof}
 \end{figure}
 
@@ -198,7 +200,7 @@ defined as the principal Gaussian (of the smaller FWHM) that encloses
 most of the measured point-like source flux density. We developped
 three methods for the main beam characterisation, which are detailed
 in Sect.~\ref{se:mainbeam_methods}. Sect.~\ref{se:mainbeam_dataset}
-presents the observing scans we have selected to derive the results
+presents the observing scans that we have selected to derive the results
 discussed in Sect.~\ref{se:mainbeam_results}. We check the stability
 of the FWHM estimate against the observing conditions in
 Sect.~\ref{se:mainbeam_stability}.
@@ -207,7 +209,7 @@ Sect.~\ref{se:mainbeam_stability}.
 \subsubsection{Main beam characterization methods}
 \label{se:mainbeam_methods}
 To characterize the main beam and derive an estimate of the FWHM, we
-have devised three methods. The two first methods, quoted
+have developped three methods. The two first methods, quoted
 {\tt Prof 1\&2}, rely on a fit
 of the beam profile to benefit from the signal-to-noise ratio increase
 after azimuthally averaging the signal. The last one by contrast,
@@ -229,13 +231,15 @@ level in the map. The FWHM estimate is given by the best-fitting value
 of the FWHM for the first Gaussian function.\\
 
 \noindent {\tt Prof 2}: A single Gaussian is fit to the beam profile after
-masking data points at radial distances comprised between
-$0.65 \times$ FWHM and $80''$, so that the largest error beam and
-side lobes contributions do not bias the fit. In this approach, the
-data points at radial distance beyond $80''$ provide the base level
-of the Gaussian fit. In practice, maps $600'' \times 600''$ in size
-were made but only the inner part within a radius of $180''$ with
-uniform noise rms was used to compute the profile.\\
+masking the portion of the profile where the contributions of the side
+lobes and error beams are the largest. Specifically, the side lobe mask
+is designed to cut out the radius comprized between $0.65\, $FWHM$_0$,
+where FWHM$_0$ is the reference Gaussian beam FWHM (see
+Sect.~\ref{se:photometric_system}) and $80''$. At radial distances
+greater than $80''$, the profile measurement provides the base level
+for the Gaussian fit. The profile is estimated up to a radius of
+$180''$, that is in the inner part of the beam map where the noise
+variance is uniform.\\
 
 \noindent {\tt 2D beam}: We model the two-dimensional distribution of the main
 beam using an elliptical Gaussian. We characterize NIKA2 resolution
@@ -246,7 +250,7 @@ by forming the \emph{FWHM}, defined as
 where $\sigma_x$ and $\sigma_y$ are the Gaussian standard deviation
 along minor and major axis.
 As in {\tt Prof 2}, we use masked versions of the
-beam map to avoid the side lobes and error beams contamination.
+beam map to avoid the side lobe and error beam contaminations.
 The mask consists in cutting an annulus of inner radius
 $r_{\rm{in}}$ and outer radius $r_{\rm{out}}$ centered on the beam
 maximum. Whereas $r_{\rm{out}}$ is conservately set to be $100''$,
@@ -284,18 +288,22 @@ Sect.~\ref{se:mainbeam_methods} and the data
 sets of Sect.~\ref{se:mainbeam_dataset}. Namely, our main beam FWHM estimates
 consist of i) the median FWHM estimate using {\tt Prof 1} from the 12 \bm\ scan
 sub-set, ii) the average FWHM estimate using {\tt Prof 2} on a series
-of \bm\ and $5'x8'$ OTF scans of Uranus and Neptune, the {\tt 2D beam} average FWHM
+of \bm\ and $5' \times 8'$ OTF scans of Uranus and Neptune, the {\tt 2D beam} average FWHM
 from iii) the series of OTF scans described in
 Sect.~\ref{se:mainbeam_dataset} and iv) from the 12 \bm\ scan
-sub-set.
+sub-set. By comparing these results, we test the stability of the FWHM
+estimates against the choices of the data set and of the estimation
+method. %We also seek at validating the FWHM estimates using
+%{\tt Prof 2}, which is further used to derive the beam efficiency in
+%Sect.~\ref{se:beam_efficiency}.
 
 For Uranus, the
 FWHM estimates are further corrected for the beam broadening due to the
 extension of the apparent
 disc. At the IRAM $30\,\rm{m}$ latitude, Uranus disc diameter varies
 from $3.3''$ to $3.7''$. This induces a broadening of the Gaussian main beam of
-$0.19 \pm 0.03\,\rm{arcsec}$ at 1-mm and $0.12 \pm 0.02\,\rm{arcsec}$
-at 2-mm. Uranus FWHM estimates are corrected for the average beam
+$0.19 \pm 0.03\,\rm{arcsec}$ at $1\, \rm{mm}$ and $0.12 \pm 0.02\,\rm{arcsec}$
+at $2\, \rm{mm}$. Uranus FWHM estimates are corrected for the average beam
 widening values.
 
 The results of this analysis are
@@ -305,17 +313,22 @@ All the tests based on {\tt Prof 2} and {\tt 2D beam}, which both
 resort to a sidelobe mask, yield FWHM estimates
 in agreement within error bars, whereas the test using {\tt Prof 1}
 yields slightly smaller FWHM for all arrays.
-The latter provides us with lower limits for the main beam FWHM. The error
-bars are the most robustly derived from the dispersion of the
+The latter provides us with lower limits for the main beam FWHM.
+The error bars are the most robustly derived from the dispersion of the
 best-fitting FWHM over the set of 154 OTF scans, whereas rms errors
-that are estimated from smaller scan sets are likely to be
+that are estimated from smaller and more homogeneous scan sets are likely to be
 underestimated. The combined results are obtained from an error-weighted
 average of the four FWHM estimates for each array. The 12 \bm\ scan
 based rms errors were replaced by the 154 OTF scan based rms errors
-beforehand. The combined FWHM estimates are given in Table~\ref{tab:fwhm}.
+beforehand. The combined results, as given in
+Table~\ref{tab:fwhm}, provide us with a robust evaluation of the
+FWHM. Hence, we report FWHMs of $11.1''\pm0.1''$ at
+$1\, \rm{mm}$ and $17.6''\pm 0.1''$ at $2\, \rm{mm}$.  
 
 \begin{table*}[!thbp]
-  \caption[]{FWHM of the NIKA2 main beam in arcsec.}
+  \caption[]{Estimates of the main beam FWHM in arcsec, using three estimation methods (see
+    Sect.~\ref{se:mainbeam_methods}) and three data sets
+    (see Sect.~\ref{se:mainbeam_dataset}), and their combination.}
   \label{tab:fwhm}
   \centering
   \begin{tabular}{llrrrr}
@@ -348,7 +361,7 @@ beforehand. The combined FWHM estimates are given in Table~\ref{tab:fwhm}.
   \includegraphics[clip, width=0.45\textwidth]{Figures/plot_FWHM_vs_atmtrans_mb_radius_binning2_1mm.pdf}
   \includegraphics[clip, width=0.45\textwidth]{Figures/plot_FWHM_vs_atmtrans_mb_radius_binning2_a2.pdf}
   \caption[Main Beam FWHM]{Main beam FWHM estimates for the
-    $1\,\rm{mm}$ (left) and $2\,\rm{mm}$ (right) channels are shown as
+    $1\,\rm{mm}$ (top) and $2\,\rm{mm}$ (bottom) channels are shown as
     a function of the atmospheric transmission estimated at the
     corresponding wavelengths using bright source scans acquired during N2R9, N2R12 and N2R14. }
 \label{fig:fwhm_map_atmtrans}
@@ -392,16 +405,19 @@ $A_i$  at $r_{max} = 180''$ and the main beam solid angle is
 evaluated as the volume of the Gaussian main beam as
 $\Omega_{\rm{mb}} = 2 \pi\,  \sigma_{\rm{mb}}^2$.
 
-The choice of the maximum radius is entailed both by the depth of
-the \bm\ scans and the filtering due to the data processing.   
-However, heterodyne observations of the lunar edge and of the forward
-beam efficiency derived from skydips show that a non-neglectible
-fraction of the full beam is received from beyond a radius of
-$180''$~\citep{Greve2010, Kramer2013}. This fraction is not
-considered here. Beam efficiency estimators that are based on
+The choice of the maximum radius is set both by the integration depth of
+the \bm\ scans, which in turn fixes the noise variance, and the
+filtering due to the data processing.
+However, heterodyne observations at the IRAM \trentemetre\ telescope
+toward the lunar edge and the measure of forward beam efficiency using
+skydips show that a non-neglectible fraction of the full beam stems
+from radius greater than $180''$~\citep{Greve2010, Kramer2013}. This
+fraction is not considered here. Beam efficiency estimators that are based on
 the total solid angle estimates using Eq.~\ref{eq:omega_tot} thus
-overestimates the beam efficiency, whose the accurate evaluation would
-require the measure of the $4\pi$ integral of the full beam pattern.
+overestimates the beam efficiency. An accurate evaluation of
+this quantity would require a dedicated observation program to measure
+of the $4\pi$ integral of the full beam pattern.
+
 
 A large set of \bm\ scans of Uranus and Neptune acquired during the
 N2R9, N2R12 and N2R14 campaigns have been used to evaluate
@@ -411,7 +427,10 @@ $r_{max} =180''$. %and $\Omega_{\rm{mb}}$  derived with the main beam FWHM
 The result is given in Table~\ref{tab:solid}.
 
 \begin{table}[!h]
-\caption{Solid angle of the total beam based on Uranus and Neptune observations}
+\caption{Estimates of the solid angle of the total beam
+  $\Omega_{\rm{tot}}$ given in arcsec$^{2}$ using Neptune and Uranus
+  scans acquired during three observation campaigns, and the average
+  result.  }
 \label{tab:solid}
 \centering
 \begin{tabular}{l c rrr}
@@ -437,7 +456,7 @@ mean    &     &  248            &  453         &  239         \\%&  1.74        
 This 75 \bm\ scan set, as well as the 12 \bm\ scan sub-set, as
 presented in Sect.~\ref{se:mainbeam_dataset}, are further used to
 measure the beam
-efficiencies. We compare the results based on various estimates of
+efficiencies. We compare the results based on three estimates of
 $\Omega_{\rm{tot}}$ and $\Omega_{\rm{mb}}$:
 \begin{itemize}
   \item{{\tt E1} relies on the best-fitting parameters of the
@@ -445,10 +464,9 @@ $\Omega_{\rm{tot}}$ and $\Omega_{\rm{mb}}$:
     angles. The main beam solid angle thus corresponds to the volume
     enclosed by the first Gaussian;}
   \item{{\tt E2} consists in using the measured beam profile to
-    estimate $\Omega_{\rm{tot}}$, while $\Omega_{\rm{mb}}$ is derived
-    with the main beam Gaussian FWHM fit using {\tt Prof 2}, as discussed in Sect.~\ref{se:mainbeam_methods};}
+    estimate $\Omega_{\rm{tot}}$, while $\Omega_{\rm{mb}}$ is derived with the FWHM obtained using {\tt Prof 2}, as discussed in Sect.~\ref{se:mainbeam_methods};}
   \item{{\tt E3} is similar to {\tt E2} but the main beam FWHM is
-    fitted using {\tt 2D beam}.}  
+    derived using {\tt 2D beam}.}  
 \end{itemize}
 
 The beam efficiency estimates using the three methods are gathered
@@ -507,6 +525,11 @@ the error beam, for each observation campaigns are given in Table
 \ref{tab:MB}. The level of the error beam is given relative to the
 main beam peak (we recall that -12dB as found is $6\%$). We find
 stable beam efficiencies using observations acquired one year apart.
+
+Using the combined results, as given in
+Table~\ref{tab:beam_efficiency}, we report beam efficiencies of
+$55 \pm 3 \%$ at $1\,\rm{mm}$ and  $77 \pm 2 \%$ at $2\,\rm{mm}$. 
+
 
 %We note a
 %mild improvement of the beam efficiency between the N2R9 campaign and

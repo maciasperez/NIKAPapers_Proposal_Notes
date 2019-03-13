@@ -44,6 +44,13 @@ custom-designed to optimally match the atmospheric windows, are installed in
 front of each array. A half-wave polarization modulator is added at room
 temperature when operating the instrument in polarimetric mode.
 
+Hereafter, the detector array illuminated by the 150\,GHz beam is named Array
+2 (A2) from the corresponding observing $2\, \rm{mm}$ waveband,
+while in the 260\,GHz ($1\, \rm{mm}$) channel, the array mapping the
+horizontal component of the polarization is referred to as Array 1 (A1)
+and the one mapping the vertical component is called Array 3 (A3). 
+
+
 \subsection{Bandpasses}
 \label{se:instru_bandpass}
 
@@ -62,31 +69,61 @@ temperature when operating the instrument in polarimetric mode.
 \end{figure}
 
 The NIKA2 spectral bands were measured in the laboratory using a
-Martin-Puplett interferometer built in-house \cite{durand}.  Both
+Martin-Puplett interferometer built in-house
+\citep{Durand2007_these}. Both
 arrays and filter bands were considered in the measurements. These
 were obtained from the difference of two black bodies, hence they
 include a $\nu^2$ Rayleigh-Jeans (RJ) spectral term.
 Figure~\ref{spectralband1} shows the relative spectral response for
-the three arrays (corrected of the RJ term).  Notice that array A2 was
-replaced by a new one in N2R5 and that the spectral transmissions are
-not the same (red and orange lines in the figure).
+the three arrays.  Notice that Array 2 was
+upgraded in September 2016 (during the N2R5 technical campaign) and
+that the spectral transmissions are not the same (red and orange lines in
+Fig.~\ref{spectralband1}).
+
 
 The two arrays operating at 260 GHz, mapping different linear polarisations,
 exhibit a slightly different spectral behaviour as can be
 seen on Fig.~\ref{spectralband1}. This may be explained by a tiny
-difference in the silicon wafer and/or Aluminium film thicknesses. For
-instance, the observed shift of the peak frequency, 265 GHz for the V
-(A1) array versus 258 GHz for the H one (A3), can be explained by
-about 5 microns change in the substrate thickness. 
+difference in the silicon wafer and/or Aluminium film
+thicknesses~\citep{Adam2018}.
+%For
+%instance, the observed shift of the peak frequency, 265 GHz for the V
+%(A1) array versus 258 GHz for the H one (A3), can be explained by
+%about 5 microns change in the substrate thickness. 
 
 It is clear from Fig.~\ref{spectralband1} that the atmosphere will
 modify the overall transmission of the system, especially at the tails
-for the A2 array.
+for A2. In Table~\ref{tab:frequencies}, we give the bandpass-integrated
+observing frequencies and bandwidths computed both at zero atmospheric
+opacity and for typical average observing conditions
+(defined by an atmospheric content of $2\,\rm{mm}$ of precipitable
+water vapor and an observing elevation of $60^o$).
+
+\begin{table}[!htbp]
+  \caption[]{Bandpass-integrated observing frequencies and bandwidths
+    of the three arrays computed in two different observing conditions}
+  \label{tab:frequencies}
+  \centering    
+  \begin{tabular}{lrrr}
+    \hline\hline
+    \noalign{\smallskip}
+    & Array 1 & Array 3 & Array 2 \\
+    \noalign{\smallskip}
+    \hline
+    \noalign{\smallskip}
+    Frequency \small{(0mm, 90deg)} [GHz] & 254.7 & 257.4 &  150.9 \\
+    Bandwidth \small{(0mm, 90deg)} [GHz] &  49.2 & 48.0  &   40.7 \\
+    Frequency \small{(2mm, 60deg)} [GHz] & 254.2 & 257.1 &  150.6 \\
+    Bandwidth \small{(2mm, 60deg)} [GHz] &  48.7 &  47.9 &    39.2 \\
+    \noalign{\smallskip}
+    \hline
+  \end{tabular}
+\end{table}
 For each array, we define reference frequencies that are chosen
 as round numbers in the middle of the bands to define NIKA2
 photometric system as will be discussed in
 Sect.~\ref{se:calibration}. These are 260~GHz for the A1 and A3 and
-150~GHz for the A2 arrray.
+150~GHz for A2.
 
 \subsection{KIDs and electronics}
 \label{se:array}
@@ -109,8 +146,7 @@ cryogenic (4 K) low-noise amplifier. The warm electronics required to digitize
 and process the pixels signals is composed of twenty custom readout cards (one
 per feed-line).
 
-%In this document, the 2\,mm array is called A2, while the two 1\,mm arrays are
-%called A1 and A3.
+
 
 
 \subsection{KID photometry and tuning}

@@ -39,7 +39,7 @@ time in a beam $t_{\rm{beam}}$, using
 %
 \begin{equation}
   t_{\rm{beam}} = \frac{<N_{\rm{hit}}>_{\rm{center}}}{f_{\rm{sam}}}\,
-  \eta \frac{g^2}{\Delta_r^2},
+  \frac{g^2}{\eta\Delta_r^2},
   \label{eq:integration_time}
 \end{equation}
 %
@@ -52,11 +52,14 @@ spend in a map pixel of the center of the map. As all the KIDs of an
 array produce a data sample at the same time, we need to correct the
 total time of integration from the fraction of the KID that
 contributes to a map pixel at the same time. For this purpose, first
-we estimate the number of KID per map pixel as the ratio of $g^2$ to
-$\Delta_r^2$, where $g$ is the distance between neighbour KIDs (see
+we estimate the number of KID per map pixel as the ratio of the map
+pixel area $\Delta_r^2$ to the KID occupation area $g^2$, where $g$ is
+the distance between neighbour KIDs (see
 Sect.~\ref{se:grid_distortion}). Then, we multiply
 this quantity by the fraction of valid KID $\eta$ that actually
-contribute to the map (see Sect.~\ref{se:avg_kidpar}). 
+contribute to the map (see
+Sect.~\ref{se:avg_kidpar}). {\color{magenta} Clarifier si $\eta$ est
+  le nb de valid KID ou le nb de used KID dans le pipeline.}
 
 For cross-checks, we compare the $t_{\rm{beam}}$ estimates using an
 alternative approach for evaluating the on-source integration

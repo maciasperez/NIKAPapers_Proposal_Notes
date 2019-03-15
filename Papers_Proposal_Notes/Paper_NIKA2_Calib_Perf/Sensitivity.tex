@@ -289,12 +289,14 @@ given in Table~\ref{tab:nefd_astro}.
 %nefda = [56.6, 45.6, 36.1, 9.8]
 %msa   = !dpi/4.0d0*6.5d0^2*eta/nefda^2*60.0d0^2 ;; arcmin^2/h/mJy^2
 %print, msa
+% sig_nefd0 = [3.9, 3.5, 2.9, 1.1]
+% sig_ms0   = !dpi/4.0d0*6.5d0^2*eta/nefd0^3*60.0d0^2*sig_nefd0
 
 \begin{table}[!thbp]
   \begin{center}
     \caption[NEFD estimates on all sub-Jy sources]{Median NEFD and rms
       uncertainties in $\rm{mJy}\cdot \rm{s}^{1/2}$, as well as the derived mapping
-      speed in $\rm{arcmin}^2\cdot\rm{mJy}^{-2}\cdot\rm{h}^{-1}$, evaluated
+      speed and mapping speed uncertainties in $\rm{arcmin}^2\cdot\rm{mJy}^{-2}\cdot\rm{h}^{-1}$, evaluated
       in using the scatter method on all sub-Jy sources of runs N2R9, N2R12
       and N2R14, given at pwv=0 and 90 degrees elevation (first three rows) and extrapolated at the
       reference IRAM observing conditions (last three rows), which are defined
@@ -310,11 +312,13 @@ given in Table~\ref{tab:nefd_astro}.
       NEFD\small{(0mm, 90deg)}             & 47.2    & 37.9    &    30.1  &    8.8   \\
       RMS NEFD\small{(0mm, 90deg)}         &  3.9    &  3.5    &     2.9  &    1.1   \\
       M$_{\rm{s}}$\small{(0mm, 90deg)}      & 45      &  70     &    111   &   1388   \\
+      RMS M$_{\rm{s}}$\small{(0mm, 90deg)}  &  4      &   6     &     11   &    174   \\
       \hline
       \noalign{\smallskip}
-      NEFD\small{(2mm, 60deg)}         & 56.6    & 45.6    &    36.1  &    9.8   \\
-      RMS NEFD\small{(2mm, 60deg)}     &  4.7    & 4.2     &     3.5  &    1.2   \\
-      M$_{\rm{s}}$\small{(2mm, 60deg)}  &  31    & 48       &    77   &   1119   \\
+      NEFD\small{(2mm, 60deg)}             & 56.6    & 45.6    &    36.1  &    9.8   \\
+      RMS NEFD\small{(2mm, 60deg)}         &  4.7    & 4.2     &     3.5  &    1.2   \\
+      M$_{\rm{s}}$\small{(2mm, 60deg)}      &  31    & 48       &    77   &   1119   \\
+      RMS M$_{\rm{s}}$\small{(2mm, 60deg)}  &   3    &  4       &     7     &  137   \\
       \hline
     \end{tabular}
 \end{center}

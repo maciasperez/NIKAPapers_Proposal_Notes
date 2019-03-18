@@ -2,22 +2,24 @@
 %----------------------------------------------------------------------------------------
 %	4./ Data reduction
 %----------------------------------------------------------------------------------------
+%\label{se:dataproc}
 
 For each observing scan, NIKA2 produce a datastream via the data
 acquisition software, which synchronises with the telescope data using
-pulses per second. Using the \rf\ photometric
+pulses per second (pps). This clock is itself synchronous to the
+absolute astronomical time. Using the \rf\ photometric
 estimator, as discussed in Sect.~\ref{se:tuning}, we derive the
 timelines of the KID resonance frequency estimate, which is a quantity
 proportionnal to the flux absorbed by a KID and
 homogeneous to Hz~\citep[see]{Calvo2013}. These time ordered
-information (TOI) together with
-the time-stamped pointing information produced by the telescope
+information (TOI), together with
+the time-stamped pointing information produced by the telescope,
 constitute the raw data.
 
 We have developed a dedicated data reduction pipeline to
 produce calibrated sky maps from NIKA2 raw data. This pipeline was first 
-installed for the data analysis during the commissioning campaigns and is
-now currently used for science-purpose data reduction. It implements
+installed for the data analysis during the commissioning campaigns and
+is currently used for science-purpose data reduction. It implements
 the baseline methods for the calibration and performance assessment.
 A detailed description of this software will be presented in a companion
 paper \citep{Ponthieu2019}, as well as an application to blind source
@@ -56,8 +58,8 @@ We isolate the relevant fraction of the data for scientific
 utilisation and flagged out potentially misbehaving KIDs or
 timeline accidents (glitches). Specifically, we flag out cosmic rays,
 which impact only one sample due to the KID fast time constant, periods
-dedicated to the tuning of the KID tones to their resonance frequency, and
-the timeline of KIDs whose noise level exceed $3\sigma$ of the average
+dedicated to the KID resonance frequency tuning (Sect.~\ref{se:tuning}), %of the KID tones to their resonance frequency
+and the timeline of KIDs whose noise level exceed $3\sigma$ of the average
 noise level of all other KIDs of the same array.\\    
 
 %In addition to this, we look for and remove the - rare - cosmic rays
@@ -95,7 +97,7 @@ telescope provides us with the absolute pointing of a reference point
 of the focal point, which is coincident with the reference KID after
 the pointing correction are applied, as described in
 Sect.~\ref{se:pointing}. Second, we estimate the offset positions of
-each KID with respect with the reference KID using a dedicated
+each KID with respect to the reference KID using a dedicated
 procedure that is referred to as the focal plane reconstruction, as
 presented in Sect.~\ref{se:geometry}. After this step, we are able to
 distinguish KIDs that are on-source from those that are off-source,
@@ -146,8 +148,8 @@ which is a key information for the treatment of correlated noises.\\
 \noindent \emph{Correlated noise subtraction:}
 \label{se:toi_proc}
 The TOI of each KID include a large low-frequency component of correlated noise of two
-different origins: the atmospheric component, which is common to all
-KIDs, and the electronic noise, which is common to the KIDs connected
+different origins: the atmospheric component, which is usually
+dominant and common to all KIDs, and the electronic noise, which is common to the KIDs connected
 to a same electronic readout feed-line (see
 Sect.~\ref{se:array}). The subtraction of this correlated noise is a key
 step of the data processing, as correlated noise residuals are an
@@ -196,7 +198,7 @@ the calibration.
 %expected because the telescope is a $30\,\rm{m}$ dish and therefore
 %has a near field limit at 900\,km.
 
-A illustrated on the first panel of Fig.~\ref{fig:nika_toi}, the
+As illustrated on the first panel of Fig.~\ref{fig:nika_toi}, the
 scaled-version of the low-frequency noise component is seen by all KIDs
 at the same time, while the signal is shifted from one KID to
 another. A simple co-addition of the KID timelines provides us with an
@@ -290,9 +292,10 @@ the lower panel of Fig.~\ref{fig:nika_toi}.
   \end{center}
 \caption[Noise power spectra]{
   The data noise power spectra are shown for the three NIKA2 arrays (A1, A3, and
-  A2 from top to bottom) for scan 20170228s151. The power spectra are given for the raw
+  A2 from top to bottom)% for scan 20170228s151.
+  The power spectra are given for the raw
   data (blue), and for the CM (green), PCA (red) and MCP (cyan) decorrelated
-  data.  
+  data.   
   \label{rmspws}}
 \end{figure}
 
@@ -402,7 +405,9 @@ elevation $\delta_t$, as given using the pointing reconstruction.\\
 We use the pointing information to project the cleaned calibrated TOI of all the
 KIDs of an array onto a map. The map is produced using an inverse
 variance noise weighting of all of the data samples that fall into a map
-pixel as defined using a nearest grid point scheme. The noise variance of a
+pixel as defined using a nearest grid point scheme. The map resolution
+is chosen small enough (typically $2''$ per map pixel) to alleviate the need for more refined
+interpolation scheme. The noise variance of a
 KID is evaluated as the standard deviation of its TOI far from the
 source. Therefore, we neglect the KID-to-KID correlated noise
 residuals in this procedure. We verify however that the
@@ -614,7 +619,7 @@ observations for performance assessment.
 In addition to the above scan selection cuts, we use a Gaussian beam
 size criterion for the absolute calibration on planets
 (e.g. Uranus). Namely, the FWHM estimated from the planet observation
-map is asked to be lower than $12.5''$ at $1\,\rm{mm}$ and lower than $18''$ at
+map is required to be lower than $12.5''$ at $1\,\rm{mm}$ and lower than $18''$ at
 $2\,\rm{mm}$. In further mitigating the flux scatter due to beam broadening, we
 ensure better accuracy of the absolute calibration.  
 

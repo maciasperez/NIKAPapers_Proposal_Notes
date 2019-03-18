@@ -55,9 +55,9 @@ have been designed specifically for \nika\ (e.g.~the focus sequence).
 \label{se:axial_focus}
 
 We have designed a specific focus procedure that takes
-advantage of the dense sampling of the FOV that allows to map a source
+advantage of the dense sampling of the FOV allowing to map a source
 in a short integration time. We perform a series of five successive
-short raster scans of a bright point source at five position of the
+short raster scans of a bright (above a few Jy) point source at five position of the
 secondary mirror (M2) offsets along the optical axis.%, typically
 %$\{-0.8, -0.4, 0, 0.4, 0.8\}$\,mm w.r.t.~the current $z$-focus (which
 %is usually the previous optimal $z$-focus value).
@@ -218,7 +218,7 @@ valid detector located close to the center of Array 2. We use the
 estimated position of the reference detector to derive the current pointing
 offsets of the system in azimuth and elevation. These offsets can then
 be used to make the optical axis of the telescope to coincide with the
-optical axis of NIKA2 and thus recenter the next scan.
+optical axis of NIKA2 and thus optimize the pointing of the following scan.
 %These offsets can then be passed
 %to PAKO to make the optical axis of the telescope
 %to coincide with the optical axis of NIKA2 and thus recenter the next scan.
@@ -285,26 +285,29 @@ each constant elevation sub-scan (hence once per airmass).
 A \bm\ scan is an observing procedure to map a bright and compact
 source, most of the time a planet, with
 an elevation step small enough to meet Nyquist sampling of the 1\,mm beam,
-namely 4.8~arcsec. We observe the planet with a raster scan in (az,el)
+namely 4.8~arcsec. We observe the source with a raster scan in (az,el)
 coordinates of $13\times7.8$~arcmin$^2$, either with the telescope
 performing a continuous slew at fixed elevation or at fixed azimuth. 
 A continuous scanning slew defines a subscan. 
-The fixed-elevation scanning has the advantage of low air mass variation
+The fixed-elevation scanning has the advantage of nulling the air mass variation
 across a subscan, while the fixed-azimuth scanning offers an
 orthogonal scan direction to the former:
 the combination of both gives a more accurate determination of the far side
 lobes. The scan size ensures that the entire FOV is observed with good margins
 for beam mapping even on the edges and good margins for baseline derivation and
-subtraction in the scanning direction. During subscans, the telescope travels at
+subtraction in the scanning direction. During subscans, the telescope moves at
 65\,arcsec/s. This value results of a tradeoff between the need to scan as
 fast as possible to minimize atmospheric contamination and the
 necessity to keep subscans no shorter than 10\,s (telescope
 constraint). The need to have Nyquist sampling of
 the beams along the scan direction translates into a maximum speed of 110\,arcsec/s
 for our nominal acquisition rate of 23.8\,Hz and is thus largely met. Subscans
-last 12\,s, the entire scan lasts about 25\,min, which is short enough to prevent
-losing the signal due to atmosphere-induced (1/f) background variations that would
-move the resonance away from the tone probing it.
+last 12\,s, the entire scan lasts about 25\,min.
+% Alessandro advice: cancel the following part of the sentence: not true in absolute
+% (depending on the atmospheric conditions)
+%, which is short enough to prevent
+%losing the signal due to atmosphere-induced (1/f) background variations that would
+%move the resonance away from the tone probing it.
 
 More details on these observations are given in Sect.~\ref{se:geometry}
 where we describe how to actually exploit them to derive individual KID

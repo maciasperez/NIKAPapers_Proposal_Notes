@@ -8,9 +8,9 @@ NIKA2 simultaneously images a field-of-view of
 6.5' in diameter at 150 and 260~GHz. It also has polarimetric
 capabilities at 260~GHz, which are not discussed here. The optics of
 the telescope receiver cabin have been modified in order
-to increase the IRAM 30-m telescope field-of-view compared to earlier
-resident instruments{\color{magenta} (Ref)}. To achieve these goals without degrading the
-telescope angular resolution, it employs a total of around
+to increase the IRAM 30-m telescope field of view. To achieve these
+goals without degrading the
+telescope angular resolution, NIKA2 employs a total of around
 2,900\,detectors split over three distinct arrays of Kinetic
 Inductance Detectors (KID).
 
@@ -26,7 +26,8 @@ calibration.
 The optimal operation of the detectors is achieved at a temperature of around
 150\,mK, well below the Aluminium superconducting transition. For this reason,
 NIKA2 employs a custom dilution fridge to cool down the focal plane, and the
-refractive portion of the optics, for a total mass around 100 kg, deeply in the
+refractive portion of the optics, for a total mass around 100 kg,
+which is kept deeply in the
 sub-Kelvin regime. Despite the complexity and size of the system, the operation
 of NIKA2 does not require external cryogenic liquids and is fully remotely
 controllable.
@@ -77,7 +78,7 @@ include a $\nu^2$ Rayleigh-Jeans (RJ) spectral term.
 Figure~\ref{spectralband1} shows the relative spectral response for
 the three arrays.  Notice that Array 2 was
 upgraded in September 2016 (during the N2R5 technical campaign) and
-that the spectral transmissions are not the same (red and orange lines in
+that the spectral transmissions are slightly different (red and orange lines in
 Fig.~\ref{spectralband1}).
 
 
@@ -95,7 +96,7 @@ It is clear from Fig.~\ref{spectralband1} that the atmosphere will
 modify the overall transmission of the system, especially at the tails
 for A2. In Table~\ref{tab:frequencies}, we give the bandpass-integrated
 observing frequencies and bandwidths computed both at zero atmospheric
-opacity and for typical average observing conditions
+opacity and for typical winter-semester observing conditions
 (defined by an atmospheric content of $2\,\rm{mm}$ of precipitable
 water vapor and an observing elevation of $60^o$).
 
@@ -170,21 +171,23 @@ $(dI, dQ)$. Projecting linearly
 $(\Delta I, \Delta Q)$ on $(dI, dQ)$ therefore
 provides $\Delta f$. This value, in Hz, constitutes the raw
 time-ordered data, which are sampled at a frequency of 23.84
-Hz. Ingested into the calibration pipeline, it will be futher calibrated into astronomical units
+Hz. Ingested into the calibration pipeline, it will be futher converted into astronomical units
 (Sect.~\ref{se:calibration}). For historical reasons, this way of deriving KID
 signals has been nicknamed \emph{RfdIdQ}. More details on this process are given
 in \citet{Calvo2013}.\\
 
-Not only incident astronomical light reaches the KIDs and contributes to Cooper
-pair breaking. Any change in the background optical load (due, for example, to changes in
-the atmospheric transmission or in the elevation) contributes as well to the
-shift of the resonances. In order to maximize the sensitivity of a KID, the
+In addition to light of astronomical origin, any change in the
+background optical load (due, for example, to changes in
+the atmospheric transmission or in the elevation) contributes as well to
+Cooper pair breaking, and thus to the shift of the resonances. In
+order to maximize the sensitivity of a KID, the
 excitation signal used to read it out must always be near its resonance
 frequency. We therefore have developped a tuning algorithm that takes care of
 this optimization. Tunings are performed during the first subscan of each
-observation in order to be optimally tuned at the same elevation and sky
-conditions as the source. It takes only a few seconds when the $\ftone$ are
-close to the current functionning point. In order to always be in these
-conditions, continuous tunings are done between two scans when NIKA2 is not observing.
+observation in order to be optimally set at the same elevation and sky
+conditions as the source. This process takes only a few seconds
+whenever the resonances are close to the current functionning
+point. These optimal conditions are further maintained by performing
+continuous tunings between two scans while NIKA2 is not observing. 
 
 

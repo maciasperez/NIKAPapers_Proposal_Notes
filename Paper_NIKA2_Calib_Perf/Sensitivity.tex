@@ -141,13 +141,13 @@ opacity and observing elevation, they do not contribute with the same weight to
 the co-addition. \nico{In such case, eq.~(\ref{eq:nefd_det}) generalizes to}
 
 \begin{equation}
-  \sigma(n) = \frac{NEFD_{det,0}}{\sqrt{\sum_{i=1}^{n}t_i e^{-2\tau_i/\sin\delta_i}}},
+  \sigma(n) = \frac{NEFD_{det,0}}{\sqrt{\sum_{i=1}^{n}t_i e^{-2\tau_i/\sin\elev_i}}},
   \label{eq:sigma_tau_w8}
 \end{equation}
-where $t_i$, $\tau_i$ and $\delta_i$ are the integration time, the zenith
+where $t_i$, $\tau_i$ and $\elev_i$ are the integration time, the zenith
 opacity and the observing elevation of the $i$-th scan of the $n$-scan
 co-addition. \nico{Fitting $\sigma(n)$ vs the corresponding effective
-  integration time $\sum_{i=1}^{n}t_i e^{-2\tau_i/\sin\delta_i}$ provides an
+  integration time $\sum_{i=1}^{n}t_i e^{-2\tau_i/\sin\elev_i}$ provides an
   estimate of $NEFD_{det,0}$. This method requires long integration on a same
   object. During the N2R9 run, we selected \hls\, a moderately faint source
   \citep{2012A&A...538L...4C}, expected to be 74.5\,mJy at 1mm and 15.7\,mJy at 2mm
@@ -171,7 +171,7 @@ analysis to sources with a flux below 1\,Jy.
     \includegraphics[trim={0.5cm, 0.5cm, 1.5cm, 1.8cm}, clip, angle=0, width=0.495\textwidth]{Figures/hls_nefd_vst.eps}
     \includegraphics[trim={0.5cm, 0, 0.2cm, 0.5cm}, clip, angle=0, width=0.485\textwidth]{Figures/hls_NEFD_vs_TauElev_all.eps}
     \caption{Comparison of NEFD estimates using two methods on
-      observation of \hls. \emph{Left panel:} Evolution of the 1\,$\sigma$ flux density uncertainties as a function of the integration time; \emph{Right panel:} NEFD as a function of the measured line-of-sight opacity. The solid black line is the theoretical fit of $\rm{NEFD} = \rm{NEFD}_0$ $e^{(\tau/\sin\delta)}$ and gives the NEFD when extrapolated to $\tau/\sin\delta = 0$.}
+      observation of \hls. \emph{Left panel:} Evolution of the 1\,$\sigma$ flux density uncertainties as a function of the integration time; \emph{Right panel:} NEFD as a function of the measured line-of-sight opacity. The solid black line is the theoretical fit of $\rm{NEFD} = \rm{NEFD}_0$ $e^{(\tau/\sin\elev)}$ and gives the NEFD when extrapolated to $\tau/\sin\elev = 0$.}
     \label{fig:nefd_twomethods}
   \end{center}
 \end{figure*}
@@ -238,11 +238,11 @@ integration is well consistent with $t^{-1/2}$.
 The right panel of Fig.~\ref{fig:nefd_twomethods} show the NEFD
 estimates for  Array 1, 3, the combination of A1$\&$A3 and Array 2
 using the scatter method, as discussed in Sect.~\ref{se:nefd_method},
-as a function of the line-of-sight opacities, $\tau/sin(\delta)$,
-where $\tau$ is the zenith opacity and $\delta$ the observing
+as a function of the line-of-sight opacities, $\tau/sin(\elev)$,
+where $\tau$ is the zenith opacity and $\elev$ the observing
 elevation. The solid lines show the best fit of the model for a
 background-dominated sensitivity,
-defined as NEFD = NEFD$_0$ exp${[\tau/sin(\delta)]}$. The best-fitting
+defined as NEFD = NEFD$_0$ exp${[\tau/sin(\elev)]}$. The best-fitting
 NEFD$_0$ amplitude give us estimates of the
 top-of-atmosphere NEFD, which are gathered in
 Table~\ref{tab:nefd_summary}.
@@ -263,7 +263,7 @@ campaigns. The NEFD estimates for the
 three campaigns are in agreement within uncertainties for the whole
 range of line-of-sight opacities that have been tested.
 The solid lines show the expected dependance with
-exp${[\tau/sin(\delta)]}$ for a background-limited sensitivity
+exp${[\tau/sin(\elev)]}$ for a background-limited sensitivity
 model. Since the measured NEFD are not Gaussian distributed, we
 derive the top-of-atmosphere NEFD as the median of the measured NEFD
 per scans after correction of the atmospheric attenuation, which provides us
@@ -278,7 +278,7 @@ average NIKA2 performance, which are gathered in
 Table~\ref{tab:nefd_astro}.
 The RMS uncertainties are evaluated as the rms scatter of the
 individual NEFD estimates after correction with
-$\exp[\tau/sin(\delta)]$. These values are then extrapolated at the
+$\exp[\tau/sin(\elev)]$. These values are then extrapolated at the
 reference IRAM observing conditions, which consists of $2~\rm{mm}$
 of precipitable water vapor (pwv) in the atmosphere and $60$ degrees
 elevation.  
@@ -291,7 +291,7 @@ elevation.
 \includegraphics[clip=true,width=0.47\textwidth]{Figures/plot_nefd_vs_obstau_corrected_skydip_vfinal_a2.pdf}
 \caption{Comparison of the NEFD estimates for three observation
   campaigns. The measured NEFD using the scatter method is plotted as a function of
-  line-of-sight opacity ($\tau/sin(\delta)$) for the $1~\rm{mm}$ (left) and $2~\rm{mm}$ (right)
+  line-of-sight opacity ($\tau/sin(\elev)$) for the $1~\rm{mm}$ (left) and $2~\rm{mm}$ (right)
   channels. Data points are NEFD estimates in mJy.s$^{1/2}$ for N2R9 (blue), N2R12 (orange)
   and N2R14 (chartreuse). We also show in the plots the expected NEFD evolution
   with the line-of-sight opacity as solid curves using the median

@@ -57,11 +57,15 @@ characteristics have been tailored for NIKA2 performance.
 \subsection{Focus}
 \label{se:axial_focus}
 
+Observation pools start with setting the telescope focus since NIKA2 large
+FOV alleviates the need to adjust the pointing beforehand.  
 We have designed a specific focus procedure that takes
 advantage of the dense sampling of the FOV allowing to map a source
-in a short integration time. We perform a series of five successive
-short raster scans of a bright (above a few Jy) point source at five
-position of the secondary mirror (M2) offsets along the optical axis.%, typically
+in a short integration time. We perform a series of five successive one-minute
+raster scans of a bright (above a few Jy) point source at five
+position of the secondary mirror (M2) offsets along the optical
+axis. As the scan size is $1'\times 5'$, the main contribution to each
+map mainly comes from the KIDs located in the central part of the FOV.%, typically
 %$\{-0.8, -0.4, 0, 0.4, 0.8\}$\,mm w.r.t.~the current $z$-focus (which
 %is usually the previous optimal $z$-focus value).
 %We then analyse each map to optimize the $z$ position of M2.
@@ -84,8 +88,9 @@ position of the secondary mirror (M2) offsets along the optical axis.%, typicall
 %$z \in \{-0.8, -0.4, 0, 0.4, 0.8\} + z_0$.
 Elliptical Gaussian fits on the five maps provide estimates of
 the flux and FWHM along minor and major axes for each focus. 
-The best axial focus is then estimated as the maximum of the flux or the
-minimum of the FWHM using parabolic fits of the five measurements.
+The best axial focus in the central part of the array is then
+estimated as the maximum of the flux or the minimum of the FWHM using
+parabolic fits of the five measurements.
 %Parabolic fits are
 %then used to determine the best focus.%, as illustrated in Fig.~\ref{fig:focus-example}.
 %We consider three estimates: i) $\hat
@@ -108,8 +113,9 @@ is not strictly flat.
 %to the central KIDs.
 %Hence, the optimal focus derived from the fits is biased.
 To account for the curvature of the focus surfaces and optimize the
-average focus across the FOV, we add -0.2\,mm to the best-fit focus value as derived
-in the previous paragraph. This focus offset is measured on data using
+average focus across the FOV, we add -0.2\,mm to the best axial focus
+in the central part of the array, as derived in the previous
+paragraph. This focus offset is measured on data using
 dedicated sequence of de-focused scans, as discussed in
 Sect.~\ref{sec:focus_surfaces}. It is in agreement with expectations
 derived with optical simulation using ZEMAX\footnote{Web site: \tt{www.zemax.com}}. 

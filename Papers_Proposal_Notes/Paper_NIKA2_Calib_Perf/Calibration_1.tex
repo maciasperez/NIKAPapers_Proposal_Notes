@@ -57,7 +57,7 @@ the flux density and the chosen photometric system.
 The main primary calibrators of NIKA2 are the giant planets Uranus and
 Neptune. The latter is used when the former is not visible in the most
 stable observing conditions. The flux density expectations of the
-primary calibrators are derived in Sect.~\ref{se:flux_theo}. 
+primary calibrators are derived in Sect.~\ref{se:ref_flux_calibrator}. 
 
 We parametrize the primary calibrator flux density
 $S_{\rm{c}}(\nu) = S_{\rm{c}}(\nu_0)\, f(\nu/\nu_{0})$, where $f(\nu/\nu_{0})$
@@ -210,7 +210,7 @@ amplitude $A_c$ is estimated as the average amplitude of the $FWHM_0$
 Gaussian fitted from a series of calibrator maps.
 
 Before the flux density estimation, the calibrator raw data are i)
-intercalibrated as decribed in Sect.~\ref{se:flatfields} and ii) corrected for the
+intercalibrated as decribed in Sect.~\ref{se:flat_field} and ii) corrected for the
 atmospheric attenuation as described in Sect.~\ref{se:opacity}. To
 refine the intercalibration between the two $1$-mm arrays after the
 KID Hertz to Jy/beam conversion factor estimates, a flux rescaling
@@ -238,10 +238,10 @@ of a calibrator, as discussed in Sect.~\ref{se:photometric_system}. We
 further clarify the computation of the calibration coefficient $G_k$
 for the KID $k$ as:
 \begin{equation}
-  G_k = \frac{S_{th}(\nu_0)\, e^{-\tau/sin(\delta)}}{A_k}, 
+  G_k = \frac{S_{th}(\nu_0)\, e^{-\tau/sin(\elev)}}{A_k}, 
 \end{equation}
 where $S_{th}(\nu_0)$ is the expected flux density of the source at
-the reference frequency $\nu_0$, $\tau/sin(\delta)$ is the
+the reference frequency $\nu_0$, $\tau/sin(\elev)$ is the
 line-of-sight opacity measured using the NIKA2 skydip-based method
 (see Sect.~\ref{se:opacity}) and $A_k$ is the
 amplitude of the reference FWHM$_0$ Gaussian, which is fitted in the
@@ -259,7 +259,7 @@ show the average main beam %and forward beam
 flat field for the three arrays. These have been constructed by
 combining the normalized flat fields of five \bms, which were
 selected by thresholding the line-of-sight opacity measured in the
-1\,mm band to $\tau/sin(\delta) \leq 0.85$. The distributions for the average flat
+1\,mm band to $\tau/sin(\elev) \leq 0.85$. The distributions for the average flat
 fields are shown in the bottom panel of Fig.~\ref{fig:avg_mbff}.% and \ref{fig:avg_fbff}.
 
 We observe a sizable variation of the flat fields for A1 from the left-most side
@@ -386,7 +386,7 @@ observed for the previous generation of instrument MAMBO. However,
 compared to the period when MAMBO or NIKA were on activity, these
 daily deformations have probably strengthen due to the ageing of the
 main dish white coating. On short time scales, anomalous refraction
-may also play a role~\cite{Altenhoff1987}. Based on observation
+may also play a role~\citep{Altenhoff1987}. Based on observation
 experience with EMIR, afternoon hours were often impaired with an
 unstable atmosphere while rising moist air that
 moves through the beam of the telescope causes the telescope beam
@@ -394,7 +394,7 @@ position to change within few seconds by several arcseconds.
 
 The impact of this effect on the flux density estimates can be
 mitigated, as we will explain in
-Sects.~\ref{se:baseline_calibration,se:photometric_correction},
+Sects.~\ref{se:baseline_calibration}-\ref{se:photometric_correction},
 provided the temperature-induced beam variations are accurately
 monitored. Here, we describe the methods to monitor the beam size.   
 
@@ -457,7 +457,7 @@ of other sources. This originates from larger 2D Gaussian fitted
 values due to the error beams, which are measured with a
 signal-to-noise as higher so as the source is bright. This small
 effect is accounted for the beam-dependent calibration cross-check
-discussed in Sect.~\ref{se:photocorr_calibration}.
+discussed in Sect.~\ref{se:photometric_correction}.
 
 
 \subsubsection{Beam monitoring using pointing}
@@ -479,7 +479,7 @@ the array see the source.
 %traitement pointing scans
 For this purpose, pointing scans are reduced using
 the data analysis pipeline described in
-Sect.~\ref{se:pipeline_overview} with the same parameters as for
+Sect.~\ref{se:dataproc} with the same parameters as for
 standard OTF scans, and projected onto maps of $2''$ resolution.
 As previously, an elliptical 2D Gaussian is then fitted from the map
 and a geometrical FWHM is formed from the best-fitting FWHM along the

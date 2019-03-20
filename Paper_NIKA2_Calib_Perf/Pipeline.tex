@@ -4,21 +4,30 @@
 %----------------------------------------------------------------------------------------
 %\label{se:dataproc}
 
-For each observing scan, NIKA2 produce a datastream via the data
-acquisition software, which synchronises with the telescope data using
-pulses per second (pps). This clock is itself synchronous to the
-absolute astronomical time. Using the \rf\ photometric
-estimator, as discussed in Sect.~\ref{se:tuning}, we derive the
-timelines of the KID resonance frequency estimate, which is a quantity
-proportionnal to the flux absorbed by a KID and
-homogeneous to Hz~\citep[see]{Calvo2013}. These time ordered
-information (TOI), together with
-the time-stamped pointing information produced by the telescope,
-constitute the raw data.
+The raw KID data ($I$, $Q$, $\Delta I$, $\Delta Q$) and the telescope
+pointing data are synchronized by the NIKA2 acquisition system using a
+clock that gives the absolute astrononical time (a.k.a. the telescope
+pulses per second) to define the NIKA2 raw data. From the KID raw
+data, we compute the quantity \emph{RfdIdQ}, as described in
+Sect.~\ref{se:tuning}. This quantity, which is proportional to the KID
+frequency shift and hence to the input signal, constitutes the
+KID time-ordered information (TOI).
+
+%For each observing scan, NIKA2 produce a datastream via the data
+%acquisition software, which synchronises with the telescope data using
+%pulses per second (pps). This clock is itself synchronous to the
+%absolute astronomical time. Using the \rf\ photometric
+%estimator, as discussed in Sect.~\ref{se:tuning}, we derive the
+%timelines of the KID resonance frequency estimate, which is a quantity
+%proportionnal to the flux absorbed by a KID and
+%homogeneous to Hz~\citep[see]{Calvo2013}. These time ordered
+%information (TOI), together with
+%the time-stamped pointing information produced by the telescope,
+%constitute the raw data.
 
 We have developed a dedicated data reduction pipeline to
 produce calibrated sky maps from NIKA2 raw data. This pipeline was first 
-installed for the data analysis during the commissioning campaigns and
+developped for the data analysis during the commissioning campaigns and
 is currently used for science-purpose data reduction. It implements
 the baseline methods for the calibration and performance assessment.
 A detailed description of this software will be presented in a companion
@@ -44,8 +53,7 @@ reduction, which comprizes:\\
 %\item Photometry (Sect.~\ref{se:intro_photometry})
 %\end{itemize}
 
-
-\noindent \emph{Low level processing:}
+\noindent{\emph{Low level processing:}
 \label{se:ll_proc}
 %A first step of the analysis is to read the data produced by \nika's
 %acquisition. The data as such comprise various quantities that describe the
@@ -57,11 +65,13 @@ reduction, which comprizes:\\
 We isolate the relevant fraction of the data for scientific
 utilisation and flagged out potentially misbehaving KIDs or
 timeline accidents (glitches). Specifically, we flag out cosmic rays,
-which impact only one sample due to the KID fast time constant~\citep{Catalano2014}, periods
-dedicated to the KID resonance frequency tuning (Sect.~\ref{se:tuning}), %of the KID tones to their resonance frequency
-and the timeline of KIDs whose noise level exceed $3\sigma$ of the average
-noise level of all other KIDs of the same array.\\    
-
+which impact only one sample due to the KID fast time
+constant~\citep{Catalano2014}, periods
+dedicated to the KID resonance frequency {\tt tuning}
+(Sect.~\ref{se:tuning}),
+%of the KID tones to their resonance frequency
+and the KIDs for which the noise level exceed $3\sigma$ of the average
+noise level of all other KIDs of the same array.  \\  
 %In addition to this, we look for and remove the - rare - cosmic rays
 %events. KIDs have such fast time constants that unlike bolometers, these events
 %affect a sole sample that is easy to detect by a simple comparison to the rms of
@@ -86,12 +96,11 @@ noise level of all other KIDs of the same array.\\
 %typical $3\,\sigma$ threshold. This criterion may seem a bit tight, but in any case, KIDs
 %are inverse noise variance weighted in the final map projection, so they would
 %be given relatively low weight anyway (see Sect.~\ref{se:map_projection}).
-%
 
-\noindent \emph{Pointing reconstruction:} 
+\noindent {\emph{Pointing reconstruction:} 
 \label{se:ptg}
 We produce a timeline of the pointing positions of each KID with
-respect to the target source (usually located at the center of the
+respect to the targeted source position (usually located at the center of the
 scan) using two sets of information. First, the control system of the
 telescope provides us with the absolute pointing of a reference point
 of the focal point, which is coincident with the reference KID after
@@ -101,8 +110,7 @@ each KID with respect to the reference KID using a dedicated
 procedure that is referred to as the focal plane reconstruction, as
 presented in Sect.~\ref{se:geometry}. After this step, we are able to
 distinguish KIDs that are on-source from those that are off-source,
-which is a key information for the treatment of correlated noises.\\
-
+which is a key information for dealing with the correlated noise. \\
 %This step consists in addressing each sample of each KID to the correct sky
 %coordinates and their associated map pixel. The pointing data, as
 %produced by the control system of the telescope, \aka\ NCS, are passed to the
@@ -143,8 +151,7 @@ which is a key information for the treatment of correlated noises.\\
 %This pointing reconstruction is done early in the data reduction process because
 %we'll need to know when a KID is close or far from the source for the timeline
 %processing (Sect.~\ref{se:toi_proc}).\\
-
-
+  
 \noindent \emph{Correlated noise subtraction:}
 \label{se:toi_proc}
 The TOI of each KID include a large low-frequency component of correlated noise of two
@@ -156,17 +163,18 @@ step of the data processing, as correlated noise residuals are an
 important limiting factor of the sensitivity. We have devised several
 dedicated methods for this endeavour. This will be thoroughly
 discussed in \citet{Ponthieu2019}, whereas here we illustrate the
-general principle and only discussed the method routinely used for
-the calibration.   
+general principle and only discuss the method routinely used for
+the calibration.
 
 \begin{figure}[ht!]
 \begin{center}
 \includegraphics[clip, angle=0, scale=0.4]{Figures/toi_plot.eps}
 \includegraphics[clip, angle=0, scale=0.4]{Figures/toi_plot_decorr.eps}
-\caption[Example of Time-Ordered-Information]{\emph{Left:} Example of 40 KID raw timelines during an observation
-  of Uranus. The low frequency correlated component (atmosphere and electronic
-  noise) is clearly seen. \emph{Right:} One of these TOIs and the scaled
-  \cm\ that is subtracted from it.}
+\caption[Example of Time-Ordered-Information]{Example of KID
+  time-ordered information. \emph{Top:} Example of 40 KID raw TOIs during an observation
+  of Uranus. The low frequency correlated component (atmospheric and electronic
+  noises) is clearly seen. \emph{Bottom:} One of these TOIs (in blue) and the scaled
+  \cm\ that is subtracted from it (in red).}
 \label{fig:nika_toi}
 \end{center}
 \end{figure}
@@ -199,9 +207,10 @@ the calibration.
 %has a near field limit at 900\,km.
 
 As illustrated on the first panel of Fig.~\ref{fig:nika_toi}, the
-scaled-version of the low-frequency noise component is seen by all KIDs
-at the same time, while the signal is shifted from one KID to
-another. A simple co-addition of the KID timelines provides us with an
+low-frequency noise component, which has been rescaled between KIDs,
+is seen by all KIDs at the same time, while the astrophysical signal
+is shifted from one KID to another. A simple average of the rescaled
+KID TOIs provides us with an
 estimate of the low-frequency noise component, that we referred to as
 a \emph{common mode}, while the signal is attenuated. The common mode
 estimate is then subtracted to each KID timeline, as illustrated in
@@ -294,8 +303,8 @@ the lower panel of Fig.~\ref{fig:nika_toi}.
   The data noise power spectra are shown for the three NIKA2 arrays (A1, A3, and
   A2 from top to bottom)% for scan 20170228s151.
   The power spectra are given for the raw
-  data (blue), and for the CM (green), PCA (red) and MCP (cyan) decorrelated
-  data.   
+  data (blue), and for noise decorrelated data using the common mode
+  (labeled CM, green), the PCA (red) and the \cmoneb\ (cyan) methods.   
   \label{rmspws}}
 \end{figure}
 
@@ -303,24 +312,27 @@ The reference method that is used for the calibration and performance
 assessment, which is called the \cmoneb\ method, comprizes two
 additional technicalities with respect to the common mode
 method. First, the signal contamination of the common mode estimate
-is mitigated by discarding on-source KID timelines from the
-co-addition. Second, instead of a single common mode subtraction to
+is mitigated by discarding on-source KID data samples before averaging
+the rescaled TOI. Second, instead of a single common mode subtraction to
 all KIDs, we estimate an accurate common mode for each
 KID. Calculating the KID-to-KID cross-correlation matrix, we
 identify the most correlated KIDs. Then, we build an
 inverse noise weighted co-addition of the timelines of the off-source
 KID that are the most correlated with the KID under
 concern. Furthermore, we have tested on simulations that this method
-does not alter the flux of the source.
+does not modify the flux of the source.
 
 In Fig.~\ref{rmspws} we present the noise power spectra of
-a typical datastream, either before any data reduction or using the
-simple common mode method, a method using Principal Component Analysis
+a typical KID TOI both before any data reduction and using three noise
+decorrelation methods, which are the simple common mode method used in
+Fig.~\ref{fig:nika_toi}, a method based on Principal Component Analysis
 (PCA) and the \cmoneb\ method. We observe that after decorrelation the
 $1/f$-like noise in the power spectra (principally due to atmospheric emission)
 is significantly reduced leading to nearly flat spectra down to 0.05 Hz, with
 lower $1/f$-like residual noise for the PCA and the \cmoneb\ methods
-than the common mode decorrelation at low frequencies.\\ 
+than the common mode decorrelation at low frequencies. The latter is
+preferred over the former since it has been demonstrated to preserve
+the astrophysical signal.\\ 
 
 %We have investigated several ways of using this information to remove this
 %component from the TOIs. Our prefered choice so far, that is the reference
@@ -368,17 +380,18 @@ than the common mode decorrelation at low frequencies.\\
 
 \noindent \emph{TOI calibration:}
 \label{se:flux_calib}
-The KID TOI in Herz are converted to Jy/beam in two steps: i) the KID
+The KID TOI in units of Herz (frequency shifts) are converted to
+Jy/beam in two steps: i) the KID data
 are inter-calibrated using the calibration coefficients,
-\aka\ relative gains, the derivation of which
-is discussed in Sect.~\ref{se:flat_field} and the
+\aka\ relative gains, 
+as discussed in Sect.~\ref{se:flat_field} and the
 absolute scale of the flux density is set using the absolute
 calibration method discussed in Sect.~\ref{se:calibration_method} and
 ii) the instantaneous line-of-sight
-atmospheric attenuation $\rm{exp}[{-\tau/\sin\elev_t}]$ is corrected
-using the zenith opacity estimate for the scan $\tau$, which is
-derived as discussed in Sect.~\ref{se:opacity} and the instantaneous observing
-elevation $\elev_t$, as given using the pointing reconstruction.\\     
+atmospheric attenuation $\rm{exp}[{-\tau/\sin\elev(t)}]$ is corrected
+using the zenith opacity estimate, $\tau$, for the scan, which is
+derived as discussed in Sect.~\ref{se:opacity}, and the instantaneous observing
+elevation $\elev(t)$, as obtained using the pointing reconstruction.\\     
 
 %We now focus on the absolute calibration of each TOI. As stated in
 %Sect.~\ref{se:ll_proc}, at this stage of the reduction each KID \rf~timeline is
@@ -402,21 +415,25 @@ elevation $\elev_t$, as given using the pointing reconstruction.\\
 
 \noindent \emph{Map projection:}
 \label{se:map_projection}
-We use the pointing information to project the cleaned calibrated TOI of all the
-KIDs of an array onto a map. The map is produced using an inverse
+We use the pointing information to project the cleaned (low-frequency
+noise subtracted) calibrated TOI of all the valid KIDs of an array
+onto a map. The map is produced using an inverse
 variance noise weighting of all of the data samples that fall into a map
 pixel as defined using a nearest grid point scheme. The map resolution
-is chosen small enough (typically $2''$ per map pixel) to alleviate the need for more refined
-interpolation scheme. The noise variance of a
-KID is evaluated as the standard deviation of its TOI far from the
-source. Therefore, we neglect the KID-to-KID correlated noise
-residuals in this procedure. We verify however that the
+is chosen small enough (typically $2''$ per map pixel) to alleviate
+the need for more refined interpolation scheme. The noise variance is
+evaluated by the standard deviation of the KID TOI far from the
+source. %We neglect the KID-to-KID correlated noise residuals in this
+%procedure.
+We observe that the
 signal-to-noise ratio (SNR) distribution of the map is well-approximated
-with a Gaussian but not normalised to unity. We correct the SNR
+with a Gaussian but it is not normalised to unity. We correct the SNR
 distribution by increasing the noise variance by a factor that goes
-from 1.2 to 1.5. This constitutes an effective approach to correct
-for the KID-to-KID correlation matrix off-diagonal terms alleviating
-the need of accurately measure them. 
+from 1.2 to 1.5. This constitutes an effective approach to account for
+the correlated noise residuals in the map. 
+%to correct
+%for the KID-to-KID correlation matrix off-diagonal terms alleviating
+%the need of accurately measure them. 
 
 %At this stage, data have been calibrated and cleaned and we have the pointing
 %information for each sample. If the noise was white and uncorrelated from KID to
@@ -587,17 +604,18 @@ For calibration and performance assessment, we select scans in average
 observing conditions by performing mild selection cuts. These scan
 cuts rely on zenith opacity estimates in NIKA2 bands $\tau$, as
 described in Sect.~\ref{se:opacity}, on the elevation and on the
-observation time:
+observation time of the day. We select the scans with
 %
 \begin{itemize}
 \item[i)] $\tau_{3} < 0.5$, where $\tau_{3}$ is the $\tau$ estimate for
   Array 3; %, corresponding to a decrease of the signal by a factor of two at $45^{o}$ of elevation;
 \item[ii)] $x\, \tau_{3} < 0.7$ and $\elev > 20^{o}$, where $\elev$ is the
-  elevation of the telescope and $x$ the
+  elevation of the telescope and $x$, the
   air mass, which depends on the elevation as $x=(\sin{\elev})^{-1}$. This
-  threshold corresponds to a decrease of the signal by a factor of two;
+  threshold corresponds to a decrease of the astrophysical signal by a
+  factor of two;
 \item[iii)] observation time from 22:00 to 9:00 UT and from 10:00 to
-  15:00, that is excluding the sunrise period and the late afternoon.
+  15:00, that excludes the sunrise period and the late afternoon.
 \end{itemize}
 %
 As discussed in Sect.~\ref{se:beam_variation}, the late afternoon
@@ -609,16 +627,9 @@ change until the temperature stabilizes, so that the scans taken from
 9:00 to 10:00 UT are likely not to be optimally focused.
 After the focus stabilisation, morning period 
 from 10:00 to 15:00 UT offers stable observing conditions
-if the telescope is not heated due to observations in a
-direction close to the Sun. Otherwise, further scan selection based on
+provided that the telescope is not heated due to observations too
+close to the Sun.
+Otherwise, further scan selection based on
 the exact sequence of observations and on beam monitoring might be needed before using these
 observations for performance assessment.
-
-   
-In addition to the above scan selection cuts, we use a Gaussian beam
-size criterion for the absolute calibration on planets
-(e.g. Uranus). Namely, the FWHM estimated from the planet observation
-map is required to be lower than $12.5''$ at $1\,\rm{mm}$ and lower than $18''$ at
-$2\,\rm{mm}$. In further mitigating the flux scatter due to beam broadening, we
-ensure better accuracy of the absolute calibration.  
 

@@ -33,7 +33,7 @@ the baseline methods for the calibration and performance assessment.
 A detailed description of this software will be presented in a companion
 paper \citep{Ponthieu2019}, as well as an application to blind source
 dectection. In this section, we summarize the main steps of the data
-reduction, which comprizes:\\
+reduction, which comprizes:
 %\section{Data Reduction}
 %\label{se:dataproc}
 %
@@ -53,7 +53,8 @@ reduction, which comprizes:\\
 %\item Photometry (Sect.~\ref{se:intro_photometry})
 %\end{itemize}
 
-\noindent{\emph{Low level processing:}
+%\noindent{\emph{Low level processing:}
+\paragraph{Low level processing:}
 \label{se:ll_proc}
 %A first step of the analysis is to read the data produced by \nika's
 %acquisition. The data as such comprise various quantities that describe the
@@ -71,7 +72,7 @@ dedicated to the KID resonance frequency {\tt tuning}
 (Sect.~\ref{se:tuning}),
 %of the KID tones to their resonance frequency
 and the KIDs for which the noise level exceed $3\sigma$ of the average
-noise level of all other KIDs of the same array.  \\  
+noise level of all other KIDs of the same array.  
 %In addition to this, we look for and remove the - rare - cosmic rays
 %events. KIDs have such fast time constants that unlike bolometers, these events
 %affect a sole sample that is easy to detect by a simple comparison to the rms of
@@ -97,7 +98,7 @@ noise level of all other KIDs of the same array.  \\
 %are inverse noise variance weighted in the final map projection, so they would
 %be given relatively low weight anyway (see Sect.~\ref{se:map_projection}).
 
-\noindent {\emph{Pointing reconstruction:} 
+\paragraph{Pointing reconstruction:} 
 \label{se:ptg}
 We produce a timeline of the pointing positions of each KID with
 respect to the targeted source position (usually located at the center of the
@@ -110,7 +111,7 @@ each KID with respect to the reference KID using a dedicated
 procedure that is referred to as the focal plane reconstruction, as
 presented in Sect.~\ref{se:geometry}. After this step, we are able to
 distinguish KIDs that are on-source from those that are off-source,
-which is a key information for dealing with the correlated noise. \\
+which is a key information for dealing with the correlated noise. 
 %This step consists in addressing each sample of each KID to the correct sky
 %coordinates and their associated map pixel. The pointing data, as
 %produced by the control system of the telescope, \aka\ NCS, are passed to the
@@ -152,7 +153,7 @@ which is a key information for dealing with the correlated noise. \\
 %we'll need to know when a KID is close or far from the source for the timeline
 %processing (Sect.~\ref{se:toi_proc}).\\
   
-\noindent \emph{Correlated noise subtraction:}
+\paragraph{Correlated noise subtraction:}
 \label{se:toi_proc}
 The TOI of each KID include a large low-frequency component of correlated noise of two
 different origins: the atmospheric component, which is usually
@@ -388,10 +389,10 @@ as discussed in Sect.~\ref{se:flat_field} and the
 absolute scale of the flux density is set using the absolute
 calibration method discussed in Sect.~\ref{se:calibration_method} and
 ii) the instantaneous line-of-sight
-atmospheric attenuation $\rm{exp}[{-\tau/\sin\elev(t)}]$ is corrected
+atmospheric attenuation $\rm{exp}[{-\tau/\sin(\elev_t)}]$ is corrected
 using the zenith opacity estimate, $\tau$, for the scan, which is
 derived as discussed in Sect.~\ref{se:opacity}, and the instantaneous observing
-elevation $\elev(t)$, as obtained using the pointing reconstruction.\\     
+elevation $\elev_t$, as obtained using the pointing reconstruction.\\     
 
 %We now focus on the absolute calibration of each TOI. As stated in
 %Sect.~\ref{se:ll_proc}, at this stage of the reduction each KID \rf~timeline is

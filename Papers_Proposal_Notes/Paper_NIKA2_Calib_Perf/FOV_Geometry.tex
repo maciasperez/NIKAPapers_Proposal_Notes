@@ -52,20 +52,21 @@ coordinates, we build the following quantities at time~$t$:
 
 Note that $\Delta\alpha_t$ is already corrected by the $\cos\delta_t$ factor to
 have orthonormal coordinates in the tangent plane of the sky and be immune to
-the geodesic convergence at the poles. Moreover, before projecting the
-time-ordered data onto maps, we check
-the accuracy of the time-stamping and the consistency between the
-telescope time and NIKA2 time. First, we test the
-synchronisation of the electronic boxes and the regularity of the
-time increase. In case of detection of an anomaly, the
-time-stamping of the impacted data samples is
-recalculated by interpolating from the accurately stamped
-neighbour samples. Then, a so-called \emph{zigzag}
-procedure is used to test for delay between the telescope pointing
-information and NIKA2 timelines: we fit a constant shift between the
-source positions estimated using the subscans in one direction and
-using the subscans in the opposite direction. The data timelines are
-then projected onto maps. 
+the geodesic convergence at the poles.
+%Moreover, before projecting the
+%time-ordered data onto maps, we check
+%the accuracy of the time-stamping and the consistency between the
+%telescope time and NIKA2 time. First, we test the
+%synchronisation of the electronic boxes and the regularity of the
+%time increase. In case of detection of an anomaly, the
+%time-stamping of the impacted data samples is
+%recalculated by interpolating from the accurately stamped
+%neighbour samples. Then, a so-called \emph{zigzag}
+%procedure is used to test for delay between the telescope pointing
+%information and NIKA2 timelines: we fit a constant shift between the
+%source positions estimated using the subscans in one direction and
+%using the subscans in the opposite direction.
+The data timelines are then projected onto maps. 
 We fit a 2D elliptical Gaussian on
 each KID map. The centroid of this Gaussian is a first estimate of the KID
 offsets, FWHM, ellipticity and sensitivity. We apply a first KID selection by
@@ -193,7 +194,8 @@ The results are gathered in Table~\ref{ta:gridmatch}.
 It shows that on average the position of each detector is known to better than
 an arcsecond. The 1\,mm arrays have almost the same center but this center
 differs by 7 and 2\,arcsec in Nasmyth coordinates from the
-2\,mm array center. The sampling is above
+2\,mm array center. This has no impact on the pointing nor focus
+settings. The sampling is above
 $\lambda/D$ at 1\,mm, assuming a 27\,m effective diameter aperture. Note that
 the plate rotation angle was designed as 76.2\,degrees, less than 2
 degrees from what is observed. We find that array 1

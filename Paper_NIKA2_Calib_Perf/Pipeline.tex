@@ -28,11 +28,11 @@ KID time-ordered information (TOI).
 We have developed a dedicated data reduction pipeline to
 produce calibrated sky maps from NIKA2 raw data. This pipeline was first 
 developped for the data analysis during the commissioning campaigns and
-is currently used for science-purpose data reduction. It implements
-the baseline methods for the calibration and performance assessment.
+is currently used for science-purpose data reduction. The calibration
+and performance assessment relies on this pipeline.
 A detailed description of this software will be presented in a companion
 paper \citep{Ponthieu2019}, as well as an application to blind source
-dectection. In this section, we summarize the main steps of the data
+detection. In this section, we summarize the main steps of the data
 reduction, which comprizes:
 %\section{Data Reduction}
 %\label{se:dataproc}
@@ -66,10 +66,10 @@ reduction, which comprizes:
 We isolate the relevant fraction of the data for scientific
 utilisation and flagged out potentially misbehaving KIDs or
 timeline accidents (glitches). Specifically, we flag out cosmic rays,
-which impact only one sample due to the KID fast time
-constant~\citep{Catalano2014}, periods
-dedicated to the KID resonance frequency {\tt tuning}
-(Sect.~\ref{se:tuning}),
+which impact only one data sample due to the KID fast time
+constant~\citep{Catalano2014}, %periods
+%dedicated to the KID resonance frequency {\tt tuning}
+%(Sect.~\ref{se:tuning}),
 %of the KID tones to their resonance frequency
 and the KIDs for which the noise level exceed $3\sigma$ of the average
 noise level of all other KIDs of the same array.  
@@ -211,7 +211,7 @@ As illustrated on the first panel of Fig.~\ref{fig:nika_toi}, the
 low-frequency noise component, which has been rescaled between KIDs,
 is seen by all KIDs at the same time, while the astrophysical signal
 is shifted from one KID to another. A simple average of the rescaled
-KID TOIs provides us with an
+KID TOIs provides an
 estimate of the low-frequency noise component, that we referred to as
 a \emph{common mode}, while the signal is attenuated. The common mode
 estimate is then subtracted to each KID timeline, as illustrated in
@@ -390,9 +390,9 @@ absolute scale of the flux density is set using the absolute
 calibration method discussed in Sect.~\ref{se:calibration_method} and
 ii) the instantaneous line-of-sight
 atmospheric attenuation $\rm{exp}[{-\tau/\sin(\elev_t)}]$ is corrected
-using the zenith opacity estimate, $\tau$, for the scan, which is
-derived as discussed in Sect.~\ref{se:opacity}, and the instantaneous observing
-elevation $\elev_t$, as obtained using the pointing reconstruction.\\     
+using the zenith opacity $\tau$, which is estimated for a given scan
+as discussed in Sect.~\ref{se:opacity}, and the instantaneous
+observing elevation $\elev_t$, as obtained using the pointing reconstruction.\\     
 
 %We now focus on the absolute calibration of each TOI. As stated in
 %Sect.~\ref{se:ll_proc}, at this stage of the reduction each KID \rf~timeline is
@@ -603,7 +603,7 @@ SNR distribution.
 
 For calibration and performance assessment, we select scans in average
 observing conditions by performing mild selection cuts. These scan
-cuts rely on zenith opacity estimates in NIKA2 bands $\tau$, as
+cuts rely on zenith opacity estimates $\tau_i$ in NIKA2 bands, as
 described in Sect.~\ref{se:opacity}, on the elevation and on the
 observation time of the day. We select the scans with
 %

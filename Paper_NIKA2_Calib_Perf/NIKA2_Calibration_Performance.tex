@@ -18,7 +18,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{txfonts}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\usepackage{hyperref}
+\usepackage[draft]{hyperref}
 % To add links in your PDF file, use the package "hyperref"
 % with options according to your LaTeX or PDFLaTeX drivers.
 %
@@ -59,7 +59,7 @@
 \begin{document} 
 
 
-   \title{NIKA2 Calibration and Performance at the IRAM 30-meter Telescope}
+   \title{Calibration and Performance of the NIKA2 camera at the IRAM 30-meter Telescope}
 
    \author{Laurence Perotto
      \inst{1}
@@ -137,7 +137,7 @@
        %fielding and the photometry.
        {We present NIKA2 performance assessement after one year of observation.}
        % methods heading (mandatory)
-       {We use a vast data set acquired between January 2017 and
+       {We use a large data set acquired between January 2017 and
          February 2018 including observations of primary and secondary
          calibrators and faint sources that span the whole range
          of observing elevations and atmospheric conditions encountered at the
@@ -148,7 +148,7 @@
          thoroughtly described, including the reconstruction of the
          field of view (FOV), the measurement of the beam pattern, the
          atmospheric opacity
-         derivation, the flux density absolute calibration, the flat
+         derivation, the flux-density absolute calibration, the flat
          fielding and the photometry assessment.}  
          %We used several
          %thousands of observation scans that were acquired at the February
@@ -167,7 +167,7 @@
          ($90\%$) of %detectors usable for science analysis
          valid detectors
          at $150\,\rm{GHz}$ ($260\,\rm{GHz}$). The beam pattern is characterized
-         by a FWHM of $17.6'' \pm 0.1''$
+         by a FWHM of $17.6'' \pm 0.2''$
          and  $11.1''\pm 0.1''$, and a beam efficiency of
          $77\% \pm 2\%$ and $55\% \pm 3\%$
          at $150$ and $260\,\rm{GHz}$, respectively.
@@ -193,7 +193,7 @@
          at $150$ and $260\,\rm{GHz}$.}
        % conclusions heading (optional), leave it empty if necessary 
        {With this unique capabilities of fast dual-band mapping at
-         sub-arminute resolution, NIKA2 is providing unprecedented view
+         tens arcseconds resolution, NIKA2 is providing unprecedented view
          of the millimeter Universe.}
        
    \keywords{Submillimeter, Photometry, Method: observational, Cosmology: Cosmic Microwave Background}
@@ -291,59 +291,58 @@ that span the whole range of observing elevation and atmospheric
 conditions encountered on-site. 
 
 \begin{table*}[!thbp]
-  \caption[Main performance measurements]{Summary of the main characteristics describing NIKA2 measured 
-    performance}
-  \label{tab:nika2summary}
-  \centering    
-  \begin{tabular}{rrrrrl}
-    \hline\hline
-    \noalign{\smallskip}
-    & Array 1 & Array 3  & Array 1\&3 & Array 2 & Reference \\
+\caption{Summary of the main characteristics describing NIKA2 measured performance}
+\label{tab:nika2summary}
+\centering    
+\begin{tabular}{rrrcl}
+  \hline\hline
+  \noalign{\smallskip}
+    & Array 1\&3 & Array 2 & & Reference \\
     \noalign{\smallskip}
     \hline
     \noalign{\smallskip}
-    Reference Wavelength  [mm]  &  1.15    &  1.15   & 1.15  & 2.00   &   \\
-    Reference Frequency  [GHz]  &  260     &  260   & 260  & 150   &  Sect.~\ref{se:photometric_system}  \\
+    Reference Wavelength  [mm]  & 1.15  & 2.00   &  & \\
+    Reference Frequency  [GHz]  & 260  & 150   &  & Sect.~\ref{se:photometric_system}  \\
     %Central Frequency [GHz]    &  255.5   &  257.8 &      & 151.6 &  Sect.~\ref{se:bandpasses}  \\
     %Bandwidth         [GHz]    &  47.8    &  45.7  &      & 42.1  & \\
-    Frequency [GHz]             &  254.7   & 257.4  &      & 150.9 &  Sect.~\ref{se:instru_bandpass}  \\
-    Bandwidth         [GHz]     &   49.2   &  48.0  &      & 40.7  &   \\
+    Frequency [GHz]             &  254.7-257.4  & 150.9 &  & Sect.~\ref{se:instru_bandpass}  \\
+    Bandwidth         [GHz]     &   49.2-48.0   & 40.7  &  & \\
     \hline
     \noalign{\smallskip}
-    Number of designed detectors                   & 1140      &  1140    &    &    616  & Sect.~\ref{se:array}\\
-    Number of valid detectors\tablefootmark{a}     &  952      &   961    &    &    553  & Sect.~\ref{se:fov_geometry}\\
-    Fraction of valid detectors [$\%$]             &  84       &   84     &    &     90  & \\
+    Number of designed detectors                   &   1140   &    616  & & Sect.~\ref{se:array}\\
+    Number of valid detectors\tablefootmark{a}     &  952-961 &    553  & & Sect.~\ref{se:fov_geometry}\\
+    Fraction of valid detectors [$\%$]             &  84      &     90  & & \\
     %%% I find this number useless and misleading FXD 30 nov 2018
     %%% Effective FOV\tnote{a}\hspace{1mm} [arcmin]    &  5.7      &   5.7    &    &    5.9  & Sect.~\ref{se:grid_distortion}\\
     % Here I put the measured value (the modeled values are in the the field-of-view section) FXD
-    Pixel size in beam sampling unit\tablefootmark{b}\hspace{3mm} [$F\lambda$] & 1.11 & 1.10  &  &  0.87 & Sect.~\ref{se:grid_distortion} \\
+    Pixel size in beam sampling unit\tablefootmark{b}\hspace{3mm} [$F\lambda$] & 1.1 &  0.87 & & Sect.~\ref{se:grid_distortion} \\
     \hline
     \noalign{\smallskip}
-    FWHM\tablefootmark{c}\hspace{3mm} [arcsec]    &  $11.1 \pm 0.2$   &  $11.0 \pm 0.2$  &   $11.1 \pm 0.1$  &  $17.6 \pm 0.1$  &  Sect.~\ref{se:mainbeam}\\
-    Beam efficiency\tablefootmark{d}\hspace{3mm} [$\%$] &  $55 \pm 3$  &  $56 \pm 3$   &  $55 \pm 3$   &  $77 \pm 2$  &  Sect.~\ref{se:beam_efficiency}\\
-    Relative rms FWHM on the FOV [$\%$]          &    6         &    6        &       6        &      3        & \citet{Adam2018} \\
+    FWHM\tablefootmark{c}\hspace{3mm} [arcsec]    &  $11.1 \pm 0.2$  &  $17.6 \pm 0.1$  & & Sect.~\ref{se:mainbeam}\\
+    Beam efficiency\tablefootmark{d}\hspace{3mm} [$\%$] &  $55 \pm 3$   &  $77 \pm 2$  &  & Sect.~\ref{se:beam_efficiency}\\
+    Relative rms FWHM on the FOV [$\%$]          &      6        &      3        & & \citet{Adam2018} \\
     \hline
     \noalign{\smallskip}
-    Reference FWHM\tablefootmark{e}\hspace{3mm} [arcsec]          &  $12.5$   &  $12.5$  &   $12.5$  &   $18.5$  &  Sect.~\ref{se:photometric_system}\\
-    Reference Beam efficiency\tablefootmark{f}\hspace{3mm}  [\% ] & $70 \pm 4$ & $72 \pm 4$ & $70 \pm 4$ & $85 \pm 3$ &  Sect.~\ref{se:extended_source_calib}\\
+    Reference FWHM\tablefootmark{e}\hspace{3mm} [arcsec]          & $12.5$     &   $18.5$  &  & Sect.~\ref{se:photometric_system}\\
+    Reference Beam efficiency\tablefootmark{f}\hspace{3mm}  [\% ] & $70 \pm 4$ & $85 \pm 3$ &  & Sect.~\ref{se:extended_source_calib}\\
     \hline
     \noalign{\smallskip}
-    Rms pointing error    [arcsec]             & \multicolumn{4}{c}{$<3$} &  Sect.~\ref{se:pointing} \\
+    Rms pointing error    [arcsec]             & \multicolumn{2}{c}{$<3$} &  & Sect.~\ref{se:pointing} \\
     \hline
     \noalign{\smallskip}
-    Absolute calibration uncertainty [\%]      &  \multicolumn{4}{c}{5}   & Sect.~\ref{se:ref_flux_uranus_neptune} \\
-    Relative rms calibration error [\%]                 &    5.5       &     6.0       &      5.7       &     3.0       & Sect.~\ref{se:photometry_baseline} \\
+    Absolute calibration uncertainty [\%]      &  \multicolumn{2}{c}{5}   & & Sect.~\ref{se:ref_flux_uranus_neptune} \\
+    Relative rms calibration error [\%]                 &   5.7       &     3.0       & & Sect.~\ref{se:photometry_baseline} \\
     \hline
     \noalign{\smallskip}
-    $\alpha$ noise integration in time\tablefootmark{g}\hspace{3mm}  & 0.5  & 0.5  &  0.5 & 0.5 & Sect.~\ref{se:nefd_results} \\
+    $\alpha$ noise integration in time\tablefootmark{g}\hspace{3mm}  & 0.5 & 0.5 & & Sect.~\ref{se:nefd_results} \\
     \hline
     \noalign{\smallskip}
-    NEFD\tablefootmark{h}\hspace{3mm} [$\rm{mJy} \cdot \rm{s}^{1/2}/\rm{beam}$]  & $47 \pm 4$ & $38 \pm 3$  & $30 \pm 3$  & $9 \pm 1$ & Sect.~\ref{se:nefd_results}\\
-    M$_{\rm{s}}$\tablefootmark{i}\hspace{3mm} [arcmin$^2$/h/mJy$^2$] & $45 \pm 4$  & $70 \pm 6$  & $111 \pm 11$  &  $1388 \pm 174$ &  \\
+    NEFD\tablefootmark{h}\hspace{3mm} [$\rm{mJy} \cdot \rm{s}^{1/2}/\rm{beam}$]  & $30 \pm 3$  & $9 \pm 1$ &  & Sect.~\ref{se:nefd_results}\\
+    M$_{\rm{s}}$\tablefootmark{i}\hspace{3mm} [arcmin$^2$/h/mJy$^2$] & $111 \pm 11$  &  $1388 \pm 174$ &  & \\
     \hline
   \end{tabular}
   \tablefoot{ \\
-    \tablefoottext{a}{Number of usable detectors, which were selected in at least two FOV reconstructions}
+    \tablefoottext{a}{Number of usable detectors, which have been selected in at least two FOV reconstructions}
     \tablefoottext{b}{Calculated from real array pixel size [2.75 mm / 2.0 mm] and unvignetted entrance pupil diameter [27m]}
     \tablefoottext{c}{Full-width at half-maximum of the main beam using the combined results of the three methods}
     \tablefoottext{d}{Ratio between the main beam power and the total beam power up to a radius of 180 arcsec}
@@ -357,10 +356,79 @@ conditions encountered on-site.
   }
 \end{table*}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  VERSION 4 COLUNMS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{table*}[!thbp]
+%  \caption[Main performance measurements]{Summary of the main characteristics describing NIKA2 measured 
+%    performance}
+%  \label{tab:nika2summary}
+%  \centering    
+%  \begin{tabular}{rrrrrl}
+%    \hline\hline
+%    \noalign{\smallskip}
+%    & Array 1 & Array 3  & Array 1\&3 & Array 2 & Reference \\
+%    \noalign{\smallskip}
+%    \hline
+%    \noalign{\smallskip}
+%    Reference Wavelength  [mm]  &  1.15    &  1.15   & 1.15  & 2.00   &   \\
+%    Reference Frequency  [GHz]  &  260     &  260   & 260  & 150   &  Sect.~\ref{se:photometric_system}  \\
+    %Central Frequency [GHz]    &  255.5   &  257.8 &      & 151.6 &  Sect.~\ref{se:bandpasses}  \\
+    %Bandwidth         [GHz]    &  47.8    &  45.7  &      & 42.1  & \\
+%    Frequency [GHz]             &  254.7   & 257.4  &      & 150.9 &  Sect.~\ref{se:instru_bandpass}  \\
+%    Bandwidth         [GHz]     &   49.2   &  48.0  &      & 40.7  &   \\
+%    \hline
+%    \noalign{\smallskip}
+%    Number of designed detectors                   & 1140      &  1140    &    &    616  & Sect.~\ref{se:array}\\
+%    Number of valid detectors\tablefootmark{a}     &  952      &   961    &    &    553  & Sect.~\ref{se:fov_geometry}\\
+%    Fraction of valid detectors [$\%$]             &  84       &   84     &    &     90  & \\
+    %%% I find this number useless and misleading FXD 30 nov 2018
+    %%% Effective FOV\tnote{a}\hspace{1mm} [arcmin]    &  5.7      &   5.7    &    &    5.9  & Sect.~\ref{se:grid_distortion}\\
+    % Here I put the measured value (the modeled values are in the the field-of-view section) FXD
+%    Pixel size in beam sampling unit\tablefootmark{b}\hspace{3mm} [$F\lambda$] & 1.11 & 1.10  &  &  0.87 & Sect.~\ref{se:grid_distortion} \\
+%    \hline
+%    \noalign{\smallskip}
+%    FWHM\tablefootmark{c}\hspace{3mm} [arcsec]    &  $11.1 \pm 0.2$   &  $11.0 \pm 0.2$  &   $11.1 \pm 0.1$  &  $17.6 \pm 0.1$  &  Sect.~\ref{se:mainbeam}\\
+%    Beam efficiency\tablefootmark{d}\hspace{3mm} [$\%$] &  $55 \pm 3$  &  $56 \pm 3$   &  $55 \pm 3$   &  $77 \pm 2$  &  Sect.~\ref{se:beam_efficiency}\\
+%    Relative rms FWHM on the FOV [$\%$]          &    6         &    6        &       6        &      3        & \citet{Adam2018} \\
+%    \hline
+%    \noalign{\smallskip}
+%    Reference FWHM\tablefootmark{e}\hspace{3mm} [arcsec]          &  $12.5$   &  $12.5$  &   $12.5$  &   $18.5$  &  Sect.~\ref{se:photometric_system}\\
+%    Reference Beam efficiency\tablefootmark{f}\hspace{3mm}  [\% ] & $70 \pm 4$ & $72 \pm 4$ & $70 \pm 4$ & $85 \pm 3$ &  Sect.~\ref{se:extended_source_calib}\\
+%    \hline
+%    \noalign{\smallskip}
+%    Rms pointing error    [arcsec]             & \multicolumn{4}{c}{$<3$} &  Sect.~\ref{se:pointing} \\
+%    \hline
+%    \noalign{\smallskip}
+%    Absolute calibration uncertainty [\%]      &  \multicolumn{4}{c}{5}   & Sect.~\ref{se:ref_flux_uranus_neptune} \\
+%    Relative rms calibration error [\%]                 &    5.5       &     6.0       &      5.7       &     3.0       & Sect.~\ref{se:photometry_baseline} \\
+%    \hline
+%    \noalign{\smallskip}
+%    $\alpha$ noise integration in time\tablefootmark{g}\hspace{3mm}  & 0.5  & 0.5  &  0.5 & 0.5 & Sect.~\ref{se:nefd_results} \\
+%    \hline
+%    \noalign{\smallskip}
+%    NEFD\tablefootmark{h}\hspace{3mm} [$\rm{mJy} \cdot \rm{s}^{1/2}/\rm{beam}$]  & $47 \pm 4$ & $38 \pm 3$  & $30 \pm 3$  & $9 \pm 1$ & Sect.~\ref{se:nefd_results}\\
+%    M$_{\rm{s}}$\tablefootmark{i}\hspace{3mm} [arcmin$^2$/h/mJy$^2$] & $45 \pm 4$  & $70 \pm 6$  & $111 \pm 11$  &  $1388 \pm 174$ &  \\
+%    \hline
+%  \end{tabular}
+%  \tablefoot{ \\
+%    \tablefoottext{a}{Number of usable detectors, which have been selected in at least two FOV reconstructions}
+%    \tablefoottext{b}{Calculated from real array pixel size [2.75 mm / 2.0 mm] and unvignetted entrance pupil diameter [27m]}
+%    \tablefoottext{c}{Full-width at half-maximum of the main beam using the combined results of the three methods}
+%    \tablefoottext{d}{Ratio between the main beam power and the total beam power up to a radius of 180 arcsec}
+%    \tablefoottext{e}{Full-width at half-maximum of the beam used in our reference photometric system}
+%    \tablefoottext{f}{Ratio between the reference FWHM beam power and the total beam power up to a radius of 180 arcsec} 
+%    \tablefoottext{g}{Effective power law of noise reduction with integration time}
+%    \tablefoottext{h}{NEFD extrapolated at zero opacity}
+%    %\tablefoottext{h}{NEFD in typical IRAM good sky opacity condition: 2mm pwv, $60^o$ elevation}
+%    \tablefoottext{i}{Mapping speed at zero opacity}
+%    %\tablefoottext{j}{Mapping speed in typical IRAM good sky opacity condition: 2mm pwv, $60^o$ elevation}
+%  }
+%\end{table*}
 
 \begin{enumerate}
 \item %\emph{FOV reconstruction}:
-  All the designed KIDs detect the
+  All designed KIDs detect the
   signal at least in some observation
   scans. We conservatively retain only the most stable KIDs, which are
   immune to the cross-talking effect and yield good signal-to-noise
@@ -396,8 +464,8 @@ conditions encountered on-site.
   efficiencies of $55 \pm 3 \%$ at $1\,\rm{mm}$ and $77 \pm 2 \%$ at
   $2\,\rm{mm}$.
   For taking into account the fraction of the full beam stemming from
-  beyond $180''$, the beam efficiency estimates must be corrected by
-  about 0.65 at $1\,\rm{mm}$ and about $0.8$ at
+  beyond $180''$, the beam efficiency estimates must be corrected by a
+  factor of about $0.65$ at $1\,\rm{mm}$ and about $0.8$ at
   $2\,\rm{mm}$~\citep{Greve2010, Kramer2013}.
   %These meet the expectations for an instrument that does not
   %resort to feed horns.
@@ -416,7 +484,7 @@ conditions encountered on-site.
   %constitute a conservative estimate since the rms dispersion has been
   %further improved by optimizing the telescope focus settings from N2R12
   %on.  
-
+%
   % calib
 \item %\emph{Calibration uncertainties:}
   We evaluated the statistical calibration uncertainties using 264 
@@ -428,7 +496,7 @@ conditions encountered on-site.
   
   % noise&sensitivity
 \item %\emph{Sensitivity:}
-  The noise well integrates as the square root of the integration time
+  The noise does well integrate as the square root of the integration time
   for series of scans acquired in similar observing conditions. We
   have derived robust estimate of the NEFD using more than one
   thousand scans encompassing a large range of observing
@@ -455,16 +523,16 @@ conditions encountered on-site.
   improvements for the $1\,\rm{mm}$ observation channel are: 1)
   improve the data processing and in particular the noise
   decorrelation methods, 2) increase the bandwidth of the $1\,\rm{mm}$
-  mm arrays (subjected to the improvement of the dichroic) and 3)
+  arrays (subjected to the improvement of the dichroic) and 3)
   upgrade the surface of the telescope.
-  
 %\new{We have identified several areas of improvement that will make NIKA2
 %more sensitive at 1~mm: 1)~change the dichroic element (one of
 %the 1~mm polarization components (A1) is absorbed more than the other (A3)
 %with the present dichroic), 2)~improve the data processing and in
 %particular the noise decorrelation methods, 3)~upgrade the 1~mm
 %arrays, 4)~increase the bandwidth of the 1~mm arrays, and 5)~upgrade
-%the surface of the telescope.}
+  %the surface of the telescope.}
+  
 \item  NIKA2 mapping capabilities are better estimated by evaluating the
   mapping speed, which is defined as the sky area that is covered in one
   hour of observation to a noise level of $1\,\rm{mJy}$. We found
@@ -472,7 +540,7 @@ conditions encountered on-site.
   $1388\, \rm{arcmin}^2 \rm{mJy}^{-2} h^{-1}$ at
   $1\, \rm{mm}$ and  $2\, \rm{mm}$. NIKA2 mapping speed is thus at
   least an order of magnitude better than the previous generation of the IRAM
-  30-m telescope resident instruments~\citep{Catalano2014, Staguhn2011_GISMO, Kreysa1999}.
+ 30-m telescope resident instruments~\citep{Catalano2014, Staguhn2011_GISMO, Kreysa1999}.
   
 \end{enumerate}
 
@@ -511,7 +579,7 @@ astrophysics and cosmology.
   contracts "MKIDS", "NIKA" and ANR-15-CE31-0017. This work has
   benefited from the support of the European Research Council Advanced
   Grant ORISTARS under the European Union's Seventh Framework
-  Programme (Grant Agreement no. 291294). We acknowledge fundings from
+ Programme (Grant Agreement no. 291294). We acknowledge fundings from
   the ENIGMASS French LabEx (R. A. and F. R.), the CNES post-doctoral
   fellowship program (R. A. and A. R.) and the FOCUS French LabEx
   doctoral fellowship program (A. R.). R.A. acknowledges support from
@@ -544,6 +612,6 @@ astrophysics and cosmology.
   \label{se:photometric_correction_detail}
   \input{photometric_correction.tex}
 \end{appendix}
-%
+
 %
 \end{document}

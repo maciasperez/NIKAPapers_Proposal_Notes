@@ -14,7 +14,7 @@ number of detectors at the best focus and hence, maximize the
 resolution of the NIKA2 maps.
 This optimal z-focus setting is obtained by measuring the focus at the center of the arrays as described
 Sect.~\ref{se:axial_focus} and apply a focus shift, which is primary
-predicted using Zemax simulation, and ultimately verified by measuring
+predicted using ZEMAX simulations, and ultimately verified by measuring
 the focus surfaces as decribed here.
 
 \begin{figure*}[!thbp]
@@ -22,11 +22,11 @@ the focus surfaces as decribed here.
   \includegraphics[trim={0, 9.5cm, 0, 9.5cm}, clip=true, width=\linewidth]{Figures/fov_focus_mv_5.png}
 \caption[Focus surfaces]{Focus surface of A1, A3 and A2 arrays from left to
   right. From top to bottom, the focus estimates rely on
-  FWHM-minimization, amplitude-maximization of an elliptical
+  FWHM-minimization, amplitude-maximization of a 2D
   Gaussian of fixed FWHMs and amplitude-maximization of an elliptical
   Gaussian. On each plot, the x and y axis are the Nasmyth offsets
   w.r.t. the center of the array in arcsec, while the color-code represents
-  the relative focus estimate to the central focus, given in mm.}
+  the relative focus estimate w.r.t. the central focus, given in mm.}
 \label{fig:focus-surfaces}
 \end{center}
 \end{figure*}
@@ -57,7 +57,7 @@ Sect.~\ref{se:axial_focus} -- namely i) $\hat z_{\rm{fwhm}}$ the focus that
 minimizes the geometrical FWHM and ii) $\hat z_{\rm{peak}}$ the focus that
 maximizes the amplitude of the best-fitting elliptical Gaussian -- whereas the
 third one is $\hat z_{\rm{flux}}$ the focus that maximizes the amplitude of the
-best-fitting elliptical Gaussian of fixed FWHM (at $12.5''$ at $260~\rm{GHz}$ and
+best-fitting Gaussian of fixed FWHM (at $12.5''$ at $260~\rm{GHz}$ and
 $18.5''$ at $150~\rm{GHz}$). The comparison between the two amplitude-based
 estimators ($\hat z_{\rm{peak}}$ and $\hat z_{\rm{flux}}$), will test the
 stability of the focus results against the exact choice of the beam fitting
@@ -68,9 +68,10 @@ do not use it for the focus surface reconstruction.
 
 \subsection{Data set}
 
-After the change of A1 lens and the improvement of internal optics
-alignment (hence in the final NIKA2 optical configuration) that is
-during the N2R8 two-day run, N2R9 and N2R10,   
+%After the change of A1 lens and the improvement of internal optics
+%alignment (hence in the final NIKA2 optical configuration) that is
+%during the N2R8 two-day run, N2R9 and N2R10,
+In the final NIK2 optical configuration, 
 nine defocused \bm\ sequences have been acquired, including incomplete
 sequences and sequences hindered by poor atmospheric conditions.
 We select sequences that i) comprises at least four scans, ii) have been
@@ -78,13 +79,14 @@ observed at zenith opacity at $225~\rm{GHz}$ (as indicated by
 the IRAM taumeter) below 0.5 and iii) have a maximal central focus
 drift between the starting time and the end of the sequence of
 $0.5~\rm{mm}$. These criteria preserve five sequences from which focus
-surfaces can be reconstructed. Namely, we consider the sequences
-$20170226s415\mbox{--}419$, $20170419s133\mbox{--}137$, $20170420s113\mbox{--}117$,
-$20170421s160\mbox{--}164$ and $20170424s123\mbox{--}127$, which consist of observations
-of the bright quasar 3C84 and Neptune.
+surfaces can be reconstructed %. Namely, we consider the sequences
+%$20170226s415\mbox{--}419$, $20170419s133\mbox{--}137$, $20170420s113\mbox{--}117$,
+%$20170421s160\mbox{--}164$ and $20170424s123\mbox{--}127$, which consist of observations
+%of the bright quasar 3C84 and Neptune.
+and that correspond to observations of the bright quasar 3C84 and Neptune.
 
 \subsection{Results}
-For each detector $k$ and each \bm\ sequence $s$, we obtain for
+For each detector $k$ and for each \bm\ sequence $s$, we obtain for
 the array $a$, a focus measurement $z_k^{a, s} \pm \sigma_k^{a, s}$,
 where $\sigma_k^{a, s}$ is the $1\mbox{--}\sigma$ error of the least-square
 polynomial fit. The focus surface measurements per array obtained from the five
@@ -116,11 +118,11 @@ across the detectors is about
 $-0.1~\rm{mm}$ for the three arrays. Maximal defocus values of about
 $-0.6~\rm{mm}$ are found for detectors located in the outer top and
 left regions of the FOV. Finally, a fraction comprised between $20$
-and $30\%$ of the KIDs has a relative $z\le -0.2~\rm{mm}$.  
+and $30\%$ of the KIDs has $z\le -0.2~\rm{mm}$.  
 
 We further tested the stability of the
 focus surfaces by comparing results from a series of \bm\
-sequences acquired at various date and under various atmospheric
+sequences acquired at various dates and under various atmospheric
 conditions, and we found the focus surfaces to be stable against
 observation dates and atmospheric conditions.
  

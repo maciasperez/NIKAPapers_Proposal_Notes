@@ -6,25 +6,55 @@
 %\label{se:sensitivity}
 %\input{Sensitivity.tex}
 
-In this section, we derive various quantities that relate to the
-sensitivity of the instrument:
+In this section, we derive the on-sky sensitivity of the instrument
+using a large amount of observation scans, including deep integration
+on faint sources, and assess the stability of our results against the
+observing conditions.
+We evaluate the noise equivalent flux density, NEFD hereafter, that is
+the $1\,\sigma$ error on the flux
+density of a point source in one second of on-source telescope
+integration time after the baseline calibration has been performed, as
+described in Sect.~\ref{se:baseline_calibration}. To further estimate
+the mapping capabilities, we also derive the mapping speed
+$M_{\rm{s}}$, which is defined as the sky area that can
+be mapped at a noise level of $1\,\rm{mJy}$ in one hour of telescope 
+integration time.
+%The first step for
+%the NEFD measurement is thus an accurate evaluation of the on-source
+%integration time, which is addressed in
+%Sect.~\ref{se:integration_time}.
 
-\begin{itemize}
-\item The detector Noise Equivalent Flux Density $NEFD_{det,0}$ is the 1\,$\sigma$
-  error on the flux of a point source as measured by a detector in 1~second of
-  integration time.
-\item The observer Noise Equivalent Flux Density $NEFD_{obs,0}$ is the 1\,$\sigma$
-  error on the flux of a point source in 1~second of telescope integration time.
-\item The mapping speed $M_s$ is the sky area that can be mapped at a noise
-  level of 1\,mJy in one hour of telescope integration time.
-\end{itemize}
+We first discuss the precice definitions and the technical derivation
+of these quantities in Sect.\ref{se:integration_time}.
+%Then, for robustness test of the NEFD
+%estimates, we have devised several methods for estimating the NEFD. A
+%detailed description of our methods, as well as an application to a
+%faint source blind detection, will be found in
+%\citet{Ponthieu2019}.
+Then, we briefly present several estimation methods that have been
+considered and the data sets that have been selected in
+Sect.~\ref{se:nefd_method}. A detailed
+description of our methods will be found in \citet{Ponthieu2019}.
+Results, together with robustness tests, are reported in Sect.~\ref{se:nefd_results}.
 
-Subscript $_0$ means that at this stage, we consider these definitions in
-the absence of atmosphere. Corrections to account for elevation and opacity are
-addressed later on. We first focus on these definitions and how to defined more
-these quantities more technically in sect.\ref{se:integration_time}. Section~\ref{se:nefd_method}
-presents several methods to estimate them. Results, together with robustness
-tests are reported in sect.~\ref{se:nefd_results}.
+%In this section, we derive various quantities that relate to the
+%sensitivity of the instrument:
+%\begin{itemize}
+%\item The detector Noise Equivalent Flux Density $NEFD_{det,0}$ is the 1\,$\sigma$
+%  error on the flux of a point source as measured by a detector in 1~second of
+%  integration time.
+%\item The observer Noise Equivalent Flux Density $NEFD_{obs,0}$ is the 1\,$\sigma$
+%  error on the flux of a point source in 1~second of telescope integration time.
+%\item The mapping speed $M_s$ is the sky area that can be mapped at a noise
+%  level of 1\,mJy in one hour of telescope integration time.
+%\end{itemize}
+%Subscript $_0$ means that at this stage, we consider these definitions in
+%the absence of atmosphere. Corrections to account for elevation and opacity are
+%addressed later on. We first focus on these definitions and how to defined more
+%these quantities more technically in
+%sect.\ref{se:integration_time}. Section~\ref{se:nefd_method}
+%presents several methods to estimate them. Results, together with robustness
+%tests are reported in sect.~\ref{se:nefd_results}.
 
 \subsection{NEFD and mapping speed definitions}
 \label{se:integration_time}
@@ -36,84 +66,147 @@ tests are reported in sect.~\ref{se:nefd_results}.
 %%   related to the whole \emph{instrument} to provide the observer with a mapping speed
 %%   and a time estimator to plan observations.}
 
+For the derivation of the NEFD and mapping speed, we must first
+address the accurate evaluation of the on-source integration time. 
 
-We distinguish the on-source \emph{detector} integration time $t_{det}$ from the
-on-source \emph{observer} integration time $t_{obs}$. The former refers to the
-cumulative time spent on-source by detectors, the latter to the cumulative time
-spent on-source by the FOV overall as commonly considered when talking about the
-``instrument being on-source''. To be even more concrete, assume that at some point during
-a scan, the source is located on a region of the FOV where a few KIDs are blind: no
-valid detector is actually seeing the source at this time, so $t_{det}$ is not
-incremented while $t_{obs}$ is. $t_{det}$ is releveant for the estimation of detector
-performances, $t_{obs}$ is relevant for astronomers when
-designing scanning strategies and estimating the required observation time to
-reach a given sensitivity, as we shall see in the following.
+%We distinguish the on-source \emph{detector} integration time $t_{det}$ from the
+%on-source \emph{observer} integration time $t_{obs}$. The former refers to the
+%cumulative time spent on-source by valid detectors, the latter to the cumulative time
+%spent on-source by the FOV overall. %as commonly considered when talking about the
+%``instrument being on-source''.
+%To be even more concrete, assume that at some point during
+%a scan, the source is located on a region of the FOV where a few KIDs are blind: no
+%valid detector is actually seeing the source at this time, so $t_{det}$ is not
+%incremented while $t_{obs}$ is.
+%$t_{det}$ is relevant for the estimation of detector
+%performance, $t_{obs}$ is relevant for astronomers when
+%designing scanning strategies and estimating the required observation time to
+%reach a given sensitivity, as we shall see in the following.
 
-Let us consider a map of resolution $r$\,arcsec as obtained from
-observations. The instantaneous $A$ covered by the FOV reads
-
+Let us consider a map of resolution $\Delta r$ as obtained from
+observations (see Sect.~\ref{se:dataproc}). We also produce a hit map
+$N_{\rm{hit}}$, that is the map of the data sample count per pixels. We
+primarily evaluate the average observation time per map pixel at the
+center of the map
+%The instantaneous $A$ covered by the FOV reads
+%
+%\begin{equation}
+%A = \pi d_{FOV}^2/4 = N_{pix}r^2 = N_k g^2,
+%\end{equation}
+%
+%where $d_{FOV}$ is the FOV diameter, $N_{pix}$ the number of map pixels inside
+%this area, $N_k$ the number of designed KIDs of an array
+%(Table~\ref{tab:number_of_kids}) and $g$ the distance between two adjacent
+%KIDs. Assume that the instrument remains fix on the sky for an observer time
+%$t_{obs}$, the total number of samples acquired during this time and spread on
+%the entire FOV is $\eta N_k t_{obs} f_{\rm{sam}}$ where $\eta$ is the fraction
+%of valid KIDs (tab.~\ref{tab:number_of_kids}). This leads to an average
+%observation time per map pixel
 \begin{equation}
-A = \pi d_{FOV}^2/4 = N_{pix}r^2 = N_k g^2,
+t_{\rm{center}} = \frac{\langle N_{\rm{hit}}\rangle_{\rm{center}}}{f_{\rm{sam}}} 
 \end{equation}
-
-where $d_{FOV}$ is the FOV diameter, $N_{pix}$ the number of map pixels inside
-this area, $N_k$ the number of designed KIDs of an array
-(Table~\ref{tab:number_of_kids}) and $g$ the distance between two adjacent
-KIDs. Assume that the instrument remains fix on the sky for an observer time
-$t_{obs}$, the total number of samples acquired during this time and spread on
-the entire FOV is $\eta N_k t_{obs} f_{\rm{sam}}$ where $\eta$ is the fraction
-of valid KIDs (tab.~\ref{tab:number_of_kids}). This leads to an average
-observation time per map pixel
-
+where $\langle N_{\rm{hit}}\rangle_{\rm{center}}$ is the average of
+the hit map taken in a disk of radius 1\,FWHM to be immune to shot
+noise statistics, and $f_{\rm{sam}}$ is the sampling frequency. 
+Then, correcting this quantity from the fraction of the detectors that
+contributes to a map pixel at the same time, we derive the on-source
+\emph{detector} integration time
+%
 \begin{equation}
-\langle t_{pix}\rangle = \langle N_{\rm{hit}}\rangle f_{\rm{sam}} = \eta N_k
-t_{obs} f_{\rm{sam}}/N_{pix},
-\end{equation}
-
-and thus to
-
-\begin{equation}
-  t_{obs} = \frac{1}{\eta}\frac{\langle N_{\rm{hit}}\rangle_{\rm{center}}}{f_{\rm{sam}}}\,
-  \frac{g^2}{r^2}.
-\label{eq:t_obs}
-\end{equation}
-
-where we have added the subscript \emph{center} to specify that in order to
-estimate $t_{obs}$ from the map, we take the number of hits per pixel at the map
-center. In practice, we take the average of this number in a disk of radius
-1\,FWHM to be immune to shot noise statistics in map pixels. The on-source
-detector integration time then reads
-
-\begin{equation}
-t_{det} = \eta t_{obs}
+  t_{\rm{det}} = t_{\rm{center}}\, \frac{g^2}{\Delta r^2}.
 \label{eq:t_det}
 \end{equation}
+%
+where the number of KID per pixel is given by the ratio of the
+pixel area $\Delta_r^2$ to the KID occupation area $g^2$, with $g$
+the distance between adjacent KIDs (see
+Sect.~\ref{se:grid_distortion}).
 
-If all KIDs are valid, $\eta$ equals 1 and the two integration times match, the
-lower $\eta$, the lower the time actually spent on-source by detectors for the
-same $t_{obs}$. An alternate way to derive $t_{obs}$ is to measure, during
-observations, the amount of time when the source is at less than $d_{FOV}/2$
-from the FOV center. This method gives values of $t_{obs}$ that agree with
-eq.~(\ref{eq:t_obs}) to better than 5\%. In this work, we consider $t_{obs}$ as
-given by eq.~(\ref{eq:t_obs}) because it is derived from the final map and can
-therefore be generalized to any other place on the map than its center.
+%where we have added the subscript \emph{center} to specify that in order to
+%estimate $t_{obs}$ from the map, we take the number of hits per pixel at the map
+%center. In practice, we take the average of this number in a disk of radius
+%1\,FWHM to be immune to shot noise statistics in map pixels. The on-source
+%detector integration time then reads
+%
+%\begin{equation}
+%t_{det} = \eta t_{obs}
+%\label{eq:t_det}
+%\end{equation}
+%
+%If all KIDs are valid, $\eta$ equals 1 and the two integration times match, the
+%lower $\eta$, the lower the time actually spent on-source by detectors for the
+%same $t_{obs}$. An alternate way to derive $t_{obs}$ is to measure, during
+%observations, the amount of time when the source is at less than $d_{FOV}/2$
+%from the FOV center. This method gives values of $t_{obs}$ that agree with
+%eq.~(\ref{eq:t_obs}) to better than 5\%. In this work, we consider $t_{obs}$ as
+%given by eq.~(\ref{eq:t_obs}) because it is derived from the final map and can
+%therefore be generalized to any other place on the map than its center.
 
-From these definitions and for the same $\sigma$ error on the measured flux of
-the point source, we can now derive the corresponding NEFDs:
+For cross-checks, we compare the $t_{\rm{det}}$ estimates using an
+alternative approach for evaluating the on-source integration
+time based on geometrical considerations. Namely, we calculate the
+fraction of the scanning time during which the point source in within
+an effective FOV radius, which is defined as the FOV covered by the
+valid KIDs. We find the two methods to give comparable integration
+time estimates to better than $5\%$. We conclude the $t_{\rm{det}}$
+estimates to be reliable and use it for the NEFD derivation.  
 
-\begin{eqnarray}
-NEFD_{det,0} & = & \sigma \sqrt{t_{det}} \label{eq:nefd_det},\\
-NEFD_{obs,0} & = & \sigma \sqrt{t_{obs}} \label{eq:nefd_obs}.
-\end{eqnarray}
-
-Considering the surface covered by the FOV, we define the \emph{mapping speed}
-as the surface that can be mapped at a given sensitivity in a certain
-observation time and which reads
-
+For the $\sigma$ error on the measured flux density of
+the point source, we derive the NEFD:
 \begin{equation}
-M_s = \eta \, \frac{\pi}{4} d_{\rm{FoV}}^2 \, \frac{1}{(NEFD_{det,0})^2}
-\label{eq:mapping_speed}
+  NEFD = \sigma \sqrt{t_{\rm{det}}}
+  \label{eq:nefd_det}
 \end{equation}
+%NEFD_{obs,0} & = & \sigma \sqrt{t_{obs}} \label{eq:nefd_obs}.
+%\end{eqnarray}
+%\begin{eqnarray}
+%NEFD_{det,0} & = & \sigma \sqrt{t_{det}} \label{eq:nefd_det},\\
+%NEFD_{obs,0} & = & \sigma \sqrt{t_{obs}} \label{eq:nefd_obs}.
+%\end{eqnarray}
+
+We also evaluate the mapping speed $M_{\rm{s}}$, which is defined as the sky area
+$\mathcal{A}_{\rm{scan}}$ that can be mapped at a noise level
+$\Delta_\sigma$ of $1\,\rm{mJy}$ in an integration time $\Delta_t$ of
+one hour, using
+%
+\begin{equation}
+M_{\rm{s}} = \frac{\mathcal{A}_{\rm{scan}}}{\Delta_\sigma\Delta_t} = \eta \, \frac{\pi}{4} d_{\rm{FOV}}^2 \, \frac{1}{\rm{NEFD}^2},
+\end{equation}
+%
+where $\eta$ is the fraction of valid KIDs, as given in
+Tab.~\ref{tab:number_of_kids} in Sect.~\ref{se:fov_geometry} and
+$d_{\rm{FOV}} = 6.5'$ is the FOV diameter.
+[ADD SOMETHING ON VALID VS USED HERE]
+
+The mapping speed, which is
+defined at zero opacity, can be extrapolated at a given opacity $\tau$
+and a given air mass $x$ using
+\begin{equation}
+M_{\rm{s}}^{(\tau, x)} = M_{\rm{s}}\, e^{-2 \tau x}
+\end{equation}
+
+%Considering the instanteneous FOV covered by the valid KIDs, we define
+%the \emph{mapping speed} as the surface that can be mapped at a given
+%sensitivity in one hour of integration time
+%\begin{equation}
+%M_s = \eta \, \frac{\pi}{4} d_{\rm{FoV}}^2 \, \frac{1}{(NEFD^2},
+%\label{eq:mapping_speed}
+%\end{equation}
+%where $\eta$ is the fraction of valid KIDs, as given in
+%Tab.~\ref{tab:number_of_kids} in Sect.~\ref{se:fov_geometry} and
+%$d_{\rm{FoV}} = 6.5'$ is the FoV diameter.
+
+Using these definitions, the integration time required to reach a given
+flux density uncertainties $\sigma$ can be obtained
+\begin{equation}
+  t_{\rm{int}} =  \frac{\mathcal{A}_{\rm{scan}}}{ M_{\rm{s}}} \, \left(\frac{e^{\tau x}}{\sigma}\right)^2,
+\end{equation}
+where $\mathcal{A}_{\rm{scan}}$ is the covered observing area at a
+given opacity $\tau$ and a given air mass $x$.
+
+
+
+
 
 \subsection{NEFD estimation methods and scan selection}
 \label{se:nefd_method}

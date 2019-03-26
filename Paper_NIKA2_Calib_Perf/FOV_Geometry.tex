@@ -311,10 +311,8 @@ effect is mixed with the effect of the KID gain variation across the
 FOV, which mainly affects the South-West third of the array, as
 discussed in Sect.~\ref{se:flat_field}.
 
-
 For A1, A3 and A2, respectively, we have 952, 961, and 553 KIDs that
-have been considered as valid at least twice (840, 508, 868 valid at
-least five times). From this, we deduce the fraction of
+have been considered as valid at least twice. From this, we deduce the fraction of
 valid detectors over the design ones, as given in Table~\ref{tab:number_of_kids}.
 
 %% \begin{figure}[htp]
@@ -357,11 +355,72 @@ valid detectors over the design ones, as given in Table~\ref{tab:number_of_kids}
       \hline
       \noalign{\smallskip}
       Design detectors ($N_k$)  & 1140  & 1140   & 616  \\
-      Valid detectors             & 952   & 961    & 553  \\ 
-      Ratio $\equiv \eta$         & 0.84  & 0.84   & 0.90   \\
+      Valid detectors           & 952   & 961    & 553  \\ 
+      Ratio $\equiv \eta$       & 0.84  & 0.84   & 0.90   \\
       \noalign{\smallskip}
       \hline
     \end{tabular}
   \end{center}    
 \end{table}
 
+
+The valid KIDs, as defined as the KIDs that met the selection
+criteria in about one quart of the FOV geometries, represent the KIDs
+usable to produce a scientifically exploitable map of the flux
+density using observations for which no sizable {\tt tuning}
+issues are experienced. We also define a number of 'very stable'
+KIDs as the KIDs that met the selection criteria at least in
+$70\%$ of the FOV geometries (at least five times out of seven). We
+found 840, 868 and 508 KIDs using this definition for A1, A3 and A2,
+respectively. The fraction of very stable KIDs (valid at least five
+times) over the designed ones is reported in Table.~\ref{tab:eta_used}.   
+\begin{table}[!htbp]
+  \centering
+  \caption[]{Fraction of \emph{golden} KIDs in percent of the design
+  KIDs. The row 'very stable KIDs' gives the fraction of KIDs that have been selected
+  in $70\%$ of the analysed {\tt beammap} scans, while the rows 'Used KIDs' gather
+  the median fraction of used KIDs in the data reduction processing
+  after the conservative KID selection has been performed (see Sect.~\ref{se:dataproc})}
+  \label{tab:eta_used}
+  \begin{tabular}{llrrrr}
+    \hline\hline
+    \noalign{\smallskip}
+    &  Data set   & A1      &   A3    &     A2 \\
+    \noalign{\smallskip}
+    \hline
+    \noalign{\smallskip}
+    Very stable KIDs & {\tt beammaps} & 74  &  76  &  82  \\
+    \hline
+    \noalign{\smallskip}
+    Used KIDs  & N2R9     & 58 &  64  & 71 \\
+               & N2R12    & 73 &  69  & 77 \\
+               & N2R14    & 69 &  68  & 79 \\
+               & Combined & 70 &  69  & 78 \\
+    \hline
+  \end{tabular}
+\end{table}
+
+Practically, for the production of flux density maps, we perform
+further KID selection using a conservative noise level thresholding of
+the KIDs at the \emph{low level processing}, as discussed in
+Sect.~\ref{se:dataproc}. The number of used KIDs for producing
+science-purpose maps using the data reduction pipeline, as described
+in Sect.~\ref{se:dataproc}, is thus sizably lower than the number of
+valid KIDs. We evaluate the median number of used KIDs using all scans
+for each of the observation campaigns. The median fractions of used
+KIDs with respect to the design ones for each campaigns and for the
+combinations of all scans are given in Table.~\ref{tab:eta_used}. We
+find median fractions of used KIDs of about $70\%$ for the
+$1\, \rm{mm}$ arrays and of about $80\%$ for the $2\, \rm{mm}$ array,
+with a notable exception at the N2R9 technical campaign, for which
+these fraction are lower due to severe temperature-induced instable
+observing conditions (see Sect.~\ref{se:beam_variation}). Moreover the
+median fractions of used KIDs are close to the fractions of
+very stable KIDs from the FOV geometries. We stress that these numbers
+depend on the choices made in the data reduction pipeline for data
+sample cuts, and are thus subject to improvement. By contrast, the
+fractions of valid KIDs $\eta$ constitute a conservative estimates of the
+stable KIDs usable for science exploitation over all the fonctionning
+KIDs. These are thus the relevant estimates for the instrument
+performance assessment.  
+ 

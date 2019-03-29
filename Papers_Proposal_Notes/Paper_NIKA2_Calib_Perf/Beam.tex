@@ -7,7 +7,7 @@
 The NIKA2 beam pattern mainly depends on the IRAM \trentemetre\ telescope and
 NIKA2 full (external and internal) optical system characteristics,
 whereas the detectors themselves might have an impact at sub-dominant
-level (through \emph{e.g.} time constants or correlated noises).
+level (through \emph{e.g.} time constants or correlated noise).
 The full beam pattern is characterized using \bm\ observations. First,
 we produce deep integration maps of bright sources to provide a
 qualitative description of the complex beam structure in
@@ -50,7 +50,7 @@ shallower scans but spanning a large range of scanning direction.
   to lower right, beam maps of array 1 (labeled 'A1'), array 3 ('A3'),
   the combination of the $1\,\rm{mm}$ arrays ('A1$\&$3') and the
   $2\,\rm{mm}$ array ('A2') are shown in decibel. These maps, which
-  consist of normalized combination of four long OTF scans of bright
+  consist of the normalized combination of four {\tt beammap} scans of bright
   point sources, are in horizontal coordinates and cover a sky area
   which extends over 10 arcmin. %Same maps as in Fig.~\ref{fig:beam}
   %with some noticeable features.
@@ -71,8 +71,8 @@ shallower scans but spanning a large range of scanning direction.
 The deep NIKA2 beam maps reveal some noticeable features, which are
 shown in Fig.~\ref{fig:features}. Ranging from strong and/or extended to
 weak and/or spiky, they include:
-\begin{itemize}
-\item[(1)] the main beam and the underlying first error
+\begin{enumerate}
+\item the main beam and the underlying first error
   beam, which is due to the large scale deformations of the primary
   mirror, and the first side lobes. The latter include 
   the 20" diameter first side lobe and the 60" diameter (squarish)
@@ -81,30 +81,30 @@ weak and/or spiky, they include:
   %The four symmetrical spokes of the error beam as shown by
   %yellow arrows in the A2 panel, are expected from ZEMAX
   %simulations;
-\item[(2)] the diffraction ring by panel buckling of the primary
+\item the diffraction ring by panel buckling of the primary
   mirror, as shown with a red circle in the A1 panel;
-\item[(3)] the side lobes shown with green
+\item the side lobes shown with green
   diagonal lines in the A2 panel are due to diffraction on the
   quadrupod holding the secondary mirror of the telescope, as expected
   from ZEMAX simulations;  
-\item[(4)] spikes of not fully understood origin pointed with yellow
+\item spikes of not fully understood origin pointed with yellow
   arrows. The ones that are along the vertical and
-  horizontal axes are reproduced by ZEMAX simulation but at a 
+  horizontal axes are reproduced by ZEMAX simulations but at a 
   shallower level, whereas the ones shown in the A3 panel in the
   diagonal directions may be due to the small cylindrical
   instrumentation box on the side of the M2 cabin. The origin of the
   asymmetry on the 1~mm arrays is unknown but most probably due to
   internal optics aberrations;
-\item[(5)] shallow spikes of unknown origin, which are circled by pink
+\item shallow spikes of unknown origin, which are circled by pink
   ellipses. The multiple images on the combined deep beam map indicate
   a rotation of these spikes with the observing elevation, which in
   turn point to diffraction related issue or a ghost image that are
   formed inside the cryostat. These shallow features are expected to
   have no sizable impact on the science-purpose map of NIKA2.
-\end{itemize}
+\end{enumerate}
 
 We further quantify the respective level of the axi-symmetrical
-features of the beam pattern in evaluating the beam radial profile
+features of the beam pattern by evaluating the beam radial profile
 $B(r)$, which is the normalised radial brightness profile,
 where $r$ is the radius from the beam center.
 %is the azimuthal average of the beam map around the
@@ -121,7 +121,7 @@ We checked the stability of the beam against various observing
 conditions (source intensity, weather condition, focus optimisation) by
 comparing the beam profiles of a series of \bm\ observations.
 This \bm\ set has been selected from all the available \bm\ scans at
-optimal focus using the baseline selection criteria, as given in
+optimal focus using the baseline scan selection criteria, as given in
 Sect.~\ref{se:data_selection}.
 %The 18 beam profiles and their difference w.r.t. the median beam
 %profile are shown in Fig.~\ref{fig:beam_prof}.
@@ -197,37 +197,38 @@ $1\,\rm{mm}$ and below $2\%$ at $2\,\rm{mm}$.
 
 NIKA2 angular resolution depends on the angular size of the main beam,
 defined as the principal Gaussian (of the smaller FWHM) that encloses
-most of the measured point-like source flux density. We developped
-three methods for the main beam characterisation, which are detailed
-in Sect.~\ref{se:mainbeam_methods}. Sect.~\ref{se:mainbeam_dataset}
-presents the observing scans that we have selected to derive the results
-discussed in Sect.~\ref{se:mainbeam_results}. We check the stability
-of the FWHM estimate against the observing conditions in
-Sect.~\ref{se:mainbeam_stability}.
-
+most of the measured point-like source flux density.
+%We have developped
+%three different methods for the NIKA2 main beam characterisation
+%, which are detailed
+%in Sect.~\ref{se:mainbeam_methods}. Sect.~\ref{se:mainbeam_dataset}
+%presents the observing scans that we have selected to derive the results
+%discussed in Sect.~\ref{se:mainbeam_results}. We check the stability
+%of the FWHM estimate against the observing conditions in
+%Sect.~\ref{se:mainbeam_stability}.
 
 \subsubsection{Main beam characterization methods}
 \label{se:mainbeam_methods}
 To characterize the main beam and derive an estimate of the FWHM, we
 have developped three methods. The two first methods, quoted
-{\tt Prof 1\&2}, rely on a fit
-of the beam profile to benefit from the signal-to-noise ratio increase
-after azimuthally averaging the signal. The last one by contrast,
+{\tt Prof 1\&2}, rely on a fit of the beam profile to benefit from the
+signal-to-noise ratio increase after azimuthally averaging the
+signal. The last one by contrast,
 consists in an elliptical Gaussian fit of the beam map for a better
 2D modeling, and is labeled {\tt 2D beam}. They are presented in more
 detail below. \\
 
 \noindent {\tt Prof 1}: We fit the beam profile using an empirical function,
-which accounts for both the main beam and the error beams and side
-lodes, and derive the FWHM from the main beam parameter. The beam
-profile $B(r)$ is modeled using a three-Gaussian function defined as:
+which accounts for the main beam, the error beams and side
+lodes.%, and derive the FWHM from the main beam parameter.
+The beam profile $B(r)$ is modeled using a three-Gaussian function defined as:
 \begin{equation}
   B(r) = \sum_{i=1}^{3} \mathcal{A}_i G_i(r) + \mathcal{B}_0,
   \label{eq:3gauss}
 \end{equation}
 where $\mathcal{A}_i$ is the amplitude of the Gaussian $i$ for $i \in {1, 2, 3}$ and
-$\mathcal{B}_0$ a pedestal level accounting for the residual noise
-level in the map. The FWHM estimate is given by the best-fitting value
+$\mathcal{B}_0$ a pedestal level accounting for the residual background
+level in the map. The main beam FWHM estimate is given by the best-fitting value
 of the FWHM for the first Gaussian function.\\
 
 \noindent {\tt Prof 2}: A single Gaussian is fit to the beam profile after
@@ -243,42 +244,42 @@ $180''$, that is in the inner part of the beam map where the noise
 variance is uniform.\\
 
 \noindent {\tt 2D beam}: We model the two-dimensional distribution of the main
-beam using an elliptical Gaussian. We characterize NIKA2 resolution
-by forming the \emph{FWHM}, defined as
+beam using an 2D elliptical Gaussian of size $\sigma_x$ and
+$\sigma_y$. We characterize NIKA2 main beam using
 \begin{equation}
-  FWHM = 2 \sqrt{2\ln {2}\, \sigma_x\sigma_y},
+  FWHM = 2 \sqrt{2\ln {2}\, \sigma_x\sigma_y}.
 \end{equation}
-where $\sigma_x$ and $\sigma_y$ are the Gaussian standard deviation
-along minor and major axis.
+%where $\sigma_x$ and $\sigma_y$ are the Gaussian standard deviation
+%along minor and major axis.
 As in {\tt Prof 2}, we use masked versions of the
-beam map to avoid the side lobe and error beam contaminations.
-The mask consists in cutting an annulus of inner radius
+beam map to avoid side lobe and error beam contaminations.
+The mask cuts an annulus of inner radius
 $r_{\rm{in}}$ and outer radius $r_{\rm{out}}$ centered on the beam
 maximum. Whereas $r_{\rm{out}}$ is conservately set to be $100''$,
 $r_{\rm{in}}$ is let free to vary around a central value about $8''$
 for A1 and A3 and about $12''$ for A2 to provide the best 2D Gaussian
 fit.
 
-\subsubsection{Main beam data sets}
+\subsubsection{Data sets for the main beam determination}
 \label{se:mainbeam_dataset}
 
-We select a sub-set of the \bm\ scan selection described in
+We select a sub-set of the selected \bm\ scans described in
 Sect.~\ref{se:fullbeam} by discarding scans of Mars.
 The 12 remaining \bm\ scans are analysed using the data reduction
 pipeline of Sect.~\ref{se:dataproc} and projected onto maps
 with a resolution of $1''$ and an angular size of $10'$.
 
-We also consider a series of shorter integration scans. We select $5'x8'$ OTF
-scans of moderately bright to very bright point sources by
+We also consider a series of shorter integration scans. We select
+$5' \times 8'$ OTF scans of moderately bright to very bright point sources by
 thresholding the flux density estimates at $1~\rm{Jy}$ at both
-wavelengths. Slightly extended sources, such as Mars, NGC7027 and
-CRL2688 are discarded. After the baseline selection cuts, as described in
+wavelengths. %Slightly extended sources, such as Mars, NGC7027 and
+%CRL2688 are discarded.
+After the baseline scan selection, as described in
 Sect.~\ref{se:data_selection}, the data set comprises 154 %163
-scans
-towards the giant planets Uranus and Neptune, the secondary calibrator
+scans towards the giant planets Uranus and Neptune, the secondary calibrator
 MWC349 and the quasars 3C84, 3C273, 3C345 and 3C454 (aka
-2251+158). The data are reduced and projected onto $2''$ resolution
-maps. 
+2251+158). In this case, the data are reduced and projected onto $2''$
+resolution maps. 
 
 \subsubsection{Results}
 \label{se:mainbeam_results}
@@ -286,7 +287,12 @@ maps.
 We have derived the main beam FWHM for the three arrays and the
 $1\,\rm{mm}$ arrays combination using the three methods presented in
 Sect.~\ref{se:mainbeam_methods} and the data
-sets of Sect.~\ref{se:mainbeam_dataset}. Namely, our main beam FWHM estimates
+sets of Sect.~\ref{se:mainbeam_dataset}.
+%First, we test the stability of the FWHM estimates against the choices
+%of the estimation method by comparing the median FWHM estimate using
+%{\tt Prof 1} with the {\tt 2D beam} average FWHM from the 12 \bm\ scan
+%sub-set.
+Namely, our main beam FWHM estimates
 consist of i) the median FWHM estimate using {\tt Prof 1} from the 12 \bm\ scan
 sub-set, ii) the average FWHM estimate using {\tt Prof 2} on a series
 of \bm\ and $5' \times 8'$ OTF scans of Uranus and Neptune, the {\tt 2D beam} average FWHM
@@ -299,30 +305,40 @@ method. %We also seek at validating the FWHM estimates using
 %Sect.~\ref{se:beam_efficiency}.
 
 For Uranus, the
-FWHM estimates are further corrected for the beam broadening due to the
-extension of the apparent
-disc. At the IRAM $30\,\rm{m}$ latitude, Uranus disc diameter varies
-from $3.3''$ to $3.7''$. This induces a broadening of the Gaussian main beam of
+FWHM estimates are further corrected for the beam broadening induced
+by the extension of the apparent disc. At the IRAM $30\,\rm{m}$
+latitude, Uranus disc diameter varies from $3.3''$ to $3.7''$. This
+induces a broadening of the Gaussian main beam of
 $0.19 \pm 0.03\,\rm{arcsec}$ at $1\, \rm{mm}$ and $0.12 \pm 0.02\,\rm{arcsec}$
 at $2\, \rm{mm}$. Uranus FWHM estimates are corrected for the average beam
 widening values.
 
 The results of this analysis are
-gathered in Table~\ref{tab:fwhm}, including error bars evaluated as
+gathered in Table~\ref{tab:fwhm}, including uncertainties evaluated as
 the rms dispersion of single-scan based FWHM estimates.
-All the tests based on {\tt Prof 2} and {\tt 2D beam}, which both
-resort to a sidelobe mask, yield FWHM estimates
-in agreement within error bars, whereas the test using {\tt Prof 1}
-yields slightly smaller FWHM for all arrays.
+{\tt Prof 2} and {\tt 2D beam} results are in agreement within
+uncertainties, whereas {\tt Prof 1} yields slightly smaller FWHM.
+%All the tests based on {\tt Prof 2} and {\tt 2D beam}, which both
+%resort to a sidelobe mask, yield FWHM estimates
+%in agreement within error bars, whereas the test using {\tt Prof 1}
+%yields slightly smaller FWHM for all arrays.
 %The latter provides us with lower limits for the main beam FWHM.
 The latter constitute optimistic estimates of the FWHM.
-The error bars are the most robustly derived from the dispersion of the
-best-fitting FWHM over the set of 154 OTF scans, whereas rms errors
-that are estimated from smaller and more homogeneous scan sets are likely to be
-underestimated. The combined results are obtained from an error-weighted
-average of the four FWHM estimates for each array. The 12 \bm\ scan
-based rms errors were replaced by the 154 OTF scan based rms errors
-beforehand. The combined results, as given in
+Combined results are obtained from an error-weighted
+average of the four FWHM estimates for each array.
+Because the rms errors estimated using the 12 \bm\ scans may be
+optimistic considering the small statistic, they are conservatively
+increased to match the uncertainty estimates based on 154 OTF scans before
+performing the weighted average.  
+%The uncertainties are the most robustly derived from the dispersion of the
+%best-fitting FWHM over the set of 154 OTF scans, whereas rms errors
+%that are estimated from smaller and more homogeneous scan sets may be
+%optimistic. Combined results are obtained from an error-weighted
+%average of the four FWHM estimates for each array.
+%The 12 \bm\ scan
+%based rms errors were replaced by the 154 OTF scan based rms errors
+%beforehand.
+The combined results, as given in
 Table~\ref{tab:fwhm}, provide a robust evaluation of the
 FWHM. Hence, we report FWHMs of $11.1'' \pm 0.2''$ at
 $1\, \rm{mm}$ and $17.6''\pm 0.1''$ at $2\, \rm{mm}$.  
@@ -355,7 +371,7 @@ $1\, \rm{mm}$ and $17.6''\pm 0.1''$ at $2\, \rm{mm}$.
   \end{tabular}
 \end{table*}
 
-\subsubsection{Stability checks of the main beam}
+\subsubsection{Stability checks}
 \label{se:mainbeam_stability}
 
 \begin{figure}[!thbp]
@@ -365,26 +381,27 @@ $1\, \rm{mm}$ and $17.6''\pm 0.1''$ at $2\, \rm{mm}$.
   \caption[Main Beam FWHM]{Main beam FWHM estimates for the
     $1\,\rm{mm}$ (top) and $2\,\rm{mm}$ (bottom) channels are shown as
     a function of the atmospheric transmission estimated at the
-    corresponding wavelengths using bright source scans acquired during N2R9, N2R12 and N2R14. }
+    corresponding wavelengths using bright point source observations
+  acquired during N2R9, N2R12 and N2R14 campaings. }
 \label{fig:fwhm_map_atmtrans}
 \end{center}
 \end{figure}
 
 Figure~\ref{fig:fwhm_map_atmtrans} shows the main beam FWHM estimates
-using {\tt 2D beam} as a function of the atmospheric transmission,
-which is modeled as $\exp{\left(-\tau \cdot x\right)}$, where $\tau$
-is the zenith opacity estimate and
-$x$ the airmass, which is evaluated as the cosecant of the observing
-elevation. The FWHM estimates using data of the three campaigns are in
+using {\tt 2D beam} as a function of atmospheric transmission,
+which is modeled as $\exp{\left(-\tau \cdot x\right)}$.%, where $\tau$
+%is the zenith opacity estimate and $x$ the airmass, which is
+%evaluated as the cosecant of the observing elevation.
+The main beam FWHM estimates using data of the three campaigns are in
 agreement within rms errors. Moreover, the main beam FWHM is stable
-against the atmospheric condition at both wavelengths. Slightly lower
+against atmospheric conditions at both wavelengths. Slightly lower
 values than average (about $11''$) are observed in the best
 atmospheric conditions at $1\,\rm{mm}$ providing us with a lower limit
 in the absence of correlated atmospheric noise residuals. We note
-three scans acquired during N2R12 with larger FWHM than average at
+three scans acquired during the N2R12 campaign with larger FWHM than average at
 $2\,\rm{mm}$ although the atmospheric transmission was excellent: this
-is likely an effect of the anomalous refraction, which impacted
-a lot of scans during the N2R12 campaign. 
+is likely an effect of the anomalous refraction, which affected a
+large number of observation scans during N2R12. 
 
 
 
@@ -403,9 +420,10 @@ We derive an estimate of the total solid angle
   \label{eq:omega_tot}
 \end{equation}
 from the normalised beam profile $B_{A_i}(r)/B_{A_i}(0)$ of the array
-$A_i$  at $r_{max} = 180''$ and the main beam solid angle is
-evaluated as the volume of the Gaussian main beam as
-$\Omega_{\rm{mb}} = 2 \pi\,  \sigma_{\rm{mb}}^2$.
+$A_i$ integrated up to $r_{max} = 180''$. The main beam solid angle is
+evaluated from the main beam (mb) FWHM, as
+$\Omega_{\rm{mb}} = 2 \pi\,  \sigma_{\rm{mb}}^2$, where FWHM$ =
+2\sqrt(2\ln{2})\sigma_{\rm{mb}}$. 
 
 The choice of the maximum radius is set both by the integration depth of
 the \bm\ scans, which in turn fixes the noise variance, and the
@@ -420,7 +438,6 @@ overestimates the beam efficiency. An accurate evaluation of
 this quantity would require a dedicated observation program to measure
 of the $4\pi$ integral of the full beam pattern.
 
-
 A large set of \bm\ scans of Uranus and Neptune acquired during the
 N2R9, N2R12 and N2R14 campaigns have been used to evaluate
 $\Omega_{\rm{tot}}$ from the measured beam profiles up to
@@ -431,11 +448,11 @@ The result is given in Table~\ref{tab:solid}.
 \begin{table}[!h]
 \caption{Estimates of the solid angle of the total beam
   $\Omega_{\rm{tot}}$ given in arcsec$^{2}$ using Neptune and Uranus
-  scans acquired during three observation campaigns, and the average
+  scans acquired during three observation campaigns, and the combined
   result.  }
 \label{tab:solid}
 \centering
-\begin{tabular}{l c rrr}
+\begin{tabular}{l cccc}
 \hline\hline
 \noalign{\smallskip}
 run  & Nber of scans & %\multicolumn{3}{c}{$\Omega_{\rm{tot}}$ (arcsec$^{2}$)} %& \multicolumn{3}{c}{$\Omega_{\rm{tot}}/\Omega_{gauss}$} \\
@@ -445,10 +462,10 @@ A1    &    A2   &  A3  \\%& A1  &  A2  & A3   \\
 \noalign{\smallskip}
 \hline
 \noalign{\smallskip}
-N2R9    & 27  &  265$\pm$ 23    &  466$\pm$ 17 & 252 $\pm$ 23 \\%&  1.80 $\pm$ 0.12    &  1.35 $\pm$ 0.05   &   1.74 $\pm$ 0.13   \\
-N2R12   & 20  &  229$\pm$ 11    &  437$\pm$  9 & 221 $\pm$ 10 \\%&  1.71 $\pm$ 0.06   &  1.30 $\pm$ 0.02   &   1.68 $\pm$ 0.06   \\
-N2R14   & 28  &  251$\pm$ 16    &  457$\pm$ 15 & 245 $\pm$ 18 \\%&  1.73 $\pm$ 0.08   &  1.32 $\pm$ 0.03   &   1.72 $\pm$ 0.08   \\
-mean    &     &  248            &  453         &  239         \\%&  1.74              &   1.32             &   1.71              \\
+N2R9     & 27  &  265$\pm$ 23    &  466$\pm$ 17 & 252 $\pm$ 23 \\%&  1.80 $\pm$ 0.12    &  1.35 $\pm$ 0.05   &   1.74 $\pm$ 0.13   \\
+N2R12    & 20  &  229$\pm$ 11    &  437$\pm$  9 & 221 $\pm$ 10 \\%&  1.71 $\pm$ 0.06   &  1.30 $\pm$ 0.02   &   1.68 $\pm$ 0.06   \\
+N2R14    & 28  &  251$\pm$ 16    &  457$\pm$ 15 & 245 $\pm$ 18 \\%&  1.73 $\pm$ 0.08   &  1.32 $\pm$ 0.03   &   1.72 $\pm$ 0.08   \\
+Combined & 75  &  240$\pm$  9    &  446$\pm$  7 & 230 $\pm$  8 \\%&  1.74              &   1.32             &   1.71              \\
 \noalign{\smallskip}
 \hline
 \end{tabular}
@@ -478,7 +495,7 @@ estimates on individual \bms\ respectively. A robust evaluation of the
 beam efficiency uncertainties is obtained using the rms error estimates
 for {\tt E2}, which are based on 75 \bm\ scans. By contrast, error
 estimates for {\tt E1$\&$E3} rely on 12 scans and are thus less
-robust. We combined the results of three methods using an error-weighted
+robust. We combined the results of the three methods using an error-weighted
 average. {\tt E2} rms errors are conservatively used as a lower
 limit of the error estimates for all methods. The combined beam
 efficiency are given in Table~\ref{tab:beam_efficiency}.  
@@ -522,10 +539,11 @@ efficiency are given in Table~\ref{tab:beam_efficiency}.
 \end{table}
 
 As a stability check of the beam efficiency, the detailed beam
-efficiency estimates using {\tt E2}, as well as the level of
-the error beam, for each observation campaigns are given in Table
-\ref{tab:MB}. The level of the error beam is given relative to the
-main beam peak.%(we recall that -12dB as found is $6\%$).
+efficiency estimates using {\tt E2} 
+%, as well as the level of the error beam,
+for each observation campaigns are given in Table
+\ref{tab:MB}. %The level of the error beam is given relative to the
+%main beam peak.%(we recall that -12dB as found is $6\%$).
 We find stable beam efficiencies using observations acquired one year apart.
 
 
@@ -542,23 +560,42 @@ $55 \pm 3 \%$ at $1\,\rm{mm}$ and  $77 \pm 2 \%$ at $2\,\rm{mm}$.
 %on, the focus is set to the optimal value across the array (see the
 %discussion in Sect.~\ref{}).    
 
-
-\begin{table*}[!h]
-\caption{Main beam efficiency and level of error beam}
+\begin{table}[!ht]
+\caption{Main beam efficiency estimates per observation campaigns,
+given in percent.}
 \label{tab:MB}
 \centering
-\begin{tabular}{l| c | c c c | c c c}
+\begin{tabular}{lcccc}
 \hline\hline
-%\noalign{\smallskip}
-run  & Nber of scans & \multicolumn{3}{|c|}{Main beam efficiency ($\%$)} & \multicolumn{3}{c}{Error beam level (dB)} \\
+\noalign{\smallskip}
+campaign &  A1    &    A2   &  A3    \\
+\noalign{\smallskip}
 \hline
-     &               &  A1    &    A2   &  A3    & A1  &  A2  & A3   \\
-            \hline
-N2R9    & 27  &  54.1$\pm$ 3.2   &  74.7$\pm$ 2.9  & 55.9 $\pm$ 3.7   &  -11.5 $\pm$ 0.8    &  -14.9 $\pm$ 0.6   &  -12.0 $\pm$ 0.6   \\
-N2R12   & 20  &  55.7$\pm$ 2.0   &  77.4$\pm$ 1.0  & 57.1 $\pm$ 2.0   &  -13.4 $\pm$ 0.3    &  -16.1 $\pm$ 0.3   &  -13.8 $\pm$ 0.3   \\
-N2R14   & 28  &  55.0$\pm$ 2.7   &  76.0$\pm$ 1.8  & 56.1 $\pm$ 2.6   &  -12.5 $\pm$ 0.6    &  -15.3 $\pm$ 0.6   &  -12.7 $\pm$ 0.8   \\
+\noalign{\smallskip}
+N2R9    &  54.1$\pm$ 3.2   &  74.7$\pm$ 2.9  & 55.9 $\pm$ 3.7      \\
+N2R12   &  55.7$\pm$ 2.0   &  77.4$\pm$ 1.0  & 57.1 $\pm$ 2.0      \\
+N2R14   &  55.0$\pm$ 2.7   &  76.0$\pm$ 1.8  & 56.1 $\pm$ 2.6     \\
             %\noalign{\smallskip}
-            \hline\hline
+            \hline
 \end{tabular}
-\end{table*}
+\end{table}
+
+%\begin{table*}[!h]
+%\caption{Main beam efficiency and level of error beam}
+%\label{tab:MB}
+%\centering
+%\begin{tabular}{l| c | c c c | c c c}
+%\hline\hline
+%\noalign{\smallskip}
+%run  & Nber of scans & \multicolumn{3}{|c|}{Main beam efficiency ($\%$)} & \multicolumn{3}{c}{Error beam level (dB)} \\
+%\hline
+%     &               &  A1    &    A2   &  A3    & A1  &  A2  & A3   \\
+%            \hline
+%N2R9    & 27  &  54.1$\pm$ 3.2   &  74.7$\pm$ 2.9  & 55.9 $\pm$ 3.7   &  -11.5 $\pm$ 0.8    &  -14.9 $\pm$ 0.6   &  -12.0 $\pm$ 0.6   \\
+%N2R12   & 20  &  55.7$\pm$ 2.0   &  77.4$\pm$ 1.0  & 57.1 $\pm$ 2.0   &  -13.4 $\pm$ 0.3    &  -16.1 $\pm$ 0.3   &  -13.8 $\pm$ 0.3   \\
+%N2R14   & 28  &  55.0$\pm$ 2.7   &  76.0$\pm$ 1.8  & 56.1 $\pm$ 2.6   &  -12.5 $\pm$ 0.6    &  -15.3 $\pm$ 0.6   &  -12.7 $\pm$ 0.8   \\
+%            %\noalign{\smallskip}
+%            \hline\hline
+%\end{tabular}
+%\end{table*}
 

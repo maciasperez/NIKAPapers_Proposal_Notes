@@ -7,8 +7,8 @@
 The atmospheric opacity constitutes the ultimate limitation of
 ground-based experiments. Only a fraction of the
 signal is transmitted by the atmosphere and reaches NIKA2 detectors. 
-The relation between uncorrected observed flux densities
-$\tilde{S}_{\nu}$ and top-of-the-atmosphere flux densities $S_{\nu}$
+The relation between the observed flux density
+$\tilde{S}_{\nu}$ and the top-of-the-atmosphere flux density $S_{\nu}$
 is parametrized by the zenith opacity $\tau_{\nu}$
 and the airmass $x = \left(\sin\elev\right)^{-1}$ ($\elev$ is the elevation), such as
 \begin{equation}
@@ -16,50 +16,55 @@ and the airmass $x = \left(\sin\elev\right)^{-1}$ ($\elev$ is the elevation), su
 \label{eq:uncorr_flux}
 \end{equation}
 
-An accurate derivation of the opacity condition for each scan is
-of outmost importance to retrieve the source signal at the top of the
-atmosphere and to ensure low calibration uncertainties.
+An accurate derivation of the atmospheric opacity for each scan is
+of outmost importance to retrieve the source signal and thus, to
+ensure low calibration uncertainties.
 %Opacity correction uncertainties even prevail in the
 %final calibration error budget.
-We developed three opacity derivation methods, which are described in
+We developed three atmospheric opacity derivation methods, which are described in
 Sect.~\ref{se:opacity_methods}. In Sect.~\ref{se:opacity_tests}, we
 present robustness tests.
 %extensively tested their
 %robustness against observing conditions, as presented in
 %Sect.~\ref{se:opacity_tests}.
 
-\subsection{Opacity derivation}
+\subsection{Atmospheric opacity estimation}
 \label{se:opacity_methods}
 
 %To assess the robustness of our opacity measurements,
-We have developed
-three procedures for the opacity derivation: {\tt taumeter} is
-described in Sect~\ref{se:taumeter-method} and relies on measurements
-provided by the resident IRAM taumeter operated at $225~\rm{GHz}$ and
-a fit of the opacity estimates in NIKA2 frequency bands by imposing
-the flux density stability against atmospheric conditions;
-{\tt skydip}, described in Sect~\ref{se:skydip-method}, consists in
-using NIKA2 as a taumeter (assuming the resonance frequencies are
-linearly related to the total power) by resorting to a series of
-skydip scans, the selection of which is addressed in
-Sect.~\ref{se:skydip-selection}; {\tt corrected skydip}, presented in
-Sect.~\ref{se:corrected-skydip}, is a modifed
+We have developed three procedures for the atmospheric opacity
+derivation: i) {\tt taumeter} relies on measurements
+provided by the resident IRAM taumeter operated at $225~\rm{GHz}$;
+%and a fit of the opacity estimates in NIKA2 frequency bands by imposing
+%the flux density stability against atmospheric conditions;
+ii) {\tt skydip} consists in using NIKA2 as a total-power taumeter
+%(assuming the resonance frequencies are
+%linearly related to the total power)
+by resorting to a series of {\tt skydip} scans;
+iii) {\tt corrected skydip} is a modifed
 version of the {\tt skydip} method that minimizes the dependence of the
-estimated top-of-the-atmosphere flux density on the opacity.
+estimated flux density on the opacity.
 
-All methods i) do not rely on an atmospheric model nor on any
+All methods i) do not rely on an ATM model nor on any
 hypothesis on the atmospheric contents for the sake of robustness, and
 ii) do not use the laboratory measurements of the bandpass (see 
 Sect.~\ref{se:instru_bandpass}) for more accuracy.  
 
+Sect~\ref{se:taumeter-method} presents the {\tt taumeter} method. The 
+{\tt skydip} method is described in Sect~\ref{se:skydip-method} and
+the selection of the used {\tt skydip} scans is discussed in
+Sect.~\ref{se:skydip-selection}.
+{\tt corrected skydip} is presented in Sect.~\ref{se:corrected-skydip}.
+
 \subsubsection{{\tt Taumeter}}
 \label{se:taumeter-method}
 
-The IRAM 30-m telescope facility is equipped with a resident taumeter,
-which performs elevation scans at a fixed azimuth and is operated at
-225~GHz, to monitor the atmospheric opacity. The IRAM science support
+The IRAM 30-m telescope facility is equipped with a resident taumeter
+operated at 225~GHz, which performs elevation scans at fixed azimuth
+to monitor the atmospheric opacity.
+The IRAM science support
 team provides us with time-stamped zenith opacities at $225$~GHz
-$\tau_{225}$, as derived from the taumeter measures. The
+$\tau_{225}$, as derived from the taumeter measurements. The
 $\tau_{225}$ estimates come in two different flavours: one relying
 on a linear model and the other on an exponential fitting model. They
 are then filtered by removing outliers and by thresholding on
@@ -68,7 +73,7 @@ goodness-of-fit criteria.
 %of multiple determination of the $\tau_{225}$
 %estimates, which quantifies the goodness of fit of each model.
 %Redundant samples and outliers are removed.
-Based on IRAM experience, we use the linear filtered $\tau_{225}$
+Based on IRAM experience, we use the linear fit and filtered $\tau_{225}$
 data for the NIKA2 analysis. The time-stamped $\tau_{225}$ estimates,
 which are sampled about every 4 minutes, are interpolated to the time
 of the NIKA2 scans (we consider the time of the middle of the
@@ -81,7 +86,7 @@ We fit the relations between the IRAM
 $225\,\rm{GHz}$ taumeter opacities and NIKA2 band pass opacities using
 observation of calibration sources which spans a large range of air
 masses. This method has the advantages of not relying on
-any atmosphere model nor on the bandpass measurements in laboratory.
+any ATM model nor on the bandpass measurements in laboratory.
 We use a series of 64 scans of MWC349, which consists of the
 baseline selected subset of scans from the 68 available scans for
 this source during N2R9.
@@ -89,22 +94,24 @@ It constitutes an homogeneous data set in flux density but
 heterogeneous in atmospheric conditions: zenith opacities at
 $225\,\rm{GHz}$ 
 range from 0.08 to 0.32 and elevations from $23$ to $73$
-degrees, spanning a large range of air mass as required. NIKA2 opacities
-$\tau_\nu$, for $\nu$ corresponding
+degrees, spanning a large range of air mass as required.
+NIKA2 opacities $\tau_\nu$, for $\nu$ corresponding
 to Array 1, 2, 3 and the combination of Arrays 1 and 3, are estimated
-from the $225\,\rm{GHz}$ taumeter median-filtered exponential-based opacity
+from the $225\,\rm{GHz}$ taumeter median-filtered linear-based opacity
 estimates $\tau_{225}$ as
 \begin{equation}  
-  \tau_\nu =  a_\nu^{225}\tau_{225} + b_\nu^{225},          
+  \tau_\nu =  a_\nu^{225}\tau_{225} + b_\nu^{225}.          
 \end{equation}
-where the parameters $a_\nu^{225}$ and $b_\nu^{225}$ are fitted to ensure
-that the non-corrected flux densities $\tilde{S}_\nu$ are stable against
-$\tau_{225}$ after correction of the atmospheric attenuation by
-inversion of Eq.~\ref{eq:uncorr_flux} using 
+The parameters parameters $a_\nu^{225}$ and $b_\nu^{225}$ are fitted
+to the data set so that the source flux density %to ensure
+%that the non-corrected flux densities $\tilde{S}_\nu$ are stable against
+%$\tau_{225}$ after correction of the atmospheric attenuation by
+%inversion of Eq.~\ref{eq:uncorr_flux} using 
 \begin{equation}  
-  S_\nu = \tilde{S}_\nu e^{(a_\nu^{225}\tau_{225} + b_\nu^{225}) \cdot x}.
+  S_\nu = \tilde{S}_\nu e^{(a_\nu^{225}\tau_{225} + b_\nu^{225}) \cdot x}, 
   \label{eq:opacorr_taumeter}
 \end{equation}
+is constant within scans.
 
 \begin{table}[!htbp]
   \begin{center}
@@ -130,13 +137,12 @@ inversion of Eq.~\ref{eq:uncorr_flux} using
 
 We tested two estimators of the flux stability. The first one relies
 on minimising the standard deviation of the measured-to-median flux
-densities ratio after correction of the opacity using
-Eq.~\ref{eq:opacorr_taumeter}. The second one consists in rewriting
-the rms minimisation as an unweighted $\chi^2$ minimisation using:
+densities ratio after atmospheric opacity correction using
+Eq.~\ref{eq:opacorr_taumeter}. The second one is obtained by minimizing
 \begin{equation}
 \chi^2 = \sum_{i=1}^{N} \frac{1}{\sigma^2} \, \left( \frac{S_\nu}{Med(S_\nu)} -1 \right)^2,  
 \end{equation}
-where $\sigma$ is the rms error of the flux density estimates. Note
+where $\sigma$ is the rms uncertainties of the flux density estimates. Note
 that these estimators do not depend on
 the absolute scale of the flux density of the source. Both estimators
 yield consistent results that are combined and gathered in
@@ -145,33 +151,32 @@ $\Delta a_\nu^{225}$ and $\Delta b_\nu^{225}$ are 1-$\sigma$ errors of
 the fit.
 
 Because the IRAM tau-meter observes at a fixed azimuth, the
-taumeter-based opacities are not exactly the line-of-sight opacities for
-the observation scans. As this will be verified in
+{\tt taumeter} opacities are not exactly the line-of-sight opacities
+for the observation scans. As this will be verified in
 Sect.~\ref{se:photometry}, this induces larger rms errors of
 the top-of-the-atmosphere flux density estimates with respect to
 opacity correction methods that relies on skydip-based measurements using
-NIKA2 instrument itself. The taumeter-based method will thus be used
-as an alternative method in case of i) failure of the NIKA2 skydip-based
-methods and ii) to perform consistency checks.
-
+NIKA2 instrument itself. The {\tt taumeter} method will thus be used
+as an alternative method in case of failure of the NIKA2 skydip-based
+methods and to perform consistency checks.
 
 
 \subsubsection{NIKA2 skydip-based method}
 \label{se:skydip-method}
 
 The NIKA2 {\tt skydip} method for the opacity derivation consists in
-using the NIKA2 instrument as a tau-meter via a total-power
-technique. This technique, which was successfully tested with
-NIKA~\citep{Catalano2014}, relies on the fact that the
-resonance frequency of each KID varies linearly with the total
-power~\citep{Swenson2010}. First, we have to calibrate the relationship between total
-power and opacity. Then we can use this calibration to measure the
+using the NIKA2 instrument as a total-power tau-meter. This idea,
+which was successfully tested with NIKA~\citep{Catalano2014}, relies
+on the fact that the resonance frequency of each KID varies linearly
+with the total power~\citep{Swenson2010}.
+First, we have to calibrate the relationship between total
+power and opacity. Then, we can use this calibration to measure the
 opacity during a given scan. Using this procedure we thus directly
 derive an opacity integrated in the NIKA2 bandpasses and in the
 line-of-sight of the observing scan.
 
 First, we detail the opacity calibration. For each KID $k$, the
-absolute value of the resonance frequency $f_{reso}^k$ moves with the
+absolute value of its resonance frequency $f_{reso}^k$ varies with the
 atmospheric load according to
 %
 \begin{equation}
@@ -179,11 +184,11 @@ f_{reso}^k  = c_0^k - c_1^k T_{atm}[1-e^{-\tau x}]
 \label{eq:skydip}
 \end{equation}
 %
-where $c_0^k$ is a constant equal to the resonance frequency at zero
-opacity, $c_1^k$ is the calibration conversion factor in Hz$/$K,
+where $c_0^k$ is a constant equal to the KID resonance frequency at zero
+opacity, $c_1^k$ is a calibration conversion factor in Hz$/$K,
 $T_{atm}$ is the temperature of the atmosphere, $\tau$ the zenith
-opacity and $\elev$ the elevation of the
-telescope.  By assuming a homogeneous plane-parallel atmosphere, the
+opacity and $\elev$ the observing elevation.  By assuming a
+homogeneous plane-parallel atmosphere, the
 airmass $x$ is defined from the elevation as $x =
 \left(\sin\elev\right)^{-1}$ (we neglect the Earth sphericity).
 We take $T_{atm}$ as a constant at 270~K. However, the opacity is
@@ -201,12 +206,12 @@ observation campaign.
 \includegraphics[trim={9cm 0cm 0cm 6.5cm}, clip=true, width=0.9\linewidth]{Figures/test_allskd4_N2R9v5_5-crop.pdf}
 \caption[]{Example of the global skydip fit for a KID.
 Each square point represents one step in a skydip (made of eleven
-elevation steps). 12 skydips are used together spanning zenith
-opacities from 0.15 to 0.50. The horizontal axis gives the sky
-effective temperature $T_{atm}[1-e^{-\tau x}]$ where $\tau$ is the
+elevation steps). A series of 12 {\tt skydip} scans are jointly used
+spanning zenith opacities from 0.15 to 0.50. The horizontal axis gives the sky
+effective temperature $T_{sky} = T_{atm}[1-e^{-\tau x}]$ in Kelvin, where $\tau$ is the
 skydip zenith opacity found in the fit. The vertical axis shows the
-resonance frequency of the KID. The blue line is the expected linear
-fit using the found $c_0^k$ and $c_1^k$ coefficients (see
+resonance frequency of the KID in MHz. The blue line is the linear
+model using the best-fit $c_0^k$ and $c_1^k$ coefficients (see
 Eq.~\ref{eq:skydip}).}
 \label{fig:skydipfitexample}
 \end{center}
@@ -225,12 +230,12 @@ All skydips, obtained under various opacity conditions, are analysed
 together to break the degeneracy between the opacity and the
 responsivity ($c_1^k$). The degeneracy occurs mostly for low opacity
 conditions for which we can only determine the combination
-$c_1^k \tau x$. The procedure has two steps. First, all the skydips
-are analysed individually to extract $f_{reso}^k$ for each
+$c_1^k \tau x$. The procedure has two steps. First, all the {\tt
+skydip} scans are analysed individually to extract $f_{reso}^k$ for each
 stable elevation and each KID. Secondly, a simultaneous fit is done
 for all parameters (one $\tau$ per skydip, and a set of $c_0^k$ and
 $c_1^k$ for all KIDs). Fig~\ref{fig:skydipfitexample} illustrates the
-fitting procedure.  Error bars on $\tau$ are estimated by doing this
+fitting procedure. Uncertainties on $\tau$ are estimated by doing this
 procedure
 on blocks of 40 KIDs only and getting a dispersion on the resulting
 $\tau$ from the different blocks. Usually the dispersion comes out as
@@ -240,11 +245,11 @@ blocks), we compute, while fixing the $\tau$, the $c_0$ and $c_1$
 final values for each KID with a simple linear fit. We thus retrieve
 the coefficients of all the KIDs even though some of them could not
 contribute to the $\tau$ determination. We find that the skydip-fitted
-$\tau$ values are, as expected, equal between different detectors of
+$\tau$ values are, as expected, consistent between different detectors of
 the same array.
 
 By comparing the results of different skydips, we have verified that the
-coefficients $c_0$, $c_1$ are stable, within the fit errors, on very
+coefficients $c_0$, $c_1$ are stable, within the fitting errors, on very
 long time scales within a cooldown cycle. The coefficients can thus be
 applied to the whole observing campaign in order to recover the
 opacity of each scan. Namely, the opacity %for each array
@@ -256,20 +261,22 @@ inverting Eq.~\ref{eq:skydip} as:
 \end{equation}
 where $\nu$ stands for the array A1, A2, A3 or the array
 combination A1$\&$A3, and the median is evaluated using all the valid
-KIDs of the arrays under concern. Hence we derive an opacity integrated in the NIKA2 bandpasses and
-in the line-of-sight of the source in the considered observation scan.
+KIDs of the arrays under concern. Hence, we are able to derive an opacity
+integrated in the NIKA2 bandpasses and in the line-of-sight of the
+source in the considered observation scan.
 
 
-\subsubsection{Skydip selection}
+
+\subsubsection{{\tt Skydip} scan selection}
 \label{se:skydip-selection}
 
 The {\tt skydip} opacity derivation requires to have on hands a
 sizable amount of {\tt skydip} scans --
 typically ten to twenty -- that i) span the whole opacity range and
 ii) avoid highly perturbated atmosphere to meet the plane-parallel
-atmosphere assumption. To that aim, we perform a skydip
-scan twice a day during a scientific campaign. Then the ($c_0$, $c_1$)
-determination process relies on a selection of the skydip scans.
+atmosphere assumption. To that aim, we perform a {\tt skydip}
+scan twice a day during a scientific campaign. Then, the ($c_0$, $c_1$)
+determination process relies on a selection of the {\tt skydip} scans.
 %
 \begin{figure}[!htbp]
 \begin{center}
@@ -301,11 +308,11 @@ After the second iteration, all the remaining skydips met the criteria.}
     \includegraphics[clip=true, trim={-0.3cm, -0.3cm, 0, 0}, width=0.3\textwidth]{Figures/Opacity_skydip_to_taumeter_vs_elev_a2.pdf}
    \caption[]{NIKA2
      skydip-based opacities $\tau_{\rm{skydip}}$ consistency checks.
-     a): $\tau_{\rm{skydip}}$ vs median-filtered
+     a) $\tau_{\rm{skydip}}$ vs median-filtered
     time-stamped IRAM 225~GHz taumeter opacities (see
     Sect.~\ref{se:taumeter-method}).
     The modeled correlations relying on an ATM model integrated in
-    NIKA2 frequency bands are shown in black. b): $\tau_{\rm{skydip}}$ stability against the observing
+    NIKA2 frequency bands are shown in black. b) $\tau_{\rm{skydip}}$ stability against the observing
     elevation. The ratio between the skydip-based opacities and the
     taumeter-derived opacities is shown as a function of the observing
     elevation as blue points for Uranus scans and empty red square for
@@ -328,16 +335,16 @@ After the second iteration, all the remaining skydips met the criteria.}
 %\end{center}
 %\end{figure}
 
-For each skydip scan and for each bunch of 40 KIDs, we compute the
+For each {\tt skydip} scan and for each bunch of 40 KIDs, we compute the
 difference between the measured KID resonance frequency and the model
 given in Eq.~\ref{eq:skydip} taken at the best-fit values of the
-($c_0$, $c_1$) parameters. Then we determine two indicators of the fit
-quality per skydip. First, the standard deviation of the
+($c_0$, $c_1$) parameters. Then, we determine two indicators of the fit
+quality per {\tt skydip}. First, the standard deviation of the
 measure-to-model difference is calculated over all the KIDs in a
-bunch. For each skydip, we evaluate the median rms, which is the
+bunch. For each {\tt skydip}, we evaluate the median rms, which is the
 median over the KID bunches of the standard deviation per bunch, given
 in Hz. This fit quality indicator is thus also sensitive to the noise
-level during the skydip. We therefore devise an additional fit quality
+level during the {\tt skydip}. We therefore devise an additional fit quality
 indicator to further measure the bias between measures and model fits.
 Namely, for each scan, we compute the average
 measure-to-model difference of each KID $k$, labelled $dT_k$, which is
@@ -345,7 +352,7 @@ then converted from Hertz to Kelvin using the $c_1$ parameter of the
 KID $k$. This cross-calibration allows for assembling the
 measure-to-model difference estimates of all the KIDs.
 Median $dT$ is the median of $dT_k$ over all the KIDs of an
-array. With these two indicators in hands, we discard the skydip scans
+array. With these two indicators in hands, we discard the {\tt skydip} scans
 that are noisy or that yield a poor fit by applying the selection
 criteria that have to be satisfied:
 
@@ -354,35 +361,35 @@ criteria that have to be satisfied:
 \item Median $dT < 1.6~\rm{K}$
 \end{itemize}
 
-The threshold values have been determined using the set of 44 skydip
+The threshold values have been determined using the set of 44 {\tt skydip}
 scans of N2R9. The Median rms cut corresponds to twice the median of
-this quantity per skydip scan, whereas the Median $dT$ cut is twice
-the standard deviation of Median $dT$ over the skydips.
-N2R9 skydip scan selection is illustrated in
+this quantity per {\tt skydip} scan, whereas the Median $dT$ cut is twice
+the standard deviation of Median $dT$ over the {\tt skydip} scans.
+N2R9 {\tt skydip} scan selection is illustrated in
 Fig.~\ref{fig:skydipselection}, in
 which the agreement between the two fit-quality criteria is clearly
 seen.
 
 The ($c_0$, $c_1$) estimation proceeds in two steps: first the
-parameters are estimated using all the available skydip scans for a
-given campaign, then the estimation is re-iterated using the only
-skydip scans that met the fit-quality criteria. After the second
-iteration, we check that no extra skydip outlier are left, as shown by
+parameters are estimated using all the available {\tt skydip} scans for a
+given campaign, then the estimation is repeated using only
+{\tt skydip} scans that met the fit-quality criteria. After the second
+iteration, we check that no extra {\tt skydip} scan outliers are left, as shown by
 the 'v2' label data points in Fig.~\ref{fig:skydipselection}.
 %After
 %selection of the skydip scans acquired during the N2R9 campaign, 15
 %skydips are kept for the final step of the ($c_0$, $c_1$) fit.
 
-The stability of the ($c_0$, $c_1$) parameters and hence the
+The stability of the ($c_0^k$, $c_1^k$) parameters and hence the
 {\tt skydip} opacity estimates, have been tested against the
-exact choice of the selection criteria. We have found that the $\tau$
-estimates are robust against the exact skydip selection as long as the
-selection includes good skydips in high opacity condition
+choice of the selection criteria. We found that the $\tau$
+estimates are robust against the {\tt skydip}-scan selection as long as the
+selection includes good {\tt skydip} scans in high opacity condition
 $(\tau_{1\rm{mm}} > 0.44)$ and as the poor
-fitting skydips, which mostly correspond to deviation from the
-atmosphere plane-parallel model in high opacity skydips (as seen in
+fitting {\tt skydip} scans, which mostly correspond to deviation from the
+atmosphere plane-parallel model in high opacity {\tt skydip} scans (as seen in
 Fig.~\ref{fig:skydipselection}), are excluded. When these conditions
-are met, the skydip selection induced uncertainties on the zenith
+are met, the {\tt skydip}-scans selection induced uncertainties on the zenith
 opacities are below $10\%$ at 1mm and below $15\%$ at 2mm.  
 
 \subsubsection{{\tt Corrected skydip}}
@@ -399,7 +406,7 @@ method that ensures the robustness of the flux densities against
 atmospheric conditions.
 
 We use the flux stability estimators described in
-Sect.~\ref{se:taumeter-method} to fit a correction to the skydip
+Sect.~\ref{se:taumeter-method} to fit a correction to the {\tt skydip}
 opacities $\tau_{\rm{skydip}}$ as
 \begin{equation}  
   \tau_\nu =  a_\nu^{\rm{skydip}}\tau_{\rm{skydip}}.
@@ -415,11 +422,11 @@ $1.03 \pm 0.03$ for A1, A3, A1$\&$A3 and A2 respectively.
 % s_a = 0.038587182     0.028553570     0.019324699     0.026832816
 
 Moreover, we test for an additional offset in the
-correcting relation of the skydip opacities given in
+correcting relation of the {\tt skydip} opacities given in
 Eq.~\ref{eq:corrected_skydip}. We find best-fitting correcting factors
 in agreement with the best-fit values estimated using the single-parameter
 correcting relation, whereas the best-fit offsets are compatible with
-zero at both wavelengths. We conclude that correcting the skydip-based
+zero at both wavelengths. We conclude that correcting the {\tt skydip}
 opacity estimates for a normalisation as given in
 Eq.~\ref{eq:corrected_skydip} suffices for ensuring flux density
 robustness against atmospheric opacity conditions.
@@ -429,7 +436,7 @@ $a_\nu^{\rm{skydip}}$ from the expected unity value is currently
 under investigation. The possible explanations include a deviation
 from the opacity-to-resonance model of Eq.~\ref{eq:skydip}, a limit in the
 validity of the underlying assumptions (e.g. plane-parallel atmosphere,
-constant temperature) or an impact of the ground temperature. However,
+constant temperature) or a ground pick-up effect. However,
 the stability of the flux densities corrected using the
 {\tt corrected skydip} opacities, as discussed in
 Sect.~\ref{se:photometry}, constitutes a validation of this approach.
@@ -437,7 +444,7 @@ Sect.~\ref{se:photometry}, constitutes a validation of this approach.
 \subsection{Opacity estimate consistency checks}
 \label{se:opacity_tests}
 
-First, we test the stability of the skydip-based opacities from one
+First, we test the stability of the {\tt skydip} opacities from one
 observation campaign to
 another. First panels of Fig.~\ref{fig:skydip-to-taumeter-correl} show the
 correlation between the {\tt skydip} $\tau$ estimates $\tau_{\rm{skydip}}$
@@ -446,7 +453,7 @@ zenith opacities $\tau_{225}$, as described in
 Sect.~\ref{se:taumeter-method}, for a series of scans
 of Uranus and MWC349 acquired during three campaigns. As guidelines,
 we also show the predicted correlations using an ATM model integrated
-in NIKA2 bandpass and in the $225\,\rm{GHz}$ band. At 1~mm, the
+in the NIKA2 bandpasses and in the $225\,\rm{GHz}$ band. At 1~mm, the
 $\tau_{\rm{skydip}}$ to $\tau_{225}$ correlation relations are
 consistent for the three campaigns. They are
 also in agreement with the ATM model expectations. At 2~mm, more
@@ -455,7 +462,7 @@ they are compatible with each others within statistical errors.
 We note that the ATM model underestimates the
 measured {\tt skydip} $\tau$. This mild discrepancy with the
 ATM model predictions is yet to be understood, but has no impact on
-our opacity measurements, which do not rely on any ATM model nor on
+our opacity measurements, which do not rely on this model nor on
 the precision with which the observing bandpasses are known.
 
 We further check the robustness of the {\tt skydip} $\tau$ against the
@@ -467,11 +474,11 @@ the average scan elevation. The {\tt skydip} opacity measurements have no
 sizable dependency on the elevation. Moreover, we observe consistent
 results for Uranus \bm\ scans and for
 the shorter OTF scans of the secondary calibrator MWC39 are in good
-agreement, indicating that the {\tt skydip} opacity estimates are
-immune to the type of scans. 
+agreement, indicating that the {\tt skydip} opacity estimates do not
+depend on the type of observation scans. 
 
-As a summary, NIKA2 skydip-based opacity estimates i) have reproducible
+As a summary, NIKA2 {\tt skydip} opacity estimates i) have reproducible
 correlation coefficients with the 225 GHz taumeter opacities from a
 campaign to another, ii) are robust against the observing conditions,
-and iii) are stable for various sources and scan strategy. 
+and iii) are stable for various sources and scanning strategies. 
 

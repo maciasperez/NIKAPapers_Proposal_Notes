@@ -8,12 +8,12 @@ We present the calibration of the absolute scale of the flux densities
 for the NIKA2 instrument in this section using Uranus as the main
 primary calibrator. Practically, at the stage of the FOV
 reconstruction (see Sect.~\ref{se:geometry}), an absolute
-coefficient factor per detectors is derived using a \bm\ scan of
-Uranus. This step realizes also the inter-calibration of all the KID,
-as the coefficient factors give the KID gains. Secondly, the flux
+coefficient factor per detector is derived using a \bm\ scan of
+Uranus. This step realizes also the inter-calibration of all the KIDs,
+as their coefficients give the KID gains. Secondly, the flux
 density absolute scale is further refined by monitoring the primary
 calibrator all along the observation campaign to estimate an
-absolute calibration correction.
+absolute calibration factor.
 
 We have evidenced a daily variation of the absolute calibration
 coefficients as a function of the observation date, which is related
@@ -27,7 +27,6 @@ we also proposed an alternative method relying on a photometric
 correction depending on the beam size. Both approaches require an
 accurate monitoring of the beam size as a function of the observation
 date.
-
 
 First we describe the method for the absolute calibration in
 Sect.~\ref{se:calibration_method}, then we present the
@@ -59,22 +58,22 @@ Neptune. The latter is used when the former is not visible in the most
 stable observing conditions. The flux density expectations of the
 primary calibrators are derived in Sect.~\ref{se:ref_flux_calibrator}. 
 
-We parametrize the primary calibrator flux density
+We parametrize the primary calibrator flux density as 
 $S_{\rm{c}}(\nu) = S_{\rm{c}}(\nu_0)\, f(\nu/\nu_{0})$, where $f(\nu/\nu_{0})$
 encloses the spectral dependence, 
 as a function of a reference frequency $\nu_{0}$ that we choose
 arbitrarily to be: $\nu_{0} = 150$~GHz for the 2mm array and
-$\nu_{0}= 260$~GHz for both 1mm arrays. Projecting the raw data (in
-units of the KID resonance frequency shift or $\rm Hz$) of a
-calibrator, we model the raw map with a fixed-width Gaussian
+$\nu_{0}= 260$~GHz for both $1\,\rm{mm}$ arrays. Projecting the raw
+data (in units of the KID resonance frequency shift or $\rm Hz$) of a
+calibrator, we model the signal as a fixed-width Gaussian
 \begin{equation}
   R_{\rm{c}}(\theta, \phi)  = \frac{A_{\rm{c}}}{2 \pi \sigma_{0}^{2}}
-  e^{-\frac{\theta^{2}}{2\sigma_{0}^{2}}},
+  e^{-\frac{\theta^{2}}{2\sigma_{0}^{2}}}.
   \label{eq:gaussian_amplitude}
 \end{equation}
-where $\sigma_{0}$ is derived from the
-reference FWHM, labelled FWHM$_{0}$, which are $12.5''$ for the 1mm
-arrays and $18.5''$ for the 2mm array. These values have
+$\sigma_{0}$ is derived from the
+reference FWHM, labelled FWHM$_{0}$, which is $12.5''$ for the $1\, \rm{mm}$
+arrays and $18.5''$ for the $2\,\rm{mm}$ array. These values have
 been chosen sizably larger than the main beam values, as reported in
 Sect.~\ref{se:beam}, to account for a fraction of the signal stemming from
 the first error beam and first side lobes.
@@ -100,46 +99,51 @@ summarized in Table~\ref{tab:definitions}.
   \label{tab:definitions}
 \end{table}
 
-The absolute calibration coefficients are estimated as the ratio of
+The absolute calibration coefficients are estimated from observations
+of primary calibrators $\rm{c}$, as the ratio of
 the flux density expectations at the reference frequency
 $S_{\rm{c}}(\nu_0)$ and the amplitude estimate of the fixed-width reference
-FWHM Gaussian $A_{\rm{c}}$. For any point-like source $\rm{s}$, the map
+FWHM Gaussian $A_{\rm{c}}$. Then, for any observed point-like source $\rm{s}$, the map
 \begin{equation}
   M_{\rm{s}}(\theta, \phi) = \frac{S_{\rm{c}} (\nu_{0})}{A_{\rm{c}}}
   R_{\rm{s}}(\theta,\phi),
 \end{equation}
 where $R_{\rm{s}}(\theta,\phi)$ is the raw data projection, is calibrated in Jy/FWHM$_{0}$
-beam. The flux density estimate for the source is then:
+beam. The flux density estimate for the
+source can be obtained as
 \begin{equation}
 S(\nu_{0})  = \frac{S_{\rm{c}}(\nu_{0})}{A_{\rm{c}}} \, A_{\rm{s}},
 \label{eq:pointsourcephot}
 \end{equation}
-where $A_{\rm{s}}$ is the amplitude estimate of a FWHM$_0$ Gaussian.
+where $A_{\rm{s}}$ is the amplitude estimate from the raw map.
 
 \subsubsection{Color correction}
 
 The flux density estimate $S(\nu_{0})$ gives the
 flux of the source at the reference frequency only if the source has
-the same spectral index as the calibrator. In general, to retrieve the
+the same spectral behaviour as the calibrator. In general, to retrieve the
 flux of the source at the reference frequency, a color correction
 $C_{\rm{s}}$ has to be applied
 \begin{equation}
-S_{\rm{s}}(\nu_{0}) = S(\nu_{0})  C_{\rm{s}}(\nu_{0}, \alpha_{\rm{s}}),
+S_{\rm{s}}(\nu_{0}) = S(\nu_{0}) \,  C_{\rm{s}}(\nu_{0}, I_\nu^{\rm{s}}),
 \end{equation}
-which depends on the reference frequency $\nu_{0}$ and the source
-spectral index $\alpha_{\rm{s}}$.
-Neglecting the effect of the atmosphere on NIKA2 transmission, we compute the color correction
-factor for target sources of spectral indices $\alpha_{\rm{s}}$ that are
+which depends on the reference frequency $\nu_{0}$, the source
+SED $I_\nu^{\rm{s}}$ and the NIKA2 bandpasses.
+Neglecting the effect of the atmosphere on the NIKA2 transmission, we
+compute the color correction factor for target sources of SED that are
 different from Uranus using
 \begin{equation}
-  C_{\rm{s}}(\nu_{0}, \alpha_{\rm{s}}) = \frac{\int_{0}^{+\infty} (\nu/\nu_0)^{1.6} ~T({\nu}) d\nu}{ \int_{0}^{+\infty} (\nu
-    /\nu_0)^{\alpha_S} ~ T({\nu}) d\nu}.
+  C_{\rm{s}}(\nu_{0}, I_\nu^{\rm{s}}) = \frac{\int_{0}^{+\infty} I_\nu^{\rm{c}}~T({\nu}) d\nu}{ \int_{0}^{+\infty} I_\nu^{\rm{s}}~ T({\nu}) d\nu},
     \label{eq:color_correction}
 \end{equation}
 
-Color correction factors for eight values of $\alpha_{\rm{s}}$, and in particular
-for $\alpha_{\rm{s}}= 0.6$ which is the spectral index of MWC349, are
-given in Table~\ref{tab:mod}. 
+Assuming Raileigh-Jeans SED for the calibrator
+($I_\nu^{\rm{c}} \propto (\nu/\nu_0)^{\alpha_{\rm{c}}}$) and the source
+($I_\nu^{\rm{s}} \propto (\nu/\nu_0)^{\alpha_{\rm{s}}}$), and a
+spectral index $\alpha_{\rm{c}} = 1.6$ for Uranus, we provide color
+correction factors for eight values of the spectral index of the
+source $\alpha_{\rm{s}}$ in Table~\ref{tab:mod}.
+
 
 \begin{table*}[!h]
 \caption{Color correction factors for a target source  $S \propto \nu^{\alpha_{\rm{s}}}$, as defined using Eq.~\ref{eq:color_correction}.}
@@ -170,8 +174,9 @@ Array     & \multicolumn{8}{c}{$\alpha_{\rm{s}}$} \\
 For aperture photometry or for extended sources, the map calibrated in
 Jy/FWHM$_{0}$ must be converted in a map in Jy/sr, that is corrected
 with the reference beam efficiency, defined as the ratio of the solid
-angle enclosed in the reference fixed-width Gaussian beam and the
-solid angle of the total beam. The total solid angle estimates are
+angle enclosed in the reference fixed-width Gaussian beam
+$\Omega_{\rm{FWHM}_{0}}$ and the measured solid angle of the total
+beam $\Omega_{\rm{tot}}$. The total solid angle estimates are
 presented in Sect.~\ref{se:beam_efficiency}. The reference beam efficiencies
 are given in Table~\ref{tab:reference_beam_efficiency}.
 
@@ -201,12 +206,12 @@ are given in Table~\ref{tab:reference_beam_efficiency}.
 \subsubsection{Practical calibration}
 \label{se:practical_calib}
 Practically, the absolute calibration consists in evaluating a flux
-density rescaling factor using a series a OTF scans toward
+density rescaling factor using a series of OTF scans toward
 Uranus or Neptune. This flux rescaling factor is an estimate of the
-$S_{c}(\nu_{0})$-to-$A_{c}$ ratio of Eq.~\ref{eq:pointsourcephot}. The
-calibrator flux density expectation $S_{c}(\nu_{0})$ is obtained as
+$S_{\rm{c}}(\nu_{0})$-to-$A_{\rm{c}}$ ratio of Eq.~\ref{eq:pointsourcephot}. The
+expected calibrator flux density $S_{\rm{c}}(\nu_{0})$ is obtained as
 discussed in Sect.~\ref{se:ref_flux_uranus_neptune}, whereas the measured
-amplitude $A_c$ is estimated as the average amplitude of the $FWHM_0$
+amplitude $A_{\rm{c}}$ is estimated as the average amplitude of the FWHM$_0$
 Gaussian fitted from a series of calibrator maps.
 
 Before the flux density estimation, the calibrator raw data are i)
@@ -239,7 +244,7 @@ section.
 The dispersion of the detector responsivity across the field of view (\aka\ flat
 fields) has been characterized in several ways:
 
-\noindent \emph{Main beam flat fields:} These are the FOV distributions
+\noindent \emph{Main beam flat fields:} These are the focal plane distributions
 of the calibration coefficient of each KID, which correspond to the
 PSF response to a point source in the far field of the
 telescope. The calibration coefficients are estimated using a \bm\ scan
@@ -251,12 +256,12 @@ for the KID $k$ as:
 \end{equation}
 where $S_{th}(\nu_0)$ is the expected flux density of the source at
 the reference frequency $\nu_0$, $\tau/sin(\elev)$ is the
-line-of-sight opacity measured using the NIKA2 skydip-based method
-(see Sect.~\ref{se:opacity}) and $A_k$ is the
+line-of-sight opacity measured using the NIKA2 {\tt skydip} method
+(see Sect.~\ref{se:opacity}) and $A_k$ is the best-fit
 amplitude of the reference FWHM$_0$ Gaussian, which is fitted in the
 KID map using Eq.~\ref{eq:gaussian_amplitude}.
 
-\noindent \emph{Forward beam flat fields:} These are the FOV
+\noindent \emph{Forward beam flat fields:} These are the focal plane
 distributions of the relative response of
 each KID to the near field atmospheric background. They are estimated
 using the correlation factor of each detector TOI 
@@ -266,18 +271,18 @@ more details on common modes).
 Figure~\ref{fig:avg_mbff} %and \ref{fig:avg_fbff}
 shows the average main beam %and forward beam
 flat field for the three arrays. These have been constructed by
-combining the normalized flat fields of five \bms, which were
+combining the normalized flat fields of five \bms. These data were
 selected by thresholding the line-of-sight opacity measured in the
 1\,mm band to $\tau/sin(\elev) \leq 0.85$. The distributions for the average flat
 fields are shown in the bottom panel of Fig.~\ref{fig:avg_mbff}.% and \ref{fig:avg_fbff}.
 
-We observe a sizable variation of the flat fields for A1 from the left-most side
-to the right-most side of the FOV: this reveals a significant change of A1
-detector responsivities depending on their position in the FOV. Namely, this
+We observe a significant variation of the flat fields for A1 from the left-most side
+to the right-most side of the FOV. This reveals a significant change of A1
+detector responsivities depending on their position in the focal plane. Namely, this
 effect mainly impacts the South-West third of the array, which is
 referred to as the "shadow-zone''. This variation of the
-flat field translates into a broadening of the distribution. However, we verified that A1's
-flat field dispersions are in line with the ones of A3 after the
+flat field translates into a broadening of the distribution. However,
+we verified that A1's flat field dispersions are in line with the ones of A3 after the
 detectors within the shadow-zone were flagged out using a
 crescent-shaped mask. The masked flat field distributions are shown in
 green in Fig.~\ref{fig:avg_mbff}, %and \ref{fig:avg_fbff}
@@ -319,7 +324,7 @@ main beam related issue.
   \includegraphics[width=0.95\textwidth]{Figures/Average_main_beam_flat_field_N2R9_10.png}
   \includegraphics[width=0.8\textwidth]{Figures/Histo_average_main_beam_flat_field_N2R9_10.png}
 \caption[Average main beam flat fields]{Average main beam flat fields
-  obtained by combining the normalized flat fields of five
+  obtained by combining the flat fields of five
   \bm\ scans. The top row plots show the average flat fields of Array
   1, 3 and 2 in Nasmyth coordinates, and the bottom plots
   show the average flat field distributions using all KIDs (blue),
@@ -356,13 +361,13 @@ main beam related issue.
 
 The shadow zone effect is caused by an attenuation of
 the transmission of the $1\,\rm{mm}$ polarisation that illuminates
-A1 due to a characteristic of the dichroic which is out of
+A1 due to a misbehaving of the dichroic which is out of
 specifications.
 This effect,
 which implies a wrong placement of the transition zone of the dichroic
-that depends on frequency, incidence angle and polarisation, is 
-reproduced using optics simulation. This explanation has then been
-verified using obervation at the technical campaign of September
+that depends on frequency, incidence angle and polarisation, was
+reproduced using optical simulations. Furthermore, this hypothesis was
+verified using observations at the technical campaign of September
 2018. During this test campaign, a new \emph{hot-pressed} dichroic had
 been installed in place of the current \emph{air-gap} dichroic.
 Whereas the latter is made of a series of thin

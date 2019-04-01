@@ -102,32 +102,43 @@ selection described in Sect.~\ref{se:data_selection} and iii) the
 atmospheric attenuation is corrected using the {\tt corrected skydip}
 opacity derivation described in Sect.~\ref{se:corrected-skydip}.
 
-In this section, we check the stability of Uranus flux density
-estimates againts the beam size in
-Sect.~\ref{se:baseline_calibration_scans} and againts the
-atmospheric transmission in
-Sect.~\ref{se:baseline_calibration_atm}. In
-Sect.~\ref{se:baseline_calibration_opacity}, we compare
-Uranus flux density estimates after absolute calibration using other
-opacity correction methods.
+Here we check the stability of Uranus flux density
+estimates againts the beam size
+(Sect.~\ref{se:baseline_calibration_scans}) and againts the
+atmospheric transmission (Sect.~\ref{se:baseline_calibration_atm})
+using the baseline calibration, 
+and we compare to results based on other opacity correction methods
+(Sect.~\ref{se:baseline_calibration_opacity}).
+
+%In this section, we check the stability of Uranus flux density
+%estimates againts the beam size in
+%Sect.~\ref{se:baseline_calibration_scans} and againts the
+%atmospheric transmission in
+%Sect.~\ref{se:baseline_calibration_atm}. In
+%Sect.~\ref{se:baseline_calibration_opacity}, we compare
+%Uranus flux density estimates after absolute calibration using other
+%opacity correction methods.
 
 \subsubsection{Flux stability against the beam size}
 \label{se:baseline_calibration_scans}
-We present Uranus measured-to-predicted flux density ratios as a
+We present the Uranus measured-to-predicted flux density ratio as a
 function of the 2D Gaussian FWHM estimates and color-coded from the
 observation dates given in UT hours in
 Fig.~\ref{fig:calib_uranus_vs_fwhm_all}.
 
 \begin{figure}[!htbp]
 \begin{center}
-\includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.525\linewidth]{Figures/plot_flux_density_ratio_fwhm_uranus_corrected_skydip_narrow_1mm.pdf}
-\includegraphics[clip=true, trim={0.7cm, -0.3cm, -0.25cm, 0}, width=0.465\linewidth]{Figures/plot_flux_density_ratio_fwhm_uranus_corrected_skydip_narrow_a2.pdf}
+%\includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.525\linewidth]{Figures/plot_flux_density_ratio_fwhm_uranus_corrected_skydip_narrow_1mm.pdf}
+%\includegraphics[clip=true, trim={0.7cm, -0.3cm, -0.25cm, 0}, width=0.465\linewidth]{Figures/plot_flux_density_ratio_fwhm_uranus_corrected_skydip_narrow_a2.pdf}
+\includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.72\linewidth]{Figures/plot_flux_density_ratio_fwhm_uranus_corrected_skydip_narrow_1mm.pdf}
+\includegraphics[clip=true, trim={0cm, -0.3cm, -0.6cm, 0}, width=0.707\linewidth]{Figures/plot_flux_density_ratio_fwhm_uranus_corrected_skydip_narrow_a2.pdf}
+  
 \caption[Uranus flux density stability against FWHM]{ Uranus flux
-density ratio vs beam size after the baseline calibration. The ratio
-of Uranus measured flux densities to expectations in function of the
+density ratio vs beam size after baseline calibration. The ratio
+of Uranus measured flux densities to expectations as a function of the
 measured 2D Gaussian beam FWHM is shown for the $1$-mm array
-combination and for array 2 after absolute calibration using the
-baseline method. These plots include all Uranus scans acquired during
+combination (top panel) and for array 2 (bottom panel) after absolute calibration using the
+baseline method. These plots include all Uranus scans acquired during the 
 N2R9, N2R12 and N2R14 campaigns and whose beam FWHM are below the threshold indicated
 by the vertical red lines (open circles), as well as the scans that
 met the baseline selection criteria (filled circles).}
@@ -148,18 +159,17 @@ temperature-induced beam variation effect.
 
 We test the stability of Uranus flux densities calibrated using the
 baseline calibration against the atmospheric transmission. The later
-quantity, we
-recall, depends on the measured zenith opacity $\tau$ and the scan
+depends on the measured zenith opacity $\tau$ and the scan
 average airmass $x = $cosec$(\elev)$ as $\exp{(-\tau \cdot x)}$. In
-the first row of Fig.~\ref{fig:calib_uranus_vs_atmtrans}, Uranus flux ratios
-are plotted as a function of the atmospheric
+the first row of Fig.~\ref{fig:calib_uranus_vs_atmtrans}, Uranus flux ratio
+is shown as a function of the atmospheric
 transmission for the $1$-mm array combination and Array 2 and for the
-three considered observation campaigns (N2R9, N2R12 $\&$ N2R14). No
-sizable dependencies of the flux ratio on the atmospheric transmission
-is observed, which constitutes a first
+three considered observation campaigns (N2R9, N2R12 $\&$ N2R14). We
+observe no sizable correlation of the flux ratio with the atmospheric
+transmission, which constitutes a first
 indication of the robustness of the flux density estimates against the
 atmospheric conditions using the baseline calibration. This will be
-further tested using more scans in Sect.~\ref{se:photometry}.
+further tested using a larger number of scans in Sect.~\ref{se:photometry}.
 %
 \begin{figure}[!htbp]
 \begin{center}
@@ -198,20 +208,20 @@ further tested using more scans in Sect.~\ref{se:photometry}.
 For cross-check, we have derived the absolute
 calibration factors using the {\tt taumeter}
 (Sect.~\ref{se:taumeter-method}) and the {\tt skydip}
-(Sect.~\ref{se:skydip-method}) opacity
+(Sect.~\ref{se:skydip-method}) atmospheric opacity
 correction methods. We then compare Uranus
 flux density estimates after absolute calibration using the baseline
-calibration and these two alternative
-calibrations. Figure~\ref{fig:calib_uranus_vs_atmtrans}
-shows Uranus measured-to-modeled
+calibration and these two alternative corrections. Figure~\ref{fig:calib_uranus_vs_atmtrans}
+shows the Uranus measured-to-modeled
 flux ratio as a function of the atmospheric transmission for A1$\&$A3
-and for A2 after the {\tt taumeter}-based calibration (second row) and
-after the {\tt skydip}-based calibration (third row). We observe more
+and for A2 after the {\tt taumeter} correction (second row) and
+after the {\tt skydip} correction (third row). We observe more
 dispersion for the {\tt taumeter}-based flux ratio, whereas the {\tt
-skydip}-based ratios are very similar as the baseline ratios except
+skydip}-based ratio is very similar as the baseline ratio except
 for a slight decrease of the flux at low atmospheric
-transmission. Thus the {\tt taumeter} and {\tt skydip} methods can be used for
-the absolute calibration in complement to the baseline method, e.g. to
+transmission. Thus the {\tt taumeter} and {\tt skydip} atmospheric
+opacity correction methods can be used for
+the absolute calibration in complement to {\tt corrected skydip}, e.g. to
 perform robustness tests as in Sect.~\ref{se:photometry}. 
 
 
@@ -287,7 +297,7 @@ Sect.~\ref{se:beam_variation}.\\
 %the ``Practical case using pointing scans'' paragraph addresses a practical calibration relying
 %on a beam monitoring using pointing scans. 
 
-\noindent \emph{Demonstration case:} This method, shortened as 'demo'
+\noindent \emph{Demonstration case:} This method, shortened as {\tt PC-demo}
 hereafter, uses a photometric correction based on the beam monitoring
 with bright source scans. Both the 2D Gaussian FWHM fit and the
 fixed-FWHM Gaussian photometry are performed on the map of the
@@ -318,9 +328,10 @@ distributes as one half being due to Uranus finite extension and the
 other half stemming from the side lobes.\\
 
 \noindent \emph{Practical case using pointing scans:} This method,
-shortened as 'pointing' hereafter, performs a photometric correction
-based on the beam monitoring with pointing scans. Unlike the 'demo'
-method, this method is thus usable even for sources fainter than about
+shortened as {\tt PC-point} hereafter, performs a photometric correction
+based on the beam monitoring with pointing scans. Unlike
+{\tt PC-demo}, this method is thus usable even for sources fainter
+than about
 one Jy. The actual Gaussian beam size $\sigma '$ is estimated using
 \begin{equation}
   \hat{\sigma '} = \sigma_{\rm{p}} - \frac{\delta_{\rm{p}}}{2\sqrt{2 \ln{2}}}, 
@@ -331,33 +342,9 @@ only accounts for the source finite extension. It is null for
 point-like sources and equals to $0.2''$ at $1\,\rm{mm}$ and $0.13''$
 at $2\,\rm{mm}$ for pointing scan of Uranus. No other contribution
 enters $\delta_{\rm{p}}$ since pointing scan maps have a low signal-to-noise
-ratio that prevents the geometrical FWHM from being sizably affected by the
+ratio that prevents the geometrical FWHM from being significantly affected by the
 side lobes.
 
-
-\subsubsection{Absolute calibration with a photometric correction}
-
-We perform the absolute calibration by i) implementing the practical
-method described in Sect.~\ref{se:practical_calib}, ii) correcting the
-atmospheric attenuation using the {\tt corrected skydip} opacity
-estimates, and iii) using the photometric correction of
-Sect.~\ref{se:photometric_correction_method}.
-
-Using the photometric correction alleviates the need of
-performing a scan selection based on the observation date. However,
-the scans from which the absolute calibration is derived, are selected
-on the FWHM estimate using the same criteria as for the baseline
-calibration, that are FWHM thresholds of $12.5''$ at 1mm and $18''$ at
-2mm.  Thus, only the scans that are moderately affected by the beam
-effect are included in the absolute calibration in order not to
-include twice the photometric correction uncertainties in the error
-budget (once for the absolute calibration and once for the photometry).
-
-Figure~\ref{fig:calib_uranus_vs_fwhm_photocorr} presents Uranus
-measured-to-predicted flux density ratio as a function of the beam FWHM
-after the photometric correction with the 'demo' and 'pointing'
-methods.The flux density is stable against the beam FWHM within rms
-errors for both wavelengths. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %    Flux ratio vs FWHM
@@ -380,12 +367,12 @@ errors for both wavelengths.
       Uranus measured flux densities to expectations as a function of the
       measured 2D Gaussian beam FWHM is shown for the $1$-mm array
       combination (left column) and for array 2 (right column) after absolute
-      calibration using (\emph{first row}:) the 'demo' and (\emph{second
-        row}:) the 'pointing' photometric corrections. These plots
+      calibration using (\emph{first row}:) the {\tt PC-demo} and (\emph{second
+        row}:) the {\tt PC-point} photometric corrections. These plots
       include all Uranus scans acquired during N2R9, N2R12 and N2R14
       campaigns and whose beam FWHM are below the threshold indicated
       by the vertical red lines, (open circles), as
-      well as the scans that met the baseline selection criteria (filled
+      well as the scans that met the baseline scan selection criteria (filled
       circles).}}
 \label{fig:calib_uranus_vs_fwhm_photocorr}
 \end{center}
@@ -419,14 +406,40 @@ errors for both wavelengths.
 \hline
 \end{tabular}
 \tablefoot{ \\
-    \tablefoottext{a}{Taumeter}
-    \tablefoottext{b}{Skydip}
-    \tablefoottext{c}{Demo photometric correction}
-    \tablefoottext{d}{Pointing photometric correction}
+    \tablefoottext{a}{Results based on the {\tt Taumeter} opacity correction}
+    \tablefoottext{b}{Results based on the {\tt Skydip} opacity correction}
+    \tablefoottext{c}{Results using the {\tt PC-demo} photometry correction}
+    \tablefoottext{d}{Results using the {\tt PC-point} photometry correction}
     }
 \end{table}
 
- We further quantify the
+\subsubsection{Absolute calibration with a photometric correction}
+
+We perform the absolute calibration by i) implementing the practical
+method described in Sect.~\ref{se:practical_calib}, ii) correcting the
+atmospheric attenuation using the {\tt corrected skydip} opacity
+estimates, and iii) using the photometric correction of
+Sect.~\ref{se:photometric_correction_method}.
+
+Using the photometric correction alleviates the need of
+performing a scan selection based on the observation date. However,
+the scans from which the absolute calibration is derived, are selected
+on the FWHM estimate using the same criteria as for the baseline
+calibration, that are FWHM thresholds of $12.5''$ at $1\, \rm{mm}$ and $18''$ at
+$2\, \rm{mm}$. Thus, only the scans that are moderately affected by the beam
+effect are included in the absolute calibration in order not to
+include twice the photometric correction uncertainties in the error
+budget (once for the absolute calibration and once for the photometry).
+
+Figure~\ref{fig:calib_uranus_vs_fwhm_photocorr} presents the Uranus
+measured-to-predicted flux density ratio as a function of the beam FWHM
+after the photometric correction with the {\tt PC-demo} and
+{\tt PC-point} methods. The flux
+density is stable against the beam FWHM within uncertainties for both
+wavelengths.
+
+
+We further quantify the
 difference between all the calibration methods that have been tested
 in evalutating i) the average absolute calibration factor
 with respect to the baseline calibration factor and
@@ -438,6 +451,6 @@ We find that, resorting to a photometric correction i) allows us to use $45\%$ m
 scans for the absolute calibration, ii) has a negligeable impact on
 the absolute calibration factor and iii) yields a small reduction of
 the flux density ratio dispersion. For the absolute calibration, the
-'pointing' photometric correction performs as well as the 'demo' case.
+{\tt PC-point} method performs as well as the {\tt PC-demo} one.
 Photometry capability and stability when using a photometric
 correction will be further tested in Sect.~\ref{se:photometry}. 

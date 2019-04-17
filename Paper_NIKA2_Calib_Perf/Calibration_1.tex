@@ -57,6 +57,24 @@ The main primary calibrators of NIKA2 are the giant planets Uranus and
 Neptune. The latter is used when the former is not visible in the most
 stable observing conditions. The flux density expectations of the
 primary calibrators are derived in Sect.~\ref{se:ref_flux_calibrator}. 
+%
+\begin{table}[!htbp]
+\caption{NIKA2 reference frequencies and FWHM}
+\label{tab:definitions}
+\centering     
+\begin{tabular}{lcc}
+\hline\hline
+      \noalign{\smallskip}
+      & 1 mm & 2 mm \\
+      \noalign{\smallskip}
+      \hline
+      \noalign{\smallskip}
+      Reference frequency $\nu_{0}$ & 260 GHz & 150 GHz \\
+      Reference FWHM  FWHM$_{0}$    & 12.5'' & 18.5'' \\
+      \noalign{\smallskip}
+      \hline
+\end{tabular}
+\end{table}
 
 We parametrize the primary calibrator flux density as 
 $S_{\rm{c}}(\nu) = S_{\rm{c}}(\nu_0)\, f(\nu/\nu_{0})$, where $f(\nu/\nu_{0})$
@@ -77,27 +95,9 @@ arrays and $18.5''$ for the $2\,\rm{mm}$ array. These values have
 been chosen sizably larger than the main beam values, as reported in
 Sect.~\ref{se:beam}, to account for a fraction of the signal stemming from
 the first error beam and first side lobes.
-Both the reference frequency and FWHM, $\nu_0$ and FWHM$_{0}$, define our reference photometric system, as
-summarized in Table~\ref{tab:definitions}.
+Both the reference frequency and FWHM, $\nu_0$ and FWHM$_{0}$, define
+our reference photometric system, as summarized in Table~\ref{tab:definitions}.
 
-\begin{table}[!htbp]
-  \begin{center}
-    \caption{NIKA2 reference frequencies and FWHM}
-    \begin{tabular}{lcc}
-      \hline\hline
-      \noalign{\smallskip}
-      & 1 mm & 2 mm \\
-      \noalign{\smallskip}
-      \hline
-      \noalign{\smallskip}
-      Reference frequency $\nu_{0}$ & 260 GHz & 150 GHz \\
-      Reference FWHM  FWHM$_{0}$    & 12.5'' & 18.5'' \\
-      \noalign{\smallskip}
-      \hline
-    \end{tabular}
-  \end{center}
-  \label{tab:definitions}
-\end{table}
 
 The absolute calibration coefficients are estimated from observations
 of primary calibrators $\rm{c}$, as the ratio of
@@ -117,7 +117,31 @@ S(\nu_{0})  = \frac{S_{\rm{c}}(\nu_{0})}{A_{\rm{c}}} \, A_{\rm{s}},
 \end{equation}
 where $A_{\rm{s}}$ is the amplitude estimate from the raw map.
 
+
 \subsubsection{Color correction}
+
+\begin{table*}[!thbp]
+\caption{Color correction factors for a target source  $S \propto \nu^{\alpha_{\rm{s}}}$, as defined using Eq.~\ref{eq:color_correction}.}
+\label{tab:mod}
+\centering 
+\begin{tabular}{lrrrrrrrr}
+\hline\hline
+\noalign{\smallskip}
+Array     & \multicolumn{8}{c}{$\alpha_{\rm{s}}$} \\
+\noalign{\smallskip}
+\hline
+\noalign{\smallskip}
+         &  -2 &  -1    &    0  & + 0.6 & +1  &  +2  & +3 & +4  \\       
+\noalign{\smallskip}
+\hline
+\noalign{\smallskip}
+          A1   & 0.876  &  0.916   &   0.951  & 0.969 &  0.981   &  1.005  &    1.024  &  1.037   \\
+          A2   & 0.945  &  0.972   &   0.990  & 0.996 &  0.998   &  0.997  &    0.986  &  0.966      \\ 
+          A3   & 0.907  &  0.940   &   0.967  & 0.980 &  0.987   &  1.001  &    1.009  &  1.011     \\
+            \noalign{\smallskip}
+            \hline
+\end{tabular}
+\end{table*}
 
 The flux density estimate $S(\nu_{0})$ gives the
 flux of the source at the reference frequency only if the source has
@@ -145,32 +169,9 @@ correction factors for eight values of the spectral index of the
 source $\alpha_{\rm{s}}$ in Table~\ref{tab:mod}.
 
 
-\begin{table*}[!h]
-\caption{Color correction factors for a target source  $S \propto \nu^{\alpha_{\rm{s}}}$, as defined using Eq.~\ref{eq:color_correction}.}
-\label{tab:mod}
-\centering 
-\begin{tabular}{lrrrrrrrr}
-\hline\hline
-\noalign{\smallskip}
-Array     & \multicolumn{8}{c}{$\alpha_{\rm{s}}$} \\
-\noalign{\smallskip}
-\hline
-\noalign{\smallskip}
-         &  -2 &  -1    &    0  & + 0.6 & +1  &  +2  & +3 & +4  \\       
-\noalign{\smallskip}
-\hline
-\noalign{\smallskip}
-          A1   & 0.876  &  0.916   &   0.951  & 0.969 &  0.981   &  1.005  &    1.024  &  1.037   \\
-          A2   & 0.945  &  0.972   &   0.990  & 0.996 &  0.998   &  0.997  &    0.986  &  0.966      \\ 
-          A3   & 0.907  &  0.940   &   0.967  & 0.980 &  0.987   &  1.001  &    1.009  &  1.011     \\
-            \noalign{\smallskip}
-            \hline
-\end{tabular}
-\end{table*}
-
-
 \subsubsection{Diffuse source}
 \label{se:extended_source_calib}
+
 For aperture photometry or for extended sources, the map calibrated in
 Jy/FWHM$_{0}$ must be converted in a map in Jy/sr, that is corrected
 with the reference beam efficiency, defined as the ratio of the solid
@@ -180,8 +181,7 @@ beam $\Omega_{\rm{tot}}$. The total solid angle estimates are
 presented in Sect.~\ref{se:beam_efficiency}. The reference beam efficiencies
 are given in Table~\ref{tab:reference_beam_efficiency}.
 
-
-\begin{table}[!thbp]
+\begin{table}[!htbp]
   \caption[]{Reference beam efficiencies for Array 1, Array 3, Array
     1\&3 and Array 2}
   \label{tab:reference_beam_efficiency}
@@ -240,6 +240,22 @@ While absolute calibration of each KID also \emph{de facto} provides
 relative calibration, the latter is interesting in itself to
 characterize the instrument. We focus on this aspect in this
 section.
+
+\begin{figure*}[!thbp] 
+\begin{center}
+  \includegraphics[width=0.95\textwidth]{Figures/Average_main_beam_flat_field_N2R9_10.png}
+  \includegraphics[width=0.8\textwidth]{Figures/Histo_average_main_beam_flat_field_N2R9_10.png}
+\caption[Average main beam flat fields]{Average main beam flat fields
+  obtained by combining the flat fields of five
+  \bm\ scans. The top row plots show the average flat fields of Array
+  1, 3 and 2 in Nasmyth coordinates, and the bottom plots
+  show the average flat field distributions using all KIDs (blue),
+  using Array 1 KIDs that are positioned out of the shadow zone
+  (green) and using Array 1 KIDs inside the shadow zone, which is
+  defined in the text.}
+ \label{fig:avg_mbff}
+\end{center}
+\end{figure*}
 
 The dispersion of the detector responsivity across the field of view (\aka\ flat
 fields) has been characterized in several ways:
@@ -318,22 +334,6 @@ main beam related issue.
 %\label{tab:flatfield_res}
 %\end{center}
 %\end{table}
-
-\begin{figure*}[!thbp] 
-\begin{center}
-  \includegraphics[width=0.95\textwidth]{Figures/Average_main_beam_flat_field_N2R9_10.png}
-  \includegraphics[width=0.8\textwidth]{Figures/Histo_average_main_beam_flat_field_N2R9_10.png}
-\caption[Average main beam flat fields]{Average main beam flat fields
-  obtained by combining the flat fields of five
-  \bm\ scans. The top row plots show the average flat fields of Array
-  1, 3 and 2 in Nasmyth coordinates, and the bottom plots
-  show the average flat field distributions using all KIDs (blue),
-  using Array 1 KIDs that are positioned out of the shadow zone
-  (green) and using Array 1 KIDs inside the shadow zone, which is
-  defined in the text.}
- \label{fig:avg_mbff}
-\end{center}
-\end{figure*}
 
 %\begin{figure*}[!thbp] 
 %\begin{center}

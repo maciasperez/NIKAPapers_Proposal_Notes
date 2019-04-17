@@ -18,7 +18,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{txfonts}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\usepackage[draft]{hyperref}
+%\usepackage[draft]{hyperref}
+\usepackage[colorlinks, citecolor=blue, linkcolor=magenta]{hyperref}
 % To add links in your PDF file, use the package "hyperref"
 % with options according to your LaTeX or PDFLaTeX drivers.
 %
@@ -48,51 +49,159 @@
 \newcommand{\afternoon}{temperature-induced}
 \newcommand{\Afternoon}{Temperature-induced}
 \newcommand{\trentemetre}{30-$\rm{m}$}
-
+\newcommand{\baseline}{\emph{baseline}}
 
 % COMMENTS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\todo}[1]{ {\color{magenta} $[$ TO DO: $]$ #1} }
 \newcommand{\nico}[1]{ {\bf \color{blue} #1}}
 
+% rouge 230, 0, 92
+% bleu  0, 153, 255 
+% vert  0, 179, 0
+\newcommand{\lp}[1]{\bf \color[RGB]{0, 102, 255} #1}
 
 \begin{document} 
 
-
    \title{Calibration and Performance of the NIKA2 camera at the IRAM 30-meter Telescope}
 
-   \author{ Author One
+   \author{L.~Perotto \inst{\ref{LPSC}}
+     \and  N.~Ponthieu \inst{\ref{IPAG}}
+     \and  J.~F.~Mac\'ias-P\'erez \inst{\ref{LPSC}}
+     \and  R.~Adam \inst{\ref{LLR}} %\inst{\ref{LPSC},\ref{OCA},\ref{CEFCA}}
+     \and  P.~Ade \inst{\ref{Cardiff}}
+     \and  P.~Andr\'e \inst{\ref{CEA}}
+     \and  A.~Andrianasolo \inst{\ref{IPAG}}
+     \and  H.~Aussel \inst{\ref{CEA}}
+     \and  A.~Beelen \inst{\ref{IAS}}
+     \and  A.~Beno\^it \inst{\ref{Neel}}
+     \and  S.~Berta \inst{\ref{IRAMF}}
+     \and  A.~Bideaud \inst{\ref{Neel}}
+     \and  O.~Bourrion \inst{\ref{LPSC}}
+     \and  M.~Calvo \inst{\ref{Neel}}
+     \and  A.~Catalano \inst{\ref{LPSC}}
+     \and  B.~Comis \inst{\ref{LPSC}}
+     \and  M.~De Petris \inst{\ref{Roma}}
+     \and  F.-X.~D\'esert \inst{\ref{IPAG}}
+     \and  S.~Doyle \inst{\ref{Cardiff}}
+     \and  E.~F.~C.~Driessen \inst{\ref{IRAMF}}
+     \and  A.~Gomez \inst{\ref{CAB}} 
+     \and  J.~Goupy \inst{\ref{Neel}}
+     \and  D.~John \inst{\ref{IRAME}}
+     \and  F.~K\'eruzor\'e \inst{\ref{LPSC}}
+     \and  C.~Kramer \inst{\ref{IRAME}}
+     \and  B.~Ladjelate \inst{\ref{IRAME}} 
+     \and  G.~Lagache \inst{\ref{LAM}}
+     \and  S.~Leclercq \inst{\ref{IRAMF}}
+     \and  J.-F.~Lestrade \inst{\ref{LERMA}}
+     \and  P.~Mauskopf \inst{\ref{Cardiff},\ref{Arizona}}
+     \and  F.~Mayet \inst{\ref{LPSC}}
+     \and  A.~Monfardini \inst{\ref{Neel}}
+     \and  S.~Navarro \inst{\ref{IRAME}}
+     \and  J.~Pe\~nalver \inst{\ref{IRAME}}
+     \and  F.~Pierfederici \inst{\ref{IRAME}}
+     \and  G.~Pisano \inst{\ref{Cardiff}}
+     \and  V.~Rev\'eret \inst{\ref{CEA}}
+     \and  A.~Ritacco \inst{\ref{LPSC}},\inst{\ref{IRAME}}
+     \and  C.~Romero \inst{\ref{IRAMF}}
+     \and  H.~Roussel \inst{\ref{IAP}}
+     \and  F.~Ruppin \inst{\ref{LPSC}}
+     \and  K.~Schuster \inst{\ref{IRAMF}}
+     \and  S.~Shu \inst{\ref{IRAMF}} 
+     \and  A.~Sievers \inst{\ref{IRAME}}
+     \and  C.~Tucker \inst{\ref{Cardiff}}
+     \and  R.~Zylka \inst{\ref{IRAMF}}}
+%   
+%  
+   \institute{
+     Univ. Grenoble Alpes, CNRS, Grenoble INP, LPSC-IN2P3, 53, avenue des Martyrs, F-38000 Grenoble, France
+     \label{LPSC}
      \and
-     Author Two
+     Univ. Grenoble Alpes, CNRS, IPAG, F-38000 Grenoble, France 
+     \label{IPAG}
      \and
-     Author Three
-     %Laurence Perotto
-     %\inst{1}
+     Laboratoire Leprince-Ringuet, Univ. Paris-Saclay, \'Ecole polytechnique, F-91128 Palaiseau, France
+     \label{LLR}
+     \and
+     %Laboratoire Lagrange, Universit\'e C\^ote d'Azur, Observatoire de la C\^ote d'Azur, CNRS, Blvd de l'Observatoire, %CS 34229,
+     %06304 Nice cedex 4, France
+     %\label{OCA}
      %\and
-     %Others ToBeDiscussed
-%     Nicolas Ponthieu
-%     \inst{2}
-%     \and Juan-F. Mac\'ias-P\'erez
-%     \inst{1}
-%     \and 
-%     F.-Xavier D\'esert
-%     \inst{2}
-%     \and 
-%     Jean-Fran\c cois Lestrade
-%     \inst{3}
-%     \and
-%     Herv\'e Aussel
-%     \inst{4}
-%     \and
-%     Fr\'ed\'eric Mayet
-%     \inst{1}
-%     \and
-%     Florian Ruppin
-%     \inst{1}
+     %Centro de Estudios de F\'isica del Cosmos de Arag\'on (CEFCA), Plaza San Juan, 1, planta 2, E-44001, Teruel, Spain 
+     %\label{CEFCA}
+     %\and
+     Astronomy Instrumentation Group, University of Cardiff, UK
+     \label{Cardiff}
      \and
-     NIKA2 CORE TEAM
+     %Laboratoire AIM, CEA/IRFU, CNRS/INSU, Universit\'e Paris Diderot, CEA-Saclay, F-91191 Gif-Sur-Yvette, France 
+     AIM, CEA, CNRS, Universit\'e Paris-Saclay, Universit\'e Paris Diderot, Sorbonne Paris Cit\'e, F-91191 Gif-sur-Yvette, France
+     \label{CEA}
+     \and
+     Institut d'Astrophysique Spatiale (IAS), CNRS and Universit\'e Paris Sud, Orsay, France
+     \label{IAS}
+     \and
+     Institut N\'eel, CNRS and Universit\'e Grenoble Alpes, France
+     \label{Neel}
+     \and
+     Institut de RadioAstronomie Millim\'etrique (IRAM), Grenoble, France
+     \label{IRAMF}
+     \and
+     Institut de RadioAstronomie Millim\'etrique (IRAM), Granada, Spain
+     \label{IRAME}
+     \and
+     Dipartimento di Fisica, Sapienza Universit\`a di Roma, Piazzale Aldo Moro 5, I-00185 Roma, Italy
+     \label{Roma}
+     \and
+     Centro de Astrobiolog\'ia (CSIC-INTA), Torrej\'on de Ardoz, 28850 Madrid, Spain
+     \label{CAB}
+     \and  
+     Aix Marseille Universit\'e, CNRS, LAM (Laboratoire d'Astrophysique de Marseille) UMR 7326, 13388, Marseille, France
+     \label{LAM}
+     \and
+     School of Earth and Space Exploration and Department of Physics, Arizona State University, Tempe, AZ 85287, USA
+     \label{Arizona}
+     \and
+     Universit\'e de Toulouse, UPS-OMP, Institut de Recherche en Astrophysique et Plan\'etologie (IRAP), Toulouse, France
+     \label{IRAP}
+     \and
+     CNRS, IRAP, 9 Av. colonel Roche, BP 44346, F-31028 Toulouse cedex 4, France 
+     \label{IRAP2}
+     \and
+     University College London, Department of Physics and Astronomy, Gower Street, London WC1E 6BT, UK
+     \label{UCL}
+     \and 
+     Institut d'Astrophysique de Paris, CNRS (UMR7095), 98 bis boulevard Arago, F-75014 Paris, France
+     \label{IAP}
+     \and 
+     LERMA, Observatoire de Paris, PSL Research University, CNRS, Sorbonne Universit\'es, UPMC Univ. Paris 06, F-75014 Paris, France  
+     \label{LERMA} 
    }
-
+ %  
+   %\author{
+   %  Laurence Perotto
+   %  \inst{1}
+   %  \and
+   %  Nicolas Ponthieu
+   %  \inst{2}
+   %  \and Juan-F. Mac\'ias-P\'erez
+   %  \inst{1}
+   %  \and 
+     %     F.-Xavier D\'esert
+     %     \inst{2}
+     %     \and 
+     %     Jean-Fran\c cois Lestrade
+     %     \inst{3}
+     %     \and
+     %     Herv\'e Aussel
+     %     \inst{4}
+     %     \and
+     %     Fr\'ed\'eric Mayet
+     %     \inst{1}
+     %     \and
+     %     Florian Ruppin
+     %     \inst{1}
+   %}
+%
    %\institute{Univ. Grenoble Alpes, CNRS, Grenoble INP, LPSC-IN2P3, 53, avenue des Martyrs, F-38000 Grenoble, France \\
    %  \email{laurence.perotto@lpsc.in2p3.fr}
     % \and
@@ -102,20 +211,18 @@
     % \and
     % AIM, CEA, CNRS, Universit\'e Paris-Saclay, Universit\'e Paris Diderot, Sorbonne Paris Cit\'e, F-91191 Gif-sur-Yvette, France
    %}
-
+   %
    \date{Received April XX, 2019; Accepted XXXX XX, 2019}
-
 % \abstract{}{}{}{}{} 
 % 5 {} token are mandatory
-   
    \abstract
    % context heading (optional)
    % {} leave it empty if necessary  
        {%The New IRAM KID Array Two,
-         NIKA2 is a dual-band millimetric
-         camera of thousands of Kinetic Inductance Detectors (KID),
+         NIKA2 is a dual-band millimetric continuum
+         camera of 2,900 Kinetic Inductance Detectors (KID),
          operating at $150$ and $260\,\rm{GHz}$, installed at the IRAM 30-meter
-         telescope% at Pico Veleta
+         telescope % at Pico Veleta
          %($2850\,\rm{m}$)
           in Spain.
          %The instrument commissioning  was successfully completed in
@@ -123,8 +230,8 @@
          %NIKA2 is now open to the scientific community and will
          %operate for the next decade.
          Open to the scientific community since October 2017, NIKA2 
-         will provide key observations for the next decade for
-         addressing a wide range of open questions in astrophysics and
+         will provide key observations for the next decade to 
+         address a wide range of open questions in astrophysics and
          cosmology.}
          %, including planet
          %formation, star formation in the Milky Way, gas in
@@ -140,7 +247,7 @@
        %measure of the beam pattern, the atmospheric opacity
        %derivation, the flux density absolute calibration, the flat
        %fielding and the photometry.
-       {We present NIKA2 performance assessement after one year of observation.}
+       {We present {\lp the calibration method} and the performance assessement of NIKA2 after one year of observation.}
        % methods heading (mandatory)
        {We use a large data set acquired between January 2017 and
          February 2018 including observations of primary and secondary
@@ -148,13 +255,22 @@
          of observing elevations and atmospheric conditions encountered at the
          IRAM 30-m telescope. This allows us testing the
          performance parameters stability against time evolution and
-         observing conditions. The dedicated methods that have been developped for
-         the calibration and the performance assessment are also
-         thoroughtly described, including the reconstruction of the
+         observing conditions. {\lp We describe a standard calibration
+         method, referred to as the \emph{baseline} method, to go from
+         raw data to flux density measurements, which include the reconstruction of the
          field of view (FOV), the measurement of the beam pattern, the
-         atmospheric opacity
-         derivation, the flux-density absolute calibration, the flat
-         fielding and the photometry assessment.}  
+         atmospheric opacity derivation, the flux-density absolute
+         scale calibration, the flat fielding and the photometry. We
+         assess the robustness of the performance results using the
+         \emph{baseline} method against systematic effects by
+         comparing to results using alternative methods.}  
+         %The dedicated methods that have been developped for
+         %the calibration and the performance assessment are also
+         %thoroughtly described, including the reconstruction of the
+         %field of view (FOV), the measurement of the beam pattern, the
+         %atmospheric opacitycderivation, the flux-density absolute calibration, the flat
+         %fielding and the photometry assessment.
+       }
          %We used several
          %thousands of observation scans that were acquired at the February
          %2017 technical campaign, during which NIKA2 instrumental set-up was
@@ -185,7 +301,7 @@
          %and $17.6 \pm 0.1$, and a beam efficiency of $55\pm 3$ and
          %$77\pm 2$ per cent at 260 and 150~GHz respectively.
          The statistical calibration uncertainties are of about $3\%$
-         and $6\%$ for these two frequency bands. This demonstrates
+         and $6\%$ for these two frequency bands, respectively. This demonstrates
          the accuracy of the methods that we have deployed to correct for
          atmospheric attenuation. The noise equivalent
          flux density (NEFD) at $150$ and $260\,\rm{GHz}$ are of
@@ -198,13 +314,14 @@
          at $150$ and $260\,\rm{GHz}$.}
        % conclusions heading (optional), leave it empty if necessary 
        {With this unique capabilities of fast dual-band mapping at
-         tens arcseconds resolution, NIKA2 is providing unprecedented view
+         high (better that 18'') angular resolution, NIKA2 is providing an unprecedented view
          of the millimeter Universe.}
        
-   \keywords{Submillimeter, Photometry, Method: observational, Cosmology: Cosmic Microwave Background}
-
+       \keywords{Submillimeter, Photometry, Method: observational, Cosmology: Cosmic Microwave Background}
+       
    \maketitle
 
+   \clearpage
    
 %----------------------------------------------------------------------------------------
 %	1./ INTRODUCTION
@@ -288,8 +405,14 @@
 
 %NIKA2, installed at the IRAM 30-m telescope since
 %October 2017, is an open multi-purpose millimeter experiment which will operate for at
-%least ten years. 
-We have presented NIKA2 performance assessment in intensity after one
+%least ten years.
+
+{\lp We have discussed a \baseline\ calibration method to go from
+observations and raw data to measured flux densities. We have also
+considered the pros and cons of alternative methods, which may in fact
+in the future lead to even better calibration accuracy and stability.}
+
+The performance of the NIKA2 camera have been assessed after one
 year of operation at the IRAM 30-m telescope, using a large number of
 observations of primary and secondary calibrators and faint sources
 that span the whole range of observing elevation and atmospheric

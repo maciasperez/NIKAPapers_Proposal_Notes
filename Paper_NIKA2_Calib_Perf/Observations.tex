@@ -108,7 +108,7 @@ parabolic fits of the five measurements.
 %A3: there is little difference between the two and the 2\,mm channel is
 %less sensitive to the focus change than the 1\,mm.
 
-As presented in more details in Sect.~\ref{sec:focus_surfaces}, the focus
+As presented in more details in Appendix~\ref{sec:focus_surfaces}, the focus
 surface, that is defined as the locations of the best focus across the whole FOV
 is not strictly flat but rather bowl-shaped.
 %The way sources are scanned in
@@ -117,15 +117,14 @@ is not strictly flat but rather bowl-shaped.
 %Hence, the optimal focus derived from the fits is biased.
 To account for the curvature of the focus surfaces and optimize the
 average focus across the FOV, we add -0.2\,mm to the best axial focus
-in the central part of the array, as derived in the previous
-paragraph. This focus offset is measured on data using
+in the central part of the array. This focus offset is measured on data using
 a dedicated sequence of de-focused scans, as discussed in
 Appendix~\ref{sec:focus_surfaces}. It is in agreement with expectations
 derived with optical simulation using ZEMAX\footnote{Web site: \tt{www.zemax.com}}. 
 
 {\lp Axial focus offsets are measured every other hours during daytime and
 are systematically checked after sunrises and sunsets, while one or
-two checks suffice during the nights. 
+two checks suffice during night. 
 Lateral focus offsets can also be checked in a similar way, but are
 found to stay constant over periods of time that cover several
 observing campaigns.}
@@ -242,7 +241,16 @@ from the timelines of the reference detector, which is chosen as a
 valid detector located close to the center of Array 2. We use the
 estimated position of the reference detector to derive the current pointing
 offsets of the system in azimuth and elevation. This correction is
-propagated to the following scans.
+propagated to the following scans. The pointing is monitored in an
+hourly basis.
+
+{\lp In addition, we perform \emph{pointing sessions} in order to
+refine NIKA2 pointing model. A pointing session consists in observing
+about 30 sources on a wide range of elevations and azimuth angles while
+monitoring the pointing offsets that are measured for each
+observation. During N2R9 technical campaign, the rms of
+the residual scatter after pointing offset correction was $1.62''$ in
+azimuth and $1.37''$ in elevation. We conservatively report rms pointing errors $<3''$.}
 %These offsets can then
 %be used to make the optical axis of the telescope to coincide with the
 %optical axis of NIKA2 and thus optimize the pointing of the following scan.
@@ -272,20 +280,30 @@ propagated to the following scans.
 \subsection{Skydip}
 \label{se:skydip}
 
-A {\tt skydip} scan with NIKA2 consists in a step-by-step span
-of a large range of elevations. This is used in order to calibrate the
-KID responses with respect to the atmospheric background for
-atmospheric opacity derivation, as discussed in
-Sect.~\ref{se:opacity}.
+A skydip scan consists in a step-by-step sky scan along a large range
+of elevations.
+{\lp NIKA2 skydips are not used for the scan-to-scan atmospheric 
+calibration. For this purpose, the KIDs are used as total power
+detectors to estimate the emission of the atmosphere and hence, the
+atmospheric opacity, as discussed in Sect.~\ref{se:opacity}. 
+NIKA2 skydips therefore serve to calibrate the KID responses with
+respect to the atmospheric background for atmospheric opacity
+derivation.}
+
 Whereas with the heterodyne receivers, skydips can be
 conducted continuously slewing the telescope in elevation, this
 option is not feasible with NIKA2, as the KIDs need to be retuned
-for a given airmass.
-A NIKA2 skydip comprizes eleven steps in
-the elevation range from 19 to 65 degrees, regularly spaced in
-airmass. For each step, we acquire about twenty seconds of data
-to ensure a precise measurments. KIDs are tuned at the beginning of
-each constant elevation sub-scan (hence once per airmass).
+for a given airmass. A NIKA2 skydip, which is quoted {\tt skydip},
+comprizes eleven steps in the elevation range from 19 to 65 degrees,
+regularly spaced in airmass. For each step, we acquire about twenty
+seconds of data to ensure a precise measurements. KIDs are tuned at
+the beginning of each constant elevation sub-scan (hence once per
+airmass).
+
+{\tt Skydips} {\lp are performed once every eight hours for a wide spanning
+of the atmospheric conditions thorough an observation campaign.} 
+
+
 %The variation of their resonance
 %frequency reads
 %
@@ -310,11 +328,10 @@ each constant elevation sub-scan (hence once per airmass).
 \subsection{Beam map}
 \label{se:beammaps}
 
-A \bm\ scan is an observing procedure to map a bright compact source,
-often a planet, with
-an elevation step small enough to meet Nyquist sampling of the 1\,mm beam,
-namely 4.8''. We observe the source with a raster scan in (az,el)
-coordinates of $13\times7.8$~arcmin$^2$, either with the telescope
+A \bm\ scan is a raster scan in (az,el) coordinates tailored to map a
+bright compact source, often a planet, with steps of 4.8'', that are
+small enough to meet Nyquist sampling of the 1\,mm beam. A scan of 
+$13\times7.8$~arcmin$^2$ is acquired either with the telescope
 performing a series of continuous slews at fixed elevation or at fixed azimuth. 
 A continuous scanning slew defines a subscan. 
 The fixed-elevation scanning has the advantage of nulling the air mass variation
@@ -331,18 +348,21 @@ direction allows for correlated noise subtraction.
 During subscans, the telescope moves at
 65\,arcsec/s. This value results of a tradeoff between the need to scan as
 fast as possible to minimize atmospheric contamination and the
-necessity to keep subscans no shorter than 10\,s (telescope
+necessity to keep subscans no shorter than 10\,s (telescope antenna 
 constraint). The need to have Nyquist sampling of 11'' beams along the
 scan direction translates into a maximum speed of 97\,arcsec/s
-for our nominal acquisition rate of 23.8\,Hz and is thus largely met. Subscans
-last 12\,s, the entire scan lasts about 25\,min, which is short enough
-to minimize the contribution of the atmospheric fluctuations. 
+for our nominal acquisition rate of 23.8\,Hz and is thus met with margins. Subscans
+last 12\,s, the entire scan lasts about 25\,min.%, which is short enough
+%to minimize the contribution of the atmospheric fluctuations. 
 % Alessandro advice: cancel the following part of the sentence: not true in absolute
 % (depending on the atmospheric conditions)
 %, which is short enough to prevent
 %losing the signal due to atmosphere-induced (1/f) background variations that would
 %move the resonance away from the tone probing it.
 
+{\tt Beammaps} are key observations for the calibration. {\lp Whereas
+a single \bm\ acquired in stable observing conditions could suffice,
+\bm\ scans are performed on a daily basis.}
 More details on these observations are given in Sect.~\ref{se:geometry}
 where we describe how to actually exploit them to derive individual KID
 properties.

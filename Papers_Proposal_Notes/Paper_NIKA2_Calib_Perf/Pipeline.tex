@@ -5,8 +5,8 @@
 %\label{se:dataproc}
 
 The raw KID data ($I$, $Q$, $\Delta I$, $\Delta Q$) and the telescope
-pointing data are synchronized by the NIKA2 acquisition system using a
-clock that gives the absolute astrononical time (a.k.a. the telescope
+source-tracking data are synchronized by the NIKA2 acquisition system using a
+clock that gives the absolute astronomical time (a.k.a. the telescope
 pulses per second) to define the NIKA2 raw data. From the KID raw
 data, we compute the quantity \emph{RfdIdQ}, as described in
 Sect.~\ref{se:tuning}. This quantity, which is proportional to the KID
@@ -27,13 +27,12 @@ KID time-ordered information (TOI).
 
 We have developed a dedicated data reduction pipeline to
 produce calibrated sky maps from NIKA2 raw data. This pipeline was first 
-developped for the data analysis during the commissioning campaigns and
+developed for the data analysis during the commissioning campaigns and
 is currently used for science-purpose data reduction. The calibration
 and performance assessment relies on this pipeline.
 A detailed description of this software will be presented in a companion
 paper \citep{Ponthieu2019}, as well as an application to blind source
-detection. In this section, we summarize the main steps of the data
-reduction, which comprizes:
+detection. Here we summarize the main steps of the data reduction.
 %\section{Data Reduction}
 %\label{se:dataproc}
 %
@@ -54,7 +53,7 @@ reduction, which comprizes:
 %\end{itemize}
 
 %\noindent{\emph{Low level processing:}
-\paragraph{Low level processing:}
+\paragraph{Low level processing.}
 \label{se:ll_proc}
 %A first step of the analysis is to read the data produced by \nika's
 %acquisition. The data as such comprise various quantities that describe the
@@ -64,7 +63,8 @@ reduction, which comprizes:
 %proportionnal to the flux absorbed by a KID \citep[see]{Calvo2013} and
 %homogeneous to Hz, as discussed in Sect.~\ref{se:tuning}.
 We isolate the relevant fraction of the data for scientific
-utilisation and flagged out potentially misbehaving KIDs or
+utilisation and {\lp we mask KIDs that not met the selection criteria, as
+discussed in Sect.~\ref{se:avg_kidpar},} or
 timeline accidents (glitches). Specifically, we flag out cosmic rays,
 which impact only one data sample due to the KID fast time
 constant~\citep{Catalano2014}, %periods
@@ -98,7 +98,7 @@ noise level of all other KIDs of the same array.
 %are inverse noise variance weighted in the final map projection, so they would
 %be given relatively low weight anyway (see Sect.~\ref{se:map_projection}).
 
-\paragraph{Pointing reconstruction:} 
+\paragraph{Pointing reconstruction.} 
 \label{se:ptg}
 We produce a timeline of the pointing positions of each KID with
 respect to the targeted source position (usually located at the center of the
@@ -153,7 +153,7 @@ which is a key information for dealing with the correlated noise.
 %we'll need to know when a KID is close or far from the source for the timeline
 %processing (Sect.~\ref{se:toi_proc}).\\
   
-\paragraph{Correlated noise subtraction:}
+\paragraph{Correlated noise subtraction.}
 \label{se:toi_proc}
 The TOI of each KID include a large low-frequency component of correlated noise of two
 different origins: the atmospheric component, which is usually
@@ -207,11 +207,12 @@ the calibration.
 %expected because the telescope is a $30\,\rm{m}$ dish and therefore
 %has a near field limit at 900\,km.
 
-As illustrated on the first panel of Fig.~\ref{fig:nika_toi}, the
-low-frequency noise component, which has been rescaled between KIDs,
-is seen by all KIDs at the same time, while the astrophysical signal
-is shifted from one KID to another. A simple average of the rescaled
-KID TOIs provides an
+As illustrated on the upper panel of Fig.~\ref{fig:nika_toi}, the
+low-frequency noise component is seen by all KIDs at the same time,
+while the astrophysical signal is shifted from one KID to another.
+{\lp In this figure, the KID timelines have been rescaled with respect to
+the average signal.} 
+A simple average of the KID TOIs provides an
 estimate of the low-frequency noise component, that we referred to as
 a \emph{common mode}, while the signal is attenuated. The common mode
 estimate is then subtracted to each KID timeline, as illustrated in
@@ -302,17 +303,18 @@ the lower panel of Fig.~\ref{fig:nika_toi}.
   \end{center}
 \caption[Noise power spectra]{
   The data noise power spectra are shown for the three NIKA2 arrays (A1, A3, and
-  A2 from top to bottom)% for scan 20170228s151.
+  A2 from top to bottom). % for scan 20170228s151.
   The power spectra are given for the raw
   data (blue), and for noise decorrelated data using the common mode
-  (labeled CM, green), the PCA (red) and the \cmoneb\ (cyan) methods.   
+  (labeled CM, green), the PCA (red) and the \cmoneb\ (labeled MCP,
+  cyan) methods.
   \label{rmspws}}
 \end{figure}
 
-The reference method that is used for the calibration and performance
-assessment, which is called the \cmoneb\ method, comprizes two
+{\lp For the calibration and performance assessment, we use a noise
+decorrelation method called the \cmoneb\ method, which comprizes two
 additional technicalities with respect to the common mode
-method. First, the signal contamination of the common mode estimate
+method.} First, the signal contamination of the common mode estimate
 is mitigated by discarding on-source KID data samples before averaging
 the rescaled TOI. Second, instead of a single common mode subtraction to
 all KIDs, we estimate an accurate common mode for each
@@ -325,15 +327,18 @@ does not modify the flux of the source.
 
 In Fig.~\ref{rmspws} we present the noise power spectra of
 a typical KID TOI both before any data reduction and using three noise
-decorrelation methods, which are the simple common mode method used in
-Fig.~\ref{fig:nika_toi}, a method based on Principal Component Analysis
-(PCA) and the \cmoneb\ method. We observe that after decorrelation the
-$1/f$-like noise in the power spectra (principally due to atmospheric emission)
-is significantly reduced leading to nearly flat spectra down to 0.05 Hz, with
+decorrelation methods, which are the simple common mode (CM) method
+used in Fig.~\ref{fig:nika_toi}, a method based on a principal component
+analysis (PCA) and the \cmoneb\ method (MCP, named for most correlated
+pixel). We observe that after decorrelation the
+$1/f$-like noise in the power spectra (principally due to atmospheric
+emission drifts)
+is significantly reduced leading to nearly flat spectra down to {\lp 0.5~Hz}, with
 lower $1/f$-like residual noise for the PCA and the \cmoneb\ methods
-than the common mode decorrelation at low frequencies. The latter is
-preferred over the former since it has been demonstrated to preserve
-the astrophysical signal.\\ 
+than the common mode decorrelation at low frequencies. {\lp Moreover, we
+have checked using simulations that the \cmoneb\ method was more
+efficient than the PCA in preserving the astrophysical signal. The
+former is thus preferred over the latter.}\\ 
 
 %We have investigated several ways of using this information to remove this
 %component from the TOIs. Our prefered choice so far, that is the reference
@@ -379,20 +384,20 @@ the astrophysical signal.\\
 %the commissioning of the instrument and the assessment of its performances on
 %point sources, we do not need to go into further details about this.\\
 
-\noindent \emph{TOI calibration:}
+\noindent \emph{TOI calibration.}
 \label{se:flux_calib}
-The KID TOI in units of Herz (frequency shifts) are converted to
-Jy/beam in two steps: i) the KID data
-are inter-calibrated using the calibration coefficients,
-\aka\ relative gains, 
+The KID TOI in units of Hz (frequency shifts) are converted to
+Jy/beam in two steps. First, the KID data are inter-calibrated using the
+calibration coefficients, \aka\ relative gains, 
 as discussed in Sect.~\ref{se:flat_field} and the
 absolute scale of the flux density is set using the absolute
-calibration method discussed in Sect.~\ref{se:calibration_method} and
-ii) the instantaneous line-of-sight
-atmospheric attenuation $\rm{exp}[{-\tau/\sin(\elev_t)}]$ is corrected
+calibration method discussed in
+Sect.~\ref{se:calibration_method}. Second, the instantaneous line-of-sight
+atmospheric attenuation $\rm{exp}[{-\tau x(t)}]$ is corrected
 using the zenith opacity $\tau$, which is estimated for a given scan
-as discussed in Sect.~\ref{se:opacity}, and the instantaneous
-observing elevation $\elev_t$, as obtained using the pointing reconstruction.\\     
+as discussed in Sect.~\ref{se:opacity}, and the instantaneous airmass
+$x(t)$. {\lp The latter is estimated as $1/sin(\elev_t)$ using the observing elevation
+$\elev_t$, as obtained using the pointing reconstruction.}\\     
 
 %We now focus on the absolute calibration of each TOI. As stated in
 %Sect.~\ref{se:ll_proc}, at this stage of the reduction each KID \rf~timeline is
@@ -414,7 +419,7 @@ observing elevation $\elev_t$, as obtained using the pointing reconstruction.\\
 %
 %The derivation of opacity is presented in Sect.~\ref{se:opacity}. \\
 
-\noindent \emph{Map projection:}
+\noindent \emph{Map projection.}
 \label{se:map_projection}
 We use the pointing information to project the cleaned (low-frequency
 noise subtracted) calibrated TOI of all the valid KIDs of an array
@@ -422,16 +427,35 @@ onto a map. The map is produced using an inverse
 variance noise weighting of all of the data samples that fall into a map
 pixel as defined using a nearest grid point scheme. The map resolution
 is chosen small enough (typically $2''$ per map pixel) to alleviate
-the need for more refined interpolation scheme. The noise variance is
-evaluated by the standard deviation of the KID TOI far from the
-source. %We neglect the KID-to-KID correlated noise residuals in this
+the need for more refined interpolation scheme. The noise variance for
+each KID is evaluated by the standard deviation of the KID TOI far
+from the source. %We neglect the KID-to-KID correlated noise residuals in this
 %procedure.
-We observe that the
-signal-to-noise ratio (SNR) distribution of the map is well-approximated
-with a Gaussian but it is not normalised to unity. We correct the SNR
-distribution by increasing the noise variance by a factor that goes
-from 1.2 to 1.5. This constitutes an effective approach to account for
-the correlated noise residuals in the map. 
+%This is due to the remaining correlations between TOIs before projection. At this stage,
+%rather than putting more effort in TOI processing, we renormalize the width of
+%the Gaussian noise, which actually increases the map variance by the required factor
+%so that the SNR distribution becomes normalized. This normalization factor
+%varies from scan to scan but it is usually between 1.2 and 1.5. It is estimated on
+%the background of the map, i.~e. far from the source.
+
+{\lp To account for the residual
+correlated noise while evaluating the map variance, we resort to an
+effective approach.
+First, we observe that the signal-to-noise ratio (SNR) distribution of
+the map is well-approximated with a Gaussian but it is not normalised
+to unity. This is due to the remaining correlations between KID TOIs
+before projection. Then, we increase the width of the Gaussian noise,
+which actually increases the map variance by the required factor so
+that the SNR distribution becomes normalized.
+%Then, we normalise the SNR distribution by
+%increasing the noise variance by a factor that goes from 1.2 to 1.5.
+This normalization factor ranges from 1.2 to 1.5 depending on the
+observing conditions. This
+constitutes an effective approach to correct for the pixel-to-pixel
+correlation matrix off-diagonal terms alleviating the need of
+accurately measure them.}
+%This constitutes an effective approach to account for
+%the correlated noise residuals in the map. 
 %to correct
 %for the KID-to-KID correlation matrix off-diagonal terms alleviating
 %the need of accurately measure them. 
@@ -605,7 +629,8 @@ For calibration and performance assessment, we select scans in average
 observing conditions by performing mild selection cuts. These scan
 cuts rely on zenith opacity estimates $\tau_i$ in NIKA2 bands, as
 described in Sect.~\ref{se:opacity}, on the elevation and on the
-observation time of the day. We select the scans with
+observation time of the day. We select the scans satisfying the
+following criteria:
 %
 \begin{itemize}
 \item[i)] $\tau_{3} < 0.5$, where $\tau_{3}$ is the $\tau$ estimate for
@@ -616,21 +641,26 @@ observation time of the day. We select the scans with
   threshold corresponds to a decrease of the astrophysical signal by a
   factor of two;
 \item[iii)] observation time from 22:00 to 9:00 UT and from 10:00 to
-  15:00, that excludes the sunrise period and the late afternoon.
+  15:00 UT, that excludes the sunrise period and the late afternoon.
 \end{itemize}
 %
+{\lp In the following sections, these selection cuts are referred to as the 
+'\emph{baseline} scan selection'.}  
 As discussed in Sect.~\ref{se:beam_variation}, the late afternoon
-observation are often affected by time-variable broadening of the
+observations are often affected by time-variable broadening of the
 telescope beams caused by (partial) solar irradiation of the primary
 mirror and/or anomalous atmospheric refraction.
 Around sunrise, the focus shifts continuously due to the ambient temperature
 change until the temperature stabilizes, so that the scans taken from
 9:00 to 10:00 UT are likely not to be optimally focused.
-After the focus stabilisation, morning period 
+After the focus stabilisation, the middle of the day period ranging
 from 10:00 to 15:00 UT offers stable observing conditions
-provided that the telescope is not heated due to observations too
+provided that the telescope is not pointed too
 close to the Sun.
 Otherwise, further scan selection based on
-the exact sequence of observations and on beam monitoring might be needed before using these
-observations for performance assessment.
+the exact sequence of observations and on beam monitoring might be
+needed before using these observations for performance assessment.
+{\lp In summary, the \emph{baseline} scan selection retains 16 hours of
+observations a day and discards observations affected by an
+atmospheric absorption of about 100\%.}  
 

@@ -6,8 +6,8 @@
 
 The FOV reconstruction consists in matching the KID frequency tones
 to positions in the sky and in performing a KID selection. Although all
-the 2,900 design KID are responsive, some of them are affected by
-cross-talk or are noisy due to an inacurrate tuning of their
+the 2,900 KID are responsive, some of them are affected by
+cross-talk or are noisy due to an inaccurate tuning of their
 frequency, and must be discarded for further analysis. We use \bms,
 which enable an individual map per KID to be constructed, as discussed in
 Sect.~\ref{se:beammaps}, to measure the KID positions and relative gains, as
@@ -30,7 +30,7 @@ direction to any data sample of the system. The telescope provides
 pointing information for a reference position in the focal
 plane. These information consist of the
 absolute azimuth and elevation $(\alpha,\delta)$ of the source, together with
-offsets $(\Delta\alpha_t, \Delta\delta_t)$ \wrt~these.
+offsets $(\Delta\alpha, \Delta\delta)$ \wrt~these.
 We then need to know the relative pointing offsets of each detector
 with respect to this reference position. We use
 \bms\ for this purpose (see Sect.~\ref{se:beammaps}). The determination of the
@@ -118,16 +118,18 @@ performance stability, as discussed in the next sections.
 \label{se:grid_distortion}
 
 We compare the reconstructed KID positions in the FOV to their design
-positions in the array. We fit the field translation and rotation that allow
+positions in the array. We fit the 2D field translation and rotation that allow
 matching the measured KID positions with the design positions using a 2D
-polynomial mapping function of degree one. We call distortion cross-terms
+polynomial mapping function. {\lp We find that a matching can be
+obtained using a 2D polynome of degree one, that is using a linear
+shift and a rotation only.} We call distortion cross-terms
 between the two spatial coordinates in the polynomial fit.
 
 The aim is twofold. First we obtain a detailed
 characterisation of the real geometry of NIKA2 focal plane. Secondly,
 this analysis constitutes the last step of the KID
-selection, and the most deviant KIDs, whose measured position is found
-above $4''$ from the design position are discarded. 
+selection, and the most deviant KIDs, whose measured position deviates
+by more than $4''$ from the design position are discarded. 
 
 We present the global results of the grid distortion
 analysis using the KID positions given
@@ -150,7 +152,7 @@ number of KID considered in this analysis results from
 a first KID selection, which consists in discarding the KIDs that are the most
 impacted by the cross-talk effect or the {\tt tuning} failures,
 applied in the FOV geometry obtained from the \bm\ scan. More details
-on the KID selection are given in Sect.~\ref{se:avg_kidpar}.
+on the KID selection are given in the next section. %Sect.~\ref{se:avg_kidpar}.
 The results are gathered in Table~\ref{ta:gridmatch}.
 
 \begin{table}[!htbp]
@@ -181,19 +183,19 @@ The results are gathered in Table~\ref{ta:gridmatch}.
     %&673/736  &	734/758   &    437/444   & \small{Well-placed KIDs (WPK)/Found KIDs (FK)} \\
     %&91/59 	 &      96/64 	  &    98/71 	 & \small{Ratio [\%] of WPK/FK and WPK/TDK} \\
     \small{Median deviation\tablefootmark{b}  [arcsec]}    & 1.01    &     0.95   &    0.75  \\
-    \small{Mean distortion [arcsec]}                       & 1.09    &     1.01   &    0.84  \\
-    \small{Array center\tablefootmark{c} [arcsec]}  & (1.9, -5.1) & (2.3, -6.2) &  (9.6, -7.8) \\
-    \small{Scaling\tablefootmark{d} [arcsec/mm]}   &  4.9     &	4.9      &    4.9 \\
+    \small{Mean distortion\tablefootmark{c} [arcsec]}                       & 1.09    &     1.01   &    0.84  \\
+    \small{Array center\tablefootmark{d} [arcsec]}  & (1.9, -5.1) & (2.3, -6.2) &  (9.6, -7.8) \\
+    \small{Scaling\tablefootmark{e} [arcsec/mm]}   &  4.9     &	4.9      &    4.9 \\
     %& \small{Plate scaling [arcsec/mm] in the Design x and y (averaged)} \\
-    \small{Rotation angle\tablefootmark{e} [degree]} & 77.3     &	76.3      &    78.2  \\
+    \small{Rotation angle\tablefootmark{f} [degree]} & 77.3     &	76.3      &    78.2  \\
     %\small{FOV [arcmin] (Total KIDs)}                      & 6.6      &	6.6       &    6.6   \\
-    \small{Grid step\tablefootmark{f} [arcsec, mm] }     & 9.8, 2.00 &	9.7, 2.00  &    13.3, 2.75 \\
+    \small{Grid step\tablefootmark{g} [arcsec, mm] }     & 9.8, 2.00 &	9.7, 2.00  &    13.3, 2.75 \\
     % Old values, rechecked (difference comes from lambda and D)
     %   1.24  &	1.22  &	0.97  &	Distance between near detectors with $30\,\rm{m}$ diameter aperture [in $\lambda$/D] \\
     % here new values checked FXD 30 Nov 2018 1.11 1.10 0.87
-    \small{Grid step\tablefootmark{g} [$\lambda$/D] } & 1.11     &	1.10      &	0.87  \\
+    \small{Grid step\tablefootmark{h} [$\lambda$/D] } & 1.11     &	1.10      &	0.87  \\
     %\new{with $27\,\rm{m}$ effective diameter aperture} [in $\lambda$/D]} \\
-    \small{Modeled grid step\tablefootmark{h} [$\lambda$/D]}  & 1.09     &      1.09      & 0.93    \\
+    \small{Modeled grid step\tablefootmark{i} [$\lambda$/D]}  & 1.09     &      1.09      & 0.93    \\
     \hline
   \end{tabular}
   \tablefoot{ \\
@@ -202,23 +204,26 @@ The results are gathered in Table~\ref{ta:gridmatch}.
     \tablefoottext{a}{Initial number of KIDs selected in a FOV geometry using a \bm\ scan of the N2R12 campaign}
     %\tablefoottext{b}{Ratio of the well-placed KID to the designed KID numbers}      
     \tablefoottext{b}{Median distance [arcsec] between the design position and the measured position of the KIDs}
-    \tablefoottext{c}{Array center in Nasmyth coordinates}
-    \tablefoottext{d}{Averaged scaling between the measured grid and the designed grid}
-    \tablefoottext{e}{Rotation from the design to Nasmyth coordinates}
-    \tablefoottext{f}{Distance between neighbour detectors}
-    \tablefoottext{g}{Distance between neighbour detectors using the reference frequencies ($260\,\rm{GHz}$ and $150\,\rm{GHz}$) and a 27\,m effective diameter telescope aperture}
-    \tablefoottext{h}{Distance between neighbour detectors modeled using ZEMAX simulation}
+    \tablefoottext{c}{{\lp Average best-fit cross term of the polynomial model across the FOV [arcsec]}}
+    \tablefoottext{d}{Array center in Nasmyth coordinates}
+    \tablefoottext{e}{Averaged scaling between the measured grid and the designed grid}
+    \tablefoottext{f}{Rotation from the design to Nasmyth coordinates}
+    \tablefoottext{g}{Distance between neighbour detectors}
+    \tablefoottext{h}{Distance between neighbour detectors using the
+  reference frequencies ($260\,\rm{GHz}$ and $150\,\rm{GHz}$) and a
+  27\,m effective diameter telescope aperture (see Sect.~\ref{se:instru_optics})}
+    \tablefoottext{i}{Distance between neighbour detectors modeled using ZEMAX simulation}
   }
 \end{table}
 
-Most of the selected KID are also well-placed, that is below 4'' from
+Most of the selected KID are also well-placed, that is at less than 4'' from
 their expected position. Moreover, on average the position of each
 detector is known to about one arcsecond. We find
 that Array 1 has some of the most deviant detectors (above 4''
 from their expected position). These detectors are excluded from
-further analysis. The 1\,mm arrays have almost
-the same center but this center differs by 7 and 2\,arcsec in Nasmyth
-coordinates from the 2\,mm array center. This has no impact on the
+further analysis. The two 1\,mm arrays have almost
+the same center but this center differs by $7''$ and $2''$ in the two Nasmyth
+coordinates, respectively, from the 2\,mm array center. This has no impact on the
 pointing nor the focus settings. The sampling is above $\lambda/D$ at
 1\,mm, assuming a 27\,m effective diameter aperture. Note that
 the rotation angle between the array and the Nasmyth
@@ -289,7 +294,7 @@ campaigns in 2017.
 For each KID we
 compute the average position on the focal plane and the average FWHM, counting
 the times that it has been considered as valid and at the same position. 
-A few KIDs have very close resonance frequencies and can be misamplified on some scans. A
+A few KIDs have very close resonance frequencies and can be misidentified on some scans. A
 few others must also be discarded because they appear identical numerically due
 to the fact that a same (noisy) KID can sometimes be associated
 to two different frequency tones in the acquisition system.
@@ -309,7 +314,7 @@ sometimes missing because their frequency lays above the maximum tone
 frequency authorized by the readout electronics. That explains the linear holes
 in the middle of the $1\,\rm{mm}$ arrays. For A1, this end-of-feedline
 effect is mixed with the effect of the KID gain variation across the
-FOV, which mainly affects the South-West third of the array, as
+FOV, which mainly affects the lower left third of the array, as
 discussed in Sect.~\ref{se:flat_field}.
 
 For A1, A3 and A2, respectively, we have 952, 961, and 553 KIDs that
@@ -366,12 +371,15 @@ valid detectors over the design ones, as given in Table~\ref{tab:number_of_kids}
 
 
 The valid KIDs, as defined as the KIDs that met the selection
-criteria in about one quart of the FOV geometries, represent the KIDs
+criteria in about one quarter of the FOV geometries, represent the KIDs
 usable to produce a scientifically exploitable map of the flux
 density using observations for which no sizable {\tt tuning}
-issues are experienced. We also define a number of 'very stable'
-KIDs as the KIDs that met the selection criteria at least in
-$70\%$ of the FOV geometries (at least five times out of seven). We
+issues are experienced. {\lp The valid KID timelines are ingested in
+input of the data reduction pipeline. To give an idea of the
+dependence of the KID selection on the observing conditions,} we also
+evaluate a number of 'very stable' KIDs as the KIDs that met the
+selection criteria at least in $70\%$ of the FOV geometries (at least
+five times out of seven). We
 found 840, 868 and 508 KIDs using this definition for A1, A3 and A2,
 respectively. The fraction of very stable KIDs (valid at least five
 times) over the designed ones is reported in Table.~\ref{tab:eta_used}.   
@@ -402,11 +410,11 @@ times) over the designed ones is reported in Table.~\ref{tab:eta_used}.
 \end{table}
 
 Practically, for the production of flux density maps, we perform
-further KID selection using a conservative noise level thresholding of
-the KIDs at the \emph{low level processing}, as discussed in
+further selection of the valid KIDs using a conservative noise level
+thresholding of the KIDs at the \emph{low level processing}, as discussed in
 Sect.~\ref{se:dataproc}. The number of used KIDs for producing
 science-purpose maps using the data reduction pipeline, as described
-in Sect.~\ref{se:dataproc}, is thus sizably lower than the number of
+in Sect.~\ref{se:dataproc}, is thus significantly lower than the number of
 valid KIDs. We evaluate the median number of used KIDs using all scans
 for each of the observation campaigns. The median fractions of used
 KIDs with respect to the design ones for each campaigns and for the

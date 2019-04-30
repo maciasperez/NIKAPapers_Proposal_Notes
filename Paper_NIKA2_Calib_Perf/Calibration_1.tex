@@ -177,9 +177,26 @@ Jy/FWHM$_{0}$ must be converted in a map in Jy/sr, that is corrected
 with the reference beam efficiency, defined as the ratio of the solid
 angle enclosed in the reference fixed-width Gaussian beam
 $\Omega_{\rm{FWHM}_{0}}$ and the measured solid angle of the total
-beam $\Omega_{\rm{tot}}$. The total solid angle estimates are
-presented in Sect.~\ref{se:beam_efficiency}. The reference beam efficiencies
-are given in Table~\ref{tab:reference_beam_efficiency}.
+beam $\Omega_{4\pi}$. The beam solid angle estimates are
+presented in Sect.~\ref{se:beam_efficiency}.
+{\lp For the aperture photometry of point-like source and for the
+photometry of moderately extended sources, we provide the reference
+beam efficencies B.E$_{0}$ estimated as the ratio between the
+reference FWHM beam power and the total beam power up to a radius of
+180'' $\Omega_{180}$. To account for the power stemming from radii
+ranging from $180''$ to a cutting radius $r_c$, we estimate a
+correcting factor to the reference beam efficiency 
+\begin{equation}
+\eta_{r_c} = \left( 1 + \frac{\Omega_{180<r<r_c}}{\Omega_{180}} \right)^{-1}.
+\end{equation}
+We give the correcting factor $\eta_{390}$ accounting for the main
+beam and error beams contributions up to the $6.5'$ diameter FOV
+using $\Omega_{180<r<390}^{\rm{mb+eb}}$, as given in
+Table~\ref{tab:solid_corr}, as well as the correcting factor
+$\eta_{4pi}$ accounting for the $4\pi$ beam
+solid angle using Eq.~\ref{eq:omega_beam_4pi}. The reference beam efficiencies
+ and correcting factors are given in Table~\ref{tab:reference_beam_efficiency}.
+}
 
 \begin{table}[!htbp]
   \caption[]{Reference beam efficiencies for Array 1, Array 3, Array
@@ -195,6 +212,10 @@ are given in Table~\ref{tab:reference_beam_efficiency}.
     \noalign{\smallskip}
     FWHM$_{0}$ [arcsec]          &  $12.5$   &  $12.5$  &   $12.5$  &   $18.5$  \\
     B.E$_{0}$\tablefootmark{a}\hspace{3mm}  [\% ] & $70 \pm 4$ & $72 \pm 4$ & $70 \pm 4$ & $85 \pm 3$ \\
+    \noalign{\smallskip}
+    $\eta_{390}$\hspace{3mm}  & $0.95$ & $0.95$ & $0.95$ & $0.96$ \\
+    $\eta_{4pi}$\hspace{3mm}  & $0.78$ & $0.78$ & $0.78$ & $0.85$ \\
+    \noalign{\smallskip}
     \hline
   \end{tabular}
   \tablefoot{ \\

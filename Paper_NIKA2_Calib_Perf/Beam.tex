@@ -138,9 +138,9 @@ $1\,\rm{mm}$ and below $2\%$ at $2\,\rm{mm}$.
 %   \includegraphics[clip, width=0.42\textwidth]{Figures/Beams/plot_profile_diff_wrt_median_a1.pdf}
 %   \includegraphics[clip, width=0.42\textwidth]{Figures/Beams/plot_profiles_a3.pdf}
 %   \includegraphics[clip, width=0.42\textwidth]{Figures/Beams/plot_profile_diff_wrt_median_a3.pdf}
-   \includegraphics[clip, width=\linewidth]{Figures/plot_profiles_1mm.pdf}
+   \includegraphics[clip, width=\linewidth]{Figures/plot_profiles_dB_1mm.pdf}
 %   \includegraphics[clip, width=\linewidth]{Figures/plot_profile_diff_wrt_median_1mm.pdf}
-   \includegraphics[clip, width=\linewidth]{Figures/plot_profiles_a2.pdf}
+   \includegraphics[clip, width=\linewidth]{Figures/plot_profiles_dB_a2.pdf}
 %   \includegraphics[clip, width=\linewidth]{Figures/plot_profile_diff_wrt_median_a2.pdf}
   \caption[Stability of the beam profile]{Beam radial profiles as a
     function of the radius from the peak for a series of 18
@@ -423,31 +423,25 @@ from the normalised beam profile $B_{A_i}(r)/B_{A_i}(0)$ of the array
 $A_i$ integrated up to $r_{max} = 180''$. The main beam solid angle is
 evaluated from the main beam (mb) FWHM, as
 $\Omega_{\rm{mb}} = 2 \pi\,  \sigma_{\rm{mb}}^2$, where FWHM$ =
-2\sqrt(2\ln{2})\sigma_{\rm{mb}}$. 
+2\sqrt{2\ln{2}}\sigma_{\rm{mb}}$. 
 
 The choice of the maximum radius is set both by the integration depth of
 the \bm\ scans, which in turn fixes the noise variance, and the
-filtering due to the data processing.
-However, heterodyne observations at the IRAM \trentemetre\ telescope
-toward the lunar edge and the measure of forward beam efficiency using
-skydips show that a non-neglectible fraction of the full beam stems
-from radius greater than $180''$~\citep{Greve2010, Kramer2013}. This
-fraction is not considered here. Beam efficiency estimators that are based on
-the total solid angle estimates using Eq.~\ref{eq:omega_tot} thus
-overestimates the beam efficiency. An accurate evaluation of
-this quantity would require a dedicated observation program to measure
-of the $4\pi$ integral of the full beam pattern.
+filtering due to the data processing. {\lp As discussed in
+Sect.~\ref{se:dataproc}, the latter is actually targeted to the analysis of
+point-like or moderately extended sources that are largely encompassed
+within a $180''$-radius.}
 
 A large set of \bm\ scans of Uranus and Neptune acquired during the
 N2R9, N2R12 and N2R14 campaigns have been used to evaluate
-$\Omega_{\rm{tot}}$ from the measured beam profiles up to
+{\lp $\Omega_{180}$} from the measured beam profiles up to
 $r_{max} =180''$. %and $\Omega_{\rm{mb}}$  derived with the main beam FWHM
 %estimates using the sidelobe-masked 1D method.
 The result is given in Table~\ref{tab:solid}.
 
 \begin{table}[!h]
 \caption{Estimates of the solid angle of the total beam
-  $\Omega_{\rm{tot}}$ given in arcsec$^{2}$ using Neptune and Uranus
+  $\Omega_{180}$ given in arcsec$^{2}$ using Neptune and Uranus
   scans acquired during three observation campaigns, and the combined
   result.  }
 \label{tab:solid}
@@ -471,19 +465,74 @@ Combined & 75  &  240$\pm$  9    &  446$\pm$  7 & 230 $\pm$  8 \\%&  1.74       
 \end{tabular}
 \end{table}
 
+Heterodyne observations at the IRAM \trentemetre\ telescope
+toward the lunar edge and the measure of forward beam efficiency using
+skydips show that a non-neglectible fraction of the full beam stems
+from radius greater than $180''$~\citep{Greve2010, Kramer2013}.
+An accurate evaluation of the total beam solid angle would require a
+dedicated observation {\lp and analysis} program to measure of the $4\pi$ integral of the
+full beam pattern {\lp Greve et al. 1998a, Sugimoto et al. 2004,
+G\^usten et al. 2006, Nikolic et al. 2006.}
+%This fraction is not considered here. Beam efficiency estimators that are based on
+%the total solid angle estimates using Eq.~\ref{eq:omega_tot} thus
+%overestimates the beam efficiency. An accurate evaluation of
+%this quantity would require a dedicated observation program to measure
+%of the $4\pi$ integral of the full beam pattern.
+{\lp Here we use the IRAM \trentemetre\ telescope beam model described
+in \citet{Kramer2013} to evaluate the beam solid angle stemming from a
+radius greater than $180''$.
+This quantity receives two contributions, the one of the error beams,
+which are modeled as three Gaussians, and the one of the forward and
+rearward spillover and scattering efficiencies. We compute the solid
+angle of the main beam and error beams integrated over a radius ranging
+from $180''$ to the 6.5'' NIKA2 FOV diameter,
+$\Omega_{180<r<390}^{\rm{mb+eb}}$, and over radii greater
+than $180''$, $\Omega_{>180}^{\rm{mb+eb}}$. The results are given in
+Table~\ref{tab:solid_corr}, as well as the contribution of the forward and
+rearward spillover and scattering efficiencies to the beam solid angle
+$\Omega^{\rm{frss}}$. The beam solid angle integrated over $4\pi$
+$Omega_{\rm{4\pi}}$ can be estimated as
+\begin{equation}
+\Omega_{\rm{4\pi}} = \Omega_{180} + \Omega_{>180}^{\rm{mb+eb}}
++ \Omega^{\rm{frss}}.
+\label{eq:omega_beam_4pi}
+\end{equation}
+
+\begin{table}[!h]
+\caption{Estimates of the various contribution to the beam solid angle
+integrated up to $180''$, up to $390''$ and over $4\pi$ given in
+arcsec$^{2}$. }
+\label{tab:solid_corr}
+\centering
+\begin{tabular}{lcc}
+\hline\hline
+\noalign{\smallskip}
+&  A1\&A3 & A2 \\
+\noalign{\smallskip}
+\hline
+\noalign{\smallskip}
+$\Omega_{180}$                  &   235 $\pm$  8 & 446 $\pm$  7 \\
+$\Omega_{180<r<390}^{\rm{mb+eb}}$  &   12          &   20       \\
+$\Omega_{>180}^{\rm{mb+eb}}$      &   21          &   41      \\
+$\Omega^{\rm{frss}}$             &   45          &   40      \\
+\noalign{\smallskip}
+\hline
+\end{tabular}
+\end{table}
+}
 
 This 75 \bm\ scan set, as well as the 12 \bm\ scan sub-set, as
 presented in Sect.~\ref{se:mainbeam_dataset}, are further used to
 measure the beam
 efficiencies. We compare the results based on three estimates of
-$\Omega_{\rm{tot}}$ and $\Omega_{\rm{mb}}$:
+$\Omega_{180}$ and $\Omega_{\rm{mb}}$:
 \begin{itemize}
   \item{{\tt E1} relies on the best-fitting parameters of the
     three-Gaussian model of the full beam to derive the two solid
     angles. The main beam solid angle thus corresponds to the volume
     enclosed by the first Gaussian;}
   \item{{\tt E2} consists in using the measured beam profile to
-    estimate $\Omega_{\rm{tot}}$, while $\Omega_{\rm{mb}}$ is derived with the FWHM obtained using {\tt Prof 2}, as discussed in Sect.~\ref{se:mainbeam_methods};}
+    estimate $\Omega_{180}$, while $\Omega_{\rm{mb}}$ is derived with the FWHM obtained using {\tt Prof 2}, as discussed in Sect.~\ref{se:mainbeam_methods};}
   \item{{\tt E3} is similar to {\tt E2} but the main beam FWHM is
     derived using {\tt 2D beam}.}  
 \end{itemize}

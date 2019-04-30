@@ -29,10 +29,15 @@ We have developed a dedicated data reduction pipeline to
 produce calibrated sky maps from NIKA2 raw data. This pipeline was first 
 developed for the data analysis during the commissioning campaigns and
 is currently used for science-purpose data reduction. The calibration
-and performance assessment relies on this pipeline.
+and performance assessment relies on this pipeline. 
 A detailed description of this software will be presented in a companion
 paper \citep{Ponthieu2019}, as well as an application to blind source
-detection. Here we summarize the main steps of the data reduction.
+detection. Here we summarize the main steps of the data
+reduction. {\lp Moreover, we focus the discussion on the treatment of
+point-like or moderately extended sources, which are used for the
+performance assessment. The analysis of very extended sources (over a few
+arc-minutes) will be presented in \citet{Ponthieu2019}.}
+
 %\section{Data Reduction}
 %\label{se:dataproc}
 %
@@ -323,7 +328,10 @@ identify the most correlated KIDs. Then, we build an
 inverse noise weighted co-addition of the timelines of the off-source
 KID that are the most correlated with the KID under
 concern. Furthermore, we have tested on simulations that this method
-does not modify the flux of the source.
+does not modify the flux of {\lp point-like or moderately extended
+sources. Regarding very extended sources (over more
+than a few arc-minutes), the noise decorrelation requires iterative or
+more evolved methods, as will be discussed in \citet{Ponthieu2019}.}
 
 In Fig.~\ref{rmspws} we present the noise power spectra of
 a typical KID TOI both before any data reduction and using three noise

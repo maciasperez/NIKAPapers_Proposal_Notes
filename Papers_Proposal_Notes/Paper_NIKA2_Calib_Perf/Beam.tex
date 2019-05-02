@@ -4,13 +4,15 @@
 %\section{Beam Pattern}
 %\label{se:beam}
 
-The NIKA2 beam pattern mainly depends on the IRAM \trentemetre\ telescope and
-NIKA2 full (external and internal) optical system characteristics,
-whereas the detectors themselves have an impact at sub-dominant
-level (through \emph{e.g.} the KID size, time constants or correlated noise).
+%The NIKA2 beam pattern mainly depends on the IRAM \trentemetre\ telescope and
+%NIKA2 full (external and internal) optical system characteristics,
+%whereas the detectors themselves have an impact at sub-dominant
+%level (through \emph{e.g.} the KID size, time constants or correlated noise).
 %It is important to specify that the detectors impact on the size of the
 %beam pattern, when you include the size of the pixel, and on the
 %measure of the beam pattern with their time constants and noise.
+{\lp The NIKA2 beam pattern is given by the KIDs illuminating the internal
+and external optics, out to the IRAM \trentemetre\ telescope primary mirror.}
 The full beam pattern is characterized using \bm\ observations. First,
 we produce deep integration maps of bright sources to provide a
 qualitative description of the complex beam structure in
@@ -29,11 +31,27 @@ N2R8 and N2R9 technical campaigns. Namely, we use \bm\ scans
 of Uranus%(scan id '20170125s223' and '20170125s243')
 ,  Neptune %('20170224s177')
 and the bright quasar 3C84. %('20170226s415').
-The beam patterning as obtained from this  \bm\ combination is
-presented in Fig.~\ref{fig:features}.
-However, we checked the stability of our results on single scan maps,
-combinations of scans for a single source, and combinations of
-shallower scans but spanning a large range of scanning direction.
+Furthermore, we checked the stability of our results on single scan
+maps, combinations of scans for a single source, and combinations of
+shallower scans but spanning a large range of scanning direction. 
+{\lp Figure~\ref{fig:features} shows the two-dimensional beam pattern
+as measured with NIKA2 using the former \bm\ combination, for each of
+the arrays and for the $1\,\rm{mm}$ array combination.}
+{\lp The beam pattern is shown over a large dynamic range down
+to about $-40\,\rm{dB}$ and out to radii of about 5’.
+The telescope beam pattern further extends well beyond this radius, as for
+example shown by lunar edge observations
+%with heterodyne front-ends installed
+at the IRAM \trentemetre\ telescope~\citep{Greve1998,
+Kramer2013}. However,
+this extended pattern is at present difficult to detect using the data
+reduction pipeline discussed in Sect.~\ref{se:dataproc}, as
+the extended error beams are both filtered and mixed with 
+atmospheric and electronics large-scale correlated noise
+residuals. The large angular scale contributions to the full beam are
+further discussed in Sect.~\ref{se:beam_efficiency}.} 
+%are difficult to distinguish from common mode variations of the atmosphere or electronics.}
+
 
 %The data processing includes a mitigation of the correlated noise, which
 %mainly originates from the atmosphere.  We primarly use a subtraction
@@ -56,44 +74,58 @@ shallower scans but spanning a large range of scanning direction.
   to lower right, beam maps of A1, A3,
   the combination of the $1\,\rm{mm}$ arrays (A1$\&$3) and the
   $2\,\rm{mm}$ array (A2) are shown in decibel. These maps, which
-  consist of the normalized combination of four {\tt beammap} scans of bright
-  point sources, are in horizontal coordinates and cover a sky area
-  which extends over 10 arcmin. %Same maps as in Fig.~\ref{fig:beam}
+  consist of the normalized combination of four {\tt beammap} scans of
+  bright point-like sources, are in horizontal coordinates and cover a
+  sky area which extends over $10'$. %Same maps as in Fig.~\ref{fig:beam}
   %with some noticeable features.
   The solid lines and arrows highlight some noticeable features.
-  Red circle in the
-  A1 map (upper left panel): diffraction ring seen in 1-mm maps
+  Red circle in the A1 map (upper left panel): diffraction ring seen in 1-mm maps
   (the spokes are presumably caused by radial and azimuthal panel
-  buckling \citep{Greve2010}; Orthogonal green lines in the A2 map (lower right panel): diffraction
+  buckling \citep{Greve2010}; Orthogonal green lines in the A2 map
+  (lower right panel): diffraction
   pattern caused by quadrupod secondary support structure (prominently
   seen in A2 map); Yellow arrows in the A3 map (upper right panel):
-  pattern of 3 spikes seen in 1mm maps of unknown origin; Yellow
+  pattern of 3 spikes seen in $1\,\rm{mm}$ maps of unknown origin; Yellow
   arrows in A2 map (lower right panel): four symmetrical spikes of the
-  first sidelobes; Pink ellipses: 4 spikes seen in A2 maps.}
+  first sidelobes; Pink ellipses: four spikes seen in A2 maps.}
 \label{fig:features}
 \end{center}
 \end{figure}
 
-The deep NIKA2 beam maps reveal some noticeable features, which are
+The NIKA2 beam maps reveal some noticeable features, which are
 shown in Fig.~\ref{fig:features}. Ranging from strong and/or extended to
 weak and/or spiky, they include:
 \begin{enumerate}
 \item the main beam and the underlying first error
-  beam, which is due to the large scale deformations of the primary
-  mirror, and the first side lobes. The latter include 
-  the 20" diameter first side lobe and the 60" diameter (squarish)
-  side lobe, which is due to the convolution of the primary mirror and quadrupod
-  diffraction pattern with the pixel transfert function;
+  beam, which is due to large-scale deformations of the primary
+  mirror, and the first side lobes, {\lp which correspond to various diffraction
+  patterns. In particular, the 60'' and 85'' diameter (squarish) side
+  lobes at $1$ and $2\,\rm{mm}$, respectively, at a level lower than
+  $-20\,\rm{dB}$, are due to the convolution of the primary mirror and
+  quadrupod diffraction pattern with the pixel (KID) transfer function;}
+  %The latter include 
+  %the 20" diameter first side lobe and the 60" diameter (squarish)
+  %side lobe, which is due to the convolution of the primary mirror and
+  %quadrupod diffraction pattern with the pixel (KID) transfer function;
   %The four symmetrical spokes of the error beam as shown by
   %yellow arrows in the A2 panel, are expected from ZEMAX
   %simulations;
-\item the diffraction ring by panel buckling of the primary
+   %The 20”/60” “lobes” refer to 1mm or 2mm ? Here, we mixing the terms
+  %“error beams” and “side lobes”. Aren’t the 20” diameter “1st side
+  %lobe” and the “1st error beam” the same ?  To my understanding, side
+  %lobes show up in the maps as rings, e.g. diffraction patterns. Error
+  %beams, on the other hand, show-up as broad Gaussians entered on the
+  %main beam. The section on the radial averages should take up the
+  %discussion of 20” and 60” diameter error beams, and actually show
+  %them in the figures.
+\item at a much lower level of about $-30\,\rm{dB}$, a diffraction ring shows    
+up, which is presumably caused by panel buckling of the primary 
   mirror~\citep{Greve2010}, as shown with a red circle in the A1 panel;
-\item the side lobes shown with green
+\item also at a level of about $-30\,\rm{dB}$, the side lobes shown with green
   diagonal lines in the A2 panel are due to diffraction on the
   quadrupod holding the secondary mirror of the telescope, as expected
   from ZEMAX simulations;  
-\item spikes of not fully understood origin pointed with yellow
+\item spikes of not fully understood origin marked by yellow
   arrows. The ones that are along the vertical and
   horizontal axes are reproduced by ZEMAX simulations but at a 
   shallower level, whereas the ones shown in the A3 panel in the
@@ -101,12 +133,12 @@ weak and/or spiky, they include:
   instrumentation box on the side of the M2 cabin. The origin of the
   asymmetry on the 1~mm arrays is unknown but most probably due to
   internal optics aberrations;
-\item shallow spikes of unknown origin, which are circled by pink
+\item shallow spikes of unknown origin at a level less than $-30\,\rm{dB}$, which are circled by pink
   ellipses. The multiple images on the combined deep beam map indicate
   a rotation of these spikes with the observing elevation, which in
   turn point to diffraction related issue or a ghost image that are
   formed inside the cryostat. These shallow features are expected to
-  have no sizable impact on the science-purpose map of NIKA2.
+  have no sizable impact on NIKA2 science results.
 \end{enumerate}
 
 We further quantify the respective level of the axi-symmetrical
@@ -123,18 +155,80 @@ $100''$). We determine a beam profile from a beam map in centering to
 the fitted value of the main beam center and in forming the
 weighted average of the map pixels in annular rings.
 
-We checked the stability of the beam against various observing
-conditions (source intensity, weather condition, focus optimisation) by
-comparing the beam profiles of a series of 18 \bm\ observations.
-This \bm\ set has been selected from all the available \bm\ scans at
-optimal focus using the baseline scan selection criteria, as given in
+We checked the stability of the beam against various
+observing conditions (source intensity, weather condition, focus
+optimisation) by comparing the beam profiles of a series of 18 \bm\
+observations.
+This set of \bms, which is referred to as {\tt BM18}, has been
+selected from all the available \bm\ scans at optimal focus using the
+baseline scan selection criteria, as given in
 Sect.~\ref{se:data_selection}.
 %The 18 beam profiles and their difference w.r.t. the median beam
 %profile are shown in Fig.~\ref{fig:beam_prof}.
-The 18 beam profiles are shown in
-Fig.~\ref{fig:beam_prof}. Calculating the difference of the beam
-profiles to the median beam profile, we find a {\lp deviation} below $5\%$ at
-$1\,\rm{mm}$ and below $2\%$ at $2\,\rm{mm}$. 
+The measured beam profiles using the {\tt BM18} data set are shown in
+Fig.~\ref{fig:beam_prof}. Calculating the {\lp rms of the relative}
+difference of the beam profiles to the median beam profile, we find a
+dispersion below $5\%$ at $1\,\rm{mm}$ and below $2\%$ at
+$2\,\rm{mm}$.
+
+{\lp To measure the relative level of the axi-symmetrical beam pattern
+features, we further model the beam profiles using an empirical function,
+which accounts for the main beam and for a significant fraction of the
+error beams and side lobes. This function consists in a three-Gaussian
+function $B(r)$ defined as:
+\begin{equation}
+  B(r) = \sum_{i=1}^{3} \mathcal{A}_i G_i(r) + \mathcal{B}_0,
+  \label{eq:3gauss}
+\end{equation}
+where $\mathcal{A}_i$ is the amplitude of the Gaussian $i$ for
+$i \in {1, 2, 3}$ and $\mathcal{B}_0$ a pedestal level accounting for
+the residual background level in the map. The measured beam profiles
+are fitted using Eq.~\ref{eq:3gauss} and the median best-fit
+parameters are given in Table~\ref{tab:mean_3gauss_fit}. These values
+are given to gain insight of beam profile, but are not further used
+for the calibration.
+%
+% AVERAGE 3-GAUSSIAN FIT
+\begin{table}[!th]
+   \caption{{\lp Median best-fitting values of the parameters of the
+  3-Gaussian beam profile, as defined in Eq.~\ref{eq:3gauss}, using
+  the {\tt BM18} data set. $\bar{\mathcal{A}_i}$, for
+  $i \in {1, 2, 3}$ are the Gaussian amplitudes $\mathcal{A}_i$ relative to the sum
+  of $\mathcal{A}_i$, and given in decibel. The FWHM for each of the Gaussian are given in arcseconds. The errors are evaluated as the standard deviation of the best-fitting parameter values of the 18 \bm\ scans of {\tt BM18}.}}
+  \label{tab:mean_3gauss_fit}
+  \begin{center}
+    \begin{tabular}{rll}
+      \hline\hline
+      \noalign{\smallskip}
+%      & \multicolumn{6}{c}{3-Gaussian profile parameters}  \\\cline{1-7}
+%      Arrays       & Amp 1 & Amp 2 & Amp 3 & FWHM 1 & FWHM 2 & FWHM      3 \\
+       parameters  &  $1\,\rm{mm}$  & $2\,\rm{mm}$ \\
+       \noalign{\smallskip} 
+      \hline
+      \noalign{\smallskip} 
+      $\bar{\mathcal{A}_1}$ [dB] &   $-0.33 \pm 0.09$   &  $-0.24 \pm 0.03$ \\
+      $\bar{\mathcal{A}_2}$ [dB] &   $-11.4 \pm 1$     &  $-12.8 \pm 0.5$   \\
+      $\bar{\mathcal{A}_3}$ [dB] &   $-26 \pm 7$       &  $-27 \pm 3$    \\
+      FWHM$_1$  ['']             &   $10.8 \pm 0.2$    &  $17.4 \pm 0.6 $ \\
+      FWHM$_2$  ['']             &   $30 \pm 2$        &  $42 \pm 3 $ \\
+      FWHM$_3$  ['']             &   $81 \pm 10$       &  $99 \pm 7 $ \\     
+%      A1        &  $0.89 \pm 0.01$   &  $0.08 \pm 0.02$  & $5 \times 10^{-3} \pm 2 \times 10^{-3}$  &  $11.0 \pm 0.2 $ & $29 \pm 2 $  & $65 \pm 15 $ \\  
+%      A3        &  $0.90 \pm 0.01$   &  $0.07 \pm 0.01$  & $4 \times 10^{-3} \pm 2 \times 10^{-3}$  &  $11.0 \pm 0.2 $ & $30 \pm 3 $  & $72 \pm 23 $ \\  
+%      1mm       &  $0.90 \pm 0.01$   &  $0.07 \pm 0.01$  & $4 \times 10^{-3} \pm 2 \times 10^{-3}$  &  $11.0 \pm 0.2 $ & $29 \pm 2 $  & $70 \pm 15 $ \\  
+%      2mm       &  $0.96 \pm 0.01$   &  $0.3 \pm 0.3$    & $1 \times 10^{-3} \pm 0.3$ &  $17.5 \pm 0.1 $ & $63 \pm 10 $ & $65 \pm 12 $ \\
+       \noalign{\smallskip}   
+      \hline
+    \end{tabular}    
+  \end{center}
+\end{table}
+%
+
+For illustration, we show the median best-fit
+three-Gaussian profiles at $1$ and $2\,\rm{mm}$ with pink lines, and
+the main beam (first Gaussian) profiles with black lines in
+Fig.~\ref{fig:beam_prof}. 
+}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Stability of the beam pattern
@@ -156,7 +250,7 @@ $1\,\rm{mm}$ and below $2\%$ at $2\,\rm{mm}$.
     during the N2R12 and N2R14 science-purpose campaigns, labeled from the scan
     ID. The black line shows the main beam profile using the combined
     best-fit FWHM, as discussed in Sect.~\ref{se:mainbeam}, while the pink
-    line shows the average best-fit three-Gaussian profile, as defined
+    line shows the median best-fit three-Gaussian profile, as defined
     in Eq.~\ref{eq:3gauss}.}}
     %Left column plots: 
     %Beam profiles normalised to the maximum value; Right column plots:
@@ -230,18 +324,10 @@ consists in an elliptical Gaussian fit of the beam map for a better
 2D modeling, and is labeled {\tt Map-1G}. They are presented in more
 detail below. \\
 
-\noindent {\tt Prof-3G} consists in fitting the beam profile using an empirical function,
-which accounts for the main beam and for a significant fraction of the
-error beams and side lobes. %, and derive the FWHM from the main beam parameter.
-The beam profile $B(r)$ is modeled using a three-Gaussian function,
-hence the name of the method, defined as:
-\begin{equation}
-  B(r) = \sum_{i=1}^{3} \mathcal{A}_i G_i(r) + \mathcal{B}_0,
-  \label{eq:3gauss}
-\end{equation}
-where $\mathcal{A}_i$ is the amplitude of the Gaussian $i$ for $i \in {1, 2, 3}$ and
-$\mathcal{B}_0$ a pedestal level accounting for the residual background
-level in the map. The main beam FWHM estimate is given by the best-fitting value
+\noindent {\tt Prof-3G} consists in fitting the beam profile using the
+three-Gaussian function defined in Eq.~\ref{eq:3gauss}.
+%, and derive the FWHM from the main beam parameter.
+ The main beam FWHM estimate is given by the best-fitting value
 of the FWHM for the first Gaussian function.\\
 
 \noindent {\tt Prof-1G} relies on fitting a single Gaussian to the beam

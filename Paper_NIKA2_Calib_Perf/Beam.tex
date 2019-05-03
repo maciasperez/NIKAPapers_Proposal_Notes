@@ -150,8 +150,8 @@ where $r$ is the radius from the beam center.
 Although the profile cannot represent the sub-dominant non-axisymmetrical
 features, which are seen in Fig.~\ref{fig:features} (quadrupod
 diffraction pattern, spikes), it provides a useful
-representation of the internal and central parts of the beam up to
- about $100''$. We determine a beam profile from a beam map in centering to
+representation of the internal and central parts of the beam {\lp up to
+ about $180''$.} We determine a beam profile from a beam map in centering to
 the fitted value of the main beam center and in forming the
 weighted average of the map pixels in annular rings.
 
@@ -165,7 +165,13 @@ baseline scan selection criteria (Sect.~\ref{se:data_selection}).
 %The 18 beam profiles and their difference w.r.t. the median beam
 %profile are shown in Fig.~\ref{fig:beam_prof}.
 The measured beam profiles using the {\tt BM18} data set are shown in
-Fig.~\ref{fig:beam_prof}. Calculating the {\lp rms of the relative}
+Fig.~\ref{fig:beam_prof}. {\lp The profiles consist of the main beam and
+the first error beams and side lobes, which significantly contribute
+at levels of less than $-10\,\rm{dB}$ at both observing
+wavelengths. Moreover, at $1\,\rm{mm}$ the contribution of the
+diffraction ring, which was marked with a red circle in Fig.~\ref{fig:features},
+is seen as a peak at a level up to $-33\,\rm{dB}$ located at a radius
+of about $115''$.} Calculating the {\lp rms of the relative}
 difference of the beam profiles to the median beam profile, we find a
 dispersion below $5\%$ at $1\,\rm{mm}$ and below $2\%$ at
 $2\,\rm{mm}$.
@@ -303,9 +309,11 @@ Fig.~\ref{fig:beam_prof}. }
 \subsection{Main beam}
 \label{se:mainbeam}
 
-NIKA2 angular resolution {\lp is characterized by} the angular size of the main beam,
-defined as the principal Gaussian (of the smaller FWHM) that encloses
-most of the measured point-like source flux density.
+NIKA2 angular resolution {\lp is characterized using the FWHM of a
+Gaussian fitted to the main beam. This principal Gaussian encloses
+most of the measured flux density of a point-like source.} %However, the
+%telescope beam consists of more components, as shown in the previous
+%paragraphs.
 %We have developped
 %three different methods for the NIKA2 main beam characterisation
 %, which are detailed
@@ -335,11 +343,11 @@ of the FWHM for the first Gaussian function.\\
 \noindent {\tt Prof-1G} relies on fitting a single Gaussian to the beam
 profile after masking the portion of the profile where the
 contributions of the side lobes and error beams are the
-largest. Specifically, the side lobe mask is designed to cut out the
-radius comprized between an inner radius
+largest. Specifically, the side lobe mask is designed to cut out {\lp the
+radius ranging from an inner radius
 $r_{\rm{in}} = 0.65\, \mathrm{FWHM}_0,$, where FWHM$_0$ is the
 reference Gaussian beam FWHM (see Sect.~\ref{se:photometric_system})
-and an outer radius $r_{\rm{out}} = 80''$, centered on the beam
+to an outer radius $r_{\rm{out}} = 80''$,} centered on the beam
 maximum.
 %At radial distances
 %greater than $80''$, the profile measurement provides the base level
@@ -422,14 +430,19 @@ method. %We also seek at validating the FWHM estimates using
 %{\tt Prof 2}, which is further used to derive the beam efficiency in
 %Sect.~\ref{se:beam_efficiency}.
 
-In the case of Uranus, the
-FWHM estimates are further corrected for the beam broadening induced
-by the extension of the apparent disc. At the IRAM $30\,\rm{m}$
-latitude, Uranus disc diameter varies from $3.3''$ to $3.7''$. This
-induces a broadening of the Gaussian main beam of
-$0.19 \pm 0.03\,\rm{arcsec}$ at $1\, \rm{mm}$ and $0.12 \pm 0.02\,\rm{arcsec}$
-at $2\, \rm{mm}$. Uranus FWHM estimates are corrected for the average beam
-widening values.
+In the case of Uranus, the FWHM estimates are further corrected for
+the {\lp average beam broadening induced by the extension of the
+apparent disc, which is $0.19''$ and $0.12''$ at 1 and $2\,\rm{mm}$,
+respectively.}
+%At the IRAM $30\,\rm{m}$ latitude,
+{\lp During the observation period, Uranus disc diameter has varied
+from $3.3''$ to $3.7''$. This diameter variation translates into beam
+broadening variations of an amplitude of a few tenth of arcseconds,
+which are neglected.}  
+%This induces a broadening of the Gaussian main beam of
+%$0.19 \pm 0.03\,\rm{arcsec}$ at $1\, \rm{mm}$ and $0.12 \pm 0.02\,\rm{arcsec}$
+%at $2\, \rm{mm}$. Uranus FWHM estimates are corrected for the average beam
+%widening values.
 
 The results of this analysis are
 gathered in Table~\ref{tab:fwhm}, including uncertainties evaluated as
@@ -593,9 +606,12 @@ Heterodyne observations at the IRAM \trentemetre\ telescope
 toward the lunar edge and the measure of forward beam efficiency using
 skydips show that a non-neglectible fraction of the full beam stems
 from radius greater than $180''$~\citep{Greve1998, Kramer2013}.
-An accurate evaluation of the total beam solid angle would require a
-dedicated observation {\lp and analysis} program to measure of the $4\pi$ integral of the
-full beam pattern \citep{Greve1998, Sugimoto2004, Gusten2006}.
+An accurate evaluation of the total beam solid angle would require
+{\lp the development a dedicated data reduction method tailored to
+handled very extended diffuse emission,} as well as a 
+dedicated observation program
+% to measure of the $4\pi$ integral of the full beam pattern
+~\citep{Greve1998, Sugimoto2004, Gusten2006}.
 %This fraction is not considered here. Beam efficiency estimators that are based on
 %the total solid angle estimates using Eq.~\ref{eq:omega_tot} thus
 %overestimates the beam efficiency. An accurate evaluation of
@@ -613,10 +629,10 @@ $\Omega_{180<r<390}^{\rm{mb+eb}}$, and over radii greater
 than $180''$, $\Omega_{>180}^{\rm{mb+eb}}$. The results are given in
 Table~\ref{tab:solid_corr}, as well as the contribution of the forward and
 rearward spillover and scattering efficiencies to the beam solid angle
-$\Omega^{\rm{frss}}$. The beam solid angle integrated over $4\pi$
-$Omega_{\rm{4\pi}}$ can be estimated as
+$\Omega^{\rm{frss}}$. The total beam solid angle 
+$\Omega_{\rm{tot}}$ can be estimated as
 \begin{equation}
-\Omega_{\rm{4\pi}} = \Omega_{180} + \Omega_{>180}^{\rm{mb+eb}}
+\Omega_{\rm{tot}} = \Omega_{180} + \Omega_{>180}^{\rm{mb+eb}}
 + \Omega^{\rm{frss}}.
 \label{eq:omega_beam_4pi}
 \end{equation}

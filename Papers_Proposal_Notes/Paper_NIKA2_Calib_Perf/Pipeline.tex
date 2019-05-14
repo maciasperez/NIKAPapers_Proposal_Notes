@@ -401,10 +401,10 @@ as discussed in Sect.~\ref{se:flat_field} and the
 absolute scale of the flux density is set using the absolute
 calibration method discussed in
 Sect.~\ref{se:calibration_method}. Second, the instantaneous line-of-sight
-atmospheric attenuation $\rm{exp}[{-\tau x(t)}]$ is corrected
-using the zenith opacity $\tau$, which is estimated for a given scan
-as discussed in Sect.~\ref{se:opacity}, and the instantaneous airmass
-$x(t)$. {\lp The latter is estimated as $1/sin(\elev_t)$ using the observing elevation
+atmospheric attenuation $\rm{exp}[{-\taunu x(t)}]$ is corrected
+using the zenith opacity at the observing frequency $\nu$ $\taunu$, which is estimated for a given scan
+as discussed in Sect.~\ref{se:opacity}, and the instantaneous \airmass
+$x(t)$. {\lp The latter is estimated as $(sin \elev_t)^{-1}$ using the observing elevation
 $\elev_t$, as obtained using the pointing reconstruction.}\\     
 
 %We now focus on the absolute calibration of each TOI. As stated in
@@ -635,17 +635,17 @@ SNR distribution.
 
 For calibration and performance assessment, we select scans in average
 observing conditions by performing mild selection cuts. These scan
-cuts rely on zenith opacity estimates $\tau_i$ in NIKA2 bands, as
+cuts rely on zenith opacity estimates $\taunu$ in NIKA2 bands, as
 described in Sect.~\ref{se:opacity}, on the elevation and on the
 observation time of the day. We select the scans satisfying the
 following criteria:
 %
 \begin{itemize}
-\item[i)] $\tau_{3} < 0.5$, where $\tau_{3}$ is the $\tau$ estimate for
+\item[i)] $\tau_{\rm{A_3}} < 0.5$, where $\tau_{\rm{A_3}}$ is the $\taunu$ estimate for
   Array 3; %, corresponding to a decrease of the signal by a factor of two at $45^{o}$ of elevation;
-\item[ii)] $x\, \tau_{3} < 0.7$ and $\elev > 20^{o}$, where $\elev$ is the
+\item[ii)] $x\, \tau_{\rm{A_3}} < 0.7$ and $\elev > 20^{o}$, where $\elev$ is the
   elevation of the telescope and $x$, the
-  air mass, which depends on the elevation as $x=(\sin{\elev})^{-1}$. This
+  \airmass, which depends on the elevation as $x=(\sin{\elev})^{-1}$. This
   threshold corresponds to a decrease of the astrophysical signal by a
   factor of two;
 \item[iii)] observation time from 22:00 to 9:00 UT and from 10:00 to

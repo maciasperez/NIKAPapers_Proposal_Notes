@@ -79,21 +79,20 @@ which are sampled about every 4 minutes, are interpolated to the time
 of the NIKA2 scans (we consider the time of the middle of the
 scan). For cross-check we also produce a smooth version of time-stamped
 $\tau_{225}$ data by
-filtering with a running median of 7 samples, which is then
+filtering with a running median of seven samples, which is then
 interpolated to the NIKA2 scan times.
 
 We fit the relations between the IRAM
 $225\,\rm{GHz}$ \taumeter\ opacities and NIKA2 band pass opacities using
 observation of calibration sources which spans a large range of air
-masses. This method has the advantages of not relying on
-any ATM model nor on the bandpass measurements in laboratory.
+masses. This method has the advantages of not relying on atmospheric
+model nor on the bandpass measurements in laboratory.
 We use a series of 64 scans of MWC349, which consists of the
-baseline selected subset of scans from the 68 available scans for
+\baseline selected subset of scans from the 68 available scans for
 this source during N2R9.
 It constitutes an homogeneous data set in flux density but
 heterogeneous in atmospheric conditions: zenith opacities at
-$225\,\rm{GHz}$ 
-range from 0.08 to 0.32 and elevations from $23$ to $73$
+$225\,\rm{GHz}$ range from 0.08 to 0.32 and elevations from $23$ to $73$
 degrees, spanning a large range of \airmass\ as required.
 NIKA2 opacities $\taunu$, for $\nu$ corresponding to the observing
 frequency of Array 1, 2, 3 and the combination of Arrays 1 and 3, are estimated
@@ -102,20 +101,21 @@ estimates $\tau_{225}$ as
 \begin{equation}  
   \tau_\nu =  a_\nu^{225}\tau_{225} + b_\nu^{225}.          
 \end{equation}
-The parameters parameters $a_\nu^{225}$ and $b_\nu^{225}$ are fitted
+The parameters $a_\nu^{225}$ and $b_\nu^{225}$ are fitted
 to the data set so that the source flux density %to ensure
 %that the non-corrected flux densities $\tilde{S}_\nu$ are stable against
 %$\tau_{225}$ after correction of the atmospheric attenuation by
 %inversion of Eq.~\ref{eq:uncorr_flux} using 
 \begin{equation}  
-  S_\nu = \tilde{S}_\nu e^{(a_\nu^{225}\tau_{225} + b_\nu^{225}) \cdot x}, 
+  S_\nu = \tilde{S}_\nu\,\, e^{(a_\nu^{225}\tau_{225} + b_\nu^{225}) \, x}, 
   \label{eq:opacorr_taumeter}
 \end{equation}
 is constant within scans.
 
 \begin{table}[!htbp]
   \begin{center}
-    \caption[IRAM \taumeter\ to NIKA2 opacity model]{IRAM \taumeter\ to NIKA2 opacity model.}
+    \caption[IRAM \taumeter\ to NIKA2 opacity model]{{\lp Best-fit
+    parameters and rms uncertainties to infer NIKA2 opacities from the IRAM \taumeter\ measurements.}}
     \label{tab:tau225-to-taunika}  
     \begin{tabular}{lrrrr}
       \hline
@@ -136,13 +136,13 @@ is constant within scans.
 \end{table}
 
 We tested two estimators of the flux stability. The first one relies
-on minimising the standard deviation of the measured-to-median flux
+on minimizing the standard deviation of the measured-to-median flux
 densities ratio after atmospheric opacity correction using
 Eq.~\ref{eq:opacorr_taumeter}. The second one is obtained by minimizing
 \begin{equation}
-\chi^2 = \sum_{i=1}^{N} \frac{1}{\sigma^2} \, \left( \frac{S_\nu}{Med(S_\nu)} -1 \right)^2,  
+\chi^2 = \sum_{i=1}^{N} \frac{1}{\sigma^2} \, \left( \frac{S_\nu}{\rm{Med}(S_\nu)} -1 \right)^2,  
 \end{equation}
-where $\sigma$ is the rms uncertainties of the flux density estimates. Note
+where $\sigma$ is the rms uncertainty of the flux density estimates. Note
 that these estimators do not depend on
 the absolute scale of the flux density of the source. Both estimators
 yield consistent results that are combined and gathered in
@@ -151,12 +151,12 @@ $\Delta a_\nu^{225}$ and $\Delta b_\nu^{225}$ are 1-$\sigma$ errors of
 the fit.
 
 Because the IRAM \taumeter\ observes at a fixed azimuth, the
-{\tt taumeter} opacities are not exactly the line-of-sight opacities
+{\tt taumeter} opacities are not the line-of-sight opacities
 for the observation scans. As this will be verified in
 Sect.~\ref{se:photometry}, this induces larger rms errors of
-the top-of-the-atmosphere flux density estimates with respect to
-opacity correction methods that relies on skydip-based measurements using
-NIKA2 instrument itself. The {\tt taumeter} method will thus be used
+the top-of-the-atmosphere flux density estimates compared to
+opacity correction methods that relies on NIKA2 skydip-based
+measurements. The {\tt taumeter} method will thus be used
 as an alternative method in case of failure of the NIKA2 skydip-based
 methods and to perform consistency checks.
 
@@ -165,63 +165,51 @@ methods and to perform consistency checks.
 \label{se:skydip-method}
 
 The NIKA2 {\tt skydip} method for the opacity derivation consists in
-using the NIKA2 instrument as a total-power \taumeter. This idea,
+using the NIKA2 instrument as a total-power \taumeter. {\lp The opacity
+integrated in the NIKA2 bandpasses and in the line-of-sight of the
+observing scan is thereby directly obtained.} 
+This idea,
 which was successfully tested with NIKA~\citep{Catalano2014}, relies
 on the fact that the resonance frequency of each KID varies linearly
 with the total power~\citep{Swenson2010}.
 First, we have to calibrate the relationship between total
 power and opacity. Then, we can use this calibration to measure the
-opacity during a given scan. Using this procedure we thus directly
-derive an opacity integrated in the NIKA2 bandpasses and in the
-line-of-sight of the observing scan.
+opacity during a given scan. %Using this procedure we thus directly
+%derive an opacity integrated in the NIKA2 bandpasses and in the
+%line-of-sight of the observing scan.
 
 First, we detail the opacity calibration. For each KID $k$, the
-absolute value of its resonance frequency $f_{reso}^k$ varies with the
+absolute value of its resonance frequency $f_{\rm{reso}}^k$ varies with the
 atmospheric load according to
 %
 \begin{equation}
-f_{reso}^k  = c_0^k - c_1^k T_{atm}[1-e^{-\taunu x}]
+f_{\rm{reso}}^k  = c_0^k - c_1^k T_{\rm{atm}}[1-e^{-\taunu x}]
 \label{eq:skydip}
 \end{equation}
 %
 where $c_0^k$ is a constant equal to the KID resonance frequency at zero
 opacity, $c_1^k$ is a calibration conversion factor in Hz$/$K,
-$T_{atm}$ is the temperature of the atmosphere, $\taunu$ the zenith
-opacity and $\elev$ the observing elevation.  By assuming a
-homogeneous plane-parallel atmosphere, the
-\airmass\ $x$ is defined from the elevation as $x =
-\left(\sin\elev\right)^{-1}$. {\lp The Earth sphericity can be safely
+$T_{\rm{atm}}$ is the temperature of the atmosphere. %, $\taunu$ the zenith
+%opacity and $\elev$ the observing elevation.
+By assuming a homogeneous plane-parallel atmosphere, the
+\airmass\ $x$ is defined from the elevation as
+$x = \left(\sin\elev\right)^{-1}$. {\lp The Earth sphericity can be safely
 neglected at the elevations under discussion here.}
-We take $T_{atm}$ as a constant at 270~K. However, the opacity is
+We take $T_{\rm{atm}}$ as a constant equal to 270\,K. However, the opacity is
 expected to slightly depend on the atmospheric temperature. For
-example, in poor weather conditions (6 mm of water vapor contents),
-the zenith opacity in the $1\,\rm{mm}$ observing bands can vary by
-about 10\% for temperature variations of 10~K. The
+example, in poor weather conditions (6\,mm of water vapor contents),
+the zenith opacity in {\lp both observing bands} can vary by
+about 10\% for temperature variations of 10\,K. The
 effect of the temperature variations on the final
 calibration of NIKA2 response to the sky load is mitigated by using
 several dedicated observation scans regularly distributed all along an
 observation campaign.
-%
-\begin{figure}[!htbp]
-\begin{center}
-\includegraphics[trim={9cm 0cm 0cm 6.5cm}, clip=true, width=0.9\linewidth]{Figures/test_allskd4_N2R9v5_5-crop.pdf}
-\caption[]{Example of the global skydip fit for a KID.
-Each square point represents one step in a skydip (made of eleven
-elevation steps). A series of 12 {\tt skydip} scans are jointly used
-spanning zenith opacities from 0.15 to 0.50. The horizontal axis gives the sky
-effective temperature $T_{sky} = T_{atm}[1-e^{-\taunu x}]$ in Kelvin, where $\taunu$ is the
-skydip zenith opacity found in the fit. The vertical axis shows the
-resonance frequency of the KID in MHz. The blue line is the linear
-model using the best-fit $c_0^k$ and $c_1^k$ coefficients (see
-Eq.~\ref{eq:skydip}).}
-\label{fig:skydipfitexample}
-\end{center}
-\end{figure}
 
+%%%%%%%FIG8
 The $c_0^k$ and $c_1^k$ are determined using {\tt skydip} scans, which
 consist in moving the telescope in elevation step by step, as
-defined in Sect.~\ref{se:skydip}. For each KID, the evolution
-of $f_{reso}$ is monitored as a function of the \airmass\ in each
+defined in Sect.~\ref{se:skydip}. For each KID $k$, the evolution
+of $f_{\rm{reso}}^k$ is monitored as a function of the \airmass\ in each
 elevation step to perform a joint fit of the zenith opacity $\taunu$ and
 the $c_0^k$ and $c_1^k$ coefficients.
 %The acquisition time spent on each elevation step, which is of about
@@ -229,28 +217,49 @@ the $c_0^k$ and $c_1^k$ coefficients.
 %$f_{reso}$.
 All skydips, obtained under various opacity conditions, are analysed
 together to break the degeneracy between the opacity and the
-responsivity ($c_1^k$). The degeneracy occurs mostly for low opacity
+Herz-to-Kelvin conversion factor $c_1^k$. The degeneracy occurs mostly for low opacity
 conditions for which we can only determine the combination
 $c_1^k \taunu x$. The procedure has two steps. First, all the {\tt
-skydip} scans are analysed individually to extract $f_{reso}^k$ for each
+skydip} scans are analysed individually to extract $f_{\rm{reso}}^k$ for each
 stable elevation and each KID. Secondly, a simultaneous fit is done
 for all parameters (one $\taunu$ per skydip, and a set of $c_0^k$ and
-$c_1^k$ for all KIDs). Fig~\ref{fig:skydipfitexample} illustrates the
-fitting procedure. Uncertainties on $\taunu$ are estimated by doing this
-procedure
-on blocks of 40 KIDs only and getting a dispersion on the resulting
-$\taunu$ from the different blocks. Usually the dispersion comes out as
-$4\times 10^{-3}$ at 1~mm and $1\times 10^{-3}$ at 2~mm. Once the
-$\taunu$ values are estimated for each skydip (as the average over the
-blocks), we compute, while fixing the $\taunu$, the $c_0$ and $c_1$
-final values for each KID with a simple linear fit. We thus retrieve
+$c_1^k$ for all KIDs). Figure~\ref{fig:skydipfitexample} illustrates the
+fitting procedure.
+%
+\begin{figure}[!htbp]
+\begin{center}
+\includegraphics[trim={9cm 0cm 0cm 6.5cm}, clip=true, width=0.9\linewidth]{Figures/test_allskd4_N2R9v5_5-crop.pdf}
+\caption[]{Example of the global skydip fit for a KID.
+Each square point represents one step in a skydip (made of eleven
+elevation steps). A series of 12 {\tt skydip} scans are jointly used
+spanning zenith opacities from 0.15 to 0.50 {\lp in the $1\,\rm{mm}$ band}. The horizontal axis gives the sky
+effective temperature $T_{\rm{sky}} = T_{\rm{atm}}[1-e^{-\taunu\, x}]$ in Kelvin, where $\taunu$ is the
+skydip zenith opacity found in the fit. The vertical axis shows the relative
+resonance frequency of the KID with respect to 1.9\,GHz, given in MHz. The blue line is the linear
+model using the best-fit $c_0^k$ and $c_1^k$ coefficients (see
+Eq.~\ref{eq:skydip}).}
+\label{fig:skydipfitexample}
+\end{center}
+\end{figure}
+%
+{\lp We check that doing this procedure on blocks of 40 KIDs only and
+getting a dispersion on the resulting $\taunu$ from the different
+blocks, we obtain small dispersions, which are equal to about
+$4\times 10^{-3}$ at 1\,mm and $1\times 10^{-3}$ at 2\,mm. }
+%Uncertainties on $\taunu$ are estimated by doing this
+%procedure on blocks of 40 KIDs only and getting a dispersion on the resulting
+%$\taunu$ from the different blocks. Usually the dispersion comes out as
+%$4\times 10^{-3}$ at 1\,mm and $1\times 10^{-3}$ at 2\,mm.
+Once the $\taunu$ values are estimated for each {\tt skydip} (as the average over the
+blocks), we compute, while fixing the $\taunu$, the $c_0^k$ and $c_1^k$
+final values for each KID $k$ with a linear fit. We thus retrieve
 the coefficients of all the KIDs even though some of them could not
 contribute to the $\taunu$ determination. We find that the skydip-fitted
 $\taunu$ values are, as expected, consistent between different detectors of
 the same array.
 
 By comparing the results of different skydips, we have verified that the
-coefficients $c_0$, $c_1$ are stable, within the fitting errors, on very
+coefficients $c_0^k$ and $c_1^k$ are stable, within the fitting errors, on very
 long time scales within a cooldown cycle. The coefficients can thus be
 applied to the whole observing campaign in order to recover the
 opacity of each scan. Namely, the opacity %for each array
@@ -258,15 +267,14 @@ opacity of each scan. Namely, the opacity %for each array
 are retrieved for each observation scan by
 inverting Eq.~\ref{eq:skydip} as:
 \begin{equation}
-\taunu =   \rm{Med}\left( -\frac{1}{x} \log\left( \frac{f_{reso}^k - c_0^k}{c_1^kT_{atm}} +1 \right)\right), 
+\taunu =   \rm{Med}\left( -\frac{1}{x} \log\left( \frac{f_{\rm{reso}}^k - c_0^k}{c_1^kT_{\rm{atm}}} +1 \right)\right), 
 \end{equation}
-where $\nu$ stands for the observing frequency of array A1, A2, A3 or the array
-combination A1$\&$A3, and the median is evaluated using all the valid
+%where $\nu$ stands for the observing frequency of array A1, A2, A3 or the array
+%combination A1$\&$A3, and
+where the median is evaluated using all the valid
 KIDs of the arrays under concern. Hence, we are able to derive an opacity
 integrated in the NIKA2 bandpasses and in the line-of-sight of the
 source in the considered observation scan.
-
-
 
 \subsubsection{{\tt Skydip} scan selection}
 \label{se:skydip-selection}
@@ -276,24 +284,91 @@ sizable amount of {\tt skydip} scans --
 typically ten to twenty -- that i) span the whole opacity range and
 ii) avoid highly perturbated atmosphere to meet the plane-parallel
 atmosphere assumption. To that aim, we perform a {\tt skydip}
-scan twice a day during a scientific campaign. Then, the ($c_0$, $c_1$)
+scan twice a day during a scientific campaign. Then, the ($c_0^k$, $c_1^k$)
 determination process relies on a selection of the {\tt skydip} scans.
+%%%%%%% FIG9
+%%%%%%% FIG10
+
+%\begin{figure}[!htbp]
+%  \begin{center}
+%    \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.42\textwidth]{Figures/Opacity_skydip_to_taumeter_vs_elev_1mm.pdf}
+%    \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.42\textwidth]{Figures/Opacity_skydip_to_taumeter_vs_elev_a2.pdf}
+%    \caption[NIKA2 skydip-based opacity stability against observing elevations]{NIKA2
+%    skydip-based opacities stability against the observing
+%    elevation. The ratio between the skydip-based opacities and the
+%    taumeter-derived opacities is shown as a function of the observing
+%    elevation as blue points for Uranus scans and empty red square for
+%    MWC349 scans. See discussion in Sect.~\ref{se:opacity_tests}.} 
+%\label{fig:skydip-to-taumeter-ratio-vs-elev}
+%\end{center}
+%\end{figure}
+
+For each {\tt skydip} scan and %for each bunch of 40 KIDs,
+for each KID, 
+we compute the difference between the measured KID resonance frequency and the model
+given in Eq.~\ref{eq:skydip} taken at the best-fit values of the
+($c_0^k$, $c_1^k$) parameters. Then, we determine two indicators of the fit
+quality per {\tt skydip}. First, for each bunch of 40 KIDs, the
+standard deviation of the measure-to-model difference $\sigma_{40}$ is calculated
+over all the KIDs of the bunch. For each {\tt skydip}, we evaluate the
+median rms, which is the median $\sigma_{40}$ over all the KID bunches. 
+%, given in Hz.
+This fit quality indicator is thus also sensitive to the noise
+level during the {\tt skydip}. We therefore devise an additional fit quality
+indicator to further measure the bias between measures and model fits.
+Namely, for each {\tt skydip}, we compute the average
+measure-to-model difference of each KID $k$, labelled $dT_k$, which is
+then converted from Hertz to Kelvin using the corresponding $c_1^k$
+parameter. This cross-calibration allows for assembling the
+measure-to-model difference estimates of all the KIDs.
+Median $dT$ is the median of $dT_k$ over all the KIDs of an
+array. With these two indicators in hands, we discard the {\tt skydip} scans
+that are noisy or that yield a poor fit by applying the selection
+criteria that have to be satisfied:
+
+\begin{itemize}
+\item Median $\rm{rms} < 1.5 \times 10^{4}~\rm{Hz}$
+\item Median $dT < 1.6~\rm{K}$
+\end{itemize}
+
+The threshold values have been determined using the set of 44 {\tt skydip}
+scans of N2R9. The Median rms cut corresponds to twice the median of
+this quantity per {\tt skydip} scan, whereas the Median $dT$ cut is twice
+the standard deviation of Median $dT$ over the {\tt skydip} scans.
+N2R9 {\tt skydip} scan selection is illustrated in
+{\lp Fig.~\ref{fig:skydipselection},
+which shows the complementarity between the two fit-quality
+criteria. After selection, 15 skydips are kept for the final step of
+the ($c_0^k$, $c_1^k$) fit in the case of the N2R9 campaign.}
 %
 \begin{figure}[!htbp]
 \begin{center}
 \includegraphics[clip=true,width=\linewidth]{Figures/plot_skydip_selection_two_crit.pdf}
 \caption[N2R9 skydip scan selection.]{ Median dT quality-fit criterion
 is plotted as a function of the median rms criterion for each skydip
-scan of the N2R9 campaign and for the three arrays. Both criteria are
-nicely correlated. Empty diamonds show the results of the first
+scan of the N2R9 campaign and for the three arrays. {\lp The {\tt
+skydips} that yield a poor fit of the KID resonance frequencies and hence
+do not met Median dT criterion, are also discarded using
+Median rms. The latter criterion further discards noisy {\tt skydips}.}
+%Both criteria are nicely correlated.
+Empty diamonds show the results of the first
 iteration of the skydip coefficient estimation, labeled 'v1', whereas
-filled circled show the second iteration, labeled 'v2', for which only the skydips
+filled circles show the second iteration, labeled 'v2', for which only the skydips
 that met both fit-quality criteria are included.
 After the second iteration, all the remaining skydips met the criteria.}
 \label{fig:skydipselection}
 \end{center}
 \end{figure}
 
+The ($c_0^k$, $c_1^k$) estimation proceeds in two steps: first the
+parameters are estimated using all the available {\tt skydip} scans for a
+given campaign, then the estimation is repeated using only
+{\tt skydip} scans that met the fit-quality criteria. After the second
+iteration, we check that no extra {\tt skydip} scan outliers are left, as shown by
+the 'v2' label data points in Fig.~\ref{fig:skydipselection}.
+%After
+%selection of the skydip scans acquired during the N2R9 campaign, 15
+%skydips are kept for the final step of the ($c_0$, $c_1$) fit.
 %
 \begin{figure*}[!thbp]
   \begin{center}
@@ -322,66 +397,6 @@ After the second iteration, all the remaining skydips met the criteria.}
 \end{center}
 \end{figure*}
 %
-%\begin{figure}[!htbp]
-%  \begin{center}
-%    \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.42\textwidth]{Figures/Opacity_skydip_to_taumeter_vs_elev_1mm.pdf}
-%    \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.42\textwidth]{Figures/Opacity_skydip_to_taumeter_vs_elev_a2.pdf}
-%    \caption[NIKA2 skydip-based opacity stability against observing elevations]{NIKA2
-%    skydip-based opacities stability against the observing
-%    elevation. The ratio between the skydip-based opacities and the
-%    taumeter-derived opacities is shown as a function of the observing
-%    elevation as blue points for Uranus scans and empty red square for
-%    MWC349 scans. See discussion in Sect.~\ref{se:opacity_tests}.} 
-%\label{fig:skydip-to-taumeter-ratio-vs-elev}
-%\end{center}
-%\end{figure}
-
-For each {\tt skydip} scan and for each bunch of 40 KIDs, we compute the
-difference between the measured KID resonance frequency and the model
-given in Eq.~\ref{eq:skydip} taken at the best-fit values of the
-($c_0$, $c_1$) parameters. Then, we determine two indicators of the fit
-quality per {\tt skydip}. First, the standard deviation of the
-measure-to-model difference is calculated over all the KIDs in a
-bunch. For each {\tt skydip}, we evaluate the median rms, which is the
-median over the KID bunches of the standard deviation per bunch, given
-in Hz. This fit quality indicator is thus also sensitive to the noise
-level during the {\tt skydip}. We therefore devise an additional fit quality
-indicator to further measure the bias between measures and model fits.
-Namely, for each scan, we compute the average
-measure-to-model difference of each KID $k$, labelled $dT_k$, which is
-then converted from Hertz to Kelvin using the $c_1$ parameter of the
-KID $k$. This cross-calibration allows for assembling the
-measure-to-model difference estimates of all the KIDs.
-Median $dT$ is the median of $dT_k$ over all the KIDs of an
-array. With these two indicators in hands, we discard the {\tt skydip} scans
-that are noisy or that yield a poor fit by applying the selection
-criteria that have to be satisfied:
-
-\begin{itemize}
-\item Median $\rm{rms} < 1.5 \times 10^{4}~\rm{Hz}$
-\item Median $dT < 1.6~\rm{K}$
-\end{itemize}
-
-The threshold values have been determined using the set of 44 {\tt skydip}
-scans of N2R9. The Median rms cut corresponds to twice the median of
-this quantity per {\tt skydip} scan, whereas the Median $dT$ cut is twice
-the standard deviation of Median $dT$ over the {\tt skydip} scans.
-N2R9 {\tt skydip} scan selection is illustrated in
-{\lp Fig.~\ref{fig:skydipselection}, in
-which the complementarity between the two fit-quality criteria is clearly
-seen. After selection, 15 skydips are kept for the final step of the
-($c_0$, $c_1$) fit in the case of the N2R9 campaign.}
-
-The ($c_0$, $c_1$) estimation proceeds in two steps: first the
-parameters are estimated using all the available {\tt skydip} scans for a
-given campaign, then the estimation is repeated using only
-{\tt skydip} scans that met the fit-quality criteria. After the second
-iteration, we check that no extra {\tt skydip} scan outliers are left, as shown by
-the 'v2' label data points in Fig.~\ref{fig:skydipselection}.
-%After
-%selection of the skydip scans acquired during the N2R9 campaign, 15
-%skydips are kept for the final step of the ($c_0$, $c_1$) fit.
-
 The stability of the ($c_0^k$, $c_1^k$) parameters and hence the
 {\tt skydip} opacity estimates, have been tested against the
 choice of the selection criteria. We found that the $\taunu$
@@ -393,6 +408,7 @@ atmosphere plane-parallel model in high opacity {\tt skydip} scans (as seen in
 Fig.~\ref{fig:skydipselection}), are excluded. When these conditions
 are met, the {\tt skydip}-scans selection induced uncertainties on the zenith
 opacities are below $10\%$ at 1\,mm and below $15\%$ at 2\,mm.  
+
 
 \subsubsection{{\tt Corrected skydip}}
 \label{se:corrected-skydip}
@@ -441,7 +457,7 @@ robustness against atmospheric opacity conditions.
 
 The exact physical origin for the discrepancy of the empirical factor
 $a_\nu^{\rm{skydip}}$ from the expected unity value is currently
-under investigation. {\lp Beside the $c_1$-to-$\taunu$ degeneracy and the effect
+under investigation. {\lp Beside the $c_1^k$-to-$\taunu$ degeneracy and the effect
 of the variation of the atmospheric temperature, possible explanations
 also include a ground pick-up effect. Indeed a fraction of the beam
 detects radiation from the ground, as evidenced by forward

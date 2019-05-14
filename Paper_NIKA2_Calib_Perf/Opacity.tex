@@ -60,7 +60,7 @@ Sect.~\ref{se:skydip-selection}.
 \label{se:taumeter-method}
 
 The IRAM 30-m telescope facility is equipped with a resident taumeter
-operated at 225~GHz, which performs elevation scans at fixed azimuth
+operated at 225~GHz, which {\lp about every four minutes} performs elevation scans at fixed azimuth
 to monitor the atmospheric opacity.
 The IRAM science support
 team provides us with time-stamped zenith opacities at $225$~GHz
@@ -190,7 +190,8 @@ $T_{atm}$ is the temperature of the atmosphere, $\tau$ the zenith
 opacity and $\elev$ the observing elevation.  By assuming a
 homogeneous plane-parallel atmosphere, the
 airmass $x$ is defined from the elevation as $x =
-\left(\sin\elev\right)^{-1}$ (we neglect the Earth sphericity).
+\left(\sin\elev\right)^{-1}$. {\lp The Earth sphericity can be safely
+neglected at the elevations under discussion here.}
 We take $T_{atm}$ as a constant at 270~K. However, the opacity is
 expected to slightly depend on the atmospheric temperature. For
 example, in poor weather conditions (6 mm of water vapor contents),
@@ -391,7 +392,7 @@ fitting {\tt skydip} scans, which mostly correspond to deviation from the
 atmosphere plane-parallel model in high opacity {\tt skydip} scans (as seen in
 Fig.~\ref{fig:skydipselection}), are excluded. When these conditions
 are met, the {\tt skydip}-scans selection induced uncertainties on the zenith
-opacities are below $10\%$ at 1mm and below $15\%$ at 2mm.  
+opacities are below $10\%$ at 1\,mm and below $15\%$ at 2\,mm.  
 
 \subsubsection{{\tt Corrected skydip}}
 \label{se:corrected-skydip}
@@ -406,9 +407,15 @@ motivated the development of a corrected version of the {\tt skydip}
 method that ensures the robustness of the flux densities against
 atmospheric conditions.
 
-We use the flux stability estimators described in
-Sect.~\ref{se:taumeter-method} to fit a correction to the {\tt skydip}
-opacities $\tau_{\rm{skydip}}$ as
+{\lp As already noticed in Sect.~\ref{se:skydip-method}, for small values of the
+line-of-sight opacity $\tau x$, only the parameter combination
+$c_1^k T_{\rm{atm}}\tau$ is constrained in
+Eq.~\ref{eq:skydip}. Degeneracies between $c_1^k$ parameters, the
+atmospheric temperature and $\tau$ can translate into a
+scaling factor in the fitted skydip opacities
+$\tau_{\rm{skydip}}$. To take this effect into account, }  
+we use the flux stability estimators described in
+Sect.~\ref{se:taumeter-method} to fit a correction to $\tau_{\rm{skydip}}$ as
 \begin{equation}  
   \tau_\nu =  a_\nu^{\rm{skydip}}\tau_{\rm{skydip}}.
   \label{eq:corrected_skydip}
@@ -432,15 +439,24 @@ opacity estimates for a normalisation as given in
 Eq.~\ref{eq:corrected_skydip} suffices for ensuring flux density
 robustness against atmospheric opacity conditions.
 
-The physical origin for the discrepancy of the empirical factor
+The exact physical origin for the discrepancy of the empirical factor
 $a_\nu^{\rm{skydip}}$ from the expected unity value is currently
-under investigation. The possible explanations include a deviation
-from the opacity-to-resonance model of Eq.~\ref{eq:skydip}, a limit in the
-validity of the underlying assumptions (e.g. plane-parallel atmosphere,
-constant temperature) or a ground pick-up effect. However,
+under investigation. {\lp Beside the $c_1$-$\tau$ degeneracy and the effect
+of the variation of the atmospheric temperature, possible explanations
+also include a ground pick-up effect. Indeed a fraction of the beam
+detects radiation from the ground, as evidenced by forward
+efficiency measurements using heterodyne front-ends (see
+Sect.~\ref{se:beam_efficiency}).}
+%First, the possible explanations include a deviation
+%from the opacity-to-resonance model of Eq.~\ref{eq:skydip},
+%, a limit in the validity of the underlying assumptions (e.g. plane-parallel atmosphere,
+%constant temperature) or a ground pick-up effect.
+However,
 the stability of the flux densities corrected using the
-{\tt corrected skydip} opacities, as discussed in
+{\tt corrected skydip} opacities {\lp and the results consistency using
+several observation campaigns}, as discussed in
 Sect.~\ref{se:photometry}, constitutes a validation of this approach.
+
 
 \subsection{Opacity estimate consistency checks}
 \label{se:opacity_tests}
@@ -454,17 +470,21 @@ zenith opacities $\tau_{225}$, as described in
 Sect.~\ref{se:taumeter-method}, for a series of scans
 of Uranus and MWC349 acquired during three campaigns. As guidelines,
 we also show the predicted correlations using an ATM model integrated
-in the NIKA2 bandpasses and in the $225\,\rm{GHz}$ band. At 1~mm, the
+in the NIKA2 bandpasses and in the $225\,\rm{GHz}$ band. At 1\,mm, the
 $\tau_{\rm{skydip}}$ to $\tau_{225}$ correlation relations are
 consistent for the three campaigns. They are
-also in agreement with the ATM model expectations. At 2~mm, more
+also in agreement with the ATM model expectations. At 2\,mm, more
 dispersion is observed between each correlation relations although
 they are compatible with each others within statistical errors.
 We note that the ATM model underestimates the
 measured {\tt skydip} $\tau$. This mild discrepancy with the
 ATM model predictions is yet to be understood, but has no impact on
 our opacity measurements, which do not rely on this model nor on
-the precision with which the observing bandpasses are known.
+the precision with which the observing bandpasses are known. {\lp
+Further consitency test with ATM expectations will be performed in the
+future using the foreseen in-situ bandpass measurements with a
+dedicated Martin-Pupplett spectrometer.}
+
 
 We further check the robustness of the {\tt skydip} $\tau$ against the
 observing elevation. 

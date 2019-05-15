@@ -307,21 +307,21 @@ For each {\tt skydip} scan and %for each bunch of 40 KIDs,
 for each KID, 
 we compute the difference between the measured KID resonance frequency and the model
 given in Eq.~\ref{eq:skydip} taken at the best-fit values of the
-($c_0^k$, $c_1^k$) parameters. Then, we determine two indicators of the fit
-quality per {\tt skydip}. First, for each bunch of 40 KIDs, the
-standard deviation of the measure-to-model difference $\sigma_{40}$ is calculated
-over all the KIDs of the bunch. For each {\tt skydip}, we evaluate the
-median rms, which is the median $\sigma_{40}$ over all the KID bunches. 
+($c_0^k$, $c_1^k$) parameters{\lp, which is named $df_{\rm{reso}}^k$.} Then, we
+determine two indicators of the fit quality per {\tt skydip}. {\lp First,
+for each bunch of 40 KIDs, the standard deviation of $df_{\rm{reso}}^k$ is calculated
+over all the KIDs of the bunch. This standard deviation per KID bunch
+is called $\sigma_{40}$. For each {\tt skydip}, we evaluate the
+median rms, which is the median $\sigma_{40}$ over all the KID bunches.} 
 %, given in Hz.
 This fit quality indicator is thus also sensitive to the noise
 level during the {\tt skydip}. We therefore devise an additional fit quality
 indicator to further measure the bias between measures and model fits.
 Namely, for each {\tt skydip}, we compute the average
-measure-to-model difference of each KID $k$, labelled $dT_k$, which is
-then converted from Hertz to Kelvin using the corresponding $c_1^k$
-parameter. This cross-calibration allows for assembling the
-measure-to-model difference estimates of all the KIDs.
-Median $dT$ is the median of $dT_k$ over all the KIDs of an
+$df_{\rm{reso}}^k$ of each KID $k$ and convert this quantity from Hertz to Kelvin
+using the corresponding $c_1^k$ parameter. This cross-calibration
+allows for assembling the $df_{\rm{reso}}^k$ estimates of all the KIDs.
+Median $dT$ is the median of the average $df_{\rm{reso}}^k$ over all the KIDs of an
 array. With these two indicators in hands, we discard the {\tt skydip} scans
 that are noisy or that yield a poor fit by applying the selection
 criteria that have to be satisfied:
@@ -387,7 +387,7 @@ the 'v2' label data points in Fig.~\ref{fig:skydipselection}.
      a) $\taunu^{\rm{skydip}}$ vs median-filtered
     time-stamped IRAM 225\,GHz \taumeter\ opacities (see
     Sect.~\ref{se:taumeter-method}).
-    The modeled correlations relying on an ATM model integrated in
+    For illustration purpose, the modeled correlations relying on an ATM model integrated in
     NIKA2 frequency bands are shown in black. b) $\taunu^{\rm{skydip}}$ stability against the observing
     elevation. The ratio between the skydip-based opacities and the
     \taumeter-derived opacities is shown as a function of the observing
@@ -456,8 +456,9 @@ Eq.~\ref{eq:corrected_skydip} suffices for ensuring flux density
 robustness against atmospheric opacity conditions.
 
 The exact physical origin for the discrepancy of the empirical factor
-$a_\nu^{\rm{skydip}}$ from the expected unity value is currently
-under investigation. {\lp Beside the $c_1^k$-to-$\taunu$ degeneracy and the effect
+$a_\nu^{\rm{skydip}}$ from the expected unity value {\lp for the
+$1\,\rm{mm}$ wavebands} is currently under investigation.
+{\lp Beside the $c_1^k$-to-$\taunu$ degeneracy and the effect
 of the variation of the atmospheric temperature, possible explanations
 also include a ground pick-up effect. Indeed a fraction of the beam
 detects radiation from the ground, as evidenced by forward
@@ -479,38 +480,47 @@ Sect.~\ref{se:photometry}, constitutes a validation of this approach.
 
 First, we test the stability of the {\tt skydip} opacities from one
 observation campaign to
-another. First panels of Fig.~\ref{fig:skydip-to-taumeter-correl} show the
+another. Panels a) in Fig.~\ref{fig:skydip-to-taumeter-correl} show the
 correlation between the {\tt skydip} $\taunu$ estimates $\taunu^{\rm{skydip}}$
 and the median-filtered time-stamped IRAM $225\,\rm{GHz}$ \taumeter\ 
 zenith opacities $\tau_{225}$, as described in
 Sect.~\ref{se:taumeter-method}, for a series of scans
-of Uranus and MWC349 acquired during three campaigns. As guidelines,
+of Uranus and MWC349 acquired during the {\emph reference} observation
+campaigns. As guidelines,
 we also show the predicted correlations using an ATM model integrated
-in the NIKA2 bandpasses and in the $225\,\rm{GHz}$ band. At 1\,mm, the
+in the NIKA2 bandpasses and in the $225\,\rm{GHz}$ band. {\lp The
 $\taunu^{\rm{skydip}}$ to $\tau_{225}$ correlation relations are
-consistent for the three campaigns. They are
-also in agreement with the ATM model expectations. At 2\,mm, more
-dispersion is observed between each correlation relations although
-they are compatible with each others within statistical errors.
-We note that the ATM model underestimates the
-measured {\tt skydip} $\taunu$. This mild discrepancy with the
-ATM model predictions is yet to be understood, but has no impact on
+consistent within statistical errors for the three campaigns.}
+At 1\,mm they are also in agreement with the ATM model expectations,
+while at 2\,mm the ATM model underestimates the measured {\tt skydip}
+$\taunu$. {\lp Using the correction described in
+Sect.~\ref{se:corrected-skydip}, the ATM
+model consistently underestimates the {\tt corrected skydip} opacity
+estimates at both wavelengths.}
+% tau_correctedskydip = 1.3 tau_225^ATM
+%At 2\,mm, more
+%dispersion is observed between each correlation relations although
+%they are compatible with each others within statistical errors.
+%We note that the ATM model underestimates the
+%measured {\tt skydip} $\taunu$.
+This mild discrepancy with the ATM model predictions is yet to be
+understood, but has no impact on
 our opacity measurements, which do not rely on this model nor on
 the precision with which the observing bandpasses are known. {\lp
 Further consitency test with ATM expectations will be performed in the
-future using the foreseen in-situ bandpass measurements with a
+future using in-situ bandpass measurements with a
 dedicated Martin-Pupplett spectrometer.}
 
 
-We further check the robustness of the {\tt skydip} $\taunu$ against the
+We further check the robustness of $\taunu^{\rm{skydip}}$ against the
 observing elevation. 
 %Figure~\ref{fig:skydip-to-taumeter-ratio-vs-elev}
-The second panel of Fig.~\ref{fig:skydip-to-taumeter-correl} shows the ratio of NIKA2
+Panel b) in Fig.~\ref{fig:skydip-to-taumeter-correl} shows the ratio of NIKA2
 {\tt skydip} opacities to the $225\,\rm{GHz}$ \taumeter\ opacities as a function of
 the average scan elevation. The {\tt skydip} opacity measurements have no
 sizable dependency on the elevation. Moreover, we observe consistent
 results for Uranus \bm\ scans and for
-the shorter OTF scans of the secondary calibrator MWC39 are in good
+the shorter raster scans of the secondary calibrator MWC39 are in good
 agreement, indicating that the {\tt skydip} opacity estimates do not
 depend on the type of observation scans. 
 

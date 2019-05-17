@@ -158,11 +158,26 @@ which is a key information for dealing with the correlated noise.
 %we'll need to know when a KID is close or far from the source for the timeline
 %processing (Sect.~\ref{se:toi_proc}).\\
   
+\noindent \emph{TOI calibration.}
+\label{se:flux_calib}
+The KID TOI in units of Hz (frequency shifts) are converted to
+Jy/beam in two steps. First, the KID data are inter-calibrated using the
+calibration coefficients, \aka\ relative gains, 
+as discussed in Sect.~\ref{se:flat_field} and the
+absolute scale of the flux density is set using the absolute
+calibration method discussed in
+Sect.~\ref{se:calibration_method}. Second, the instantaneous line-of-sight
+atmospheric attenuation $\rm{exp}[{-\taunu x(t)}]$ is corrected
+using the zenith opacity at the observing frequency $\nu$ $\taunu$, which is estimated for a given scan
+as discussed in Sect.~\ref{se:opacity}, and the instantaneous \airmass\
+$x(t)$. {\lp The latter is estimated as $(sin \elev_t)^{-1}$ using the observing elevation
+$\elev_t$, as obtained using the pointing reconstruction.}\\     
+
 \paragraph{Correlated noise subtraction.}
 \label{se:toi_proc}
-The TOI of each KID include a large low-frequency component of correlated noise of two
-different origins: the atmospheric component, which is usually
-dominant and common to all KIDs, and the electronic noise, which is common to the KIDs connected
+The TOI of each KID include a prominent low-frequency component of correlated noise of two
+different origins: the atmospheric component, which is dominant
+{\lp with some rare exceptions} and common to all KIDs, and the electronic noise, which is common to the KIDs connected
 to a same electronic readout feed-line (see
 Sect.~\ref{se:array}). The subtraction of this correlated noise is a key
 step of the data processing, as correlated noise residuals are an
@@ -177,9 +192,9 @@ the calibration.
 \includegraphics[clip, angle=0, scale=0.4]{Figures/toi_plot.eps}
 \includegraphics[clip, angle=0, scale=0.4]{Figures/toi_plot_decorr.eps}
 \caption[Example of Time-Ordered-Information]{Example of KID
-  time-ordered information. \emph{Top:} Example of 40 KID raw TOIs during an observation
+  time-ordered information. \emph{Top:} Example of 40 KID {\lp calibrated} TOIs during an observation
   of Uranus. The low frequency correlated component (atmospheric and electronic
-  noises) is clearly seen. \emph{Bottom:} One of these TOIs (in blue) and the scaled
+  noises) is clearly seen. \emph{Bottom:} One of these TOIs (in blue) and the
   \cm\ that is subtracted from it (in red).}
 \label{fig:nika_toi}
 \end{center}
@@ -214,12 +229,13 @@ the calibration.
 
 As illustrated on the upper panel of Fig.~\ref{fig:nika_toi}, the
 low-frequency noise component is seen by all KIDs at the same time,
-while the astrophysical signal is shifted from one KID to another.
-{\lp In this figure, the KID timelines have been rescaled with respect to
-the average signal.} 
+while the astrophysical signal {\lp (Uranus in this case)} is shifted
+from one KID to another.
+{\lp In this figure the KID timelines have been rescaled to be null
+at $t=0$.} 
 A simple average of the KID TOIs provides an
 estimate of the low-frequency noise component, that we referred to as
-a \emph{common mode}, while the signal is attenuated. The common mode
+a \emph{common mode}, while the signal is averaged out. The common mode
 estimate is then subtracted to each KID timeline, as illustrated in
 the lower panel of Fig.~\ref{fig:nika_toi}.
 
@@ -325,8 +341,8 @@ the rescaled TOI. Second, instead of a single common mode subtraction to
 all KIDs, we estimate an accurate common mode for each
 KID. Calculating the KID-to-KID cross-correlation matrix, we
 identify the most correlated KIDs. Then, we build an
-inverse noise weighted co-addition of the timelines of the off-source
-KID that are the most correlated with the KID under
+inverse noise weighted co-addition of the timelines of the %off-source
+KIDs that are the most correlated with the KID under
 concern. Furthermore, we have tested on simulations that this method
 does not modify the flux of {\lp point-like or moderately extended
 sources. Regarding very extended sources (over more
@@ -392,21 +408,6 @@ former is thus preferred over the latter.}\\
 %the commissioning of the instrument and the assessment of its performances on
 %point sources, we do not need to go into further details about this.\\
 
-\noindent \emph{TOI calibration.}
-\label{se:flux_calib}
-The KID TOI in units of Hz (frequency shifts) are converted to
-Jy/beam in two steps. First, the KID data are inter-calibrated using the
-calibration coefficients, \aka\ relative gains, 
-as discussed in Sect.~\ref{se:flat_field} and the
-absolute scale of the flux density is set using the absolute
-calibration method discussed in
-Sect.~\ref{se:calibration_method}. Second, the instantaneous line-of-sight
-atmospheric attenuation $\rm{exp}[{-\taunu x(t)}]$ is corrected
-using the zenith opacity at the observing frequency $\nu$ $\taunu$, which is estimated for a given scan
-as discussed in Sect.~\ref{se:opacity}, and the instantaneous \airmass\
-$x(t)$. {\lp The latter is estimated as $(sin \elev_t)^{-1}$ using the observing elevation
-$\elev_t$, as obtained using the pointing reconstruction.}\\     
-
 %We now focus on the absolute calibration of each TOI. As stated in
 %Sect.~\ref{se:ll_proc}, at this stage of the reduction each KID \rf~timeline is
 %in Hz. The conversion process to go from these Hz into Jy/beam proceeds in two
@@ -431,13 +432,28 @@ $\elev_t$, as obtained using the pointing reconstruction.}\\
 \label{se:map_projection}
 We use the pointing information to project the cleaned (low-frequency
 noise subtracted) calibrated TOI of all the valid KIDs of an array
-onto a map. The map is produced using an inverse
+onto a flux density map. The map is produced using an inverse
 variance noise weighting of all of the data samples that fall into a map
 pixel as defined using a nearest grid point scheme. The map resolution
 is chosen small enough (typically $2''$ per map pixel) to alleviate
-the need for more refined interpolation scheme. The noise variance for
-each KID is evaluated by the standard deviation of the KID TOI far
-from the source. %We neglect the KID-to-KID correlated noise residuals in this
+the need for more refined interpolation scheme. The noise variance
+$\sigma_k$ for each KID $k$ is evaluated by the standard deviation of the
+KID TOI far from the source.
+{\lp If the noise was white and uncorrelated from KID to KID, this
+inverse variance noise weighting of the data samples would produce an
+optimal flux density map $M_p$ with variance
+%\begin{equation}
+% \sigma^2_p = \left( \sum_{k}(A_{pt}^k)^{t} 1/\sigma_k^2 A_{pt}^k \right)^{-1},
+%\end{equation}
+%where $A^k$ is the pointing matrix for the KID $k$ that selects all the
+%data samples $t$ falling into the map pixel $p$~\citep{Tegmark1997}.}
+\begin{equation}
+ \sigma^2_p = \left( \sum_{k, \, t\in p}\, 1/\sigma_k^2 \right)^{-1},
+\end{equation}
+where the sum is performed over all KIDs $k$ and all data samples $t$
+falling into the map pixel $p$~\citep{Tegmark1997}.}
+
+%We neglect the KID-to-KID correlated noise residuals in this
 %procedure.
 %This is due to the remaining correlations between TOIs before projection. At this stage,
 %rather than putting more effort in TOI processing, we renormalize the width of
@@ -447,18 +463,19 @@ from the source. %We neglect the KID-to-KID correlated noise residuals in this
 %the background of the map, i.~e. far from the source.
 
 {\lp To account for the residual
-correlated noise while evaluating the map variance, we resort to an
+correlated noise while evaluating the variance map, we resort to an
 effective approach.
-First, we observe that the signal-to-noise ratio (SNR) distribution of
-the map is well-approximated with a Gaussian but it is not normalised
-to unity. This is due to the remaining correlations between KID TOIs
-before projection. Then, we increase the width of the Gaussian noise,
-which actually increases the map variance by the required factor so
-that the SNR distribution becomes normalized.
+First, we compute the map of the signal-to-noise ratio (SNR) as the ratio of
+$M_p$ and the noise map $\sigma_p$, that is the square root of the
+variance map. We observe that the distribution of the SNR map over the pixels far from the source is
+well-approximated with a Gaussian but has a width larger than the
+expected unity. This is due to the remaining correlations between KID TOIs
+before projection. Then, we multiply the noise map 
+$\sigma_p$ by the required factor so
+that the width of SNR distribution becomes normalized.
 %Then, we normalise the SNR distribution by
 %increasing the noise variance by a factor that goes from 1.2 to 1.5.
-This normalization factor ranges from 1.2 to 1.5 depending on the
-observing conditions. This
+This normalizing factor ranges from 1.2 to 1.5 depending on the observing conditions. This
 constitutes an effective approach to correct for the pixel-to-pixel
 correlation matrix off-diagonal terms alleviating the need of
 accurately measure them.}
@@ -521,7 +538,7 @@ When several scans of the same source are averaged, we apply an inverse
 variance weighting as well. %Weights are taken from the variance maps of each scan,
 %corrected for the excess variance mentioned in the previous
 %paragraph.
-The variance map of the sum of scans is also corrected to ensure unity
+The variance map of the sum of scans is also corrected to ensure unity-width
 SNR distribution.
 
 %As described in Sect.~\ref{se:photometric_system}, the flux density of

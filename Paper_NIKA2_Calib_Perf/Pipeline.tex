@@ -432,26 +432,37 @@ former is thus preferred over the latter.}\\
 \label{se:map_projection}
 We use the pointing information to project the cleaned (low-frequency
 noise subtracted) calibrated TOI of all the valid KIDs of an array
-onto a flux density map. The map is produced using an inverse
+onto a flux density map. This map $M_p$ is produced using an inverse
 variance noise weighting of all of the data samples that fall into a map
-pixel as defined using a nearest grid point scheme. The map resolution
+pixel as defined using a nearest grid point scheme. We also compute
+the associated count map $H_p$ defined as the number of data samples
+per map pixels. The map resolution
 is chosen small enough (typically $2''$ per map pixel) to alleviate
 the need for more refined interpolation scheme. The noise variance
 $\sigma_k$ for each KID $k$ is evaluated by the standard deviation of the
-KID TOI far from the source.
-{\lp If the noise was white and uncorrelated from KID to KID, this
-inverse variance noise weighting of the data samples would produce an
-optimal flux density map $M_p$ with variance
+KID TOI far from the source. 
+%nk_w8.pro in nk_scan_reduce.pro
+%nk_projection_4.pro
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+{\lp The variance map $\sigma_p^2$ is inhomogeneous and varies as the
+inverse of $H_p$. Its normalisation is evaluated using the
+homogeneous background map variance, that is the
+variance of $M_p\sqrt{H_p}$ calculated far from the source.}
+%nk_bg_var_map
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%{\lp If the noise was white and uncorrelated from KID to KID, this
+%inverse variance noise weighting of the data samples would produce an
+%optimal flux density map $M_p$ with variance
 %\begin{equation}
 % \sigma^2_p = \left( \sum_{k}(A_{pt}^k)^{t} 1/\sigma_k^2 A_{pt}^k \right)^{-1},
 %\end{equation}
 %where $A^k$ is the pointing matrix for the KID $k$ that selects all the
 %data samples $t$ falling into the map pixel $p$~\citep{Tegmark1997}.}
-\begin{equation}
- \sigma^2_p = \left( \sum_{k, \, t\in p}\, 1/\sigma_k^2 \right)^{-1},
-\end{equation}
-where the sum is performed over all KIDs $k$ and all data samples $t$
-falling into the map pixel $p$~\citep{Tegmark1997}.}
+%\begin{equation}
+% \sigma^2_p = \left( \sum_{k, \, t\, \in p}\, 1/\sigma_k^2 \right)^{-1},
+%\end{equation}
+%where the sum is performed over all KIDs $k$ and all data samples $t$
+%falling into the map pixel $p$~\citep{Tegmark1997}.}
 
 %We neglect the KID-to-KID correlated noise residuals in this
 %procedure.
@@ -540,6 +551,12 @@ variance weighting as well. %Weights are taken from the variance maps of each sc
 %paragraph.
 The variance map of the sum of scans is also corrected to ensure unity-width
 SNR distribution.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% photometry
+% nk_save_scan_results_3 -> nk_grid2info -> nk_map_photometry
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %As described in Sect.~\ref{se:photometric_system}, the flux density of
 %point-like sources is estimated as the amplitude of a

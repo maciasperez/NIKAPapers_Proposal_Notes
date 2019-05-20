@@ -9,8 +9,9 @@ to positions in the sky and in performing a KID selection. Although all
 the 2,900 KID are responsive, some of them are affected by
 cross-talk or are noisy due to an inaccurate tuning of their
 frequency, and must be discarded for further analysis. We use \bms,
-which enable an individual map per KID to be constructed, as discussed in
-Sect.~\ref{se:beammaps}, to measure the KID positions and relative gains, as
+which enable an individual map per KID to be constructed %, as discussed in
+%Sect.~\ref{se:beammaps},
+to measure the KID positions and relative gains, as
 discussed in Sect.~\ref{se:fov_geometry}. The measured KID positions
 are further
 checked by matching with the design positions, as presented in
@@ -22,24 +23,27 @@ repeating the procedure on a series of \bms.
 
 %   Methods
 %----------------------------------------------------------------------------------------
-\subsection{Reconstruction of the FOV positions}
+\subsection{Reconstruction of the FOV positions and KID properties}
 \label{se:fov_geometry}
 
 In order to be able to produce a map, one needs to associate a pointing
 direction to any data sample of the system. The telescope provides
 pointing information for a reference position in the focal
 plane. These information consist of the
-absolute azimuth and elevation $(\alpha,\delta)$ of the source, together with
-offsets $(\Delta\alpha, \Delta\delta)$ \wrt~these.
+absolute azimuth and elevation $(\alpha^{\rm{ref}},\delta^{\rm{ref}})$
+of the source, together with offsets
+$(\Delta\alpha^{\rm{ref}}, \Delta\delta^{\rm{ref}})$ \wrt~these {\lp
+depending on the scanning strategy.}
 We then need to know the relative pointing offsets of each detector
 with respect to this reference position. We use
-\bms\ for this purpose (see Sect.~\ref{se:beammaps}). The determination of the
-KID offsets in the focal plane proceeds in two steps.
+\bms\ for this purpose (see Sect.~\ref{se:beammaps}).
+%The determination of the KID offsets in the focal plane proceeds in two steps.
+%\paragraph{Step 1.}
 
-\paragraph{Step 1.} We apply a median filter per
-KID timeline whose width is set to 31 samples, that is equivalent to
-about 5~FWHM at 65 arcsec/s and for the sampling frequency of
-23.84~Hz. Then, we project one map per KID in Nasmyth
+We apply a median filter per KID timeline whose width is set to 31
+samples, that is equivalent to about 5~FWHM at 65\,arcsec/s and for the
+sampling frequency of
+23.84\,Hz. Then, we project one map per KID in Nasmyth
 coordinates. The median filter removes
 efficiently most of the low frequency atmospheric and electronic
 noise, albeit with a slight ringing and flux loss on the
@@ -50,11 +54,11 @@ provided $(\alpha_t,\delta_t)$ and $(\Delta\alpha_t,\Delta\delta_t)$
 coordinates, we build the following quantities at time~$t$:
 
 \begin{eqnarray}
-\Delta x_t &=& \cos\delta_t \Delta\alpha_t - \sin \delta_t\Delta \delta_t \nonumber \\
-\Delta y_t &=& \sin\delta_t \Delta\alpha_t + \cos \delta_t\Delta \delta_t \nonumber
+\Delta x_t &=& \cos\delta_t \Delta\alpha_t^{\rm{ref}} - \sin \delta_t\Delta \delta_t^{\rm{ref}} \nonumber \\
+\Delta y_t &=& \sin\delta_t \Delta\alpha_t^{\rm{ref}} + \cos \delta_t\Delta \delta_t^{\rm{ref}} \nonumber
 \end{eqnarray}
 
-Note that $\Delta\alpha_t$ is already corrected by the $\cos\delta_t$ factor to
+Note that $\Delta\alpha_t^{\rm{ref}}$ is already corrected by the $\cos\delta_t^{\rm{ref}}$ factor to
 have orthonormal coordinates in the tangent plane of the sky and be immune to
 the geodesic convergence at the poles.
 %Moreover, before projecting the
@@ -70,25 +74,47 @@ the geodesic convergence at the poles.
 %information and NIKA2 timelines: we fit a constant shift between the
 %source positions estimated using the subscans in one direction and
 %using the subscans in the opposite direction.
-The data timelines are then projected onto maps. 
-We fit a 2D elliptical Gaussian on
-each KID map. The centroid of this Gaussian is a first estimate of the KID
-offsets, FWHM, ellipticity and sensitivity. We apply a first KID selection by
-removing outliers to the statistics on these parameters. We also discard
-manually KIDs that show a cross-talk counterpart on their map.
+The data timelines are then projected onto $(x,\, y)$ maps. 
+We fit a 2D elliptical Gaussian on each KID Nasmyth map. {\lp The centroid
+position of this Gaussian provides us with an estimate of the KID
+pointing offsets \wrt\ the reference position in Nasmyth
+$(x,y)$ coordinates (independent of time).
 
-\paragraph{Step 2.} With these offsets, it is already possible to
-produce maps from the combination of all detectors. However, for
-accurate calibration, we must correct for the flux loss
-induced by the median filter and ensure that each timeline is treated
-in the same way as the scientific observation will. For this, we apply
-the pointing reconstruction and the \cmoneb\ noise subtraction
-presented in Sect.~\ref{se:dataproc}.
-At this stage, we do not have
-absolute calibration for each KID (no opacity correction yet) but the
-amplitude of the fitted centroid on the same planet provides the required
-cross-calibration between KIDs. The final absolute calibration will be
-presented in Sect.~\ref{se:calibration}.\\
+To go from Nasmyth offsets to $(\alpha,\delta)$ offsets, we apply the
+following rotation by the elevation angle:
+\begin{eqnarray}
+\Delta\alpha^k_t &=&  \cos\delta_t \Delta x^k + \sin\delta_t \Delta y^k, \nonumber\\
+\Delta\delta^k_t &=& -\sin\delta_t \Delta x^k + \cos\delta_t \Delta y^k, \nonumber
+\end{eqnarray}
+where $k$ is a KID index. Adding these offsets to
+$(\Delta \alpha_t^{\rm{ref}}, \Delta \delta_t^{\rm{ref}})$ gives the
+absolute pointing of each KID in these coordinates.}
+
+{\lp Furthermore, the fitted Gaussian per KID further provides us with
+a first estimate of the KID FWHM, ellipticity and sensitivity. 
+We apply a first KID selection by removing outliers to the statistics
+on these parameters. We also discard manually KIDs that show a
+cross-talk counterpart on their map. Second,  we repeat this
+procedure using the {\emph baseline} TOI denoising instead of the
+median filter. Specifically, we apply the \cmoneb\ noise subtraction
+presented in Sect.~\ref{se:dataproc} to the KID timelines before
+projecting the map per KID. Therefore this alleviates the flux loss
+induced by the median filter and ensures that each timeline is treated
+in the same way as the scientific observation will. A second iteration
+of the KID selection is performed.} 
+
+%\paragraph{Step 2.} With these offsets, it is already possible to
+%produce maps from the combination of all detectors. However, for
+%accurate calibration, we must correct for the flux loss
+%induced by the median filter and ensure that each timeline is treated
+%in the same way as the scientific observation will. For this, we apply
+%the pointing reconstruction and the \cmoneb\ noise subtraction
+%presented in Sect.~\ref{se:dataproc}.
+%At this stage, we do not have
+%absolute calibration for each KID (no opacity correction yet) but the
+%amplitude of the fitted centroid on the same planet provides the required
+%cross-calibration between KIDs. The final absolute calibration will be
+%presented in Sect.~\ref{se:calibration}.\\
 
 This analysis is repeated on all \bms\ to obtain statistics and
 precision on each KID parameter, together with estimates on KID
@@ -130,8 +156,8 @@ between the two spatial coordinates in the polynomial fit.
 
 The aim is twofold. First we obtain a detailed
 characterisation of the real geometry of NIKA2 focal plane. Secondly,
-this analysis constitutes the last step of the KID
-selection, and the most deviant KIDs, whose measured position deviates
+{\lp this analysis is used for the KID
+selection}, and the most deviant KIDs, whose measured position deviates
 by more than $4''$ from the design position are discarded. 
 
 We present the global results of the grid distortion
@@ -179,7 +205,7 @@ The results are gathered in Table~\ref{ta:gridmatch}.
     \hline
     %\small{$\lambda$ [mm]}  &  1.25     &      1.25      & 2.05   \\
     \small{$\lambda$ [mm]}  &  1.15     &      1.15      & 2.0  \\ 
-    %\small{Designed KID}                     & 1140  &  1140 & 616  \\
+    \small{Design detectors} & 1140  &  1140 & 616  \\
     %\small{Well-placed KID}                  &  864  &  808  & 488  \\
     \small{Selected KID}\tablefootmark{a}    &  866  &  808  & 488  \\
     \small{Well-placed KID}\tablefootmark{b}          &  864  &  808  & 488  \\

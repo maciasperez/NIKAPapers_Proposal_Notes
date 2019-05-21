@@ -6,14 +6,17 @@
 
 We present the calibration of the absolute scale of the flux densities
 for the NIKA2 instrument in this section using Uranus as the main
-primary calibrator. Practically, at the stage of the FOV
-reconstruction (see Sect.~\ref{se:geometry}), an absolute
-coefficient factor per detector is derived using a \bm\ scan of
-Uranus. This step realizes also the inter-calibration of all the KIDs,
-as their coefficients give the KID gains. Secondly, the flux
-density absolute scale is further refined by monitoring the primary
-calibrator all along the observation campaign to estimate an
-absolute calibration factor.
+primary calibrator.
+
+Practically, %at the stage of the FOV reconstruction (see
+             %Sect.~\ref{se:geometry}),
+an absolute calibration factor per detector is derived using a \bm\ scan of
+Uranus. This step realizes also the inter-calibration of all the KIDs.%,
+%as their coefficients give the KID gains.
+Secondly, the flux density absolute scale is further refined by
+monitoring the primary calibrator all along the observation campaign
+to estimate
+{\lp a corrective rescaling of the absolute calibration factor}.
 
 We have evidenced a daily variation of the absolute calibration
 coefficients related to temperature-induced variation of the beam
@@ -81,17 +84,21 @@ We parametrize the primary calibrator flux density as
 $S_{\rm{c}}(\nu) = S_{\rm{c}}(\nu_0)\, f(\nu/\nu_{0})$, where $f(\nu/\nu_{0})$
 encloses the spectral dependence, 
 as a function of a reference frequency $\nu_{0}$ that we choose
-arbitrarily to be: $\nu_{0} = 150$~GHz for the 2mm array and
+arbitrarily to be: $\nu_{0} = 150$~GHz for the $2\,\rm{mm}$ array and
 $\nu_{0}= 260$~GHz for both $1\,\rm{mm}$ arrays. Projecting the raw
 data (in units of the KID resonance frequency shift or $\rm Hz$) of a
 calibrator {\sl c}, we model the calibrator map as a fixed-width Gaussian
+%\begin{equation}
+%  R_{\rm{c}}(\theta, \phi)  = \frac{A_{\rm{c}}}{2 \pi \sigma_{0}^{2}}
+%  e^{-\frac{\theta^{2}}{2\sigma_{0}^{2}}},
+%  \label{eq:gaussian_amplitude}
+%\end{equation}
 \begin{equation}
-  R_{\rm{c}}(\theta, \phi)  = \frac{A_{\rm{c}}}{2 \pi \sigma_{0}^{2}}
-  e^{-\frac{\theta^{2}}{2\sigma_{0}^{2}}},
+  R_{\rm{c}}(\theta, \phi)  = A_{\rm{c}} \, e^{-\frac{\theta^{2}}{2\sigma_{0}^{2}}},
   \label{eq:gaussian_amplitude}
 \end{equation}
-where $A_{\rm{c}}$ is the amplitude estimate of the fixed-width
-Gaussian. $\sigma_{0}$ is derived from the
+{\lp where $A_{\rm{c}}$ is the amplitude of the 
+Gaussian in Hz,} and $\sigma_{0}$ is derived from the
 reference FWHM, labelled FWHM$_{0}$, which is $12.5''$ for the $1\, \rm{mm}$
 arrays and $18.5''$ for the $2\,\rm{mm}$ array. These values have
 been chosen larger than the main beam values, as reported in
@@ -108,17 +115,18 @@ $S_{\rm{c}}(\nu_0)$ and $A_{\rm{c}}$. Then, for any observed point-like source
 \begin{equation}
   M_{\rm{s}}(\theta, \phi) = \frac{S_{\rm{c}} (\nu_{0})}{A_{\rm{c}}}
   R_{\rm{s}}(\theta,\phi),
+  \label{eq:pointsourcephot}
 \end{equation}
-is calibrated in Jy/FWHM$_{0}$beam. The flux density estimate for the
-source can be obtained as
-\begin{equation}
-S(\nu_{0})  = \frac{S_{\rm{c}}(\nu_{0})}{A_{\rm{c}}} \, A_{\rm{s}},
-\label{eq:pointsourcephot}
-\end{equation}
-where $A_{\rm{s}}$ is the amplitude estimate from the raw map.
-
-
-\subsubsection{Color correction}
+is calibrated in Jy/FWHM$_{0}$beam. {\lp The best-fit amplitude estimate
+of the fixed-width FWHM$_{0}$ Gaussian on this map directly gives an
+estimate of the flux density of the source at the reference
+frequency $S(\nu_{0})$, if no color correction are needed.}
+%as
+%\begin{equation}
+%S(\nu_{0})  = \frac{S_{\rm{c}}(\nu_{0})}{A_{\rm{c}}} \, A_{\rm{s}},
+%\label{eq:pointsourcephot}
+%\end{equation}
+%where $A_{\rm{s}}$ is the amplitude estimate from the raw map.
 
 \begin{table*}[!thbp]
 \caption{Color correction factors for a target source  $S \propto \nu^{\alpha_{\rm{s}}}$, as defined using Eq.~\ref{eq:color_correction}.}
@@ -142,6 +150,8 @@ Array     & \multicolumn{8}{c}{$\alpha_{\rm{s}}$} \\
             \hline
 \end{tabular}
 \end{table*}
+
+\subsubsection{Color correction}
 
 The flux density estimate $S(\nu_{0})$ gives the
 flux of the source at the reference frequency only if the source has
@@ -172,16 +182,24 @@ source $\alpha_{\rm{s}}$ in Table~\ref{tab:mod}.
 \subsubsection{Diffuse source}
 \label{se:extended_source_calib}
 
-For aperture photometry or for extended sources, the map calibrated in
-Jy/FWHM$_{0}$ must be converted in a map in Jy/sr, that is corrected
-with the reference beam efficiency, defined as the ratio of the solid
+{\lp For aperture photometry or for extended sources, the map calibrated in
+Jy/FWHM$_{0}$ $M_{\rm{s}}(\theta, \phi)$ must be converted in a
+map in Jy/sr $M_{\rm{ap}}(\theta, \phi)$, that is corrected
+with the reference beam efficiency BE$_{0}$ and the solid
 angle enclosed in the reference fixed-width Gaussian beam
+$\Omega_{\rm{FWHM}_{0}} = 2\pi \sigma_0^2$ using
+\begin{equation}
+M_{\rm{ap}}(\theta, \phi) = \frac{\rm{BE}_{0}}{2\pi \sigma_0^2} \, M_{\rm{s}}(\theta, \phi).
+\end{equation}}
+The reference beam efficiency is defined as the ratio of 
 $\Omega_{\rm{FWHM}_{0}}$ and the measured solid angle of the total
-beam $\Omega_{\rm{tot}}$. The beam solid angle estimates are
-presented in Sect.~\ref{se:beam_efficiency}.
+beam $\Omega_{\rm{tot}}$.
+The beam solid angle estimates are presented in
+Sect.~\ref{se:beam_efficiency}.
+
 {\lp For the aperture photometry of point-like source and for the
 photometry of moderately extended sources, we provide the reference
-beam efficencies B.E$_{0}$ estimated as the ratio between the
+beam efficencies estimated as the ratio between the
 reference FWHM beam power and the total beam power up to a radius of
 180'' $\Omega_{180}$. To account for the power stemming from radii
 ranging from $180''$ to a cutting radius $r_{\rm{c}}$, we estimate a
@@ -211,7 +229,7 @@ solid angle using Eq.~\ref{eq:omega_beam_4pi}. The reference beam efficiencies
     \hline
     \noalign{\smallskip}
     FWHM$_{0}$ [arcsec]          &  $12.5$   &  $12.5$  &   $12.5$  &   $18.5$  \\
-    B.E$_{0}$\tablefootmark{a}\hspace{3mm}  [\% ] & $70 \pm 4$ & $72 \pm 4$ & $70 \pm 4$ & $85 \pm 3$ \\
+    BE$_{0}$\tablefootmark{a}\hspace{3mm}  [\% ] & $70 \pm 4$ & $72 \pm 4$ & $70 \pm 4$ & $85 \pm 3$ \\
     \noalign{\smallskip}
     $\eta_{390}$\hspace{3mm}  & $0.95$ & $0.95$ & $0.95$ & $0.96$ \\
     $\eta_{\rm{tot}}$\hspace{3mm}  & $0.78$ & $0.78$ & $0.78$ & $0.85$ \\
@@ -226,25 +244,59 @@ solid angle using Eq.~\ref{eq:omega_beam_4pi}. The reference beam efficiencies
 
 \subsubsection{Practical calibration}
 \label{se:practical_calib}
-Practically, the absolute calibration consists in evaluating a flux
-density rescaling factor using a series of OTF scans toward
-Uranus or Neptune. This flux rescaling factor is an estimate of the
-$S_{\rm{c}}(\nu_{0})$-to-$A_{\rm{c}}$ ratio of Eq.~\ref{eq:pointsourcephot}. The
-expected calibrator flux density $S_{\rm{c}}(\nu_{0})$ is obtained as
-discussed in Appendix~\ref{se:ref_flux_uranus_neptune}, whereas the measured
-amplitude $A_{\rm{c}}$ is estimated as the average amplitude of the FWHM$_0$
-Gaussian fitted from a series of calibrator maps.
 
-Before the flux density estimation, the calibrator raw data are i)
-intercalibrated as decribed in Sect.~\ref{se:flat_field} and ii) corrected for the
-atmospheric attenuation as described in Sect.~\ref{se:opacity}. To
-refine the intercalibration between the two $1$-mm arrays after the
-KID Hertz to Jy/beam conversion factor estimates, a flux rescaling
-factor per array is calculated.
+{\lp Practically, the calibration is performed in two steps. First
+$S_{\rm{c}}(\nu_{0})$-to-$A_{\rm{c}}$ ratios per detector $G_k$
+are estimated for each KID $k$ using the map per KID projected from
+a \bm\ scan of a calibrator. The calibration coefficient $G_k$
+for the KID $k$ is computed at zero atmospheric opacity as:
+\begin{equation}
+  G_k = \frac{S_{\rm{c}}(\nu_0)\, e^{-\taunu\,x}}{A_k},
+  \label{eq:kid_gain}
+\end{equation}
+where $S_{\rm{c}}(\nu_0)$ is the expected flux density of the source at
+the reference frequency $\nu_0$ (see
+Appendix~\ref{se:ref_flux_uranus_neptune}), $\taunu\, x$ is the
+line-of-sight opacity measured using the {\tt corrected skydip} method
+(see Sect.~\ref{se:opacity}) and $A_k$ is the best-fit
+amplitude of the reference FWHM$_0$ Gaussian, which is fitted in the
+KID map. % using Eq.~\ref{eq:gaussian_amplitude}.
+This first step performs both the relative calibration between KIDs and the absolute
+calibration using a single calibrator scan.
 
-The primary calibrator observation scans are selected as discussed in
-Sect.~\ref{se:data_selection}. In addition to the scan selection cuts,
-we use a Gaussian beam size criterion. The FWHM estimated from the planet
+Secondly, the absolute calibration is further refined by evaluating a
+flux density rescaling factor using a series of scans toward
+Uranus or Neptune. After the first step of the calibration was
+performed, a map $M_\nu$ is projected, as
+described in Sect.~\ref{se:dataproc}, where $\nu$ stands for the three
+arrays and the $1\,\rm{mm}$-array combination, and the atmospheric attenuation
+is corrected. For each of the calibrator scans, we
+compute the ratio between the expected calibrator flux density
+$S_{\rm{c}}(\nu_{0})$ and the measured calibrator flux density in $M_\nu$, which
+is estimated as described in Sect.~\ref{se:photometric_system}. The
+flux density rescaling factor per array is the average
+expected-to-measured flux density ratio over all the selected calibrator scans.} 
+
+%the absolute calibration consists in evaluating a flux
+%density rescaling factor using a series of OTF scans toward
+%Uranus or Neptune. This flux rescaling factor is an estimate of the
+%$S_{\rm{c}}(\nu_{0})$-to-$A_{\rm{c}}$ ratio of Eq.~\ref{eq:pointsourcephot}. The
+%expected calibrator flux density $S_{\rm{c}}(\nu_{0})$ is obtained as
+%discussed in Appendix~\ref{se:ref_flux_uranus_neptune}, whereas the measured
+%amplitude $A_{\rm{c}}$ is estimated as the average amplitude of the FWHM$_0$
+%Gaussian fitted from a series of calibrator maps.
+%
+%Before the flux density estimation, the calibrator raw data are i)
+%intercalibrated as decribed in Sect.~\ref{se:flat_field} and ii) corrected for the
+%atmospheric attenuation as described in Sect.~\ref{se:opacity}. To
+%refine the intercalibration between the two $1$-mm arrays after the
+%KID Hertz to Jy/beam conversion factor estimates, a flux rescaling
+%factor per array is calculated.
+
+The primary calibrator scans are first selected as discussed in
+Sect.~\ref{se:data_selection}. Then, in addition to
+the \emph{baseline} scan selection cuts, we use a Gaussian beam size
+criterion. The FWHM estimated from the planet
 observation map is required to be lower than $12.5''$ at $1\,\rm{mm}$ and lower
 than $18''$ at $2\,\rm{mm}$. In further mitigating the flux scatter
 due to beam broadening, we ensure better accuracy of the absolute
@@ -286,25 +338,12 @@ section.
 The dispersion of the detector responsivity across the field of view (\aka\ flat
 fields) has been characterized in the following ways.
 
-
-\noindent \emph{Main beam flat fields.} These are the focal plane distributions
-of the calibration coefficient of each KID. {\lp They describe the
+\noindent \emph{Main beam flat fields.} These are the focal plane
+distributions of the calibration coefficient of each KID. {\lp They describe the
 focal plane distributions of the point spread function (PSF) in
-the far field of the telescope.} The calibration coefficients are
-estimated using a \bm\ scan of a calibrator, as discussed in
-Sect.~\ref{se:photometric_system}. We
-further clarify the computation of the calibration coefficient $G_k$
-for the KID $k$ as:
-\begin{equation}
-  G_k = \frac{S_{th}(\nu_0)\, e^{-\taunu\,x}}{A_k},
-  \label{eq:kid_gain}
-\end{equation}
-where $S_{th}(\nu_0)$ is the expected flux density of the source at
-the reference frequency $\nu_0$, $\taunu\, x$ is the
-line-of-sight opacity measured using the NIKA2 {\tt skydip} method
-(see Sect.~\ref{se:opacity}) and $A_k$ is the best-fit
-amplitude of the reference FWHM$_0$ Gaussian, which is fitted in the
-KID map using Eq.~\ref{eq:gaussian_amplitude}.
+the far field of the telescope.} The calibration coefficients $G_k$ are
+estimated using Eq.~\ref{eq:kid_gain}, as discussed in
+Sect.~\ref{se:practical_calib}. 
 
 \noindent \emph{Forward beam flat fields.} These are the focal plane
 distributions of the relative response of
@@ -431,16 +470,18 @@ was consistent with the one reported in this paper.}
 %---------------------------------------------------------------------
 \subsection{Temperature-induced variations}
 \label{se:beam_variation}
+
 We evidenced a daily variation of the flux density estimates,
 which correlates with the measured beam size.
 This beam size broadening, which depends on the
 scan observation date and mainly impacts late
 afternoon observations, is reproducible from a campaign to another and 
 is probably due to deformations of the main dish subject to the Sun
-heating. This is a well-known effect, which also impacts
-EMIR~\ref{Carter2012} and was observed for the previous generation of
-instruments at the IRAM \trentemetre\ telescope MAMBO2. However,
-compared to the period when MAMBO2 or NIKA were on activity, these
+heating. This is a well-known effect, which also impacts other
+instruments currently operated at the IRAM \trentemetre\ telescope, such as
+EMIR~\ref{Carter2012}, and was also observed for the previous generation of
+IRAM \trentemetre\ telescope instruments at the IRAM, such as MAMBO2. However,
+compared to the periods when MAMBO2 or NIKA were on activity, these
 daily deformations have probably strengthen due to the ageing of the
 main dish white coating. On short time scales, anomalous atmospheric
 refraction
@@ -448,7 +489,11 @@ may also play a role~\citep{Altenhoff1987}. Based on observation
 experience with EMIR, afternoon hours were often impaired with an
 unstable atmosphere while rising moist air that
 moves through the beam of the telescope causes the telescope beam
-position to change within few seconds by several arcseconds.
+position to change within few seconds by several arcseconds {\lp resulting
+in an average enlargement of the beam pattern. As both effects (the
+primary mirror deformations and the anomalous refraction) are due to
+ambiant temperature variations, they are referred to as
+the \emph{temperature-induced variation effect}.}
 
 The impact of this effect on the flux density estimates can be
 mitigated, as we will explain in
@@ -465,7 +510,7 @@ all the available bright source scans acquired at the optimal focus
 for each campaign. Bright sources are selected by thresholding the
 flux density estimates above $1\,\rm{Jy}$ at both wavelengths.
 The beam size is estimated by fitting a 2D Gaussian from the map and
-taking the geometrical mean of the FWHM, defined as 
+taking the geometrical mean of the FWHMs, defined as 
 $\rm{FWHM}_{\rm{geom}} = (\rm{FWHM}_x \rm{FWHM}_y)^{1/2}$, where
 $\rm{FWHM}_x$ and $\rm{FWHM}_y$ are the best-fitting values of FWHM
 along the minor and major axis of the elliptical 2D Gaussian.
@@ -479,26 +524,27 @@ to the finite extension of the apparent disc of the planet, as in Sect.~\ref{se:
     \includegraphics[clip=true, trim={0.9cm, 0.5cm, 0.5cm, 0.5cm}, width=0.4725\textwidth]{Figures/Beam_monitoring_with_otfs_vs_ut_1mm.pdf}
     \includegraphics[clip=true, trim={0.5cm, 0.5cm, 0.5cm, 0.5cm}, width=0.4875\textwidth]{Figures/Beam_monitoring_with_otfs_vs_ut_a2.pdf}
     \caption[Beam size monitoring using OTF scans]{Beam size
-      monitoring using OTF scans. FWHM at $1\,\rm{mm}$ (left panel)
-      and $2\,\rm{mm}$ (right panel) as a function of the
-      observation time in UT hours are shown using scans of giant
+      monitoring using OTF scans. Geometrical FWHM at $1\,\rm{mm}$ (top panel)
+      and $2\,\rm{mm}$ (bottom panel), as a function of the
+      observation time in UT hours, are shown using scans of giant
       planets (filled circles) and bright point-like sources above
-      $1\,\rm{Jy}$ (filled stars) for N2R9 commissioning campaign and
-      N2R12 and N2R14 science pools. The cross-hatched areas
-      correspond to observing time period that are discarded using
-      the baseline selection, as decribed in Sect.~\ref{se:data_selection}.} 
+      $1\,\rm{Jy}$ (filled stars) for the three \emph{reference}
+      observation campagns (N2R9,N2R12 and N2R14). The cross-hatched areas
+      correspond to observing time periods that are discarded using
+      the \emph{baseline} scan selection, as decribed in Sect.~\ref{se:data_selection}.} 
 \label{fig:beam_monitoring_otf}
   \end{center}
 \end{figure}
 
 Figure~\ref{fig:beam_monitoring_otf} shows FWHM$_{\rm{geom}}$ as a
 function of the observing time of the scans in UT hours for all OTF
-scans of bright sources for the N2R9 commissioning campaign as well
-as for the N2R12 and N2R14 science pools. For the three campaigns, we
-observe the same evolution of the FWHM, which goes from a plateau at a
-median value of $11.3''$ at $1\,\rm{mm}$ and $17.5''$ at $2\,\rm{mm}$
-during the night, to a smooth rise that reaches a maximum of about $14''$
-at $1\,\rm{mm}$ and $18.5''$ at $2\,\rm{mm}$ around 16:00 UT
+scans of bright sources for the three \emph{reference} observation
+campaigns (N2R9, N2R12 and N2R14). We observe the same evolution of
+the FWHM for all campaigns.
+This goes from a plateau at a median value of $11.3''$ at $1\,\rm{mm}$
+and $17.5''$ at $2\,\rm{mm}$ during the night, to a smooth rise that
+reaches a maximum of about $14''$ at $1\,\rm{mm}$ and $18.5''$ at
+$2\,\rm{mm}$ around 16:00 UT
 hours. The beam broadening begins to become sizable around 15:00 UT
 and one has to wait until around 22:00 UT for the beam sizes to lay
 down on the stability plateau. The UT ranges that are discarded

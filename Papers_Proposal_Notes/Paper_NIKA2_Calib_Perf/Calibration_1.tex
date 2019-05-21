@@ -479,9 +479,10 @@ afternoon observations, is reproducible from a campaign to another and
 is probably due to deformations of the main dish subject to the Sun
 heating. This is a well-known effect, which also impacts other
 instruments currently operated at the IRAM \trentemetre\ telescope, such as
-EMIR~\ref{Carter2012}, and was also observed for the previous generation of
-IRAM \trentemetre\ telescope instruments at the IRAM, such as MAMBO2. However,
-compared to the periods when MAMBO2 or NIKA were on activity, these
+EMIR~\citep{Carter2012}, and was also observed for the previous generation of
+IRAM \trentemetre\ telescope instruments at the IRAM, such as
+MAMBO-2~\citep{Kreysa1999}. However,
+compared to the periods when MAMBO-2 or NIKA were on activity, these
 daily deformations have probably strengthen due to the ageing of the
 main dish white coating. On short time scales, anomalous atmospheric
 refraction
@@ -509,11 +510,13 @@ The time-dependent beam-size variations are primarily monitored using
 all the available bright source scans acquired at the optimal focus
 for each campaign. Bright sources are selected by thresholding the
 flux density estimates above $1\,\rm{Jy}$ at both wavelengths.
-The beam size is estimated by fitting a 2D Gaussian from the map and
-taking the geometrical mean of the FWHMs, defined as 
-$\rm{FWHM}_{\rm{geom}} = (\rm{FWHM}_x \rm{FWHM}_y)^{1/2}$, where
-$\rm{FWHM}_x$ and $\rm{FWHM}_y$ are the best-fitting values of FWHM
-along the minor and major axis of the elliptical 2D Gaussian.
+The beam size is estimated by fitting a 2D elliptical Gaussian from the map {\lp
+and computing the geometrical FWHM using Eq.~\ref{eq:fwhm_geom}.}
+%and
+%taking the geometrical mean of the FWHMs, defined as 
+%$\rm{FWHM}_{\rm{geom}} = (\rm{FWHM}_x \rm{FWHM}_y)^{1/2}$, where
+%$\rm{FWHM}_x$ and $\rm{FWHM}_y$ are the best-fitting values of FWHM
+%along the minor and major axis of the elliptical 2D Gaussian.
 % see def of RESULT_FWHM in nk_grid2info.pro line 320
 % + see def of params in nika_gauss2d.pro
 For Uranus, the FWHM estimates are corrected for the beam broadening due
@@ -524,7 +527,7 @@ to the finite extension of the apparent disc of the planet, as in Sect.~\ref{se:
     \includegraphics[clip=true, trim={0.9cm, 0.5cm, 0.5cm, 0.5cm}, width=0.4725\textwidth]{Figures/Beam_monitoring_with_otfs_vs_ut_1mm.pdf}
     \includegraphics[clip=true, trim={0.5cm, 0.5cm, 0.5cm, 0.5cm}, width=0.4875\textwidth]{Figures/Beam_monitoring_with_otfs_vs_ut_a2.pdf}
     \caption[Beam size monitoring using OTF scans]{Beam size
-      monitoring using OTF scans. Geometrical FWHM at $1\,\rm{mm}$ (top panel)
+      monitoring using OTF raster scans. Geometrical FWHM at $1\,\rm{mm}$ (top panel)
       and $2\,\rm{mm}$ (bottom panel), as a function of the
       observation time in UT hours, are shown using scans of giant
       planets (filled circles) and bright point-like sources above
@@ -536,8 +539,8 @@ to the finite extension of the apparent disc of the planet, as in Sect.~\ref{se:
   \end{center}
 \end{figure}
 
-Figure~\ref{fig:beam_monitoring_otf} shows FWHM$_{\rm{geom}}$ as a
-function of the observing time of the scans in UT hours for all OTF
+Figure~\ref{fig:beam_monitoring_otf} shows the FWHM estimates as a %FWHM$_{\rm{geom}}$ as a
+function of the observing time of the scans in UT hours for all OTF raster
 scans of bright sources for the three \emph{reference} observation
 campaigns (N2R9, N2R12 and N2R14). We observe the same evolution of
 the FWHM for all campaigns.
@@ -553,12 +556,15 @@ Sect.~\ref{se:data_selection}) are shown as cross-hatched areas in
 Fig.~\ref{fig:beam_monitoring_otf}. They consist of the afternoon
 period between 15:00 and 22:00 UT, which corresponds to the period
 when the daylight heating of the the telescope main dish has the most
-impact, as well as the 9:00-to-10:00 Sun rising period.
+impact, as well as the period from 9:00 UT to 10:00 UT while the Sun rises.
 The same beam size variations in time using scans of giant planets (Uranus and
 Neptune) or other bright
-sources (mainly quasars) are observed. However, the FWHM$_{\rm{geom}}$ from planet
+sources (mainly quasars) are observed. However, the FWHM from planet %FWHM$_{\rm{geom}}$ from planet
 observations tend to be slightly larger than those from observations
-of other sources. This originates from the larger contribution of the
+of other sources. {\lp For example, most of the planet FWHM estimates
+are above the median FWHM calculated using the scans acquired during the
+night, which are shown as horizontal lines in Fig.~\ref{fig:beam_monitoring_otf}.}
+This originates from the larger contribution of the
 error beams to the fitted 2D Gaussian, as flux are measured with 
 %larger 2D Gaussian fitted
 %values due to the error beams, which are measured with
@@ -589,12 +595,15 @@ the data analysis pipeline described in
 Sect.~\ref{se:dataproc} with the same parameters as for
 standard OTF scans, and projected onto maps of $2''$ resolution.
 As previously, an elliptical 2D Gaussian is then fitted from the map
-and the FWHM$_{\rm{geom}}$ is formed from the best-fit FWHM along the
-two axis.
+and the geometrical FWHM%$_{\rm{geom}}$
+%is formed from the best-fit FWHM along the two axis.
+is computed.
 %FWHM estimates on Uranus maps are corrected for an
 %offset due to the finite size of the apparent disc, as discussed in
 %Sect.~\ref{se:beam_monitoring_otf}.
-Pointing scans on other sources, such as NGC7027, are discarded from the analysis.
+Pointing scans on {\lp slightly extended} sources, such as NGC7027,
+are discarded from the analysis.
+
 
 % anomalous refraction
 For each pointing, we also seek for signs of atmospheric anomalous refraction. There are
@@ -637,30 +646,35 @@ The pointing-based FWHM estimates constitute a time-sampling of the
 beam size during
 the whole observation campaign. They can serve to estimate the beam
 size of any observation scans, in particular
-toward sources too faint for a direct FWHM$_{\rm{geom}}$ fit to be made on the
-projected map. To mitigate the dispersion, the time-stamped
-pointing-based FWHM$_{\rm{geom}}$ is filtered with a running median on a 70-minute
-width time window. Then, the FWHM$_{\rm{geom}}$ at the time of the considered scans is
-interpolated from the smoothed pointing-based time-stamped FWHM$_{\rm{geom}}$.
+toward sources too faint for a direct FWHM %$_{\rm{geom}}$
+fit to be made on the map. To mitigate the dispersion, the time-stamped
+pointing-based FWHM
+%$_{\rm{geom}}$
+is filtered with a running median on a 70-minute
+width time window. Then, the FWHM %$_{\rm{geom}}$
+at the time of the considered scans is
+interpolated from the median-filtered pointing-based FWHM.%$_{\rm{geom}}$.
 %
 \begin{figure}[ht!]
   \begin{center}
     \includegraphics[clip=true, trim={0.9cm, 0.5cm, 0.5cm, 0.5cm}, width=0.4725\textwidth]{Figures/Beam_monitoring_with_otfs_vs_ut_compare_pointings_1mm.pdf}
     \includegraphics[clip=true, trim={0.5cm, 0.5cm, 0.5cm, 0.5cm}, width=0.4875\textwidth]{Figures/Beam_monitoring_with_otfs_vs_ut_compare_pointings_a2.pdf}
-    \caption[Beam size monitoring comparison]{Beam size monitoring
-      comparison. FWHM estimates from a 2D Gaussian fit on the maps
-      of OTF scans towards bright sources ('OTF'-labeled pink data
-      points) are compared to FWHM estimates obtained by
-      interpolating the smoothed pointing-based FWHM at the time of
-      the scans ('Pointing'-labeled light green data points).}
+    \caption[Beam size monitoring comparison]{Beam size monitoring.
+     'OTF'-labeled pink data points show the FWHM estimates from a 2D
+    Gaussian fit on the maps of OTF raster scans towards bright
+    sources, whereas the 'Pointing'-labeled light green data points
+    are FWHM estimates obtained by interpolating the {\lp
+    median-filtered} pointing-based FWHM at the time of the scans.}
 \label{fig:beam_monitoring_compare}
 \end{center}
 \end{figure}
 %
-Figure~\ref{fig:beam_monitoring_compare} shows two different FWHM$_{\rm{geom}}$
-estimates for the same data set: the best-fit FWHM$_{\rm{geom}}$ estimates on
-the OTF-scan map are compared with the interpolation from the pointing-based
-FWHM$_{\rm{geom}}$ monitoring. The two estimates are well in agreement with each
+Figure~\ref{fig:beam_monitoring_compare} shows two different FWHM %$_{\rm{geom}}$
+estimates for the same data set: on one hand the best-fit FWHM %$_{\rm{geom}}$
+estimates on the OTF-scan map and on the other hand the interpolation from
+the pointing-based FWHM %$_{\rm{geom}}$
+monitoring. The two estimates show the same global variations as a
+function of the UT hours. They are well in agreement with each
 other, although the pointing-based estimates have more dispersion and
 a few outliers.
 

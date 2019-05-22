@@ -557,7 +557,7 @@ to the finite extension of the apparent disc of the planet, as in Sect.~\ref{se:
       planets (filled circles) and bright point-like sources above
       $1\,\rm{Jy}$ (filled stars) for the three \emph{reference}
       observation campagns (N2R9,N2R12 and N2R14). The cross-hatched areas
-      correspond to observing time periods that are discarded using
+      correspond to the observing time periods that are discarded using
       the \emph{baseline} scan selection, as decribed in Sect.~\ref{se:data_selection}.} 
 \label{fig:beam_monitoring_otf}
   \end{center}
@@ -612,21 +612,21 @@ discussed in Sect.~\ref{se:photometric_correction}.
 For a finer sampling of the observation time, we also consider using
 the pointing scans for beam monitoring. As discussed in
 Sect.~\ref{se:pointing}, the telescope pointing is
-monitored on a hour basis during observation using pointing
+monitored on a hour basis during observation using {\tt pointing}
 scans. As these scans consist of two sub-scans in azimuth and
 elevation of about 10 seconds of integration time each, they
 can also be used to make a map of the pointing source. For each campaign,
 we thus have on hands hundreds of maps of mostly point-like bright
 sources, which can also be used to monitor the beam size. However, we
-expect less accuracy than using standard bright source calibrator scans due to the
-shorter integration time and the fact that only the centermost KIDs in
-the array see the source.  
+expect less accuracy than using standard OTF raster
+scans of bright sources due to the shorter integration time and the
+fact that only the centermost KIDs in the array see the source.  
 
 %traitement pointing scans
-For this purpose, pointing scans are reduced using
+For this purpose, {\tt pointing} scans are reduced using
 the data analysis pipeline described in
 Sect.~\ref{se:dataproc} with the same parameters as for
-standard OTF scans, and projected onto maps of $2''$ resolution.
+standard OTF raster scans, and projected onto maps of $2''$ resolution.
 As previously, an elliptical 2D Gaussian is then fitted from the map
 and the geometrical FWHM%$_{\rm{geom}}$
 %is formed from the best-fit FWHM along the two axis.
@@ -634,12 +634,12 @@ is computed.
 %FWHM estimates on Uranus maps are corrected for an
 %offset due to the finite size of the apparent disc, as discussed in
 %Sect.~\ref{se:beam_monitoring_otf}.
-Pointing scans on {\lp slightly extended} sources, such as NGC7027,
+{\tt Pointing} scans on {\lp slightly extended} sources, such as NGC7027,
 are discarded from the analysis.
 
 
 % anomalous refraction
-For each pointing, we also seek for signs of atmospheric anomalous refraction. There are
+For each {\tt pointing}, we also seek for signs of atmospheric anomalous refraction. There are
 enough KIDs per observation band to make an independent map using only
 one subscan, i.e. 10 seconds of integration time.
 For each of the four cross subscans, we thus estimate the position of the best
@@ -648,7 +648,9 @@ subscan-derived position and the best-fit position using the entire
 scan. An anomalous refraction event is detected when the difference is
 above $2.5''$ for at least one subscan. We find that the apparent beam
 broadening during the afternoon is due to anomalous refraction for
-between one third and one half of the scans.%\footnote{See the study posted
+between one third and one half of the scans over the period studied
+here.
+%\footnote{See the study posted
 %  in the commissioning internal wiki at
 %  \url{http://www.iram.fr/wiki/nika2/index.php/Millimetric_anomalies_(weather,_antenna)_as_monitored_by_pointing_scans}}.
 %} 
@@ -697,7 +699,10 @@ interpolated from the median-filtered pointing-based FWHM.%$_{\rm{geom}}$.
     Gaussian fit on the maps of OTF raster scans towards bright
     sources, whereas the 'Pointing'-labeled light green data points
     are FWHM estimates obtained by interpolating the {\lp
-    median-filtered} pointing-based FWHM at the time of the scans.}
+    median-filtered} pointing-based FWHM at the time of the
+    scans. {\lp The
+    pointing-based FWHM estimates are obtained by fitting a 2D Gaussian on the
+    maps of {\tt pointing} scans.}}
 \label{fig:beam_monitoring_compare}
 \end{center}
 \end{figure}

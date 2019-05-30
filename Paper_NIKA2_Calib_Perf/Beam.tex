@@ -33,7 +33,9 @@ Namely, we use \bm\ scans of Uranus%(scan id '20170125s223' and '20170125s243')
 and the bright quasar 3C84. %('20170226s415').
 Furthermore, we checked the stability of our results on single scan
 maps, combinations of scans for a single source, and combinations of
-shallower scans but spanning a large range of scanning direction. 
+shallower scans but spanning a large range of scanning direction. {\lp
+The \bm\ scans are reduced using the method discussed in
+Sect.~\ref{se:dataproc} to produce maps.}
 {\lp Figure~\ref{fig:features} shows the two-dimensional beam pattern
 as measured with NIKA2 using the former \bm\ combination, for each of
 the arrays and for the $1\,\rm{mm}$ array combination.}
@@ -542,12 +544,12 @@ is likely an effect of atmospheric instabilities%the anomalous refraction
 
 
 
-\subsection{Beam efficiency}
+\subsection{Main beam efficiency}
 \label{se:beam_efficiency}
 
 Building upon the description of the full-beam pattern in
 Sect.~\ref{se:fullbeam} and the main beam in Sect.~\ref{se:mainbeam},
-we derive the beam efficiency for each array, which is defined as the
+we derive the main beam efficiency for each array, which is defined as the
 ratio of the solid angle sustained by the main beam to the total beam
 solid angle.
 
@@ -606,66 +608,12 @@ Combined & 75  &  240$\pm$  9    &  446$\pm$  7 & 230 $\pm$  8 \\%&  1.74       
 \end{tabular}
 \end{table}
 
-Heterodyne observations at the IRAM \trentemetre\ telescope
-toward the lunar edge and the measure of forward beam efficiency using
-skydips show that a non-neglectible fraction of the full beam stems
-from radius greater than $180''$~\citep{Greve1998, Kramer2013}.
-An accurate evaluation of the total beam solid angle would require
-{\lp the development a dedicated data reduction method tailored to
-handled very extended diffuse emission,} as well as a 
-dedicated observation program
-% to measure of the $4\pi$ integral of the full beam pattern
-~\citep{Greve1998, Sugimoto2004, Gusten2006}.
-%This fraction is not considered here. Beam efficiency estimators that are based on
-%the total solid angle estimates using Eq.~\ref{eq:omega_tot} thus
-%overestimates the beam efficiency. An accurate evaluation of
-%this quantity would require a dedicated observation program to measure
-%of the $4\pi$ integral of the full beam pattern.
-{\lp Here we use the IRAM \trentemetre\ telescope beam model described
-in \citet{Kramer2013} to evaluate the beam solid angle stemming from a
-radius greater than $180''$.
-This quantity receives two contributions, the one of the error beams,
-which are modeled as three Gaussians, and the one of the forward and
-rearward spillover and scattering efficiencies. We compute the solid
-angle of the main beam and error beams integrated over a radius ranging
-from $180''$ to $390''$, which is the maximum radius covered by \bm\ scan,
-$\Omega_{180<r<390}^{\rm{mb+eb}}$, and over radii greater
-than $180''$, $\Omega_{>180}^{\rm{mb+eb}}$. The results are given in
-Table~\ref{tab:solid_corr}, as well as the contribution of the forward and
-rearward spillover and scattering efficiencies to the beam solid angle
-$\Omega^{\rm{frss}}$. The total beam solid angle 
-$\Omega_{\rm{tot}}$ can be estimated as
+{\lp The main beam efficiency up to a radius of $180''$ is computed as
 \begin{equation}
-\Omega_{\rm{tot}} = \Omega_{180} + \Omega_{>180}^{\rm{mb+eb}}
-+ \Omega^{\rm{frss}}.
-\label{eq:omega_beam_4pi}
+\rm{BE}_{180} = \frac{\Omega_{\rm{mb}}}{\Omega_{180}},
 \end{equation}
-
-\begin{table}[!h]
-\caption{Estimates of the various contribution to the beam solid angle
-integrated up to $180''$, up to $390''$ and over $4\pi$ given in
-arcsec$^{2}$. }
-\label{tab:solid_corr}
-\centering
-\begin{tabular}{lcc}
-\hline\hline
-\noalign{\smallskip}
-&  A1\&A3 & A2 \\
-\noalign{\smallskip}
-\hline
-\noalign{\smallskip}
-$\Omega_{180}$                  &   235 $\pm$  8 & 446 $\pm$  7 \\\noalign{\smallskip}
-$\Omega_{180<r<390}^{\rm{mb+eb}}$  &   12          &   20       \\\noalign{\smallskip}
-$\Omega_{>180}^{\rm{mb+eb}}$      &   21          &   41      \\\noalign{\smallskip}
-$\Omega^{\rm{frss}}$             &   45          &   40      \\
-\noalign{\smallskip}
-\hline
-\end{tabular}
-\end{table}
 }
-
-We evaluate the main beam efficiencies up to a radius of $180''$ using both the {\tt UN75} and
-the {\tt BM12} data sets, as presented in
+using both the {\tt UN75} and the {\tt BM12} data sets, as presented in
 Sect.~\ref{se:mainbeam_dataset}. We compare the results based on three
 estimates of the total beam and main beam solid angles: 
 \begin{itemize}
@@ -800,4 +748,78 @@ We find stable beam efficiencies using observations acquired one year apart.
 %            \hline\hline
 %\end{tabular}
 %\end{table*}
+
+
+Heterodyne observations at the IRAM \trentemetre\ telescope
+toward the lunar edge and the measure of forward beam efficiency using
+skydips show that a non-neglectible fraction of the full beam stems
+from radius greater than $180''$~\citep{Greve1998, Kramer2013}.
+An accurate evaluation of the total beam solid angle would require
+{\lp the development a dedicated data reduction method tailored to
+handled very extended diffuse emission,} as well as a 
+dedicated observation program
+% to measure of the $4\pi$ integral of the full beam pattern
+~\citep{Greve1998, Sugimoto2004, Gusten2006}.
+%This fraction is not considered here. Beam efficiency estimators that are based on
+%the total solid angle estimates using Eq.~\ref{eq:omega_tot} thus
+%overestimates the beam efficiency. An accurate evaluation of
+%this quantity would require a dedicated observation program to measure
+%of the $4\pi$ integral of the full beam pattern.
+{\lp Here we use the IRAM \trentemetre\ telescope beam model described
+in \citet{Kramer2013} to evaluate the beam solid angle stemming from a
+radius greater than $180''$.
+This quantity receives two contributions, the one of the error beams,
+which are modeled as three Gaussians, and the one of the forward and
+rearward spillover and scattering efficiencies. We compute the solid
+angle of the main beam and error beams integrated over a radius ranging
+from $180''$ to $390''$, which is the maximum radius covered by \bm\ scan,
+$\Omega_{180<r<390}^{\rm{mb+eb}}$, and over radii greater
+than $180''$, $\Omega_{>180}^{\rm{mb+eb}}$. We use NIKA2 main beam as
+measured in Sect.~\ref{se:mainbeam} and the three-Gaussian error beams
+as reported in \citet{Kramer2013}.  
+%
+\begin{table}[!h]
+\caption{Estimates of the contribution to the beam solid angle
+integrated in varying range of radii. $\Omega_{180}$ include all beam
+contributions up to a radius of $180''$ as measured in NIKA2
+maps. $\Omega_{180<r<390}^{\rm{mb+eb}}$ and
+$\Omega_{>180}^{\rm{mb+eb}}$ account for the main beam and error beam
+contributions integrated $180''$ to $390''$ and from $180''$ to
+$4\pi$, respectively. $\Omega^{\rm{frss}}$ account for the forward and
+rearward spillover and scattering efficiencies integrated over
+$4\pi$. All solid angles are given in arcsec$^{2}$. }
+\label{tab:solid_corr}
+\centering
+\begin{tabular}{lcc}
+\hline\hline
+\noalign{\smallskip}
+&  A1\&A3 & A2 \\
+\noalign{\smallskip}
+\hline
+\noalign{\smallskip}
+$\Omega_{180}$                  &   235 $\pm$  8 & 446 $\pm$  7 \\\noalign{\smallskip}
+$\Omega_{180<r<390}^{\rm{mb+eb}}$  &   12          &   20       \\\noalign{\smallskip}
+$\Omega_{>180}^{\rm{mb+eb}}$      &   21          &   41      \\\noalign{\smallskip}
+$\Omega^{\rm{frss}}$             &   45          &   40      \\
+\noalign{\smallskip}
+\hline
+\end{tabular}
+\end{table}
+}
+%
+The results are given in
+Table~\ref{tab:solid_corr}, as well as the contribution of the forward and
+rearward spillover and scattering efficiencies to the beam solid angle
+$\Omega^{\rm{frss}}$. The total beam solid angle 
+$\Omega_{\rm{tot}}$ can be estimated as
+\begin{equation}
+\Omega_{\rm{tot}} = \Omega_{180} + \Omega_{>180}^{\rm{mb+eb}}
++ \Omega^{\rm{frss}}.
+\label{eq:omega_beam_4pi}
+\end{equation}
+
+{\lp These results are useful to calibrate the data
+targeted to the study of very extended diffuse sources or to perform
+aperture photometry up to radii larger than 180'', as will be
+discussed below in Sect.~\ref{se:extended_source_calib}.}
 

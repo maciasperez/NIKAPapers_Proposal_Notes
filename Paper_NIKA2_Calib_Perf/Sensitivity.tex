@@ -9,23 +9,18 @@
 In this section, we derive the on-sky sensitivity of the instrument
 using a large amount of observation scans, including deep integration
 on faint sources, and assess the stability of our results against the
-observing conditions.
-
-We evaluate the noise equivalent flux density, NEFD hereafter, that is
-the $1\,\sigma$ error on the flux
-density of a point source in one second of on-source telescope
-integration time after the baseline calibration has been performed, as
-described in Sect.~\ref{se:baseline_calibration}. To further estimate
-the mapping capabilities, we also derive the mapping speed
-$M_{\rm{s}}$, which is defined as the sky area that can
-be mapped at a noise level of $1\,\rm{mJy}$ in one hour of telescope 
-integration time.
+observing conditions. We evaluate the noise equivalent flux density,
+NEFD hereafter. To further estimate the mapping capabilities, we also
+derive the mapping speed.
+%$M_{\rm{s}}$, which is defined as the sky area that can
+%be mapped at a noise level of $1\,\rm{mJy}$ in one hour of telescope 
+%integration time.
 %The first step for
 %the NEFD measurement is thus an accurate evaluation of the on-source
 %integration time, which is addressed in
 %Sect.~\ref{se:integration_time}.
 
-We first discuss the precise definitions and the technical derivation
+We first discuss the definitions and the technical derivation
 of these quantities in Sect.\ref{se:integration_time}.
 %Then, for robustness test of the NEFD
 %estimates, we have devised several methods for estimating the NEFD. A
@@ -65,8 +60,11 @@ Results, together with robustness tests, are reported in Sect.~\ref{se:nefd_resu
 %%   NEFD is commonly refered to individual \emph{detectors} and must then be
 %%   related to the whole \emph{instrument} to provide the observer with a mapping speed
 %%   and a time estimator to plan observations.}
-
-For the derivation of the NEFD and mapping speed, we must first
+The NEFD is the $1\,\sigma$ error on the flux
+density of a point source in one second of on-source telescope
+integration time after the baseline calibration has been performed, as
+described in Sect.~\ref{se:baseline_calibration}.
+For the derivation of the NEFD, we must first
 address the accurate evaluation of the on-source integration time. 
 
 %We distinguish the on-source \emph{detector} integration time $t_{det}$ from the
@@ -119,9 +117,9 @@ contributes to a map pixel at the same time, we derive the on-source
 \end{equation}
 %
 where the number of KID per pixel is given by the ratio of the
-pixel area $\Delta_r^2$ to the KID occupation area $g^2$, with $g$
-the distance between adjacent KIDs (see
-Sect.~\ref{se:grid_distortion}).
+pixel area $\Delta r^2$ to the KID occupation area $g^2$, with $g$
+the grid step, which is the center-to-center distance between adjacent
+KIDs in the FOV (see Sect.~\ref{se:grid_distortion}).
 
 %where we have added the subscript \emph{center} to specify that in order to
 %estimate $t_{obs}$ from the map, we take the number of hits per pixel at the map
@@ -147,7 +145,7 @@ Sect.~\ref{se:grid_distortion}).
 %For cross-checks, we compare the $t_{\rm{det}}$ estimates using an
 %alternative approach for evaluating the on-source integration
 %time based on geometrical considerations. We calculate the
-%fraction of the scanning time during which the point source in within
+%fraction of the scanning time during which the point source is within
 %an \emph{effective} FOV radius, which is defined as the FOV covered by the
 %valid KIDs. {\lp We find the two methods to give comparable integration
 %time with differences ranging from $2\%$ to $5\%$, hence
@@ -155,7 +153,7 @@ Sect.~\ref{se:grid_distortion}).
 %estimates for the NEFD derivation and account for the time-estimation
 %uncertainties.}   
 
-For the $\sigma$ error on the measured flux density of
+With the $\sigma$ error on the measured flux density of
 the point source, we derive the NEFD:
 \begin{equation}
   \rm{NEFD} = \sigma \sqrt{t_{\rm{det}}}
@@ -185,7 +183,7 @@ $d_{\rm{FOV}} = 6.5'$ is the FOV diameter.
 The mapping speed, which is defined at zero atmospheric opacity, can be extrapolated at a given opacity $\taunu$
 and a given \airmass\ $x$ using
 \begin{equation}
-  M_{\rm{s}}^{(\taunu, x)} = M_{\rm{s}}\, e^{-2 \taunu \, x}
+  M_{\rm{s}}(\taunu, x) = M_{\rm{s}}\, e^{-2 \taunu \, x}
   \label{eq:ms_extrapol}
 \end{equation}
 
@@ -215,7 +213,7 @@ given atmospheric opacity $\taunu$ and a given \airmass\ $x$.
 \subsection{NEFD estimation methods and scan selection}
 \label{se:nefd_method}
 
-We have developped several complementary methods for the
+We have developed several complementary methods for the
 NEFD estimation, which come in two different flavours. First, we
 use deep integrations on faint sources, and second we resort to 
 joint analysis of multiple scans without combining them. A detailed
@@ -225,12 +223,12 @@ description of our methods will be found in \citet{Ponthieu2019}.
 %% \citet{Ponthieu2019}. In this section, w
 We briefly describe here one method for each of the two approaches. \\
 
-\noindent \emph{Deep integration method:} The error on the flux density of a
+\noindent \emph{Deep integration method} The error on the flux density of a
 point source for an integration time $t_{det}$ at an \airmass\ $x$
 and an atmospheric opacity $\taunu$ is
-$\sigma_S(t) = \rm{NEFD}\,e^{\taunu \, x}/\sqrt{t_{\rm{det}}}$.
+$\sigma(t) = \rm{NEFD}\,e^{\taunu \, x}/\sqrt{t_{\rm{det}}}$.
 Using long-time integration observation on a source, we can study the
-decrease of $\sigma_S$ with integration time, and
+decrease of $\sigma$ with integration time, and
 therefore estimate the NEFD if the different elevation and opacity conditions of
 observations are correctly accounted for.  We produce a series of maps using an
 inverse-variance co-addition of an increasing number of observation
@@ -242,31 +240,34 @@ the co-addition. In such case, generalizing Eq.~(\ref{eq:nefd_det}),
 the flux density uncertainties on the co-addition of $n$ scans is
 %
 \begin{equation}
-  \sigma_S(n) = \frac{\rm{NEFD}}{\sqrt{\sum_{i=1}^{n}t_i e^{-2\taunu^i\, x_i}}},
+  \sigma(n) = \frac{\rm{NEFD}}{\sqrt{\sum_{i=1}^{n}t_i e^{-2\taunu^i\, x_i}}},
   \label{eq:sigma_tau_w8}
 \end{equation}
 where $t_i$, $\taunu^i$ and $x_i$ are the integration time, the zenith
 opacity and the \airmass\ of the $i$-th scan of the $n$-scans
 co-addition. Fitting $\sigma(n)$ as a function of the corresponding effective
 integration time $\sum_{i=1}^{n}t_i e^{-2\taunu^i\, x_i}$ provides an
-estimate of $\rm{NEFD}$. This method requires long integration on a same
-object. During the N2R9 run, we selected \hls\, a moderately faint source
+estimate of $\rm{NEFD}$. This method requires long integration time on a same
+object. With this goal, during the N2R9 run, we selected \hls, a moderately faint source
 \citep{2012A&A...538L...4C}, expected to be 74.5\,mJy at $1\,\rm{mm}$
-and 15.7\,mJy at $2\, \rm{mm}$.%(M.~Bethermin, private
+and 15.7\,mJy at $2\, \rm{mm}$. %(M.~Bethermin, private
 %communication).
 It has been observed for about 9\,h in
-total over three nights using $8 \times 5$~arcmin$^2$ OTF scans of various
+total over three nights using $8 \times 5$~arcmin$^2$ OTF raster scans of various
 orientations.\\
 
-\noindent \emph{Scatter method:} Performing photometry on each individual scan,
+\noindent \emph{Scatter method} Performing photometry on each individual scan,
 we can estimate the sensitivity on the central flux and measure the time of
 integration using Eq.~\ref{eq:t_det}, hence derive the NEFD per
 scan. After correction of the attenuation of the atmosphere, the joint
-analysis of a series of scans, even of different point sources, provides 
+analysis of a series of scans, even towards different point sources, provides 
 an estimate of the NEFD. The selection of the source target
 for the NEFD derivation is primarily based on the flux density. Indeed, noise
-characterization may be biased by residuals of a strong source and the
-instrument far side lobes. For this method, we therefore restrict the
+characterization may be biased {\lp by the signal of a bright source
+stemming from the most extended error beams and far side lobes.}
+%by residuals of a strong source and the
+%instrument far side lobes.
+For this method, we therefore restrict the
 analysis to sources with flux below 1\,Jy.
 
 \begin{figure*}[!thbp]

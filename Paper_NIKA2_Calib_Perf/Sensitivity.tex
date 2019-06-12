@@ -85,7 +85,7 @@ Let us consider a map of the flux density of a point-like source at a
 resolution of $\Delta r$ as obtained from observations (see
 Sect.~\ref{se:dataproc}).
 This map also comes along with a hit map $N_{\rm{hit}}$, that is the
-map of the data sample count per pixels. We first evaluate the
+map of the data sample count per pixel. We first evaluate the
 average observation time per map pixel at the center of the map
 %The instantaneous $A$ covered by the FOV reads
 %
@@ -154,11 +154,12 @@ KIDs in the FOV (see Sect.~\ref{se:grid_distortion}).
 %uncertainties.}   
 
 With the $\sigma$ error on the measured flux density of
-the point source, we derive the NEFD:
+the point source, we derive the NEFD using
 \begin{equation}
-  \rm{NEFD} = \sigma \sqrt{t_{\rm{det}}}
+  \rm{NEFD} = \sigma \sqrt{t_{\rm{det}}}. 
   \label{eq:nefd_det}
 \end{equation}
+The NEFD is given in $\rm{mJy}/{beam}\cdot s^{1/2}$.
 %NEFD_{obs,0} & = & \sigma \sqrt{t_{obs}} \label{eq:nefd_obs}.
 %\end{eqnarray}
 %\begin{eqnarray}
@@ -178,7 +179,8 @@ M_{\rm{s}} = \frac{\mathcal{A}_{\rm{scan}}}{\Delta_\sigma\Delta_t} = \eta \, \fr
 %
 where $\eta$ is the fraction of valid KIDs, as given in
 Tab.~\ref{tab:number_of_kids} in Sect.~\ref{se:fov_geometry} and
-$d_{\rm{FOV}} = 6.5'$ is the FOV diameter.
+$d_{\rm{FOV}} = 6.5'$ is the FOV diameter. The units are
+arcmin$^2 \cdot (\rm{mJy}/{beam})^{-2} \cdot \rm{h}^{-1}$. 
 %[ADD SOMETHING ON VALID VS USED HERE]
 The mapping speed, which is defined at zero atmospheric opacity, can be extrapolated at a given opacity $\taunu$
 and a given \airmass\ $x$ using
@@ -229,12 +231,12 @@ and an atmospheric opacity $\taunu$ is
 $\sigma(t) = \rm{NEFD}\,e^{\taunu \, x}/\sqrt{t_{\rm{det}}}$.
 Using long-time integration observation on a source, we can study the
 decrease of $\sigma$ with integration time, and
-therefore estimate the NEFD if the different elevation and opacity conditions of
-observations are correctly accounted for.  We produce a series of maps using an
+therefore estimate the NEFD when the different elevation and opacity conditions of
+observation are correctly accounted for.  We produce a series of maps using an
 inverse-variance co-addition of an increasing number of observation
 scans, and perform a photometric analysis on each map according to
 Sect.~\ref{se:photometry}. Since
-all the scans are not exactly acquired in the same conditions of atmospheric
+all the scans are not acquired in the same conditions of atmospheric
 opacity and observing elevation, they do not contribute with the same weight to
 the co-addition. In such case, generalizing Eq.~(\ref{eq:nefd_det}),
 the flux density uncertainties on the co-addition of $n$ scans is
@@ -249,7 +251,7 @@ co-addition. Fitting $\sigma(n)$ as a function of the corresponding effective
 integration time $\sum_{i=1}^{n}t_i e^{-2\taunu^i\, x_i}$ provides an
 estimate of $\rm{NEFD}$. This method requires long integration time on a same
 object. With this goal, during the N2R9 run, we selected \hls, a moderately faint source
-\citep{2012A&A...538L...4C}, expected to be 74.5\,mJy/beam at $1\,\rm{mm}$
+\citep{2012A&A...538L...4C}, expected to have flux densities of 74.5\,mJy/beam at $1\,\rm{mm}$
 and 15.7\,mJy/beam at $2\, \rm{mm}$. %(M.~Bethermin, private
 %communication).
 It has been observed for about 9\,h in
@@ -268,7 +270,7 @@ stemming from the most extended error beams and far side lobes.}
 %by residuals of a strong source and the
 %instrument far side lobes.
 For this method, we therefore restrict the
-analysis to sources with flux below 1\,Jy.
+analysis to sources with flux below 1\,Jy/beam.
 
 \begin{figure*}[!thbp]
   \begin{center}
@@ -292,7 +294,7 @@ analysis to sources with flux below 1\,Jy.
 
 %  comparison entre methods
 First we test the stability of the NEFD estimates using the two
-methods on a same data set. In Fig.~\ref{fig:nefd_twomethods}, we
+methods on the same data set. In Fig.~\ref{fig:nefd_twomethods}, we
 present an application of the deep integration method (left panel) and
 the scatter method (right panel) on
 %the NEFD estimates for Array 1, 3, the combination of A1$\&$A3
@@ -301,7 +303,7 @@ the series of \hls\ observation scans.
 
 The left panel of Fig.~\ref{fig:nefd_twomethods} shows the flux density
 uncertainties as a function of the integration time. This plot has
-been obtained as discussed in Sect.~\ref{se:nefd_method}. The small
+been obtained as discussed in the previous section. The small
 variations of the slope of the $1\sigma$ flux errors, which are
 visible on the figure for each band, correspond to variations of line-of-sight opacity
 during the integration. These variations are taken into account for

@@ -168,7 +168,7 @@ the point source, we derive the NEFD:
 
 We also evaluate the mapping speed $M_{\rm{s}}$, which is defined as the sky area
 $\mathcal{A}_{\rm{scan}}$ that can be mapped at a noise level
-$\Delta_\sigma$ of $1\,\rm{mJy}$ in an integration time $\Delta_t$ of
+$\Delta_\sigma$ of $1\,\rm{mJy}/{beam}$ in an integration time $\Delta_t$ of
 one hour, using
 %
 \begin{equation}
@@ -249,8 +249,8 @@ co-addition. Fitting $\sigma(n)$ as a function of the corresponding effective
 integration time $\sum_{i=1}^{n}t_i e^{-2\taunu^i\, x_i}$ provides an
 estimate of $\rm{NEFD}$. This method requires long integration time on a same
 object. With this goal, during the N2R9 run, we selected \hls, a moderately faint source
-\citep{2012A&A...538L...4C}, expected to be 74.5\,mJy at $1\,\rm{mm}$
-and 15.7\,mJy at $2\, \rm{mm}$. %(M.~Bethermin, private
+\citep{2012A&A...538L...4C}, expected to be 74.5\,mJy/beam at $1\,\rm{mm}$
+and 15.7\,mJy/beam at $2\, \rm{mm}$. %(M.~Bethermin, private
 %communication).
 It has been observed for about 9\,h in
 total over three nights using $8 \times 5$~arcmin$^2$ OTF raster scans of various
@@ -275,7 +275,14 @@ analysis to sources with flux below 1\,Jy.
     \includegraphics[trim={0.5cm, 0.5cm, 1.5cm, 1.8cm}, clip, angle=0, width=0.495\textwidth]{Figures/hls_nefd_vst.eps}
     \includegraphics[trim={0.5cm, 0, 0.2cm, 0.5cm}, clip, angle=0, width=0.485\textwidth]{Figures/hls_NEFD_vs_TauElev_all.eps}
     \caption{Comparison of NEFD estimates using two methods on
-      observation of \hls. \emph{Left panel:} Evolution of the 1\,$\sigma$ flux density uncertainties as a function of the integration time; \emph{Right panel:} NEFD as a function of the measured line-of-sight opacity. The solid black line is the theoretical fit of $\rm{NEFD} = \rm{NEFD}_0$ $e^{\taunu\,x}$ and gives the NEFD when extrapolated to $\taunu\,x = 0$.}
+      observation of \hls. \emph{Left panel:} Evolution of the
+    1\,$\sigma$ flux density uncertainties as a function of the
+    integration time; \emph{Right panel:} NEFD as a function of the
+    measured line-of-sight opacity. The solid black lines are the
+    theoretical fits of
+    $\rm{NEFD}(\taunu, x) = \rm{NEFD}\, e^{\taunu\,x}$
+    and give the NEFD when extrapolated
+    to $\taunu\,x = 0$. }
     \label{fig:nefd_twomethods}
   \end{center}
 \end{figure*}
@@ -306,7 +313,7 @@ Table~\ref{tab:nefd_summary}.
 \begin{table}[!htbp]
   \centering
   \caption[]{Stability of the NEFD estimates. Top-of-atmosphere NEFD
-    in mJy.s$^{1/2}$ for the two methods described in the text, which
+    in $\rm{mJy}/{beam}\cdot s^{1/2}$ for the two methods described in the text, which
   are the deep integration (labeled Deep int) and the scatter method
   (Scatter), and using two different data sets, \hls\
   and all sub-Jy sources acquired during the reference observation
@@ -333,9 +340,9 @@ Table~\ref{tab:nefd_summary}.
   \end{tabular}
 \end{table}
 
-In addition, we verify that the noise averages down as expected with
+In addition, we verify that the noise scales down as expected with
 respect to the integration time. Black lines in the left panel of
-Fig.~\ref{fig:nefd_twomethods} show the $1\sigma$ error fit with the
+Fig.~\ref{fig:nefd_twomethods} show the $1\, \sigma$ error fit with the
 inverse of the square root of the integration time. The noise
 integration is well consistent with $t^{-1/2}$.
 
@@ -348,7 +355,7 @@ integration is well consistent with $t^{-1/2}$.
 \caption{Comparison of the NEFD estimates for three observation
   campaigns. The measured NEFD using the scatter method is plotted as a function of
   line-of-sight opacity ($\taunu\,x$) for the $1\,\rm{mm}$ (left) and $2\,\rm{mm}$ (right)
-  channels. Data points are NEFD estimates in mJy.s$^{1/2}$ for N2R9 (blue), N2R12 (orange)
+  channels. Data points are NEFD estimates in $\rm{mJy}/{beam}\cdot s^{1/2}$ for N2R9 (blue), N2R12 (orange)
   and N2R14 (chartreuse). We also show in the plots the expected NEFD evolution
   with the line-of-sight opacity as solid curves using the median
   zenith opacity derived from all the scans acquired during a campaign.}
@@ -356,7 +363,7 @@ integration is well consistent with $t^{-1/2}$.
 \end{center}
 \end{figure*}
 
-The right panel of Fig.~\ref{fig:nefd_twomethods} show the NEFD
+The right panel of Fig.~\ref{fig:nefd_twomethods} shows the NEFD
 estimates for  Array 1, 3, the combination of A1$\&$A3 and Array 2
 using the scatter method, as discussed in Sect.~\ref{se:nefd_method},
 as a function of the line-of-sight opacities $\taunu\,x $.
@@ -364,8 +371,8 @@ as a function of the line-of-sight opacities $\taunu\,x $.
 %elevation.
 The solid lines show the best fit of the model for a sky
 background-dominated sensitivity,
-defined as NEFD$^{(\taunu, \elev)}$ = NEFD exp${[\taunu\, x]}$. The
-best-fitting NEFD amplitude gives us the estimates of the
+defined as NEFD($\taunu$, $x$) = NEFD exp${[\taunu\, x]}$. The
+best-fitting NEFD amplitudes give us the estimates of the
 top-of-atmosphere NEFD, which are gathered in
 Table~\ref{tab:nefd_summary}.
 
@@ -401,18 +408,19 @@ are given in Table~\ref{tab:nefd_summary}.
 \begin{table}[!thbp]
   \begin{center}
     \caption[NEFD estimates on all sub-Jy sources]{Median NEFD and rms
-      uncertainties in $\rm{mJy}\cdot \rm{s}^{1/2}$, as well as the derived mapping
-      speed and mapping speed uncertainties in $\rm{arcmin}^2\cdot\rm{mJy}^{-2}\cdot\rm{h}^{-1}$, evaluated
+      uncertainties in $\rm{mJy}/{beam}\cdot s^{1/2}$, as well as the derived mapping
+      speed and mapping speed rms uncertainties in
+    $\rm{arcmin}^2\cdot (\rm{mJy}/{beam})^{-2}\cdot\rm{h}^{-1}$, evaluated
       in using the scatter method on all sub-Jy sources of runs N2R9, N2R12
       and N2R14, given at pwv=0 and 90 degrees elevation (first three rows) and extrapolated at the
-      average Winter observing conditions at the IRAM
+      reference Winter observing conditions at the IRAM
       \trentemetre\ telescope site (last three rows), which are defined
       as $2\,\rm{mm}$ pwv and 60 degrees elevation.}
     \label{tab:nefd_astro}
     \begin{tabular}{lrrrr}
       \hline\hline
       \noalign{\smallskip}
-      <1 Jy               & A1      &   A3    &   A1\&A3 &    A2 \\
+                    & A1      &   A3    &   A1\&A3 &    A2 \\
       \noalign{\smallskip}
       \hline
       \noalign{\smallskip}
@@ -437,13 +445,14 @@ baseline selection criteria (see Sect.~\ref{se:data_selection}),
 providing robust NEFD estimates that are representative of the
 average NIKA2 performance. These NEFD estimates are gathered in
 Table~\ref{tab:nefd_astro}.
-The RMS uncertainties are evaluated as the rms scatter of the
+The rms uncertainties are evaluated as the rms scatter of the
 individual NEFD estimates after correction with
-$\exp[\taunu\,x]$. These values are then extrapolated the IRAM
-\trentemetre\ telescope reference observing conditions: $2\,\rm{mm}$
-of precipitable water vapor (pwv) and $60$ degrees elevation. These
-correspond to average Winter observing conditions at the IRAM
-\trentemetre\ telescope site.
+$\exp[\taunu\,x]$. These values are then extrapolated to the IRAM
+\trentemetre\ telescope reference Winter observing conditions: $2\,\rm{mm}$
+of precipitable water vapor (pwv) and $60$ degrees elevation.
+%These
+%correspond to Winter observing conditions at the IRAM
+%\trentemetre\ telescope site.
 
 
 
@@ -463,10 +472,10 @@ correspond to average Winter observing conditions at the IRAM
 %% can be surveyed at a flux density rms error level of $1\,\rm{mJy}$.
 
 From the NEFD estimates, we derive the mapping speed estimates using
-Eq.~\ref{eq:mapping_speed}, and their extrapolation at average Winter
+Eq.~\ref{eq:mapping_speed}, and their extrapolation at reference Winter
 observing conditions at the IRAM \trentemetre\ telescope site using
-Eq.~\ref{eq:ms_extrapol}. The mapping speed estimates are given in
-Table~\ref{tab:nefd_astro}.
+Eq.~\ref{eq:ms_extrapol}. The mapping speed estimates and rms errors
+are given in Table~\ref{tab:nefd_astro}.
 
 
 %The top-of-atmosphere mapping speed, which is extrapolated at zero

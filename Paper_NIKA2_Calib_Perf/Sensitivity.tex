@@ -237,20 +237,25 @@ inverse-variance co-addition of an increasing number of observation
 scans, and perform a photometric analysis on each map according to
 Sect.~\ref{se:photometry}. Since
 all the scans are not acquired in the same conditions of atmospheric
-opacity and observing elevation, they do not contribute with the same weight to
-the co-addition. In such case, generalizing Eq.~(\ref{eq:nefd_det}),
-the flux density uncertainties on the co-addition of $n$ scans is
+opacity and observing elevation, they do not contribute with the same
+weight to the co-addition. In such case, an effective integration time
+for the co-addition of $n$ scans is defined as
 %
 \begin{equation}
-  \sigma(n) = \frac{\rm{NEFD}}{\sqrt{\sum_{i=1}^{n}t_i e^{-2\taunu^i\, x_i}}},
-  \label{eq:sigma_tau_w8}
+t_{\rm{eff}}(n) = \sum_{i=1}^{n}\, t_i\,  e^{-2\taunu^i\, x_i},
+\label{eq:sigma_tau_w8}
 \end{equation}
+%
 where $t_i$, $\taunu^i$ and $x_i$ are the integration time, the zenith
 opacity and the \airmass\ of the $i$-th scan of the $n$-scans
-co-addition. Fitting $\sigma(n)$ as a function of the corresponding effective
-integration time $\sum_{i=1}^{n}t_i e^{-2\taunu^i\, x_i}$ provides an
-estimate of $\rm{NEFD}$. This method requires long integration time on a same
-object. With this goal, during the N2R9 run, we selected \hls, a moderately faint source
+co-addition. Generalizing Eq.~\ref{eq:nefd_det},
+the flux density uncertainties on the co-addition of $n$ scans is
+$\sigma(n) = \rm{NEFD}/\sqrt{t_{\rm{eff}}(n)}$. An estimate of the
+NEFD can therefore be obtained in fitting
+$\sigma(n)$ as a function of the corresponding $t_{\rm{eff}}(n)$. This
+method requires long integration time
+on a same object. With this goal, during the N2R9 run, we selected \hls, a
+moderately faint source
 \citep{2012A&A...538L...4C}, expected to have flux densities of 74.5\,mJy at $1\,\rm{mm}$
 and 15.7\,mJy at $2\, \rm{mm}$. %(M.~Bethermin, private
 %communication).
@@ -278,9 +283,10 @@ analysis to sources with flux below 1\,Jy.
     \includegraphics[trim={0.5cm, 0, 0.2cm, 0.5cm}, clip, angle=0, width=0.485\textwidth]{Figures/hls_NEFD_vs_TauElev_all.eps}
     \caption{Comparison of NEFD estimates using two methods on
       observation of \hls. \emph{Left panel:} Evolution of the
-    1\,$\sigma$ flux density uncertainties as a function of the
-    integration time; \emph{Right panel:} NEFD as a function of the
-    measured line-of-sight opacity. The solid black lines are the
+    1\,$\sigma$ flux density uncertainties as a function of the effective
+    integration time $t_{\rm{eff}}$, as defined in
+    Eq.~\ref{eq:sigma_tau_w8}; \emph{Right panel:} NEFD as a function
+    of the measured line-of-sight opacity. The solid black lines are the
     theoretical fits of
     $\rm{NEFD}(\taunu, x) = \rm{NEFD}\, e^{\taunu\,x}$
     and give the NEFD when extrapolated

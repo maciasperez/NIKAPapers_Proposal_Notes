@@ -30,9 +30,9 @@ In order to be able to produce a map, one needs to associate a pointing
 direction to any data sample of the system. The telescope provides
 pointing information for a reference position in the focal
 plane. These information consist of the
-absolute azimuth and elevation $(\alpha^{\rm{ref}},\delta^{\rm{ref}})$
+absolute azimuth and elevation $(\az^{\rm{ref}},\elev^{\rm{ref}})$
 of the source, together with offsets
-$(\Delta\alpha^{\rm{ref}}, \Delta\delta^{\rm{ref}})$ \wrt~these {\lp
+$(\Delta\az^{\rm{ref}}, \Delta\elev^{\rm{ref}})$ \wrt~these {\lp
 depending on the scanning strategy.}
 We then need to know the relative pointing offsets of each detector
 with respect to this reference position. We use
@@ -50,15 +50,15 @@ noise, albeit with a slight ringing and flux loss on the
 source. However, at this stage, we are only interested in the location
 of the observed source.
 To derive the Nasmyth coordinates from the
-provided $(\alpha_t,\delta_t)$ and $(\Delta\alpha_t,\Delta\delta_t)$
+provided $(\az_t,\elev_t)$ and $(\Delta\az_t,\Delta\elev_t)$
 coordinates, we build the following quantities at time~$t$:
 
 \begin{eqnarray}
-\Delta x_t &=& \cos\delta_t \Delta\alpha_t^{\rm{ref}} - \sin \delta_t\Delta \delta_t^{\rm{ref}} \nonumber \\
-\Delta y_t &=& \sin\delta_t \Delta\alpha_t^{\rm{ref}} + \cos \delta_t\Delta \delta_t^{\rm{ref}} \nonumber
+\Delta x_t &=& \cos\elev_t \, \Delta\az_t^{\rm{ref}} - \sin \elev_t \, \Delta \elev_t^{\rm{ref}} \nonumber \\
+\Delta y_t &=& \sin\elev_t \, \Delta\az_t^{\rm{ref}} + \cos \elev_t \, \Delta \elev_t^{\rm{ref}} \nonumber
 \end{eqnarray}
 
-Note that $\Delta\alpha_t^{\rm{ref}}$ is already corrected by the $\cos\delta_t^{\rm{ref}}$ factor to
+Note that $\Delta\az_t^{\rm{ref}}$ is already corrected by the $\cos\elev_t^{\rm{ref}}$ factor to
 have orthonormal coordinates in the tangent plane of the sky and be immune to
 the geodesic convergence at the poles.
 %Moreover, before projecting the
@@ -80,14 +80,14 @@ position of this Gaussian provides us with an estimate of the KID
 pointing offsets \wrt\ the reference position in Nasmyth
 $(x,y)$ coordinates (independent of time).
 
-To go from Nasmyth offsets to $(\alpha,\delta)$ offsets, we apply the
+To go from Nasmyth offsets to $(\az,\elev)$ offsets, we apply the
 following rotation by the elevation angle:
 \begin{eqnarray}
-\Delta\alpha^k_t &=&  \cos\delta_t \Delta x^k + \sin\delta_t \Delta y^k, \nonumber\\
-\Delta\delta^k_t &=& -\sin\delta_t \Delta x^k + \cos\delta_t \Delta y^k, \nonumber
+\Delta\az^k_t &=&  \cos\elev_t \, \Delta x^k + \sin\elev_t \, \Delta y^k, \nonumber\\
+\Delta\elev^k_t &=& -\sin\elev_t \, \Delta x^k + \cos\elev_t \, \Delta y^k, \nonumber
 \end{eqnarray}
 where $k$ is a KID index. Adding these offsets to
-$(\Delta \alpha_t^{\rm{ref}}, \Delta \delta_t^{\rm{ref}})$ gives the
+$(\Delta \az_t^{\rm{ref}}, \Delta \elev_t^{\rm{ref}})$ gives the
 absolute pointing of each KID in these coordinates.}
 
 {\lp Furthermore, the fitted Gaussian per KID further provides us with

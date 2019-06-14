@@ -36,6 +36,7 @@
 %\newcommand{\elev}{\delta}
 %\newcommand{\elev}{\theta}
 \newcommand{\elev}{\rm{el}}
+\newcommand{\az}{\rm{az}}
 \newcommand{\nika}{NIKA2}
 \newcommand{\aka}{a.\,k.\,a.}
 \newcommand{\wrt}{w.\,r.\,t.}
@@ -448,28 +449,28 @@ conditions encountered on-site.
     \hline
     \noalign{\smallskip}
     Number of designed detectors                   &   1140   &    616  & & Sect.~\ref{se:array}\\
-    Number of valid detectors\tablefootmark{a}     &  952-961 &    553  & & Sect.~\ref{se:fov_geometry}\\
+    Number of valid detectors\tablefootmark{a}     &  952-961 &    553  & & Sect.~\ref{se:avg_kidpar}\\
     Fraction of valid detectors [$\%$]             &  84      &     90  & & \\
     %%% I find this number useless and misleading FXD 30 nov 2018
     %%% Effective FOV\tnote{a}\hspace{1mm} [arcmin]    &  5.7      &   5.7    &    &    5.9  & Sect.~\ref{se:grid_distortion}\\
     % Here I put the measured value (the modeled values are in the the field-of-view section) FXD
-    Pixel size in beam sampling unit\tablefootmark{b}\hspace{3mm} [$F\lambda$] & 1.1 &  0.87 & & Sect.~\ref{se:grid_distortion} \\
+    Pixel size in beam sampling unit\tablefootmark{b}\hspace{3mm} [$\lambda/D$] & 1.1 &  0.87 & & Sect.~\ref{se:grid_distortion} \\
     \hline
     \noalign{\smallskip}
     FWHM\tablefootmark{c}\hspace{3mm} [arcsec]    &  $11.1 \pm 0.2$  &  $17.6 \pm 0.1$  & & Sect.~\ref{se:mainbeam}\\
     Beam efficiency\tablefootmark{d}\hspace{3mm} [$\%$] &  $55 \pm 3$   &  $77 \pm 2$  &  & Sect.~\ref{se:beam_efficiency}\\
-    Relative rms FWHM on the FOV [$\%$]          &      6        &      3        & & \citet{Adam2018} \\
+    Rms FWHM across the FOV [arcsec]              &    0.6        &      0.6        & & \citet{Adam2018} \\
     \hline
     \noalign{\smallskip}
     Reference FWHM\tablefootmark{e}\hspace{3mm} [arcsec]          & $12.5$     &   $18.5$  &  & Sect.~\ref{se:photometric_system}\\
     Reference Beam efficiency\tablefootmark{f}\hspace{3mm}  [\% ] & $70 \pm 4$ & $85 \pm 3$ &  & Sect.~\ref{se:extended_source_calib}\\
     \hline
     \noalign{\smallskip}
-    Rms pointing error    [arcsec]             & \multicolumn{2}{c}{$<3$} &  & Sect.~\ref{se:pointing} \\
+    Rms pointing error    [arcsec]               & $<3$ &  $<3$  & & Sect.~\ref{se:pointing} \\
     \hline
     \noalign{\smallskip}
-    Absolute calibration uncertainty [\%]      &  \multicolumn{2}{c}{5}   & & Sect.~\ref{se:ref_flux_uranus_neptune} \\
-    Relative rms calibration error [\%]                 &   5.7       &     3.0       & & Sect.~\ref{se:photometry_baseline} \\
+    Systematic calibration uncertainty [\%]      &   5         & 5 & & Sect.~\ref{se:photometry_criteria}, Appendix~\ref{se:ref_flux_uranus_neptune} \\
+    Rms calibration error [\%]                   &   5.7       &     3.0       & & Sect.~\ref{se:photometry_baseline} \\
     \hline
     \noalign{\smallskip}
     $\alpha$ noise integration in time\tablefootmark{g}\hspace{3mm}  & 0.5 & 0.5 & & Sect.~\ref{se:nefd_results} \\
@@ -483,7 +484,7 @@ conditions encountered on-site.
   \tablefoot{ \\
     \tablefoottext{a}{Number of usable detectors, which have been selected in at least two FOV reconstructions}
     \tablefoottext{b}{Calculated from real array pixel size [2.75 mm / 2.0 mm] and unvignetted entrance pupil diameter [27m]}
-    \tablefoottext{c}{Full-width at half-maximum of the main beam using the combined results of the three methods}
+    \tablefoottext{c}{Full-width at half-maximum of the main beam using the combined results of three methods}
     \tablefoottext{d}{Ratio between the main beam power and the total beam power up to a radius of 180''}
     \tablefoottext{e}{Full-width at half-maximum of the beam used in our reference photometric system}
     \tablefoottext{f}{Ratio between the reference FWHM beam power and the total beam power up to a radius of 180''} 
@@ -572,11 +573,11 @@ conditions encountered on-site.
   scans. We conservatively retain only the most stable KIDs, which are
   immune to the cross-talking effect and yield good signal-to-noise
   measurement. We defined 'valid' KIDs as the detectors that have been
-  retained in at least two independent KID selections.
+  retained in at least two independent selections of KIDs.
   We report valid KID fractions of $84\%$
   for the $1\,\rm{mm}$ channel arrays and $90\%$ for Array 2. The other
-  KIDs, which do not meet the validity criterion, are ramdomly
-  distributed across the FOV, so that the whole $6.6\,\rm{arcmin}$ FOV is
+  KIDs, which do not meet the validity criterion, are randomly
+  distributed across the FOV, so that the whole $6.5\,\rm{arcmin}$ FOV is
   covered.
   %Considering the designed KID grid as discussed in
   %Sect.~\ref{se:grid_distortion}, the distance between
@@ -594,16 +595,16 @@ conditions encountered on-site.
   
 \item %\emph{Beam Properties:}
   The main beam is well described with a 2D
-  Gaussian of FWHM of $11''$ for the $1\,\rm{mm}$ channel arrays
+  Gaussian of FWHM of $11.1''$ for the $1\,\rm{mm}$ channel arrays
   and $17.6''$ for Array 2, with uncertainties of $0.2''$ for the
-  combination of Array 1$\&$3 and for Array 2.
+  combination of Array 1$\&$3 and of $0.1''$ for Array 2.
   %While the full beam pattern presents a
   %complex structure, the main beam is well described with a 2D
   %Gaussian of FWHM of $11''$ for the $1\,\rm{mm}$ channel arrays
   %and $17.6''$ for Array 2, with uncertainties of $0.2''$ for the
   %combination of Array 1$\&$3 and for Array 2.
   Comparing the main beam fit to the measured full beam, we have derived the
-  main beam efficiency up to a radius of $180''$. We found beam
+  main beam efficiency up to a radius of $180''$. We found main beam
   efficiencies of $55 \pm 3 \%$ at $1\,\rm{mm}$ and $77 \pm 2 \%$ at
   $2\,\rm{mm}$.
   %For taking into account the fraction of the full beam stemming from
@@ -650,7 +651,7 @@ conditions encountered on-site.
 \item %\emph{Sensitivity:}
   The noise does well integrate as the square root of the integration time
   for series of scans acquired in similar observing conditions. We
-  have derived robust estimate of the NEFD using more than one
+  have derived robust estimate of the NEFD using more than a
   thousand scans encompassing a large range of observing
   conditions. We found NEFD at zero atmospheric opacity of
   $30 \pm 3\,\rm{mJy}\cdot s^{1/2}$ at
@@ -661,11 +662,15 @@ conditions encountered on-site.
   %conservative estimates that encompass a large range of observing
   %conditions, as addressed in Sect.~\ref{se:nefd_results}.
   Furthermore, better NEFD have been found using homogeneous series of
-  about one hundred scans of e.g. \hls\,. The conservative NEFD
-  estimate reaches the goal value at $2\,\rm{mm}$. However, it is
-  measured as slightly above the specifications at
-  $1\,\rm{mm}$. Indeed, the instrumental sensitivity at $1\,\rm{mm}$
-  is at present mainly limited by the non-optimal transmission of
+  about one hundred scans of \hls\,. The conservative NEFD
+  estimate reaches the goal value at $2\,\rm{mm}${\lp, which is of
+  $10\,\rm{mJy}\cdot s^{1/2}$ at the reference observing
+  conditions at the IRAM \trentemetre\ telescope.} However, it is
+  measured as slightly above the specification value at
+  $1\,\rm{mm}${\lp, which is of $30\,\rm{mJy}\cdot s^{1/2}$ at the IRAM
+  \trentemetre\ telescope reference observing
+  conditions.} Indeed, the instrumental sensitivity at $1\,\rm{mm}$
+  is currently mainly limited by the non-optimal transmission of
   the air-gap dichroic, mostly prominent in one polarisation (A1) but
   affecting the other (A3) as well.
 %Actions are on-going to produce and test new
@@ -699,9 +704,12 @@ conditions encountered on-site.
 The main characteristics that define the NIKA2 performance are
 summarized in Table~\ref{tab:nika2summary}.
 We conclude that NIKA2 has unique capabilities in fast dual-band
-mapping at tens arcsecond resolution. NIKA2 performance meet the
-requirements to address some of the most exciting open questions in
-astrophysics and cosmology. 
+mapping at tens arcsecond resolution. {\lp It is currently available to the
+whole community and will operate at the IRAM \trentemetre\ telescope
+at least for the next decade.} NIKA2 performance meet the requirements
+to address some of the most exciting open questions in astrophysics
+and cosmology.
+
 
 %The instrumental sensitivity at $1\,\rm{mm}$ is at present mainly
 %limited by the non-optimised transmission of the air-gap dichroic,

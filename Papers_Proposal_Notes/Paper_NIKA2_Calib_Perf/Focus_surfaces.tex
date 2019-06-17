@@ -1,19 +1,20 @@
 %----------------------------------------------------------------------------------------
-%	APPAENDIX : FOCUS SURFACES
+%	APPENDIX : FOCUS SURFACES
 %----------------------------------------------------------------------------------------
 %\section{Reconstruction of the focus surfaces}
 %\label{sec:focus_surfaces}
 
 Owing to the NIKA2 $6.5~\rm{arcmin}$ FOV, the focus is expected to
-slightly changes across the FOV, defining curved focal surfaces at the
+slightly change across the FOV, defining curved focal surfaces at the
 location of the three arrays. Therefore, beam patterns are expected to
 show some scatter across the FOV accordingly to the focal
 surfaces. Although all the detectors cannot be individually focalised,
 an optimal axial focus of the telescope can be found to maximize the
 number of detectors at the best focus and hence, maximize the
 resolution of the NIKA2 maps.
-This optimal z-focus setting is obtained by measuring the focus at the center of the arrays as described
-Sect.~\ref{se:axial_focus} and apply a focus shift, which is primary
+This optimal z-focus setting is obtained by measuring the focus at the
+center of the arrays as described Sect.~\ref{se:axial_focus} and apply
+a focus shift of $-0.2\,\rm{mm}$, which is primary
 predicted using ZEMAX simulations, and ultimately verified by measuring
 the focus surfaces as decribed here.
 
@@ -21,10 +22,8 @@ the focus surfaces as decribed here.
 \begin{center}
   \includegraphics[trim={0, 9.5cm, 0, 9.5cm}, clip=true, width=\linewidth]{Figures/fov_focus_mv_5.png}
 \caption[Focus surfaces]{Focus surface of A1, A3 and A2 arrays from left to
-  right. From top to bottom, the focus estimates rely on
-  FWHM-minimization, amplitude-maximization of a 2D
-  Gaussian of fixed FWHMs and amplitude-maximization of an elliptical
-  Gaussian. On each plot, the x and y axis are the Nasmyth offsets
+  right. In this example, the focus estimates rely on the maximisation of the flux
+  density. On each plot, the x and y axis are the Nasmyth offsets
   w.r.t. the center of the array in arcsec, while the color-code represents
   the relative focus estimate w.r.t. the central focus, given in mm.}
 \label{fig:focus-surfaces}
@@ -41,10 +40,10 @@ The z-focus is changed in step of $0.6~\rm{mm}$ to probe a large
 focus range for measuring even the extreme variation of the focus surfaces,
 namely $z \in \{-1.2, -0.6, 0, 0.6, 1.2 \} + z_{\rm{opt}}$.  Each
 \bm\ is analysed using the data reduction pipeline, as described in
-Sect.~\ref{se:pipeline_overview}, and $4''$-resolution individual maps per KID
+Sect.~\ref{se:dataproc}, and $4''$-resolution individual maps per KID
 are projected. 
 Therefore, a series of
-five cleaned maps at various focus is available for each detector, from which
+five maps at various focus positions is available for each detector, from which
 the best focus is estimated as described in Sect.~\ref{se:axial_focus}. The
 ensemble of the relative focus estimate per KIDs with respect to the best focus
 at the center of the array constitutes the focus surface. An accurate estimate
@@ -118,7 +117,10 @@ across the detectors is about
 $-0.1~\rm{mm}$ for the three arrays. Maximal defocus values of about
 $-0.6~\rm{mm}$ are found for detectors located in the outer top and
 left regions of the FOV. Finally, a fraction comprised between $20$
-and $30\%$ of the KIDs has $z\le -0.2~\rm{mm}$.  
+and $30\%$ of the KIDs has $z\le -0.2~\rm{mm}$. {\lp Using these
+measurements and expectations with optical simulation, we optimize
+the focus of all detectors by setting the focus at the value
+estimated at the center of the arrays shifted of $-0.2\,\rm{mm}$.}  
 
 We further tested the stability of the
 focus surfaces by comparing results from a series of \bm\

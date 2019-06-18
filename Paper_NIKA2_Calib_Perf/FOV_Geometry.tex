@@ -4,9 +4,13 @@
 %\section{Focal Plane Geometry}
 %\label{se:geometry}
 
-The FOV reconstruction consists in matching the KID frequency tones
-to positions in the sky and in performing a KID selection. Although all
-the 2,900 KID are responsive, some of them are affected by
+{\lp From the operational point-of-view the KIDs are defined by the
+resonance frequency and not by their physical position in the focal
+plane. Therefore, to find the position on the sky we need to deploy
+a dedicated method that we refer to as the FOV reconstruction.}
+The FOV reconstruction thus consists in matching the KID frequency tones
+to positions in the sky and in performing a KID selection.
+Although all the 2,900 KID are responsive, some of them are affected by
 cross-talk or are noisy due to an inaccurate tuning of their
 frequency, and must be discarded for further analysis. We use \bms,
 which enable an individual map per KID to be constructed %, as discussed in
@@ -151,7 +155,7 @@ positions in the array. We fit the 2D field translation and rotation that allow
 matching the measured KID positions with the design positions using a 2D
 polynomial mapping function. {\lp We find that a matching can be
 obtained using a 2D polynome of degree one, that is using a linear
-shift and a rotation only.} We call distortion cross-terms
+transformation and a rotation only.} We call distortion cross-terms
 between the two spatial coordinates in the polynomial fit.
 
 The aim is twofold. First we obtain a detailed
@@ -337,10 +341,10 @@ also be discarded because they appear identical
 numerically due to the fact that a same (noisy) KID can sometimes be
 associated to two different frequency tones in the acquisition system.
 These KIDs are flagged out (less than 1\% of the design KIDs).
-{\lp We count the times that a KID has been kept in
-the KID selection and that it has been found at a position agreeing
+{\lp We count how many times a KID has been kept in
+the KID selection per \bm\ and has been found at a position agreeing
 with its median position within 4''.}
-We define the {\emph valid} KIDs as the KIDs that met the selection
+Using this, we define the {\emph valid} KIDs as the KIDs that met the selection
 criteria in about {\lp $20\%$} of the FOV geometries (in two \bm\
 analysis out of ten).
 
@@ -418,9 +422,10 @@ valid detectors over the design ones, as given in Table~\ref{tab:number_of_kids}
 The valid KIDs represent the KIDs
 usable to produce a scientifically exploitable map of the flux
 density using observations for which no sizable {\tt tuning}
-issues are experienced. {\lp The valid KID timelines are ingested in
-input of the data reduction pipeline. To give an idea of the
-dependence of the KID selection on the observing conditions,} we also
+issues are experienced. %{\lp The valid KID timelines are ingested in
+%input of the data reduction pipeline.}
+{\lp To give an idea of the dependence of the KID selection on the
+observing conditions,} we also
 evaluate a number of \emph{very stable} KIDs as the KIDs that met the
 selection criteria at least in {\lp $50\%$} of the FOV geometries (at least
 five times out of {\lp ten}). We

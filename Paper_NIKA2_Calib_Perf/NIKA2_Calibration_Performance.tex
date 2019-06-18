@@ -317,7 +317,12 @@
          The rms calibration uncertainties are of about $3\%$ at $150\,\rm{GHz}$ 
          and $6\%$ at $260\,\rm{GHz}$. This demonstrates
          the accuracy of the methods that we have deployed to correct
-         for the atmospheric attenuation. The noise equivalent
+         for the atmospheric attenuation. {\lp The absolute
+           calibration uncertainties are of $5\%$ and the systematic
+           calibration uncertainties evaluated at the IRAM
+           \trentemetre\ reference Winter observing conditions are
+           below $1\%$ in both channels.}
+         The noise equivalent
          flux density (NEFD) at $150$ and $260\,\rm{GHz}$ are of
          $9 \pm 1\, \rm{mJy}\cdot s^{1/2}$ and
          $30 \pm 3\, \rm{mJy}\cdot s^{1/2}$. 
@@ -493,15 +498,16 @@ conditions encountered on-site.
     Rms pointing error    [arcsec]               & $<3$ &  $<3$  & & Sect.~\ref{se:pointing} \\
     \hline
     \noalign{\smallskip}
-    Systematic calibration uncertainty [\%]      &   5         & 5 & & Sect.~\ref{se:photometry_criteria}, Appendix~\ref{se:ref_flux_uranus_neptune} \\
-    Rms calibration error [\%]                   &   5.7       &     3.0       & & Sect.~\ref{se:photometry_baseline} \\
+    Absolute calibration uncertainty [\%]      &   5         & 5 & & Sect.~\ref{se:photometry_criteria}, Appendix~\ref{se:ref_flux_uranus_neptune} \\
+    Systematic calibration uncertainty\tablefootmark{g}\hspace{3mm}  [\%]      &    0.6        & 0.3 & & Sect.~\ref{se:photometry_criteria}, Appendix~\ref{se:ref_flux_uranus_neptune} \\
+    Rms calibration uncertainty [\%]                   &   5.7       &     3.0       & & Sect.~\ref{se:photometry_baseline} \\
     \hline
     \noalign{\smallskip}
-    $\alpha$ noise integration in time\tablefootmark{g}\hspace{3mm}  & 0.5 & 0.5 & & Sect.~\ref{se:nefd_results} \\
+    $\alpha$ noise integration in time\tablefootmark{h}\hspace{3mm}  & 0.5 & 0.5 & & Sect.~\ref{se:nefd_results} \\
     \hline
     \noalign{\smallskip}
-    NEFD\tablefootmark{h}\hspace{3mm} [$\rm{mJy} \cdot \rm{s}^{1/2}$]  & $30 \pm 3$  & $9 \pm 1$ &  & Sect.~\ref{se:nefd_results}\\
-    M$_{\rm{s}}$\tablefootmark{i}\hspace{3mm} [arcmin$^2 \cdot
+    NEFD\tablefootmark{i}\hspace{3mm} [$\rm{mJy} \cdot \rm{s}^{1/2}$]  & $30 \pm 3$  & $9 \pm 1$ &  & Sect.~\ref{se:nefd_results}\\
+    M$_{\rm{s}}$\tablefootmark{j}\hspace{3mm} [arcmin$^2 \cdot
       \rm{mJy}^{-2} \cdot \rm{h}^{-1}$] & $111 \pm 11$  &  $1388 \pm 174$ &  & \\
     \hline
   \end{tabular}
@@ -511,11 +517,11 @@ conditions encountered on-site.
     \tablefoottext{c}{Full-width at half-maximum of the main beam using the combined results of three methods}
     \tablefoottext{d}{Ratio between the main beam power and the total beam power up to a radius of 180''}
     \tablefoottext{e}{Full-width at half-maximum of the beam used in our reference photometric system}
-    \tablefoottext{f}{Ratio between the reference FWHM beam power and the total beam power up to a radius of 180''} 
-    \tablefoottext{g}{Effective power law of noise reduction with integration time}
-    \tablefoottext{h}{NEFD extrapolated at zero opacity}
+    \tablefoottext{f}{Ratio between the reference FWHM beam power and the total beam power up to a radius of 180''}    \tablefoottext{f}{Systematic calibration uncertainties due to the opacity correction using the {\tt corrected skydip} method estimated at the reference IRAM \trentemetre\ winter observing conditions: 2mm pwv, $60^o$ elevation} 
+    \tablefoottext{h}{Effective power law of noise reduction with integration time}
+    \tablefoottext{i}{NEFD extrapolated at zero opacity}
     %\tablefoottext{h}{NEFD in typical IRAM good sky opacity condition: 2mm pwv, $60^o$ elevation}
-    \tablefoottext{i}{Mapping speed at zero opacity}
+    \tablefoottext{j}{Mapping speed at zero opacity}
     %\tablefoottext{j}{Mapping speed in typical IRAM good sky opacity condition: 2mm pwv, $60^o$ elevation}
   }
 \end{table*}
@@ -616,7 +622,7 @@ conditions encountered on-site.
   %ndet = [952, 961, 553]
   %print, sqrt((ndet*(gs/60.0)^2)/!dpi*4.0)
   %% F\lambda = gridstep\times D(30m)/\lambda
-  
+  \vspace{1mm}
 \item %\emph{Beam Properties:}
   The main beam is well described with a 2D
   Gaussian of FWHM of $11.1''$ for the $1\,\rm{mm}$ channel arrays
@@ -664,13 +670,14 @@ conditions encountered on-site.
   %on.  
 %
   % calib
+  \vspace{1mm}
 \item %\emph{Calibration uncertainties:}
   We evaluated the statistical calibration uncertainties using 264 
   scans of sources whose flux density is above about one Jy. We find rms calibration
   uncertainties of about $6\%$ at $1\,\rm{mm}$ and about $3\%$ at
   $2\,\rm{mm}$, which are state-of-the-art performance for a
   ground-based millimeter-wave instrument. 
-  
+   \vspace{1mm}
   % noise&sensitivity
 \item %\emph{Sensitivity:}
   The noise does well integrate as the square root of the integration time
@@ -713,7 +720,7 @@ conditions encountered on-site.
 %particular the noise decorrelation methods, 3)~upgrade the 1~mm
 %arrays, 4)~increase the bandwidth of the 1~mm arrays, and 5)~upgrade
   %the surface of the telescope.}
-  
+   \vspace{1mm}
 \item  NIKA2 mapping capabilities are better estimated by evaluating the
   mapping speed, which is defined as the sky area that is covered in one
   hour of observation to a noise level of $1\,\rm{mJy}$. We found

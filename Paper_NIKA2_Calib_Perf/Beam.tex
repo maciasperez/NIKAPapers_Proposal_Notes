@@ -181,13 +181,12 @@ $2\,\rm{mm}$.
 {\lp To measure the relative level of the axi-symmetrical beam pattern
 features, we further model the beam profiles using an empirical function,
 which accounts for the main beam and for a significant fraction of the
-error beams and side lobes. This function consists in a three-Gaussian
-function $B(r)$ defined as:
+error beams and side lobes. We define this function $B(r)$ as:
 \begin{equation}
   B(r) = \sum_{i=1}^{3} \mathcal{A}_i G_i(r) + \mathcal{B}_0,
   \label{eq:3gauss}
 \end{equation}
-where $\mathcal{A}_i$ is the amplitude of the Gaussian $i$ for
+where $\mathcal{A}_i$ is the amplitude of the Gaussian $G_i$ for
 $i \in {1, 2, 3}$ and $\mathcal{B}_0$ a pedestal level accounting for
 the residual background level in the map. The measured beam profiles
 are fitted using Eq.~\ref{eq:3gauss} and the median best-fit
@@ -203,9 +202,11 @@ $-13\,\rm{dB}$ at 1 and $2\,\rm{mm}$, respectively.}
 \begin{table}[!th]
    \caption{{\lp Median best-fitting values of the parameters of the
   3-Gaussian beam profile, as defined in Eq.~\ref{eq:3gauss}, using
-  the {\tt BM18} data set. $\bar{\mathcal{A}_i}$, for
-  $i \in {1, 2, 3}$ are the Gaussian amplitudes $\mathcal{A}_i$ relative to the sum
-  of $\mathcal{A}_i$, and given in decibel. The FWHM for each of the Gaussian are given in arcseconds.}}
+  the {\tt BM18} data set. For $i \in {1, 2, 3}$ $\bar{\mathcal{A}_i}
+  =\mathcal{A}_i / \sum{\mathcal{A}_i}$.
+  %are the Gaussian amplitudes $\mathcal{A}_i$ relative to the sum
+  %of $\mathcal{A}_i$, and given in decibel.
+  The FWHM for each of the Gaussian are given in arcseconds.}}
   \label{tab:mean_3gauss_fit}
   \begin{center}
     \begin{tabular}{rll}

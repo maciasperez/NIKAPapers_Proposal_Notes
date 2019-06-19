@@ -94,19 +94,24 @@ atmospheric opacity correction using either the {\tt skydip} or
 the {\tt taumeter} method and the atmospheric and instrumental noise
 residuals after the data reduction (Sect.~\ref{se:dataproc}).\\
 
-\subsubsection{Systematic uncertainties}
+\subsubsection{Absolute and systematic uncertainties}
 \label{se:def_systematic_errors}
-To obtain an estimate of the
-total absolute calibration uncertainties, the rms errors must be added in quadrature
-with systematic uncertainties that do not depend on the observing
-conditions. The main source of systematic error is the model uncertainty
-on the primary calibrator flux density expectations. In the case of
-Uranus, \citet{Morenothesis} and \citet{Bendo2013} report model
+
+To account for all uncertainties, we must add to the rms calibration
+uncertainties the absolute calibration uncertainties and the
+systematic errors. The absolute uncertainty is the uncertainty on the
+primary calibrator flux density expectations. 
+%To obtain an estimate of the
+%total absolute calibration uncertainties, the rms errors must be added in quadrature
+%with systematic uncertainties that do not depend on the observing
+%conditions.
+%The main source of systematic error is the model uncertainty
+%on the primary calibrator flux density expectations.
+In the case of Uranus, \citet{Morenothesis} and \citet{Bendo2013} report 
 uncertainties of about $5\%$ at both wavelenghts.
 
-When using the \emph{baseline}
-calibration method, which resorts to the {\tt corrected skydip} method
-for the atmospheric opacity correction (see
+For the \emph{baseline} calibration method, which resorts to the {\tt
+corrected skydip} method for the atmospheric opacity correction (see
 Sect.~\ref{se:corrected-skydip}), the uncertainties on the
 correcting factor $a_\nu^{\rm{skydip}}$, as defined in
 Eq.~\ref{eq:corrected_skydip}, must be propagated to the flux
@@ -119,11 +124,12 @@ uncertainties depends on the difference between the average
 line-of-sight opacity of the primary calibrator scans and the
 line-of-sight opacity of the source scan.   
 We evaluate the {\tt corrected skydip} uncertainties for two
-different $\taunu x$ values. First for the reference IRAM \trentemetre\
-winter observing conditions, as defined as $2\,\rm{mm}$ of pwv and an
+different $\taunu x$ values. 1) For the reference IRAM \trentemetre\
+winter observing conditions, defined as $2\,\rm{mm}$ of pwv and an
 elevation of $60^{\rm{o}}$, the {\tt corrected skydip} uncertainties are of
-0.6\% at $1\,\rm{mm}$ and 0.3\% at $2\,\rm{mm}$. Secondly in the worst
-observing conditions allowed by the \emph{baseline} scan selection,
+0.6\% at $1\,\rm{mm}$ and 0.3\% at $2\,\rm{mm}$. 2) In the worst
+observing conditions allowed by the \emph{baseline} scan selection
+(Sect.~\ref{se:data_selection}),
 which are $\taunu x$ of 0.7 at $1\,\rm{mm}$ and of 0.5 at
 $2\,\rm{mm}$, we find {\tt corrected skydip} uncertainties of 2\% and
 $1.5\%$ at 1 and $2\,\rm{mm}$, respectively. These constitute
@@ -292,7 +298,8 @@ retains 16 hours of observation time
 a day and ii) %results in calibration uncertainties that meet the
 %requirement for a millimetric ground-based instrument,
 {\lp results in state-of-the-art rms calibration
-uncertainties,} constitutes an advantageous tradeoff.
+uncertainties,} constitutes {\lp an useful tradeoff representative of most
+of the observations with NIKA2.} 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                              bias
@@ -487,16 +494,16 @@ measure the continuum. In addition, the resulting continuum shows
 indications of variability.}
 
 
-\subsubsection{Calibration uncertainties}
+\subsubsection{Calibration rms uncertainties}
 
-The calibration uncertainties for the five methods evaluated using
+The calibration rms uncertainties for the five methods evaluated using
 flux-selected source scans are gathered in the subpanel labelled 'Rms'
 of Table~\ref{tab:Calibration_results_all}.
 
 Compared to the \emph{baseline} method, the {\tt taumeter} method leads to 
 rms errors increased of about $40$ and $30\%$ at 1 and
-$2\,\rm{mm}$. The {\tt skydip} method shows lower dispersion but a
-mild correlation with the atmospheric transmission, as
+$2\,\rm{mm}$, respectively. The {\tt skydip} method shows lower
+dispersion but a mild correlation with the atmospheric transmission, as
 discussed in Sect.~\ref{se:calibration_bias_all}.
 
 In addition, we have checked the flux density ratios for the bunch of
@@ -511,7 +518,7 @@ when using a photometric correction. This further validates the
 hypothesis that the low flux
 density of these scans is due to \afternoon\ beam effect, as assumed in
 Sect.~\ref{se:photometry_baseline}. This also constitutes an example
-of the calibration improvement obtained from resorting to a
+of the calibration improvement obtained by using a
 photometric correction.
 
 Moreover, results based on the {\tt PC-demo} method show that rms
@@ -545,7 +552,7 @@ robustness depends on the accuracy of the beam monitoring. {\lp The
 proposed beam monitoring based on {\tt pointing} scans induces some
 extra dispersion of the flux densities. A more accurate beam monitoring is
 feasable but requires using dedicated observation scans.} 
-Summarizing the \emph{baseline} method results discussed in
+From the \emph{baseline} method results discussed in
 Sect.~\ref{se:photometry_baseline}, we have found that the measured
 flux density of MWC349 is in agreement with expectations within $5\%$
 for both wavelengths. Moreover, the rms calibration

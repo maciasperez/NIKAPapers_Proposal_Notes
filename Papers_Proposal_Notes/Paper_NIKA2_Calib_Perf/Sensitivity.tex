@@ -94,6 +94,7 @@ the FOV and if the FOV is full of valid KIDs. Thus, the NEFD reads:
 
 \begin{equation}
   \rm{NEFD} = \sigma \sqrt{t_{\rm{det}}}\; [\rm{mJy.s}^{1/2}].
+\label{eq:nefd_def}
 \end{equation}
 
 The mapping speed, $M_{\rm{s}}$, is the sky area $\mathcal{A}_{\rm{scan}}$ that
@@ -128,67 +129,46 @@ an airmass $x$ and under an opacity $\taunu$ is
 \subsection{NEFD estimation methods and scan selection}
 \label{se:nefd_method}
 
-We have developed several complementary methods for the
-NEFD estimation, which come in two different flavours. First, we
-use deep integrations on faint sources, and second we resort to 
-joint analysis of multiple scans without combining them. A detailed
-description of our methods will be found in \citet{Ponthieu2019}.
-%% An
-%% extensive discussion of these methods will be given in
-%% \citet{Ponthieu2019}. In this section, w
-We briefly describe here one method for each of the two approaches. \\
+We have developed several complementary methods for the NEFD estimation. First,
+we use deep integrations on faint sources. Second, we resort to joint
+analysis of multiple scans without combining them.\\
 
-\noindent \emph{Deep integration method} The error on the flux density of a
-point source for an integration time $t_{det}$ at an \airmass\ $x$
-and an atmospheric opacity $\taunu$ is
-$\sigma(t) = \rm{NEFD}\,e^{\taunu \, x}/\sqrt{t_{\rm{det}}}$.
-Using long-time integration observation on a source, we can study the
-decrease of $\sigma$ with integration time, and
-therefore estimate the NEFD when the different elevation and opacity conditions of
-observation are correctly accounted for.  We produce a series of maps using an
-inverse-variance co-addition of an increasing number of observation
-scans, and perform a photometric analysis on each map according to
-Sect.~\ref{se:photometry}. Since
-all the scans are not acquired in the same conditions of atmospheric
-opacity and observing elevation, they do not contribute with the same
-weight to the co-addition. In such case, an effective integration time
-for the co-addition of $n$ scans is defined as
-%
+\noindent \emph{Deep integration method.} According to
+eqs.~(\ref{eq:nefd_def},\ref{eq:nefd_tau_el}), if a source was observed under
+stable atmospheric conditions, the flux uncertainty would scale directly like
+$t_{\rm{det}}^{-1/2}$. This relation provides both a way to estimate the NEFD and to
+check that the noise does integrate down as expected with the integration
+time. In practice, in particular for integrations of several hours, observing
+conditions do change. This is accounted for in the coaddition of the $n$ scans with inverse
+variance weighting \nico{SEE SECTION XXXX}, and it translates to an effective
+uncertainty on the combined flux as
+
 \begin{equation}
-t_{\rm{eff}}(n) = \sum_{i=1}^{n}\, t_i\,  e^{-2\taunu^i\, x_i},
+\sigma_{avg} = \frac{NEFD^2}{\sum_{i=1}^{n}\, t_i\,  e^{-2\taunu^i\, x_i}} \equiv
+\frac{NEFD^2}{t_{\rm{eff}}(n)},
 \label{eq:sigma_tau_w8}
 \end{equation}
-%
-where $t_i$, $\taunu^i$ and $x_i$ are the integration time, the zenith
-opacity and the \airmass\ of the $i$-th scan of the $n$-scans
-co-addition. Generalizing Eq.~\ref{eq:nefd_det},
-the flux density uncertainties on the co-addition of $n$ scans is
-$\sigma(n) = \rm{NEFD}/\sqrt{t_{\rm{eff}}(n)}$. An estimate of the
-NEFD can therefore be obtained in fitting
-$\sigma(n)$ as a function of the corresponding $t_{\rm{eff}}(n)$. This
-method requires long integration time
-on a same object. With this goal, during the N2R9 run, we selected \hls, a
-moderately faint source
-\citep{2012A&A...538L...4C}, expected to have flux densities of 74.5\,mJy at $1\,\rm{mm}$
-and 15.7\,mJy at $2\, \rm{mm}$. %(M.~Bethermin, private
-%communication).
-It has been observed for about 9\,h in
-total over three nights using $8 \times 5$~arcmin$^2$ OTF raster scans of various
-orientations.\\
 
-\noindent \emph{Scatter method} Performing photometry on each individual scan,
-we can estimate the sensitivity on the central flux and measure the time of
-integration using Eq.~\ref{eq:t_det}, hence derive the NEFD per
-scan. After correction of the attenuation of the atmosphere, the joint
-analysis of a series of scans, even towards different point sources, provides 
-an estimate of the NEFD. The selection of the source target
-for the NEFD derivation is primarily based on the flux density. Indeed, noise
-characterization may be biased {\lp by the signal of a bright source
-stemming from the most extended error beams and far side lobes.}
-%by residuals of a strong source and the
-%instrument far side lobes.
-For this method, we therefore restrict the
-analysis to sources with flux below 1\,Jy.
+where $t_{\rm{eff}}(n)$ stands for the effective integration time when $n$ scans
+are combined. The flux uncertainty scales down like $t_{\rm{eff}}(n)^{-1/2}$ and
+he amplitude of the scaling law provides an estimate of NEFD. To perform this
+analysis, during the N2R9 run, we observed \hls, a moderately faint source
+\citep{2012A&A...538L...4C}, expected to have flux densities of 74.5\,mJy at
+$1\,\rm{mm}$ and 15.7\,mJy at $2\,\rm{mm}$ (M.~Bethermin, private
+communication). It was observed during about 9\,h in total over three nights
+with $8 \times 5$~arcmin$^2$ OTF raster scans of various
+orientations. Fig.~\ref{fig:nefd_twomethods} shows the noise integration with the
+integration time, confirming the expected scaling law. \nico{GIVE NEFD VALUES
+  HERE AND/OR IN A TABLE}.\\
+
+\noindent \emph{Scatter method.} For any scan, we derive
+$\rm{NEFD}_{\tau,el}$. Gathering scans observed under various conditions, it is
+possible to fit eq.~(\ref{eq:nefd_tau_el}) against $e^{\taunu x}$ and determine
+$\rm{NEFD}$. The scan sample can gather different sources. In order not to be
+biased by too much signal in the extened error beams, we have restrict to
+sources of fluxes below 1\,Jy. Results are presented in
+Tab.~\ref{tab:nefd_summary}, while Fig.~\ref{fig:nefd_twomethods} shows the
+particular case of \hls\ only.
 
 \begin{figure*}[!thbp]
   \begin{center}

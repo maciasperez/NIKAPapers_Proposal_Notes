@@ -55,8 +55,21 @@ flux estimate $\hat{S}_\star$ from $\hat{S}$, as obtained under unstable conditi
 \equiv f(\sigma)\hat{S}.
 \end{equation}
 
-\nico{Fig.~\ref{fig:f_sigma} shows XXXXXXXXX... $\sigma_\star$ is determined and
-chosen as... (See commented text)}\\
+Fig.~\ref{fig:f_sigma} shows how $f(\sigma)$ varies with the actual beam width
+and for two choices of $\sigma_\star$ depending on the flux of the observed source.
+
+\begin{figure}[ht!]
+  \begin{center}
+    \includegraphics[clip=true, trim={0.9cm, 0.1cm, 0.5cm, 0.5cm}, width=0.4725\textwidth]{Figures/photometric_correction_function_1Jy.pdf}
+    \caption[Photometric correction]{Magnitude of the beam photometric
+      correction $f(\sigma)$ as a function of the actual FWHM, at 1\,mm (blue)
+      and 2\,mm (red). Thick lines correspond to a choice of $\sigma_\star$
+      derived on a very bright source like Uranus. Thin lines are for sources of
+      1\,Jy at 1 and 2\,mm.}
+\label{fig:f_sigma}
+\end{center}
+\end{figure}
+
 
 %% Considering only the main beam broadening, modeled as a Gaussian of
 %% size $FWHM = 2 \sqrt{2\ln{2}} \, \sigma$, we show in
@@ -134,26 +147,53 @@ scans and using MWC349 scans, we found $\delta_{\rm{FWHM}} = 0.4''$ at
 distributes as one half being due to Uranus finite extension and the
 other half stemming from the side lobes.\\
 
+\begin{figure}[ht!]
+  \begin{center}
+    \includegraphics[clip=true, trim={0.9cm, 0.5cm, 0.5cm, 0.5cm}, width=0.4725\textwidth]{Figures/Beam_monitoring_with_otfs_vs_ut_compare_pointings_1mm.pdf}
+    \includegraphics[clip=true, trim={0.5cm, 0.5cm, 0.5cm, 0.5cm}, width=0.4875\textwidth]{Figures/Beam_monitoring_with_otfs_vs_ut_compare_pointings_a2.pdf}
+    \caption[Beam size monitoring comparison]{Beam size monitoring.
+     'OTF'-labeled pink data points show the FWHM estimates from a 2D
+    Gaussian fit on the maps of OTF raster scans towards bright
+    sources, whereas the 'Pointing'-labeled light green data points
+    are FWHM estimates obtained by interpolating the {\lp
+    median-filtered} pointing-based FWHM at the time of the
+    scans. {\lp The
+    pointing-based FWHM estimates are obtained by fitting a 2D Gaussian on the
+    maps of {\tt pointing} scans.}}
+\label{fig:beam_monitoring_compare}
+\end{center}
+\end{figure}
+
 \noindent \emph{Practical case using pointing scans} This method ({\tt PC-point}
 hereafter) performs a photometric correction based on the beam monitoring with
-pointing scans. Unlike {\tt PC-demo}, this method is thus usable even for
-sources fainter than about one Jy \nico{but relies on interpolations between beam width estimates on
-  other scans}. For Uranus, this value is corrected for the diameter size, as
-  in Sect.~\ref{se:mainbeam_results}.
-%The actual Gaussian beam size $\sigma '$ is estimated using
-%\begin{equation}
-%  \hat{\sigma '} = \sigma_{\rm{p}} - \frac{\delta_{\rm{p}}}{2\sqrt{2 \ln{2}}}, 
-%\end{equation} 
-%where $\sigma_{\rm{p}}$ is the beam size estimate interpolated from
-%the pointing-based beam monitoring and the offset $\delta_{\rm{p}}$
-%only accounts for the source finite extension. It is null for
-%point-like sources and equals to $0.2''$ at $1\,\rm{mm}$ and $0.13''$
-%at $2\,\rm{mm}$ for pointing scan of Uranus.
-%No other contribution
-%enters $\delta_{\rm{p}}$
-No other FWHM offset correction is needed since pointing scan maps
-have a low signal-to-noise ratio that prevents the geometrical FWHM
-from being significantly affected by the side lobes.
+pointing scans. Indeed, pointing scans are performed on an hourly basis. They
+consist in two sub-scans in azimuth and elevation of about 10 seconds of
+integration time each, and provide high SNR on reference objects such as quasars
+or planets, hence good estimations of the
+FWHMs. Fig.~\ref{fig:beam_monitoring_compare} illustrates this point, by
+comparing the measured FWHM during pointing scans to standard OTF scans like in
+sect.~\ref{se:beam_variation}. We expect less accuracy though than with standard
+OTF raster scans of bright sources because of the shorter integration time. Both
+to mitigate the dispersion and to improve interpolations at any time, we use a
+running median filter of 70\,mn. {\tt Pointing} scans on {\lp slightly extended}
+sources, such as NGC7027, are discarded from the analysis. For each {\tt
+  pointing}, we also seek for signs of atmospheric anomalous refraction. There
+are enough KIDs per observation band to make an independent map using only one
+subscan, i.e. 10 seconds of integration time.  For each of the four cross
+subscans, we thus estimate the position of the best 2D Gaussian that fits the
+map. We compute the deviation between each subscan-derived position and the
+best-fit position using the entire scan. An anomalous refraction event is
+detected when the difference is above $2.5''$ for at least one subscan. We find
+that the apparent beam broadening during the afternoon is due to anomalous
+refraction for between one third and one half of the scans over the period
+studied here.
+
+Unlike {\tt PC-demo}, this method is thus usable even for sources fainter than
+about one Jy \nico{but relies on interpolations between beam width estimates on
+  other scans}. For Uranus, this value is corrected for the diameter size, as in
+Sect.~\ref{se:mainbeam_results}. No other FWHM offset correction is needed since
+pointing scan maps have a low signal-to-noise ratio that prevents the
+geometrical FWHM from being significantly affected by the side lobes.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -308,3 +348,101 @@ correction are further tested in Sect.~\ref{se:photometry}.\\
 %% faint sources to $11.6''$ at $1\,\rm{mm}$ and $17.65''$ at
 %% $2\,\rm{mm}$ at the flux density of Uranus,
 %% then slightly continues increasing for sources brighter than Uranus.
+
+
+%% \subsubsection{Beam monitoring using pointing}
+%% \label{se:beam_monitoring_pointing}
+%% 
+%% For a finer sampling of the observation time, we also consider using the
+%% pointing scans for beam monitoring. As discussed in Sect.~\ref{se:pointing}, the
+%% telescope pointing is monitored on a hour basis during observation using {\tt
+%%   pointing} scans. As these scans consist of two sub-scans in azimuth and
+%% elevation of about 10 seconds of integration time each, they can also be used to
+%% make a map of the pointing source. For each campaign, we thus have hundreds of
+%% maps of mostly point-like bright sources in hands, that can also be used to
+%% monitor the beam size. Fig.~\ref{fig:beam_monitoring_compare} illustrates this
+%% point, by comparing the measured FWHM during pointing scans to standard OTF
+%% scans like in sect.~\ref{se:beam_variation}. We expect less accuracy though than
+%% with standard OTF raster scans of bright sources because of the shorter integration
+%% time. Both to mitigate the dispersion and to improve interpolations at any
+%% time, we use a running median filter of 70\,mn. {\tt Pointing} scans
+%% on {\lp slightly extended} sources, such as NGC7027, are discarded from the
+%% analysis.
+%% 
+%% % anomalous refraction
+%% For each {\tt pointing}, we also seek for signs of atmospheric anomalous refraction. There are
+%% enough KIDs per observation band to make an independent map using only
+%% one subscan, i.e. 10 seconds of integration time.
+%% For each of the four cross subscans, we thus estimate the position of the best
+%% 2D Gaussian that fits the map. We compute the deviation between each
+%% subscan-derived position and the best-fit position using the entire
+%% scan. An anomalous refraction event is detected when the difference is
+%% above $2.5''$ for at least one subscan. We find that the apparent beam
+%% broadening during the afternoon is due to anomalous refraction for
+%% between one third and one half of the scans over the period studied
+%% here.
+%% %\footnote{See the study posted
+%% %  in the commissioning internal wiki at
+%% %  \url{http://www.iram.fr/wiki/nika2/index.php/Millimetric_anomalies_(weather,_antenna)_as_monitored_by_pointing_scans}}.
+%% %} 
+%% 
+%% %In Fig.~\ref{fig:beam_monitoring_pointing}, we present the FWHM
+%% %estimates using pointing scans as a function of the observing time in
+%% %UT hours for three observation campaigns. We observe the same beam
+%% %size evolution with UT hours as previously discussed in
+%% %Sect.~\ref{se:beam_monitoring_otf}, that is a plateau during night-time
+%% %and a smooth increase during day-time up to a maximum in the
+%% %afternoon, which is followed by a smooth decrease down to the plateau
+%% %a few hours after the sunset. Although the general trend is the same
+%% %as the OTF-based FWHM variations, more dispersion is seen either using
+%% %pointings toward giant planets or other bright sources.
+%% %
+%% %\begin{figure}[ht!]
+%% %  \begin{center}
+%% %    \includegraphics[clip=true, trim={0.9cm, 0.5cm, 0.5cm, 0.5cm}, width=0.4725\textwidth]{Figures/Beams/Beam_monitoring_with_pointings_vs_ut_1mm.pdf}
+%% %    \includegraphics[clip=true, trim={0.5cm, 0.5cm, 0.5cm, 0.5cm}, width=0.4875\textwidth]{Figures/Beams/Beam_monitoring_with_pointings_vs_ut_a2.pdf}
+%% %    \caption[Beam size monitoring using pointing scans]{Beam size
+%% %      monitoring using pointing scans. Same legend as in
+%% %      Fig.~\ref{fig:beam_monitoring_otf}.} 
+%% %\label{fig:beam_monitoring_pointing}
+%% %\end{center}
+%% %\end{figure}
+%% %
+%% %% The pointing-based FWHM estimates constitute a time-sampling of the
+%% %% beam size during
+%% %% the whole observation campaign. They can serve to estimate the beam
+%% %% size of any observation scans, in particular
+%% %% toward sources too faint for a direct FWHM %$_{\rm{geom}}$
+%% %% fit to be made on the map. To mitigate the dispersion, the time-stamped
+%% %% pointing-based FWHM
+%% %% %$_{\rm{geom}}$
+%% %% is filtered with a running median on a 70-minute
+%% %% width time window. Then, the FWHM %$_{\rm{geom}}$
+%% %% at the time of the considered scans is
+%% %% interpolated from the median-filtered pointing-based FWHM.%$_{\rm{geom}}$.
+%% %% %
+%% \begin{figure}[ht!]
+%%   \begin{center}
+%%     \includegraphics[clip=true, trim={0.9cm, 0.5cm, 0.5cm, 0.5cm}, width=0.4725\textwidth]{Figures/Beam_monitoring_with_otfs_vs_ut_compare_pointings_1mm.pdf}
+%%     \includegraphics[clip=true, trim={0.5cm, 0.5cm, 0.5cm, 0.5cm}, width=0.4875\textwidth]{Figures/Beam_monitoring_with_otfs_vs_ut_compare_pointings_a2.pdf}
+%%     \caption[Beam size monitoring comparison]{Beam size monitoring.
+%%      'OTF'-labeled pink data points show the FWHM estimates from a 2D
+%%     Gaussian fit on the maps of OTF raster scans towards bright
+%%     sources, whereas the 'Pointing'-labeled light green data points
+%%     are FWHM estimates obtained by interpolating the {\lp
+%%     median-filtered} pointing-based FWHM at the time of the
+%%     scans. {\lp The
+%%     pointing-based FWHM estimates are obtained by fitting a 2D Gaussian on the
+%%     maps of {\tt pointing} scans.}}
+%% \label{fig:beam_monitoring_compare}
+%% \end{center}
+%% \end{figure}
+%% %% %
+%% %% Figure~\ref{fig:beam_monitoring_compare} shows two different FWHM %$_{\rm{geom}}$
+%% %% estimates for the same data set: on one hand the best-fit FWHM %$_{\rm{geom}}$
+%% %% estimates on the OTF-scan map and on the other hand the interpolation from
+%% %% the pointing-based FWHM %$_{\rm{geom}}$
+%% %% monitoring. The two estimates show the same global variations as a
+%% %% function of the UT hours. They are well in agreement with each
+%% %% other, although the pointing-based estimates have more dispersion and
+%% %% a few outliers.

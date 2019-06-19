@@ -4,46 +4,50 @@
 %\section{Calibration}
 %\label{se:calibration}
 
-We present the calibration of the absolute scale of the flux densities
-for the NIKA2 instrument in this section using Uranus as the main
-primary calibrator.
+In this section, we present the absolute calibration of the flux densities. We
+use Uranus as the main primary calibrator. Section~\ref{se:calibration_method}
+describes the absolute calibration method, section~\ref{se:flat_field} presents
+the inter-calibration and the flat fields. While gathering several observations
+of the calibrator in order to increase statistics and improve the calibration
+overall, we have evidenced a daily variation of the absolute calibration
+coefficients related to weather temperature induced variation of the beam
+size. If left uncorrected, it leads to a sizable increase of the
+calibration uncertainties while not being strictly related to the instrument. We
+address this effect \nico{in Sect.~\ref{balbal} XXXX}, before summarizing the
+overall calibration process in Sect.~\ref{se:baseline_calibration}.
 
-Practically, %at the stage of the FOV reconstruction (see
-             %Sect.~\ref{se:geometry}),
-{\lp an absolute calibration factor per detector} is derived using a \bm\ scan of
-Uranus. This step determines also the inter-calibration of all the KIDs.%,
-%as their coefficients give the KID gains.
-Secondly, the flux density absolute scale is further refined by
-monitoring the primary calibrator all along the observation campaign
-to estimate
-{\lp a corrective rescaling of the absolute calibration factor}.
-
-We have evidenced a daily variation of the absolute calibration
-coefficients related to temperature-induced variation of the beam
-size.
-If left uncorrected, this variation
-induces a sizable increase of the calibration uncertainties. To
-overcome this issue, we primarily flag the most impacted observation
-times of the day and exclude them from further analysis. We resort to this
-conservative approach in the \emph{baseline} calibration method, as
-discussed in Sect.~\ref{se:data_selection}.
-%which is further used for the performance assessment.
-For cross-check,
-we also proposed an alternative method relying on a photometric
-correction depending on the beam size. Both approaches require an
-accurate monitoring of the beam size as a function of the observation
-date.
-
-First we describe the method for the absolute calibration in
-Sect.~\ref{se:calibration_method}, then we present the
-inter-calibration and the flat fields in
-Sect.~\ref{se:flat_field}. The temperature-induced variation and the
-beam size monitoring are then discussed in
-Sect.~\ref{se:beam_variation}. Finally, the baseline calibration is
-presented in Sect.~\ref{se:baseline_calibration} and the calibration
-with a photometric correction in
-Sect.~\ref{se:photometric_correction}.  
-
+%%  In short, as
+%% a first step, {\lp an absolute calibration factor per detector} is derived using
+%% a \bm\ scan of Uranus. This step determines also the inter-calibration of all
+%% the KIDs. In a second step, the flux density absolute scale is further refined
+%% by monitoring the primary calibrator all along the observation campaign to
+%% estimate {\lp a corrective rescaling of the absolute calibration
+%%   factor}. Section~\ref{se:calibration_method} describes the absolute
+%% calibration method. Section~\ref{se:flat_field} presents the inter-calibration
+%% and the flat fields. While monitoring the calibrator fluxes along observation
+%% runs in order to improve and test the stability of our calibration, we have
+%% evidenced a daily variation of the absolute calibration coefficients related to
+%% external temperature-induced variation of the beam size. If left uncorrected,
+%% this variation leads to a sizable increase of the calibration uncertainties
+%% while not being strictly related to the instrument. To overcome this issue, we
+%% primarily flag the most impacted observation times of the day and exclude them
+%% from further analysis. We resort to this conservative approach in the
+%% \emph{baseline} calibration method, as discussed in
+%% Sect.~\ref{se:data_selection}. In appendix~\ref{se:photometric_correction}, we
+%% present an approach that partly mitigates this effect.
+%% 
+%% First we describe the method for the absolute calibration in
+%% Sect.~\ref{se:calibration_method}, then we present the inter-calibration and the
+%% flat fields in Sect.~\ref{se:flat_field}. Finally, the baseline calibration is
+%% presented in Sect.~\ref{se:baseline_calibration}.
+%% 
+%% %% The temperature-induced variation and the
+%% %% beam size monitoring are then discussed in
+%% %% Sect.~\ref{se:beam_variation}.
+%% %% 
+%% %%  and the calibration
+%% %% with a photometric correction in
+%% %% Sect.~\ref{se:photometric_correction}.  
 
 
 %---------------------------------------------------------------------
@@ -470,83 +474,51 @@ after this intervention was consistent with the one reported in this
 paper.}
 
 
-
-
 %---------------------------------------------------------------------
 %	TEMPERATURE-INDUCED VARIATION
 %---------------------------------------------------------------------
-\subsection{Temperature-induced variations of the beam}
+%\subsection{Temperature-induced variations of the beam}
+\subsection{Beam monitoring and scan selection}
 \label{se:beam_variation}
 
-We evidenced a daily variation of the flux density estimates,
-which correlates with the measured beam size.
-This beam size broadening, which depends on the
-scan observation time and mainly impacts sunrise and late
-afternoon observations, is reproducible from a campaign to another and 
-is probably due to large-scale deformations of the \trentemetre\
-primary mirror subject to inhomogeneous solar heating. {\lp It relates
-to a variable de-focussing of the telescope, leading to changes of the
-beam FWHMs.} {\lp To mitigate temperature-induced variations, the
-telescope is equipped with an active thermal ventilation system of the
-primary mirror and an active temperature control of the secondary
-support legs. This system is, however, challenged when the Sun
-partially illuminates the telescope.} {\lp This is a known effect,
-which also impacts observations with the heterodyne instruments
-operated at the IRAM \trentemetre\ telescope, and had been already
-observed with the previous generation
-of total-power instruments, such as the MAMBO-2 bolometer
-array~\citep{Kreysa1999}.}
-%instruments currently operated at the IRAM \trentemetre\ telescope, such as
-%EMIR~\citep{Carter2012}, and was also observed for the previous generation of
-%IRAM \trentemetre\ telescope instruments at the IRAM, such as
-%MAMBO-2~\citep{Kreysa1999}.
-However,
-compared to the periods when MAMBO-2 or NIKA were installed, these
-daily deformations have probably strengthened due to {\lp the slow
-disappearance of the surface painting of the primary mirror.}
+We evidenced variations of the flux density estimates that correlate to the
+measured beam size. This beam broadening happens mostly in afternoons and around
+sunrise and sunset. It is also reproducible from one campaign to another. It most certainly
+comes from the combinaton of two different effects.
 
-On short time scales, anomalous atmospheric
-refraction {\lp also often plays a role as discussed below in
-Sect.~\ref{se:beam_monitoring_pointing}. Anomalous refraction at the
-IRAM \trentemetre\ telescope had first
-been described in~\citet{Altenhoff1987}.}
-Based on observation experience with the heterodyne receivers at
-the \trentemetre\ telescope, afternoon hours are often
-affected with an unstable atmosphere when rising moist air that
-moves through the beam of the telescope causes the telescope beam
-position to change within few seconds by several arcseconds {\lp resulting
-in an average enlargement of the beam pattern.}
+First, inhomogeneous solar illumination leads to large scale deformations of the
+\trentemetre\ primary mirror, which in turn lead to variable de-focussing of the
+telescope. {\lp To mitigate this effect, the telescope is equipped with an
+  active thermal ventilation system of the primary mirror and an active
+  temperature control of the secondary support legs. This system is, however,
+  challenged when the Sun partially illuminates the telescope, like around
+  sunrise and sunset.} {\lp This is a known effect that also impacts
+  observations with the heterodyne instruments operated at the IRAM
+  \trentemetre\ telescope. It had also been already observed with the previous
+  generation total-power instruments MAMBO-2 \citep{Kreysa1999}.} However, the
+magnitude of this effect is likely to have increased with the slow disappearance
+of the surface painting of the primary mirror in the past few years.
 
-{\lp As both effects (the primary mirror deformations and the
-anomalous refraction) are due to ambiant temperature variations, they
-are referred to as the \emph{temperature-induced variation effect}.}
-The impact of this effect on the flux density estimates can be
-mitigated, as explained below in
-Sects.~\ref{se:baseline_calibration}-\ref{se:photometric_correction},
-provided the beam size variations are accurately
-monitored. Here, we describe the methods that are used for this
-monitoring.
+Second, on short time scales, atmospheric anomalous refraction {\lp also often plays a
+  role.}. As far as the \trentemetre\ telescope is concerned, it has first
+been described in~\citet{Altenhoff1987}. Based on experience with
+  the heterodyne receivers, afternoon hours are
+  often affected with an unstable atmosphere when rising moist air moves
+  through the beam of the telescope and causes random refraction. The pointing
+  is then observed to change by few arcseconds {\lp resulting in an average
+    enlargement of the beam pattern.} This effect has been confirmed by
+  measuring several arcsec displacements of the source when projected using
+  different subsets of subscans of a single observation.
 
+{\lp As both effects (the primary mirror deformations and the anomalous
+  refraction) are due to ambiant temperature variations, we refer to them as
+  \emph{temperature-induced variation effects}.}\\
+%% The impact of these effects on the flux density estimates can be
+%%   mitigated, as explained below in
+%%   Sects.~\ref{se:baseline_calibration}-\ref{se:photometric_correction}, provided
+%%   the beam size variations are accurately monitored. Here, we describe the
+%%   methods that are used for this monitoring.
 
-
-\subsubsection{Beam monitoring using bright source scans}
-\label{se:beam_monitoring_otf}
-
-The time-dependent beam-size variations are primarily monitored using
-all the available bright source scans acquired at the optimal focus
-for each campaign. Bright sources are selected by thresholding the
-flux density estimates above $1\,\rm{Jy}$ at both wavelengths.
-The beam size is estimated by fitting a 2D elliptical Gaussian to the map {\lp
-and computing the geometrical FWHM using Eq.~\ref{eq:fwhm_geom}.}
-%and
-%taking the geometrical mean of the FWHMs, defined as 
-%$\rm{FWHM}_{\rm{geom}} = (\rm{FWHM}_x \rm{FWHM}_y)^{1/2}$, where
-%$\rm{FWHM}_x$ and $\rm{FWHM}_y$ are the best-fitting values of FWHM
-%along the minor and major axis of the elliptical 2D Gaussian.
-% see def of RESULT_FWHM in nk_grid2info.pro line 320
-% + see def of params in nika_gauss2d.pro
-For Uranus, the FWHM estimates are corrected for the beam broadening due
-to the finite extension of the apparent disc of the planet, as in Sect.~\ref{se:mainbeam}. 
 
 \begin{figure}[ht!]
   \begin{center}
@@ -565,159 +537,151 @@ to the finite extension of the apparent disc of the planet, as in Sect.~\ref{se:
   \end{center}
 \end{figure}
 
-Figure~\ref{fig:beam_monitoring_otf} shows the FWHM estimates as a %FWHM$_{\rm{geom}}$ as a
-function of the observing time in UT hours for all OTF raster
-scans of bright sources for the three \emph{reference} observation
-campaigns (N2R9, N2R12 and N2R14). We observe the same evolution of
-the FWHM for all campaigns. 
-This goes from a plateau at a median value of $11.3''$ at $1\,\rm{mm}$
-and $17.5''$ at $2\,\rm{mm}$ during the night, to a smooth rise that
-reaches a maximum of about $14''$ at $1\,\rm{mm}$ and $18.5''$ at
-$2\,\rm{mm}$ around 16:00 UT
-hours. The beam broadening begins to become sizable around 15:00 UT
-and one has to wait until around 22:00 UT for the beam sizes to return
-to the stability plateau. The UT ranges that are discarded
-using the baseline scan selection (see
-Sect.~\ref{se:data_selection}) are shown as cross-hatched areas in
-Fig.~\ref{fig:beam_monitoring_otf}. They consist of the afternoon
-period between 15:00 and 22:00 UT, which corresponds to the period
-when the daylight heating of the telescope primary mirror has the most
-impact, as well as the period from 9:00 UT to 10:00 UT while the Sun
-rises. {\lp Whereas the global trend of the beam variations is the
-same for all campaigns, we observe some variability in the amplitude
-of the effect over the campaigns. This supports the assumption of the
-important role of the partial illumination of the primary mirror by
-direct sun light in the temperature-induced effect. This in turn
-induces a variability of the amplitude of the effect depending on the
-angle between the telescope boresight and the Sun all along the
-observations.}
+%% \subsubsection{Beam monitoring using bright source scans}
+%% \label{se:beam_monitoring_otf}
+To illustrate this, Fig.~\ref{fig:beam_monitoring_otf} shows the measures of the
+FWHM (cf.~eq.~\ref{eq:fwhm_geom}) for the three reference campaigns as a
+function of UT for bright sources (planets or quasars of more than $1\,\rm{Jy}$ at both wavelengths). For
+Uranus (or any other planet), the FWHM estimates are corrected for the beam broadening due to the
+finite extension of the apparent disc of the planet, as in
+Sect.~\ref{se:mainbeam}. The FWHMs go from a plateau at a median value of
+$11.3''$ at $1\,\rm{mm}$ and $17.5''$ at $2\,\rm{mm}$ during the night, to a
+smooth rise that reaches a maximum of about $14''$ at $1\,\rm{mm}$ and $18.5''$
+at $2\,\rm{mm}$ around 16:00 UT hours. The beam broadening becomes sizable
+around 15:00 UT and returns to the plateau only around 22:00 UT. This leads to
+discard scans belonging to the cross-hatched intervales for the baseline scan
+selection (Sect.~\ref{se:data_selection} and \ref{se:baseline_calibration}).
+{\lp The global trend of the beam variations is the same for all campaigns, but
+  indeed, variations are observed, certainly following the differences in
+  outside temperature and precise primary illumination between different scans.}
+Last, among the presented scans, planets lead slightly larger beams than
+quasars, because of the non negligible coupling of their flux to the error beams.
 
-The same beam size variations in time using scans of giant planets
-(Uranus and Neptune) or other bright
-sources (mainly quasars) are observed. However, the FWHM from planet %FWHM$_{\rm{geom}}$ from planet
-observations tend to be slightly larger than those from observations
-of other sources. {\lp For example, most of the planet FWHM estimates
-are above the median FWHM calculated using the scans acquired during the
-night, which are shown as horizontal lines in Fig.~\ref{fig:beam_monitoring_otf}.}
-{\lp This originates from the larger contribution of the
-error beams to the fitted 2D Gaussian, as flux are measured with 
-%larger 2D Gaussian fitted
-%values due to the error beams, which are measured with
-a higher signal-to-noise in the case of bright sources.} This small
-effect is accounted for the beam-dependent calibration cross-check
-discussed in Sect.~\ref{se:photometric_correction}.
+%% The same beam size variations in time using scans of giant planets
+%% (Uranus and Neptune) or other bright
+%% sources (mainly quasars) are observed. However, the FWHM from planet %FWHM$_{\rm{geom}}$ from planet
+%% observations tend to be slightly larger than those from observations
+%% of other sources. {\lp For example, most of the planet FWHM estimates
+%% are above the median FWHM calculated using the scans acquired during the
+%% night, which are shown as horizontal lines in Fig.~\ref{fig:beam_monitoring_otf}.}
+%% {\lp This originates from the larger contribution of the
+%% error beams to the fitted 2D Gaussian, as flux are measured with 
+%% %larger 2D Gaussian fitted
+%% %values due to the error beams, which are measured with
+%% a higher signal-to-noise in the case of bright sources.} This small
+%% effect is accounted for the beam-dependent calibration cross-check
+%% discussed in Sect.~\ref{se:photometric_correction}.
 
-
-\subsubsection{Beam monitoring using pointing}
-\label{se:beam_monitoring_pointing}
-
-For a finer sampling of the observation time, we also consider using
-the pointing scans for beam monitoring. As discussed in
-Sect.~\ref{se:pointing}, the telescope pointing is
-monitored on a hour basis during observation using {\tt pointing}
-scans. As these scans consist of two sub-scans in azimuth and
-elevation of about 10 seconds of integration time each, they
-can also be used to make a map of the pointing source. For each campaign,
-we thus have on hands hundreds of maps of mostly point-like bright
-sources, which can also be used to monitor the beam size. However, we
-expect less accuracy than using standard OTF raster
-scans of bright sources due to the shorter integration time and the
-fact that only the centermost KIDs in the array see the source.  
-
-%traitement pointing scans
-For this purpose, {\tt pointing} scans are reduced using
-the data analysis pipeline described in
-Sect.~\ref{se:dataproc} with the same parameters as for
-standard OTF raster scans, and projected onto maps of $2''$ resolution.
-As previously, an elliptical 2D Gaussian is then fitted from the map
-and the geometrical FWHM%$_{\rm{geom}}$
-%is formed from the best-fit FWHM along the two axis.
-is computed.
-%FWHM estimates on Uranus maps are corrected for an
-%offset due to the finite size of the apparent disc, as discussed in
-%Sect.~\ref{se:beam_monitoring_otf}.
-{\tt Pointing} scans on {\lp slightly extended} sources, such as NGC7027,
-are discarded from the analysis.
-
-
-% anomalous refraction
-For each {\tt pointing}, we also seek for signs of atmospheric anomalous refraction. There are
-enough KIDs per observation band to make an independent map using only
-one subscan, i.e. 10 seconds of integration time.
-For each of the four cross subscans, we thus estimate the position of the best
-2D Gaussian that fits the map. We compute the deviation between each
-subscan-derived position and the best-fit position using the entire
-scan. An anomalous refraction event is detected when the difference is
-above $2.5''$ for at least one subscan. We find that the apparent beam
-broadening during the afternoon is due to anomalous refraction for
-between one third and one half of the scans over the period studied
-here.
-%\footnote{See the study posted
-%  in the commissioning internal wiki at
-%  \url{http://www.iram.fr/wiki/nika2/index.php/Millimetric_anomalies_(weather,_antenna)_as_monitored_by_pointing_scans}}.
-%} 
-
-%In Fig.~\ref{fig:beam_monitoring_pointing}, we present the FWHM
-%estimates using pointing scans as a function of the observing time in
-%UT hours for three observation campaigns. We observe the same beam
-%size evolution with UT hours as previously discussed in
-%Sect.~\ref{se:beam_monitoring_otf}, that is a plateau during night-time
-%and a smooth increase during day-time up to a maximum in the
-%afternoon, which is followed by a smooth decrease down to the plateau
-%a few hours after the sunset. Although the general trend is the same
-%as the OTF-based FWHM variations, more dispersion is seen either using
-%pointings toward giant planets or other bright sources.
-%
-%\begin{figure}[ht!]
-%  \begin{center}
-%    \includegraphics[clip=true, trim={0.9cm, 0.5cm, 0.5cm, 0.5cm}, width=0.4725\textwidth]{Figures/Beams/Beam_monitoring_with_pointings_vs_ut_1mm.pdf}
-%    \includegraphics[clip=true, trim={0.5cm, 0.5cm, 0.5cm, 0.5cm}, width=0.4875\textwidth]{Figures/Beams/Beam_monitoring_with_pointings_vs_ut_a2.pdf}
-%    \caption[Beam size monitoring using pointing scans]{Beam size
-%      monitoring using pointing scans. Same legend as in
-%      Fig.~\ref{fig:beam_monitoring_otf}.} 
-%\label{fig:beam_monitoring_pointing}
-%\end{center}
-%\end{figure}
-%
-The pointing-based FWHM estimates constitute a time-sampling of the
-beam size during
-the whole observation campaign. They can serve to estimate the beam
-size of any observation scans, in particular
-toward sources too faint for a direct FWHM %$_{\rm{geom}}$
-fit to be made on the map. To mitigate the dispersion, the time-stamped
-pointing-based FWHM
-%$_{\rm{geom}}$
-is filtered with a running median on a 70-minute
-width time window. Then, the FWHM %$_{\rm{geom}}$
-at the time of the considered scans is
-interpolated from the median-filtered pointing-based FWHM.%$_{\rm{geom}}$.
-%
-\begin{figure}[ht!]
-  \begin{center}
-    \includegraphics[clip=true, trim={0.9cm, 0.5cm, 0.5cm, 0.5cm}, width=0.4725\textwidth]{Figures/Beam_monitoring_with_otfs_vs_ut_compare_pointings_1mm.pdf}
-    \includegraphics[clip=true, trim={0.5cm, 0.5cm, 0.5cm, 0.5cm}, width=0.4875\textwidth]{Figures/Beam_monitoring_with_otfs_vs_ut_compare_pointings_a2.pdf}
-    \caption[Beam size monitoring comparison]{Beam size monitoring.
-     'OTF'-labeled pink data points show the FWHM estimates from a 2D
-    Gaussian fit on the maps of OTF raster scans towards bright
-    sources, whereas the 'Pointing'-labeled light green data points
-    are FWHM estimates obtained by interpolating the {\lp
-    median-filtered} pointing-based FWHM at the time of the
-    scans. {\lp The
-    pointing-based FWHM estimates are obtained by fitting a 2D Gaussian on the
-    maps of {\tt pointing} scans.}}
-\label{fig:beam_monitoring_compare}
-\end{center}
-\end{figure}
-%
-Figure~\ref{fig:beam_monitoring_compare} shows two different FWHM %$_{\rm{geom}}$
-estimates for the same data set: on one hand the best-fit FWHM %$_{\rm{geom}}$
-estimates on the OTF-scan map and on the other hand the interpolation from
-the pointing-based FWHM %$_{\rm{geom}}$
-monitoring. The two estimates show the same global variations as a
-function of the UT hours. They are well in agreement with each
-other, although the pointing-based estimates have more dispersion and
-a few outliers.
-
+%% \subsubsection{Beam monitoring using pointing}
+%% \label{se:beam_monitoring_pointing}
+%% 
+%% For a finer sampling of the observation time, we also consider using
+%% the pointing scans for beam monitoring. As discussed in
+%% Sect.~\ref{se:pointing}, the telescope pointing is
+%% monitored on a hour basis during observation using {\tt pointing}
+%% scans. As these scans consist of two sub-scans in azimuth and
+%% elevation of about 10 seconds of integration time each, they
+%% can also be used to make a map of the pointing source. For each campaign,
+%% we thus have on hands hundreds of maps of mostly point-like bright
+%% sources, which can also be used to monitor the beam size. However, we
+%% expect less accuracy than using standard OTF raster
+%% scans of bright sources due to the shorter integration time and the
+%% fact that only the centermost KIDs in the array see the source.  
+%% 
+%% %traitement pointing scans
+%% For this purpose, {\tt pointing} scans are reduced using
+%% the data analysis pipeline described in
+%% Sect.~\ref{se:dataproc} with the same parameters as for
+%% standard OTF raster scans, and projected onto maps of $2''$ resolution.
+%% As previously, an elliptical 2D Gaussian is then fitted from the map
+%% and the geometrical FWHM%$_{\rm{geom}}$
+%% %is formed from the best-fit FWHM along the two axis.
+%% is computed.
+%% %FWHM estimates on Uranus maps are corrected for an
+%% %offset due to the finite size of the apparent disc, as discussed in
+%% %Sect.~\ref{se:beam_monitoring_otf}.
+%% {\tt Pointing} scans on {\lp slightly extended} sources, such as NGC7027,
+%% are discarded from the analysis.
+%% 
+%% 
+%% % anomalous refraction
+%% For each {\tt pointing}, we also seek for signs of atmospheric anomalous refraction. There are
+%% enough KIDs per observation band to make an independent map using only
+%% one subscan, i.e. 10 seconds of integration time.
+%% For each of the four cross subscans, we thus estimate the position of the best
+%% 2D Gaussian that fits the map. We compute the deviation between each
+%% subscan-derived position and the best-fit position using the entire
+%% scan. An anomalous refraction event is detected when the difference is
+%% above $2.5''$ for at least one subscan. We find that the apparent beam
+%% broadening during the afternoon is due to anomalous refraction for
+%% between one third and one half of the scans over the period studied
+%% here.
+%% %\footnote{See the study posted
+%% %  in the commissioning internal wiki at
+%% %  \url{http://www.iram.fr/wiki/nika2/index.php/Millimetric_anomalies_(weather,_antenna)_as_monitored_by_pointing_scans}}.
+%% %} 
+%% 
+%% %In Fig.~\ref{fig:beam_monitoring_pointing}, we present the FWHM
+%% %estimates using pointing scans as a function of the observing time in
+%% %UT hours for three observation campaigns. We observe the same beam
+%% %size evolution with UT hours as previously discussed in
+%% %Sect.~\ref{se:beam_monitoring_otf}, that is a plateau during night-time
+%% %and a smooth increase during day-time up to a maximum in the
+%% %afternoon, which is followed by a smooth decrease down to the plateau
+%% %a few hours after the sunset. Although the general trend is the same
+%% %as the OTF-based FWHM variations, more dispersion is seen either using
+%% %pointings toward giant planets or other bright sources.
+%% %
+%% %\begin{figure}[ht!]
+%% %  \begin{center}
+%% %    \includegraphics[clip=true, trim={0.9cm, 0.5cm, 0.5cm, 0.5cm}, width=0.4725\textwidth]{Figures/Beams/Beam_monitoring_with_pointings_vs_ut_1mm.pdf}
+%% %    \includegraphics[clip=true, trim={0.5cm, 0.5cm, 0.5cm, 0.5cm}, width=0.4875\textwidth]{Figures/Beams/Beam_monitoring_with_pointings_vs_ut_a2.pdf}
+%% %    \caption[Beam size monitoring using pointing scans]{Beam size
+%% %      monitoring using pointing scans. Same legend as in
+%% %      Fig.~\ref{fig:beam_monitoring_otf}.} 
+%% %\label{fig:beam_monitoring_pointing}
+%% %\end{center}
+%% %\end{figure}
+%% %
+%% The pointing-based FWHM estimates constitute a time-sampling of the
+%% beam size during
+%% the whole observation campaign. They can serve to estimate the beam
+%% size of any observation scans, in particular
+%% toward sources too faint for a direct FWHM %$_{\rm{geom}}$
+%% fit to be made on the map. To mitigate the dispersion, the time-stamped
+%% pointing-based FWHM
+%% %$_{\rm{geom}}$
+%% is filtered with a running median on a 70-minute
+%% width time window. Then, the FWHM %$_{\rm{geom}}$
+%% at the time of the considered scans is
+%% interpolated from the median-filtered pointing-based FWHM.%$_{\rm{geom}}$.
+%% %
+%% \begin{figure}[ht!]
+%%   \begin{center}
+%%     \includegraphics[clip=true, trim={0.9cm, 0.5cm, 0.5cm, 0.5cm}, width=0.4725\textwidth]{Figures/Beam_monitoring_with_otfs_vs_ut_compare_pointings_1mm.pdf}
+%%     \includegraphics[clip=true, trim={0.5cm, 0.5cm, 0.5cm, 0.5cm}, width=0.4875\textwidth]{Figures/Beam_monitoring_with_otfs_vs_ut_compare_pointings_a2.pdf}
+%%     \caption[Beam size monitoring comparison]{Beam size monitoring.
+%%      'OTF'-labeled pink data points show the FWHM estimates from a 2D
+%%     Gaussian fit on the maps of OTF raster scans towards bright
+%%     sources, whereas the 'Pointing'-labeled light green data points
+%%     are FWHM estimates obtained by interpolating the {\lp
+%%     median-filtered} pointing-based FWHM at the time of the
+%%     scans. {\lp The
+%%     pointing-based FWHM estimates are obtained by fitting a 2D Gaussian on the
+%%     maps of {\tt pointing} scans.}}
+%% \label{fig:beam_monitoring_compare}
+%% \end{center}
+%% \end{figure}
+%% %
+%% Figure~\ref{fig:beam_monitoring_compare} shows two different FWHM %$_{\rm{geom}}$
+%% estimates for the same data set: on one hand the best-fit FWHM %$_{\rm{geom}}$
+%% estimates on the OTF-scan map and on the other hand the interpolation from
+%% the pointing-based FWHM %$_{\rm{geom}}$
+%% monitoring. The two estimates show the same global variations as a
+%% function of the UT hours. They are well in agreement with each
+%% other, although the pointing-based estimates have more dispersion and
+%% a few outliers.
+ 
 %As a summary, we have evidenced a systematic beam size variation with
 %the observation time using two different data sets: a series of OTF
 %scans of bright sources and pointing scans. The beam size

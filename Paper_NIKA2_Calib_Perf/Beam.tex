@@ -11,7 +11,7 @@
 %It is important to specify that the detectors impact on the size of the
 %beam pattern, when you include the size of the pixel, and on the
 %measure of the beam pattern with their time constants and noise.
-{\lp The NIKA2 beam pattern originates from the KIDs illuminating the internal
+{\lp The NIKA2 full beam pattern originates from the KIDs illuminating the internal
 and external optics, out to the IRAM \trentemetre\ telescope primary mirror.}
 To characterize the full beam pattern, we use \bm\ observations. First,
 deep integration maps of bright sources are produced to provide a
@@ -85,7 +85,7 @@ further discussed in Sect.~\ref{se:beam_efficiency}.}
   (the spokes are presumably caused by radial and azimuthal panel
   buckling \citep{Greve2010}; Orthogonal green lines in the A2 map
   (lower right panel): diffraction
-  pattern caused by quadrupod secondary support structure (prominently
+  pattern caused by the quadrupod secondary support structure (prominently
   seen in A2 map); Yellow arrows in the A3 map (upper right panel):
   pattern of 3 spikes seen in $1\,\rm{mm}$ maps of unknown origin; Yellow
   arrows in A2 map (lower right panel): four symmetrical spikes of the
@@ -101,9 +101,9 @@ weak and/or spiky, they include:
 \item the main beam and the underlying first error
   beam, which is due to large-scale deformations of the primary
   mirror, and the first side lobes, {\lp which correspond to various diffraction
-  patterns. In particular, the 60'' and 85'' diameter (squarish) side
+  patterns. In particular, the 60'' and 85'' diameter (square-like shaped) side
   lobes at $1$ and $2\,\rm{mm}$, respectively, at a level lower than
-  $-20\,\rm{dB}$, are due to the convolution of the primary mirror and
+  $-20\,\rm{dB}$, are due to the convolution of the primary mirror and the
   quadrupod diffraction pattern with the pixel (KID) transfer function;}
   %The latter include 
   %the 20" diameter first side lobe and the 60" diameter (squarish)
@@ -140,13 +140,13 @@ up, which is presumably caused by panel buckling of the primary
   a rotation of these spikes with the observing elevation, which in
   turn point to diffraction related issue or a ghost image that are
   formed inside the cryostat. These shallow features are expected to
-  have no sizable impact on NIKA2 science results.
+  have no significant impact on NIKA2 science results.
 \end{enumerate}
 
 We further quantify the respective level of the axi-symmetrical
 features of the beam pattern by evaluating the beam radial profile
-$B(r)$, which is the normalised radial brightness profile,
-where $r$ is the radius from the beam center.
+$B_\nu(r)$, which is the normalised radial brightness profile for the
+array $\nu$, where $r$ is the radius from the beam center.
 %is the azimuthal average of the beam map around the
 %main beam center.
 Although the profile cannot represent the sub-dominant non-axisymmetrical
@@ -181,9 +181,9 @@ $2\,\rm{mm}$.
 {\lp To measure the relative level of the axi-symmetrical beam pattern
 features, we further model the beam profiles using an empirical function,
 which accounts for the main beam and for a significant fraction of the
-error beams and side lobes. We define this function $B(r)$ as:
+error beams and the side lobes. We define this function $B_{3G}(r)$ as:
 \begin{equation}
-  B(r) = \sum_{i=1}^{3} \mathcal{A}_i G_i(r) + \mathcal{B}_0,
+  B_{3G}(r) = \sum_{i=1}^{3} \mathcal{A}_i G_i(r) + \mathcal{B}_0,
   \label{eq:3gauss}
 \end{equation}
 where $\mathcal{A}_i$ is the amplitude of the Gaussian $G_i$ for
@@ -194,7 +194,7 @@ parameters are given in Table~\ref{tab:mean_3gauss_fit}. The errors
 are evaluated as the standard deviation of the best-fitting parameter
 values of the 18 \bm\ scans of {\tt BM18}.
 These values are given to gain insight of beam profile, but are not
-further used for the calibration. We find the level of the first error
+used for the calibration procedure. We find the level of the first error
 beam with respect to the total beam at about $-11\,\rm{dB}$ and
 $-13\,\rm{dB}$ at 1 and $2\,\rm{mm}$, respectively.}
 %
@@ -219,7 +219,7 @@ $-13\,\rm{dB}$ at 1 and $2\,\rm{mm}$, respectively.}
       \hline
       \noalign{\smallskip} 
       $\bar{\mathcal{A}_1}$ [dB] &   $-0.33 \pm 0.09$   &  $-0.24 \pm 0.03$ \\
-      $\bar{\mathcal{A}_2}$ [dB] &   $-11.4 \pm 1$     &  $-12.8 \pm 0.5$   \\
+      $\bar{\mathcal{A}_2}$ [dB] &   $-11.4 \pm 1.0$     &  $-12.8 \pm 0.5$   \\
       $\bar{\mathcal{A}_3}$ [dB] &   $-26 \pm 7$       &  $-27 \pm 3$    \\
       FWHM$_1$  ['']             &   $10.8 \pm 0.2$    &  $17.4 \pm 0.6 $ \\
       FWHM$_2$  ['']             &   $30 \pm 2$        &  $42 \pm 3 $ \\
@@ -235,10 +235,10 @@ $-13\,\rm{dB}$ at 1 and $2\,\rm{mm}$, respectively.}
 \end{table}
 %
 
-{\lp For illustration, we show the median best-fit
-three-Gaussian profiles at $1$ and $2\,\rm{mm}$ with pink lines, and
-the main beam (first Gaussian) profiles with black lines in
-Fig.~\ref{fig:beam_prof}. }
+{\lp For illustration, we show in
+Fig.~\ref{fig:beam_prof} the median 
+three-Gaussian profiles at $1$ and $2\,\rm{mm}$ (pink lines), and
+the main beam profiles (black lines). }
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -257,10 +257,9 @@ Fig.~\ref{fig:beam_prof}. }
     profiles given in decibel. %as a function of the radius from the
                                %peak, given in dB.
     The data points are the beam profiles for a series of 18
-    \bm\ scans acquired during the N2R8 and N2R9 commissioning campaigns and
-    during the N2R12 and N2R14 science-purpose campaigns, labeled from the scan
-    ID. The black line shows the main beam profile using the combined
-    best-fit FWHM, as discussed in Sect.~\ref{se:mainbeam}, while the pink
+    \bm\ scans acquired during the reference observationnal campaigns, labeled from the scan
+    ID. The black line shows the main beam profile using the 'combined'
+    FWHM, as given in Table~\ref{tab:fwhm}, while the pink
     line shows the median best-fit three-Gaussian profile, as defined
     in Eq.~\ref{eq:3gauss}.}}
     %Left column plots: 
@@ -439,8 +438,8 @@ method. %We also seek at validating the FWHM estimates using
 
 In the case of Uranus, the FWHM estimates are further corrected for
 the {\lp average beam broadening induced by the extension of the
-apparent disc, which is $0.19''$ and $0.12''$ at 1 and $2\,\rm{mm}$,
-respectively.}
+apparent disc of the planet, which is $0.19''$ and $0.12''$ at 1 and
+$2\,\rm{mm}$, respectively.}
 %At the IRAM $30\,\rm{m}$ latitude,
 {\lp During the observation period, Uranus disc diameter has varied
 from $3.3''$ to $3.7''$. This diameter variation translates into beam
@@ -462,7 +461,7 @@ uncertainties, whereas {\tt Prof-3G} yields slightly smaller FWHM.
 %yields slightly smaller FWHM for all arrays.
 %The latter provides us with lower limits for the main beam FWHM.
 %The latter constitute optimistic estimates of the FWHM. 
-{\lp The latter is more robust againts the error beams and large radii
+{\lp The latter is more robust against the error beams and large radii
 beam features than the formers, as expected.}
 Combined results are obtained from an error-weighted
 average of the four FWHM estimates for each array.
@@ -480,7 +479,7 @@ data set before performing the weighted average.
 %beforehand.
 The combined results, as given in
 Table~\ref{tab:fwhm}, provide a robust evaluation of the
-FWHM. Hence, we report FWHMs of $11.1'' \pm 0.2''$ at
+FWHM. Hence, we report main beam FWHMs of $11.1'' \pm 0.2''$ at
 $1\, \rm{mm}$ and $17.6''\pm 0.1''$ at $2\, \rm{mm}$.  
 
 \begin{table*}[!thbp]
@@ -556,11 +555,11 @@ solid angle.
 
 We derive an estimate of the total beam solid angle
 \begin{equation}
-  \Omega_{\rm{tot}} (A_i, r_{max}) = \int_0^{r_{max}} \frac{B_{A_i}(r)}{B_{A_i}(0)} \,  2 \pi r dr
+  \Omega_{\rm{tot}} (\nu, r_{max}) = \int_0^{r_{max}} B_{\nu}(r) \,  2 \pi r dr
   \label{eq:omega_tot}
 \end{equation}
-from the normalised beam profile $B_{A_i}(r)/B_{A_i}(0)$ of the array
-$A_i$ integrated up to $r_{max} = 180''$. {\lp Hereafter, we refer to
+from the normalised beam profile $B_\nu(r)$ of the array
+$\nu$ integrated up to $r_{max} = 180''$. {\lp Hereafter, we refer to
 this total beam solid angle estimate as $\Omega_{180}$.}
 The main beam solid angle is
 evaluated from the main beam (mb) FWHM, as
@@ -571,7 +570,7 @@ The choice of the maximum radius is set both by the integration depth of
 the \bm\ scans, which in turn fixes the noise variance, and the
 filtering due to the data processing. {\lp As discussed in
 Sect.~\ref{se:dataproc}, the latter is actually targeted to the analysis of
-point-like or moderately extended sources that are largely encompassed
+point-like or compact sources that are largely encompassed
 within a $180''$-radius.}
 
 %A large set of \bm\ scans of Uranus and Neptune acquired during the
@@ -584,8 +583,8 @@ obtained using the {\tt UN75} data set (see Sect.~\ref{se:mainbeam_dataset}).
 The result is given in Table~\ref{tab:solid}.
 
 \begin{table}[!h]
-\caption{Estimates of the solid angle of the total beam
-  $\Omega_{180}$ given in arcsec$^{2}$ using Neptune and Uranus
+\caption{Estimates of the solid angle of the beam up to a radius of $180''$,
+  $\Omega_{180}$, and rms uncertainties given in arcsec$^{2}$ using Neptune and Uranus
   scans acquired during three observation campaigns, and the combined
   result. }
 \label{tab:solid}
@@ -635,7 +634,7 @@ in Table~\ref{tab:beam_efficiency}: central values and error
 bars are evaluated as the median and the rms error of the
 estimates on individual \bms\ respectively. A robust evaluation of the
 beam efficiency uncertainties is obtained using the rms error estimates
-for {\tt BE2}, which are based on 75 \bm\ scans. We combined the
+for {\tt BE2}, which are based on the {\tt UN75} date set. We combined the
 results of the three methods using an error-weighted average. Rms
 errors of {\tt BE1$\&$BE3}, which rely on 12 scans, are conservatively
 increased to be at least equal to {\tt BE2} rms errors beforehands.
@@ -646,7 +645,7 @@ increased to be at least equal to {\tt BE2} rms errors beforehands.
 %limit of the error estimates for all methods.
 
 Using the combined results, as given in
-Table~\ref{tab:beam_efficiency}, we report beam efficiencies of
+Table~\ref{tab:beam_efficiency}, we report main beam efficiencies of
 $55 \pm 3 \%$ at $1\,\rm{mm}$ and  $77 \pm 2 \%$ at $2\,\rm{mm}$.
 {\lp Using IRAM \trentemetre\ telescope EMIR frontend
 observations~\citep{Carter2012}, \citet{Kramer2013} found main
@@ -655,7 +654,7 @@ $145\,\rm{GHz}$ accounting for the beam solid angle stemming from
 radii greater than $180''$. Having slightly lower main beam
 efficiencies with respect to EMIR is expected
 since EMIR detectors were coupled to the \trentemetre\ telescope
-entrance pupil via corrugated horns, unlike NIKA2.} 
+entrance pupil via corrugated horns, unlike the NIKA2 ones.} 
   
 %res1 = [0.54, 0.54, 0.53, 0.74]
 %res2 = [0.55, 0.56, 0.55, 0.76]
@@ -756,7 +755,7 @@ toward the lunar edge and the measure of forward beam efficiency using
 skydips show that a non-neglectible fraction of the full beam stems
 from radius greater than $180''$~\citep{Greve1998, Kramer2013}.
 An accurate evaluation of the total beam solid angle using NIKA2 would require
-{\lp the development a dedicated data reduction method tailored to
+{\lp the development of a dedicated data reduction method tailored to
 handled very extended diffuse emission,} as well as a 
 dedicated observation program
 % to measure of the $4\pi$ integral of the full beam pattern
@@ -809,9 +808,9 @@ $\Omega^{\rm{frss}}$             &   45          &   40      \\
 }
 %
 The results are given in
-Table~\ref{tab:solid_corr}, as well as the contribution of the forward and
-rearward spillover and scattering efficiencies to the beam solid angle
-$\Omega^{\rm{frss}}$. The total beam solid angle 
+Table~\ref{tab:solid_corr}, as well as the contribution to the beam
+solid angle of the forward and rearward spillover and scattering
+efficiencies, $\Omega^{\rm{frss}}$. The total beam solid angle 
 $\Omega_{\rm{tot}}$ can be estimated as
 \begin{equation}
 \Omega_{\rm{tot}} = \Omega_{180} + \Omega_{>180}^{\rm{mb+eb}}

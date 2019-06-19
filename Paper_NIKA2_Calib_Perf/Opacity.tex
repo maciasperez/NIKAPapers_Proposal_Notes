@@ -10,7 +10,7 @@ signal is transmitted by the atmosphere and reaches NIKA2 detectors.
 The relation between the observed flux density
 $\tilde{S}_{\nu}$ and the top-of-the-atmosphere flux density $S_{\nu}$
 is parametrized by the zenith opacity $\taunu$
-and the \airmass\ $x = \left(\sin\elev\right)^{-1}$, such as
+and the \airmass\ $x$ as %$x = \left(\sin\elev\right)^{-1}$, such as
 \begin{equation}
 \tilde{S}_{\nu} = S_{\nu} \, e^{-\taunu  x}.
 \label{eq:uncorr_flux}
@@ -222,7 +222,7 @@ Herz-to-Kelvin conversion factor $c_1^k$. The degeneracy occurs mostly for low o
 conditions for which we can only determine the combination
 $c_1^k \taunu x$. The procedure has two steps. First, all the {\tt
 skydip} scans are analysed individually to extract $f_{\rm{reso}}^k$ for each
-stable elevation and each KID. Secondly, a simultaneous fit is done
+stable elevation and for each KID. Secondly, a simultaneous fit is done
 for all parameters (one $\taunu$ per skydip, and a set of $c_0^k$ and
 $c_1^k$ for all KIDs). Figure~\ref{fig:skydipfitexample} illustrates the
 fitting procedure.
@@ -243,10 +243,10 @@ Eq.~\ref{eq:skydip}).}
 \end{center}
 \end{figure}
 %
-{\lp We check that doing this procedure on blocks of 40 KIDs only and
-getting a dispersion on the resulting $\taunu$ from the different
-blocks, we obtain small dispersions, which are equal to about
-$4\times 10^{-3}$ at 1\,mm and $1\times 10^{-3}$ at 2\,mm. }
+{\lp This fit is performed on block of 40 KIDs. We check that the
+resulting $\taunu$ from the different blocks are consistent within rms
+errors, which are equal to about $4\times 10^{-3}$ at 1\,mm and
+$1\times 10^{-3}$ at 2\,mm.}
 %Uncertainties on $\taunu$ are estimated by doing this
 %procedure on blocks of 40 KIDs only and getting a dispersion on the resulting
 %$\taunu$ from the different blocks. Usually the dispersion comes out as
@@ -255,9 +255,9 @@ Once the $\taunu$ values are estimated for each {\tt skydip} (as the average ove
 blocks), we compute, while fixing the $\taunu$, the $c_0^k$ and $c_1^k$
 final values for each KID $k$ with a linear fit. We thus retrieve
 the coefficients of all the KIDs even though some of them could not
-contribute to the $\taunu$ determination. We find that the skydip-fitted
-$\taunu$ values are, as expected, consistent between different detectors of
-the same array.
+contribute to the $\taunu$ determination. %We find that the skydip-fitted
+%$\taunu$ values are, as expected, consistent between different detectors of
+%the same array.
 
 {\lp We have observed that the  $c_0^k$ and $c_1^k$ coefficients vary
 between observational campaigns due to a change in the KID properties
@@ -285,7 +285,7 @@ source in the considered observation scan.
 \label{se:skydip-selection}
 
 The {\tt skydip} opacity derivation requires to have on hands a
-sizable amount of {\tt skydip} scans --
+sizeable amount of {\tt skydip} scans --
 typically ten to twenty -- that i) span the whole opacity range and
 ii) avoid highly perturbated atmosphere to meet the plane-parallel
 atmosphere assumption. To that aim, we perform a {\tt skydip}
@@ -339,17 +339,18 @@ After the second iteration, all the remaining skydips met the criteria.}
 \end{center}
 \end{figure}
 %
-This fit quality indicator is thus also sensitive to the noise
-level during the {\tt skydip}. We therefore devise an additional fit quality
-indicator to further measure the bias between measures and model fits.
+This fit quality indicator is also sensitive to the noise
+level during the {\tt skydip}. We therefore devise a second fit quality
+indicator to further measure the bias between the data and the
+best-fit model.
 Namely, for each {\tt skydip}, we compute the average
 $df_{\rm{reso}}^k$ of each KID $k$ and convert this quantity from Hertz to Kelvin
 using the corresponding $c_1^k$ parameter. This cross-calibration
-allows for assembling the $df_{\rm{reso}}^k$ estimates of all the KIDs.
-Median $dT$ is the median of the average $df_{\rm{reso}}^k$ over all the KIDs of an
+allows us to compare the $df_{\rm{reso}}^k$ estimates from different KIDs.
+Median $dT$ is the median of the average $df_{\rm{reso}}^k$ in Kelvin over all the KIDs of an
 array. With these two indicators in hands, we discard the {\tt skydip} scans
-that are noisy or that yield a poor fit by applying the selection
-criteria that have to be satisfied:
+that are noisy or that yield a poor fit by applying the following selection
+criteria:
 
 \begin{itemize}
 \item Median $\rm{rms} < 1.5 \times 10^{4}~\rm{Hz}$

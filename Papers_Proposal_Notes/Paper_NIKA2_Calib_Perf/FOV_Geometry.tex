@@ -34,10 +34,10 @@ In order to be able to produce a map, one needs to associate a pointing
 direction to any data sample of the system. The telescope provides
 pointing information for a reference position in the focal
 plane. These information consist of the
-absolute azimuth and elevation $(\az^{\rm{ref}},\elev^{\rm{ref}})$
+absolute azimuth and elevation $(\az_t^{\rm{ref}},\elev_t^{\rm{ref}})$
 of the source, together with offsets
-$(\Delta\az^{\rm{ref}}, \Delta\elev^{\rm{ref}})$ \wrt~these {\lp
-depending on the scanning strategy.}
+$(\Delta\az_t^{\rm{ref}}, \Delta\elev_t^{\rm{ref}})$ \wrt~these{\lp, which 
+depends on the scanning strategy.}
 We then need to know the relative pointing offsets of each detector
 with respect to this reference position. We use
 \bms\ for this purpose (see Sect.~\ref{se:beammaps}).
@@ -81,11 +81,12 @@ the geodesic convergence at the poles.
 The data timelines are then projected onto $(x,\, y)$ maps. 
 We fit a 2D elliptical Gaussian on each KID Nasmyth map. {\lp The centroid
 position of this Gaussian provides us with an estimate of the KID
-pointing offsets \wrt\ the reference position in Nasmyth
+pointing offsets \wrt\ the telescope reference position
+($\az_t+\Delta\az_t$, $\elev_t+\Delta\elev_t$) in Nasmyth
 $(x,y)$ coordinates (independent of time).
 
-To go from Nasmyth offsets to $(\az,\elev)$ offsets, we apply the
-following rotation by the elevation angle:
+To convert from Nasmyth offsets to $(\az,\elev)$ offsets, we apply the
+following rotation:
 \begin{eqnarray}
 \Delta\az^k_t &=&  \cos\elev_t \, \Delta x^k + \sin\elev_t \, \Delta y^k, \nonumber\\
 \Delta\elev^k_t &=& -\sin\elev_t \, \Delta x^k + \cos\elev_t \, \Delta y^k, \nonumber
@@ -98,11 +99,11 @@ absolute pointing of each KID in these coordinates.}
 a first estimate of the KID FWHM, ellipticity and sensitivity. 
 We apply a first KID selection by removing outliers to the statistics
 on these parameters. We also discard manually KIDs that show a
-cross-talk counterpart on their map. Second,  we repeat this
-procedure using the {\emph baseline} TOI denoising instead of the
+cross-talk counterpart on their map. We repeat this
+procedure using the {\emph baseline} TOI decorrelation method instead of the
 median filter. Specifically, we apply the \cmoneb\ noise subtraction
-presented in Sect.~\ref{se:dataproc} to the KID timelines before
-projecting the map per KID. Therefore this alleviates the flux loss
+presented in Sect.~\ref{se:dataproc} to the KID timelines, which are
+then used to produce maps per KID. Therefore this alleviates the flux loss
 induced by the median filter and ensures that each timeline is treated
 in the same way as the scientific observation will. A second iteration
 of the KID selection is performed.} 
@@ -134,14 +135,14 @@ performance stability, as discussed in the next sections.
 %\includegraphics[trim=2cm 14cm 5cm 4cm, clip=true,width=0.45\linewidth]{Figures/A2_positions.pdf}
 \caption[KID selection in the FOV]{Average detector positions
   for arrays A1, A3, and A2. The three plots show the detectors that
-  met the quality criteria for at least two \bms\ during two technical
+  met the selection quality criteria for at least two \bms\ during two technical
   campaigns. These consist of 952, 961, and 553 detectors for A1, A3
   and A2, respectively. The color
   indicates how many times a KID was identified as valid on a \bm,
   {\lp ranging from blue for the KIDs valid in at least two \bms, to red for the KIDs
   valid in all (ten) \bms.} 
   The inner and outer
-  dash-line circles correspond to a FOV of 5.5\,arcmin and 6.5\,arcmin,
+  dash-line circles correspond to circular regions of 5.5\,arcmin and 6.5\,arcmin,
   respectively. Units are arcseconds.}
 \label{fig:avg_fov_color}
 \end{center}
@@ -154,14 +155,14 @@ We compare the reconstructed KID positions in the FOV to their design
 positions in the array. We fit the 2D field translation and rotation that allow
 matching the measured KID positions with the design positions using a 2D
 polynomial mapping function. {\lp We find that a matching can be
-obtained using a 2D polynome of degree one, that is using a linear
+obtained using a 2D polynome of degree one, which corresponds to a linear
 transformation and a rotation only.} We call distortion cross-terms
 between the two spatial coordinates in the polynomial fit.
 
 The aim is twofold. First we obtain a detailed
 characterisation of the real geometry of NIKA2 focal plane. Secondly,
-{\lp this analysis is used for the KID
-selection}, and the most deviant KIDs, whose measured position deviates
+{\lp this analysis is also used for KID
+selection}. The most deviant KIDs, whose measured position deviates
 by more than $4''$ from the design position are discarded. 
 
 We present the global results of the grid distortion
@@ -237,8 +238,8 @@ The results are gathered in Table~\ref{ta:gridmatch}.
     %  for the N2R9 campaign (pessimistic case)}
     \tablefoottext{a}{Initial number of KIDs selected in a FOV geometry using a \bm\ scan of the N2R12 campaign;}
     %\tablefoottext{b}{Ratio of the well-placed KID to the designed KID numbers}
-    \tablefoottext{b}{{\lp Number of KIDs whose the best-fit sky position is at less than 4'' from
-the expected position;}}       
+    \tablefoottext{b}{{\lp Number of KIDs for which the best-fit sky
+  position is less than 4'' away from the expected position;}}           
     \tablefoottext{c}{{\lp Median angular offset [arcsec] between the expected and measured sky position of the KIDs;}}
     \tablefoottext{d}{{\lp Average best-fit cross term of the polynomial model across the FOV [arcsec];}}
     \tablefoottext{e}{Array center in Nasmyth coordinates;}
@@ -268,8 +269,8 @@ the grid step in arcseconds gives compatible effective focal lengths
 of about $42.4\pm0.3\,\rm{m}$ at both observing wavelengths.} The sampling is above $\lambda/D$ at
 1\,mm, assuming a 27\,m effective diameter aperture. Note that
 the rotation angle between the array and the Nasmyth
-coordinates was designed as $76.2^{\rm{o}}$, less than two degrees from
-what is observed.
+coordinates was designed as $76.2^{\rm{o}}$, ess than two degrees
+away from what is observed.
 
 
 These results have been compared to expectations obtained using ZEMAX
@@ -311,7 +312,7 @@ simulation.
 %
 We generated a grid diagram for the NIKA2 optical system and found a maximum
 grid distortion of $2.7\%$ in the $6.5'$ FOV. We notice that the
-strongest distortion appear in the upper right corner of the Nasmyth plan, which is
+strongest distortion appear in the upper right corner of the Nasmyth plane, which is
 also the area of the largest defocus w.r.t. to the center (see Appendix~\ref{ap:focus_surfaces}).
 An expected distortion of $2.7\%$ is at most a 5'' shift from the
 center to the outside of the array. The quoted distortions between the
@@ -358,9 +359,9 @@ connected to different feed lines than between KID rows of the same
 feed line. Second, KIDs at the end of a feed line are less often valid
 than the others
 (see e.g. the FOV of Array 3). As the tone frequencies
-increase with the KID position in the feedline, some KIDs are
+increase with the position of the KID in the feedline, some KIDs are
 sometimes missing because their frequency lays above the maximum tone
-frequency authorized by the readout electronics. That explains the
+frequency authorized by the readout electronics. This explains the
 linear holes in the middle of the $1\,\rm{mm}$ arrays. For A1, this
 end-of-feedline effect is mixed with the effect of the KID gain
 variation across the FOV, which mainly affects the lower left third of
@@ -435,7 +436,7 @@ is reported in Table.~\ref{tab:eta_used}.
 
 \begin{table}[!htbp]
   \centering
-  \caption[]{Fraction of 'golden' KIDs in percent of the design
+  \caption[]{Fraction of \emph{very stable} KIDs in percent of the design
   KIDs. The row 'very stable KIDs' gives the fraction of KIDs that have been selected
   in {\lp $50\%$} of the analysed {\tt beammap} scans, while the rows 'Used KIDs' gather
   the median fraction of used KIDs in the data reduction processing
@@ -448,10 +449,10 @@ is reported in Table.~\ref{tab:eta_used}.
     \noalign{\smallskip}
     \hline
     \noalign{\smallskip}
-    Very stable KIDs & {\tt beammaps} & 74  &  76  &  82  \\
+    Very stable KIDs [\%] & {\tt beammaps} & 74  &  76  &  82  \\
     \hline
     \noalign{\smallskip}
-    Used KIDs  & N2R9     & 58 &  64  & 71 \\
+    Used KIDs [\%]  & N2R9     & 58 &  64  & 71 \\
                & N2R12    & 73 &  69  & 77 \\
                & N2R14    & 69 &  68  & 79 \\
                & Combined & 70 &  69  & 78 \\

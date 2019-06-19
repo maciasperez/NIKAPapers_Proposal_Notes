@@ -1,95 +1,127 @@
-\subsection{Photometric correction}
-\label{se:photometric_correction}
+
 
 The \emph{baseline} calibration (Sect.~\ref{se:baseline_calibration}) relies on
 the \emph{baseline} scan selection, as defined in Sect.~\ref{se:data_selection},
-to mitigate the \afternoon\ beam size variations, that are discussed in
-Sect.~\ref{se:beam_variation}. \nico{We have investigated ways to compensate for
-  these variations (not related to the NIKA2 instrument) and extend the possible
-  range of observing conditions. This section presents one of them, that relies
-  on the monitoring of the effective FWHM during an observation. It also offers
-  and interesting cross-check of the baseline calibration.}
+to focus as much as possible on pure on NIKA2 performances. We have however
+investigated ways to mitigate the \afternoon\ beam size variations
+(sect.~\ref{se:beam_variation}) (not related to the NIKA2 instrument) and
+extend the possible range of observing conditions. This section presents one
+of them, that relies on the monitoring of the effective FWHM during
+observations. It also offers and interesting cross-check of the baseline
+calibration.
 
-\subsubsection{Photometric correction method}
+\subsection{Photometric correction method}
 \label{se:photometric_correction_method}
 
-When the beam size broadens due to e.g. \afternoon\ beam effect, the
-flux density is smeared in a larger solid angle and
-the flux density estimator, which is based on the amplitude fit of a
-Gaussian beam of fixed FWHM (see
-Sect.~\ref{se:photometric_system}) is biased toward low flux
-densities.
+When the beam size broadens due to e.g. \afternoon\ beam effect, the flux
+density is smeared in a larger solid angle and the flux density estimator, which
+is based on the amplitude fit of a Gaussian beam of fixed FWHM (see
+Sect.~\ref{se:photometric_system}) is biased toward low flux densities.
 
-Considering only the main beam broadening, modeled as a Gaussian of
-size $FWHM' = 2 \sqrt{2\ln{2}} \, \sigma '$, we show in
-Appendix~\ref{ap:photometric_correction_detail} that
-the flux density estimator depends on {\lp $(\sigma'^2 +\sigma_0^2)$
-  that is the squared size of the Gaussian
-  resulting from the convolution} between the enlarged
-$\sigma '$-Gaussian, which can be monitored as in Sect.~\ref{se:beam_variation}, and the 
-$\sigma_0$ fixed-width Gaussian of our reference system.
+Indeed, up to a normalization factor, our flux estimator applied to a map
+$M(\theta,\phi)$ reads
 
-An unbiased
-flux density $\hat{S}_{\rm{pc}}$ can be derived from the flux density
-estimate $\hat{S}$ as
 \begin{equation}
-  \hat{S}_{\rm{pc}} = f(\sigma')\, \hat{S},
+  \hat{S}  = \int \int M(\theta, \phi)\, e^{-\frac{d(\theta,\phi)^{2}}{2\sigma_{0}^{2}}} \sin \theta d\theta d\phi\,,
+  \label{eq:flux_density_estimator}
 \end{equation}
-where $f(\sigma')$ is a photometric correction for the beam variation
-effect. Within the Gaussian model, it reads:
-\begin{equation}
-  f(\sigma') = \frac{(\sigma'^2 + \sigma_0^2)}{(\sigma_{\star}^2 + \sigma_0^2)}. 
-\end{equation} 
 
-The beam size in stable atmospheric condition $\sigma_\star$ is
-determined by measuring the 2D Gaussian beam on the series of scans of
-source with varying flux densities, which have been used for the beam
+where $d(\theta,\phi)$ is the angular distance and $\sigma_0$ correspond to
+FWHM's of 12.5 and 18.5\,arcsec at 1 and 2\,mm respectively
+(sect.~\ref{se:photometric_system}). Modelling our observations of a point
+source as
+
+\begin{equation}
+  M(\theta, \phi) = A e^{-\frac{\theta^{2}}{2\sigma^2}}\,,
+  \label{eq:pointsource_map}
+\end{equation}
+
+leads to
+
+\begin{equation}
+  \hat{S}  = 2\pi \sigma^2 A \,  \frac{\sigma_0^2}{(\sigma^2 + \sigma_0^2)}.
+  \label{eq:gaussian_star}
+\end{equation}
+
+Assume that we observe the source under stable conditions (\emph{baseline}) and
+denote with a $_\star$, the associated amplitude $A_\star$, beam width
+$\sigma_\star$ and flux estimate $\hat{S}_\star$. Recalling that pure aperture
+photometry ensures energy conservation between two different observations:
+$2\pi\sigma^2 A = 2\pi\sigma_\star A_\star^2$, we can now derive the correct
+flux estimate $\hat{S}_\star$ from $\hat{S}$, as obtained under unstable conditions:
+
+\begin{equation}
+\hat{S}_\star = \frac{\sigma^2 + \sigma_0^2}{\sigma_\star^2 + \sigma_0^2}\hat{S}
+\equiv f(\sigma)\hat{S}.
+\end{equation}
+
+\nico{Fig.~\ref{fig:f_sigma} shows XXXXXXXXX... $\sigma_\star$ is determined and
+chosen as... (See commented text)}\\
+
+%% Considering only the main beam broadening, modeled as a Gaussian of
+%% size $FWHM = 2 \sqrt{2\ln{2}} \, \sigma$, we show in
+%% Appendix~\ref{ap:photometric_correction_detail} that
+%% the flux density estimator depends on {\lp $(\sigma'^2 +\sigma_0^2)$
+%%   that is the squared size of the Gaussian
+%%   resulting from the convolution} between the enlarged
+%% $\sigma '$-Gaussian, which can be monitored as in Sect.~\ref{se:beam_variation}, and the 
+%% $\sigma_0$ fixed-width Gaussian of our reference system.
+%% 
+%% An unbiased
+%% flux density $\hat{S}_{\rm{pc}}$ can be derived from the flux density
+%% estimate $\hat{S}$ as
+%% \begin{equation}
+%%   \hat{S}_{\rm{pc}} = f(\sigma')\, \hat{S},
+%% \end{equation}
+%% where $f(\sigma')$ is a photometric correction for the beam variation
+%% effect. Within the Gaussian model, it reads:
+%% \begin{equation}
+%%   f(\sigma') = \frac{(\sigma'^2 + \sigma_0^2)}{(\sigma_{\star}^2 + \sigma_0^2)}. 
+%% \end{equation} 
+
+The beam size in stable atmospheric conditions $\sigma_\star$ is
+determined by fitting the 2D Gaussian beam on the series of scans of
+source with varying flux densities that have been used for the beam
 characterization in Sect.~\ref{se:mainbeam}. However, $\sigma_\star$
 is not equivalent to the main beam Gaussian size since the side lobes
-and first error beams are not masked for the beam size
+and first error beams are not masked for this beam size
 monitoring. The $\sigma_\star$ estimates are slightly
-larger {\lp for bright sources due to the contribution of the first side
-lobes and error beams, which is above the noise level, in the Gaussian fit.}  
-%for sources bright enough for the side lobes to be well above
-%the noise level.
-An empirical model for the induced correlation of
-$\sigma_\star$ with the source flux density is given in
-Appendix~\ref{ap:photometric_correction_detail}.
+larger for bright sources due to the contribution of the first side
+lobes and error beams, which are above the noise level, in the Gaussian fit.
 
-The photometric correction thus relies on the measure of the current beam
-size $\sigma'$. The induced uncertainties on the flux density
-measurements depend on the precision of which we are able to monitor
-the beam size. We perform two case studies, which correspond to the
-two beam monitoring methods discussed in
+%% An empirical model for the induced correlation of
+%% $\sigma_\star$ with the source flux density is given in
+%% Appendix~\ref{ap:photometric_correction_detail}.
+
+The photometric correction thus relies on the measure of the current beam size
+$\sigma$. The induced uncertainties on the flux density measurements depend on
+the precision of the effective beam size determination. We perform two case
+studies that correspond to the two beam monitoring methods discussed in
 Sect.~\ref{se:beam_variation}.\\
 %\new{the paragraph titled ``Demonstration case''} presents a demonstration
 %calibration assuming the beam is precisely monitored, whereas
 %the ``Practical case using pointing scans'' paragraph addresses a practical calibration relying
 %on a beam monitoring using pointing scans. 
 
-\noindent \emph{Demonstration case} This method, shortened as {\tt PC-demo}
-hereafter, uses a photometric correction based on the beam monitoring
-with bright source scans. Both the 2D Gaussian FWHM fit and the
-FWHM$_0$ photometry are performed on the map of the
-source. This method thus applies only on point-like
-sources that are bright enough for an accurate fit of the beam to be
-obtained using a single scan.
+\noindent \emph{Demonstration case} This method ({\tt PC-demo} hereafter) uses a
+photometric correction based on the beam monitoring with bright source
+scans. Both the 2D Gaussian FWHM fit and the FWHM$_0$ photometry are performed
+on the map of the source. This method thus applies only to point-like sources
+that are bright enough for an accurate fit of the beam on a single scan.
 
 To capture only the beam size variations driven by the
 observing conditions (primary mirror deformations, anomalous
 refraction, elevation), a small correction $\delta_{\rm{FWHM}}$ has to be made to
 the 2D Gaussian beam FWHM estimate for bright sources. The estimate of the
 actual Gaussian size $\sigma '$ is
-% ATTENTION SIGMA GEOM PAS DEFINI
 \begin{equation}
-  \hat{\sigma '} = \frac{(\rm{FWHM} - \delta_{\rm{FWHM}})}{2\sqrt{2 \ln{2}}}, 
+  \hat{\sigma} = \frac{(\rm{FWHM} - \delta_{\rm{FWHM}})}{2\sqrt{2 \ln{2}}}, 
 \end{equation} 
 where the offset $\delta_{\rm{FWHM}}$ is null for faint or moderately
 bright point sources, and non-zero for bright sources.
-As for $\sigma_\star$, the 2D Gaussian fit yields slightly broaden
-%$\sigma_{\rm{geom}}$
+As for $\sigma_\star$, the 2D Gaussian fit yields slightly broader
 FWHM for bright sources (e.g. planets) to accomodate
-for the side lobes and error beams, which are measured with high signal-to-noise.
+for the side lobes and error beams that are measured with high signal-to-noise.
 For Uranus, $\delta_{\rm{FWHM}}$ includes also the beam widening due
 to Uranus disc, as discussed in Sect.~\ref{se:mainbeam_results}.
 %, which is seen with an average diameter of $3.5''$ at the
@@ -102,14 +134,12 @@ scans and using MWC349 scans, we found $\delta_{\rm{FWHM}} = 0.4''$ at
 distributes as one half being due to Uranus finite extension and the
 other half stemming from the side lobes.\\
 
-\noindent \emph{Practical case using pointing scans} This method,
-shortened as {\tt PC-point} hereafter, performs a photometric correction
-based on the beam monitoring with pointing scans. Unlike
-{\tt PC-demo}, this method is thus usable even for sources fainter
-than about one Jy. The Gaussian beam size $\sigma '$ is estimated
-using the beam size estimate interpolated from the pointing-based beam
-monitoring. {\lp For Uranus, this value is corrected for the diameter
-size, as in Sect.~\ref{se:mainbeam_results}.}  
+\noindent \emph{Practical case using pointing scans} This method ({\tt PC-point}
+hereafter) performs a photometric correction based on the beam monitoring with
+pointing scans. Unlike {\tt PC-demo}, this method is thus usable even for
+sources fainter than about one Jy \nico{but relies on interpolations between beam width estimates on
+  other scans}. For Uranus, this value is corrected for the diameter size, as
+  in Sect.~\ref{se:mainbeam_results}.
 %The actual Gaussian beam size $\sigma '$ is estimated using
 %\begin{equation}
 %  \hat{\sigma '} = \sigma_{\rm{p}} - \frac{\delta_{\rm{p}}}{2\sqrt{2 \ln{2}}}, 
@@ -153,12 +183,13 @@ from being significantly affected by the side lobes.
       campaigns and whose beam FWHMs are below the threshold indicated
       by the vertical red lines, (open circles), as
       well as the scans that met the baseline scan selection criteria (filled
-      circles).}}
+      circles). 38 scans now pass the \emph{baseline} selection criteria vs 26
+      only without photometric correction (see also Fig.~\ref{fig:calib_uranus_vs_fwhm_all}).}}
 \label{fig:calib_uranus_vs_fwhm_photocorr}
 \end{center}
 \end{figure}
 
-\subsubsection{Absolute calibration with a photometric correction}
+\subsection{Absolute calibration with a photometric correction}
 
 We perform the absolute calibration by i) implementing the practical
 method described in Sect.~\ref{se:practical_calib}, ii) correcting the
@@ -232,126 +263,48 @@ the absolute calibration factor and iii) yields a small reduction of
 the flux density ratio dispersion. For the absolute calibration, the
 {\tt PC-point} method performs as well as the {\tt PC-demo} one.
 Photometry capability and stability when using a photometric
-correction will be further tested in Sect.~\ref{se:photometry}.\\
-
-{\bf END OF OLD SECTION 8.5}\\
-
-%\section{Photometric correction}
-%\label{se:photometric_correction_detail}
-%\input{photometric_correction.tex}
-
-The effect of the \afternoon\ beam size variations, as discussed
-in Sect.~\ref{se:beam_variation}, is mitigated by correcting the
-measured flux densities using a beam-size dependent function, referred
-to as the photometric correction.
-
-In our reference photometric system, as presented in
-Sect.~\ref{se:photometric_system}, 
-the flux density is estimated by fitting to the data the amplitude of
-the FWHM$_0$ Gaussian beam:
-\begin{equation}
-  \hat{S}  = 2 \int \int M(\theta, \phi)\, e^{-\frac{\theta^{2}}{2\sigma_{0}^{2}}} \sin \theta d\theta d\phi.
-  \label{eq:flux_density_estimator}
-\end{equation}
-The beam width $\sigma_{0}$ corresponds to FWHM$_0$%, which we recall,
-%is $12.5''$ for the $1\,\rm{mm}$ arrays and $18.5''$ for
-%the $2\,\rm{mm}$ array
-, as defined in Table~\ref{tab:definitions}.
+correction are further tested in Sect.~\ref{se:photometry}.\\
 
 
-First of all, in stable observing conditions (no beam
-broadening effect), the observed map of a point-like source can be modeled by a single Gaussian of
-width $\sigma_\star$ corresponding basically to the main beam size and
-of amplitude $A_\star$:
-\begin{equation}
-  M(\theta, \phi) = A_\star e^{-\frac{\theta^{2}}{2\sigma_\star^{2}}}.
-  \label{eq:pointsource_map}
-\end{equation}
-Ingesting Eq.~\ref{eq:pointsource_map} in
-Eq.~\ref{eq:flux_density_estimator}, we find that the flux density
-estimator depends on the beam size as
-\begin{equation}
-  \hat{S}  = 2\pi \sigma_{\star}^2 \, A_{\star} \, \,  \frac{2 \sigma_0^2}{(\sigma_{\star}^2 + \sigma_0^2)}.
-  \label{eq:gaussian_star}
-\end{equation}
-However, the map is calibrated using FWHM$_0$ Gaussian beam, as described in
-Sect.~\ref{se:photometric_system}. The absolute calibration factor %,
-%which is evaluating as
-%$S_{c}(\nu_{0})/\hat{S}_{c}$,
-has a beam dependency that compensates the one of the flux density for the source.
+%% % flux-dependency of sigma stable
+%% \begin{figure}[ht!]
+%%   \begin{center}
+%%     \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.49\linewidth]{Figures/FWHM_stable_empiric_ref_1mm.pdf}
+%%     \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.49\linewidth]{Figures/FWHM_stable_empiric_ref_a2.pdf}
+%%     \caption[Photometric correction pivot Gaussian
+%%       size]{Flux-dependency of the pivot size $\sigma_\star$ of the
+%%       Gaussian beam used for the photometric correction. %This is measured as the 2D
+%%       %Gaussian fit of the map observed in stable conditions.
+%%       The vertical dashed lines correspond to Uranus flux densities in
+%%       the two bands, and the horizontal dashed lines are the FWHMs
+%%     corresponding to the measured $\sigma_\star$ towards Uranus.}
+%%     \label{fig:sigma_stable_vs_flux}
+%%   \end{center}
+%% \end{figure}
 
-On the other hand, if the beam size varies so that the Gaussian part has a size given by
-$\sigma'$, Eq.~\ref{eq:gaussian_star} could be rewritten as 
-\begin{equation}
-  M(\theta, \phi) = A'\, e^{-\frac{\theta^{2}}{2\sigma'^{2}}}.
-  \label{eq:broader_beam_map}
-\end{equation}
-
-The flux density measured using the reference beam amplitude estimator 
-\begin{equation}
-  \hat{S'}  =2\pi \sigma'^2 \, A' \, \,  \frac{2 \sigma_0^2}{(\sigma'^2 + \sigma_0^2)}
-\end{equation}
-presents a beam-dependency which differs from the one of the primary
-calibrator, and which is no longer compensated when performing the
-absolute calibration.
-
-{\lp In addition, because the flux density is conserved when integrating over the map,
-the Gaussian amplitudes verify
-\begin{equation}
-2\pi \sigma_{\star}^2 \, A_{\star} = 2\pi \sigma'^2 \, A'
-\label{eq:gaussian_amplitude}
-\end{equation}}
-
-To retrieve an unbiased flux density estimate $\hat{S}_{\rm{pc}}$, the
-flux density estimate $\hat{S'}$ has to be corrected as
-\begin{equation}
-  \hat{S}_{\rm{pc}} = f(\sigma') \, \hat{S'},
-\end{equation} 
-where the photometric correction is 
-\begin{equation}
-  f(\sigma') = \frac{(\sigma'^2 + \sigma_0^2)}{(\sigma_\star^2+\sigma_0^2)}, 
-\end{equation} 
-so that $f(\sigma') = 1$ if $\sigma'=\sigma_\star$.
-
-% flux-dependency of sigma stable
-\begin{figure}[ht!]
-  \begin{center}
-    \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.49\linewidth]{Figures/FWHM_stable_empiric_ref_1mm.pdf}
-    \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.49\linewidth]{Figures/FWHM_stable_empiric_ref_a2.pdf}
-    \caption[Photometric correction pivot Gaussian
-      size]{Flux-dependency of the pivot size $\sigma_\star$ of the
-      Gaussian beam used for the photometric correction. %This is measured as the 2D
-      %Gaussian fit of the map observed in stable conditions.
-      The vertical dashed lines correspond to Uranus flux densities in
-      the two bands, and the horizontal dashed lines are the FWHMs
-    corresponding to the measured $\sigma_\star$ towards Uranus.}
-    \label{fig:sigma_stable_vs_flux}
-  \end{center}
-\end{figure}
-
-As discussed in Sect.~\ref{se:beam_variation}, the beam size is
-monitored by fitting a 2D Gaussian of freely varying FWHM.
-%In practice,
-%the pivot Gaussian size $\sigma_{\star}$ thus corresponds
-%to the nominal size of the 2D Gaussian fit of the beam that is
-%measured in stable observing conditions.
-We find the Gaussian size $\sigma_{\star}$ slightly varies with the
-source flux density. Whereas it basically corresponds to the main beam
-size for faint to moderately bright point source, it is slightly
-larger for bright sources. The simple 2D Gaussian fit
-accomodates with the more complex beam pattern features that are well
-above the noise level (see Sect.~\ref{se:fullbeam}) in tha case of
-bright sources.
-%bright enough for the side lobes to be well above the noise level.
-%The variation of $\sigma_{\star}$ can be seen as a
-%correction for fitting the complex beam pattern, as presented in
-%Sect.~\ref{se:fullbeam}, with a single 2D Gaussian of freely varying
-%size.
-
-In Fig.~\ref{fig:sigma_stable_vs_flux}, we give an
-empirical model for the flux dependency of the FWHM derived from
-$\sigma_{\star}$: it
-smoothly goes from $11.2''$ at $1\,\rm{mm}$ and $17.4''$ at $2\,\rm{mm}$ for
-faint sources to $11.6''$ at $1\,\rm{mm}$ and $17.65''$ at
-$2\,\rm{mm}$ at the flux density of Uranus,
-then slightly continues increasing for sources brighter than Uranus.
+%% As discussed in Sect.~\ref{se:beam_variation}, the beam size is
+%% monitored by fitting a 2D Gaussian of freely varying FWHM.
+%% %In practice,
+%% %the pivot Gaussian size $\sigma_{\star}$ thus corresponds
+%% %to the nominal size of the 2D Gaussian fit of the beam that is
+%% %measured in stable observing conditions.
+%% We find the Gaussian size $\sigma_{\star}$ slightly varies with the
+%% source flux density. Whereas it basically corresponds to the main beam
+%% size for faint to moderately bright point source, it is slightly
+%% larger for bright sources. The simple 2D Gaussian fit
+%% accomodates with the more complex beam pattern features that are well
+%% above the noise level (see Sect.~\ref{se:fullbeam}) in the case of
+%% bright sources.
+%% %bright enough for the side lobes to be well above the noise level.
+%% %The variation of $\sigma_{\star}$ can be seen as a
+%% %correction for fitting the complex beam pattern, as presented in
+%% %Sect.~\ref{se:fullbeam}, with a single 2D Gaussian of freely varying
+%% %size.
+%% 
+%% In Fig.~\ref{fig:sigma_stable_vs_flux}, we give an
+%% empirical model for the flux dependency of the FWHM derived from
+%% $\sigma_{\star}$: it
+%% smoothly goes from $11.2''$ at $1\,\rm{mm}$ and $17.4''$ at $2\,\rm{mm}$ for
+%% faint sources to $11.6''$ at $1\,\rm{mm}$ and $17.65''$ at
+%% $2\,\rm{mm}$ at the flux density of Uranus,
+%% then slightly continues increasing for sources brighter than Uranus.

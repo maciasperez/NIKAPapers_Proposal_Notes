@@ -8,13 +8,15 @@
 
 In this section, we derive the on-sky sensitivity of the instrument using a
 large amount of observation scans, including deep integration on faint sources,
-and assess the stability of our results against the observing conditions. We
-evaluate the noise equivalent flux density (NEFD hereafter). To further estimate
-the mapping capabilities, we also derive the mapping speed. We first discuss the
-definitions and the technical derivation of these quantities in
+and assess the stability of our results against the observing
+conditions.
+We evaluate the noise equivalent flux density, which is referred to as
+NEFD hereafter. To further represent the mapping capabilities, we also
+derive the mapping speed.
+We first discuss the definitions and the technical derivation of these quantities in
 Sect.\ref{se:integration_time} from measurements. Then, we briefly present
 several estimation methods that have been considered and the data sets that have
-been selected in Sect.~\ref{se:nefd_method}.  Results, together with robustness
+been selected in Sect.~\ref{se:nefd_method}. Results, together with robustness
 tests, are reported in Sect.~\ref{se:nefd_results}.
 
 %In this section, we derive various quantities that relate to the
@@ -45,15 +47,19 @@ tests, are reported in Sect.~\ref{se:nefd_results}.
 %%   NEFD is commonly refered to individual \emph{detectors} and must then be
 %%   related to the whole \emph{instrument} to provide the observer with a mapping speed
 %%   and a time estimator to plan observations.}
-The Noise Equivalent Flux Density (NEFD) is the $1\,\sigma$ error on the flux
-density of a point source in one second of integration time, considered on top
-of the atmosphere. At this stage, consider a map of point source located at its
-center, that observed under zero opacity. The estimation of the flux uncertainty
-$\sigma$ is described in Sect.~\ref{se:dataproc}. We here derive the integration
-time from actual observations. Indeed, it is not simply the duration of a scan,
-it depends on the KID distribution in the FOV and the scanning strategy. The map
-has a $r$~arcsec resolution. The hit map $N_{\rm{hit}}$ counts the number of
-data samples per pixel. From this, we derive the integration time at the center
+The NEFD is the $1\,\sigma$ error on the flux
+density of a point source in one second of integration time,
+considered at zero atmospheric opacity.
+At this stage, we consider a map of a point-like source located at its
+center and observed with zero atmospheric opacity. The estimation of
+the flux density uncertainty $\sigma$ is described in Sect.~\ref{se:dataproc}.
+We derive here the integration time from actual observations. Indeed,
+it is not simply the duration of a scan, it depends on the KID
+distribution in the FOV and the scanning strategy.
+The flux density map, which has a resolution of $\Delta r$, also comes
+along with a hit map $H_{\rm{p}}$, which counts the number of
+data samples per pixel (see Sect.~\ref{se:dataproc}).
+From this, we derive the integration time at the center
 of the map as
 %The instantaneous $A$ covered by the FOV reads
 %
@@ -70,11 +76,11 @@ of the map as
 %of valid KIDs (tab.~\ref{tab:number_of_kids}). This leads to an average
 %observation time per map pixel
 \begin{equation}
-t_{\rm{center}} = \frac{\langle N_{\rm{hit}}\rangle_{\rm{center}}}{f_{\rm{sam}}}\,,
+t_{\rm{center}} = \frac{\langle H_{\rm{p}}\rangle_{\rm{center}}}{f_{\rm{sam}}}\,,
 \end{equation}
 
 where $f_{\rm{sam}}$ is the sampling frequency and $\langle
-N_{\rm{hit}}\rangle_{\rm{center}}$ is the average of the hit map taken in a disk
+H_{\rm{p}}\rangle_{\rm{center}}$ is the average of the hit map taken in a disk
 of radius of one FWHM to be immune to shot noise statistics in individual map
 pixels. Correcting this quantity from the density of detectors per map pixel at
 the same time, gives the on-source \emph{detector} integration time, in other
@@ -82,44 +88,48 @@ words, the time when the source is actually being observed, by at least one
 detector:
 
 \begin{equation}
-  t_{\rm{det}} = t_{\rm{center}}\, \frac{g^2}{r^2}\,.
+  t_{\rm{det}} = t_{\rm{center}}\, \frac{g^2}{r^2}\,,
 \label{eq:t_det}
 \end{equation}
 
-In eq.~(\ref{eq:t_det}), $g$ is the distance between adjacent KIDs in the FOV
+where $g$ is the center-to-center distance between adjacent KIDs in the FOV
 (Sect.~\ref{se:grid_distortion}). $t_{\rm{det}}$ matches the total duration of
 the scan if the scanning strategy is designed so that the source is always in
-the FOV and if the FOV is full of valid KIDs. Thus, the NEFD reads:
+the FOV and if the FOV is full of valid KIDs. The NEFD is defined
+using the previous quantities as 
 
 \begin{equation}
-  \rm{NEFD} = \sigma \sqrt{t_{\rm{det}}}\; [\rm{mJy.s}^{1/2}].
+  \rm{NEFD} = \sigma \sqrt{t_{\rm{det}}}\, 
 \label{eq:nefd_def}
 \end{equation}
+
+and is given in $\rm{mJy}\cdot s^{1/2}$.
 
 The mapping speed, $M_{\rm{s}}$, is the sky area $\mathcal{A}_{\rm{scan}}$ that
 can be mapped at a noise level $\Delta_\sigma$ of $1\,\rm{mJy}$ in an
 integration time $\Delta_t$ of one hour. Noting $d_{\rm{FOV}} =
 6.5\,\rm{arcmin}$ the FOV diameter and $\eta$ the fraction of valid KIDs for an
-observation, the mapping speed reads
+observation (Sect.~\ref{se:fov_geometry}), the mapping speed is
 
 \begin{equation}
 M_{\rm{s}} = \frac{\mathcal{A}_{\rm{scan}}}{\Delta_\sigma\Delta_t} = 
-\eta \, \frac{\pi}{4} d_{\rm{FOV}}^2 \, \frac{1}{\rm{NEFD}^2}\; [\rm{arcmin}^2.\rm{mJy}^{-2}.\rm{h}^{-1}].
+\eta \, \frac{\pi}{4} d_{\rm{FOV}}^2 \, \frac{1}{\rm{NEFD}^2}\, ,
 \label{eq:mapping_speed}
 \end{equation}
 
-In real observation conditions, correcting the measured flux for opacity effects
-according to eq.~(\ref{eq:uncorr_flux}) increases (degrades) the effective
-sensitivity like
-
+and has units of arcmin$^2 \cdot \rm{mJy}^{-2} \cdot \rm{h}^{-1}$. 
+In real observation conditions, characterised with a given atmospheric
+opacity $\taunu$ and a given \airmass\ $x$, correcting the flux
+density for atmospheric attenuation using Eq.~\ref{eq:uncorr_flux}   
+increases the NEFD as 
 \begin{equation}
-\rm{NEFD}_{\tau,el} = \rm{NEFD}\, e^{\taunu x}
+\rm{NEFD}_{\taunu,\, x} = \rm{NEFD}\, e^{\taunu x}
 \label{eq:nefd_tau_el}
 \end{equation}
 
 Using these definitions, the integration time required to reach a target flux
-density uncertainty $\sigma_{obs}$ over an area $\mathcal{A}_{\rm{scan}}$ around
-an airmass $x$ and under an opacity $\taunu$ is
+density uncertainty $\sigma_{obs}$ over an observing area
+$\mathcal{A}_{\rm{scan}}$ for an airmass $x$ and for an atmospheric opacity $\taunu$ is
 \begin{equation}
   t_{\rm{obs}} = \frac{\mathcal{A}_{\rm{scan}}}{ M_{\rm{s}}} \, \left(\frac{e^{\taunu\, x}}{\sigma_{obs}}\right)^2.
 \end{equation}
@@ -128,36 +138,85 @@ an airmass $x$ and under an opacity $\taunu$ is
 \subsection{NEFD estimation methods and scan selection}
 \label{se:nefd_method}
 
-We have developed several complementary methods for the NEFD estimation. First,
+We have developed several methods for the NEFD estimation. First,
 we use deep integrations on faint sources. Second, we resort to joint
 analysis of multiple scans without combining them.\\
 
-\noindent \emph{Deep integration method.} According to
-eqs.~(\ref{eq:nefd_def},\ref{eq:nefd_tau_el}), if a source was observed under
-stable atmospheric conditions, the flux uncertainty would scale directly like
-$t_{\rm{det}}^{-1/2}$. This relation provides both a way to estimate the NEFD and to
-check that the noise does integrate down as expected with the integration
-time. In practice, in particular for integrations of several hours, observing
-conditions do change. This is accounted for in the coaddition of the $n$ scans with inverse
-variance weighting (sect.~\ref{se:dataproc}), and it translates to an effective
-uncertainty on the combined flux as
 
+
+\noindent \emph{Deep integration method}
+According to Eq.~\ref{eq:nefd_def} and Eq.~\ref{eq:nefd_tau_el}, if a
+source was observed under stable atmospheric conditions, the flux
+uncertainty would scale directly like
+$t_{\rm{det}}^{-1/2}$. Using long-time integration observation on a
+source, this relation provides both a way to estimate the NEFD and to
+check that the noise does integrate down as expected with the integration
+time. To that aim, we produce a series of maps, as described in Sect.~\ref{dataproc},
+using an inverse-variance co-addition of an increasing number of observation
+scans, and perform a photometric analysis on each map according to
+Sect.~\ref{se:photometry}. However, in practice, in particular for
+integrations of several hours, observing conditions do change.
+Since all the scans are not acquired in the same conditions of
+atmospheric opacity and observing elevation, they
+do not contribute with the same weight to the co-addition. In such
+case, an effective integration time for the co-addition of $n$ scans
+is defined as
+%
 \begin{equation}
-\sigma_{avg} = \frac{NEFD^2}{\sum_{i=1}^{n}\, t_i\,  e^{-2\taunu^i\, x_i}} \equiv
-\frac{NEFD^2}{t_{\rm{eff}}(n)},
+t_{\rm{eff}}(n) = \sum_{i=1}^{n}\, t_i\,  e^{-2\taunu^i\, x_i},
 \label{eq:sigma_tau_w8}
 \end{equation}
+%
+where $t_i$, $\taunu^i$ and $x_i$ are the integration time, the zenith
+opacity and the \airmass\ of the $i$-th scan of the $n$-scans
+co-addition.
+Generalizing Eq.~\ref{eq:nefd_det}, the flux density uncertainties on
+the co-addition of $n$ scans is $\sigma(n) = \rm{NEFD}/\sqrt{t_{\rm{eff}}(n)}$.
+An estimate of the
+NEFD can therefore be obtained in fitting
+$\sigma(n)$ as a function of the corresponding $t_{\rm{eff}}(n)$.\\
+%This
+%method requires long integration time on a same object. \\
+%
+%\noindent \emph{Deep integration method.} This is accounted for in the coaddition of the $n$ scans with inverse
+%variance weighting (sect.~\ref{se:dataproc}), and it translates to an effective
+%uncertainty on the combined flux as
+%
+%\begin{equation}
+%\sigma_{avg} = \frac{NEFD^2}{\sum_{i=1}^{n}\, t_i\,  e^{-2\taunu^i\, x_i}} \equiv
+%\frac{NEFD^2}{t_{\rm{eff}}(n)},
+%\label{eq:sigma_tau_w8}
+%\end{equation}
+%
+%where $t_{\rm{eff}}(n)$ stands for the effective integration time when $n$ scans
+%are combined.The flux uncertainty scales down like $t_{\rm{eff}}(n)^{-1/2}$ and the
+%amplitude of the scaling law provides an estimate of NEFD.\\
 
-where $t_{\rm{eff}}(n)$ stands for the effective integration time when $n$ scans
-are combined. The flux uncertainty scales down like $t_{\rm{eff}}(n)^{-1/2}$ and
-the amplitude of the scaling law provides an estimate of NEFD.
 
-\noindent \emph{Scatter method.} For any scan, we derive
-$\rm{NEFD}_{\tau,el}$. Gathering scans observed under various conditions, it is
-possible to fit eq.~(\ref{eq:nefd_tau_el}) against $e^{\taunu x}$ and determine
-$\rm{NEFD}$. The scan sample can gather different sources. In order not to be
-biased by too much signal in the extened error beams, we have restrict to
-sources of fluxes below 1\,Jy.
+\noindent \emph{Scatter method} %Performing photometry on each individual scan,
+%we can estimate the sensitivity on the central flux and measure the time of
+%integration using Eq.~\ref{eq:t_det}, hence derive the NEFD per
+%scan.
+For any scan, we derive $\rm{NEFD}_{\taunu,\, x}$.
+%After correction of the attenuation of the atmosphere,
+Using Eq.~\ref{eq:nefd_tau_el}, the joint analysis of a series of
+scans acquired with various observing conditions provides an estimate
+of the NEFD. The scan sample can gather different sources. 
+The selection of the source target for the NEFD derivation is
+primarily based on the flux density. Indeed, noise
+characterization may be biased {\lp by the signal of a bright source
+stemming from the most extended error beams and far side lobes.}
+%by residuals of a strong source and the
+%instrument far side lobes.
+For this method, we therefore restrict the analysis to sources with flux below 1\,Jy.
+
+
+%\noindent \emph{Scatter method.} For any scan, we derive
+%$\rm{NEFD}_{\tau,el}$. Gathering scans observed under various conditions, it is
+%possible to fit Eq.~(\ref{eq:nefd_tau_el}) against $e^{\taunu x}$ and determine
+%$\rm{NEFD}$. The scan sample can gather different sources. In order not to be
+%biased by too much signal in the extened error beams, we have restrict to
+%sources of fluxes below 1\,Jy.
 %% Results are presented in
 %% Tab.~\ref{tab:nefd_summary}, while Fig.~\ref{fig:nefd_twomethods} shows the
 %% particular case of \hls\ only.
@@ -171,12 +230,12 @@ sources of fluxes below 1\,Jy.
       uncertainties as a function of the effective integration time
       $t_{\rm{eff}}$, as defined in Eq.~\ref{eq:sigma_tau_w8}. The solid black
       lines are the best-fit models using $\sigma(t_{\rm{eff}}) =
-      \rm{NEFD}/sqrt(t_{\rm{eff}})$. Note that the effective integration is time
+      \rm{NEFD}/sqrt(t_{\rm{eff}})$. Note that the effective integration time
       is different between the 1\,mm and 2\,mm arrays because they have
       different KID spacings $g$ in the FOV and different opacities (see
-      eq.~\ref{eq:sigma_tau_w8}). \emph{Right panel:} NEFD as a function of the
+      Eq.~\ref{eq:sigma_tau_w8}). \emph{Right panel:} NEFD as a function of the
     measured line-of-sight opacity. The solid black lines are the theoretical
-    fits of $\rm{NEFD}_{\taunu, el} = \rm{NEFD}\, e^{\taunu\,x}$ and give the
+    fits of $\rm{NEFD}_{\taunu,\, x } = \rm{NEFD}\, e^{\taunu\,x}$ and give the
     NEFD when extrapolated to $\taunu\,x = 0$. }
     \label{fig:nefd_twomethods}
   \end{center}
@@ -234,17 +293,26 @@ sources of fluxes below 1\,Jy.
 \end{figure*}
 
 First we test the stability of the NEFD estimates using the two methods on the
-same data set. During the N2R9 run, we observed \hls, a moderately faint source
-\citep{2012A&A...538L...4C}, expected to have flux densities of 74.5\,mJy at
-$1\,\rm{mm}$ and 15.7\,mJy at $2\,\rm{mm}$ (M.~Bethermin, private
-communication). It was observed during about 9\,h in total over three nights
-with $8 \times 5$~arcmin$^2$ OTF raster scans of various
-orientations. Fig.~\ref{fig:nefd_twomethods} (left panel) shows the noise
-integration with the integration time, confirming the expected scaling law. The
-observed small variations around the theoretical fit correspond to variations of
-line-of-sight opacity during the integration. Fig.~\ref{fig:nefd_twomethods}
-(right panel) shows the $\rm{NEFD}_{\tau,el}$ per scan, along with the fit that
-provides $\rm{NEFD}$. Results from these analyses, per array and for the
+same data set. With this goal, during the N2R9 run, we selected \hls, a
+moderately faint source \citep{2012A&A...538L...4C}, expected to have
+flux densities of 74.5\,mJy at $1\,\rm{mm}$
+and 15.7\,mJy at $2\, \rm{mm}$. %(M.~Bethermin, private
+%communication).
+It was observed for about 9\,h in total over three nights using
+$8 \times 5$~arcmin$^2$ OTF raster scans of various orientations.\\
+
+
+The left panel of Fig.~\ref{fig:nefd_twomethods} shows the flux density
+uncertainties as a function of the integration time. Black lines show
+the fit with the inverse of the square root of the integration time,
+confirming that the noise integration is well consistent with the expected
+scaling law. The observed small variations around the theoretical fit
+correspond to variations of line-of-sight opacity during the
+integration. These variations are taken into account for evaluating the NEFD as
+discussed in the previous section. The right panel of Fig.~\ref{fig:nefd_twomethods} shows the
+$\rm{NEFD}_{\taunu,\, x}$ per scan, along with best-fit models using
+Eq.~\ref{eq:nefd_tau_el}, from which are derived the \rm{NEFD} estimates. 
+Results from these analyses, per array and for the
 combined A1 and A3, are presented in Table~\ref{tab:nefd_summary}.
 
 We observe systematically higher NEFD for A1 compared to A3, which is a mainly
@@ -265,9 +333,9 @@ campaigns. The NEFD estimates for the
 three campaigns are in agreement within uncertainties for the whole
 range of line-of-sight opacities that have been tested.
 The solid lines show the expected dependance with
-exp${[\taunu\,x]}$ for a background-limited sensitivity
-model. Since the measured NEFD are not Gaussian distributed, we
-derive the top-of-atmosphere NEFD as the median of the measured NEFD
+exp${[\taunu\,x]}$ as given in Eq.~\ref{eq:nefd_tau_el}. %for a background-limited sensitivity model.
+Since the measured NEFD$_{\tau,\, x}$ are not Gaussian distributed, we
+derive the NEFD as the median of the NEFD$_{\tau,\, x}$
 per scans after correction of the atmospheric attenuation, which provides us
 with a more robust estimate compared to a fit. The NEFD estimates
 are given in Table~\ref{tab:nefd_summary}.
@@ -311,11 +379,11 @@ thousand observations scans of sub-Jy sources meet the baseline selection
 criteria (see Sect.~\ref{se:data_selection}), providing robust NEFD estimates
 that are representative of the average NIKA2 performance. These NEFD estimates
 are gathered in Table~\ref{tab:nefd_astro}. The rms uncertainties are evaluated
-as the rms scatter of the individual NEFD estimates after correction with
-$e^{\taunu\,x}$. These values are then extrapolated to the IRAM
+as the rms scatter of the individual NEFD$_{\taunu,\, x}$ estimates
+after correction with $e^{\taunu\,x}$. These values are then extrapolated to the IRAM
 \trentemetre\ telescope reference Winter observing conditions: $2\,\rm{mm}$ of
 precipitable water vapor (pwv) and $60$ degrees elevation. From these estimates,
-we also derive the corresponding mapping speeds NEFD (Tab.~\ref{tab:nefd_astro}).
+we also derive the corresponding mapping speeds (Tab.~\ref{tab:nefd_astro}).
 
 
 %The top-of-atmosphere mapping speed, which is extrapolated at zero

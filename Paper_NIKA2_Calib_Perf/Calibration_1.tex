@@ -5,16 +5,21 @@
 %\label{se:calibration}
 
 In this section, we present the absolute calibration of the flux densities. We
-use Uranus as the main primary calibrator. Section~\ref{se:calibration_method}
-describes the absolute calibration method, section~\ref{se:flat_field} presents
-the inter-calibration and the flat fields. While gathering several observations
-of the calibrator in order to increase statistics and improve the calibration
-overall, we have evidenced a daily variation of the absolute calibration
-coefficients related to weather temperature induced variation of the beam
-size. If left uncorrected, it leads to a sizable increase of the
-calibration uncertainties while not being strictly related to the instrument. We
-address this effect Sect.~\ref{se:beam_variation}, before summarizing the
-overall calibration process in Sect.~\ref{se:baseline_calibration}.
+use Uranus as the main primary calibrator. Sect.~\ref{se:calibration_method}
+describes the absolute calibration method, Sect.~\ref{se:flat_field} presents
+the inter-calibration of all the KIDs and the flat fields. While
+gathering several observations of calibrators, we have evidenced a
+daily variation of the absolute calibration
+coefficients related to daily variation of the beam
+size induced by weather temperature. If left uncorrected, it leads to
+a sizeable increase of the calibration uncertainties. To
+overcome this issue, we primarily flag the most impacted observation
+times of the day and exclude them from further analysis.
+%while not being strictly related to the instrument.
+We discuss this effect in
+Sect.~\ref{se:beam_variation}. In Sect.~\ref{se:baseline_calibration},
+the \emph{baseline} calibration procedure is summarized and stability
+tests are performed.  
 
 %%  In short, as
 %% a first step, {\lp an absolute calibration factor per detector} is derived using
@@ -478,21 +483,25 @@ paper.}
 %	TEMPERATURE-INDUCED VARIATION
 %---------------------------------------------------------------------
 %\subsection{Temperature-induced variations of the beam}
-\subsection{Beam monitoring and scan selection}
+\subsection{The temperature-induced variation effect}
 \label{se:beam_variation}
 
-We evidenced variations of the flux density estimates that correlate to the
-measured beam size. This beam broadening happens mostly in afternoons and around
-sunrise and sunset. It is also reproducible from one campaign to another. It most certainly
-comes from the combinaton of two different effects.
+We evidenced a daily variation of the flux density estimates that correlates to the
+measured beam size.
 
-First, inhomogeneous solar illumination leads to large scale deformations of the
+This beam broadening happens mostly in afternoons and around
+sunrise and sunset. It is also reproducible from one campaign to another. It most certainly
+comes from the combination of two different effects.
+
+First inhomogeneous solar illumination leads to large scale deformations of the
 \trentemetre\ primary mirror, which in turn lead to variable de-focussing of the
 telescope. {\lp To mitigate this effect, the telescope is equipped with an
   active thermal ventilation system of the primary mirror and an active
   temperature control of the secondary support legs. This system is, however,
-  challenged when the Sun partially illuminates the telescope, like around
-  sunrise and sunset.} {\lp This is a known effect that also impacts
+  challenged when the Sun partially illuminates the telescope}
+  %, like around
+  %sunrise and sunset.}
+  {\lp This is a known effect that also impacts
   observations with the heterodyne instruments operated at the IRAM
   \trentemetre\ telescope. It had also been already observed with the previous
   generation total-power instruments MAMBO-2 \citep{Kreysa1999}.} However, the
@@ -505,10 +514,14 @@ been described in~\citet{Altenhoff1987}. Based on experience with
   the heterodyne receivers, afternoon hours are
   often affected with an unstable atmosphere when rising moist air moves
   through the beam of the telescope and causes random refraction. The pointing
-  is then observed to change by few arcseconds {\lp resulting in an average
+  is then observed to change within few seconds by few arcseconds {\lp resulting in an average
     enlargement of the beam pattern.} This effect has been confirmed by
-  measuring several arcsec displacements of the source when projected using
-  different subsets of subscans of a single observation.
+  measuring several arcsec displacements of the source position when projected using
+  different subsets of subscans of a single observation, as described
+  in Appendix~\ref{ap:beam_monitoring}. We find that the apparent beam broadening during
+  the afternoon is due to anomalous refraction for between one third
+  and one half of the scans over the period studied here.
+
 
 {\lp As both effects (the primary mirror deformations and the anomalous
   refraction) are due to ambiant temperature variations, we refer to them as
@@ -539,23 +552,64 @@ been described in~\citet{Altenhoff1987}. Based on experience with
 
 %% \subsubsection{Beam monitoring using bright source scans}
 %% \label{se:beam_monitoring_otf}
-To illustrate this, Fig.~\ref{fig:beam_monitoring_otf} shows the measures of the
-FWHM (cf.~eq.~\ref{eq:fwhm_geom}) for the three reference campaigns as a
-function of UT for bright sources (planets or quasars of more than $1\,\rm{Jy}$ at both wavelengths). For
-Uranus (or any other planet), the FWHM estimates are corrected for the beam broadening due to the
-finite extension of the apparent disc of the planet, as in
-Sect.~\ref{se:mainbeam}. The FWHMs go from a plateau at a median value of
-$11.3''$ at $1\,\rm{mm}$ and $17.5''$ at $2\,\rm{mm}$ during the night, to a
-smooth rise that reaches a maximum of about $14''$ at $1\,\rm{mm}$ and $18.5''$
-at $2\,\rm{mm}$ around 16:00 UT hours. The beam broadening becomes sizable
-around 15:00 UT and returns to the plateau only around 22:00 UT. This leads to
-discard scans belonging to the cross-hatched intervales for the baseline scan
-selection (Sect.~\ref{se:data_selection} and \ref{se:baseline_calibration}).
-{\lp The global trend of the beam variations is the same for all campaigns, but
-  indeed, variations are observed, certainly following the differences in
-  outside temperature and precise primary illumination between different scans.}
-Last, among the presented scans, planets lead slightly larger beams than
-quasars, because of the non negligible coupling of their flux to the error beams.
+
+The temperature-induced variation of the beam size as a function of
+the UT hours is shown in Fig.~\ref{fig:beam_monitoring_otf} for the
+three reference campaigns using bright sources. These are
+selected by thresholding the flux density estimates above $1\,\rm{Jy}$
+at both wavelengths. The beam size is estimated by fitting a 2D
+elliptical Gaussian to the map {\lp and computing the geometrical FWHM
+using Eq.~\ref{eq:fwhm_geom}.} For the resolved planet as Uranus, the
+FWHM estimates are corrected for the beam broadening due to the finite
+extension of the apparent disc of the planet, as in
+Sect.~\ref{se:mainbeam}.
+We observe the same evolution of
+the FWHM for all campaigns. 
+This goes from a plateau at a median value of $11.3''$ at $1\,\rm{mm}$
+and $17.5''$ at $2\,\rm{mm}$ during the night, to a smooth rise that
+reaches a maximum of about $14''$ at $1\,\rm{mm}$ and $18.5''$ at
+$2\,\rm{mm}$ around 16:00 UT
+hours. The beam broadening becomes sizeable
+around 15:00 UT and returns to the plateau only around 22:00 UT.
+To mitigate the impact of the temperature-induced variation,
+observation scans acquired during this time interval must be
+discarded. The UT ranges that are discarded
+using the \emph{baseline} scan selection (see
+Sect.~\ref{se:data_selection}) are shown as cross-hatched areas in
+Fig.~\ref{fig:beam_monitoring_otf}.
+They consist of the afternoon
+period between 15:00 and 22:00 UT%, which corresponds to the period
+%when the daylight heating of the telescope primary mirror has the most
+%impact,
+as well as the period from 9:00 UT to 10:00 UT while the Sun
+rises. 
+%This leads to discard scans belonging to the cross-hatched intervales
+%for the \emph{baseline} scan selection (Sect.~\ref{se:data_selection}
+%and \ref{se:baseline_calibration}).
+{\lp Whereas the global trend of the beam variations is the
+same for all campaigns, we observe some variability in the amplitude
+of the effect over the campaigns. This supports the assumption of the
+important role of the partial illumination of the primary mirror by
+direct sun light in the temperature-induced effect. This in turn
+induces a variability of the amplitude of the effect depending on the
+angle between the telescope boresight and the Sun all along the
+observations.}
+
+The same beam size variations in time are observed using scans of giant planets
+(Uranus and Neptune) or other bright
+sources (mainly quasars). However, planets lead slightly larger FWHM
+estimates than quasars, because of
+%the non negligible coupling of the flux to the error beams.
+the larger contribution of the error beams to the fitted 2D Gaussian,
+as their flux are measured with a higher signal-to-noise.
+%in the case of bright sources.
+%the non negligible coupling of their flux to the error beams.
+
+%{\lp The global trend of the beam variations is the same for all campaigns, but
+%  indeed, variations are observed, certainly following the differences in
+%  outside temperature and precise primary illumination between different scans.}
+%Last, among the presented scans, planets lead slightly larger beams than
+%quasars, because of the non negligible coupling of their flux to the error beams.
 
 %% The same beam size variations in time using scans of giant planets
 %% (Uranus and Neptune) or other bright

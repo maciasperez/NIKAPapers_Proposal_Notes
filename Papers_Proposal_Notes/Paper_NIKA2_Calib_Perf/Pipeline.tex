@@ -57,7 +57,8 @@ performance assessment.}
 %\end{itemize}
 
 %\noindent{\emph{Low level processing:}
-\paragraph{Low level processing.}
+%\paragraph{Low level processing.}
+\subsection{Low level processing}
 \label{se:ll_proc}
 %A first step of the analysis is to read the data produced by \nika's
 %acquisition. The data as such comprise various quantities that describe the
@@ -102,7 +103,8 @@ noise level of all other KIDs of the same array.
 %are inverse noise variance weighted in the final map projection, so they would
 %be given relatively low weight anyway (see Sect.~\ref{se:map_projection}).
 
-\paragraph{Pointing reconstruction.} 
+%\paragraph{Pointing reconstruction.}
+\subsection{Pointing reconstruction}
 \label{se:ptg}
 We produce a timeline of the pointing positions of each KID with
 respect to the targeted source position (usually located at the center of the
@@ -157,7 +159,8 @@ which is a key information for dealing with the correlated noise.
 %we'll need to know when a KID is close or far from the source for the timeline
 %processing (Sect.~\ref{se:toi_proc}).\\
   
-\noindent \emph{TOI calibration.}
+%\noindent \emph{TOI calibration.}
+\subsection{TOI calibration}
 \label{se:flux_calib}
 The KID TOI in units of Hz (frequency shifts) are converted to
 Jy/beam in two steps. First, the KID data are inter-calibrated using the
@@ -170,9 +173,10 @@ atmospheric attenuation $\rm{exp}[{-\taunu x(t)}]$ is corrected
 using the zenith opacity at the observing frequency $\nu$ $\taunu$, which is estimated for a given scan
 as discussed in Sect.~\ref{se:opacity}, and the instantaneous \airmass\
 $x(t)$. {\lp The latter is estimated as $(\sin \elev_t)^{-1}$ using the observing elevation
-$\elev_t$, as obtained using the pointing reconstruction.}\\     
+$\elev_t$, as obtained using the pointing reconstruction.}     
 
-\paragraph{Correlated noise subtraction.}
+%\paragraph{Correlated noise subtraction.}
+\subsection{Correlated noise subtraction}
 \label{se:toi_proc}
 The TOI of each KID include a prominent low-frequency component of correlated noise of two
 different origins: the atmospheric component, which is dominant
@@ -361,7 +365,7 @@ lower $1/f$-like residual noise for the PCA and the \cmoneb\ methods
 than the common mode decorrelation at low frequencies. {\lp Moreover, we
 have checked using simulations that the \cmoneb\ method was more
 efficient than the PCA in preserving the astrophysical signal. The
-former is thus preferred over the latter.}\\ 
+former is thus preferred over the latter.} 
 
 %We have investigated several ways of using this information to remove this
 %component from the TOIs. Our prefered choice so far, that is the reference
@@ -427,7 +431,8 @@ former is thus preferred over the latter.}\\
 %
 %The derivation of opacity is presented in Sect.~\ref{se:opacity}. \\
 
-\noindent \emph{Map projection.}
+%\noindent \emph{Map projection.}
+\subsection{Map projection}
 \label{se:map_projection}
 We use the pointing information to project the cleaned (low-frequency
 noise subtracted) calibrated TOI of all the valid KIDs of an array
@@ -662,8 +667,7 @@ SNR distribution.
 %% \item[] projection of the timeline onto maps
 %% \end{itemize}
 
-
-\subsection{Data selection}
+\subsection{Observation scan selection}
 \label{se:data_selection}
 
 For calibration and performance assessment, we select scans in average

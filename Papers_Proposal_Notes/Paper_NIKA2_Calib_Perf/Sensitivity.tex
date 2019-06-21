@@ -142,9 +142,7 @@ We have developed several methods for the NEFD estimation. First,
 we use deep integrations on faint sources. Second, we resort to joint
 analysis of multiple scans without combining them.\\
 
-
-
-\noindent \emph{Deep integration method}
+\subsubsection{Deep integration method}
 According to Eq.~\ref{eq:nefd_def} and Eq.~\ref{eq:nefd_tau_el}, if a
 source was observed under stable atmospheric conditions, the flux
 uncertainty would scale directly like
@@ -193,7 +191,8 @@ $\sigma(n)$ as a function of the corresponding $t_{\rm{eff}}(n)$.\\
 %amplitude of the scaling law provides an estimate of NEFD.\\
 
 
-\noindent \emph{Scatter method} %Performing photometry on each individual scan,
+\subsubsection{Scatter method}
+%Performing photometry on each individual scan,
 %we can estimate the sensitivity on the central flux and measure the time of
 %integration using Eq.~\ref{eq:t_det}, hence derive the NEFD per
 %scan.
@@ -208,7 +207,7 @@ characterization may be biased {\lp by the signal of a bright source
 stemming from the most extended error beams and far side lobes.}
 %by residuals of a strong source and the
 %instrument far side lobes.
-For this method, we therefore restrict the analysis to sources with flux below 1\,Jy.
+We therefore restrict the analysis to sources with estimated flux below 1\,Jy.
 
 
 %\noindent \emph{Scatter method.} For any scan, we derive
@@ -225,15 +224,17 @@ For this method, we therefore restrict the analysis to sources with flux below 1
   \begin{center}
     \includegraphics[trim={0.5cm, 0, 0, 0.5cm}, clip, angle=0, width=0.495\textwidth]{Figures/hls_nefd_vst.eps}
     \includegraphics[trim={0.5cm, 0, 0.2cm, 0.5cm}, clip, angle=0, width=0.485\textwidth]{Figures/hls_NEFD_vs_TauElev_all.eps}
-    \caption{Comparison of NEFD estimates using two methods on observation of
+    \caption{Comparison of NEFD estimates using two methods on observations of
       \hls. \emph{Left panel:} Evolution of the 1\,$\sigma$ flux density
       uncertainties as a function of the effective integration time
-      $t_{\rm{eff}}$, as defined in Eq.~\ref{eq:sigma_tau_w8}. The solid black
-      lines are the best-fit models using $\sigma(t_{\rm{eff}}) =
-      \rm{NEFD}/sqrt(t_{\rm{eff}})$. \emph{Right panel:} NEFD as a function of the
-    measured line-of-sight opacity. The solid black lines are the theoretical
+      $t_{\rm{eff}}$, as defined in Eq.~\ref{eq:sigma_tau_w8}, for A1
+    (cyan), A3 (dark blue), the combination of A1\&A3 (medium blue),
+    and A2 (red). The solid black lines are the best-fit models using
+    $\sigma(t_{\rm{eff}}) =  \rm{NEFD}/sqrt(t_{\rm{eff}})$. \emph{Right panel:} NEFD as a function of the
+    measured line-of-sight opacity using the same color code as in the
+    left panel. The solid black lines are the theoretical
     fits of $\rm{NEFD}_{\taunu,\, x } = \rm{NEFD}\, e^{\taunu\,x}$ and give the
-    NEFD when extrapolated to $\taunu\,x = 0$. }
+    NEFD when extrapolated to $\taunu/\sin(\elev)= 0$. }
     \label{fig:nefd_twomethods}
   \end{center}
 \end{figure*}
@@ -319,10 +320,10 @@ combined A1 and A3, are presented in Table~\ref{tab:nefd_summary}.
 We observe systematically higher NEFD for A1 compared to A3, which is a mainly
 due to the dichroic-induced 'shadow effect' that also impacts the flat fields,
 as discussed in Sect.~\ref{se:flat_field}.  The dichroic-induced effect, which
-also impacts A3, explains part of the NEFD difference between the $1\, \rm{mm}$
+also impacts A3, explains part of the NEFD difference of performance between the $1\, \rm{mm}$
 and $2\, \rm{mm}$ channels, together with the higher atmospheric noise and lower
 telescope beam efficiency at $1\, \rm{mm}$ with respect to $2\,\rm{mm}$
-wavelength.  Furthermore, the NEFD evolution with sky noise is well
+wavelength. Moreover, the NEFD evolution with sky noise is well
 consistent with expectations for each array and each observing wavelength.
 
 %  comparison entre datasets
@@ -378,14 +379,20 @@ are given in Table~\ref{tab:nefd_summary}.
 Combining the data set of N2R9, N2R12 and N2R14 campaigns, more than one
 thousand observations scans of sub-Jy sources meet the baseline selection
 criteria (see Sect.~\ref{se:data_selection}), providing robust NEFD estimates
-that are representative of the average NIKA2 performance. These NEFD estimates
-are gathered in Table~\ref{tab:nefd_astro}. The rms uncertainties are evaluated
-as the rms scatter of the individual NEFD$_{\taunu,\, x}$ estimates
-after correction with $e^{\taunu\,x}$. These values are then
-extrapolated using the IRAM
+that are representative of the average NIKA2 performance. The rms
+uncertainties are evaluated as the rms scatter of the individual
+NEFD$_{\taunu,\, x}$ estimates after correction with
+$e^{\taunu\,x}$. 
+These values are then extrapolated using the IRAM
 \trentemetre\ telescope reference Winter observing conditions: $2\,\rm{mm}$ of
-precipitable water vapor (pwv) and $60$ degrees elevation. From these estimates,
-we also derive the corresponding mapping speeds (Tab.~\ref{tab:nefd_astro}).
+precipitable water vapor (pwv) and $60$ degrees elevation. The NEFD
+estimates, as well as the rms uncertainties, are gathered in
+Table~\ref{tab:nefd_astro}.
+From these estimates, we also derive the corresponding mapping speeds,
+which are also given in Table~\ref{tab:nefd_astro}.
+We report mapping speeds of $1388 \pm 174$ and
+$111 \pm 11 \, \rm{arcmin}^2\cdot \rm{mJy}^{-2}\cdot \rm{h}^{-1}$ at 1
+and 2\,mm, respectively. 
 
 
 %The top-of-atmosphere mapping speed, which is extrapolated at zero

@@ -6,16 +6,16 @@
 
 NIKA2 simultaneously images a FOV of
 6.5' in diameter at 150 and $260\,\rm{GHz}$. It also has polarimetric
-capabilities at  $260\,\rm{GHz}$, which are not discussed here. The
-optics of the telescope receiver cabin have been modified in order
-to increase the IRAM 30-m telescope FOV.
+capabilities at  $260\,\rm{GHz}$, which are not discussed here. %The
+%optics of the telescope receiver cabin have been modified in order
+%to increase the IRAM 30-m telescope FOV.
 To cover the 6.5'-diameter FOV without degrading the
 telescope angular resolution, NIKA2 employs a total of around
 2,900\,KIDs split over three distinct arrays, one for the $150\,\rm{GHz}$
 band and two for the $260\,\rm{GHz}$ band.
 
 A detailed description of the instrument can be found in
-\citet{Adam2018}. We briefly present here the main sub-systems
+\citet{Adam2018} and \citet{Calvo2016JLTP}. We briefly present here the main sub-systems
 focusing on the elements that are specific to NIKA2
 or that drive the development of dedicated procedures for the data
 reduction or calibration.
@@ -23,7 +23,7 @@ reduction or calibration.
 
 \subsection{Cryogenics}
 
-{\lp KIDs are superconducting detectors, which in NIKA2 are made of
+{\lp KIDs are superconducting detectors, which in the case of NIKA2 are made of
 thin-aluminium films deposited on a silicon substrate~\citep{Roesch2012_LEKID}.
 For an optimal sensitivity, they must operate at a temperature of
 around 150\,mK, that is roughly one order of magnitude lower than the
@@ -31,9 +31,9 @@ aluminium superconducting transition temperature.}
 %Their optimal operation is achieved at a temperature of around
 %150\,mK, well below the Aluminium superconducting transition.
 For this reason,
-NIKA2 employs a custom dilution fridge to cool down the focal plane, and the
-refractive elements of the optics, for a total mass around $100\, \rm{kg}$,
-which is kept deeply in the sub-Kelvin regime. Despite the complexity
+NIKA2 employs a custom-built dilution fridge to cool down the focal plane, and the
+refractive elements of the optics. Overall, a total mass of around
+$100\, \rm{kg}$ is kept deeply in the sub-Kelvin regime. Despite the complexity
 and huge size of the system, the operation of NIKA2 does not require
 external cryogenic liquids and can be fully operated remotely.
 
@@ -47,12 +47,13 @@ stages between 150\,mK and room temperature. {\lp Two aperture stops,
 at a temperature of 150\,mK, are conservatively designed to limit the
 entrance pupil of the optical system to the inner 27.5\,m diameter of
 the primary mirror. }
-An air-gap dichroic splits the 150\,GHz (reflection)
+An air-gap dichroic plate splits the 150\,GHz (reflection)
 from the 260\,GHz (transmission) beams. {\lp This element, which is
 made of a series of thin micron-like membranes separated by calibrated
 rings and mounted on a native ring in inox, has been designed to
 resist to low temperature-induced deformation.}
-As discussed in Sect.~\ref{se:flat_field}, the air-gap technology has proven efficient
+As discussed in Sect.~\ref{se:flat_field}, the air-gap technology has
+been proven to be efficient
 in preserving the planarity of the dichroic, but shows sub-optimal
 performance in transmission. Moreover, a grid polariser ensures the
 separation of the vertical and horizontal components of the linear
@@ -97,7 +98,7 @@ feed-lines.}
 %readout at the two ends. Each of the readout lines is linked to the input of a
 %cryogenic (4 K) low-noise amplifier.
 The warm electronics required to digitize
-and process the pixels signals is composed of twenty custom readout
+and process the pixels signals is composed of twenty custom-built readout
 cards (one per feed-line).
 
 \subsection{KID photometry and {\tt tuning}}
@@ -109,16 +110,15 @@ frequency shift linearly depends on the incoming optical power.
 confirmed for NIKA KIDs, which have a similar design to the current
 NIKA2 KIDs, using laboratory measurements, as discussed
 in~\citet{Monfardini2014JLTP}.}
-The measure of the KID frequency shift $\Delta f$ is critical for the use of
+The measurement of the KID frequency shift $\Delta f$ is critical for the use of
 KIDs as mm-wave detectors. 
 
-%For the KID readout, an excitation signal is sent into the cryostat on the
-%feedline coupled to the KID.
-
+For the KID readout, an excitation signal is sent into the cryostat on the
+feedline coupled to the KID.
 The excitation tones produced by the electronics are amplified by a
-cryogenic (4K) low noise amplifier after passing through the KIDs and
+cryogenic (4\,K) low noise amplifier after passing through the KIDs and
 being analysed by the readout electronics. {\lp Each KID is thus
-associated to an excitation tone at a frequency $f_{\rm{tone}}$, which
+associated with an excitation tone at a frequency $f_{\rm{tone}}$, which
 corresponds to an estimate of its resonance frequency for a reference
 background optical load.}
 The transmitted signal can be described by its
@@ -146,15 +146,14 @@ into astronomical units (Sect.~\ref{se:calibration}).\\
 
 In addition to light of astronomical origin, any change in the
 background optical load (due, for example, to changes in
-the atmospheric emission for instance with elevation) contributes as well to
+the atmospheric emission with elevation) contributes as well to
 %Cooper pair breaking, and thus to
 the shift of the KID resonance frequencies. In
 order to maximize the sensitivity of a KID, the excitation signal $f_{\rm{tone}}$
 %the excitation signal used for the readout
 must always be near the KID resonance frequency. We therefore have
-developed a tuning algorithm that takes care of
-this optimization. A {\tt tuning} is performed at the beginning
-of each observation scan to tune the KIDs with the working background
+developed a tuning algorithm that performs this optimization. A {\tt tuning} is performed at the beginning
+of each observation scan to adapt the KIDs $f_{\rm{tone}}$ to the working background
 conditions.
 %for the KIDs to be tuned to the background conditions.
 %in order to be optimally set at the same elevation and sky
@@ -192,10 +191,10 @@ match regularly with the observing conditions.
 \end{center}
 \end{figure}
 
-The NIKA2 spectral bands were measured in laboratory using a
+The NIKA2 spectral bands have been measured in laboratory using a
 Martin-Puplett interferometer built in-house~\citep{Durand2007_these}.
 The measurement relies on using the difference of two black
-body radiations as input signal for the interferometer. 
+body radiations used as input signal for the interferometer. 
 {\lp Both arrays and filter bands were considered in the
 measurements, while the dichroic element was not included.}
 %These
@@ -221,8 +220,8 @@ detector~\citep{Adam2018, Shu2018_bandpass}.}
 %about 5 microns change in the substrate thickness. 
 
 It is clear from Fig.~\ref{spectralband1} that the atmosphere will
-modify the overall transmission of the system, especially at the tails
-for A2. {\lp To highlight this effect we compute an effective
+modify the overall transmission of the system, especially at the
+transmission tails for A2. {\lp To highlight this effect we compute an effective
 frequency $\nu_{\rm{eff}}$ computed as the weighted integral of the
 frequency considering the NIKA2 bandpass and the SED of Uranus, for
 various atmospheric conditions.}
@@ -258,11 +257,11 @@ water vapor and an observing elevation of $60^o$).
 
 {\lp In laboratory spectral characterization allows the bandpass of the
 three arrays to be measured with uncertainties better than one
-percent. To improve the measurement precision and account for the
-whole optical system, including the dichroic, in-situ measurements
-using a new Martin-Puplett interferometer designed to be placed in
-front of the cryostat window are on-going. As will be discussed in
-Sect.~\ref{se:calibration}, the \emph{baseline} calibration method
+percent. The bandpass characterization will be further improved using
+in-situ measurements with a new Martin-Puplett interferometer designed
+to be placed in front of the cryostat window, which will allow to
+account for the whole optical system, including the dichroic plate. As
+it will be discussed in Sect.~\ref{se:calibration}, the \emph{baseline} calibration method
 only resorts to the bandpass measurements for color correction
 estimations in order to mitigate the bandpass uncertainty propagation
 in the flux density measurement.}

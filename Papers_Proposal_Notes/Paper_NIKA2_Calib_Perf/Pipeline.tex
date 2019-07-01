@@ -8,10 +8,10 @@ The raw KID data ($I$, $Q$, $\Delta I$, $\Delta Q$) and the telescope
 source-tracking data are synchronized by the NIKA2 acquisition system using a
 clock that gives the absolute astronomical time, that is the telescope
 pulses per second, to define the NIKA2 raw data. From the KID raw
-data, we compute the quantity \emph{RfdIdQ}, as described in
-Sect.~\ref{se:tuning}. This quantity, which is proportional to the KID
-frequency shift and hence to the input signal, constitutes the
-KID time-ordered information (TOI).
+data, we compute a quantity that is proportional to the KID
+frequency shift using the \emph{RfdIdQ} method, as described in
+Sect.~\ref{se:tuning}. This quantity, which is hence proportional to
+the input signal, constitutes the KID time-ordered information (TOI).
 
 %For each observing scan, NIKA2 produce a datastream via the data
 %acquisition software, which synchronises with the telescope data using
@@ -68,7 +68,7 @@ performance assessment.}
 %proportionnal to the flux absorbed by a KID \citep[see]{Calvo2013} and
 %homogeneous to Hz, as discussed in Sect.~\ref{se:tuning}.
 We isolate the relevant fraction of the data for scientific
-utilisation and {\lp we mask KIDs that did not meet the selection criteria, as
+utilisation and {\lp we mask KIDs that do not meet the selection criteria, as
 discussed in Sect.~\ref{se:avg_kidpar},} or
 timeline accidents (glitches). Specifically, we flag out cosmic rays,
 which impact only one data sample per hit due to the KID fast time
@@ -350,7 +350,7 @@ KIDs that are the most correlated with the KID under
 concern. Furthermore, we have tested on simulations that this method
 does preserves the flux of {\lp point-like or moderately extended sources.}
 % Regarding very extended sources (over more
-%than a few arc-minutes), the noise decorrelation requires iterative or
+%than a few arcminutes), the noise decorrelation requires iterative or
 %more evolved methods, as will be discussed in \citet{Ponthieu2019}.}
 
 In Fig.~\ref{rmspws} we present the noise power spectra of

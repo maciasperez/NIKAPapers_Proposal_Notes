@@ -2,7 +2,7 @@
 ;; Simple component separation to assess impact of non linearity
 
 ;; Assumed non-linearity parameter
-epsilon = 1d-3 ;0.5d-1 ;1d-6 ;0.d0
+epsilon = 1d-3 ;0.d0 ;1d-3 ;0.5d-1 ;1d-6 ;0.d0
 
 ;pro a, epsilon
 
@@ -11,7 +11,7 @@ ps  = 0
 png = 0
 
 ;; Final map resolution
-nside = 256 ; 1024 ; 512
+nside = 256 ;256 ; 1024 ; 512
 noplot = 0
 
 ;; Foreground spectral parameters
@@ -25,10 +25,10 @@ nu = [70.d0, 100.d0, 143.d0, 217.d0, 353.d0];, 545.d0]
 alpha_det_deg = [0.d0, 60.d0, 120.d0]
 
 ;; MC realizations
-nmc = 30 ;30
+nmc = 50 ;30
 
 ;; Latitude mask
-latitude_cut = 20 ; 30 ; deg
+latitude_cut = 20 ;30 ; deg
 
 ;;============================================
 n_nu = n_elements(nu)
@@ -208,7 +208,7 @@ for imc=0, nmc-1 do begin
          ;; Convert back to thermodynamic temperature
          convert_megajy_millik, lambda_microns, m, m_mk, /cmb
          m_microK = m_mk*1d3
-         
+
          atd[*,0] += m_microK
          atd[*,1] += m_microK*cos2alpha
          atd[*,2] += m_microK*sin2alpha
@@ -239,14 +239,15 @@ for imc=0, nmc-1 do begin
 ;;    out_sync_q = reform( s[*,7])
 ;;    out_sync_u = reform( s[*,8])
 ;; 
-;;   mollview, cover*(out_cmb_i-i_cmb), title='CMB I out-in, epsilon='+strtrim(epsilon,2)
+
+;; mollview, cover*(out_cmb_i-i_cmb), title='CMB I out-in, epsilon='+strtrim(epsilon,2)
 ;; mollview, cover*(out_cmb_q-q_cmb), title='CMB Q out-in, epsilon='+strtrim(epsilon,2)
 ;;   stop
-;; ;; mollview, out_cmb_q-q_cmb, title='CMB Q out-in'
-;; ;; mollview, out_dust_i-i_dust_ref, title='Dust (ref nu) out-in'
-;; ;; mollview, out_sync_q-q_sync_ref, title='Sync (ref nu) out-in (RJ)'
-;; ;; print, "HERE"
-;; ;; stop
+;; mollview, out_cmb_q-q_cmb, title='CMB Q out-in'
+;; mollview, cover*(out_dust_i-i_dust_ref), title='Dust (ref nu) out-in'
+;; mollview, out_sync_q-q_sync_ref, title='Sync (ref nu) out-in (RJ)'
+;; print, "HERE"
+;; stop
 
    ;; Power spectra
    xmap = dblarr(npix,3)
@@ -332,10 +333,11 @@ oplot, l, clb
 oplot, l, abs(clte)
 oplot, l_out, fl*clt_out_avg
 oplot, l_out, fl*cle_out_avg, col=col_ee
-oplot, l_out, fl*abs(clb_out_avg), col=col_bb
+oplot, l_out, fl*clb_out_avg, col=col_bb
 oplot, l_out, fl*abs(clte_out_avg), col=col_te
 legendastro, ['T', 'E', 'B', 'TE'], col=[!p.color, col_ee, col_bb, col_te], line=0
 legendastro, 'Nmc = '+strtrim(nmc,2), /right
 outplot, /close, /verb
+
 
 end

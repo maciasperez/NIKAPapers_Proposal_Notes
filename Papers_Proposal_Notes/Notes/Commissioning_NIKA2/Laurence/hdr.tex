@@ -1,0 +1,261 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Thin Sectioned Essay
+% LaTeX Template
+% Version 1.0 (3/8/11)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original Author:
+% Nicolas Diaz (nsdiaz@uc.cl) with extensive modifications by:
+% Vel (vel@latextemplates.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[a4paper, 11pt]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage[explicit]{titlesec}
+%\textheight=21cm
+\usepackage{hyperref}
+\usepackage[protrusion=true,expansion=true]{microtype} % Better typography
+\usepackage{graphicx} % Required for including pictures
+\usepackage{wrapfig} % Allows in-line images
+\usepackage{tablefootnote} % to display footnotes in tables
+\usepackage{threeparttable}
+\usepackage[toc,page]{appendix}
+\usepackage{multirow}
+\usepackage[usenames, dvipsnames]{color}
+\usepackage{overpic} % add text to fig
+\usepackage{mathpazo} % Use the Palatino font
+\usepackage[T1]{fontenc} % Required for accented characters
+\linespread{1.05} % Change line spacing here, Palatino benefits from a slight increase by default
+
+% To have DRAFT displayed accross all pages
+%\usepackage{draftwatermark}
+%\SetWatermarkText{DRAFT}
+%\SetWatermarkScale{1}
+%\SetWatermarkLightness{0.95}
+
+%\usepackage{background}
+%\backgroundsetup{
+%  position=current page.west,
+%  angle=90,
+%  nodeanchor=west,
+%  vshift=-5mm,
+%  opacity=1,
+%  scale=4,
+%  contents=Draft
+%}
+
+%30,144,255
+
+%\definecolor{darkblue}{rgb}{0.12,0.47,0.87}
+%\definecolor{darkblue}{rgb}{0.07,0.34,0.6}
+\definecolor{bleu}{RGB}{30,144,255}
+\definecolor{orange}{RGB}{255,200,0}%{255,77,0}
+\definecolor{vert}{RGB}{60,180,0}
+
+\titleformat{\chapter}[display] {\fontsize{24pt}{12pt}\selectfont \bfseries}{\textcolor{bleu} {#1}\\{\color{bleu}\hfil\rule{\dimexpr\textwidth}{1.2pt}}}{20pt}{\vspace{-2cm} \Huge}
+%{\hfil\rule{\dimexpr\textwidth}{1.2pt}}}
+\titleformat{name=\chapter,numberless}[display] {\fontsize{24pt}{12pt}\selectfont \bfseries}{\textcolor{bleu} {#1}}{20pt}{\Huge}
+
+
+% SPECIAL COMMANDS  
+\makeatletter
+%\renewcommand\@biblabel[1]{\textbf{#1.}} % Change the square brackets for each bibliography item from '[1]' to '1.'
+\renewcommand{\@listI}{\itemsep=0pt} % Reduce the space between items in the itemize and enumerate environments and the bibliography
+
+% TITLE
+
+\renewcommand{\maketitle}{ % Customize the title - do not edit title and author name here, see the TITLE block below
+\begin{flushleft} % Right align
+{\LARGE\@title} % Increase the font size of the title
+
+\vspace{50pt} % Some vertical space between the title and author name
+
+{\large\@author} % Author name
+\\\@date % Date
+
+\vspace{40pt} % Some vertical space between the author block and abstract
+\end{flushleft}
+}
+\newcommand{\vu}[1]{#1}
+
+%
+% PAGE STYLE
+%
+\setlength{\textwidth}{16cm}
+\setlength{\textheight}{23cm}
+\oddsidemargin +0.5cm
+\evensidemargin +0.5cm
+\topmargin -0.3cm
+
+%\setcounter{secnumdepth}{1}
+\setcounter{tocdepth}{1}
+
+\begin{document}
+
+%----------------------------------------------------------------------------------------
+%	TITLE
+%----------------------------------------------------------------------------------------
+\title{\parbox{16cm}{
+    %\includegraphics[angle=-90, width=4cm]{logo-uga-vo-cmjn.pdf} \\ [3cm]   
+    \textit{Pi\`eces compl\'ementaires au dossier LLSH} \\ [5cm]   
+    \begin{center}\sf\bfseries\huge
+      Candidature \`a l'habilitation \`a diriger des recherches \\ [-4mm]
+      \rule{16cm}{1pt}\\ [2cm]   
+    \end{center}
+    \begin{center} 
+      \sf \bfseries {\textcolor{bleu}{Laurence Perotto}} \\ [6cm]     
+    \end{center}
+  }
+}
+\author{\parbox{16cm}{
+    %\includegraphics[width=4cm]{LPSC_logo.pdf}
+    {\sf \Large Laboratoire de Physique Subatomique et Cosmologie} \\ [1cm]
+    Univ. Grenoble Alpes, CNRS, Grenoble INP, LPSC-IN2P3, 53, avenue des Martyrs, F-38000 Grenoble, France
+  }
+}
+\date{\today}
+
+\maketitle % Print the title section
+%
+%
+%
+\tableofcontents
+
+\pagenumbering{roman}
+\pagenumbering{arabic}
+
+%----------------------------------------------------------------------------------------
+%
+%   CV
+%
+% Un curriculum vitae faisant apparaitre la chronologie des activités
+% dans les domaines de l'enseignement, de la recherche, et de
+% l’administration / évaluation de la recherche
+%----------------------------------------------------------------------------------------
+\chapter{{\color[RGB]{30,144,255} Curriculum vitae}}% {\color{blue} Nico}}
+%\label{se:intro}
+\input{CV.tex}
+
+%----------------------------------------------------------------------------------------
+%
+%   Lettre de motivation
+%
+% Une lettre de motivation (présentation du projet et du rôle de l'HDR dans ce projet)
+%----------------------------------------------------------------------------------------
+\chapter{{\color[RGB]{30,144,255} Lettre de motivation}}% {\color{blue} Nico}}
+%\label{se:intro}
+\input{lettre_motiv.tex}
+
+% Si vous avez un.e garant.e, une lettre de soutien de sa part.
+
+%----------------------------------------------------------------------------------------
+%
+%  Copie du diplome de Doctorat
+%
+%  La copie du diplome de Doctorat et de la qualification par le CNU, le cas échéant.
+%----------------------------------------------------------------------------------------
+\chapter{{\color[RGB]{30,144,255} Dipl\^omes}}
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[angle=90, clip=true, trim={0.8cm, 0, 0, 0.8cm},
+        width=\textwidth]{Doctorat.pdf}
+\caption{Duplicata du diplôme de doctorat}
+\end{center}
+\end{figure}
+
+
+%----------------------------------------------------------------------------------------
+%
+%  Enseignement
+%
+% Un tableau des principaux enseignements dispensés indiquant la
+% nature, le niveau, le volume et les modalités (enseignements
+% magistraux, TD-cours, etc.). Pour les enseignements dispensés à
+% l'étranger, indiquer le niveau d'équivalence dans le cursus
+% français.
+%----------------------------------------------------------------------------------------
+\chapter{{\color[RGB]{30,144,255} Enseignements}}
+\input{Table_enseignements.tex}
+
+ 
+%----------------------------------------------------------------------------------------
+%
+%  Resumé travaux
+%
+% Un texte de synthèse des travaux académiques (2 pages maximum)
+%----------------------------------------------------------------------------------------
+\chapter{{\color[RGB]{30,144,255} Synthèse des travaux académiques}}% {\color{blue} Nico}}
+%\label{se:intro}
+\input{Synthese_travaux_.tex}
+
+ 
+%----------------------------------------------------------------------------------------
+%
+%  Pricipales publications
+%
+% Une copie de cinq publications caractérisant au mieux l’activité de recherche du candidat ou de la candidate.
+%----------------------------------------------------------------------------------------
+\chapter{{\color[RGB]{30,144,255} Principales publications}}
+%\label{se:intro}
+\input{Principales_publi.tex}
+
+
+ 
+%----------------------------------------------------------------------------------------
+%
+%  Liste de publications
+%
+% Une liste des travaux et publications classée selon les catégories suivantes:
+% * les articles et notes publiés dans des revues à comité de lecture (préciser leur classement et la classification de référence, CNRS ou autre)
+% * les articles et notes non publiés (dont working papers)
+% * les ouvrages individuels
+% * les contributions à des ouvrages collectifs
+% * les contributions (orales ou affichées) à des colloques ou congrès ayant donné lieu à des actes (préciser si conférence sur invitation ou communication retenue après sélection).
+% * les textes de vulgarisation ou de valorisation
+% * les rapports de fin de contrat
+%----------------------------------------------------------------------------------------
+\chapter{{\color[RGB]{30,144,255} Liste des publications}}% {\color{blue} Nico}}
+\label{se:liste_publi}
+\input{liste_articles.tex}
+\input{liste_preprints.tex}
+\input{liste_livres.tex}
+\input{liste_conferences.tex}
+\input{liste_autres.tex}
+
+ 
+%----------------------------------------------------------------------------------------
+%
+%  Liste des projets de recherche
+%
+% Une liste des projets de recherche financièrement soutenus par des programmes nationaux et internationaux.
+%----------------------------------------------------------------------------------------
+\chapter{{\color[RGB]{30,144,255} Liste des projets de recherche}}% {\color{blue} Nico}}
+%\label{se:intro}
+\input{Projets_liste2.tex}
+
+
+%----------------------------------------------------------------------------------------
+%
+%  Autres
+%
+% Toute autre information jugee utile par le candidat ou la candidate.
+%----------------------------------------------------------------------------------------
+\chapter{{\color[RGB]{30,144,255} Complément d'informations}}% {\color{blue} Nico}}
+%\label{se:intro}
+\input{Complement.tex}
+
+
+
+\end{document}

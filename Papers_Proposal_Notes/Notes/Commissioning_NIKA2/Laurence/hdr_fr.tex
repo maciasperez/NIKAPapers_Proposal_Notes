@@ -1,0 +1,619 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%   MODIF DU TEMPLATE DE NICO
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% !TEX encoding = MacOSRoman
+\documentclass[a4paper, 12pt]{report}
+
+\usepackage{latexsym}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{tablefootnote}
+
+%\usepackage{draftwatermark}
+%\SetWatermarkText{DRAFT}
+%\SetWatermarkScale{5}
+
+
+%-----------------------------------------
+% Pour accepter les lettres accentuees de clavier azerty
+% sans les é (utile) pour tapper directement en azerty 
+% et ou faire passer aspell -c --lang=fr bidon.tex
+\usepackage[utf8]{inputenc}
+%\usepackage[applemac]{inputenc} %c'est ca qui gère les accents d'après un forum
+%------------------------------------------
+\usepackage{natbib}
+\bibpunct{(}{)}{;}{a}{}{,} % to follow the A&A style
+
+% copie de aa.cls
+%-----------------------------------
+\newcommand*\aap{A\&A}
+\let\astap=\aap
+\newcommand*\aapr{A\&A~Rev.}
+\newcommand*\aaps{A\&AS}
+\newcommand*\actaa{Acta Astron.}
+\newcommand*\aj{AJ}
+\newcommand*\ao{Appl.~Opt.}
+\let\applopt\ao
+\newcommand*\apj{ApJ}
+\newcommand*\apjl{ApJ}
+\let\apjlett\apjl
+\newcommand*\apjs{ApJS}
+\let\apjsupp\apjs
+\newcommand*\aplett{Astrophys.~Lett.}
+\newcommand*\apspr{Astrophys.~Space~Phys.~Res.}
+\newcommand*\apss{Ap\&SS}
+\newcommand*\araa{ARA\&A}
+\newcommand*\azh{AZh}
+\newcommand*\baas{BAAS}
+\newcommand*\bac{Bull. astr. Inst. Czechosl.}
+\newcommand*\bain{Bull.~Astron.~Inst.~Netherlands}
+\newcommand*\caa{Chinese Astron. Astrophys.}
+\newcommand*\cjaa{Chinese J. Astron. Astrophys.}
+\newcommand*\fcp{Fund.~Cosmic~Phys.}
+\newcommand*\gca{Geochim.~Cosmochim.~Acta}
+\newcommand*\grl{Geophys.~Res.~Lett.}
+\newcommand*\iaucirc{IAU~Circ.}
+\newcommand*\icarus{Icarus}
+\newcommand*\jcap{J. Cosmology Astropart. Phys.}
+\newcommand*\jcp{J.~Chem.~Phys.}
+\newcommand*\jgr{J.~Geophys.~Res.}
+\newcommand*\jqsrt{J.~Quant.~Spectr.~Rad.~Transf.}
+\newcommand*\jrasc{JRASC}
+\newcommand*\memras{MmRAS}
+\newcommand*\memsai{Mem.~Soc.~Astron.~Italiana}
+\newcommand*\mnras{MNRAS}
+\newcommand*\na{New A}
+\newcommand*\nar{New A Rev.}
+\newcommand*\nat{Nature}
+\newcommand*\nphysa{Nucl.~Phys.~A}
+\newcommand*\pasa{PASA}
+\newcommand*\pasj{PASJ}
+\newcommand*\pasp{PASP}
+\newcommand*\physrep{Phys.~Rep.}
+\newcommand*\physscr{Phys.~Scr}
+\newcommand*\planss{Planet.~Space~Sci.}
+\newcommand*\pra{Phys.~Rev.~A}
+\newcommand*\prb{Phys.~Rev.~B}
+\newcommand*\prc{Phys.~Rev.~C}
+\newcommand*\prd{Phys.~Rev.~D}
+\newcommand*\pre{Phys.~Rev.~E}
+\newcommand*\prl{Phys.~Rev.~Lett.}
+\newcommand*\procspie{Proc.~SPIE}
+\newcommand*\qjras{QJRAS}
+\newcommand*\rmxaa{Rev. Mexicana Astron. Astrofis.}
+\newcommand*\skytel{S\&T}
+\newcommand*\solphys{Sol.~Phys.}
+\newcommand*\sovast{Soviet~Ast.}
+\newcommand*\ssr{Space~Sci.~Rev.}
+\newcommand*\zap{ZAp}
+%-------------------------------------------------
+
+
+\usepackage[french]{babel} % pour avoir chapitre plutôt que "chapter", peut-être la ponctuation aussi...
+
+%page de couverture du manuscrit
+\usepackage{meta-donnees}
+
+% COLOR
+\definecolor{mypink}{rgb}{1.0,0.0,0.5}
+\definecolor{myblue}{rgb}{0.0,0.0,1.0}
+\definecolor{mygrey}{rgb}{0.3,0.3,0.3}
+
+%\definecolor{darkblue}{rgb}{0.12,0.47,0.87}
+%\definecolor{darkblue}{rgb}{0.07,0.34,0.6}
+\definecolor{bleu}{RGB}{30,144,255}
+\definecolor{bleumarine}{RGB}{0,89,179}
+\definecolor{bleu2}{RGB}{26,102,255}
+\definecolor{bleumarine2}{RGB}{0,60,179}
+\definecolor{orange}{RGB}{255,200,0}%{255,77,0}
+\definecolor{vert}{RGB}{60,180,0}
+\usepackage{twoopt}
+
+
+%  AJOUT LP
+\usepackage[T1]{fontenc}
+\usepackage[explicit]{titlesec}
+\usepackage[protrusion=true,expansion=true]{microtype} % Better typography
+\usepackage{tablefootnote} % to display footnotes in tables
+\usepackage{threeparttable}
+\usepackage[toc,page]{appendix}
+\usepackage{multirow}
+\usepackage{mathpazo} % Use the Palatino font
+\linespread{1.05} % Change line spacing here, Palatino benefits from a slight increase by default
+%\usepackage[bjornstrup]{fncychap}
+\usepackage{minitoc}
+\usepackage{anyfontsize}
+\usepackage{lipsum}
+\usepackage{overpic}
+
+%hyperref must come last of all the used package because it redefines latex commands such as \section...
+\usepackage[colorlinks,
+	urlcolor=mygrey,
+	linkcolor=bleu2,
+        citecolor=bleumarine2,
+	breaklinks=true]{hyperref}
+
+% FORMAT DES SECTIONS
+%\newlength\chapnumb
+%\setlength\chapnumb{4cm}
+
+%\titleformat{command}[shape]{format}{label}{sep}{before-code}[after-code]]
+
+\titleclass{\part}{top} % make part like a chapter
+\titleformat{\part}
+[display]
+{\normalfont\sffamily\Huge\bfseries}
+{\parbox[b]{\dimexpr\textwidth}{\vspace{-1cm}
+    \raggedleft
+    \color{bleu}\bfseries\fontsize{36}{36}\selectfont\partname \thepart}\vspace{2cm}}
+{0pt}
+{\LARGE #1}
+
+%\titlespacing*{\part}{0pt}{0pt}{20pt}
+
+\titleformat{\chapter}[display] {
+  \normalfont\sffamily}{
+  \parbox[b]{\dimexpr\textwidth}{\vspace{-1cm}
+    \raggedleft
+    \color{bleu}\bfseries\fontsize{72}{72}\selectfont\thechapter}\vspace{0.5cm}
+}{0pt}{{\LARGE#1}%\\
+  %\rule{\dimexpr\textwidth}{0.4pt}
+}
+
+\titleformat{name=\chapter,numberless}[display] {
+  \normalfont\sffamily}{}{0pt}{
+  \parbox[b]{\dimexpr\textwidth}{
+    \raggedleft
+    \LARGE #1}%\\
+  %\rule{\dimexpr\textwidth}{0.4pt}
+}
+
+
+
+% SPECIAL COMMANDS  
+\makeatletter
+%\newcommandtwoopt{\citeads}[3][][]{\href{http://adsabs.harvard.edu/abs/#3}{\def\hyper@linkstart##1##2{}\let\hyper@linkend\@empty\citealp[#1][#2]{#3}}}
+%\newcommandtwoopt{\citepads}[3][][]{\href{http://adsabs.harvard.edu/abs/#3}{\def\hyper@linkstart##1##2{}\let\hyper@linkend\@empty\citep[#1][#2]{#3}}}
+%\newcommandtwoopt{\citetads}[3][][]{\href{http://adsabs.harvard.edu/abs/#3}{\def\hyper@linkstart##1##2{}\let\hyper@linkend\@empty\citet[#1][#2]{#3}}}
+
+\newcommandtwoopt{\tempciteads}[3][][]{\href{http://adsabs.harvard.edu/abs/#3}{\def\hyper@linkstart##1##2{}\let\hyper@linkend\@empty\citealp[#1][#2]{#3}}}
+\newcommandtwoopt{\tempcitepads}[3][][]{\href{http://adsabs.harvard.edu/abs/#3}{\def\hyper@linkstart##1##2{}\let\hyper@linkend\@empty\citep[#1][#2]{#3}}}
+\newcommandtwoopt{\tempcitetads}[3][][]{\href{http://adsabs.harvard.edu/abs/#3}{\def\hyper@linkstart##1##2{}\let\hyper@linkend\@empty\citet[#1][#2]{#3}}}
+
+
+\newcommandtwoopt{\citealpads}[3][][]{\href{http://adsabs.harvard.edu/abs/#3}{\def\hyper@linkstart##1##2{}\let\hyper@linkend\@empty\citealp[#1][#2]{#3}}}
+\newcommandtwoopt{\citealtads}[3][][]{\href{http://adsabs.harvard.edu/abs/#3}{\def\hyper@linkstart##1##2{}\let\hyper@linkend\@empty\citealt[#1][#2]{#3}}}
+\newcommandtwoopt{\citeyearads}[3][][]{\href{http://adsabs.harvard.edu/abs/#3}{\def\hyper@linkstart##1##2{}\let\hyper@linkend\@empty\citeyear[#1][#2]{#3}}}
+\newcommandtwoopt{\citeadsstar}[3][][]{\href{http://adsabs.harvard.edu/abs/#3}{\def\hyper@linkstart##1##2{}\let\hyper@linkend\@empty\citealp*[#1][#2]{#3}}}
+\newcommandtwoopt{\citepadsstar}[3][][]{\href{http://adsabs.harvard.edu/abs/#3}{\def\hyper@linkstart##1##2{}\let\hyper@linkend\@empty\citep*[#1][#2]{#3}}}
+\newcommandtwoopt{\citetadsstar}[3][][]{\href{http://adsabs.harvard.edu/abs/#3}{\def\hyper@linkstart##1##2{}\let\hyper@linkend\@empty\citet*[#1][#2]{#3}}}
+\newcommandtwoopt{\citeyearadsstar}[3][][]{\href{http://adsabs.harvard.edu/abs/#3}{\def\hyper@linkstart##1##2{}\let\hyper@linkend\@empty\citeyear*[#1][#2]{#3}}}
+\newcommandtwoopt{\citeauthoradsstar}[3][][]{\href{http://adsabs.harvard.edu/abs/#3}{\def\hyper@linkstart##1##2{}\let\hyper@linkend\@empty\citeauthor*[#1][#2]{#3}}}
+\newcommandtwoopt{\citepthesis}[3][][]{\href{http://tel.archives-ouvertes.fr/docs/#3}{\def\hyper@linkstart##1##2{}\let\hyper@linkend\@empty\citep[#1][#2]{#3}}}
+\newcommandtwoopt{\citetthesis}[3][][]{\href{http://tel.archives-ouvertes.fr/docs/#3}{\def\hyper@linkstart##1##2{}\let\hyper@linkend\@empty\citet[#1][#2]{#3}}}
+\makeatother
+
+\newcommand{\mycitetads}[1]{\underline{\tempcitetads{#1}}}
+\newcommand{\citetads}[1]{\underline{\tempcitetads{#1}}}
+\newcommand{\citeads}[1]{\underline{\tempciteads{#1}}}
+\newcommand{\citepads}[1]{\underline{\tempcitepads{#1}}}
+
+\newcommand{\reference}[1]{{\color{bleu}{REF: #1}}}
+
+\newcommand{\hls}{HLS\,J0918+5142}
+\newcommand{\ftone}{f_{\rm{tone}}}
+\newcommand{\elev}{\rm{el}}
+\newcommand{\az}{\rm{az}}
+\newcommand{\taunu}{\tau_{\nu}}
+\newcommand{\degree}{^{\circ}}
+
+%
+% PAGE STYLE
+%
+%\topmargin=-1cm
+%\oddsidemargin=0cm
+%\evensidemargin=0cm
+%\textwidth=17cm
+%\textheight=24cm
+%\raggedbottom
+%\sloppy
+
+\setlength{\textwidth}{16cm}
+\setlength{\textheight}{23cm}
+\oddsidemargin +0.5cm
+\evensidemargin +0.5cm
+\topmargin -0.3cm
+
+%
+% Table of contents
+%
+\setcounter{tocdepth}{1}
+
+
+
+%backslash : alt+shift+.
+% accolades : alt+5, alt + -
+% $: ]
+\def\LCDM{$\Lambda$CDM} \newcommand{\lcdm}{$\Lambda$CDM}
+
+
+
+%===========================================================================================
+%
+%
+%
+%
+%===========================================================================================
+\begin{document}
+
+\include{couv}
+
+
+\pagenumbering{roman}
+
+%\input{remerciements}
+\newpage
+\tableofcontents
+\newpage
+
+
+%----------------------------------------------------------------------------------------
+% 
+%            DEBUT
+%
+%----------------------------------------------------------------------------------------
+
+\chapter*{Avant-propos}
+
+Je choisis de centrer ce manuscrit sur l'expérience NIKA2 installée au
+télescope de 30 mètres de l'IRAM. En regard de l'ensemble de mon parcours
+professionnel, dominé par un investissement de quatorze ans dans
+l'expérience PLANCK, mes travaux dans NIKA2 sont relativement récents
+et représentent une certaine mobilité thématique.
+
+En effet, mon expérience de recherche à commencer avec la préparation
+à l'analyse des données de PLANCK lors de ma thèse de doctorat
+effectuée de 2002 à 2005 dans un laboratoire anciennement accueilli au
+Collège de France, et maintenant englobé dans le laboratoire
+de Astroparticules et Cosmologie (APC). Effet de lentille
+gravitationnelle sur le rayonnement de fond diffus cosmologique (CMB)
+-> fil conducteur de ma recherche de 2004 à 2016. J'ai donc développé
+cette thématique, nouvelle à l'époque, pendant douze ans. Deux moments
+de e parcours constituent des point culminants professionels (et
+émotionnels). En decembre 2009, j'ai obtenue la première détection
+significative de cet effet avec une petite équipe du LAL et en janvier
+2013 j'ai pu presenter mes résultats hors de la collaboration PLANCK à
+l'occasion de la première livraison des données. Après cet événement, je me suis
+distanciée du groupe de travail sur le CMB lensing de Planck. J'ai
+alors developpé une idée originale avec Juan Macias-Perez, une des
+rares pistes qui n'avait pas été prévue ni décrite dans le Blue Book
+de Planck écrit en 1996, la possibilité de produire une carte des
+modes B induits par l'effet de lentille. J'ai obtenue la
+responsabilité de la production et livraison de cette carte à
+l'automne 2016. Je décris ces travaux dans une courte première partie
+qui me permet d'introduire des notions de cosmologie et de donner une
+vision personnelle de ce domaine. C'est sur cette vision que je
+m'appuie pour développer mon projet dans la dernière partie du
+manuscrit.
+
+Après PLANCK, s'est offerte à moi l'opportunité de rejoindre une
+collaboration à taille plus humaine (150 personnes au lieu de 480),
+plus locale, avec les principales responsabilités détenues par des
+chercheurs grenoblois et plus incarnée qu'une expérience spatiale dans
+le sens où l'instrument est visible dans la cabine du télescope de 30
+mètres de l'IRAM, que l'on peut piloter en temps réel lors des
+campagnes d'observation. Au LPSC, NIKA2 s'appuie sur un large
+programme d'observation d'un échantillon d'amas de galaxies via
+l'effet Sunyaev-Zeldovich avec pour objectif scientifique, la
+cosmologie. Le but est d'explorer une piste pour comprendre l'un des
+résultats les plus surprenants de PLANCK, la "tension'' entre les
+modèles cosmologiques favorisés par les anisotropies primaires du CMB
+(univers lointain) et ceux favorisés par les amas de galaxies (univers
+plus proche). Nous aurons l'occasion d'y revenir dans la dernière
+partie du manuscrit. Cet objectif scientifique enthousiasmant est pour
+moi l'occasion d'élargir mon horizon thématique tout en préservant la
+cohérence de mon parcours. J'explore une autre façon dont
+les grandes structures de l'Univers s'impriment dans les anisotropies
+du CMB, via l'effet SZ. Et aussi, s'ouvre à moi une nouvelle
+thématique extrêmement riche, l'étude des amas de galaxies, qui est
+multi-sonde par excellence et située à la croisée des communautés
+astrophysique et cosmologique. C'est le fil conducteur de mon projet
+de recherche et la thématique sur laquelle j'envisage d'encadrer une
+thèse à brève echéance.
+
+En plus de porter un objectif scientifique enthousiasmant, la
+collaboration NIKA2 m'a rapidement confiée des responsabilités
+importantes. J'ai été nommée responsable du \emph{commissioning} de
+NIKA2 à l'été 2016 et je partage également la responsabilité du Large
+Programme SZ de NIKA2 avec Frédéric Mayet. \emph{To be continued....}  
+
+
+
+
+\chapter*{Introduction}
+\pagenumbering{arabic}
+\input{Introduction_v1.tex}
+
+
+
+%----------------------------------------------------------------------------------------
+%
+%
+%
+%     PARTIE I: PLANCK
+%
+%     7 pages maxi
+%
+%
+%
+%----------------------------------------------------------------------------------------
+
+\part{L'effet de lentille gravitationnelle dans \emph{Planck}}
+
+%----------------------------------------------------------------------------------------
+%
+%   
+%
+%----------------------------------------------------------------------------------------
+\chapter{L'effet de lentille gravitationnelle sur le CMB}
+{\color{vert}\lipsum[1-2]}
+%----------------------------------------------------------------------------------------
+%
+%   
+%
+%----------------------------------------------------------------------------------------
+\chapter{La reconstruction de l'effet de lentille gravitationnelle}
+
+\section{Méthodologie}
+{\color{vert}\lipsum[1-2]}
+        
+\section{La carte du potentiel gravitationnel intégré}
+{\color{vert}\lipsum[1-2]}
+        
+%  VOIR PROCEEDIND MORIOND 2014 :
+%/Users/perotto/MesTrucs/Talks/proceedings/Moriond-2014
+%--------------------------------------------------------
+\begin{figure}
+  \centering
+  \includegraphics[width=0.8\linewidth]{Figures/Lensing/estimated_phimap_smica_s_mollweide_blue.pdf}
+  \caption[]{Planck's Wiener-filtered gravitational potential map $\phi^{\mathrm{WF}}_{LM} \equiv C_L^{\phi}/N_L^{(0)} \hat{\phi}_{LM}$ using the {\sc smica} foreground cleaned CMB map (left) and the minimum-variance combination of the 143 and 217~GHz maps (right). Whereas noise dominated at all scales, these maps encode the integrated Dark Matter distribution back to $z\sim1100$~\cite{planck2013:lensing}}
+  \label{fig:maps}
+\end{figure}
+
+\begin{figure}
+\hfill
+\begin{minipage}{0.45\linewidth}\centerline{
+\begin{overpic}[width=1\linewidth, height=5.7cm]{Figures/Lensing/analysis_lens_clpp_resid_pub_top2.pdf}
+\put(30, -3){\small{Lensing Multipole $L$}}
+\put(-28, 5){\includegraphics[width=0.5\linewidth]{Figures/Lensing/comp_filt_ordo.pdf}}
+\end{overpic}}
+%\includegraphics[width=1\linewidth]{figs/analysis_lens_clpp_resid_pub_top.pdf}}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\linewidth}\centerline{
+\begin{overpic}[width=1\linewidth, height=5.5cm]{Figures/Lensing/comp_filt_top3.pdf}
+\put(30, -4.){\small{Lensing Multipole $L$}}
+\put(-28, 5){\includegraphics[width=0.5\linewidth]{Figures/Lensing/comp_filt_ordo.pdf}}
+\end{overpic}}
+%\centerline{\includegraphics[width=1\linewidth, height=5.5cm]{figs/P12_clpp_allmethods.pdf}}
+\end{minipage}
+\caption[]{Planck's lensing potential power spectrum for the minimum variance (MV) combination of 143 and 217~GHz (empty black boxes). Left panel shows a comparison to the reconstructions from the ACT~\cite{Das2013} and the SPT~\cite{vanEngelen2012} as well as the Planck's estimates for the 143 and 217~GHz maps. Right panel shows the $C_L^{\phi}$ estimates for the 143 and 217~GHz maps using the four analysis pipelines, based on different methodologies of sky cut treatment, that were developed by the Planck Collab.~\cite{planck2013:lensing} to ensure robustness. }
+\label{fig:spectre}
+\end{figure}
+
+\section{Implication pour la cosmologie}
+{\color{vert}\lipsum[1-2]}
+        
+%  VOIR PROCEEDIND VIETNAM 2015 :
+%/Users/perotto/MesTrucs/Talks/proceedings/Vietnam-2015
+%--------------------------------------------------------
+\begin{figure}
+\begin{minipage}{0.42\linewidth}
+\centerline{\includegraphics[width=1\linewidth]{Figures/Lensing/omegak_rmsdeflect.pdf}}
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\linewidth}\centerline{
+\begin{overpic}[width=1\linewidth]{Figures/Lensing/DX9_AA_neutrinomasses_delta_88mm_crop.pdf}
+\put(-5, -5){\includegraphics[scale=1.2]{Figures/Lensing/DX9_AA_neutrinomasses_delta_88mm_ordo.pdf}}
+\end{overpic}}
+\end{minipage}
+\caption[]{Examples of the lensing reconstruction cosmological implications. \emph{Left}: MCMC samples in the plan of the root mean squared lensing deflection, $<d^2>^{1/2}$, and curvature density, $\Omega_K$, using Planck's $C_\ell^{T}$ and low-$\ell$ polarization (Planck $TT+\rm{low}P$) only. The points are color coded by the value of the Hubble parameter, $H_0$. The confidence intervals from the combination of Planck $TT+\rm{low}P$ and lensing (in black), show that closed-universe models, which are associated to low values of $H_0$, are strongly suppressed since they predict too much lensing power. Including the lensing (colored contours) also provides additional information to the combination of Planck $TT+\rm{low}P$ and BAO measurements (red contours). See the Planck Collab.~\cite{planck2015:lensing} for further discussions. \emph{Right}: $C_L^{\phi}$ calculated for various values of the total (active) neutrino mass $M_\nu$ ranging from 0 to 1~eV divided by the $C_L^{\phi}$ in the mass-less neutrino case. Planck 2013 $C_L^{\phi}$ measure divided by the $M_\nu=0$ model is plotted to give a hint of the sensitivity to $M_\nu$.}
+\label{fig:cosmo}
+\end{figure}
+
+%----------------------------------------------------------------------------------------
+%
+%   
+%
+%----------------------------------------------------------------------------------------
+\chapter{Les modes B de polarisation induits par l'effet de lentille}
+
+{\color{vert}\lipsum[2-5]}
+
+\begin{figure}
+\begin{overpic}[width=0.46\linewidth]{Figures/Lensing/Fig5_smica_B_lowres_beamcorr_gauss60_256_masklens_0p75_88mm.pdf}
+\end{overpic}
+%\begin{minipage}{0.45\linewidth}
+%\centerline{\includegraphics[width=1\linewidth]{figs/Fig5_smica_B_highres_beamcorr_gauss10_1024_masklens_88mm.pdf}}
+%\end{minipage}
+\hfill
+%\begin{minipage}{0.45\linewidth}
+\begin{overpic}[width=0.46\linewidth]{Figures/Lensing/Fig9_10_consistency_to_external_bkonly_88mm.pdf}
+      %\put(50.5,54){\Large{$\}$}}
+      %\put(50.5,43){\Huge{$\}$}}
+      \put(48,54.5){$\left.
+            \begin{array}{@{}ll@{}}
+              \\
+               
+            \end{array}\right\}$} 
+      \put(48,45){\small{$\left.
+            \begin{array}{@{}ll@{}}
+              \\
+              \\
+ 
+            \end{array}\right\}$}}
+    \end{overpic}
+%\centerline{\includegraphics[width=1\linewidth]{figs/Fig9_10_consistency_to_external_bkonly_88mm.pdf}}
+%\end{minipage}
+\caption[]{Lensing-induced B-mode results. \emph{Left}: Planck's map
+  of the lensing $B$-modes, which has been smoothed to highlight
+  angular scales greater or similar to one degree. No spurious features are evidence at the angular scales relevant for primordial $B$-modes. The grey area shows the aggressive mask that preserves $80\%$ of the sky. \emph{Right}: The Planck-derived lensing $B$-modes band-powers (red points) are consistent with the indirect (cross-correlation) measurements from SPTpol (green points), as well as with direct (total CMB $B$-modes) measurements from the BICEP2/Keck Array/Planck joint analysis(dark blue boxes), POLARBEAR (light blue boxes) and SPTpol (yellow boxes).}
+\label{fig:Bmap}
+\end{figure}
+
+{\color{vert}\lipsum[6-9]}
+
+
+%----------------------------------------------------------------------------------------
+%
+%
+%
+%     PARTIE II: NIKA2 Calib&Perf'
+%
+%     30 pages
+%
+%
+%
+%----------------------------------------------------------------------------------------
+
+\part{Calibration et Performances de NIKA2}
+%----------------------------------------------------------------------------------------
+%
+%   
+%
+%----------------------------------------------------------------------------------------
+\chapter{La caméra NIKA2 au télescope de 30 mètres de l'IRAM}
+\input{NIKA2_IRAM.tex}
+%----------------------------------------------------------------------------------------
+%
+%   
+%
+%----------------------------------------------------------------------------------------
+\chapter{Calibration et Performances}
+\input{NIKA2_Calib_Perf.tex}
+
+%----------------------------------------------------------------------------------------
+%
+%   
+%
+%----------------------------------------------------------------------------------------
+\chapter{Résumé des performances}
+\input{NIKA2_resume.tex}
+
+%----------------------------------------------------------------------------------------
+%
+%
+%
+%     PARTIE III: Cosmologie avec les amas
+%
+%     10 pages
+%
+%
+%
+%----------------------------------------------------------------------------------------
+
+\part{Cosmologie avec les amas de galaxies dans NIKA2 et \emph{Euclid}}
+%----------------------------------------------------------------------------------------
+%
+%   LP-SZ
+%
+%----------------------------------------------------------------------------------------
+\chapter{Le programme cosmologique de NIKA2}
+
+{\color{vert}\lipsum[4]}
+
+%  VOIR PROCEEDIND MORIOND 2018 :
+%/Users/perotto/MesTrucs/Talks/proceedings/Moriond-2018
+%--------------------------------------------------------
+\section{Observer à haute résolution angulaire}
+
+% 1 page
+\subsection{Motivation pour la cosmologie}
+{\color{vert}\lipsum[2-4]}
+\subsection{\'Etudes pilotes avec le prototype NIKA}
+{\color{vert}\lipsum[5-7]}
+
+\section{Le grand programme d'observation d'amas de galaxies}
+
+% 1 page
+{\color{vert}\lipsum[2-5]}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.49\textwidth]{Figures/NIKA2-SZ/MACSJ0717_kSZ_map.pdf}
+  \hspace{4mm}
+  \includegraphics[width=0.44\textwidth, clip=true, trim=0cm -0.7cm 0cm 0cm]{Figures/NIKA2-SZ/LPSZ_M_z_grid.pdf}
+  \caption{Left: Map of the kinetic SZ effect toward \mbox{MACS~J0717.5+3745} using NIKA pathfinder data, as discussed in Adam et al. (2017)$^{31}$. Right: NIKA2 Guaranteed-time cosmology program sample of galaxy clusters}
+  \label{fig:nikanika2}
+\end{figure}
+
+\section{Premiers résultats et perspectives}
+
+% 2 page
+{\color{vert}\lipsum[2-5]}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.49\textwidth]{Figures/NIKA2-SZ/Paper_NIKA2_Data.pdf}
+  \includegraphics[width=0.44\textwidth]{Figures/NIKA2-SZ/Fig_PSZ2_G144_Scaling_relation.pdf}
+  \caption{First SZ results with NIKA2. Left: The NIKA2 SZ map toward the galaxy cluster PSZ2-G0144.83+25.11. The high-resolution (20~arcsec) high-accuracy ($13.5\sigma $ measurement at peak) map covers the cluster from the core to the outskirts and reveals its morphology. An excess SZ signal is observed in the South-West region, indicating an overpressure within the intracluster medium (ICM). Right: Illustration of the impact of the ICM dynamics on the inner scatter of the SZ mass-observable relation. NIKA2 $Y_{500}$ estimates from the analysis with and without masking the over-pressure of PSZ2-G0144.83+25.11 are shown as a function of $M_{500}$, along with the cluster sample and the $Y_{500}-M_{500}$ scaling relation used in \emph{Planck} SZ-selected cluster count based cosmology analysis$^{13}$. These figures are extracted from Ruppin {\it et al.} (2018)$^{34}$. }
+  \label{fig:nika2-sz}
+\end{figure}
+
+{\color{vert}\lipsum[2-5]}
+
+
+%----------------------------------------------------------------------------------------
+%
+%   
+%
+%----------------------------------------------------------------------------------------
+\chapter{Cosmologie avec les amas de galaxies dans \emph{Euclid}}
+
+{\color{vert}\lipsum[2-3]}
+
+\section{La mission \emph{Euclid}}
+% 1 page
+{\color{vert}\lipsum[2-5]}
+
+\section{Comptage des amas et \emph{clustering}}
+% 1 page
+{\color{vert}\lipsum[2-5]}
+
+\section{Analyses multi-sondes}
+% 1 page
+{\color{vert}\lipsum[2-5]}
+
+%\appendix
+%%\section{Supervision d'étudiants}
+%%\section{Publications principales}
+%%\input{do_not_forget}
+
+%\bibliographystyle{myplainnat}
+\bibliographystyle{bibtex/aa}
+\bibliography{bibtex/NIKA2_biblio}
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

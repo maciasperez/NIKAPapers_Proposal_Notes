@@ -9,6 +9,7 @@
 \label{se:pipeline}
 
 \subsection{La calibration}
+\label{se:overview_calibration}
 
 La calibration consiste à mesurer un ensemble de propriétés et de
 paramètres des détecteurs. Elle s'articule en plusieurs étapes, qui
@@ -58,6 +59,7 @@ données développée par la collaboration NIKA2 (coordinateur: Nicolas
 Ponthieu).
 
 \subsection{L'analyse des données}
+\label{se:overview_pipeline}
 
 La chaîne d'analyse de données, ou \emph{pipeline}, permet de passer
 des données brutes, telles qu'elles sont fournies en sortie de
@@ -923,14 +925,14 @@ flux des sources ponctuelles. Comme présenté à la
 Sect.~\ref{se:beam}, le lobe présente une structure complexe, avec
 des lobes secondaires qui peuvent être asymétriques pour certaines
 observations. L'ajustement de modèles complexes 2D (un template du
-lobe) ou 1D (un profil) a été envisagé (et testé). Il s'entâche de
-difficultés, telles la dépendence aux conditions d'observation (par
-exemple, la focalisation du télescope) et au rapport signal-sur-bruit
-des données, qui détermine le niveau de significance de la mesure des
-lobes secondaires. En revanche, nous avons vérifié, sur des simulations
-et sur les données, qu'un modèle simple du lobe assurait une bonne
-stabilité des mesures de densité de flux.
-Nous modélisons les cartes d'une source ponctuelle par une gaussienne
+lobe) ou 1D (un profil) a été envisagé (et testé). Il s'accompagne
+toutefois de difficultés, telles la dépendence aux conditions
+d'observation (par exemple, la focalisation du télescope) et au
+rapport signal-sur-bruit des données, qui détermine le niveau de
+significance de la mesure des lobes secondaires. En revanche, nous
+avons vérifié, sur des simulations et sur les données, qu'un modèle
+simple du lobe assure une bonne stabilité des mesures de densité de
+flux. Nous modélisons les cartes d'une source ponctuelle par une gaussienne
 de référence dont la largeur à mi-hauteur (FWHM) est fixée à 
 12,5'' à 1\,mm (260\,GHz) et de 18,5'' à 2\,mm (150\,GHz), soit
 sensiblement plus grandes que la FWHM du lobe principal. La densité de
@@ -1371,8 +1373,8 @@ méthodes de calibration discutées.
 \caption[Comparison of calibration results using three
   methods]{Erreur de calibration RMS en $\%$ pour trois méthodes de
   calibration : la méthode \emph{Baseline}
-  (Sect.~\ref{se:corrected_skydip}), une méthode utilisant les opacité
-atmosphérique dérivée des mesures du tau-mètre (Sect.~\ref{se:opacity_methods}) et une méthode utilisant une
+  (Sect.~\ref{se:corrected_skydip}), une méthode utilisant les opacités
+atmosphériques dérivées des mesures du tau-mètre (Sect.~\ref{se:opacity_methods}) et une méthode utilisant une
 correction photométrique (Sect.~\ref{se:afternoon_calibration}). La
 première ligne indique le nombre de scans sélectionnés pour évaluer
 les erreurs.} 
@@ -1393,30 +1395,148 @@ les erreurs.}
 \end{center}
 \end{table*}
 
-[DISCUTER LES RESULTATS]
+La méthode \emph{Baseline}, telle qu'elle est décrite à la
+Sect.~\ref{se:corrected_skydip}, permet une mesure des densités de
+flux avec une incertitude RMS $<6\%$ à 1\,mm et de $3\%$ à 2\,mm. Ce
+résultat est remarquable pour une expérience millimétrique au sol,
+pour lesquelles l'état de l'art de l'erreur RMS de calibration est
+$\lesssim$ $10\%$ ~\citep{Dempsey2013_SCUBA2}. Il constitue une
+validation de nos choix méthodologiques. La robustesse de la méthode
+est également testée en comparant les résultats obtenus avec les méthodes
+alternatives. Nous vérifions que la méthode \emph{Taumeter} est
+associée à une dispersion légèrement supérieure des mesures de flux,
+comme attendu (voir
+Sects.~\ref{se:opacity_methods}~et~\ref{se:corrected_skydip}). En
+revanche, la méthode \emph{PC-point} permet d'obtenir une erreur RMS
+inférieure à l'erreur mesurée avec la méthode \emph{Baseline} tout en
+incluant plus de scans. C'est un résultat encourageant pour les
+méthodes fondées sur une correction photométrique. Toutefois, la
+validation de telles méthodes requièrerait encore de s'assurer du
+contrôle des effets systématiques liés à l'estimation de
+l'élargissement apparent du lobe (qui est réalisée par un suivi de la
+FWHM sur les {\tt pointages} dans le cas de \emph{PC-point}). Au
+contraire, les effets systématiques sont sous-dominants pour la
+méthode \emph{Baseline}, comme discuté à la section suivante.
 
-
-
-
-
-
-
-
-\subsection{Les erreurs systématiques}
+\subsection{L'incertitude de calibration absolue}
 \label{se:syste}
+
+L'erreur RMS constitue une estimation des incertitudes liées
+aux conditions d'observation. Les erreurs de calibration incluent en
+sus l'incertitude de calibration absolue et les erreurs
+systématiques.  
+
+Si l'incertitude sur la mesure des opacités
+atmosphériques $\taunu$ est bien inclue dans l'erreur de calibration
+RMS, l'incertitude sur le facteur correctif $a_\nu$ qui est appliqué
+aux estimées de $\taunu$ contribue à l'erreur systématique. Nous
+propageons l'incertitude sur $a_\nu$, évaluée à $\Delta a_\nu = 0.03$,
+à l'erreur sur le flux, pour deux valeurs de l'opacité atmosphérique
+le long de la ligne de visée. Pour les conditions atmosphériques de
+référence du télescope de 30-m de l'IRAM, définies par une hauteur
+de vapeur d'eau saturante (pwv) de 2\,mm et une élévation de
+$60\degree$, correspondant à de bonnes conditions lors des semestres
+d'hier, nous trouvons une incertitude sur les flux inférieure au
+pourcent dans les deux bandes de fréquence. Considérant les pires
+conditions atmosphériques permises par la sélection de scan
+\emph{Baseline}, l'erreur systématique sur les flux est au maximum de
+$2\%$ à 1\,mm. De plus, ces erreurs sont évaluées pour le cas le plus
+défavorable où la différence entre les conditions atmosphériques du
+calibrateur primaire et de la source sont maximales. Elles représentent
+des estimations pessimistes de l'erreur systématique liée à la
+correction de $\taunu$.
+
+Une autre source d'erreur systématique vient de la précision avec
+laquelle sont connues les bandes passantes de NIKA2. Dans le cadre de
+notre système photométrique, les densités de flux ne sont pas
+intégrées dans les bandes passantes, mais données à une
+fréquence de référence, ce qui minimise cette erreur
+systématique. L'incertitude sur les bandes passantes se propage aux
+flux uniquement pour les sources dont la densité spectrale d'énergie
+diffèrent de celle du calibrateur primaire, via les corrections de
+couleur. La caractérisation spectrale de NIKA2 en laboratoire à permis
+une mesure des bandes passantes à mieux que 1\%. En utilisant cette
+limite supérieure pour l'incertitude sur les bandes passantes, nous
+trouvons une erreur sur les flux inférieure ou de l'ordre du pourmille
+pour la plupart des sources. 
+
+L'incertitude de calibration absolue est donc dominée par
+l'incertitude sur le modèle de densité de flux pour notre calibrateur
+primaire, Uranus, qui est estimée à environ $5\%$
+dans~\citet{Bendo2013} aux fréquences d'observation de NIKA2. Nous
+annonçons donc une erreur systématique négligeable et une incertitude
+de calibration absolue de $5\%$ dans les deux bandes de fréquence.
+
+
+
 
 
 %----------------------------------------------------------------------------------------
 %
-%   Sensibilité
+%
+%
+%
+%
+%               Sensibilité
+%
+%
+%
+%
 %
 %----------------------------------------------------------------------------------------
 \section{Sensibilité}
 \label{se:sensibilite}
 
-\subsection{Méthodes}
 
-{\color{vert}\lipsum[1-2]}
+Nous caractérisons la sensibilité de NIKA2 en évaluant la densité de
+flux équivalente au bruit (\emph{Noise Equivalent Flux Density},
+NEFD). La robustesse de cette évaluation est testée en comparant les
+résultats de différentes méthodes et en utilisant un vaste jeu de
+données. \`A la Sect.~\ref{se:nefd_methodes}, nous présentons deux
+méthodes d'estimation de la NEFD et comparons les résultats pour un
+même jeu de données. Ensuite, à la Sect.~\ref{se:nefd_mesures}, nous
+étudions l'évolution de la NEFD avec les conditions atmosphériques et
+discutons l'implication de la NEFD mesurée sur les temps d'observation
+requis pour obtenir une cartographie à une profondeur donnée. 
+
+
+\subsection{Méthodes}
+\label{se:nefd_methodes}
+
+La NEFD correspond à l'erreur à $1\,\sigma$ que l'on mesure sur la
+densité de flux pour une seconde d'intégration sur la source et à une
+opacité atmosphérique nulle. Elle est donc reliée à l'erreur à
+$1\,\sigma$ de la densité de flux, notée $\Delta S_\nu$,  par
+\begin{equation}
+  \Delta S_\nu (t) = \rm{NEFD} \, e^{\taunu x} \frac{1}{\sqrt{t_{\rm det}(t)}}, 
+\end{equation}
+où $t_{\rm det}$ est le temps d'observation pendant lequel au moins un
+détecteur pointe sur la source. Ce temps dépend de la stratégie de
+balayage de la source. Il est égal au temps d'observation réel, $t$,
+si la source ne sort à aucun moment du champs de vue et que celui-ci
+est rempli de détecteurs valides.
+
+Nous avons développé deux méthodes pour estimer la NEFD. L'une,
+appelée \emph{Deep Integration}, se base sur l'étude de l'évolution du
+bruit lors d'une observation longue d'une source faible, tandis que
+l'autre, \emph{Scatter}, repose sur l'extrapolation à
+opacité nulle d'un ensemble de mesures sur des scans individuels.
+Pour \emph{Deep Integration}, nous utilisons un ensemble de scans vers une
+source faible pour construire une série de cartes en incluant de
+plus en plus de scans. Les cartes individuelles par scan, obtenues
+comme décrit à la Sect.~\ref{se:overview_pipeline}, sont pondérées par
+l'inverse de leur variance et co-additionnées. Leur contribution
+relative à la carte finale va donc dépendre de l'atténuation de
+l'atmosphère au moment du scan. Cet effet est pris en compte par la
+définition d'un temps d'integration effectif, $t_{\rm{eff}}$. 
+
+
+
+
+
+
+
+
 
 \begin{figure}[!thbp]
   \begin{center}
@@ -1438,7 +1558,7 @@ les erreurs.}
 \end{figure}
 
 \subsection{\'Evolution avec les conditions atmosphériques}
-
+\label{se:nefd_mesures}
 {\color{vert}\lipsum[1-2]}
 
 \begin{figure}[!thbp]

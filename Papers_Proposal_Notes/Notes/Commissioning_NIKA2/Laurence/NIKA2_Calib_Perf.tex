@@ -200,6 +200,7 @@ préalable à toute production de cartes du ciel à partir de données
 issues de KIDs.
 
 \subsection{Caractérisation des KID}
+\label{se:KID_pointing}
 
 Pour ce faire, nous utilisons une observation de type {\tt beammap}
 (voir Sect.~\ref{se:beammap}) d'une source compact et brillante, telle
@@ -249,8 +250,9 @@ dont la position mesurée est très éloignée de la position attendue.
 
 
 \subsection{Sélection des KID}
+\label{se:KID_selection}
 
-Bien tous les KID fonctionnent et mesurent un signal, certains peuvent
+Bien que tous les KID fonctionnent et mesurent un signal, certains peuvent
 être affectés de divers problèmes rendant leur données difficilement
 exploitables ou peu informatives. Les principaux problèmes rencontrés
 comprennent 1) la diaphonie, plusieurs KID (deux, rarement trois) dont
@@ -1506,11 +1508,13 @@ requis pour obtenir une cartographie à une profondeur donnée.
 La NEFD correspond à l'erreur à $1\,\sigma$ que l'on mesure sur la
 densité de flux pour une seconde d'intégration sur la source et à une
 opacité atmosphérique nulle. Elle est donc reliée à l'erreur à
-$1\,\sigma$ de la densité de flux, notée $\Delta S_\nu$,  par
+$1\,\sigma$ sur la densité de flux, notée $\Delta S_\nu$,  par
 \begin{equation}
-  \Delta S_\nu (t) = \rm{NEFD} \, e^{\taunu x} \frac{1}{\sqrt{t_{\rm det}(t)}}, 
+  \Delta S_\nu (t) = {\rm{NEFD}} \,\, e^{ \tau_{\nu} x}
+  \frac{1}{\sqrt{t_{\rm{det}}(t)}},
+  \label{eq:relation_sigma_nefd}
 \end{equation}
-où $t_{\rm det}$ est le temps d'observation pendant lequel au moins un
+où $t_{\rm{det}}$ est le temps d'observation pendant lequel au moins un
 détecteur pointe sur la source. Ce temps dépend de la stratégie de
 balayage de la source. Il est égal au temps d'observation réel, $t$,
 si la source ne sort à aucun moment du champs de vue et que celui-ci
@@ -1518,60 +1522,193 @@ est rempli de détecteurs valides.
 
 Nous avons développé deux méthodes pour estimer la NEFD. L'une,
 appelée \emph{Deep Integration}, se base sur l'étude de l'évolution du
-bruit lors d'une observation longue d'une source faible, tandis que
-l'autre, \emph{Scatter}, repose sur l'extrapolation à
-opacité nulle d'un ensemble de mesures sur des scans individuels.
-Pour \emph{Deep Integration}, nous utilisons un ensemble de scans vers une
-source faible pour construire une série de cartes en incluant de
-plus en plus de scans. Les cartes individuelles par scan, obtenues
-comme décrit à la Sect.~\ref{se:overview_pipeline}, sont pondérées par
-l'inverse de leur variance et co-additionnées. Leur contribution
-relative à la carte finale va donc dépendre de l'atténuation de
-l'atmosphère au moment du scan. Cet effet est pris en compte par la
-définition d'un temps d'integration effectif, $t_{\rm{eff}}$. 
+bruit dans les cartes de densité de flux, lors d'une observation
+longue d'une source faible, tandis que l'autre, \emph{Scatter}, repose
+sur l'extrapolation à opacité nulle d'un ensemble de mesures de NEFD
+sur des scans individuels.
+Pour \emph{Deep Integration}, nous construisons une série de cartes de
+la densité de flux à partir d'une longue observation d'une même source, en
+incluant de plus en plus de scans. Chaque scan est utilisé pour
+produire une carte individuelle comme décrit à la
+Sect.~\ref{se:overview_pipeline}. Puis ces cartes par scan sont
+pondérées par l'inverse de leur variance et co-additionnées pour
+construire la carte finale. Leur contribution relative à la
+co-addition va donc dépendre de l'atténuation de l'atmosphère au
+moment du scan. Cet effet est pris en compte lors du calcul du temps
+d'intégration par détecteur pour la co-addition de $n$ scans, en
+définissant un temps d'intégration effectif, $t_{\rm{eff}} (n)$, qui
+inclut l'atténuation de l'atmosphère. Avec cette définition, 
+l'Eq.~\ref{eq:relation_sigma_nefd} se ré-écrit
+$\Delta S_\nu (n) = {\rm{NEFD}} / \sqrt{t_{\rm{eff}}(n)}$.
+L'évolution de $\Delta S_\nu$ avec le nombre de scan $n$ est mesurée
+directement dans la série de cartes de densité de flux, et la NEFD est
+estimée en ajustant un modèle en $t^{-1/2}$ sur ces mesures.
 
-
-
-
-
-
-
-
+La seconde méthode, $\emph{Scatter}$, consiste à mesurer directement
+la NEFD sur la ligne de visée, NEFD$_{\taunu x}$ = NEFD $\exp{ \tau_{\nu} x}$, à partir
+d'une carte de la densité de flux, en inversant
+Eq.~\ref{eq:relation_sigma_nefd}. La source ciblée doit être peu
+brillante, $<1\,$Jy, pour éviter que l'estimation de lincertitude sur
+le flux ne soit biaisée par le signal. En répétant une telle mesure
+sur un grand nombre de scans acquis dans des conditions d'observation
+diverses, nous pouvons vérifier l'évolution de la NEFD avec
+l'atténuation atmosphérique. La NEFD est estimée en prenant la médiane
+des mesures de la NEFD sur la ligne de visée, après correction de
+l'atténuation de l'atmosphère.    
 
 \begin{figure}[!thbp]
   \begin{center}
     \includegraphics[trim={0.5cm, 0, 0, 0.5cm}, clip, angle=0, width=0.495\textwidth]{Figures/NIKA2/hls_nefd_vst.eps}
     \includegraphics[trim={0.5cm, 0, 0.2cm, 0.5cm}, clip, angle=0, width=0.485\textwidth]{Figures/NIKA2/hls_NEFD_vs_TauElev_all.eps}
-    \caption{Comparison of NEFD estimates using two methods on observations of
-      \hls. \emph{Left panel:} Evolution of the 1\,$\sigma$ flux density
-      uncertainties as a function of the effective integration time
-      $t_{\rm{eff}}$, as defined in Eq.~\ref{eq:sigma_tau_w8}, for A1
-    (cyan), A3 (dark blue), the combination of A1\&A3 (medium blue),
-    and A2 (red). The solid black lines are the best-fit models using
-    $\sigma(t_{\rm{eff}}) =  \rm{NEFD}/sqrt(t_{\rm{eff}})$. \emph{Right panel:} NEFD as a function of the
-    measured line-of-sight opacity using the same color code as in the
-    left panel. The solid black lines are the theoretical
-    fits of $\rm{NEFD}_{\taunu,\, x } = \rm{NEFD}\, e^{\taunu\,x}$ and give the
-    NEFD when extrapolated to $\taunu/\sin(\elev)= 0$. }
+    \caption{Application de deux méthodes d'estimation de la NEFD à
+      une longue observation de \hls. \`A gauche, l'erreur à 1\,$\sigma$
+      sur la densité de flux est tracée en fonction du temps
+      d'intégration effectif $t_{\rm{eff}}$ (voir le texte). Les
+      droites en noir représentent les meilleurs ajustement d'un
+      modèle en $t_{\rm{eff}}^{-1/2}$; leur amplitude donne une
+      estimée de la NEFD. \`A droite, la NEFD mesurée sur
+      la ligne de visée est tracée en fonction de l'opacité
+      atmosphérique observée, $\taunu\,x$. Les courbes en noir
+      montrent l'évolution attendue en $\exp{\taunu\,x}$, normalisée
+      par la NEFD à atmosphère nulle. Dans les deux panneaux,
+      l'analyse est effectuée pour la matrice  A1 (bleu clair), A3
+      (bleu foncé), la combinaison A1\&A3 (bleu ciel), et A2 (rouge).}
     \label{fig:nefd_twomethods}
   \end{center}
 \end{figure}
+%
+Nous comparons les résultats de ces deux méthodes sur un même jeu de
+données à la Fig.~\ref{fig:nefd_twomethods}.
+Pour cela, nous avons choisi une source assez faible,
+\hls~\citep{Combes2012}, dont le flux attendu dans les bandes de NIKA2
+est de quelques dizaines de mJy. Cette source a été observée en
+effectuant des scans OTF $8' \times 5'$, pendant environ neuf heures,
+lors de la campagne N2R9. Le panneau de gauche de la
+Fig.~\ref{fig:nefd_twomethods} montre l'incertitude sur la densité
+de flux en fonction du temps effectif d'intégration,
+tandis que le panneau de droite présente la NEFD sur la ligne de
+visée, NEFD$_{\taunu x}$, en fonction de l'opacité sur la ligne de
+visée, $\taunu x$. Nous vérifions que l'incertitude sur le flux, pour
+les matrices individuelles et pour la combinaison des matrices à 1\,mm,
+diminue avec le temps d'intégration en $t^{-1/2}$ comme attendu. Nous
+vérifions également l'évolution attendue de la NEFD$_{\taunu x}$ avec
+l'atténuation de l'atmosphère. Finalement, les
+estimées de la NEFD avec les deux méthodes, rassemblées dans la
+table~\ref{tab:nefd_summary}, sont en accord à mieux que 7\%. Le
+choix méthodologique a donc peu d'impact sur l'estimation de la
+NEFD. Nous testons ensuite nos résultats et estimons les incertitudes
+sur la NEFD en utilisant un plus grand jeu de données.  
 
-\subsection{\'Evolution avec les conditions atmosphériques}
+%  comparison entre methods
+\begin{table}[!htbp]
+  \centering
+  \caption[]{Tests de stabilité de la NEFD. Estimées de la NEFD
+    en $\rm{mJy}.s^{1/2}$ obtenues en utilisant soit la méthode \emph{Deep
+      Integration}, abrégée en Deep int., soit la méthode
+    \emph{Scatter}, et pour deux jeux de données, l'observation longue de
+    \hls\ et l'ensemble des scans vers des sources sub-Jy acquis lors
+    des trois campagnes de référence. La dermière ligne du tableau
+    donne les résultats pour la combinaison de tous ces scans (soit 202,
+    481 et 430 scans lors de N2R9, N2R12 and N2R14, respectivement).}
+  \label{tab:nefd_summary}
+  \begin{tabular}{llrrrr}
+    \hline\hline
+    \noalign{\smallskip}
+    Data set   & Method   & A1      &   A3    &   A1\&A3 &    A2 \\
+    \noalign{\smallskip}
+    \hline
+    \noalign{\smallskip}
+    \hls &     Deep int.  &  46.6  &    38.4  &    30.4  &   8.5  \\
+    %   G2   &    $t^{-1/2}$  &  44.0  &    34.7  &    29.6  &  7.8  \\
+         &     Scatter    &  45.7  &    36.3  &    28.5  &   8.2  \\
+    \hline
+    \noalign{\smallskip}
+    N2R9     & Scatter    & 47.0 &  36.9  & 28.8  & 8.4 \\
+    N2R12    &            & 47.3 &  36.4  & 30.2  & 8.5 \\
+    N2R14    &            & 47.3 &  39.8  & 30.9  & 9.3 \\
+    Combined &            & 47.2 &  37.9  & 30.1  & 8.8 \\
+    \hline
+  \end{tabular}
+\end{table}
+
+\subsection{Tests de robustesse aux conditions d'observation}
 \label{se:nefd_mesures}
-{\color{vert}\lipsum[1-2]}
 
+Nous utilisons la méthode \emph{Scatter}, qui est applicable à des
+observations de sources variées, pour tester la robustesse de
+l'estimation de la NEFD sur un vaste jeu de données. Ce jeu se compose
+de l'ensemble des scans des trois campagnes de réference, vers des
+sources de flux inférieur à 1\,Jy dans les deux bandes de fréquence,
+et respectant les critères de sélection \emph{Baseline}. Il comprend
+plus d'un millier de scans. \`A la
+figure~\ref{fig:nefdvsbackground_below_1Jy}, nous traçons la NEFD sur
+la ligne de visée, NEFD$_{\taunu x}$ , en fonction de l'opacité
+atmosphérique observée, $\taunu x$, en distinguant les scans par
+campagnes d'observation. Les courbes ne résultent pas de l'ajustement
+d'un modèle mais représentent l'évolution attendue avec l'atténuation
+de l'atmophère, normalisée par la NEFD à atmosphère nulle. Nous
+vérifions ainsi que la NEFD$_{\taunu x}$ varie comme attendu avec le
+"bruit du ciel'', pour une grande gamme de conditions d'observation. De
+plus, nous mesurons des NEFD$_{\taunu x}$ compatibles pour les trois
+campagnes de référence. Les valeurs de la NEFD estimées pour chaque
+campagne et pour l'ensemble du jeu de données sont compilées dans la
+Table~\ref{tab:nefd_summary}. Nous évaluons l'incertitude sur la NEFD
+en calculant la rms des mesures de NEFD$_{\taunu x}$ corrigées de
+l'atténuation de l'atmophère. Nous trouvons une erreur rms de
+3\,mJy.s$^{1/2}$ à 1\,mm et 1\,mJy.s$^{1/2}$ à 2\,mm, en accord avec la
+dispersion des estimées de la NEFD données à la
+Table~\ref{tab:nefd_summary}. En utilisant l'estimation sur l'ensemble
+des scans, nous annonçons une NEFD de $30 \pm 3$\,mJy.s$^{1/2}$ à 1\,mm
+et de  $9 \pm 1$\,mJy.s$^{1/2}$ à 2\,mm. Par ailleurs, nous constatons
+une moindre sensibilité de la matrice A1 comparée à A3, que nous
+interprétons comme l'impact du défaut de transmission avéré de la lame
+dichroïque (Sect.~\ref{se:gains}).
+%
 \begin{figure}[!thbp]
 \begin{center}
   \includegraphics[clip=true,width=0.47\textwidth]{Figures/NIKA2/plot_nefd_vs_obstau_corrected_skydip_vfinal_1mm.pdf}
   \includegraphics[clip=true,width=0.47\textwidth]{Figures/NIKA2/plot_nefd_vs_obstau_corrected_skydip_vfinal_a2.pdf}
-  \caption{Comparison of the NEFD estimates for three observation
-    campaigns. The measured NEFD using the scatter method is plotted as a function of
-    line-of-sight opacity ($\taunu\,x$) for the $1\,\rm{mm}$ (left) and $2\,\rm{mm}$ (right)
-    channels. Data points are NEFD estimates in $\rm{mJy}\cdot s^{1/2}$ for N2R9 (blue), N2R12 (orange)
-    and N2R14 (chartreuse). We also show in the plots the expected NEFD evolution
-    with the line-of-sight opacity as solid curves using the median
-    zenith opacity derived from all the scans acquired during a campaign.}
+  \caption{\'Evolution de la NEFD avec les conditions
+    d'observation. La NEFD le long de la ligne de visée, NEFD$_{\taunu
+    x}$, est tracée en fonction de l'opacité atmosphérique observée,
+    $\taunu\,x$, dans la bande à $1\,\rm{mm}$ (à gauche) et à
+    $2\,\rm{mm}$ (à droite). Les points de données correspondent aux
+    estimées de NEFD$_{\taunu x}$ en $\rm{mJy}\cdot s^{1/2}$ obtenues
+    lors des campagnes N2R9 (en bleu), N2R12 (orange) and N2R14
+    (chartreuse). Les courbes représentent l'évolution attendue de la
+    NEFD sur la ligne de visée en fonction du "bruit du ciel'',
+    normalisée par l'estimée de la NEFD à atmosphère nulle.}
   \label{fig:nefdvsbackground_below_1Jy}
 \end{center}
 \end{figure}
+
+
+Nous évaluons aussi la vitesse de cartographie (\emph{Mapping Speed}), 
+définie comme la zone du ciel $\mathcal{A}_{\rm{scan}}$ qui peut être
+observée à un niveau de bruit $\Delta_\sigma$ of $1\,\rm{mJy}$ en un
+temps d'intégration $\Delta_t$ de une heure. En notant $d_{\rm{FOV}} =
+6.5\,\rm{arcmin}$ le diamètre du champ de vue et $\eta$ la fraction de
+KID valids (Sect.~\ref{se:fov_geometry}), la vitesse de cartographie
+$M_{\rm{s}}$ s'écrit: 
+\begin{equation}
+M_{\rm{s}} = \frac{\mathcal{A}_{\rm{scan}}}{\Delta_\sigma\Delta_t} = 
+\eta \, \frac{\pi}{4} d_{\rm{FOV}}^2 \, \frac{1}{\rm{NEFD}^2}\, ,
+\label{eq:mapping_speed}
+\end{equation}
+et s'exprime en arcmin$^2 \cdot \rm{mJy}^{-2} \cdot
+\rm{h}^{-1}$. C'est cette quantité qui est utilisée pour calculer
+les temps d'observation. Ainsi, le temps d'observation nécessaire pour
+atteindre le niveau d'incertitude sur les densités de flux
+$\sigma_{obs}$ souhaité, sur une certaine couverture du ciel
+$\mathcal{A}_{\rm{scan}}$, et en supposant une opacité atmosphérique
+  sur la ligne de visée $\taunu x$ est
+\begin{equation}
+  t_{\rm{obs}} = \frac{\mathcal{A}_{\rm{scan}}}{ M_{\rm{s}}} \, \left(\frac{e^{\taunu\, x}}{\sigma_{obs}}\right)^2.
+\end{equation}
+\`A partir de l'estimation de la NEFD, nous dérivons une vitesse de
+cartographie de $111 \pm 11$ et $1388 \pm 174$ arcmin$^2 \cdot
+\rm{mJy}^{-2} \cdot \rm{h}^{-1}$ respectivement à 1 et
+2\,mm. Ce résultat remarquable situe NIKA2 parmi les meilleurs
+instruments millimétriques de cartographie haute-résolution d'un grand
+champ de vue~\citep{Tony2019}.
+

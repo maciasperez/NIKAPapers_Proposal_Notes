@@ -1,77 +1,351 @@
 %\chapter{Résumé des performances}
 
+Ce chapitre vient clore la partie de ce document consacrée au
+\emph{commissioning} de NIKA2 et la caractérisation de ses
+performances.
+L'essentiel du travail d'analyse a été réalisé sur une période
+d'environ deux ans, entre septembre 2016, soit après l'intervention
+majeure sur l'instrument, et décembre 2018. En septembre 2017, la
+revue des performances de NIKA2 par l'IRAM a
+marqué la fin de la phase de \emph{commissioning} en intensité, et la
+livraison de l'instrument a été parachevée en décembre 2018 avec la
+remise d'un document détaillant la calibration et la caractérisation des
+performances.
+
+Responsable de la caractérisation des performances de NIKA2 depuis
+septembre 2016, j'ai dirigé toutes les phases de ce travail, jusqu'à
+sa concrétisation par la remise du document à l'IRAM et l'écriture de
+l'article de référence~\citep{Perotto2019}. Cette activité
+d'encadrement a été rythmée par l'organisation des réunions du
+consortium NIKA2, d'abord hebdomadaires puis bi-mensuelles; la création et
+l'animation de la \emph{Commissioning Tiger Team}, au sein de laquelle
+a été réalisée la caractérisation des performances; la présentation
+des performances lors de la revue de l'IRAM; la formation d'une
+personne de l'IRAM à la calibration \emph{Baseline}; la coordination
+de l'écriture du document \emph{Commissioning\&Performance}, puis celle
+de l'article. Il s'agit de l'expérience d'encadrement de la recherche
+la plus complète que j'ai effectuée jusque-là.    
+
+Parmi nos réalisations les plus marquantes, deux ont vocation à avoir
+un impact important. La première est la méthode de calibration de
+référence que nous avons développée pour NIKA2, lui assurant
+robustesse aux effets systématiques et stabilité aux conditions
+d'observation. Ensuite, l'article détaillant nos méthodes et nos
+résultats vise à faire référence pour les utilisateurs de NIKA2 et
+pour la calibration de futurs instruments millimétriques, en
+particulier utilisant la technologie des KID.
+
+Ici, nous résumons les principaux résultats décrits dans cet article,
+tels qu'ils ont été détaillés au chapitre précédent, puis nous
+proposerons quelques pistes d'amélioration des performances de
+NIKA2 pour le futur.  
+
+
 \section{Les performances}
 
-% 1 page
+Les performances de NIKA2 au télescope de 30-m de l'IRAM ont été
+caractérisées à partir d'un vaste ensemble d'observation de sources de
+calibration, de sources de pointage et de sources faibles, effectuées
+lors de trois campagnes d'observation réparties au cours d'une année. Cet
+ensemble forme un échantillon répésentatif des conditions
+d'observation sur le site.
 
-{\color{vert}\lipsum[2-5]}
+La caractérisation des performances repose sur une calibration de
+référence, la calibration \emph{Baseline}, que nous avons développée
+et extensivement testée. Cette calibration est fondée sur quatres
+choix méthodologiques principaux. La soustraction du bruit corrélé des
+détecteurs repose sur une méthode de décorrelation de \emph{modes
+  communs} mesurés dans les données, qui a été largement testée pour
+le traitement des sources ponctuelles. Le flux des sources ponctuelles
+est mesuré par l'ajustement d'une gaussienne de référence de FWHM fixe
+et pour une fréquence de référence. L'attenuation de l'atmosphère est
+corrigée en utilisant une version modifiée de la méthode employée dans
+NIKA~\citep{Catalano2014}, basée sur la mesure de l'opacité
+atmosphérique par les KID. L'élargissement apparent du
+lobe de l'instrument, lié aux variations de température extérieure,
+est traité par une sélection des scans retenant 16 heures
+d'observations par jour.
 
+Les performances sont définies par l'évaluation d'un ensemble de
+caractéristiques instrumentales. Les principaux résultats de cette
+mesure sont regroupés dans le tableau~\ref{tab:nika2summary} et
+résumés ci-dessous.
 
 \begin{table}[!thbp]
-  \caption{Summary of the main characteristics describing NIKA2 measured performance}
+  \caption{Résumé des principales caractéristiques instrumentales de NIKA2}
   \label{tab:nika2summary}
   \centering    
   \begin{tabular}{rrrcl}
   \hline\hline
   \noalign{\smallskip}
-  & Array 1\&3 & Array 2 & & Reference \\
+  & Array 1\&3 & Array 2 & & Commentaire \\
   \noalign{\smallskip}
   \hline
   \noalign{\smallskip}
-  Reference Wavelength  [mm]  & 1.15  & 2.00   &  & \\
-  Reference Frequency  [GHz]  & 260  & 150   &  & Sect.~\ref{se:photometric_system}  \\
-  Frequency [GHz]             &  254.7\&257.4  & 150.9 &  & Sect.~\ref{se:instru_bandpass}  \\
-  Bandwidth         [GHz]     &   49.2\&48.0   & 40.7  &  & \\
+  Fréquence de référence [GHz]  & 260  & 150   &  & \footnotesize{voir Sect.~\ref{se:systeme_photo}}  \\
+  Fréquence centrale [GHz]      &  254.7\&257.4  & 150.9 &  & \footnotesize{à atmosphère nulle}   \\
+  Largeur de bande passante  [GHz]     &   49.2\&48.0   & 40.7  &  & \footnotesize{à atmosphère nulle} \\
   \hline
   \noalign{\smallskip}
-  Number of designed detectors                   &  1140\&1140 &    616  & & Sect.~\ref{se:array}\\
-  Number of valid detectors$^a$     &  952\&961   &    553  & & Sect.~\ref{se:avg_kidpar}\\
-  Fraction of valid detectors [$\%$]             &  84        &     90  & & \\
-  Pixel size in beam sampling unit$^b$\hspace{3mm} [$\lambda/D$] & 1.1 &  0.87 & & Sect.~\ref{se:grid_distortion} \\
+  Diamètre du champ de vue     [arcmin] &   6.5       &   6.5   &  &  \\  
+  Nombre total de détecteurs            &  1140\&1140 &    616  & & \footnotesize{voir Sect.~\ref{se:matrices}}\\
+  Fraction de détecteurs valides [$\%$] &  84         &     90  & & \footnotesize{voir Sect.~\ref{se:KID_selection}} \\
+  Echantillonage du champ de vue \hspace{3mm} [$\lambda/D$] & 1.1 &  0.87 & & \footnotesize{voir Sect.~\ref{se:KID_pointing}} \\
   \hline
   \noalign{\smallskip}
-  FWHM$^c$\hspace{3mm} [arcsec]    &  $11.1 \pm 0.2$  &  $17.6 \pm 0.1$  & & Sect.~\ref{se:mainbeam}\\
-  Beam efficiency$^d$\hspace{3mm} [$\%$] &  $55 \pm 3$   &  $77 \pm 2$  &  & Sect.~\ref{se:beam_efficiency}\\
-  Rms FWHM across the FOV [arcsec]              &    0.6        &      0.6        & & \citet{Adam2018} \\
+  FWHM de référence\hspace{3mm} [arcsec]          & $12.5$     &   $18.5$  &  & \footnotesize{voir Sect.~\ref{se:systeme_photo}}\\
+  FWHM$^c$\hspace{3mm} [arcsec]    &  $11.1 \pm 0.2$  &  $17.6 \pm 0.1$  & & \footnotesize{voir Sect.~\ref{se:mainbeam}}\\
+  Efficacité du lobe principal \hspace{3mm} [$\%$] &  $55 \pm 3$   &  $77 \pm 2$  &  & \footnotesize{calculée jusqu'à 180''}\\
+  Dispersion de la FWHM [arcsec]  &    0.6        &      0.6        & & \footnotesize{\citet{Adam2018}} \\
   \hline
   \noalign{\smallskip}
-  Reference FWHM$^e$\hspace{3mm} [arcsec]          & $12.5$     &   $18.5$  &  & Sect.~\ref{se:photometric_system}\\
-  Reference Beam efficiency$^f$\hspace{3mm}  [\% ] & $70 \pm 4$ & $85 \pm 3$ &  & Sect.~\ref{se:extended_source_calib}\\
+  Erreur de calibration absolue [\%]      &   5         & 5 & &  \footnotesize{voir Sect.~\ref{se:syste}}\\
+  Erreur de calibration systématique\hspace{3mm}  [\%]      &    0.6        & 0.3 & & \footnotesize{pwv = 2\,mm, $\elev = 60\degree$} \\
+  Erreur de calibration RMS [\%]          &   5.7       &     3.0       & & \footnotesize{voir Sect.~\ref{se:rms_error}} \\
+  Erreur de pointage    [arcsec]          & $<3$ &  $<3$  & & \footnotesize{\citet{Greve1996}} \\
   \hline
   \noalign{\smallskip}
-  Rms pointing error    [arcsec]               & $<3$ &  $<3$  & & Sect.~\ref{se:pointing} \\
-  \hline
-  \noalign{\smallskip}
-  Absolute calibration uncertainty [\%]      &   5         & 5 & & Sect.~\ref{se:photometry_criteria}, App.~\ref{se:ref_flux_uranus_neptune} \\
-  Systematic calibration uncertainty$^g$\hspace{3mm}  [\%]      &    0.6        & 0.3 & & Sect.~\ref{se:def_systematic_errors} \\
-  Rms calibration uncertainty [\%]                   &   5.7       &     3.0       & & Sect.~\ref{se:photometry_baseline} \\
-  \hline
-  \noalign{\smallskip}
-  $\alpha$ noise integration in time$^h$\hspace{3mm}  & 0.5 & 0.5 & & Sect.~\ref{se:nefd_results} \\
-  \hline
-  \noalign{\smallskip}
-  NEFD$^i$\hspace{3mm} [$\rm{mJy} \cdot \rm{s}^{1/2}$]  & $30 \pm 3$  & $9 \pm 1$ &  & Sect.~\ref{se:nefd_results}\\
-  M$_{\rm{s}}^{\rm{j}}$\hspace{3mm} [arcmin$^2 \cdot
-    \rm{mJy}^{-2} \cdot \rm{h}^{-1}$] & $111 \pm 11$  &  $1388 \pm 174$ &  & \\
+  NEFD \hspace{3mm} [$\rm{mJy} \cdot \rm{s}^{1/2}$]  & $30 \pm 3$  & $9 \pm 1$ &  & \footnotesize{voir Sect.~\ref{se:nefd_mesures}}\\
+  M$_{\rm{s}}$\hspace{3mm} [arcmin$^2 \cdot
+    \rm{mJy}^{-2} \cdot \rm{h}^{-1}$] & $111 \pm 11$  &  $1388 \pm 174$ &  & \footnotesize{\emph{Mapping speed}}\\
   \hline
   \end{tabular}
-  \tablefootnote{ \\
-    {a}{Number of usable detectors, which have been selected in at least two FOV reconstructions}
-    {b}{Calculated from real array pixel size [2.75\,mm / 2.0\,mm] and unvignetted entrance pupil diameter [27\,m]}
-    {c}{Full-width at half-maximum of the main beam using the combined results of three methods}
-    {d}{Ratio between the main beam power and the total beam power up to a radius of 180''}
-    {e}{Full-width at half-maximum of the beam used in our reference photometric system}
-    {f}{Ratio between the reference FWHM beam power and the total beam
-      power up to a radius of 180''}
-    {f}{Systematic calibration uncertainties due to the opacity correction using the {\tt corrected skydip} method estimated at the reference IRAM 30-m winter observing conditions: 2\,mm pwv, $60^o$ elevation} 
-    {h}{Effective power law of noise reduction with integration time}
-    {i}{NEFD at zero opacity}
-    {j}{Mapping speed at zero opacity}
-  }
 \end{table}
+
+Les 2900 KID qui composent les matrices de NIKA2 détectent un signal
+astrophysique au moins lors de certaines observations. Nous
+définissons des critères pour sélectionner les KID les plus
+stables. Nous trouvons une fraction de KID valides (utilisables pour
+l'exploitation scientifique) de 84\% dans la bande à 1\,mm et 90\% à
+2\,mm. Les détecteurs non-sélectionnés se répartissent aléatoirement
+dans le plan focal, de sorte que le champ de vue de 6,5' de diamètre
+est bien couvert. \`A partir de la taille réel des détecteurs
+(2.75\,mm et 2.0\,mm) et du diamètre de la pupille d'entrée (27\,m),
+nons trouvons une taille des détecteurs en unité d'échantillonage du
+lobe de 1,1 et 0,9 $\lambda$/D dans les bandes à 1 et 2\,mm.   
+
+Le lobe principal est bien modélisé par une gaussienne de FWHM
+17,6''$\pm$0,1'' à 150\,GHz et 11,1''$\pm$0,2'' à 260\,GHz. Son
+efficacité mesurée jusqu'à une distance radiale de 180'' est de
+77$\pm$2\% et 55$\pm$3\% à 150 et 260\,GHz, respectivement. Une
+fraction significative du signal est donc reçue au-delà du lobe
+principal, dans la structure complexe, formée de lobes d'erreur et
+diverses figures de diffraction, du lobe total. La dispersion de la
+FWHM dans le champ de vue a été mesurée dans~\citet{Adam2018} à partir
+de carte individuelle par détecteur. Elle est de 0,6'' dans les deux
+canaux de fréquence, en accord avec la dispersion attendue d'après la
+mesure des surfaces focales (voir Sect.~\ref{se:focus}).   
+
+\`A partir d'un large échantillon de scans de sources
+brillantes, bien représentatif des conditions d'observation au
+télescope de 30-m, nous vérifions la stabilité des mesures de flux aux
+conditions d'observation et évaluons l'erreur de calibration RMS. Nous
+trouvons environ 3\% à 150\,GHz et 6\% à 260\,GHz. Ces résultats
+indiquent une stabilité remarquable pour un instrument millimétrique
+au sol et valident les choix méthodologiques de notre
+calibration. Pour évaluer l'incertitude de calibration, l'erreur RMS
+doit être combinée à l'erreur de calibration absolue, qui est de 5\%
+dans les deux bandes, et à l'erreur systématique. La contribution
+dominante à l'erreur systématique est l'incertitude sur le facteur
+correctif appliqué aux mesures d'opacité atmosphérique. \'Evaluée pour
+les conditions d'observation d'hiver de référence de l'IRAM (pwv=2\,mm
+et $\elev = 60\degree$), cette erreur est inférieure au pourcent dans
+les deux bandes.
+
+\`A partir d'observations longue durée d'une source faible, nous avons
+vérifié que le bruit sur le flux diminuait comme l'inverse de la
+racine carré du temps d'intégration. La sensibilité de l'instrument a
+été évaluée en comparant les résultats de deux méthodes et en
+utilisant un échantillon de plus de 1000 scans, afin de
+tester sa robustesse aux choix d'analyse et aux conditions
+d'observation.
+Nous trouvons une densité de flux équivalente au bruit (NEFD) de
+$9\pm1$\,mJy.s$^{1/2}$ à 150\,GHz et de $30\pm3$\,mJy.s$^{1/2}$ à
+260\,GHz. \`A partir de ces estimations, nous avons dérivé la vitesse
+de cartographie (\emph{mapping speed}), c'est-à-dire la zone du ciel
+qui peut être cartographiée à une profondeur de 1\,mJy en une heure
+d'intégration. Nous trouvons une \emph{mapping speed} de 1388$\pm$174
+et 111$\pm$11 arcmin$^2$/mJy$^2$/h à 150 et 260\,GHz. Ces capacités de
+cartographie placent NIKA2 parmi les meilleures instruments
+millimétriques haute résolution de sa génération~\citep{Tony2019}.
+
+
+%Les observations de NIKA2 devraient susciter des avancées
+%significatives dans plusieurs domaines de l'astrophysique et la cosmologie.
 
 \section{Perspectives d'amélioration}
 
-% 1 page
+NIKA2 satisfait tous les critères de performance requis par l'IRAM et
+conditionnant son installation définitive au télescope de 30-m. Pour
+certaines caractéristisques, l'objectif ambitieux vers lequel tendre,
+après des améliorations successives, est déjà atteint, voire
+surpassé. C'est le cas de la sensibilité dans le canal d'observation à
+150\,GHz. Par exemple, une carte à 150\,GHz, couvrant tout le champ de
+vue et à une profondeur de quelques centaines de $\mu$Jy peut être
+obtenue en une heure de temps d'observation. Ce canal de fréquence
+bénéficie d'une combinaison de conditions favorables, allant d'une plus grande
+facilité de construction des matrices de KID à un moindre impact de
+l'opacité atmosphérique, en passant par de meilleures performances du
+système optique jusqu'au miroir primaire du télescope. Ainsi NIKA2 est
+un instrument idéal pour cartographier l'émission diffuse à 150\,GHz
+(e.g. les amas de galaxies via l'effet Sunyaev-Zel'dovich). En
+revanche, la situation s'inverse dans la bande à 260\,GHz, où se
+cumulent les facteurs limitants. Ainsi, la sensibilité à 260\,GHz est
+juste acceptable, avec une RMS du bruit dans le champ de vue d'environ
+0.7\,mJy en une heure d'observation dans les conditions de référence
+de l'IRAM. Plusieurs pistes d'amélioration existent, dont certaines
+font d'hors et déjà l'objet de développements. Ces améliorations
+concernent le dispositif instrumental, la connaissance de l'instrument
+et la méthode de calibration, et la méthode d'analyse des données.
 
-{\color{vert}\lipsum[2-5]}
+\subsubsection{Améliorations instrumentales}
+
+Le principal facteur limitant la sensibilité à 260\,GHz est la
+transmission sous-optimale de la lame dichroïque qui affecte
+principalement la composante de polarisation illuminant la matrice A1
+mais a aussi un impact sur la matrice A3 (voir
+Sect.~\ref{se:gains}). Des développements sont en cours à Cardiff pour
+fournir les lames dichroïques combinant grande taille et haute
+performance nécessaires à NIKA2 et aux futurs instruments
+millimétriques. En parallèle, la construction d'un banc test, incluant
+un système optique refroidi à environ 100\,mK, est prévue à Grenoble.
+
+Les bandes passantes des matrices à 1\,mm sont actuellement limitées à
+la zone centrale de la fenêtre permise par l'atmosphérique, leur
+conférant une robustesse aux variations des conditions atmosphériques.  
+Cette caractéristique permet à NIKA2 d'effectuer des observations
+exploitables à 260\,GHz même dans des conditions atmosphériques
+défavorables, aux prix d'une réduction de la sensibilité dasn ce
+canal. Des matrices à 1\,mm acceptant une bande passante plus
+large ont été développées à l'Institut Néel. 
+
+La bande fréquencielle de l'électronique de lecture NIKEL-AMC limite
+le nombre de KID qui peuvent être connectés à une même ligne de
+base. Une nouvelle électronique est en cours de développement au LPSC
+afin de doubler la largeur de bande. Cette nouvelle capacité pourrait
+être exploitée de plusieurs manières : réduire la taille des KID des
+matrices à 1\,mm pour un meilleur échantillonage du champ de vue et à
+la clef, un gain en résolution angulaire, espacer les fréquences de
+résonance des KID afin de réduire la diaphonie et \emph{in fine}
+augmenter le nombre de détecteurs utilisables, résoudre le problème de
+diminution du gain des détecteurs en fonction de leur place dans la
+bande fréquentielle. 
+
+NIKA2 bénéficierait également d'améliorations du télescope de
+30-m. Une rénovation de la surface du miroir primaire limiterait
+l'effet d'élargissement apparent du lobe dù aux variations de
+température externe. Elle se traduirait aussi par une meilleure
+efficacité du lobe principal à 260\,GHz, ce qui contribuerait à
+améliorer la sensibilité. 
+
+\subsubsection{Améliorations de la calibration et l'analyse}
+
+Suite aux interventions sur l'instrument et aux améliorations
+apportées pendant la période de commissioning, les bandes passantes
+ont pu légèrement varier par rapport à celles du dispositif
+instrumental avant l'installation au télescope, telles qu'elles
+avaient été précisément mesurées au laboratoire. Les bandes passantes
+sont actuellement en cours de caractérisation \emph{in situ} au moyen
+d'un interféromètre Martin-Pupplett dédié, construit à l'Institut
+Néel, et venant se placer devant la fenêtre d'entrée du
+cryostat. Cette caractérisation précise permettra de réduire les
+incertitudes liées aux corrections de couleur sur les
+densité de flux. Plus indirectement et avec sans doute plus d'impact
+encore, elle permettra de simuler l'effet de l'atmosphère intégré dans
+les bandes passantes à partir de modèles physiques de type
+ATM~\citep{Pardo2001, ATM}. Ces simulations, ainsi que la possibilité
+d'extrapoler les mesures issues du tau-mètre résident aux fréquences
+de NIKA2, seront cruciales pour tester nos méthodes d'estimation de
+l'opacité atmosphérique pour chaque scan. \`A la clef, l'objectif est
+d'améliorer la méthode \emph{skydip} pour l'estimation de l'opacité
+atmosphérique, afin d'obtenir des densités de flux robustes à
+l'atténuation de l'atmosphère, sans avoir recours à un facteur
+correctif.
+
+La déformation résiduelle du miroir primaire sous l'effet de son poids
+a un impact sur le flux dépendant de l'élévation à laquelle il
+observe. Cet effet est connu sous le nom de corrélation
+gain-élévation~\citep{Greve1998b}. Une mesure plus précise de
+l'atténuation atmosphérique, elle aussi dépendante de l'élévation, 
+permettrait de mesurer l'effet gain-élévation avec une précision
+suffisante pour corriger les densités de flux, améliorant encore
+l'erreur RMS de calibration.
+
+Une autre piste d'amélioration de la calibration concerne les
+lobes. En particulier, la mesure du lobe total pourrait être étendue
+au delà de 180''. Pour cela, deux methodes sont
+envisageables. Une observation dédiée vers une source compacte très
+brillante, telle Mars, dans des conditions d'observation favorables,
+permettrait de construire une carte étendue sans soustraction de
+l'atmosphère et donc avec un filtrage minimale des grandes échelles
+angulaires. La deuxième piste requièrerait le développement de
+méthodes de traitement du bruit corrélé qui préservent le signal aux
+plus grandes échelles angulaires.
+
+
+Plus généralement, l'amélioration de la décorrélation du bruit et la
+caractérisation fine des effets de filtrages spatiaux constituent des
+développements cruciaux et prioritaires de l'analyse de données. Là
+encore, plusieurs pistes sont à l'étude, dont certaines mobilisent
+déjà d'importants efforts. C'est le cas des méthodes visant à
+l'amélioration du \emph{template} soustrait au signal de chacun des
+détecteurs~\citep{Ponthieu2020}. Par exemple, dans \citet{Ruppin2019},
+chaque \emph{template} résulte d'une combinaison d'un mode commun par
+matrice, d'un mode commun par sous-bandes électroniques et d'une
+composante dépendante de la tragectoire effectuée par le détecteur sur
+le ciel. Une autre piste actuellement explorée consiste à adapter des
+méthodes existantes de fabrication de cartes aux observations de
+NIKA2. Par exemple, une version dédiée à NIKA2 de
+\emph{Scanamorphos}~\citep{Roussel2013, Roussel2018}, un outil de
+correction du bruit basse-fréquence ou \emph{destriage} est
+actuellement en cours de tests. Enfin, une réflexion est menée pour
+développer des méthodes de type \emph{destrieur} spécifiques pour les
+observations avec des KID.
+
+\section{Conclusion}
+Les performances de NIKA2 sont conformes aux attentes
+et exceptionnelles pour certaines (sensibilité à 150\,GHz). Ces
+performances ont motivé la décision de l'IRAM de
+l'ouverture de NIKA2 à la communauté scientifique dès octobre 2017.
+Il enregistre déja 18 campagnes d'observation scientifique et restera
+un instrument à demeure du télescope de 30-m de l'IRAM pour
+au moins une décennie. L'exploitation scientifique a d'hors et déjà
+commencée.
+
+NIKA2 installé au 30-m de l'IRAM est actuellement l'unique opportunité
+pour cartographier un champ de vue aussi large (6,5'' de diamètre) à
+une résolution angulaire aussi fine (mieux que 18'') et simultanément
+dans deux bandes de fréquence du domaine millimétrique. Il offre donc
+une vue sans précédent sur l'univers millimétrique. Ainsi, il fournira
+des observations critiques, aussi bien aux échelles planétaires et
+galactiques qu'à hauts \emph{redshifts}, pour permettre des avancées
+majeures dans de nombreux domaines de l'astrophysique et la
+cosmologie~\citep[e.g.]{Rigby2018, Bracco2017, Bethermin2017, Mancuso2016,
+  Ruppin2019a}.
+%Par exemple, les observations de NIKA2 seront clef pour
+%quantifier l'impact de l'environment sur les propriétés de la
+%poussières et le processus de formation planétaire, pour comprendre la
+%formation stellaire et sonder son évolution à toutes les époques, pour
+%améliorer notre connaissance de la formation des structures à grande
+%échelle et leur évolution à travers les ages cosmiques et sonder
+%l'univers avec les amas de galaxies.   
+
+
+NIKA2 est actuellement le meilleur instrument millimétrique pour la cartographie
+haute-résolution des amas de galaxies à redshifts intermédiaires à
+élevés ($z\in[0.5, 0.9]$) via l'effet Sunyaev-Zel'dovich. Son champ de
+vue englobe un lobe de \emph{Planck}, tandis que sa résolution
+angulaire est 17 fois meilleure. En alliant une haute résolution
+angulaire et une grande vitesse de cartographie, il permet la
+caractérisation des amas depuis leur coeur jusqu'à leur
+périphérie. Les deux bandes de fréquence permettent de capturer
+la signature spectrale de l'effet SZ pour une séparation
+efficace des contaminants : la bande à 150\,GHz inclut le
+maximum du signal SZ négatif, tandis que la bande à 260\,GHz mesure un
+signal SZ très légèrement positif. L'exploitation des données de NIKA2
+pour l'étude des amas de galaxie en tant que sonde cosmologique
+constituera une importante partie de mon activité de recherche dans les
+années à venir. La thématique de la cosmologie avec les amas de
+galaxie, au coeur de mon projet de recherche, sera détaillée dans la
+dernière partie de ce manuscript.
+

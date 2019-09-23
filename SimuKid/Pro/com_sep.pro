@@ -17,7 +17,7 @@ map_xsize  = 20. ; 10.
 map_ysize = map_xsize
 
 ;; Power of two to save time in FFT's
-r = 9.
+r = 8 ; 9
 nx = 2L^r
 ny = 2L^r
 res_arcmin = map_xsize*60./nx ; arcmin
@@ -352,6 +352,7 @@ cle_out_res = dblarr(nmc,nk)
 clb_out_res = dblarr(nmc,nk)
 clte_out_res = dblarr(nmc,nk)
 for imc=0, nmc-1 do begin
+   print, strtrim(imc,2)+"/"+strtrim(nmc-1,2)
 
    ;; cmb spectra are in microK_CMB^2
    cls2mapsiqu, l, cmb_clt, cmb_cle, cmb_clb, cmb_clte, nx, res_arcmin/60., $
@@ -468,19 +469,19 @@ mc_reduce, cle_out_res, cle_out_avg, sigma_cle_out_avg
 mc_reduce, clb_out_res, clb_out_avg, sigma_clb_out_avg
 mc_reduce, clte_out_res, clte_out_avg, sigma_clte_out_avg
 
-wind, 1, 1, /free, /large, /free
+wind, 1, 1, /free, /large
 yra = [1d-6, 1d4]
 xra = [1, max(k)*2]
 plot_oo, k, clt_out_avg, xra=xra, /xs, yra=yra, /ys, $
          xtitle='Multipole l', ytitle='l(l+1)C!dl!n/2!7p!3 !7l!3K!u2!n', $
          psym=psym, syms=syms
 oploterror, k, clt_out_avg, sigma_clt_out_avg, psym=psym, syms=syms
-oploterror, k, cle_out_avg, sigma_clt_out_avg, psym=psym, syms=syms, col=col_e
-oploterror, k, clb_out_avg, sigma_clt_out_avg, psym=psym, syms=syms, col=col_b
-oploterror, k, abs(clte_out_avg), sigma_clt_out_avg, psym=psym, syms=syms, col=col_te
-oplot, l, cmb_clt
-oplot, l, cmb_cle, col=col_e
-oplot, l, cmb_clte, col=col_te
+oploterror, k, cle_out_avg, sigma_clt_out_avg, psym=psym, syms=syms, col=col_e, errcol=col_e
+;oploterror, k, clb_out_avg, sigma_clt_out_avg, psym=psym, syms=syms, col=col_b, errcol=col_b
+oploterror, k, abs(clte_out_avg), sigma_clt_out_avg, psym=psym, syms=syms, col=col_te, errcol=col_te
+oplot, l, l*(l+1)/(2*!dpi)*cmb_clt
+oplot, l, l*(l+1)/(2*!dpi)*cmb_cle, col=col_e
+oplot, l, l*(l+1)/(2*!dpi)*abs(cmb_clte), col=col_te
 legendastro, 'Epsilon = '+strtrim(epsilon,2)
 
 

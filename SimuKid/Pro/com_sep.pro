@@ -364,7 +364,7 @@ for imc=0, nmc-1 do begin
    npix = n_elements(cmb_t)
    atd = dblarr(npix,ncomp*nstokes)
 
-   for inu=0, n_elements(nu_list)-1 do begin
+   for inu=0, n_elements(nu)-1 do begin
       rj2k = rj2thermo(nu[inu])
       
       ;; Scale brightness
@@ -424,24 +424,30 @@ for imc=0, nmc-1 do begin
       endfor
    endfor
 
-   ;; Perform componente separation
+   ;; Perform component separation
    s = atam1##atd
    out_cmb_t  = reform( s[*,0], nx, ny)
    out_cmb_q  = reform( s[*,1], nx, ny)
    out_cmb_u  = reform( s[*,2], nx, ny)
    
    wind, 1, 1, /free, /large
-   my_multiplot, 3, 3, pp, pp1, /rev
-   imview, cmb_t, position=pp1[0,*], title='input T'
-   imview, cmb_q, position=pp1[1,*], title='input Q', /noerase
-   imview, cmb_u, position=pp1[2,*], title='input U', /noerase
-   imview, out_cmb_t, position=pp1[3,*], title='input T', /noerase
-   imview, out_cmb_q, position=pp1[4,*], title='input Q', /noerase
-   imview, out_cmb_u, position=pp1[5,*], title='input U', /noerase
-stop
+   my_multiplot, 3, 4, pp, pp1, /rev, /full, /dry
+   dp = {noerase:1, charsize:0.6, charbar:0.6}
+   imview, nu0_dust_t, position=pp1[0,*], title='Input dust T', dp=dp
+   imview, nu0_dust_q, position=pp1[1,*], title='Input dust Q', dp=dp
+   imview, nu0_dust_u, position=pp1[2,*], title='Input dust U', dp=dp
 
+   imview, nu0_sync_t, position=pp1[3,*], title='Input sync T', dp=dp
+   imview, nu0_sync_q, position=pp1[4,*], title='Input sync Q', dp=dp
+   imview, nu0_sync_u, position=pp1[5,*], title='Input sync U', dp=dp
 
+   imview, cmb_t, position=pp1[6,*], title='input CMB T', dp=dp
+   imview, cmb_q, position=pp1[7,*], title='input CMB Q', dp=dp
+   imview, cmb_u, position=pp1[8,*], title='input CMB U', dp=dp
 
+   imview, out_cmb_t, position=pp1[9,*], title='output T CMB', dp=dp
+   imview, out_cmb_q, position=pp1[10,*], title='output Q CMB', dp=dp
+   imview, out_cmb_u, position=pp1[11,*], title='output U CMB', dp=dp
 
    qu2eb, out_cmb_q, out_cmb_u, res_arcmin, out_cmb_e, out_cmb_b
    ipoker, out_cmb_t, res_arcmin, k, pk_cmb_t, /bypass, /rem, delta_l_over_l=delta_l_over_l

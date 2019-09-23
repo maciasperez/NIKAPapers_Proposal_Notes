@@ -282,59 +282,59 @@ for inu=0, n_elements(nu)-1 do begin
       cos2alpha = cos(2*alpha[ialpha])
       sin2alpha = sin(2*alpha[ialpha])
 
-      ata[0,0] += (1./rj2k)^2
-      ata[1,0] += (1./rj2k)^2 * cos2alpha
-      ata[2,0] += (1./rj2k)^2 * sin2alpha
-      ata[3,0] += (1./rj2k)   * (nu[inu]/nu0)^beta_dust
-      ata[4,0] += (1./rj2k)   * (nu[inu]/nu0)^beta_dust*cos2alpha
-      ata[5,0] += (1./rj2k)   * (nu[inu]/nu0)^beta_dust*sin2alpha
-      ata[6,0] += (1./rj2k)   * (nu[inu]/nu0)^beta_sync
-      ata[7,0] += (1./rj2k)   * (nu[inu]/nu0)^beta_sync*cos2alpha
-      ata[8,0] += (1./rj2k)   * (nu[inu]/nu0)^beta_sync*sin2alpha
+      ata[0,0] += 1.d0
+      ata[1,0] += cos2alpha
+      ata[2,0] += sin2alpha
+      ata[3,0] += rj2k * (nu[inu]/nu0)^beta_dust
+      ata[4,0] += rj2k * (nu[inu]/nu0)^beta_dust*cos2alpha
+      ata[5,0] += rj2k * (nu[inu]/nu0)^beta_dust*sin2alpha
+      ata[6,0] += rj2k * (nu[inu]/nu0)^beta_sync
+      ata[7,0] += rj2k * (nu[inu]/nu0)^beta_sync*cos2alpha
+      ata[8,0] += rj2k * (nu[inu]/nu0)^beta_sync*sin2alpha
 
-      ata[1,1] += (1./rj2k)^2 * cos2alpha^2
-      ata[2,1] += (1./rj2k)^2 * cos2alpha*sin2alpha
-      ata[3,1] += (1./rj2k)   * (nu[inu]/nu0)^beta_dust*cos2alpha
-      ata[4,1] += (1./rj2k)   * (nu[inu]/nu0)^beta_dust*cos2alpha^2
-      ata[5,1] += (1./rj2k)   * (nu[inu]/nu0)^beta_dust*sin2alpha*cos2alpha
-      ata[6,1] += (1./rj2k)   * (nu[inu]/nu0)^beta_sync*cos2alpha
-      ata[7,1] += (1./rj2k)   * (nu[inu]/nu0)^beta_sync*cos2alpha^2
-      ata[8,1] += (1./rj2k)   * (nu[inu]/nu0)^beta_sync*sin2alpha*cos2alpha
+      ata[1,1] += cos2alpha^2
+      ata[2,1] += cos2alpha*sin2alpha
+      ata[3,1] += rj2k * (nu[inu]/nu0)^beta_dust*cos2alpha
+      ata[4,1] += rj2k * (nu[inu]/nu0)^beta_dust*cos2alpha^2
+      ata[5,1] += rj2k * (nu[inu]/nu0)^beta_dust*sin2alpha*cos2alpha
+      ata[6,1] += rj2k * (nu[inu]/nu0)^beta_sync*cos2alpha
+      ata[7,1] += rj2k * (nu[inu]/nu0)^beta_sync*cos2alpha^2
+      ata[8,1] += rj2k * (nu[inu]/nu0)^beta_sync*sin2alpha*cos2alpha
 
-      ata[2,2] += (1./rj2k)^2 * sin2alpha^2
-      ata[3,2] += (1./rj2k)   * (nu[inu]/nu0)^beta_dust*sin2alpha
-      ata[4,2] += (1./rj2k)   * (nu[inu]/nu0)^beta_dust*cos2alpha*sin2alpha
-      ata[5,2] += (1./rj2k)   * (nu[inu]/nu0)^beta_dust*sin2alpha^2
-      ata[6,2] += (1./rj2k)   * (nu[inu]/nu0)^beta_sync*sin2alpha
-      ata[7,2] += (1./rj2k)   * (nu[inu]/nu0)^beta_sync*cos2alpha*sin2alpha
-      ata[8,2] += (1./rj2k)   * (nu[inu]/nu0)^beta_sync*sin2alpha^2
+      ata[2,2] += sin2alpha^2
+      ata[3,2] += rj2k * (nu[inu]/nu0)^beta_dust*sin2alpha
+      ata[4,2] += rj2k * (nu[inu]/nu0)^beta_dust*cos2alpha*sin2alpha
+      ata[5,2] += rj2k * (nu[inu]/nu0)^beta_dust*sin2alpha^2
+      ata[6,2] += rj2k * (nu[inu]/nu0)^beta_sync*sin2alpha
+      ata[7,2] += rj2k * (nu[inu]/nu0)^beta_sync*cos2alpha*sin2alpha
+      ata[8,2] += rj2k * (nu[inu]/nu0)^beta_sync*sin2alpha^2
 
-      ata[3,3] += (nu[inu]/nu0)^(2.*beta_dust)
-      ata[4,3] += (nu[inu]/nu0)^beta_dust * (nu[inu]/nu0)^beta_dust*cos2alpha
-      ata[5,3] += (nu[inu]/nu0)^beta_dust * (nu[inu]/nu0)^beta_dust*sin2alpha
-      ata[6,3] += (nu[inu]/nu0)^beta_dust * (nu[inu]/nu0)^beta_sync
-      ata[7,3] += (nu[inu]/nu0)^beta_dust * (nu[inu]/nu0)^beta_sync*cos2alpha
-      ata[8,3] += (nu[inu]/nu0)^beta_dust * (nu[inu]/nu0)^beta_sync*sin2alpha
+      ata[3,3] += rj2k^2 * (nu[inu]/nu0)^(2.*beta_dust)
+      ata[4,3] += rj2k^2 * (nu[inu]/nu0)^beta_dust * (nu[inu]/nu0)^beta_dust*cos2alpha
+      ata[5,3] += rj2k^2 * (nu[inu]/nu0)^beta_dust * (nu[inu]/nu0)^beta_dust*sin2alpha
+      ata[6,3] += rj2k^2 * (nu[inu]/nu0)^beta_dust * (nu[inu]/nu0)^beta_sync
+      ata[7,3] += rj2k^2 * (nu[inu]/nu0)^beta_dust * (nu[inu]/nu0)^beta_sync*cos2alpha
+      ata[8,3] += rj2k^2 * (nu[inu]/nu0)^beta_dust * (nu[inu]/nu0)^beta_sync*sin2alpha
 
-      ata[4,4] += (nu[inu]/nu0)^(2.*beta_dust)*cos2alpha^2
-      ata[5,4] += (nu[inu]/nu0)^(2.*beta_dust)*cos2alpha*sin2alpha
-      ata[6,4] += (nu[inu]/nu0)^beta_dust * (nu[inu]/nu0)^beta_sync*cos2alpha
-      ata[7,4] += (nu[inu]/nu0)^beta_dust * (nu[inu]/nu0)^beta_sync*cos2alpha^2
-      ata[8,4] += (nu[inu]/nu0)^beta_dust * (nu[inu]/nu0)^beta_sync*cos2alpha*sin2alpha
+      ata[4,4] += rj2k^2 * (nu[inu]/nu0)^(2.*beta_dust)*cos2alpha^2
+      ata[5,4] += rj2k^2 * (nu[inu]/nu0)^(2.*beta_dust)*cos2alpha*sin2alpha
+      ata[6,4] += rj2k^2 * (nu[inu]/nu0)^beta_dust * (nu[inu]/nu0)^beta_sync*cos2alpha
+      ata[7,4] += rj2k^2 * (nu[inu]/nu0)^beta_dust * (nu[inu]/nu0)^beta_sync*cos2alpha^2
+      ata[8,4] += rj2k^2 * (nu[inu]/nu0)^beta_dust * (nu[inu]/nu0)^beta_sync*cos2alpha*sin2alpha
  
-      ata[5,5] += (nu[inu]/nu0)^(2.*beta_dust)*sin2alpha^2
-      ata[6,5] += (nu[inu]/nu0)^beta_dust * (nu[inu]/nu0)^beta_sync*sin2alpha
-      ata[7,5] += (nu[inu]/nu0)^beta_dust * (nu[inu]/nu0)^beta_sync*cos2alpha*sin2alpha
-      ata[8,5] += (nu[inu]/nu0)^beta_dust * (nu[inu]/nu0)^beta_sync*sin2alpha^2
+      ata[5,5] += rj2k^2 * (nu[inu]/nu0)^(2.*beta_dust)*sin2alpha^2
+      ata[6,5] += rj2k^2 * (nu[inu]/nu0)^beta_dust * (nu[inu]/nu0)^beta_sync*sin2alpha
+      ata[7,5] += rj2k^2 * (nu[inu]/nu0)^beta_dust * (nu[inu]/nu0)^beta_sync*cos2alpha*sin2alpha
+      ata[8,5] += rj2k^2 * (nu[inu]/nu0)^beta_dust * (nu[inu]/nu0)^beta_sync*sin2alpha^2
       
-      ata[6,6] += (nu[inu]/nu0)^(2.*beta_sync)
-      ata[7,6] += (nu[inu]/nu0)^beta_sync * (nu[inu]/nu0)^beta_sync* cos2alpha
-      ata[8,6] += (nu[inu]/nu0)^beta_sync * (nu[inu]/nu0)^beta_sync* sin2alpha
+      ata[6,6] += rj2k^2 * (nu[inu]/nu0)^(2.*beta_sync)
+      ata[7,6] += rj2k^2 * (nu[inu]/nu0)^beta_sync * (nu[inu]/nu0)^beta_sync* cos2alpha
+      ata[8,6] += rj2k^2 * (nu[inu]/nu0)^beta_sync * (nu[inu]/nu0)^beta_sync* sin2alpha
       
-      ata[7,7] += (nu[inu]/nu0)^(2.*beta_sync)*cos2alpha^2
-      ata[8,7] += (nu[inu]/nu0)^(2.*beta_sync)*cos2alpha*sin2alpha
+      ata[7,7] += rj2k^2 * (nu[inu]/nu0)^(2.*beta_sync)*cos2alpha^2
+      ata[8,7] += rj2k^2 * (nu[inu]/nu0)^(2.*beta_sync)*cos2alpha*sin2alpha
       
-      ata[8,8] += (nu[inu]/nu0)^(2.*beta_sync)*sin2alpha^2
+      ata[8,8] += rj2k^2 * (nu[inu]/nu0)^(2.*beta_sync)*sin2alpha^2
    endfor
 endfor
 ;; finish ata
@@ -370,19 +370,13 @@ for imc=0, nmc-1 do begin
    for inu=0, n_elements(nu)-1 do begin
       rj2k = rj2thermo(nu[inu])
       
-      ;; Scale brightness
-      ;; 1. convert to microK_RJ for this
-      cmb_t = cmb_t/rj2k
-      cmb_q = cmb_q/rj2k
-      cmb_u = cmb_u/rj2k
-
-      dust_t = (nu[inu]/nu0)^beta_dust * nu0_dust_t
-      dust_q = (nu[inu]/nu0)^beta_dust * nu0_dust_q
-      dust_u = (nu[inu]/nu0)^beta_dust * nu0_dust_u
+      dust_t = rj2k * (nu[inu]/nu0)^beta_dust * nu0_dust_t
+      dust_q = rj2k * (nu[inu]/nu0)^beta_dust * nu0_dust_q
+      dust_u = rj2k * (nu[inu]/nu0)^beta_dust * nu0_dust_u
       
-      sync_t = (nu[inu]/nu0)^beta_sync * nu0_sync_t
-      sync_q = (nu[inu]/nu0)^beta_sync * nu0_sync_q
-      sync_u = (nu[inu]/nu0)^beta_sync * nu0_sync_u
+      sync_t = rj2k * (nu[inu]/nu0)^beta_sync * nu0_sync_t
+      sync_q = rj2k * (nu[inu]/nu0)^beta_sync * nu0_sync_q
+      sync_u = rj2k * (nu[inu]/nu0)^beta_sync * nu0_sync_u
       
       for ialpha=0, ndet-1 do begin
          cos2alpha = cos(2*alpha[ialpha])
@@ -390,17 +384,17 @@ for imc=0, nmc-1 do begin
 
          ;; Convert to Mjy/sr
          lambda_microns = !const.c/(nu[inu]*1d9)*1d6
-         convert_millik_megajy, lambda_microns, cmb_t/1000., cmb_t_megajy, /rj
-         convert_millik_megajy, lambda_microns, cmb_q/1000., cmb_q_megajy, /rj
-         convert_millik_megajy, lambda_microns, cmb_u/1000., cmb_u_megajy, /rj
+         convert_millik_megajy, lambda_microns, cmb_t/1000., cmb_t_megajy, /cmb
+         convert_millik_megajy, lambda_microns, cmb_q/1000., cmb_q_megajy, /cmb
+         convert_millik_megajy, lambda_microns, cmb_u/1000., cmb_u_megajy, /cmb
 
-         convert_millik_megajy, lambda_microns, dust_t/1000., dust_t_megajy, /rj
-         convert_millik_megajy, lambda_microns, dust_q/1000., dust_q_megajy, /rj
-         convert_millik_megajy, lambda_microns, dust_u/1000., dust_u_megajy, /rj
+         convert_millik_megajy, lambda_microns, dust_t/1000., dust_t_megajy, /cmb
+         convert_millik_megajy, lambda_microns, dust_q/1000., dust_q_megajy, /cmb
+         convert_millik_megajy, lambda_microns, dust_u/1000., dust_u_megajy, /cmb
 
-         convert_millik_megajy, lambda_microns, sync_t/1000., sync_t_megajy, /rj
-         convert_millik_megajy, lambda_microns, sync_q/1000., sync_q_megajy, /rj
-         convert_millik_megajy, lambda_microns, sync_u/1000., sync_u_megajy, /rj
+         convert_millik_megajy, lambda_microns, sync_t/1000., sync_t_megajy, /cmb
+         convert_millik_megajy, lambda_microns, sync_q/1000., sync_q_megajy, /cmb
+         convert_millik_megajy, lambda_microns, sync_u/1000., sync_u_megajy, /cmb
 
          ;; Effective Stokes parameters
          flux_i = cmb_t_megajy + dust_t_megajy + sync_t_megajy
@@ -412,18 +406,18 @@ for imc=0, nmc-1 do begin
          m = m + epsilon*m^2
 
          ;; Convert back to thermodynamic temperature
-         convert_megajy_millik, lambda_microns, m, m_mk, /rj
+         convert_megajy_millik, lambda_microns, m, m_mk, /cmb
          m_microK = m_mk*1d3
 
-         atd[*,0] +=  (1./rj2k) * m_microK
-         atd[*,1] +=  (1./rj2k) * m_microK*cos2alpha
-         atd[*,2] +=  (1./rj2k) * m_microK*sin2alpha
-         atd[*,3] += (nu[inu]/nu0)^beta_dust           * m_microK
-         atd[*,4] += (nu[inu]/nu0)^beta_dust*cos2alpha * m_microK
-         atd[*,5] += (nu[inu]/nu0)^beta_dust*sin2alpha * m_microK
-         atd[*,6] += (nu[inu]/nu0)^beta_sync           * m_microK
-         atd[*,7] += (nu[inu]/nu0)^beta_sync*cos2alpha * m_microK
-         atd[*,8] += (nu[inu]/nu0)^beta_sync*sin2alpha * m_microK
+         atd[*,0] +=  m_microK
+         atd[*,1] +=  m_microK*cos2alpha
+         atd[*,2] +=  m_microK*sin2alpha
+         atd[*,3] += rj2k * (nu[inu]/nu0)^beta_dust           * m_microK
+         atd[*,4] += rj2k * (nu[inu]/nu0)^beta_dust*cos2alpha * m_microK
+         atd[*,5] += rj2k * (nu[inu]/nu0)^beta_dust*sin2alpha * m_microK
+         atd[*,6] += rj2k * (nu[inu]/nu0)^beta_sync           * m_microK
+         atd[*,7] += rj2k * (nu[inu]/nu0)^beta_sync*cos2alpha * m_microK
+         atd[*,8] += rj2k * (nu[inu]/nu0)^beta_sync*sin2alpha * m_microK
       endfor
    endfor
 
@@ -453,33 +447,34 @@ for imc=0, nmc-1 do begin
 ;;    imview, out_cmb_q, position=pp1[10,*], title='output Q CMB', dp=dp
 ;;    imview, out_cmb_u, position=pp1[11,*], title='output U CMB', dp=dp
 ;;
-    wind, 1, 1, /free, /large
-    my_multiplot, 3, 3, pp, pp1, /rev
-    dp = {noerase:1, charsize:0.6, charbar:0.6}
-    imview, cmb_t, position=pp1[0,*], title='input CMB T', dp=dp
-    imview, cmb_q, position=pp1[1,*], title='input CMB Q', dp=dp
-    imview, cmb_u, position=pp1[2,*], title='input CMB U', dp=dp
- 
-    imview, out_cmb_t, position=pp1[3,*], title='output T CMB', dp=dp
-    imview, out_cmb_q, position=pp1[4,*], title='output Q CMB', dp=dp
-    imview, out_cmb_u, position=pp1[5,*], title='output U CMB', dp=dp
 
-    plot, cmb_t, out_cmb_t, psym=1, position=pp1[6,*], /noerase
-    fit = linfit( cmb_t, out_cmb_t)
-    oplot, minmax(cmb_t), fit[0] + fit[1]*minmax(cmb_t)
-    legendastro, ['T', strtrim(fit,2)]
-
-    plot, cmb_q, out_cmb_q, psym=1, position=pp1[7,*], /noerase
-    fit = linfit( cmb_q, out_cmb_q)
-    oplot, minmax(cmb_q), fit[0] + fit[1]*minmax(cmb_q)
-    legendastro, ['Q', strtrim(fit,2)]
-
-    plot, cmb_u, out_cmb_u, psym=1, position=pp1[8,*], /noerase
-    fit = linfit( cmb_u, out_cmb_u)
-    oplot, minmax(cmb_u), fit[0] + fit[1]*minmax(cmb_u)
-    legendastro, ['U', strtrim(fit,2)]
-
-stop
+;;    wind, 1, 1, /free, /large
+;;    my_multiplot, 3, 3, pp, pp1, /rev
+;;    dp = {noerase:1, charsize:0.6, charbar:0.6}
+;;    imview, cmb_t, position=pp1[0,*], title='input CMB T', dp=dp
+;;    imview, cmb_q, position=pp1[1,*], title='input CMB Q', dp=dp
+;;    imview, cmb_u, position=pp1[2,*], title='input CMB U', dp=dp
+;; 
+;;    imview, out_cmb_t, position=pp1[3,*], title='output T CMB', dp=dp
+;;    imview, out_cmb_q, position=pp1[4,*], title='output Q CMB', dp=dp
+;;    imview, out_cmb_u, position=pp1[5,*], title='output U CMB', dp=dp
+;;
+;;    plot, cmb_t, out_cmb_t, psym=1, position=pp1[6,*], /noerase
+;;    fit = linfit( cmb_t, out_cmb_t)
+;;    oplot, minmax(cmb_t), fit[0] + fit[1]*minmax(cmb_t)
+;;    legendastro, ['T', strtrim(fit,2)]
+;;
+;;    plot, cmb_q, out_cmb_q, psym=1, position=pp1[7,*], /noerase
+;;    fit = linfit( cmb_q, out_cmb_q)
+;;    oplot, minmax(cmb_q), fit[0] + fit[1]*minmax(cmb_q)
+;;    legendastro, ['Q', strtrim(fit,2)]
+;;
+;;    plot, cmb_u, out_cmb_u, psym=1, position=pp1[8,*], /noerase
+;;    fit = linfit( cmb_u, out_cmb_u)
+;;    oplot, minmax(cmb_u), fit[0] + fit[1]*minmax(cmb_u)
+;;    legendastro, ['U', strtrim(fit,2)]
+;;
+;;stop
 
    qu2eb, out_cmb_q, out_cmb_u, res_arcmin, out_cmb_e, out_cmb_b
    ipoker, out_cmb_t, res_arcmin, k, pk_cmb_t, /bypass, /rem, delta_l_over_l=delta_l_over_l

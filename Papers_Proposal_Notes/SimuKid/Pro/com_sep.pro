@@ -429,6 +429,7 @@ for imc=0, nmc-1 do begin
 
    ;; Perform component separation
    s = atam1##atd
+   ;; CMB output is directly is microK_CMB
    out_cmb_t  = reform( s[*,0], nx, ny)
    out_cmb_q  = reform( s[*,1], nx, ny)
    out_cmb_u  = reform( s[*,2], nx, ny)
@@ -451,6 +452,34 @@ for imc=0, nmc-1 do begin
 ;;    imview, out_cmb_t, position=pp1[9,*], title='output T CMB', dp=dp
 ;;    imview, out_cmb_q, position=pp1[10,*], title='output Q CMB', dp=dp
 ;;    imview, out_cmb_u, position=pp1[11,*], title='output U CMB', dp=dp
+;;
+    wind, 1, 1, /free, /large
+    my_multiplot, 3, 3, pp, pp1, /rev
+    dp = {noerase:1, charsize:0.6, charbar:0.6}
+    imview, cmb_t, position=pp1[0,*], title='input CMB T', dp=dp
+    imview, cmb_q, position=pp1[1,*], title='input CMB Q', dp=dp
+    imview, cmb_u, position=pp1[2,*], title='input CMB U', dp=dp
+ 
+    imview, out_cmb_t, position=pp1[3,*], title='output T CMB', dp=dp
+    imview, out_cmb_q, position=pp1[4,*], title='output Q CMB', dp=dp
+    imview, out_cmb_u, position=pp1[5,*], title='output U CMB', dp=dp
+
+    plot, cmb_t, out_cmb_t, psym=1, position=pp1[6,*], /noerase
+    fit = linfit( cmb_t, out_cmb_t)
+    oplot, minmax(cmb_t), fit[0] + fit[1]*minmax(cmb_t)
+    legendastro, ['T', strtrim(fit,2)]
+
+    plot, cmb_q, out_cmb_q, psym=1, position=pp1[7,*], /noerase
+    fit = linfit( cmb_q, out_cmb_q)
+    oplot, minmax(cmb_q), fit[0] + fit[1]*minmax(cmb_q)
+    legendastro, ['Q', strtrim(fit,2)]
+
+    plot, cmb_u, out_cmb_u, psym=1, position=pp1[8,*], /noerase
+    fit = linfit( cmb_u, out_cmb_u)
+    oplot, minmax(cmb_u), fit[0] + fit[1]*minmax(cmb_u)
+    legendastro, ['U', strtrim(fit,2)]
+
+stop
 
    qu2eb, out_cmb_q, out_cmb_u, res_arcmin, out_cmb_e, out_cmb_b
    ipoker, out_cmb_t, res_arcmin, k, pk_cmb_t, /bypass, /rem, delta_l_over_l=delta_l_over_l

@@ -2,7 +2,7 @@
 ;; Simple component separation to assess impact of non linearity
 
 ;; Assumed non-linearity parameter
-epsilon = 0.d0 ; 1d-4 ;0.d0 ;1d-3 ;0.5d-1 ;1d-6 ;0.d0
+epsilon = 1d-3 ; 0.d0 ; 1d-4 ;0.d0 ;1d-3 ;0.5d-1 ;1d-6 ;0.d0
 
 ;; Foreground mask parameter
 latitude_cut = 30.
@@ -501,7 +501,7 @@ plot_oo, k, clt_out_avg, xra=xra, /xs, yra=yra, /ys, $
          psym=psym, syms=syms
 oploterror, k, clt_out_avg, sigma_clt_out_avg, psym=psym, syms=syms
 oploterror, k, cle_out_avg, sigma_clt_out_avg, psym=psym, syms=syms, col=col_e, errcol=col_e
-;oploterror, k, clb_out_avg, sigma_clt_out_avg, psym=psym, syms=syms, col=col_b, errcol=col_b
+oploterror, k, clb_out_avg, sigma_clt_out_avg, psym=psym, syms=syms, col=col_b, errcol=col_b
 oploterror, k, abs(clte_out_avg), sigma_clt_out_avg, psym=psym, syms=syms, col=col_te, errcol=col_te
 oplot, l, l*(l+1)/(2*!dpi)*cmb_clt
 oplot, l, l*(l+1)/(2*!dpi)*cmb_cle, col=col_e

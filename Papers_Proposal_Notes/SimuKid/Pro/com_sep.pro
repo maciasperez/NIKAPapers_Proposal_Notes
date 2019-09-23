@@ -2,7 +2,7 @@
 ;; Simple component separation to assess impact of non linearity
 
 ;; Assumed non-linearity parameter
-epsilon = 1d-3 ;0.d0 ;1d-3 ;0.5d-1 ;1d-6 ;0.d0
+epsilon = 1d-4 ;0.d0 ;1d-3 ;0.5d-1 ;1d-6 ;0.d0
 
 ;; Outplot format
 ps  = 0
@@ -16,7 +16,7 @@ map_ysize = map_xsize
 ;; Power of two to save time in FFT's
 r = 9.
 nx = 2L^r
-ny = 2L^5
+ny = 2L^r
 res_arcmin = map_xsize*60./nx ; arcmin
 
 ;; Foreground spectral parameters
@@ -34,9 +34,9 @@ alpha_det_deg = [0.d0, 60.d0, 120.d0]
 nmc = 10 ; 50 ;30
 
 ;;============================================
-n_nu    = n_elements(nu)
-alpha   = alpha_det_deg*!dtor
-n_alpha = n_elements(alpha)
+n_nu  = n_elements(nu)
+alpha = alpha_det_deg*!dtor
+ndet  = n_elements(alpha)
 
 ;; Quick check
 readcol, '$SK_DIR/Cl/cmb_totCls_r0.001.dat', l, clt, cle, clb, clte, $
@@ -45,18 +45,56 @@ readcol, '$SK_DIR/Cl/cmb_totCls_r0.001.dat', l, clt, cle, clb, clte, $
 fl = l*(l+1)/(2*!dpi)
 clt  /= fl
 cle  /= fl
-clb  /= fl
+clb_in = clb/fl
 clte /= fl
 
+;; No B in the simulations
+clb = cle*0.d0
 cls2mapsiqu, l, clt, cle, clb, clte, nx, res_arcmin/60., $
              map_t, map_q, map_u, cu_t, cu_e, cu_b, cu_te
 
+
+;; add non linearity, CMB only and acount for multiple detector observations
+ata = dblarr(3,3)
+atd = dblarr( long(nx)*long(ny), 3)
+for idet=0, ndet-1 do begin
+   cos2alpha = cos(2*alpha[idet])
+   sin2alpha = sin(2*alpha[idet])
+
+   ata[0,0] += 1.d0
+   ata[1,0] += cos2alpha
+   ata[2,0] += sin2alpha
+   ata[1,1] += cos2alpha^2
+   ata[2,1] += cos2alpha*sin2alpha
+   ata[2,2] += sin2alpha^2
+
+   ;; measure
+   m = map_t + cos2alpha*map_q + sin2alpha*map_u
+
+   m += epsilon*m^2
+
+   atd[*,0] += m
+   atd[*,1] += cos2alpha*m
+   atd[*,2] += sin2alpha*m
+
+endfor
+ata[0,1] = ata[1,0]
+ata[0,2] = ata[2,0]
+ata[1,2] = ata[2,1]
+
+atam1 = invert(ata)
+
+;; check
+map_t = reform( (atam1##atd)[*,0], nx, ny)
+map_q = reform( (atam1##atd)[*,1], nx, ny)
+map_u = reform( (atam1##atd)[*,2], nx, ny)
+
+;;-----------------------------------------------------------------------------------------------
 ;; Compute power spectra
 s = size(map_q)
 n        = s[1]
 lmap_rad = float(n*res_arcmin*!arcmin2rad)
 
-; Init amn fields
 amn_q = fft( map_q, /double)
 amn_u = fft( map_u, /double)
 amn_e = amn_q*0.d0
@@ -92,6 +130,7 @@ delta_l_over_l = 0.05
 ipoker, map_t, res_arcmin, k, pk_i, /bypass, /rem, delta_l_over_l=delta_l_over_l
 ipoker, map_e, res_arcmin, k, pk_e, /bypass, /rem, delta_l_over_l=delta_l_over_l
 ipoker, map_b, res_arcmin, k, pk_B, /bypass, /rem, delta_l_over_l=delta_l_over_l
+ipoker, map_t, res_arcmin, map1=map_e, k, pk_te, /bypass, /rem, delta_l_over_l=delta_l_over_l
 
 wind, 1, 1, /free, /large
 my_multiplot, 3, 2, pp, pp1, /rev
@@ -102,20 +141,25 @@ imview, map_u, position=pp1[2,*], title='U', /noerase
 imview, map_e, position=pp1[4,*], title='E', /noerase
 imview, map_b, position=pp1[5,*], title='B', /noerase
 
-yra = [1d-3,1d4]
+yra = [1d-6,1d4]
 xra = [10,2000]
 psym = 8 ; -8
 syms = 0.5
 col_e = 70
 col_b = 250
+col_te = 150
 plot_oo, k, k*(k+1)/(2*!dpi)*pk_i, yra=yra, /xs, xra=xra, psym=psym, syms=syms, $
          position=pp[0,1,*], /noerase, $
          xtitle='Multipole l', ytitle='l(l+1)/2!7p!3 C!dl'
 oplot, l, l*(l+1)/(2*!dpi)*clt
+oplot, k, k*(k+1)/(2*!dpi)*abs(pk_te), col=col_te, psym=psym, syms=syms
+oplot, l, l*(l+1)/(2*!dpi)*abs(clte), col=col_te
+oplot, l, l*(l+1)/(2*!dpi)*clb_in, col=0
 oplot,   k, k*(k+1)/(2*!dpi)*pk_e, col=col_e, psym=psym, syms=syms
 oplot, l, l*(l+1)/(2*!dpi)*cle, col=col_e
 oplot,   k, k*(k+1)/(2*!dpi)*pk_b, col=col_b, psym=psym, syms=syms
 oplot, l, l*(l+1)/(2*!dpi)*clb, col=col_b
+legendastro, 'Epsilon = '+strtrim(epsilon,2)
 
 
 ;; 
@@ -133,7 +177,7 @@ oplot, l, l*(l+1)/(2*!dpi)*clb, col=col_b
 ;;    for inu=0, n_nu-1 do begin
 ;;       rj2k = rj2thermo(nu[inu])
 ;;       
-;;       for ialpha=0, n_alpha-1 do begin
+;;       for ialpha=0, ndet-1 do begin
 ;;          cos2alpha = cos(2.*alpha[ialpha])
 ;;          sin2alpha = sin(2.*alpha[ialpha])
 ;;          

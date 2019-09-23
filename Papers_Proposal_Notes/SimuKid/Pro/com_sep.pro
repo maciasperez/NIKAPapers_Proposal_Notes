@@ -282,9 +282,9 @@ for inu=0, n_elements(nu)-1 do begin
       cos2alpha = cos(2*alpha[ialpha])
       sin2alpha = sin(2*alpha[ialpha])
 
-      ata[0,0] += 1.d0
-      ata[1,0] += cos2alpha
-      ata[2,0] += sin2alpha
+      ata[0,0] += (1./rj2k) * 1.d0
+      ata[1,0] += (1./rj2k) * cos2alpha
+      ata[2,0] += (1./rj2k) * sin2alpha
       ata[3,0] += (1./rj2k) * (nu[inu]/nu0)^beta_dust
       ata[4,0] += (1./rj2k) * (nu[inu]/nu0)^beta_dust*cos2alpha
       ata[5,0] += (1./rj2k) * (nu[inu]/nu0)^beta_dust*sin2alpha
@@ -292,8 +292,8 @@ for inu=0, n_elements(nu)-1 do begin
       ata[7,0] += (1./rj2k) * (nu[inu]/nu0)^beta_sync*cos2alpha
       ata[8,0] += (1./rj2k) * (nu[inu]/nu0)^beta_sync*sin2alpha
 
-      ata[1,1] += cos2alpha^2
-      ata[2,1] += cos2alpha*sin2alpha
+      ata[1,1] += (1./rj2k) * cos2alpha^2
+      ata[2,1] += (1./rj2k) * cos2alpha*sin2alpha
       ata[3,1] += (1./rj2k) * (nu[inu]/nu0)^beta_dust*cos2alpha
       ata[4,1] += (1./rj2k) * (nu[inu]/nu0)^beta_dust*cos2alpha^2
       ata[5,1] += (1./rj2k) * (nu[inu]/nu0)^beta_dust*sin2alpha*cos2alpha
@@ -301,7 +301,7 @@ for inu=0, n_elements(nu)-1 do begin
       ata[7,1] += (1./rj2k) * (nu[inu]/nu0)^beta_sync*cos2alpha^2
       ata[8,1] += (1./rj2k) * (nu[inu]/nu0)^beta_sync*sin2alpha*cos2alpha
 
-      ata[2,2] += sin2alpha^2
+      ata[2,2] += (1./rj2k) * sin2alpha^2
       ata[3,2] += (1./rj2k) * (nu[inu]/nu0)^beta_dust*sin2alpha
       ata[4,2] += (1./rj2k) * (nu[inu]/nu0)^beta_dust*cos2alpha*sin2alpha
       ata[5,2] += (1./rj2k) * (nu[inu]/nu0)^beta_dust*sin2alpha^2
@@ -405,22 +405,22 @@ for imc=0, nmc-1 do begin
          flux_u = cmb_u_megajy + dust_u_megajy + sync_u_megajy
 
          ;; Account for non linearity in measurement
-         m = flux_i + cos2alpha*flux_q + sin2alpha*flux_u +$
-             epsilon * (flux_i + cos2alpha*flux_q + sin2alpha*flux_u)^2
+         m = flux_i + cos2alpha*flux_q + sin2alpha*flux_u
+         m = m + epsilon*m^2
 
          ;; Convert back to thermodynamic temperature
          convert_megajy_millik, lambda_microns, m, m_mk, /cmb
          m_microK = m_mk*1d3
 
-         atd[*,0] += m_microK
-         atd[*,1] += m_microK*cos2alpha
-         atd[*,2] += m_microK*sin2alpha
-         atd[*,3] += (1./rj2k) * m_microK*(nu[inu]/nu0)^beta_dust
-         atd[*,4] += (1./rj2k) * m_microK*(nu[inu]/nu0)^beta_dust*cos2alpha
-         atd[*,5] += (1./rj2k) * m_microK*(nu[inu]/nu0)^beta_dust*sin2alpha
-         atd[*,6] += (1./rj2k) * m_microK*(nu[inu]/nu0)^beta_sync
-         atd[*,7] += (1./rj2k) * m_microK*(nu[inu]/nu0)^beta_sync*cos2alpha
-         atd[*,8] += (1./rj2k) * m_microK*(nu[inu]/nu0)^beta_sync*sin2alpha
+         atd[*,0] += (1./rj2k)* m_microK
+         atd[*,1] += (1./rj2k)* m_microK*cos2alpha
+         atd[*,2] += (1./rj2k)* m_microK*sin2alpha
+         atd[*,3] += (1./rj2k)*(nu[inu]/nu0)^beta_dust           * m_microK
+         atd[*,4] += (1./rj2k)*(nu[inu]/nu0)^beta_dust*cos2alpha * m_microK
+         atd[*,5] += (1./rj2k)*(nu[inu]/nu0)^beta_dust*sin2alpha * m_microK
+         atd[*,6] += (1./rj2k)*(nu[inu]/nu0)^beta_sync           * m_microK
+         atd[*,7] += (1./rj2k)*(nu[inu]/nu0)^beta_sync*cos2alpha * m_microK
+         atd[*,8] += (1./rj2k)*(nu[inu]/nu0)^beta_sync*sin2alpha * m_microK
       endfor
    endfor
 

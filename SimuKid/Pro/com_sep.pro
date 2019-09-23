@@ -4,6 +4,9 @@
 ;; Assumed non-linearity parameter
 epsilon = 1d-4 ;0.d0 ;1d-3 ;0.5d-1 ;1d-6 ;0.d0
 
+;; Foreground mask parameter
+latitude_cut = 30.
+
 ;; Outplot format
 ps  = 0
 png = 0
@@ -47,47 +50,172 @@ clt  /= fl
 cle  /= fl
 clb_in = clb/fl
 clte /= fl
-
 ;; No B in the simulations
 clb = cle*0.d0
 cls2mapsiqu, l, clt, cle, clb, clte, nx, res_arcmin/60., $
-             map_t, map_q, map_u, cu_t, cu_e, cu_b, cu_te
+             cmb_t, cmb_q, cmb_u, cu_t, cu_e, cu_b, cu_te
 
 
-;; add non linearity, CMB only and acount for multiple detector observations
-ata = dblarr(3,3)
-atd = dblarr( long(nx)*long(ny), 3)
-for idet=0, ndet-1 do begin
-   cos2alpha = cos(2*alpha[idet])
-   sin2alpha = sin(2*alpha[idet])
+;; Get foreground maps and derive fit power spectra
+nside = 256
+if defined(i_dust_ref) eq 0 then begin
+   get_planck_maps, nside, $
+                    i_cmb, q_cmb, u_cmb, $
+                    i_dust_ref, q_dust_ref, u_dust_ref, $
+                    i_sync_ref, q_sync_ref, u_sync_ref, /noplot
+endif
 
-   ata[0,0] += 1.d0
-   ata[1,0] += cos2alpha
-   ata[2,0] += sin2alpha
-   ata[1,1] += cos2alpha^2
-   ata[2,1] += cos2alpha*sin2alpha
-   ata[2,2] += sin2alpha^2
+npix = nside2npix(nside)
+cover = dblarr(npix)+1.d0
 
-   ;; measure
-   m = map_t + cos2alpha*map_q + sin2alpha*map_u
+;; Mask out the galactic plane (OK too)
+if latitude_cut gt 0 then begin
+   cover        = dblarr(npix)
+   ipring       = lindgen(npix)
+   pix2ang_ring, nside, ipring, theta, phi
+   latitude = 90.-theta*!radeg
+   w = where( abs(latitude) ge latitude_cut, nw)
+   cover[w] = 1.d0
+endif
 
-   m += epsilon*m^2
+dust_p_nu0 = 353.d0
+dust_i_nu0 = 545.d0
+sync_p_nu0 = 30.d0
+sync_i_nu0 = 0.408d0
 
-   atd[*,0] += m
-   atd[*,1] += cos2alpha*m
-   atd[*,2] += sin2alpha*m
+;; check at 95GHz to compare to Planck 2018, XI
+nu0 = 95.
 
-endfor
-ata[0,1] = ata[1,0]
-ata[0,2] = ata[2,0]
-ata[1,2] = ata[2,1]
+i_sync_ref *= (nu0/sync_i_nu0)^(-3)
+q_sync_ref *= (nu0/sync_p_nu0)^(-3)
+u_sync_ref *= (nu0/sync_p_nu0)^(-3)
 
-atam1 = invert(ata)
+i_dust_ref *= (nu0/dust_i_nu0)^(1.7)
+q_dust_ref *= (nu0/dust_p_nu0)^(1.7)
+u_dust_ref *= (nu0/dust_p_nu0)^(1.7)
 
-;; check
-map_t = reform( (atam1##atd)[*,0], nx, ny)
-map_q = reform( (atam1##atd)[*,1], nx, ny)
-map_u = reform( (atam1##atd)[*,2], nx, ny)
+xmap = dblarr(npix,3)
+xmap[*,0] = i_dust_ref
+xmap[*,1] = q_dust_ref
+xmap[*,2] = u_dust_ref
+ispice, xmap, cover, l_out, clt_dust, cle_dust, clb_dust, clte_dust
+
+xmap = dblarr(npix,3)
+xmap[*,0] = i_sync_ref
+xmap[*,1] = q_sync_ref
+xmap[*,2] = u_sync_ref
+ispice, xmap, cover, l_out, clt_sync, cle_sync, clb_sync, clte_sync
+
+;; wl = where( l_out ge 20 and l_out le nside)
+wl = where( l_out ge 2 and l_out le 20)
+dust_fit_t  = linfit( alog(l_out[wl]), alog( abs(clt_dust[wl])))
+dust_fit_e  = linfit( alog(l_out[wl]), alog( abs(cle_dust[wl])))
+dust_fit_b  = linfit( alog(l_out[wl]), alog( abs(clb_dust[wl])))
+dust_fit_te = linfit( alog(l_out[wl]), alog( abs(clte_dust[wl])))
+
+sync_fit_t  = linfit( alog(l_out[wl]), alog( abs(clt_sync[wl])))
+sync_fit_e  = linfit( alog(l_out[wl]), alog( abs(cle_sync[wl])))
+sync_fit_b  = linfit( alog(l_out[wl]), alog( abs(clb_sync[wl])))
+sync_fit_te = linfit( alog(l_out[wl]), alog( abs(clte_sync[wl])))
+
+col_e = 70
+col_te = 150
+col_b = 250
+wind, 1, 1, /free, /large
+my_multiplot, 2, 1, pp, pp1, /rev
+plot_oo, l_out, l_out*(l_out+1)/(2*!dpi)*abs(clt_dust), xra=[1, 1000], yra=[1d-4, 1d4], position=pp1[0,*]
+oplot,   l_out, l_out*(l_out+1)/(2*!dpi)*abs(cle_dust), col=col_e
+oplot,   l_out, l_out*(l_out+1)/(2*!dpi)*abs(clb_dust), col=col_b
+oplot,   l_out, l_out*(l_out+1)/(2*!dpi)*abs(clte_dust), col=col_te
+oplot, l_out, l_out*(l_out+1)/(2*!dpi)*exp(dust_fit_t[0])*l_out^dust_fit_t[1]
+oplot, l_out, l_out*(l_out+1)/(2*!dpi)*exp(dust_fit_e[0])*l_out^dust_fit_e[1], col=col_e
+oplot, l_out, l_out*(l_out+1)/(2*!dpi)*exp(dust_fit_b[0])*l_out^dust_fit_b[1], col=col_b
+oplot, l_out, l_out*(l_out+1)/(2*!dpi)*exp(dust_fit_te[0])*l_out^dust_fit_te[1], col=col_te
+legendastro, 'Dust'
+
+plot_oo, l_out, l_out*(l_out+1)/(2*!dpi)*abs(clt_sync), xra=[1, 1000], yra=[1d-10, 1d2], position=pp1[1,*], /noerase
+oplot,   l_out, l_out*(l_out+1)/(2*!dpi)*abs(cle_sync), col=col_e
+oplot,   l_out, l_out*(l_out+1)/(2*!dpi)*abs(clb_sync), col=col_b
+oplot,   l_out, l_out*(l_out+1)/(2*!dpi)*abs(clte_sync), col=col_te
+oplot, l_out, l_out*(l_out+1)/(2*!dpi)*exp(sync_fit_t[0])*l_out^sync_fit_t[1]
+oplot, l_out, l_out*(l_out+1)/(2*!dpi)*exp(sync_fit_e[0])*l_out^sync_fit_e[1], col=col_e
+oplot, l_out, l_out*(l_out+1)/(2*!dpi)*exp(sync_fit_b[0])*l_out^sync_fit_b[1], col=col_b
+oplot, l_out, l_out*(l_out+1)/(2*!dpi)*exp(sync_fit_te[0])*l_out^sync_fit_te[1], col=col_te
+legendastro, 'Sync'
+stop
+
+;; dust at nu0
+clt  = exp(dust_fit_t[ 0])*l^dust_fit_t[ 1]
+cle  = exp(dust_fit_e[ 0])*l^dust_fit_e[ 1]
+clb  = exp(dust_fit_b[ 0])*l^dust_fit_b[ 1]
+clte = exp(dust_fit_te[0])*l^dust_fit_te[1]
+cls2mapsiqu, l, clt, cle, clb, clte, nx, res_arcmin/60., $
+             dust_t, dust_q, dust_u, cu_t, cu_e, cu_b, cu_te
+
+;; sync at nu0
+clt  = exp(sync_fit_t[ 0])*l^sync_fit_t[ 1]
+cle  = exp(sync_fit_e[ 0])*l^sync_fit_e[ 1]
+clb  = exp(sync_fit_b[ 0])*l^sync_fit_b[ 1]
+clte = exp(sync_fit_te[0])*l^sync_fit_te[1]
+
+clte = clte < cle
+clt  = clt > clte
+
+cls2mapsiqu, l, clt, cle, clb, clte, nx, res_arcmin/60., $
+             sync_t, sync_q, sync_u, cu_t, cu_e, cu_b, cu_te
+
+wind, 1, 1, /free, /large
+dp = {noerase:1}
+my_multiplot, 3, 3, pp, pp1, /rev
+imview, cmb_t, dp=dp, position=pp1[0,*], title='CMB T'
+imview, cmb_q, dp=dp, position=pp1[1,*], title='CMB Q'
+imview, cmb_u, dp=dp, position=pp1[2,*], title='CMB U'
+
+imview, dust_t, dp=dp, position=pp1[3,*], title='DUST T'
+imview, dust_q, dp=dp, position=pp1[4,*], title='DUST Q'
+imview, dust_u, dp=dp, position=pp1[5,*], title='DUST U'
+
+imview, sync_t, dp=dp, position=pp1[6,*], title='SYNC T'
+imview, sync_q, dp=dp, position=pp1[7,*], title='SYNC Q'
+imview, sync_u, dp=dp, position=pp1[8,*], title='SYNC U'
+stop
+
+;; ;;------------------------------------------------------------------------
+;; ;; IF ONLY ONE COMPONENT
+;; ;;-----------------------------------------------------------------------
+;; ;; add non linearity, CMB only and acount for multiple detector observations
+;; ata = dblarr(3,3)
+;; atd = dblarr( long(nx)*long(ny), 3)
+;; for idet=0, ndet-1 do begin
+;;    cos2alpha = cos(2*alpha[idet])
+;;    sin2alpha = sin(2*alpha[idet])
+;; 
+;;    ata[0,0] += 1.d0
+;;    ata[1,0] += cos2alpha
+;;    ata[2,0] += sin2alpha
+;;    ata[1,1] += cos2alpha^2
+;;    ata[2,1] += cos2alpha*sin2alpha
+;;    ata[2,2] += sin2alpha^2
+;; 
+;;    ;; measure
+;;    m = map_t + cos2alpha*map_q + sin2alpha*map_u
+;; 
+;;    m += epsilon*m^2
+;; 
+;;    atd[*,0] += m
+;;    atd[*,1] += cos2alpha*m
+;;    atd[*,2] += sin2alpha*m
+;; endfor
+;; ata[0,1] = ata[1,0]
+;; ata[0,2] = ata[2,0]
+;; ata[1,2] = ata[2,1]
+;; 
+;; atam1 = invert(ata)
+;; 
+;; ;; check
+;; map_t = reform( (atam1##atd)[*,0], nx, ny)
+;; map_q = reform( (atam1##atd)[*,1], nx, ny)
+;; map_u = reform( (atam1##atd)[*,2], nx, ny)
 
 ;;-----------------------------------------------------------------------------------------------
 ;; Compute power spectra
@@ -133,35 +261,39 @@ ipoker, map_b, res_arcmin, k, pk_B, /bypass, /rem, delta_l_over_l=delta_l_over_l
 ipoker, map_t, res_arcmin, map1=map_e, k, pk_te, /bypass, /rem, delta_l_over_l=delta_l_over_l
 
 wind, 1, 1, /free, /large
-my_multiplot, 3, 2, pp, pp1, /rev
-imview, map_t, position=pp1[0,*], title='T'
-imview, map_q, position=pp1[1,*], title='Q', /noerase
-imview, map_u, position=pp1[2,*], title='U', /noerase
+my_multiplot, 3, 2, pp, pp1, /rev, gap_x=0.05
+chars = 0.7
+dp = {noerase:1, charsize:chars, charbar:chars}
+imview, map_t, dp=dp, position=pp1[0,*], title='T'
+imview, map_q, dp=dp, position=pp1[1,*], title='Q'
+imview, map_u, dp=dp, position=pp1[2,*], title='U'
 
-imview, map_e, position=pp1[4,*], title='E', /noerase
-imview, map_b, position=pp1[5,*], title='B', /noerase
+imview, map_e, dp=dp, position=pp1[4,*], title='E'
+imview, map_b, dp=dp, position=pp1[5,*], title='B'
 
-yra = [1d-6,1d4]
+yra = [1d-6,1d4] ; cmb
+yra = [1d-10, 1d3] ; place holder foregrounds
 xra = [10,2000]
 psym = 8 ; -8
 syms = 0.5
 col_e = 70
 col_b = 250
 col_te = 150
-plot_oo, k, k*(k+1)/(2*!dpi)*pk_i, yra=yra, /xs, xra=xra, psym=psym, syms=syms, $
+stop
+plot_oo, k, k*(k+1)/(2*!dpi)*pk_i, yra=yra, /ys, xra=xra, /xs, $
+         psym=psym, syms=syms, $
          position=pp[0,1,*], /noerase, $
          xtitle='Multipole l', ytitle='l(l+1)/2!7p!3 C!dl'
 oplot, l, l*(l+1)/(2*!dpi)*clt
 oplot, k, k*(k+1)/(2*!dpi)*abs(pk_te), col=col_te, psym=psym, syms=syms
 oplot, l, l*(l+1)/(2*!dpi)*abs(clte), col=col_te
 oplot, l, l*(l+1)/(2*!dpi)*clb_in, col=0
-oplot,   k, k*(k+1)/(2*!dpi)*pk_e, col=col_e, psym=psym, syms=syms
+oplot, k, k*(k+1)/(2*!dpi)*pk_e, col=col_e, psym=psym, syms=syms
 oplot, l, l*(l+1)/(2*!dpi)*cle, col=col_e
-oplot,   k, k*(k+1)/(2*!dpi)*pk_b, col=col_b, psym=psym, syms=syms
+oplot, k, k*(k+1)/(2*!dpi)*pk_b, col=col_b, psym=psym, syms=syms
 oplot, l, l*(l+1)/(2*!dpi)*clb, col=col_b
 legendastro, 'Epsilon = '+strtrim(epsilon,2)
-
-
+legendastro, ['TT', 'EE', 'TE', 'BB'], col=[!p.color, col_e, col_te, col_b], /bottom, line=0
 ;; 
 ;; 
 ;; 

@@ -495,20 +495,21 @@ mc_reduce, clte_out_res, clte_out_avg, sigma_clte_out_avg
 
 wind, 1, 1, /free, /large
 yra = [1d-6, 1d4]
+yra = [1d-10,1d4]
 xra = [1, max(k)*2]
 plot_oo, k, clt_out_avg, xra=xra, /xs, yra=yra, /ys, $
          xtitle='Multipole l', ytitle='l(l+1)C!dl!n/2!7p!3 !7l!3K!u2!n', $
          psym=psym, syms=syms
 oploterror, k, clt_out_avg, sigma_clt_out_avg, psym=psym, syms=syms
-oploterror, k, cle_out_avg, sigma_clt_out_avg, psym=psym, syms=syms, col=col_e, errcol=col_e
-oploterror, k, clb_out_avg, sigma_clt_out_avg, psym=psym, syms=syms, col=col_b, errcol=col_b
-oploterror, k, abs(clte_out_avg), sigma_clt_out_avg, psym=psym, syms=syms, col=col_te, errcol=col_te
+oploterror, k, cle_out_avg, sigma_cle_out_avg, psym=psym, syms=syms, col=col_e, errcol=col_e
+oploterror, k, clb_out_avg, sigma_clb_out_avg, psym=psym, syms=syms, col=col_b, errcol=col_b
+oploterror, k, abs(clte_out_avg), sigma_clte_out_avg, psym=psym, syms=syms, col=col_te, errcol=col_te
 oplot, l, l*(l+1)/(2*!dpi)*cmb_clt
 oplot, l, l*(l+1)/(2*!dpi)*cmb_cle, col=col_e
 oplot, l, l*(l+1)/(2*!dpi)*abs(cmb_clte), col=col_te
-legendastro, 'Epsilon = '+strtrim(epsilon,2)
-
-
+oplot, l, l*(l+1)/(2*!dpi)*cmb_clb_in, col=col_b
+legendastro, ['T', 'E', 'B', 'TE'], col=[0, col_e, col_b, col_te], line=0
+legendastro, 'Epsilon = '+strtrim(epsilon,2), /right
 
 ;; ;;    out_dust_i = reform( s[*,3])
 ;; ;;    out_dust_q = reform( s[*,4])

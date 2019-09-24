@@ -3,6 +3,8 @@
 ps  = 0
 png = 0
 
+epsilon = [1.d0,1e-5]
+
 nside = 256 ; 1024 ; 512
 
 map_dir = '$SK_DIR/Maps'
@@ -35,8 +37,12 @@ ncl_in = n_elements(cl_in)
 
 ;; Produce maps
 isynfast, input_cl_file, cmb_maps, nlmax=3*nside-1, nside=nside
-;for i=0, 2 do mollview, cmb_maps[*,i]
-;stop
+for i=0, 2 do mollview, cmb_maps[*,i]
+mollview, cmb_maps, 1, title='I map'
+mollview, cmb_maps, 2, title='Q map'
+mollview, cmb_maps, 3, title='U map'
+
+stop
 
 ;; Convenient variables
 l_in      = dindgen(ncl_in)
@@ -44,13 +50,17 @@ fl_in     = l_in*(l_in+1)/(2*!dpi)
 
 ;; Generate spurious signals 
 npix = nside2npix( nside)
-map_x      = dblarr(npix,3)
-map_x[*,0] = cmb_maps[*,0]^2
-map_x[*,1] = 2.d0*cmb_maps[*,0]*cmb_maps[*,1]
-map_x[*,2] = 2.d0*cmb_maps[*,0]*cmb_maps[*,2]
+map_x      = dblarr(npix,3,2)
+
+neps = n_elements(epsilon)
+for i=0,neps-1 do begin 
+   map_x[*,0,i] = cmb_maps[*,0]^2*epsilon[i]
+   map_x[*,1,i] = 2.d0*cmb_maps[*,0]*cmb_maps[*,1]*epsilon[i]
+   map_x[*,2,i] = 2.d0*cmb_maps[*,0]*cmb_maps[*,2]*epsilon[i]
+endfor
 
 ;; Power spectra of spurious components
-ianafast, map_x, cl_x, /double, nlmax=3*nside-1, /polar, /ring
+ianafast, map_x[*,*,0], cl_x, /double, nlmax=3*nside-1, /polar, /ring
 lx = dindgen(n_elements(cl_x[*,0]))
 lx = lx[2:*]
 clxt  = reform( cl_x[2:*,0])
@@ -62,8 +72,23 @@ clxeb = reform( cl_x[2:*,5])
 ncl_x = n_elements(lx)
 fl_x  = lx*(lx+1)/(2.*!dpi)
 
+
+ianafast, map_x[*,*,1], cl_x1, /double, nlmax=3*nside-1, /polar, /ring
+lx1 = dindgen(n_elements(cl_x1[*,0]))
+lx1 = lx[2:*]
+clxt1  = reform( cl_x1[2:*,0])
+clxe1  = reform( cl_x1[2:*,1])
+clxb1  = reform( cl_x1[2:*,2])
+clxte1 = reform( cl_x1[2:*,3])
+clxtb1 = reform( cl_x1[2:*,4])
+clxeb1 = reform( cl_x1[2:*,5])
+ncl_x1 = n_elements(lx1)
+fl_x1  = lx1*(lx1+1)/(2.*!dpi)
+
+
 ;; All spectra on the same plot
-yra = [1d-7, 1d9]
+;yra = [1d-7, 1d9]
+yra = [1d-9,1d9]
 xra = [2, 3000]
 thick=2
 xra = [1, 5000]
@@ -71,7 +96,7 @@ cmb_col = !p.color
 xcol = [70, 150, 250, 100, 200, 40]
 
 if ps eq 0 then wind, 1, 1, /free, /large
-outplot, file='cmb_power_spectra', ps=ps, png=png, thick=thick
+outplot, file='cmb_power_spectra_2', ps=ps, png=png, thick=thick
 plot, lx, fl_x*clxt, /xs, /ys, xra=xra, yra=yra, $
       xtitle='!12l', $
       ytitle='!12l(l+1)C!dl!n /2!7p!3 !7l!3K!u2!n', $
@@ -84,6 +109,12 @@ oplot, l_in, fl_in*abs(cl_in.G_T), col=cmb_col
 oplot, lx, fl_x*clxe, col=xcol[1]
 oplot, lx, fl_x*clxb, col=xcol[2]
 oplot, lx, fl_x*abs(clxte), col=xcol[3]
+
+oplot, lx1, fl_x1*clxt1, col=xcol[0], linestyle=5
+oplot, lx1, fl_x1*clxe1, col=xcol[1], linestyle=5
+oplot, lx1, fl_x1*clxb1, col=xcol[2], linestyle=5
+oplot, lx1, fl_x1*abs(clxte1), col=xcol[3], linestyle=5
+
 xyouts, 2.2, (fl_in*cl_in.temperature)[2]*1.3, 'TT'
 xyouts, 2.2, (fl_in*cl_in.gradient)[2]*1.3, 'EE'
 xyouts, 2.2, (fl_in*cl_in.curl)[2]*1.3, 'BB (r=0.001)'

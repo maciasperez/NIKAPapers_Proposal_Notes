@@ -2,7 +2,11 @@
 ;; Simple component separation to assess impact of non linearity
 
 ;; Assumed non-linearity parameter
-epsilon = 1d-1 ; 0.d0 ; 1d-4 ;0.d0 ;1d-3 ;0.5d-1 ;1d-6 ;0.d0
+epsilon = 5d-2 ; 0.d0 ; 1d-4 ;0.d0 ;1d-3 ;0.5d-1 ;1d-6 ;0.d0
+epsilon = [5d-2, 1d-1] 
+epsilon = [5d-3, 5d-2, 1d-1]
+
+neps    = n_elements(epsilon)
 
 ;; Foreground mask parameter
 latitude_cut = 30.
@@ -274,7 +278,10 @@ ipoker, sync_t, res_arcmin, map1=sync_e, k, pk_sync_te, /bypass, /rem, delta_l_o
 ;;=================================== Main loop =======================
 
 ata = dblarr(ncomp*nstokes, ncomp*nstokes)
-atd = dblarr(ncomp*nstokes)
+;atd = dblarr(ncomp*nstokes)
+out_cmb_t = dblarr(nx, ny, neps)
+out_cmb_q = dblarr(nx, ny, neps)
+out_cmb_u = dblarr(nx, ny, neps)
 
 for inu=0, n_elements(nu)-1 do begin
    rj2k = rj2thermo(nu[inu])
@@ -347,10 +354,11 @@ endfor
 atam1 = invert(ata)      
 
 nk = n_elements(k)
-clt_out_res = dblarr(nmc,nk)
-cle_out_res = dblarr(nmc,nk)
-clb_out_res = dblarr(nmc,nk)
-clte_out_res = dblarr(nmc,nk)
+clt_out_res = dblarr(nmc,nk,neps)
+cle_out_res = dblarr(nmc,nk,neps)
+clb_out_res = dblarr(nmc,nk,neps)
+clte_out_res = dblarr(nmc,nk,neps)
+;m_eps        = dblarr(neps)
 for imc=0, nmc-1 do begin
    print, strtrim(imc,2)+"/"+strtrim(nmc-1,2)
 
@@ -366,6 +374,8 @@ for imc=0, nmc-1 do begin
 
    npix = n_elements(cmb_t)
    atd = dblarr(npix,ncomp*nstokes)
+   atd = dblarr(npix,ncomp*nstokes,neps)
+   s   = dblarr(npix,ncomp*nstokes,neps)
 
    for inu=0, n_elements(nu)-1 do begin
       rj2k = rj2thermo(nu[inu])
@@ -407,31 +417,36 @@ for imc=0, nmc-1 do begin
 
 
          ;; Account for non linearity in measurement
-         m = flux_i + cos2alpha*flux_q + sin2alpha*flux_u
-         m = m + epsilon*m^2
-
-         ;; Convert back to thermodynamic temperature
-         convert_megajy_millik, lambda_microns, m, m_mk, /cmb
-         m_microK = m_mk*1d3
-
-         atd[*,0] +=  m_microK
-         atd[*,1] +=  m_microK*cos2alpha
-         atd[*,2] +=  m_microK*sin2alpha
-         atd[*,3] += rj2k * (nu[inu]/nu0)^beta_dust           * m_microK
-         atd[*,4] += rj2k * (nu[inu]/nu0)^beta_dust*cos2alpha * m_microK
-         atd[*,5] += rj2k * (nu[inu]/nu0)^beta_dust*sin2alpha * m_microK
-         atd[*,6] += rj2k * (nu[inu]/nu0)^beta_sync           * m_microK
-         atd[*,7] += rj2k * (nu[inu]/nu0)^beta_sync*cos2alpha * m_microK
-         atd[*,8] += rj2k * (nu[inu]/nu0)^beta_sync*sin2alpha * m_microK
+         for ieps = 0, neps-1 do begin 
+            m = flux_i + cos2alpha*flux_q + sin2alpha*flux_u
+            m_eps = m + epsilon[ieps]*m^2
+            
+            ;; Convert back to thermodynamic temperature
+            convert_megajy_millik, lambda_microns, m_eps, m_mk, /cmb
+            m_microK = m_mk*1d3
+            
+            atd[*,0,ieps] +=  m_microK
+            atd[*,1,ieps] +=  m_microK*cos2alpha
+            atd[*,2,ieps] +=  m_microK*sin2alpha
+            atd[*,3,ieps] += rj2k * (nu[inu]/nu0)^beta_dust           * m_microK
+            atd[*,4,ieps] += rj2k * (nu[inu]/nu0)^beta_dust*cos2alpha * m_microK
+            atd[*,5,ieps] += rj2k * (nu[inu]/nu0)^beta_dust*sin2alpha * m_microK
+            atd[*,6,ieps] += rj2k * (nu[inu]/nu0)^beta_sync           * m_microK
+            atd[*,7,ieps] += rj2k * (nu[inu]/nu0)^beta_sync*cos2alpha * m_microK
+            atd[*,8,ieps] += rj2k * (nu[inu]/nu0)^beta_sync*sin2alpha * m_microK
+         endfor
       endfor
    endfor
 
    ;; Perform component separation
-   s = atam1##atd
-   ;; CMB output is directly is microK_CMB
-   out_cmb_t  = reform( s[*,0], nx, ny)
-   out_cmb_q  = reform( s[*,1], nx, ny)
-   out_cmb_u  = reform( s[*,2], nx, ny)
+   for ieps=0, neps-1 do begin 
+
+      s[*,*,ieps] = atam1##atd[*,*,ieps]
+      s1 = s[*,*,ieps]
+      ;; CMB output is directly is microK_CMB
+      out_cmb_t[*,*,ieps]  = reform( s1[*,0], nx, ny)
+      out_cmb_q[*,*,ieps]  = reform( s1[*,1], nx, ny)
+      out_cmb_u[*,*,ieps]  = reform( s1[*,2], nx, ny)
 
 ;;    wind, 1, 1, /free, /large
 ;;    my_multiplot, 3, 4, pp, pp1, /rev, /full, /dry
@@ -481,43 +496,78 @@ for imc=0, nmc-1 do begin
 ;;
 ;;stop
 
-   qu2eb, out_cmb_q, out_cmb_u, res_arcmin, out_cmb_e, out_cmb_b
-   ipoker, out_cmb_t, res_arcmin, k, pk_cmb_t, /bypass, /rem, delta_l_over_l=delta_l_over_l
-   ipoker, out_cmb_e, res_arcmin, k, pk_cmb_e, /bypass, /rem, delta_l_over_l=delta_l_over_l
-   ipoker, out_cmb_b, res_arcmin, k, pk_cmb_b, /bypass, /rem, delta_l_over_l=delta_l_over_l
-   ipoker, out_cmb_t, res_arcmin, map1=out_cmb_e, k, pk_cmb_te, /bypass, /rem, delta_l_over_l=delta_l_over_l
-
-   clt_out_res[ imc,*] = k*(k+1)/(2*!dpi)*pk_cmb_t
-   cle_out_res[ imc,*] = k*(k+1)/(2*!dpi)*pk_cmb_e
-   clb_out_res[ imc,*] = k*(k+1)/(2*!dpi)*pk_cmb_b
-   clte_out_res[imc,*] = k*(k+1)/(2*!dpi)*pk_cmb_te
+      qu2eb, out_cmb_q[*,*,ieps], out_cmb_u[*,*,ieps], res_arcmin, out_cmb_e, out_cmb_b
+      ipoker, out_cmb_t[*,*,ieps], res_arcmin, k, pk_cmb_t, /bypass, /rem, delta_l_over_l=delta_l_over_l
+      ipoker, out_cmb_e, res_arcmin, k, pk_cmb_e, /bypass, /rem, delta_l_over_l=delta_l_over_l
+      ipoker, out_cmb_b, res_arcmin, k, pk_cmb_b, /bypass, /rem, delta_l_over_l=delta_l_over_l
+      ipoker, out_cmb_t[*,*,ieps], res_arcmin, map1=out_cmb_e, k, pk_cmb_te, /bypass, /rem, delta_l_over_l=delta_l_over_l
+      
+      clt_out_res[ imc,*,ieps] = k*(k+1)/(2*!dpi)*pk_cmb_t
+      cle_out_res[ imc,*,ieps] = k*(k+1)/(2*!dpi)*pk_cmb_e
+      clb_out_res[ imc,*,ieps] = k*(k+1)/(2*!dpi)*pk_cmb_b
+      clte_out_res[imc,*,ieps] = k*(k+1)/(2*!dpi)*pk_cmb_te
+   endfor
 endfor
 
-mc_reduce, clt_out_res, clt_out_avg, sigma_clt_out_avg
-mc_reduce, cle_out_res, cle_out_avg, sigma_cle_out_avg
-mc_reduce, clb_out_res, clb_out_avg, sigma_clb_out_avg
-mc_reduce, clte_out_res, clte_out_avg, sigma_clte_out_avg
+clt_out_avg  = dblarr(nk,neps)
+cle_out_avg  = dblarr(nk,neps)
+clb_out_avg  = dblarr(nk,neps)
+clte_out_avg = dblarr(nk,neps)
+sigma_clt_out_avg  = dblarr(nk,neps)
+sigma_cle_out_avg  = dblarr(nk,neps)
+sigma_clb_out_avg  = dblarr(nk,neps)
+sigma_clte_out_avg = dblarr(nk,neps)
+
+
+for ieps=0,neps-1 do begin
+   mc_reduce, clt_out_res[*,*,ieps], clt_out_avg_res, sigma_clt_out_avg_res
+   mc_reduce, cle_out_res[*,*,ieps], cle_out_avg_res, sigma_cle_out_avg_res
+   mc_reduce, clb_out_res[*,*,ieps], clb_out_avg_res, sigma_clb_out_avg_res
+   mc_reduce, clte_out_res[*,*,ieps], clte_out_avg_res, sigma_clte_out_avg_res
+
+   clt_out_avg[*,ieps]  = clt_out_avg_res
+   cle_out_avg[*,ieps]  = cle_out_avg_res
+   clb_out_avg[*,ieps]  = clb_out_avg_res
+   clte_out_avg[*,ieps] = clte_out_avg_res
+   sigma_clt_out_avg[*,ieps] = sigma_clt_out_avg_res
+   sigma_cle_out_avg[*,ieps] = sigma_cle_out_avg_res
+   sigma_clb_out_avg[*,ieps] = sigma_clb_out_avg_res
+   sigma_clte_out_avg[*,ieps] = sigma_clte_out_avg_res
+endfor
+
+
 
 psym = 8
 syms = 0.5
+;fmt = '(F4.2)'
+fmt = '(F5.3)'
+png = 0
+ps  = 1
 
-wind, 1, 1, /free, /large
+if ps eq 0 then wind, 1, 1, /free, /large
+outplot, file='cmb_power_spectra_nl', ps=ps, png=png, thick=thick
 yra = [1d-6, 1d4]
 yra = [1d-10,1d4]
 xra = [1, max(k)*2]
 plot_oo, k, clt_out_avg, xra=xra, /xs, yra=yra, /ys, $
-         xtitle='Multipole l', ytitle='l(l+1)C!dl!n/2!7p!3 !7l!3K!u2!n', $
+         xtitle='Multipole !12l!3', ytitle='!12l(l+1)C!dl!n /2!7p!3 !7l!3K!u2!n', $
          psym=psym, syms=syms
 oploterror, k, clt_out_avg, sigma_clt_out_avg, psym=psym, syms=syms
 oploterror, k, cle_out_avg, sigma_cle_out_avg, psym=psym, syms=syms, col=col_e, errcol=col_e
-oploterror, k, clb_out_avg, sigma_clb_out_avg, psym=psym, syms=syms, col=col_b, errcol=col_b
+for ieps=0, neps-1 do begin 
+   oploterror, k, clb_out_avg[*,ieps], sigma_clb_out_avg[*,ieps], psym=psym, syms=syms, col=col_b, errcol=col_b
+   xyouts, 15, min(clb_out_avg[*,ieps]), '!7e!3 ='+string(epsilon[ieps],form=fmt), charsize=0.8
+endfor
 oploterror, k, abs(clte_out_avg), sigma_clte_out_avg, psym=psym, syms=syms, col=col_te, errcol=col_te
 oplot, l, l*(l+1)/(2*!dpi)*cmb_clt
 oplot, l, l*(l+1)/(2*!dpi)*cmb_cle, col=col_e
 oplot, l, l*(l+1)/(2*!dpi)*abs(cmb_clte), col=col_te
 oplot, l, l*(l+1)/(2*!dpi)*cmb_clb_in, col=col_b
 legendastro, ['T', 'E', 'B', 'TE'], col=[0, col_e, col_b, col_te], line=0
-legendastro, 'Epsilon = '+strtrim(epsilon,2), /right
+xyouts, 2, 5d-5, 'BB (r=0.001)'
+outplot, /close, /verb
+
+;legendastro, 'Epsilon = '+strtrim(epsilon,2), /right
 
 ;; ;;    out_dust_i = reform( s[*,3])
 ;; ;;    out_dust_q = reform( s[*,4])

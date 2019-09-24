@@ -2,7 +2,9 @@
 ;; Simple component separation to assess impact of non linearity
 
 ;; Assumed non-linearity parameter
-epsilon = 1d-3 ;0.d0 ;1d-3 ;0.5d-1 ;1d-6 ;0.d0
+epsilon = 0.d0
+
+ ;0.d0 ;1d-3 ;0.5d-1 ;1d-6 ;0.d0
 
 ;pro a, epsilon
 
@@ -254,7 +256,7 @@ for imc=0, nmc-1 do begin
    xmap[*,0] = out_cmb_i
    xmap[*,1] = out_cmb_q
    xmap[*,2] = out_cmb_u
-   stop
+;   stop
    ispice, xmap, cover, l_out, clt_out, cle_out, clb_out, clte_out
    l_out    = l_out[   2:*]
    clt_out  = clt_out[ 2:*]

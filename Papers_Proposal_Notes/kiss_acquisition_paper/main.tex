@@ -1,57 +1,3 @@
-%\documentclass[10pt,a4paper]{scrartcl}
-
-%
-%
-%\usepackage[backend=biber,style=bwl-FU ,maxcitenames=2,
-%backend=biber,natbib=true]{biblatex}
-%\addbibresource{bibliography.bib}
-%
-%\usepackage[latin1]{inputenc}
-%
-%
-%\usepackage{quoting}
-%\quotingsetup{font=small}
-%
-%\usepackage{caption}
-%\captionsetup{tableposition=top,figureposition=bottom,font=small}
-%\usepackage{url}
-%\usepackage{longtable}
-%
-%
-%\usepackage{subfigure}
-%
-%\usepackage{placeins}
-%\usepackage{stmaryrd}
-%
-%\usepackage{hyperref}
-%\usepackage{amsfonts}
-%\usepackage{amssymb}
-%\usepackage{graphicx}
-%\usepackage{listing}
-%\usepackage{blindtext}
-%\usepackage{enumitem}
-%\usepackage{gensymb}
-%\usepackage{amsbsy}
-%\usepackage{subfig}
-%\usepackage{microtype}
-%\usepackage[english]{babel}
-%\usepackage[utf8]{inputenx}
-%\usepackage{xcolor}
-%\usepackage{amssymb, amsmath}
-%\usepackage{stmaryrd}
-%\usepackage{hyperref}
-%\usepackage{graphicx}
-%\usepackage{tablefootnote}
-%\usepackage{footnote}
-%\makesavenoteenv{tabular}
-%\makesavenoteenv{table}
-%\usepackage{cleveref}
-%\usepackage{lipsum}
-%\usepackage{curve2e}
-%\usepackage{booktabs}
-%\definecolor{gray}{gray}{0.4}	\and
-%\newcommand{\bs}{\textbackslash}\\
-
 \documentclass[twocolumn,traditabstract]{aa}\\
 \textbf{}\usepackage{fixltx2e}
 \usepackage[english]{babel}
@@ -76,12 +22,11 @@
 \usepackage{widetext}
 %\usepackage{flushend}
 %\usepackage[T1]{fontenc}\\
-
 \bibpunct{(}{)}{;}{a}{}{,}
 \bibliographystyle{aa}
 
 \begin{document}
-\title{The new acquisition technique for fast KIDs based spectrometers}
+\title{Improved mm-wave interferometry for kinetic inductance detectors}
 
 \author{A. Fasano \inst{\ref{Neel}},\thanks{Corresponding author: Alessandro Fasano, \url{alessandro.fasano@neel.cnrs.fr}}
 	\and M. Aguiar$^3$ 
@@ -115,7 +60,7 @@
 }
 
 \institute{
-	Institut N\'eel, CNRS and Universit\'e Grenoble Alpes, France
+	Institut N\'eel, CNRS and Universit\'e Grenoble Alpes, FranceImproved mm-wave photometry for kinetic inductance detectors
 	\label{Neel}
 	\and
 	Laboratoire de Physique Subatomique et de Cosmologie, Universit\'e Grenoble Alpes, CNRS/IN2P3, 53, avenue des Martyrs, Grenoble, France
@@ -133,10 +78,16 @@
 
 	
 \abstract{
-
-\emph{Context.} Major features demanded for instruments in contemporary cosmology are: high mapping speed to cover large portion of the sky and multi-frequency capability for the component separation. In order to simultaneously satisfy the two conditions you can design large arrays of photo-noise-limited detectors adopting a spectroscopy technique that allows wide instantaneous Field of View, FoV. In this framework we developed KISS, KIDs Interfero-Spectrometer Survey, a spectrometric-imager dedicated to the secondary anisotropies of the Cosmic Microwave Background Radiation, CMBR. In particular the instrument aims to observe the Sunyaev Zel'dovich effect, SZ: an effect due to the interaction between the cluster of galaxies and the CMBR.
+devono essere chiari due punti: fast acquisition e precision calibration
 
-\emph{Method.} We exploit a Fourier Transform Spectrometer, FTS. Instead of distribute the pixels to the different frequencies (e.g. on-chip and grating spectroscopy) we developed a double array sensitive to all the interested frequencies. Thank to the FTS we can, then, separate and reconstruct the spectrum. In the ground-based case like KISS, the drawback from such a technique is that we need to be fast to avoid signal contamination from the atmospheric background fluctuations: the single interferometric figure must be acquired with a stable background to properly convert it in a spectrum where the noise does not become indistinguishable from the signal. It is necessary, thus, to use low time-constant detectors and fast FTS technology. KISS adopts, for such target, two arrays of Kinetic Inductance Detector, KID.
+\emph{Context.} 
+We have developped a spectrometer...
+
+ Major features demanded for instruments in contemporary cosmology are: high mapping speed to cover large portion of the sky and multi-frequency capability for the component separation. In order to simultaneously satisfy the two conditions you can design large arrays of photo-noise-limited detectors adopting a spectroscopy technique that allows wide instantaneous Field of View, FoV. In this framework we developed KISS, KIDs Interfero-Spectrometer Survey, a spectrometric-imager dedicated to the secondary anisotropies of the Cosmic Microwave Background Radiation, CMBR. In particular the instrument aims to observe the Sunyaev Zel'dovich effect, SZ: an effect due to the interaction between the cluster of galaxies and the CMBR.
+
+
+\emph{Method.} We exploit a Fourier Transform Spectrometer, FTS. Instead of distribute the pixels to the different frequencies (e.g. on-chip and grating spectroscopy) we developed a double array sensitive to all the interested frequencies. Thank to the FTS we can, then, separate and reconstruct the spectrum. In the ground-based case like KISS, the drawback from such a technique is that we need to be fast to avoid signal contamination from the atmospheric background fluctuations: the single interferometric figure must be acquired with a stable background to properly convert it in a spectrum where the noise does not become indistinguishable from the signal. It is necessary, thus, to use low time-constant detectors and fast FTS technology. KISS adopts, for such target, two arrays of Kinetic Inductance Detector, KID.
+
 
 \emph{Results.} We developed a new technique to calibrate the KID raw data. We first demonstrate the feasibility of this technique with a simulation. We, thus, study the performance of such technique for the modulation and the tuning, applying it to real on-sky observations. The acquisition technique has been qualified during the first commissioning campaign. It represents a solution for fast multi-frequency acquisition that exploits KIDs based Fourier transform spectrometry.
 }
@@ -144,34 +95,62 @@
 \maketitle
 
 \section{Introduction}
-Contemporary cosmology at millimetre wavelengths requires multi-wavelengths study for foregrounds subtraction (e.g. thermal dust, synchrotron, dusty and radio galaxies) and components separation of the various effects for the Cosmic Microwave Background.
 
-In this framework, the necessity to observe at different frequencies makes suitable the exploitation of spectrometers. Among this category a candidate is the FTS. The Fourier Transform  technique applied to spectrometry is a method that exploits the interference of light rather than separate the wavelengths and, compared to competitors (on-chip (\cite{deshima}) and grating (\cite{grating}) spectroscopy), FTS allows larger instantaneous FoV.
+\cite{fasano-ltd} \cite{fasano-nika2}
+Parlare piu' nello specifico dei casi NIKA/NIKA2 e del perche' su kiss non e' possibile
 
-Firstly, as in the past for FIRAS (\cite{FIRAS}), the selection of the FTS for the will of developing an instrument fells on a Martin Puplett: an interferometer that measures the difference between the powers of their two input beams (\cite{mpi}). The Martin Puplett Interferometer transposes the observing frequencies paradigm from time to spacial domain and allows to use a calibration source: an ideal choice for precise measurements.
+Foregrounds subtraction and components separation in mm-wavelengths astronomy require simultaneous observation at different frequencies. This scenario makes suitable the choice of FTS: this technique exploits the interference of light rather than separate the wavelengths and, compared to competitors (on-chip (\cite{deshima}) and grating (\cite{grating}) spectroscopy), allows larger instantaneous FoV.
+Firstly, as in the past for FIRAS (\cite{FIRAS}), the selection of the FTS for the will of developing an instrument fells on a Martin Puplett: an interferometer that measures the difference between the powers of two input beams (\cite{mpi}). The MPI transposes the observing frequencies paradigm from time to spacial domain and allows to use a calibration source: an ideal choice for precise measurements.
 Secondly, the necessity to go fast on data acquisition makes suitable to choose fast detectors like KIDs (for an overview see \cite{kids}). Taking in consideration these premises, using a ``brute-force'' acquisition technique, where you just stock all the information available, would result on a huge data production. Starting from this scenario, it is desirable to adopt a smart solution that minimises the amount of data.
 Aiming this optimisation, we want to describe the method developed for KISS.
 
-In sec. \ref{sec:acq} we introduce the method used in past for NIKA2 and we explain the new created for KISS. In the same section it is deeply described the new method and showed a preliminary simulation that allowed the utilisation of the same for the data.
+In sec.~\ref{sec:kid} we describe the KID and we show the properties of the ones used for KISS. 
+In sec.~\ref{sec:photo} we introduce the method used in past for NIKA2 for calibration and tuning. In the same section, it is described the new method for KISS, it is shown the technique simulation that allowed the utilisation . 
+In the sec.~\ref{sec:results}  results We present the algorithm characterisation of on-sky data.
 
-In the sec. \ref{sec:results} we present the algorithm characterisation of on-sky data.
+\section{KID properties}
+\label{sec:kid}
+aggiungere del testo 
 
-%\newpage
-%\section{The KISS experiment}
-%\input{2.kiss/2.tex}
-
-
-\section{The acquisition technique}
-\label{sec:acq}
-
-
-The KID is a superconducting resonator detector based on the change of kinetic inductance, tha that inversely proportional to the density of Cooper pairs, with an incoming radiation. By measuring the change on the resonance frequency the absorbed power can be determined.  It is read-out by a bias line, injecting a tone at its correspondence resonant frequency; at this peculiar frequency, in fact, the coupling between the resonator and the readout line results in an energy absorption, aka band-stop filter. Its time constant is fixed by the recombination time of the quasi-particles from $10 \mu s$ to $100 \mu s$. This represents a major advantage with respect to competitors that are, indeed, a factor $\gtrsim$10 slower.
+The KID is high quality factor superconducting resonator, exploited as detector in millimetre wavelengths. It is based on the change of kinetic inductance with an incoming radiation, that is inversely proportional to the density of Cooper pairs. The absorbed power can be determined by measuring the change on the resonance frequency.  It is read-out by a bias line, injecting a tone at its correspondence resonant frequency; at this peculiar frequency, in fact, the coupling between the resonator and the readout line results in an energy absorption, aka band-stop filter (see \cite{Zmuidzinas} for an overview). Its time constant is fixed by the recombination time of the quasi-particles and it is few $10 \mu s$. This represents a major advantage with respect to competitors that are, indeed, a factor $\gtrsim$10 slower.
 
 The $S_{21}$ signal (output/input ratio) related to the KID detector is studied in the complex plane $(I,Q)$, where the resonance shape corresponds to a circle.
 The conversion of the $(I,Q)$ signal to absorbed optical power is one of the most difficult challenge using KIDs and it represents a different issue to readout, e.g., thermal detectors (bolometer, TES et cetera).
 
-\subsection{Circular fitting: necessities and constraints}
+In order to understand if and under which conditions this method is valid we use the characterising values $f_0$, resonance frequency, $Q_i$, internal quality factor, and $Q_c$, coupling quality factor, obtained in laboratory from the actual KISS arrays tests to fit the skewed Lorentzian profile \cite{Gao}:
 
+\begin{equation}
+\left|S_{21}(f)\right|= A+B(f-f_0)+\frac{C+D(f-f_0)}{1+4Q_{tot}^2\cfrac{(f-f_0)^2}{f_0^2}}
+\label{eq:s21_amp}
+\end{equation}
+
+\noindent where $A$, $B$, $C$ and $D$ are factors that do not influence the parameters on study. With eq. \ref{eq:s21_amp} we can extrapolate $Qi$ (\cite{Gao}):
+
+\begin{equation}
+Q_i =\frac{Q_{tot}}{min(\left|S_{21}(f)\right|)}
+\end{equation}
+
+In fig. \ref{fig:fit_amp} and \ref{fig:hist} we have the typical KISS electrical measurements in laboratory.
+
+\begin{figure}[htf]
+	\centering
+	\includegraphics[width=.5\textwidth]{3.acqui/resonance_fit.png}
+	\caption{Up: single pixel bias signal data (in black) fitted (in red) by eq. \ref{eq:s21_amp}. Bottom: percentile residual between fit and data. In this case we notice that the quality factors are coupled (aka similar), this condition maximised the responsivity (as demonstrated in \cite{Gao}).}
+	\label{fig:fit_amp}
+\end{figure}
+
+\begin{figure}[htf]
+	\centering
+	\includegraphics[width=.5\textwidth]{3.acqui/Q_hist.png}
+	\caption{Quality factors histograms measured on the KISS array. In red the internal quality factor with a background of 50 K, that simulates the sky and in blue the coupling quality factor.}
+	\label{fig:hist}
+\end{figure}
+
+\section{Photometric response}
+\label{sec:photo}
+
+\subsection{2-point modulation technique}
+\label{2-point}
 Smart readout technique is required to properly study the signal and do not encounter huge amount of data. In the past, e.g. for NIKA, an innovative readout technique has been developed (see \cite{Calvo2013} for a detailed discussion). 
 The idea, as described in \cite{Catalano2014} , has been to replace the standard fixed excitation (single frequency) tone with a modulated input based on two different frequencies separated by $f_{LO}$: 
 
@@ -202,9 +181,23 @@ eq. \ref{eq:didq}:
 
 The constraints over the data acquisition are slightly more demanding in KISS: two consecutive interferograms are acquired at 5 Hz, to overcome the 1/f atmospheric noise at $\sim$1 Hz, and the data rate is quite higher, 3.816 kHz, in order to obtain the aimed spectral resolution of few GHz. In this condition it is not possible to modulate each single point signal, because the FPGA does not reach the necessary rate and you would, eventually, manage a factor 2 on data weight.
 
-\subsection{Modulation: the algorithm to obtain physical data}
-\label{sebsec:alg}
+\subsubsection{Tuning procedure}
+\label{sec:tuning}
 
+The 2-point modulation technique, described in subsec.~\ref{2-point} is the major improvement on the data calibration and production. On the other side, to optimise the working point of the KID it is necessary to retune: while you observe, the atmospheric fluctuations modify the resonance. What is done at the end of each observation, in the standard perspective, is a full frequency sweep to retune the resonance frequency: this represents a time-demanding procedure. By the way we can, similarly to NIKA2, adopt a strategy that permits to save $\sim$75\% of time in the pre-observation phase of retuning, this strategy is detailed explained in (\cite{2014SPIE.9153E..02C}). At first, you measure the angle $\Phi$ between the vectors $(I,Q)$ and $(dI/df_{LO},dQ/df_{LO})$ referring to eq. \ref{eq:didq} and you define, for convenience, a new angle $\theta\doteq \pi/2-\Phi$ that changes smoothly around $[-\pi,\pi]$. Secondly, the excitation tone is fixed at $\theta=0$ and you estimate the $\theta(f)$ slope $\Delta\theta/\Delta f'$. Then, you vary the tone frequency $f^i$ monitoring $\theta^i$. And finally, you can evaluate the new resonance frequency:
+
+\begin{equation}
+f^i_0 \simeq f^i - \frac{\theta^i(t)}{\Delta\theta/\Delta f'} \text{ .}
+\end{equation}
+
+The procedure described in this section is used, indeed, for NIKA/NIKA2. It represents a resilient tool that can be adopt on photometric KIDs-based experiments: even for large background fluctuations, you can iterate the algorithm to converge.
+\color{black}
+
+\subsection{3-point modulation technique}
+
+We cannot use the same technique, described in the subsec.~\ref{2-point}, for KISS. Describe the problem...
+
+\subsubsection{Implementation}
 The idea for KISS is to obtain the physical conversion through a modulation but, in this case, the mechanism is different. First of all the spectral information is in data block containing the forward and backward interferograms: a moving mirror oscillates generating the optical path difference that results in the interferogram figures, one per oscillation direction. That is the main difference with NIKA2: KISS is a interferometer. This repetitive block of points is composed as following: in the first part it is injected a frequency $f_+ = f_0 + \Delta f_{LO}/2$, in the second a frequency $f_- = f_0 - \Delta f_{LO}/2$ and for the rest the frequency of resonance $f_0$, as we can see in fig. \ref{fig:mod}.
 
 \begin{figure}[htf]
@@ -214,14 +207,17 @@ The idea for KISS is to obtain the physical conversion through a modulation but,
 	\label{fig:mod}
 \end{figure}
 
-\noindent The choice over the total number of points for one block, including the ones assigned to the modulation, takes into account few major constraints: the spectral resolution aimed to $\sim$1 GHz requires a displacement of the mirror of 10 cm; the cut-off of the KID time constant $\sim$100 $\mu$s, that limits the single datum acquisition rate; the fast (5 Hz) scan requirement to avoid the 1/f atmospheric noise. The result consists on a total period of 1024 points, where each point is acquired at 3.816 kHz, dedicating the first 128 to the modulation. In this way we have $\sim$400 points each interferogram, obtaining $\sim$100 points on the interested spectrum frequencies.
+\noindent The choice over the total number of points for one block, including the ones assigned to the modulation, takes into account few major constraints: the spectral resolution aimed to $\sim$1 GHz requires a displacement of the mirror of 10 cm; the cut-off of the KID time constant few 10 $\mu$s, that limits the single datum acquisition rate; the fast (5 Hz) scan requirement to avoid the 1/f atmospheric noise. The result consists on a total period of 1024 points, where each point is acquired at 3.816 kHz, dedicating the first 128 to the modulation. In this way we have $\sim$400 points each interferogram, obtaining $\sim$100 points on the interested spectrum frequencies.
+
+\subsubsection{Calibration}
+\label{calib}
 
 \noindent We can extrapolate the calibration factor $C$ [Hz/rad] through a circular fit on the modulation points $(x1,y1)$ and $(x2,y2)$, and the baseline point $(x3,y3)$ referring to fig. \ref{fig:IQ_modulation}. We obtain, in this way, the coordinates of the circle centre $(I_c,Q_c)$. We can calculate, thus, the $r_1$ and $r_2$ angles as following:
 
 \begin{equation}
 \begin{align}
-r_1 &= \arctan2\left( \frac{I_c-x_1}{Q_c - y_1}  \right) &\text{ ,}\\
-r_2 &= \arctan2\left( \frac{I_c-x_2}{Q_c - y_2}  \right) &\text{ .}
+r_1 &= \arctan\left( \frac{I_c-x_1}{Q_c - y_1}  \right) &\text{ ,}\\
+r_2 &= \arctan\left( \frac{I_c-x_2}{Q_c - y_2}  \right) &\text{ .}
 \end{align}
 \end{equation}
 
@@ -247,7 +243,7 @@ C&=\Delta\phi/\Delta f &\text{ ;}
 
 
 \begin{equation}
-r = \arctan2 \left( \frac{I_c - I}{Q_c - Q} \right)  \text{ ,}
+r = \arctan \left( \frac{I_c - I}{Q_c - Q} \right)  \text{ ,}
 \end{equation}
 
 \noindent we, thus, calculate the frequency data:
@@ -256,39 +252,15 @@ r = \arctan2 \left( \frac{I_c - I}{Q_c - Q} \right)  \text{ ,}
 f = C (r-\Delta\phi) \text{ .}
 \end{equation}
 
+\noindent This frequency represents, indeed, the physical quantity that can be directly converted to incoming flux.
 
 
+\section{Results}
+\label{sec:results}
 
-\subsection{Simulation}
+\subsection{Validation with simulation}
 
-In order to understand if and under which conditions this method is valuable work we use the characterising values $f_0$, resonance frequency, $Q_i$, internal quality factor, and $Q_c$, coupling quality factor, obtained in laboratory from the actual KISS arrays tests to fit the skewed Lorentzian profile \cite{Gao}:
-
-\begin{equation}
-\left|S_{21}(f)\right|= A+B(f-f_0)+\frac{C+D(f-f_0)}{1+4Q_{tot}^2\cfrac{(f-f_0)^2}{f_0^2}} \text{ ,}
-\label{eq:s21_amp}
-\end{equation}
-
-\noindent where $A$, $B$, $C$ and $D$ are factors that do not influence the parameters on study. With eq. \ref{eq:s21_amp} we can extrapolate $Qi$ (\cite{Gao}):
-
-\begin{equation}
-Q_i =\frac{Q_{tot}}{min(\left|S_{21}(f)\right|)}
-\end{equation}
-
-\noindent In this way we simulate the KIDs used for KISS qualifying them for the modulation technique. In fig. \ref{fig:fit_amp} and \ref{fig:hist} we have the typical KISS electrical measurements in laboratory.
-
-\begin{figure}[htf]
-	\centering
-	\includegraphics[width=.5\textwidth]{3.acqui/resonance_fit.png}
-	\caption{Up: single pixel bias signal data (in black) fitted (in red) by eq. \ref{eq:s21_amp}. Bottom: percentile residual between fit and data. In this case we notice that the quality factors are coupled (aka similar), this condition maximised the responsivity (as demonstrated in \cite{Gao}).}
-	\label{fig:fit_amp}
-\end{figure}
-
-\begin{figure}[htf]
-	\centering
-	\includegraphics[width=.5\textwidth]{3.acqui/Q_hist.png}
-	\caption{Quality factors histograms measured on the KISS array. In red the internal quality factor with a background of 50 K, that simulates the sky and in blue the coupling quality factor.}
-	\label{fig:hist}
-\end{figure}
+\noindent In this way we simulate the KIDs used for KISS qualifying them for the modulation technique. 
 
 \noindent At this point we can proceed simulating the resonator in the complex plane with the equation (\cite{Gao}):
 \begin{equation}
@@ -331,7 +303,7 @@ S_{21}(f)=ae^{-2\pi j f \tau} \left[ 1-\frac{\frac{Q_{tot}}{Q_c}e^{j\phi_0}}{1+2
 	\label{fig:s21_simu}
 \end{figure}
 
-First of all, starting from these simulated data we generate a data block with assigned modulation factor and interferogram amplitude, $A$, in hertz. The second step is to use these hertz data with eq. \ref{eq:s21_IQ} obtaining the values in quadrature $(I,Q)$. From them we compute the phase $\phi=\arctan\left(\frac{I}{Q}\right)$. Finally we come back to hertz signal through the calibration algorithm described in sec. \ref{sebsec:alg}. We, thus, compare the modulation factor and interferogram amplitude in input, $C_{in}$ and $A_{in}$ and output, $C_{out}$ and $A_{out}$, of this algorithm. This verification is necessary for understanding the reliability of the calibration method. In fig. \ref{fig:cal_bck} we report the change on the calibration factor as a function of background, at fixed modulation factor and interferogram amplitude.
+First of all, starting from these simulated data we generate a data block with assigned modulation factor and interferogram amplitude, $A$, in hertz. The second step is to use these hertz data with eq. \ref{eq:s21_IQ} obtaining the values in quadrature $(I,Q)$. From them we compute the phase $\phi=\arctan\left(\frac{I}{Q}\right)$. Finally we come back to hertz signal through the calibration algorithm described in subsec.~\ref{calib}. We, thus, compare the modulation factor and interferogram amplitude in input, $C_{in}$ and $A_{in}$ and output, $C_{out}$ and $A_{out}$, of this algorithm. This verification is necessary for understanding the reliability of the calibration method. In fig. \ref{fig:cal_bck} we report the change on the calibration factor as a function of background, at fixed modulation factor and interferogram amplitude.
 
 \begin{figure}[htf]
 	\centering
@@ -358,22 +330,9 @@ First of all, starting from these simulated data we generate a data block with a
 	\label{fig:amp_mod}
 \end{figure}
 
-\subsection{Tuning procedure}
-\label{sec:tuning}
 
-The new modulation technique for KISS, described and simulated in the previous sections is the major improvement on the data calibration and production. On the other side, to optimise the working point of the KID it is necessary to retune: while you observe, the atmospheric fluctuations modify the resonance. What is done at the end of each observation, in the standard perspective, is a full frequency sweep to retune the resonance frequency: this represents a time-demanding procedure. By the way we can, similarly to NIKA2, adopt a strategy that permits to save $\sim$75\% of time in the pre-observation phase of retuning, this strategy is detailed explained in (\cite{2014SPIE.9153E..02C}). At first, you measure the angle $\Phi$ between the vectors $(I,Q)$ and $(dI/df_{LO},dQ/df_{LO})$ referring to eq. \ref{eq:didq} and you define, for convenience, a new angle $\theta\doteq \pi/2-\Phi$ that changes smoothly around $[-\pi,\pi]$. Secondly, the excitation tone is fixed at $\theta=0$ and you estimate the $\theta(f)$ slope $\Delta\theta/\Delta f'$. Then, you vary the tone frequency $f^i$ monitoring $\theta^i$. And finally, you can evaluate the new resonance frequency:
-
-\begin{equation}
-f^i_0 \simeq f^i - \frac{\theta^i(t)}{\Delta\theta/\Delta f'} \text{ .}
-\end{equation}
-
-The procedure described in this section is used for KISS. It represents a resilient tool that can be adopt on KIDs-based experiments: even for large background fluctuations, you can iterate the algorithm to converge.
-
-
-\section{Results}
-\label{sec:results}
-
-\subsection{Algorithm on real data}
+\subsection{Validation on real data}
++ non linear effects on the Moon
 
 In this section we show the first results obtained from the first part of the commissioning campaign of the instrument, installed at the QUIJOTE telescope in Tenerife. We can see in fig. \ref{fig:circle} the circular fit performed on real data as described in fig. \ref{fig:IQ_modulation}: the two external are the modulation points and the central distribution represents the variation of the signal during the observations.
 
@@ -391,7 +350,7 @@ The first result, that we can compare with the simulation, is reported in fig. \
 
 \begin{figure}[htf]
 	\centering
-	\includegraphics[width=.7\textwidth]{4.results/calfact.png}
+	\includegraphics[width=.5\textwidth]{4.results/calfact.png}
 	\caption{Calibration factor as a function of Time Ordered Information, TOI, during an observation. The gaussian fit reported in the red top-left box is evaluated from the data that have beed before median filtered. We can notice the derive of the calibration factor due to the Right-Ascension Declination (RA-Dec) observation: the telescope increases the elevation following the source. In the bottom-right the offset maps of the sky-coordinates in RA-Dec and Azimuth-Elevation.}
 	\label{fig:calfact}
 \end{figure}
@@ -409,7 +368,7 @@ Here we assume the background fluctuation, as seen in fig. \ref{fig:cal_bck}, as
 \noindent  We can, then, use the definition of the standard deviation of the TOI noise signal:
 
 \begin{equation}
-\sigma \doteq \int_{0}^{\Delta f} [ASD(f)]^2\cdot df \text{ ,}
+\sigma \doteq \int_{0}^{\Delta f} \left[ASD(f) \right]^2\cdot df \text{ ,}
 \label{eq:sigma}
 \end{equation}
 
@@ -456,10 +415,11 @@ Secondly, what we need to state that the acquisition/data-reduction system is qu
 	\label{fig:autotuning}
 \end{figure}
 
-\noindent We can see how the data are disposed on the same region close to the ones of the first circle, they are around the intercept between the centre of the circle the origin: it means that they are around the minimum of the resonance, i.e., to the frequency of resonance. The data are not perfectly centred because of the intrinsic incertitude on the binning of the injected tone. The radial shift is due to the background change: different elevations correspond to a different air mass, $\sim 1/\cos(el)$. The tuning technique performed between each map recover the resonance  tone, adapting it to the background change.The purpose of this paper is to demonstrate and explain the new acquisition technique for KISS. As previously mentioned, this algorithm is naturally implementable for all those instruments that will aim to exploit KID-based interferometers: a worthwhile solution for the contemporary and future multi-wavelength cosmology. Although KISS represents a standalone instrument to make science, it opens future perspectives for larger arrays experiments, like CONCERTO \cite{concerto}. Specifically for these cases, in fact, our new algorithm will minimise the data production and contain the inflation on the electronics specifications.
+\noindent We can see how the data are disposed on the same region close to the ones of the first circle, they are around the intercept between the centre of the circle the origin: it means that they are around the minimum of the resonance, i.e., to the frequency of resonance. The data are not perfectly centred because of the intrinsic incertitude on the binning of the injected tone. The radial shift is due to the background change: different elevations correspond to a different air mass, $\sim 1/\cos(el)$. The tuning technique performed between each map recover the resonance  tone, adapting it to the background change.
 
 
 \section{Conclusions and Perspectives}
+\label{sec:conclu}
 The purpose of this paper is to demonstrate and explain the new acquisition technique for KISS. As previously mentioned, this algorithm is naturally implementable for all those instruments that will aim to exploit KID-based interferometers: a worthwhile solution for the contemporary and future multi-wavelength cosmology. Although KISS represents a standalone instrument to make science, it opens future perspectives for larger arrays experiments, like CONCERTO \cite{concerto}. Specifically for these cases, in fact, our new algorithm will minimise the data production and contain the inflation on the electronics specifications.
 
 \bibliography{bibliography}

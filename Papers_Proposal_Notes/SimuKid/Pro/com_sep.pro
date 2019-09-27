@@ -2,7 +2,7 @@
 ;; Simple component separation to assess impact of non linearity
 
 ;; Assumed non-linearity parameter
-epsilon = 1d-1 ; 0.d0 ; 1d-4 ;0.d0 ;1d-3 ;0.5d-1 ;1d-6 ;0.d0
+epsilon = 2 ; 0.d0 ; 1d-4 ;0.d0 ;1d-3 ;0.5d-1 ;1d-6 ;0.d0
 
 ;; Foreground mask parameter
 latitude_cut = 30.
@@ -41,7 +41,7 @@ nstokes = 3
 
 
 ;; MC realizations
-nmc = 10 ;10 ; 50 ;30
+nmc = 20 ;10 ; 50 ;30
 
 ;;============================================
 n_nu  = n_elements(nu)
@@ -57,6 +57,29 @@ cmb_clt  = clt/fl
 cmb_cle  = cle/fl
 cmb_clb_in = clb/fl
 cmb_clte = clte/fl
+
+
+col_e = 70
+col_te = 150
+col_b = 250
+
+;; CMB power spectra, from CAMB 
+;; ps=0
+;; png=0
+
+;; if ps eq 0 then wind, 1, 1, /free, /large
+;; outplot, file='cmb_power_spectra', ps=ps, png=png, thick=thick
+;; plot, l, l*(l+1)/(2*!dpi)*cmb_clt, /xs, /ys, /xlog, /ylog, yra=[1d-10,1d5], $
+;;          xtitle='Multipole !12l!3', ytitle='!12l(l+1)C!dl!n /2!7p!3 !7l!3K!u2!n'
+;; oplot, l, l*(l+1)/(2*!dpi)*cmb_cle, col=col_e
+;; oplot, l, l*(l+1)/(2*!dpi)*abs(cmb_clte), col=col_te
+;; oplot, l, l*(l+1)/(2*!dpi)*cmb_clb_in, col=col_b
+;; legendastro, ['TT', 'EE', 'BB', 'TE'], col=[0, col_e, col_b, col_te], line=0
+;; xyouts, 2, 5d-5, 'BB (r=0.001)'
+;; outplot, /close, /verb
+
+
+
 ;; No B in the simulations
 cmb_clb = cle*0.d0
 cls2mapsiqu, l, cmb_clt, cmb_cle, cmb_clb, cmb_clte, nx, res_arcmin/60., $
@@ -131,28 +154,118 @@ sync_fit_te = linfit( alog(l_out[wl]), alog( abs(clte_sync[wl])))
 col_e = 70
 col_te = 150
 col_b = 250
+thick = 2
+col_fit = 250
+xra_dust = [1,100]
+xra_sync = [1,50]
+yra_dust = [1d-4, 1d4]
+yra_sync = [1d-6, 1d2]
+xtitle='Multipole !12l!3'
+ytitle='!12l(l+1)C!dl!n /2!7p!3 !7l!3K!u2!n'
+
+ps=0
+png=0
+fmt = '(F4.1)'
+
+if ps eq 0 then wind, 1, 1, /free, /large
+outplot, file='dust_sync_power_spectra', ps=ps, png=png, thick=thick
+my_multiplot, 4, 2, pp, pp1, /rev, gap_x=0.07
+
+plot_oo, l_out, l_out*(l_out+1)/(2*!dpi)*abs(clt_dust), xra=xra_dust, yra=yra_dust, position=pp1[0,*], psym=psym, syms=syms, $
+         xtitle=xtitle, ytitle=ytitle
+oplot, l_out, l_out*(l_out+1)/(2*!dpi)*exp(dust_fit_t[0])*l_out^dust_fit_t[1], col=col_fit, thick=thick
+legendastro, ['Dust', 'TT']
+legendastro, ['fit coeff :',$
+              'A='+string(exp(dust_fit_t[0]),form=fmt),$
+              '!7a!3='+string(dust_fit_t[1],form=fmt)], /bottom, /left
+
+plot_oo,   l_out, l_out*(l_out+1)/(2*!dpi)*abs(cle_dust), psym=psym, syms=syms, $
+        xra=xra_dust, yra=yra_dust, position=pp1[1,*], /noerase, xtitle=xtitle, ytitle=ytitle
+oplot, l_out, l_out*(l_out+1)/(2*!dpi)*exp(dust_fit_e[0])*l_out^dust_fit_e[1], col=col_fit, thick=thick
+legendastro, ['Dust', 'EE']
+legendastro, ['fit coeff :',$
+              'A='+string(exp(dust_fit_e[0]),form=fmt),$
+              '!7a!3='+string(dust_fit_e[1],form=fmt)], /bottom, /left
+
+plot_oo,   l_out, l_out*(l_out+1)/(2*!dpi)*abs(clb_dust), psym=psym, syms=syms, $
+        xra=xra_dust, yra=yra_dust, position=pp1[2,*], /noerase, xtitle=xtitle, ytitle=ytitle
+oplot, l_out, l_out*(l_out+1)/(2*!dpi)*exp(dust_fit_b[0])*l_out^dust_fit_b[1], col=col_fit, thick=thick
+legendastro, ['Dust', 'BB']
+legendastro, ['fit coeff :',$
+              'A='+string(exp(dust_fit_b[0]),form=fmt),$
+              '!7a!3='+string(dust_fit_b[1],form=fmt)], /bottom, /left
+
+plot_oo,   l_out, l_out*(l_out+1)/(2*!dpi)*abs(clte_dust), psym=psym, syms=syms,$
+        xra=xra_dust, yra=yra_dust, position=pp1[3,*], /noerase, xtitle=xtitle, ytitle=ytitle
+oplot, l_out, l_out*(l_out+1)/(2*!dpi)*exp(dust_fit_te[0])*l_out^dust_fit_te[1], col=col_fit, thick=thick
+legendastro, ['Dust', 'TE']
+legendastro, ['fit coeff :',$
+              'A='+string(exp(dust_fit_te[0]),form=fmt),$
+              '!7a!3='+string(dust_fit_te[1],form=fmt)], /bottom, /left
+
+
+plot_oo, l_out, l_out*(l_out+1)/(2*!dpi)*abs(clt_sync), xra=xra_sync, yra=yra_sync, position=pp1[4,*],$
+         psym=psym, syms=syms, /noerase, xtitle=xtitle, ytitle=ytitle
+oplot, l_out, l_out*(l_out+1)/(2*!dpi)*exp(sync_fit_t[0])*l_out^sync_fit_t[1], col=col_fit, thick=thick
+legendastro, ['Synchrotron', 'TT']
+legendastro, ['fit coeff :',$
+              'A='+string(exp(sync_fit_t[0]),form=fmt),$
+              '!7a!3='+string(sync_fit_t[1],form=fmt)], /bottom, /left
+
+plot_oo,   l_out, l_out*(l_out+1)/(2*!dpi)*abs(cle_sync), psym=psym, syms=syms, $
+        xra=xra_sync, yra=yra_sync, position=pp1[5,*], /noerase, xtitle=xtitle, ytitle=ytitle
+oplot, l_out, l_out*(l_out+1)/(2*!dpi)*exp(sync_fit_e[0])*l_out^sync_fit_e[1], col=col_fit, thick=thick
+legendastro, ['Synchrotron', 'EE']
+legendastro, ['fit coeff :',$
+              'A='+string(exp(sync_fit_e[0]),form=fmt),$
+              '!7a!3='+string(sync_fit_e[1],form=fmt)], /bottom, /left
+
+
+plot_oo,   l_out, l_out*(l_out+1)/(2*!dpi)*abs(clb_sync), psym=psym, syms=syms, $
+        xra=xra_sync, yra=yra_sync, position=pp1[6,*], /noerase, xtitle=xtitle, ytitle=ytitle
+oplot, l_out, l_out*(l_out+1)/(2*!dpi)*exp(sync_fit_b[0])*l_out^sync_fit_b[1], col=col_fit, thick=thick
+legendastro, ['Synchrotron', 'BB']
+legendastro, ['fit coeff :',$
+              'A='+string(exp(sync_fit_b[0]),form=fmt),$
+              '!7a!3='+string(sync_fit_b[1],form=fmt)], /bottom, /left
+
+
+plot_oo,   l_out, l_out*(l_out+1)/(2*!dpi)*abs(clte_sync), psym=psym, syms=syms,$
+        xra=xra_sync, yra=yra_sync, position=pp1[7,*], /noerase, xtitle=xtitle, ytitle=ytitle
+oplot, l_out, l_out*(l_out+1)/(2*!dpi)*exp(sync_fit_te[0])*l_out^sync_fit_te[1], col=col_fit, thick=thick
+legendastro, ['Synchrotron', 'TE']
+legendastro, ['fit coeff :',$
+              'A='+string(exp(sync_fit_te[0]),form=fmt),$
+              '!7a!3='+string(sync_fit_te[1],form=fmt)], /bottom, /left
+
+outplot, /close, /verb
+
+
+
 ;; wind, 1, 1, /free, /large
 ;; my_multiplot, 2, 1, pp, pp1, /rev
-;; plot_oo, l_out, l_out*(l_out+1)/(2*!dpi)*abs(clt_dust), xra=[1, 1000], yra=[1d-4, 1d4], position=pp1[0,*]
-;; oplot,   l_out, l_out*(l_out+1)/(2*!dpi)*abs(cle_dust), col=col_e
-;; oplot,   l_out, l_out*(l_out+1)/(2*!dpi)*abs(clb_dust), col=col_b
-;; oplot,   l_out, l_out*(l_out+1)/(2*!dpi)*abs(clte_dust), col=col_te
+;; plot_oo, l_out, l_out*(l_out+1)/(2*!dpi)*abs(clt_dust), xra=xra, yra=[1d-4, 1d4], position=pp1[0,*], psym=psym, syms=syms
+;; oplot,   l_out, l_out*(l_out+1)/(2*!dpi)*abs(cle_dust), col=col_e, psym=psym, syms=syms
+;; oplot,   l_out, l_out*(l_out+1)/(2*!dpi)*abs(clb_dust), col=col_b, psym=psym, syms=syms
+;; oplot,   l_out, l_out*(l_out+1)/(2*!dpi)*abs(clte_dust), col=col_te, psym=psym, syms=syms
 ;; oplot, l_out, l_out*(l_out+1)/(2*!dpi)*exp(dust_fit_t[0])*l_out^dust_fit_t[1]
 ;; oplot, l_out, l_out*(l_out+1)/(2*!dpi)*exp(dust_fit_e[0])*l_out^dust_fit_e[1], col=col_e
 ;; oplot, l_out, l_out*(l_out+1)/(2*!dpi)*exp(dust_fit_b[0])*l_out^dust_fit_b[1], col=col_b
 ;; oplot, l_out, l_out*(l_out+1)/(2*!dpi)*exp(dust_fit_te[0])*l_out^dust_fit_te[1], col=col_te
 ;; legendastro, 'Dust'
 
-;; plot_oo, l_out, l_out*(l_out+1)/(2*!dpi)*abs(clt_sync), xra=[1, 1000], yra=[1d-10, 1d2], position=pp1[1,*], /noerase
-;; oplot,   l_out, l_out*(l_out+1)/(2*!dpi)*abs(cle_sync), col=col_e
-;; oplot,   l_out, l_out*(l_out+1)/(2*!dpi)*abs(clb_sync), col=col_b
-;; oplot,   l_out, l_out*(l_out+1)/(2*!dpi)*abs(clte_sync), col=col_te
+;; plot_oo, l_out, l_out*(l_out+1)/(2*!dpi)*abs(clt_sync), xra=xra, yra=[1d-10, 1d2], position=pp1[1,*],$
+;;          /noerase, psym=psym, syms=syms
+;; oplot,   l_out, l_out*(l_out+1)/(2*!dpi)*abs(cle_sync), col=col_e, psym=psym, syms=syms
+;; oplot,   l_out, l_out*(l_out+1)/(2*!dpi)*abs(clb_sync), col=col_b, psym=psym, syms=syms
+;; oplot,   l_out, l_out*(l_out+1)/(2*!dpi)*abs(clte_sync), col=col_te, psym=psym, syms=syms
 ;; oplot, l_out, l_out*(l_out+1)/(2*!dpi)*exp(sync_fit_t[0])*l_out^sync_fit_t[1]
 ;; oplot, l_out, l_out*(l_out+1)/(2*!dpi)*exp(sync_fit_e[0])*l_out^sync_fit_e[1], col=col_e
 ;; oplot, l_out, l_out*(l_out+1)/(2*!dpi)*exp(sync_fit_b[0])*l_out^sync_fit_b[1], col=col_b
 ;; oplot, l_out, l_out*(l_out+1)/(2*!dpi)*exp(sync_fit_te[0])*l_out^sync_fit_te[1], col=col_te
 ;; legendastro, 'Sync'
-;stop
+
+
 
 ;; dust at nu0
 dust_clt  = exp(dust_fit_t[ 0])*l^dust_fit_t[ 1]
@@ -172,20 +285,32 @@ sync_clt  = sync_clt  > sync_clte
 cls2mapsiqu, l, sync_clt, sync_cle, sync_clb, sync_clte, nx, res_arcmin/60., $
              sync_t, sync_q, sync_u, cu_t, cu_e, cu_b, cu_te
 
-wind, 1, 1, /free, /large
+
+;; CMB, dust, synchrotron maps
+ps=0
+png=0
+
+if ps eq 0 then wind, 1, 1, /free, /large
+outplot, file='cmb_dust_sync_maps', ps=ps, png=png, thick=thick
 dp = {noerase:1}
+unitsbar='[!7l!3K!u2!n!dcmb!n]'
+unitsbar1 = '[!7l!3K!u2!n!dRJ!n]'
 my_multiplot, 3, 3, pp, pp1, /rev
-imview, cmb_t, dp=dp, position=pp1[0,*], title='CMB T'
-imview, cmb_q, dp=dp, position=pp1[1,*], title='CMB Q'
-imview, cmb_u, dp=dp, position=pp1[2,*], title='CMB U'
+imview, cmb_t, dp=dp, position=pp1[0,*], title='CMB T', unitsbar=unitsbar
+imview, cmb_q, dp=dp, position=pp1[1,*], title='CMB Q', unitsbar=unitsbar
+imview, cmb_u, dp=dp, position=pp1[2,*], title='CMB U', unitsbar=unitsbar
 
-imview, dust_t, dp=dp, position=pp1[3,*], title='DUST T'
-imview, dust_q, dp=dp, position=pp1[4,*], title='DUST Q'
-imview, dust_u, dp=dp, position=pp1[5,*], title='DUST U'
+imview, dust_t, dp=dp, position=pp1[3,*], title='DUST T', unitsbar=unitsbar1
+imview, dust_q, dp=dp, position=pp1[4,*], title='DUST Q', unitsbar=unitsbar1
+imview, dust_u, dp=dp, position=pp1[5,*], title='DUST U', unitsbar=unitsbar1
+                                                                           
+imview, sync_t, dp=dp, position=pp1[6,*], title='SYNC T', unitsbar=unitsbar1
+imview, sync_q, dp=dp, position=pp1[7,*], title='SYNC Q', unitsbar=unitsbar1
+imview, sync_u, dp=dp, position=pp1[8,*], title='SYNC U', unitsbar=unitsbar1
+outplot, /close, /verb
 
-imview, sync_t, dp=dp, position=pp1[6,*], title='SYNC T'
-imview, sync_q, dp=dp, position=pp1[7,*], title='SYNC Q'
-imview, sync_u, dp=dp, position=pp1[8,*], title='SYNC U'
+
+
 
 ;; Xcheck angular power spectra of simulated maps
 s        = size(cmb_t)
@@ -211,6 +336,7 @@ ipoker, sync_t, res_arcmin, k, pk_sync_t, /bypass, /rem, delta_l_over_l=delta_l_
 ipoker, sync_e, res_arcmin, k, pk_sync_e, /bypass, /rem, delta_l_over_l=delta_l_over_l
 ipoker, sync_b, res_arcmin, k, pk_sync_b, /bypass, /rem, delta_l_over_l=delta_l_over_l
 ipoker, sync_t, res_arcmin, map1=sync_e, k, pk_sync_te, /bypass, /rem, delta_l_over_l=delta_l_over_l
+
 
 ;; wind, 1, 1, /free, /large
 ;; my_multiplot, 1, 3, pp, pp1, /rev
@@ -268,7 +394,7 @@ ipoker, sync_t, res_arcmin, map1=sync_e, k, pk_sync_te, /bypass, /rem, delta_l_o
 ;; oplot, l, l*(l+1)/(2*!dpi)*sync_clb, col=col_b
 ;; legendastro, 'Epsilon = '+strtrim(epsilon,2)
 ;; legendastro, ['TT', 'EE', 'TE', 'BB'], col=[!p.color, col_e, col_te, col_b], /bottom, line=0
-;stop
+;; stop
 
 
 ;;=================================== Main loop =======================
@@ -497,6 +623,17 @@ mc_reduce, clt_out_res, clt_out_avg, sigma_clt_out_avg
 mc_reduce, cle_out_res, cle_out_avg, sigma_cle_out_avg
 mc_reduce, clb_out_res, clb_out_avg, sigma_clb_out_avg
 mc_reduce, clte_out_res, clte_out_avg, sigma_clte_out_avg
+
+
+l_ref = 100
+k_ref = 100 
+wk    = (where( abs(k-k_ref) eq min( abs(k-k_ref))))[0]
+w     = (where( abs(l-l_ref) eq min( abs(l-l_ref))))[0]
+
+print, "epsilon, clb_out_avg(l="+strtrim(l_ref,2)+")/cl_cmb = ", $
+       clb_out_avg[wk]/clb[w]
+
+
 
 psym = 8
 syms = 0.5

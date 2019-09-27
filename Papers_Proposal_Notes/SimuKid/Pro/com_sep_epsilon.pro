@@ -4,8 +4,14 @@
 ;; Assumed non-linearity parameter
 epsilon = 5d-2 ; 0.d0 ; 1d-4 ;0.d0 ;1d-3 ;0.5d-1 ;1d-6 ;0.d0
 epsilon = [5d-2, 1d-1] 
-epsilon = [5d-3, 5d-2, 1d-1]
+epsilon = [5d-3, 5d-2, 1d-1] ;plot these
 
+eps_min = 5d-3
+eps_max = 0.20  ;0.25
+neps    = 15
+epsilon = dindgen(neps)*(eps_max-eps_min)/(neps-1) + eps_min
+
+;;epsilon = [1d-3, 3d-3, 5d-3, 1d-2, 3d-2, 5d-2, 1d-1, 3d-1, 5d-1, 1, 1.3, 1.5, 2d0] 
 neps    = n_elements(epsilon)
 
 ;; Foreground mask parameter
@@ -45,7 +51,7 @@ nstokes = 3
 
 
 ;; MC realizations
-nmc = 10 ;10 ; 50 ;30
+nmc = 30 ;10 ; 50 ;30
 
 ;;============================================
 n_nu  = n_elements(nu)
@@ -360,7 +366,7 @@ clb_out_res = dblarr(nmc,nk,neps)
 clte_out_res = dblarr(nmc,nk,neps)
 ;m_eps        = dblarr(neps)
 for imc=0, nmc-1 do begin
-   print, strtrim(imc,2)+"/"+strtrim(nmc-1,2)
+;   print, strtrim(imc,2)+"/"+strtrim(nmc-1,2)
 
    ;; cmb spectra are in microK_CMB^2
    cls2mapsiqu, l, cmb_clt, cmb_cle, cmb_clb, cmb_clte, nx, res_arcmin/60., $
@@ -509,15 +515,20 @@ for imc=0, nmc-1 do begin
    endfor
 endfor
 
-clt_out_avg  = dblarr(nk,neps)
-cle_out_avg  = dblarr(nk,neps)
-clb_out_avg  = dblarr(nk,neps)
-clte_out_avg = dblarr(nk,neps)
+clt_out_avg        = dblarr(nk,neps)
+cle_out_avg        = dblarr(nk,neps)
+clb_out_avg        = dblarr(nk,neps)
+clte_out_avg       = dblarr(nk,neps)
 sigma_clt_out_avg  = dblarr(nk,neps)
 sigma_cle_out_avg  = dblarr(nk,neps)
 sigma_clb_out_avg  = dblarr(nk,neps)
 sigma_clte_out_avg = dblarr(nk,neps)
+frac               = dblarr(neps)
 
+l_ref = 100
+k_ref = 100
+wk    = (where( abs(k-k_ref) eq min( abs(k-k_ref))))[0]
+w     = (where( abs(l-l_ref) eq min( abs(l-l_ref))))[0]
 
 for ieps=0,neps-1 do begin
    mc_reduce, clt_out_res[*,*,ieps], clt_out_avg_res, sigma_clt_out_avg_res
@@ -533,6 +544,8 @@ for ieps=0,neps-1 do begin
    sigma_cle_out_avg[*,ieps] = sigma_cle_out_avg_res
    sigma_clb_out_avg[*,ieps] = sigma_clb_out_avg_res
    sigma_clte_out_avg[*,ieps] = sigma_clte_out_avg_res
+
+   frac[ieps] = clb_out_avg_res[wk]/clb[w]
 endfor
 
 
@@ -542,7 +555,29 @@ syms = 0.5
 ;fmt = '(F4.2)'
 fmt = '(F5.3)'
 png = 0
-ps  = 1
+ps  = 0
+
+
+eps_min = 5d-3
+eps_max = 0.20
+neps    = 1000
+epsilon1 = dindgen(neps)*(eps_max-eps_min)/(neps-1) + eps_min
+
+
+a = poly_fit(epsilon, frac, 2)
+
+if ps eq 0 then wind, 1, 1, /free
+outplot, file='epsilon_power_law', ps=ps, png=png, thick=thick
+plot , epsilon, frac, psym=8, xtitle='!7e!3', ytitle='!12C!dl!n!u!3NL!n / !12C!dl!n!u!3in!n', charsize=1.2
+oplot, epsilon1, a[0] + a[1]*epsilon1 + a[2]*epsilon1^2, col=250, psym=4
+oplot, [0,10], [1,1], linestyle=2
+outplot, /close, /verb
+
+wfit = where( (a[0] + a[1]*epsilon1 + a[2]*epsilon1^2 lt 1.1) and (a[0] + a[1]*epsilon1 + a[2]*epsilon1^2 gt 0.99), nwfit)
+print, epsilon1[wfit]
+
+png = 0
+ps  = 0 
 
 if ps eq 0 then wind, 1, 1, /free, /large
 outplot, file='cmb_power_spectra_nl', ps=ps, png=png, thick=thick
@@ -566,115 +601,6 @@ oplot, l, l*(l+1)/(2*!dpi)*cmb_clb_in, col=col_b
 legendastro, ['T', 'E', 'B', 'TE'], col=[0, col_e, col_b, col_te], line=0
 xyouts, 2, 5d-5, 'BB (r=0.001)'
 outplot, /close, /verb
-
-;legendastro, 'Epsilon = '+strtrim(epsilon,2), /right
-
-;; ;;    out_dust_i = reform( s[*,3])
-;; ;;    out_dust_q = reform( s[*,4])
-;; ;;    out_dust_u = reform( s[*,5])
-;; ;;    out_sync_i = reform( s[*,6])
-;; ;;    out_sync_q = reform( s[*,7])
-;; ;;    out_sync_u = reform( s[*,8])
-;; ;; 
-;; 
-;; ;; mollview, cover*(out_cmb_i-i_cmb), title='CMB I out-in, epsilon='+strtrim(epsilon,2)
-;; ;; mollview, cover*(out_cmb_q-q_cmb), title='CMB Q out-in, epsilon='+strtrim(epsilon,2)
-;; ;;   stop
-;; ;; mollview, out_cmb_q-q_cmb, title='CMB Q out-in'
-;; ;; mollview, cover*(out_dust_i-i_dust_ref), title='Dust (ref nu) out-in'
-;; ;; mollview, out_sync_q-q_sync_ref, title='Sync (ref nu) out-in (RJ)'
-;; ;; print, "HERE"
-;; ;; stop
-;; 
-;;    ;; Power spectra
-;;    xmap = dblarr(npix,3)
-;;    xmap[*,0] = out_cmb_i
-;;    xmap[*,1] = out_cmb_q
-;;    xmap[*,2] = out_cmb_u
-;;    ispice, xmap, cover, l_out, clt_out, cle_out, clb_out, clte_out
-;;    l_out    = l_out[   2:*]
-;;    clt_out  = clt_out[ 2:*]
-;;    cle_out  = cle_out[ 2:*]
-;;    clb_out  = clb_out[ 2:*]
-;;    clte_out = clte_out[2:*]
-;;    
-;; ;; Correct for Healpix's pixel window function
-;;    wl = mrdfits( !healpix.path.data+"/pixel_window_n"+string(nside,form='(I4.4)')+".fits",1)
-;;    clt_out  = clt_out[ 2:*]/wl.temperature^2
-;;    cle_out  = cle_out[ 2:*]/wl.polarization^2
-;;    clb_out  = clb_out[ 2:*]/wl.polarization^2
-;;    clte_out = clte_out[2:*]/wl.temperature/wl.polarization
-;; 
-;;    if imc eq 0 then begin
-;;       clt_out_res  = dblarr(nmc,n_elements(clt_out))
-;;       cle_out_res  = clt_out_res
-;;       clb_out_res  = clt_out_res
-;;       clte_out_res = clt_out_res
-;;    endif
-;;    clt_out_res[imc,*]  = clt_out
-;;    cle_out_res[imc,*]  = cle_out
-;;    clb_out_res[imc,*]  = clb_out
-;;    clte_out_res[imc,*] = clte_out
-;; 
-;; ;;    ;; One realization
-;; ;;    fl = l_out*(l_out+1)/(2.*!dpi)
-;; ;;    xra = [1,3*nside]
-;; ;;    yra = [1d-8,1d4]
-;; ;;    col_ee = 70
-;; ;;    col_bb = 250
-;; ;;    col_te = 150
-;; ;;    wind, 1, 1, /free, /large
-;; ;;    plot, xra, yra, xtitle='!12l!3', ytitle='!12l(l+1)C!dl!n/2!7p!3', $
-;; ;;          /nodata, /xlog, /ylog, /xs, /ys
-;; ;;    legendastro, 'Epsilon '+strtrim(epsilon,2), /bottom
-;; ;;    oplot, l, clt
-;; ;;    oplot, l, cle
-;; ;;    oplot, l, clb
-;; ;;    oplot, l, abs(clte)
-;; ;;    oplot, l_out, fl*clt_out
-;; ;;    oplot, l_out, fl*cle_out, col=col_ee
-;; ;;    oplot, l_out, fl*clb_out, col=col_bb
-;; ;;    oplot, l_out, fl*abs(clte_out), col=col_te
-;; ;;    legendastro, ['T', 'E', 'B', 'TE'], col=[!p.color, col_ee, col_bb, col_te], line=0
-;; ;;    stop
-;; endfor
-;; 
-;; ;; Plot average results
-;; mc_reduce, clt_out_res, clt_out_avg, sigma_clt_out_avg
-;; mc_reduce, cle_out_res, cle_out_avg, sigma_cle_out_avg
-;; mc_reduce, clb_out_res, clb_out_avg, sigma_clb_out_avg
-;; mc_reduce, clte_out_res, clte_out_avg, sigma_clte_out_avg
-;; 
-;; ;; Derive constraint on epsilon
-;; l_ref = 100
-;; w_out = (where( abs(l_out-l_ref) eq min( abs(l_out-l_ref))))[0]
-;; w     = (where( abs(l-l_ref) eq min( abs(l-l_ref))))[0]
-;; print, "epsilon, clb_out_avg(l="+strtrim(l_ref,2)+")/cl_cmb = ", $
-;;        clb_out_avg[w]/(clb[w]*2*!dpi/(l[w]*(l[w]+1)))
-;; 
-;; ;; Final plot
-;; fl = l_out*(l_out+1)/(2.*!dpi)
-;; xra = [1,3*nside]
-;; yra = [1d-8,1d4]
-;; col_ee = 70
-;; col_bb = 250
-;; col_te = 150
-;; wind, 1, 1, /free, /large
-;; outplot, file='non_linear_fg_residuals_cl_epsilon_'+strtrim(epsilon,2), png=png, ps=ps
-;; plot, xra, yra, xtitle='!12l!3', ytitle='!12l(l+1)C!dl!n/2!7p!3', $
-;;       /nodata, /xlog, /ylog, /xs, /ys
-;; legendastro, 'Epsilon '+strtrim(epsilon,2), /bottom
-;; oplot, l, clt
-;; oplot, l, cle
-;; oplot, l, clb
-;; oplot, l, abs(clte)
-;; oplot, l_out, fl*clt_out_avg
-;; oplot, l_out, fl*cle_out_avg, col=col_ee
-;; oplot, l_out, fl*clb_out_avg, col=col_bb
-;; oplot, l_out, fl*abs(clte_out_avg), col=col_te
-;; legendastro, ['T', 'E', 'B', 'TE'], col=[!p.color, col_ee, col_bb, col_te], line=0
-;; legendastro, 'Nmc = '+strtrim(nmc,2), /right
-;; outplot, /close, /verb
 
 
 end

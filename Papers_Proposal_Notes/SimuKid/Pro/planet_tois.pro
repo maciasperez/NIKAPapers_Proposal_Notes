@@ -5,7 +5,7 @@
 drift = 1
 
 ;; Realizations
-nmc = 10 ;200 ;30
+nmc = 1000 ;10 ;200 ;30
 
 ;; HWP power
 hwp_max_ampl_jy = 70. ;50. ;100.
@@ -92,6 +92,7 @@ nterms = 5 ;3
 
 ;; Main loop: produced TOI's and fit output fluxes
 for ispeed=0, nspeed-1 do begin
+;   percent_status, ispeed, nspeed, 10
    npts_per_fwhm_min = npts_per_fwhm_list[ispeed]
    vmax = fwhm/npts_per_fwhm_min * 4 * hwp_rot_freq    ; arcsec/s
    scan_speed = vmax                                   ; arcmin/s
@@ -348,8 +349,8 @@ imc = 0
 if ps eq 0 then wind, 1, 1, /free, /large
 outplot, file='flux_out_vs_in', png=png, ps=ps
 plot, flux_list, planet_rf_flux_results[0,imc,*]/flux_list, $
-      /xs, /ys, xra=xra, yra=yra, xtitle='Input flux', $
-      ytitle='Output flux / input flux', /nodata
+      /xs, /ys, xra=xra, yra=yra, xtitle='Input flux (Jy)', $
+      ytitle='Output flux / input flux (Jy)', /nodata
 oplot, xra, xra*0. + 1.d0
 oplot, flux_list, planet_rf_flux_results[0,imc,*]/flux_list, col=col_rf, line=2
 oplot, flux_list, planet_rf_flux_results[1,imc,*]/flux_list, col=col_rf
@@ -358,6 +359,23 @@ oplot, flux_list, planet_cf_flux_results[1,imc,*]/flux_list, col=col_cf
 legendastro, ['3pts/FWHM', '5pts/FWHM'], line=[2,0], /right
 legendastro, ['Method 1', 'Method 2'], col=[col_rf, col_cf], line=[0,0], /left
 outplot, /close, /verb
+
+
+yra = [0.98, 1.01]
+xra = minmax(flux_list)
+imc = 0
+if ps eq 0 then wind, 1, 1, /free, /large
+outplot, file='flux_out_vs_in_5pts_per_fwhm', png=png, ps=ps
+plot, flux_list, planet_rf_flux_results[0,imc,*]/flux_list, $
+      /xs, /ys, xra=xra, yra=yra, xtitle='Input flux (Jy)', $
+      ytitle='Output flux / input flux (Jy)', /nodata
+oplot, xra, xra*0. + 1.d0
+oplot, flux_list, planet_rf_flux_results[1,imc,*]/flux_list, col=col_rf
+oplot, flux_list, planet_cf_flux_results[1,imc,*]/flux_list, col=col_cf
+legendastro, ['Method 1', 'Method 2'], col=[col_rf, col_cf], line=[0,0], /left
+outplot, /close, /verb
+
+
 
 ;; yra = [0.96, 1.01]
 ;; xra = minmax(flux_list)
@@ -387,6 +405,26 @@ print, 'eps_cf (5pts/fwhm) = ', epsilon_planet_cf[1,imc]
 
 
 ;; Distribution of non linearity coeffs : Planet + HWP
+
+fmt = '(F4.1)'
+ispeed = 1 ;(5pts/fwhm)
+
+if ps eq 0 then wind, 1, 1, /free, /large
+outplot, file='histos_epsilon_rf_cf', png=png, ps=ps
+my_multiplot, 1, 2, pp, pp1, /rev
+np_histo, reform( epsilon_planet_hwp_rf[ispeed,*], nmc), $
+          position=pp1[0,*], xtitle='epsilon 1', ytitle='counts', $
+          /fit, /noerase, /fill, fcol=col_rf
+legendastro, 'Max. HWP Ampl: '+string(hwp_max_ampl_jy,form=fmt)+" Jy"
+
+np_histo, reform( epsilon_planet_hwp_cf[ispeed,*], nmc), $
+          position=pp1[1,*], xtitle='epsilon 2', ytitle='counts', $
+          /fit, /noerase, /fill, fcol=col_cf
+legendastro, 'Max. HWP Ampl: '+string(hwp_max_ampl_jy,form=fmt)+" Jy"
+outplot, /close, /verb
+
+
+
 gap_x = 0.05
 if ps eq 0 then wind, 1, 1, /free, /large
 outplot, file='histos_epsilon', png=png, ps=ps

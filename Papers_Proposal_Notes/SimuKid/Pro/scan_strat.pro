@@ -47,8 +47,8 @@ nsn_nyquist = round( obs_time_hour*3600.d0*f_nyquist)
 ;; Retrieve sky maps
 if defined(dust_mjysr) eq 0 then init_maps, nside, dust_mjysr, dipole_mjysr
 
-;; mollview, dipole_mjysr, title='Dipole (Mjy/sr)'
-;; mollview, dust_mjysr, title='map (Mjy/sr)'
+;; mollview, dipole_mjysr, title='Dipole (Mjy/sr)', ps=0
+;; mollview, dust_mjysr, title='map (Mjy/sr)', ps=0
 ;; mollview, dipole_mjysr+dust_mjysr, title='Raw + dipole (Mjy/sr)'
 
 ;; Pointing

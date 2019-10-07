@@ -7,7 +7,7 @@ col_rf = 70
 col_cf = 250
 
 png = 0 ; 1
-ps  = 1
+ps  = 0
 nside = 2048
 
 npts_per_fwhm_min = 5 ; 3

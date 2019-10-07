@@ -45,7 +45,7 @@ scan_strat, alpha_deg, beta_deg, gamma_deg, t_pre_sec, $
 
 if ps eq 0 then wind, 1, 1, /free, /large
 outplot, file='histo_galaxy_dipole_planck', png=png, ps=ps
-np_histo, toi_dust_dipole_planck_jy, xtitle='Flux (Jy)'
+np_histo, toi_dust_dipole_planck_jy, xtitle='Flux (Jy)', fcol=200, /fill
 outplot, /close, /verb
 
 

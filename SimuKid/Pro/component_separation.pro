@@ -317,7 +317,7 @@ w_out = (where( abs(l_out-l_ref) eq min( abs(l_out-l_ref))))[0]
 w     = (where( abs(l-l_ref) eq min( abs(l-l_ref))))[0]
 print, "epsilon, clb_out_avg(l="+strtrim(l_ref,2)+")/cl_cmb = ", $
        clb_out_avg[w]/(clb[w]*2*!dpi/(l[w]*(l[w]+1)))
-stop
+
 ;; Final plot
 fl = l_out*(l_out+1)/(2.*!dpi)
 xra = [1,3*nside]

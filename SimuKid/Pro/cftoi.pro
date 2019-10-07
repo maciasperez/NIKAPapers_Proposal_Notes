@@ -55,6 +55,15 @@ if keyword_set(stop) then begin
    stop
 endif
 
+
+;; ;exemple poly Mew 1D polynomial fit 
+;; alpha=10
+;; phi = dindgen( 100)/99.*alpha
+;; bidonz = cos(phi/2)*exp(j*(phi/2))
+;; bidonr = 1d0/bidonz
+;; plot, 1/2. + 1/2.*cos(phi), sin(phi), xra=[0,1.2]
+;; oplot, double(bidonr), imaginary(bidonr), psym=4, col=250
+
 ;; Integrate the fitted polynomial
 pn = i*0.d0
 for ii=0, polydeg do pn += Rn[ii]/(ii+1.d0)*y3^(ii+1)

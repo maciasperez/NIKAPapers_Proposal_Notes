@@ -6,7 +6,7 @@ pro get_planck_maps, nside, $
 
 map_dir = '$SK_DIR/Maps'
 
-planck_cmb = mrdfits("$SK_DIR/Maps/COM_CMB_IQU-commander_1024_R2.02_full.fits", 1, hcmb)
+planck_cmb = mrdfits("$SK_DIR/Maps/COM_CMB_IQU-commander_1024_R2.02_full.fits", 1, hcmb, /silent)
 ;; K to microK
 i_cmb = planck_cmb.i_stokes * 1d6
 q_cmb = planck_cmb.q_stokes * 1d6
@@ -16,7 +16,7 @@ ud_grade, q_cmb, q_cmb, nside_out=nside, order_in='nested', order_out='ring'
 ud_grade, u_cmb, u_cmb, nside_out=nside, order_in='nested', order_out='ring'
 
 ;; Dust Q and U at 353GHz
-planck_dust = mrdfits("$SK_DIR/Maps/COM_CompMap_DustPol-commander_1024_R2.00.fits", 1, hdust)
+planck_dust = mrdfits("$SK_DIR/Maps/COM_CompMap_DustPol-commander_1024_R2.00.fits", 1, hdust, /silent)
 print, sxpar(hdust,"NU_REF")
 print, sxpar(hdust, "TUNIT1")
 ud_grade, planck_dust.q_ml_full, q_dust_ref, nside_out=nside, order_in='nested', order_out='ring'
@@ -33,7 +33,7 @@ ud_grade, planck_dust.u_ml_full, u_dust_ref, nside_out=nside, order_in='nested',
 ;;u_dust_ref *= 1000              ; mK to uK
 
 ;; Dust T at 545GHz
-planck_t_dust = mrdfits("$SK_DIR/Maps/COM_CompMap_ThermalDust-commander_2048_R2.00.fits", 1, htdust)
+planck_t_dust = mrdfits("$SK_DIR/Maps/COM_CompMap_ThermalDust-commander_2048_R2.00.fits", 1, htdust, /silent)
 print, sxpar( htdust, "NU_REF")
 print, sxpar( htdust, "TUNIT1")
 ud_grade, planck_t_dust.i_ml_full, i_dust_ref, nside_out=nside, order_in='nested', order_out='ring'
@@ -44,7 +44,7 @@ ud_grade, planck_t_dust.i_ml_full, i_dust_ref, nside_out=nside, order_in='nested
 ;;i_dust_ref *= 1000              ; mK to uK
 
 ;; Synchrotron
-planck_sync = mrdfits("$SK_DIR/Maps/COM_CompMap_SynchrotronPol-commander_0256_R2.00.fits", 1, hsync)
+planck_sync = mrdfits("$SK_DIR/Maps/COM_CompMap_SynchrotronPol-commander_0256_R2.00.fits", 1, hsync, /silent)
 print, sxpar( hsync, "NU_REF")
 print, sxpar( hsync, "TUNIT1")
 ud_grade, planck_sync.q_ml_full, q_sync_ref, nside_out=nside, order_in='nested', order_out='ring'
@@ -59,7 +59,7 @@ ud_grade, planck_sync.u_ml_full, u_sync_ref, nside_out=nside, order_in='nested',
 ;;q_sync_ref *= 1000 ; mK to uK
 ;;u_sync_ref *= 1000 ; mK to uK
 
-planck_t_sync = mrdfits("$SK_DIR/Maps/COM_CompMap_Synchrotron-commander_0256_R2.00.fits", 1, htsync)
+planck_t_sync = mrdfits("$SK_DIR/Maps/COM_CompMap_Synchrotron-commander_0256_R2.00.fits", 1, htsync, /silent)
 print, sxpar( htsync, "NU_REF")
 print, sxpar( htsync, "TUNIT1")
 ud_grade, planck_t_sync.i_ml, i_sync_ref, nside_out=nside, order_in='nested', order_out='ring'

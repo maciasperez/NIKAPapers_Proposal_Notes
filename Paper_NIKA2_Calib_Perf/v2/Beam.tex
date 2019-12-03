@@ -50,10 +50,13 @@ this extended pattern is at present difficult to detect using the data
 reduction pipeline discussed in Sect.~\ref{se:dataproc}, as
 the extended error beams are both filtered and mixed with 
 atmospheric and electronics large-scale correlated noise
-residuals. The large angular scale contributions to the full beam are
+residuals. {\rev We expect the filtering effect due to the data
+processing to become non-neglectible for angular scales larger than
+90'', which corresponds to the radial size of the mask used in the
+correlated noise subtraction process (see Sect.~\ref{se:toi_proc}).}
+The contributions to the beam pattern that stem from larger angular scales are
 further discussed in Sect.~\ref{se:beam_efficiency}.} 
 %are difficult to distinguish from common mode variations of the atmosphere or electronics.}
-
 
 %The data processing includes a mitigation of the correlated noise, which
 %mainly originates from the atmosphere.  We primarly use a subtraction
@@ -542,51 +545,95 @@ $2\,\rm{mm}$ although the atmospheric transmission was excellent: this
 is likely an effect of atmospheric instabilities%the anomalous refraction
 , which affected a large number of observation scans during N2R12. 
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Main beam efficiency}
 \label{se:beam_efficiency}
 
-Building upon the description of the full-beam pattern in
-Sect.~\ref{se:fullbeam} and the main beam in Sect.~\ref{se:mainbeam},
-we derive the main beam efficiency for each array, which is defined as the
+%Building upon the description of the full-beam pattern in
+%Sect.~\ref{se:fullbeam} and the main beam in Sect.~\ref{se:mainbeam},
+We derive the main beam efficiency for each array, which is defined as the
 ratio of the solid angle sustained by the main beam to the total beam
 solid angle.
 
-We derive an estimate of the total beam solid angle
+{\rev To estimate the total beam solid angle, we primarily use the maps
+of the beam pattern presented in Sect.~\ref{se:fullbeam}, which
+provide us with accurate representations of the main beam and of the
+first error beams. However, at angular scales greater than the radius
+of the noise decorrelation mask, which is equals to 90'', the
+filtering effect induced by the data processing becomes
+non-neglectible (see also Sect.~\ref{se:dataproc}). Furthermore,
+heterodyne observations at the IRAM \trentemetre\ telescope
+toward the lunar edge and the measure of forward beam efficiency using
+skydips show that a significant fraction of the full beam stems
+from angular scales much greater than $90''$~\citep{Greve1998,
+Kramer2013}. Thus, the accurate assessment of the total beam solid
+angle requires to account for the filtering effect and the large
+angular scales contributions. To that aim, we resort to an hybrid
+approach. We utilize both the full beam pattern measurements with
+NIKA2 as presented in Sect.~\ref{se:fullbeam}, and the results of the
+IRAM \trentemetre\ telescope beam pattern characterization using EMIR
+frontend observations~\citep{Carter2012}, as reported
+in \citet{Kramer2013}. These results came in two flavours.}
+
+{\rev First, the main beam and error beams are measured using observation toward
+the limbs of the Moon. As EMIR is equipped with antenna feed horns,
+which select the radiation illuminating the detectors, the
+contribution of the first error beam is significantly attenuated
+compared to the NIKA2 case. In fact, the first error beam measured by
+NIKA2 is not detected with EMIR, while the second error beam is
+measured with both NIKA2 and EMIR at compatible levels. The third and
+fourth error beams, which originate from the IRAM \trentemetre\
+telescope frame misalignment and panel deformations, respectively, are
+expected to be measured by EMIR without
+attenuation~\citep{Kramer2013}. We assume these latters are
+characteristics of the \trentemetre\ telescope without any significant
+dependencies on the receiver instrument.}
+
+{\rev Second, the IRAM \trentemetre\ telescope forward efficiencies
+$F_{\rm{eff}}$ are derived using skydip scans with EMIR. There
+measurements allow us to estimate the far side lobes efficiencies,
+which receive two different contributions. The \emph{forward}
+spillover and scattering efficencies are $F_{\rm{eff}}$ subtracted
+from the main beam and error beams efficencies, and
+the \emph{rearward} spillover and scattering efficencies equal
+$1-F_{\rm{eff}}$~\citep{Kramer2013}.}
+
+{\rev To sum up, we estimate the solid angle of the total beam as
 \begin{equation}
-  \Omega_{\rm{tot}} (\nu, r_{max}) = \int_0^{r_{max}} B_{\nu}(r) \,  2 \pi r dr
+  \Omega_{\rm{tot}}(\nu) = \int_0^{2\pi} \left( B_{\nu}(r)
+  + \mathcal{A}_{\nu}^{(3)} G_{\nu}^{(3)}(r) + \mathcal{A}_{\nu}^{(4)}
+  G_{\nu}^{(4)}(r) \right)  2 \pi r dr  \, + \,  \Omega_{\rm{FSL}} (\nu),
   \label{eq:omega_tot}
 \end{equation}
-from the normalized beam profile $B_\nu(r)$ of the array
-$\nu$ integrated up to $r_{max} = 180''$. {\lp Hereafter, we refer to
-this total beam solid angle estimate as $\Omega_{180}$.}
-The main beam solid angle is
-evaluated from the main beam (mb) FWHM, as
-$\Omega_{\rm{mb}} = 2 \pi\,  \sigma_{\rm{mb}}^2$, where FWHM$ =
-2\sqrt{2\ln{2}}\, \sigma_{\rm{mb}}$. 
+where $B_{\nu}(r)$ is the normalised beam profile for the array $\nu$,
+as discussed in Sect.~\ref{se:fullbeam}, $\mathcal{A}_{\nu}^{(3)}$ and
+$\mathcal{A}_{\nu}^{(4)}$ are the amplitudes of third and fourth
+Gaussian error beams $G_{\nu}^{(3)}$ and $G_{\nu}^{(4)}$ measured with
+EMIR and extrapolated for the array $\nu$ following the presciption
+given in \citet{Kramer2013}, and $\Omega_{\rm{FSL}} (\nu)$ is the
+contribution of the far side lobes to the total solid angle of the
+array $\nu$, as derived from $F_{\rm{eff}}$ measurements.}   
 
-The choice of the maximum radius is set both by the integration depth of
-the \bm\ scans, which in turn fixes the noise variance, and the
-filtering due to the data processing. {\lp As discussed in
-Sect.~\ref{se:dataproc}, the latter is actually targeted to the analysis of
-point-like or compact sources that are largely encompassed
-within a $180''$-radius.}
-
-%A large set of \bm\ scans of Uranus and Neptune acquired during the
-%N2R9, N2R12 and N2R14 campaigns have been used to evaluate
-%{\lp $\Omega_{180}$} from the measured beam profiles up to
-%$r_{max} =180''$. %and $\Omega_{\rm{mb}}$  derived with the main beam FWHM
-%estimates using the sidelobe-masked 1D method.
-We evaluate {\lp $\Omega_{180}$} from the measured beam profiles
+{\rev In addition, for the stability tests, we also compute the
+total beam solid angle up to a maximum radius
+\begin{equation}
+ \Omega_{r_{\rm{max}}} (\nu) = \int_0^{r_{\rm max}} B_{\nu}(r)  \,  2 \pi r dr, 
+\label{eq:omega_rmax}
+\end{equation}
+where $r_{\rm{max}}$ is taken as the greater radius for which the
+filtering effect of the data processing is neglectible.}
+We evaluate {\rev $\Omega_{90}$} from the measured beam profiles
 obtained using the {\tt UN75} data set (see Sect.~\ref{se:mainbeam_dataset}).
 The result is given in Table~\ref{tab:solid}.
 
 \begin{table}[!h]
-\caption{Estimates of the solid angle of the beam up to a radius of $180''$,
-  $\Omega_{180}$, and rms uncertainties given in arcsec$^{2}$ using Neptune and Uranus
-  scans acquired during three observation campaigns, and the combined
-  result. For each case, the number of scans is given in the column labeled 'nbs'.}
+\caption{Estimates of the solid angle of the beam up to a radius of
+{\rev $90''$, $\Omega_{90}$}, and rms uncertainties given in
+arcsec$^{2}$ using Neptune and Uranus scans acquired during three
+observation campaigns, and the combined result. For each case, the
+number of scans is given in the column labeled 'nbs'.}
 \label{tab:solid}
 \centering
 \begin{tabular}{l ccccc}
@@ -612,6 +659,30 @@ Combined  & 75  &  240$\pm$10    &  230$\pm$10 & 235$\pm$9    &  446$\pm$9 \\
 \hline
 \end{tabular}
 \end{table}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%The main beam solid angle is evaluated from the main beam (mb) FWHM, as
+%$\Omega_{\rm{mb}} = 2 \pi\,  \sigma_{\rm{mb}}^2$, where
+%FWHM$ = 2\sqrt{2\ln{2}}\, \sigma_{\rm{mb}}$. 
+
+%We derive an estimate of the total beam solid angle
+%\begin{equation}
+%  \Omega_{\rm{tot}} (\nu, r_{max}) = \int_0^{r_{max}} B_{\nu}(r) \,  2 \pi r dr
+%  \label{eq:omega_tot}
+%\end{equation}
+%from the normalized beam profile $B_\nu(r)$ of the array
+%$\nu$ integrated up to $r_{max} = 180''$. {\lp Hereafter, we refer to
+%this total beam solid angle estimate as $\Omega_{180}$.}
+%The choice of the maximum radius is set both by the integration depth of
+%the \bm\ scans, which in turn fixes the noise variance, and the
+%filtering due to the data processing. {\lp As discussed in
+%Sect.~\ref{se:dataproc}, the latter is actually targeted to the analysis of
+%point-like or compact sources that are largely encompassed
+%within a $180''$-radius.}
 
 {\lp The main beam efficiency up to a radius of $180''$ is computed as
 \begin{equation}
@@ -708,34 +779,28 @@ entrance pupil via corrugated horns, unlike the NIKA2 ones.}
 %on, the focus is set to the optimal value across the array (see the
 %discussion in Sect.~\ref{}).    
 
-\begin{table}[!ht]
-\caption{Main beam efficiency estimates per observation campaigns,
-given in percent.}
-\label{tab:MB}
-\centering
-\begin{tabular}{lcccc}
-\hline\hline
-\noalign{\smallskip}
-Campaign &   A1  &  A3   & A1\&A3 & A2 \\
-\noalign{\smallskip}
-\hline
-\noalign{\smallskip}
-%N2R9    &  54.1$\pm$ 3.2   &  55.9 $\pm$ 3.7  & 55.0 $\pm$ 3.1  & 74.7$\pm$ 2.9  \\
-%N2R12   &  55.7$\pm$ 3.0   &  57.1 $\pm$ 3.0  & 56.4 $\pm$ 3.0  & 77.4$\pm$ 1.0  \\
-%N2R14   &  55.0$\pm$ 2.7   &  56.1 $\pm$ 2.6  & 55.6 $\pm$ 2.6  & 76.0$\pm$ 1.8  \\
-N2R9    &  54 $\pm$ 3   &  56 $\pm$ 4  & 55 $\pm$ 3  & 75 $\pm$ 3  \\
-N2R12   &  56 $\pm$ 3   &  57 $\pm$ 3  & 56 $\pm$ 3  & 77 $\pm$ 2  \\
-N2R14   &  55 $\pm$ 3   &  56 $\pm$ 3  & 56 $\pm$ 3  & 76 $\pm$ 2  \\
-\hline
-\end{tabular}
-\end{table}
+%\begin{table}[!ht]
+%\caption{Main beam efficiency estimates per observation campaigns,
+%given in percent.}
+%\label{tab:MB}
+%\centering
+%\begin{tabular}{lcccc}
+%\hline\hline
+%\noalign{\smallskip}
+%Campaign &   A1  &  A3   & A1\&A3 & A2 \\
+%\noalign{\smallskip}
+%\hline
+%\noalign{\smallskip}
+%N2R9    &  54 $\pm$ 3   &  56 $\pm$ 4  & 55 $\pm$ 3  & 75 $\pm$ 3  \\
+%N2R12   &  56 $\pm$ 3   &  57 $\pm$ 3  & 56 $\pm$ 3  & 77 $\pm$ 2  \\
+%N2R14   &  55 $\pm$ 3   &  56 $\pm$ 3  & 56 $\pm$ 3  & 76 $\pm$ 2  \\
+%\hline
+%\end{tabular}
+%\end{table}
 
-As a stability check of the beam efficiency, we detail the {\tt BE2} estimates
-%, as well as the level of the error beam,
-for each observation campaigns, as given in Table
-\ref{tab:MB}. %The level of the error beam is given relative to the
-%main beam peak.%(we recall that -12dB as found is $6\%$).
-We find stable beam efficiencies using observations acquired one year apart.
+%As a stability check of the beam efficiency, we detail the {\tt BE2} estimates
+%for each observation campaigns, as given in Table~\ref{tab:MB}.
+%We find stable beam efficiencies using observations acquired one year apart.
 
 %\begin{table*}[!h]
 %\caption{Main beam efficiency and level of error beam}
@@ -756,76 +821,68 @@ We find stable beam efficiencies using observations acquired one year apart.
 %\end{tabular}
 %\end{table*}
 
-
-Heterodyne observations at the IRAM \trentemetre\ telescope
-toward the lunar edge and the measure of forward beam efficiency using
-skydips show that a non-neglectible fraction of the full beam stems
-from radius greater than $180''$~\citep{Greve1998, Kramer2013}.
-An accurate evaluation of the total beam solid angle using NIKA2 would require
-{\lp the development of a dedicated data reduction method tailored to
-handled very extended diffuse emission,} as well as a 
-dedicated observation program
-% to measure of the $4\pi$ integral of the full beam pattern
-~\citep{Greve1998, Sugimoto2004, Gusten2006}.
-%This fraction is not considered here. Beam efficiency estimators that are based on
-%the total solid angle estimates using Eq.~\ref{eq:omega_tot} thus
-%overestimates the beam efficiency. An accurate evaluation of
-%this quantity would require a dedicated observation program to measure
-%of the $4\pi$ integral of the full beam pattern.
-{\lp Here we use the IRAM \trentemetre\ telescope beam model described
-in \citet{Kramer2013} to evaluate the beam solid angle stemming from a
-radius greater than $180''$.
-This quantity receives two contributions, the one of the error beams,
-which are modeled as three Gaussians, and the one of the forward and
-rearward spillover and scattering efficiencies. We compute the solid
-angle of the main beam and error beams integrated over a radius ranging
-from $180''$ to $390''$, which is the maximum radius covered by \bm\ scan,
-$\Omega_{180<r<390}^{\rm{mb+eb}}$, and over radii greater
-than $180''$, $\Omega_{>180}^{\rm{mb+eb}}$. We use NIKA2 main beam as
-measured in Sect.~\ref{se:mainbeam} and the three-Gaussian error beams
-as reported in \citet{Kramer2013}.  
+%Heterodyne observations at the IRAM \trentemetre\ telescope
+%toward the lunar edge and the measure of forward beam efficiency using
+%skydips show that a non-neglectible fraction of the full beam stems
+%from radius greater than $180''$~\citep{Greve1998, Kramer2013}.
+%An accurate evaluation of the total beam solid angle using NIKA2 would require
+%{\lp the development of a dedicated data reduction method tailored to
+%handled very extended diffuse emission,} as well as a 
+%dedicated observation program~\citep{Greve1998, Sugimoto2004, Gusten2006}.
+%{\lp Here we use the IRAM \trentemetre\ telescope beam model described
+%in \citet{Kramer2013} to evaluate the beam solid angle stemming from a
+%radius greater than $180''$.
+%This quantity receives two contributions, the one of the error beams,
+%which are modeled as three Gaussians, and the one of the forward and
+%rearward spillover and scattering efficiencies. We compute the solid
+%angle of the main beam and error beams integrated over a radius ranging
+%from $180''$ to $390''$, which is the maximum radius covered by \bm\ scan,
+%$\Omega_{180<r<390}^{\rm{mb+eb}}$, and over radii greater
+%than $180''$, $\Omega_{>180}^{\rm{mb+eb}}$. We use NIKA2 main beam as
+%measured in Sect.~\ref{se:mainbeam} and the three-Gaussian error beams
+%as reported in \citet{Kramer2013}.  
 %
-\begin{table}[!h]
-\caption{Estimates of the contribution to the beam solid angle
-integrated in varying range of radii. $\Omega_{180}$ include all beam
-contributions up to a radius of $180''$ as measured in NIKA2
-maps. $\Omega_{180<r<390}^{\rm{mb+eb}}$ and
-$\Omega_{>180}^{\rm{mb+eb}}$ account for the main beam and error beam
-contributions integrated $180''$ to $390''$ and from $180''$ to
-$4\pi$, respectively. $\Omega^{\rm{frss}}$ account for the forward and
-rearward spillover and scattering efficiencies integrated over
-$4\pi$. All solid angles are given in arcsec$^{2}$. }
-\label{tab:solid_corr}
-\centering
-\begin{tabular}{lcc}
-\hline\hline
-\noalign{\smallskip}
-&  A1\&A3 & A2 \\
-\noalign{\smallskip}
-\hline
-\noalign{\smallskip}
-$\Omega_{180}$                  &   235 $\pm$  9 & 446 $\pm$  9 \\\noalign{\smallskip}
-$\Omega_{180<r<390}^{\rm{mb+eb}}$  &   12          &   20       \\\noalign{\smallskip}
-$\Omega_{>180}^{\rm{mb+eb}}$      &   21          &   41      \\\noalign{\smallskip}
-$\Omega^{\rm{frss}}$             &   45          &   40      \\
-\noalign{\smallskip}
-\hline
-\end{tabular}
-\end{table}
-}
+%\begin{table}[!h]
+%\caption{Estimates of the contribution to the beam solid angle
+%integrated in varying range of radii. $\Omega_{180}$ include all beam
+%contributions up to a radius of $180''$ as measured in NIKA2
+%maps. $\Omega_{180<r<390}^{\rm{mb+eb}}$ and
+%$\Omega_{>180}^{\rm{mb+eb}}$ account for the main beam and error beam
+%contributions integrated $180''$ to $390''$ and from $180''$ to
+%$4\pi$, respectively. $\Omega^{\rm{frss}}$ account for the forward and
+%rearward spillover and scattering efficiencies integrated over
+%$4\pi$. All solid angles are given in arcsec$^{2}$. }
+%\label{tab:solid_corr}
+%\centering
+%\begin{tabular}{lcc}
+%\hline\hline
+%\noalign{\smallskip}
+%&  A1\&A3 & A2 \\
+%\noalign{\smallskip}
+%\hline
+%\noalign{\smallskip}
+%$\Omega_{180}$                  &   235 $\pm$  9 & 446 $\pm$  9 \\\noalign{\smallskip}
+%$\Omega_{180<r<390}^{\rm{mb+eb}}$  &   12          &   20       \\\noalign{\smallskip}
+%$\Omega_{>180}^{\rm{mb+eb}}$      &   21          &   41      \\\noalign{\smallskip}
+%$\Omega^{\rm{frss}}$             &   45          &   40      \\
+%\noalign{\smallskip}
+%\hline
+%\end{tabular}
+%\end{table}
+%}
 %
-The results are given in
-Table~\ref{tab:solid_corr}, as well as the contribution to the beam
-solid angle of the forward and rearward spillover and scattering
-efficiencies, $\Omega^{\rm{frss}}$. The total beam solid angle 
-$\Omega_{\rm{tot}}$ can be estimated as
-\begin{equation}
-\Omega_{\rm{tot}} = \Omega_{180} + \Omega_{>180}^{\rm{mb+eb}}
-+ \Omega^{\rm{frss}}.
-\label{eq:omega_beam_4pi}
-\end{equation}
+%The results are given in
+%Table~\ref{tab:solid_corr}, as well as the contribution to the beam
+%solid angle of the forward and rearward spillover and scattering
+%efficiencies, $\Omega^{\rm{frss}}$. The total beam solid angle 
+%$\Omega_{\rm{tot}}$ can be estimated as
+%\begin{equation}
+%\Omega_{\rm{tot}} = \Omega_{180} + \Omega_{>180}^{\rm{mb+eb}}
+%+ \Omega^{\rm{frss}}.
+%\label{eq:omega_beam_4pi}
+%\end{equation}
 
-{\lp These results are useful to study very extended diffuse sources or to perform
-aperture photometry up to radii larger than 180'', as will be
-discussed below in Sect.~\ref{se:extended_source_calib}.}
+%{\lp These results are useful to study very extended diffuse sources or to perform
+%aperture photometry up to radii larger than 180'', as will be
+%discussed below in Sect.~\ref{se:extended_source_calib}.}
 

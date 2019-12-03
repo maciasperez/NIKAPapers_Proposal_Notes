@@ -341,7 +341,13 @@ decorrelation method named \cmoneb\, which comprises two
 additional technicalities with respect to the common mode
 method.} First, the signal contamination of the common mode estimate
 is mitigated by discarding on-source KID data samples before averaging
-the rescaled TOI. Second, instead of a single common mode subtraction to
+the rescaled TOI. {\rev This is achieved by deriving a mask per TOI
+from the pointing information (Sect.~\ref{se:ptg}), that is zero if
+the KID is close to the source, and unity otherwise. In the case of a
+point source, the mask consists in a disk of a minimum radius of 60''
+centered on the source, whereas for diffuse emission, tailored
+source-morphology-driven masks are build.}
+Second, instead of a single common mode subtraction to
 all KIDs, we estimate an accurate common mode for each
 KID. Calculating the KID-to-KID cross-correlation matrix, we
 identify the most correlated KIDs. Then, we build an

@@ -1,0 +1,578 @@
+%                                                                 aa.dem
+% AA vers. 9.1, LaTeX class for Astronomy & Astrophysics
+% demonstration file
+%                                                       (c) EDP Sciences
+%-----------------------------------------------------------------------
+%
+%\documentclass[referee]{aa} % for a referee version
+%\documentclass[onecolumn]{aa} % for a paper on 1 column  
+%\documentclass[longauth]{aa} % for the long lists of affiliations 
+%\documentclass[letter]{aa} % for the letters 
+%\documentclass[bibyear]{aa} % if the references are not structured 
+%                              according to the author-year natbib style
+%
+\documentclass[traditionalabstract]{aa}  
+%
+%
+\usepackage{graphicx}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{txfonts}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\usepackage[draft]{hyperref}
+%\usepackage[colorlinks, citecolor=blue, linkcolor=magenta]{hyperref}
+% To add links in your PDF file, use the package "hyperref"
+% with options according to your LaTeX or PDFLaTeX drivers.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[usenames, dvipsnames]{color}
+\usepackage{overpic} % add text to fig
+%
+%
+% NOTATION
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\hls}{HLS\,J0918+5142}
+\newcommand{\ftone}{f_{\rm{tone}}}
+\newcommand{\am}{x}
+%\newcommand{\elev}{\delta}
+%\newcommand{\elev}{\theta}
+\newcommand{\elev}{\rm{el}}
+\newcommand{\az}{\rm{az}}
+\newcommand{\nika}{NIKA2}
+\newcommand{\aka}{a.\,k.\,a.}
+\newcommand{\wrt}{w.\,r.\,t.}
+\newcommand{\bm}{{\tt beammap}}
+\newcommand{\bms}{{\tt beammaps}}
+\newcommand{\rf}{\emph{RfdIdQ}}
+\newcommand{\kidpar}{\emph{kidpar}}
+\newcommand{\radec}{\emph{R.\,A.,\,Dec}}
+\newcommand{\cm}{\emph{common~mode}}
+%% \newcommand{\cmoneb}{\emph{common~mode~one~block}}
+\newcommand{\cmoneb}{\emph{Most~Correlated~Pixels}}
+\newcommand{\afternoon}{temperature-induced}
+\newcommand{\Afternoon}{Temperature-induced}
+\newcommand{\trentemetre}{30-$\rm{m}$}
+\newcommand{\baseline}{\emph{baseline}}
+\newcommand{\taunu}{\tau_{\nu}}
+\newcommand{\taumeter}{taumeter}
+\newcommand{\airmass}{air mass}
+
+% COMMENTS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\newcommand{\todo}[1]{ {\color{magenta} $[$ TO DO: $]$ #1} }
+%
+% rouge 230, 0, 92
+% bleu  0, 153, 255 
+% vert  0, 179, 0
+%\newcommand{\nico}[1]{ {\bf \color{blue} #1}}
+%\newcommand{\lp}[1]{\bf \color[RGB]{230, 0, 92} #1}
+%
+\newcommand{\todo}[1]{#1}
+\newcommand{\nico}[1]{#1}
+\newcommand{\lp}[1]{#1}
+
+\begin{document} 
+
+   \title{Calibration and Performance of the NIKA2 camera at the IRAM 30-meter Telescope}
+
+   \author{L.~Perotto \inst{\ref{LPSC}}
+     \and  N.~Ponthieu \inst{\ref{IPAG}}
+     \and  J.~F.~Mac\'ias-P\'erez \inst{\ref{LPSC}}
+     \and  R.~Adam \inst{\ref{LLR}, \ref{CEFCA}} %\inst{\ref{LPSC},\ref{OCA},\ref{CEFCA}}
+     \and  P.~Ade \inst{\ref{Cardiff}}
+     \and  P.~Andr\'e \inst{\ref{CEA}}
+     \and  A.~Andrianasolo \inst{\ref{IPAG}}
+     \and  H.~Aussel \inst{\ref{CEA}}
+     \and  A.~Beelen \inst{\ref{IAS}}
+     \and  A.~Beno\^it \inst{\ref{Neel}}
+     \and  S.~Berta \inst{\ref{IRAMF}}
+     \and  A.~Bideaud \inst{\ref{Neel}}
+     \and  O.~Bourrion \inst{\ref{LPSC}}
+     \and  M.~Calvo \inst{\ref{Neel}}
+     \and  A.~Catalano \inst{\ref{LPSC}}
+     \and  B.~Comis \inst{\ref{LPSC}}
+     \and  M.~De Petris \inst{\ref{Roma}}
+     \and  F.-X.~D\'esert \inst{\ref{IPAG}}
+     \and  S.~Doyle \inst{\ref{Cardiff}}
+     \and  E.~F.~C.~Driessen \inst{\ref{IRAMF}}
+     \and  P.~Garc\'ia \inst{\ref{Chine}, \ref{Chili}}
+     \and  A.~Gomez \inst{\ref{CAB}} 
+     \and  J.~Goupy \inst{\ref{Neel}}
+     \and  D.~John \inst{\ref{IRAME}}
+     \and  F.~K\'eruzor\'e \inst{\ref{LPSC}}
+     \and  C.~Kramer \inst{\ref{IRAMF},\ref{IRAME}}
+     \and  B.~Ladjelate \inst{\ref{IRAME}} 
+     \and  G.~Lagache \inst{\ref{LAM}}
+     \and  S.~Leclercq \inst{\ref{IRAMF}}
+     \and  J.-F.~Lestrade \inst{\ref{LERMA}}
+     \and  A.~Maury \inst{\ref{CEA}}
+     \and  P.~Mauskopf \inst{\ref{Cardiff},\ref{Arizona}}
+     \and  F.~Mayet \inst{\ref{LPSC}}
+     \and  A.~Monfardini \inst{\ref{Neel}}
+     \and  S.~Navarro \inst{\ref{IRAME}}
+     \and  J.~Pe\~nalver \inst{\ref{IRAME}}
+     \and  F.~Pierfederici \inst{\ref{IRAME}}
+     \and  G.~Pisano \inst{\ref{Cardiff}}
+     \and  V.~Rev\'eret \inst{\ref{CEA}}
+     \and  A.~Ritacco \inst{\ref{LPSC},\ref{IRAME}}
+     \and  C.~Romero \inst{\ref{IRAMF}}
+     \and  H.~Roussel \inst{\ref{IAP}}
+     \and  F.~Ruppin \inst{\ref{LPSC},\ref{MIT}}
+     \and  K.~Schuster \inst{\ref{IRAMF}}
+     \and  S.~Shu \inst{\ref{IRAMF}} 
+     \and  A.~Sievers \inst{\ref{IRAME}}
+     \and  C.~Tucker \inst{\ref{Cardiff}}
+     \and  R.~Zylka \inst{\ref{IRAMF}}}
+%   
+% 
+   \institute{
+     Univ. Grenoble Alpes, CNRS, Grenoble INP, LPSC-IN2P3, 53, avenue des Martyrs, 38000 Grenoble, France
+     \label{LPSC}
+     \and
+     Univ. Grenoble Alpes, CNRS, IPAG, 38000 Grenoble, France 
+     \label{IPAG}
+     \and
+     LLR (Laboratoire Leprince-Ringuet), CNRS, École Polytechnique, Institut Polytechnique de Paris, Palaiseau, France
+     %Laboratoire Leprince-Ringuet, Univ. Paris-Saclay, \'Ecole polytechnique, CNRS/IN2P3, 91128 Palaiseau, France
+     \label{LLR}
+     \and
+     %Laboratoire Lagrange, Universit\'e C\^ote d'Azur, Observatoire de la C\^ote d'Azur, CNRS, Blvd de l'Observatoire, %CS 34229,
+     %06304 Nice cedex 4, France
+     %\label{OCA}
+     %\and
+     Centro de Estudios de F\'isica del Cosmos de Arag\'on (CEFCA), Plaza San Juan, 1, planta 2, E-44001, Teruel, Spain
+     \label{CEFCA}
+     \and
+     Astronomy Instrumentation Group, University of Cardiff, UK
+     \label{Cardiff}
+     \and
+     %Laboratoire AIM, CEA/IRFU, CNRS/INSU, Universit\'e Paris Diderot, CEA-Saclay, F-91191 Gif-Sur-Yvette, France 
+     AIM, CEA, CNRS, Universit\'e Paris-Saclay, Universit\'e Paris Diderot, Sorbonne Paris Cit\'e, 91191 Gif-sur-Yvette, France
+     \label{CEA}
+     \and
+     Institut d'Astrophysique Spatiale (IAS), CNRS and Universit\'e Paris Sud, Orsay, France
+     \label{IAS}
+     \and
+     Institut N\'eel, CNRS and Universit\'e Grenoble Alpes, France
+     \label{Neel}
+     \and
+     Institut de RadioAstronomie Millim\'etrique (IRAM), Grenoble, France
+     \label{IRAMF}
+     \and 
+     Dipartimento di Fisica, Sapienza Universit\`a di Roma, Piazzale Aldo Moro 5, I-00185 Roma, Italy
+     \label{Roma}
+     \and
+     Chinese Academy of Sciences South America Center for Astronomy, National Astronomical Observatories, CAS, Beijing 100101, China
+     \label{Chine}
+     \and
+     Instituto de Astronom\'ia, Universidad Cat\'olica del Norte, Av. Angamos 0610, Antofagasta 1270709, Chile
+     \label{Chili}
+     \and
+     Centro de Astrobiolog\'ia (CSIC-INTA), Torrej\'on de Ardoz, 28850 Madrid, Spain
+     \label{CAB}
+     \and  
+     Instituto de Radioastronom\'ia Milim\'etrica (IRAM), Granada, Spain
+     \label{IRAME}
+     \and
+     Aix Marseille Univ, CNRS, CNES, LAM (Laboratoire d'Astrophysique de Marseille), Marseille, France
+     \label{LAM}
+     \and 
+     LERMA, Observatoire de Paris, PSL Research University, CNRS, Sorbonne Universit\'es, UPMC Univ. Paris 06, 75014 Paris, France  
+     \label{LERMA}
+     \and 
+     Institut d'Astrophysique de Paris, CNRS (UMR7095), 98 bis boulevard Arago, 75014 Paris, France
+     \label{IAP}
+     \and
+     Kavli Institute for Astrophysics and Space Research, Massachusetts Institute of Technology, Cambridge, MA 02139, USA
+     \label{MIT}
+     \and
+     School of Earth and Space Exploration and Department of Physics, Arizona State University, Tempe, AZ 85287, USA
+     \label{Arizona}
+   }
+   \date{Received July 2, 2019; Accepted XXXX XX, 2019}
+% \abstract{}{}{}{}{} 
+% 5 {} token are mandatory
+   \abstract
+   % context heading (optional)
+   % {} leave it empty if necessary  
+       {%The New IRAM KID Array Two,
+         NIKA2 is a dual-band millimetric continuum
+         camera of 2\,900 Kinetic Inductance Detectors (KID),
+         operating at $150$ and $260\,\rm{GHz}$, installed at the IRAM 30-meter
+         telescope % at Pico Veleta
+         %($2850\,\rm{m}$)
+          in Spain.
+         Open to the scientific community since October 2017, NIKA2 
+         will provide key observations for the next decade to 
+         address a wide range of open questions in astrophysics and
+         cosmology.}
+       {We present {\lp the calibration method} and the performance assessment of NIKA2 after one year of observation.}
+       % methods heading (mandatory)
+       {We use a large data set acquired between January 2017 and
+         February 2018 including observations of primary and secondary
+         calibrators and faint sources that span the whole range
+         of observing elevations and atmospheric conditions encountered at the
+         IRAM 30-m telescope. This allows us to test the stability of the
+         performance parameters against time evolution and
+         observing conditions. {\lp We describe a standard calibration
+         method, referred to as the \emph{baseline} method, to go from
+         raw data to flux density measurements. This includes the
+         determination of the detector positions in the sky, the
+         selection of the detectors, the measurement of
+         the beam pattern, the estimation of the 
+         atmospheric opacity, the calibration of absolute flux-density
+         scale, the flat fielding, and the photometry. We
+         assess the robustness of the performance results using the
+         \emph{baseline} method against systematic effects by
+         comparing to results using alternative methods.}  
+       }
+       % results heading (mandatory)
+       {We report an instantaneous field of view (FOV) of 6.5'
+         in diameter, filled with an average fraction of $84\%$ and 
+         $90\%$ of %detectors usable for science analysis
+         valid detectors
+         at $150$ and $260\,\rm{GHz}$, respectively. The beam pattern
+         is characterized by a FWHM of $17.6'' \pm 0.2''$
+         and  $11.1''\pm 0.1''$, and a beam efficiency of
+         $77\% \pm 2\%$ and $55\% \pm 3\%$
+         at $150$ and $260\,\rm{GHz}$, respectively.
+         The rms calibration uncertainties are about $3\%$ at $150\,\rm{GHz}$ 
+         and $6\%$ at $260\,\rm{GHz}$. This demonstrates
+         the accuracy of the methods that we have deployed to correct
+         for atmospheric attenuation. {\lp The absolute
+           calibration uncertainties are of $5\%$ and the systematic
+           calibration uncertainties evaluated at the IRAM
+           \trentemetre\ reference Winter observing conditions are
+           below $1\%$ in both channels.}
+         The noise equivalent
+         flux density (NEFD) at $150$ and $260\,\rm{GHz}$ are of
+         $9 \pm 1\, \rm{mJy}\cdot s^{1/2}$ and
+         $30 \pm 3\, \rm{mJy}\cdot s^{1/2}$. 
+         This state-of-the-art performance confers NIKA2 with
+         mapping speeds of $1388 \pm 174$ and
+         $111 \pm 11 \, \rm{arcmin}^2\cdot \rm{mJy}^{-2}\cdot
+         \rm{h}^{-1}$
+         at $150$ and $260\,\rm{GHz}$.}
+       % conclusions heading (optional), leave it empty if necessary 
+       {With these unique capabilities of fast dual-band mapping at
+         high (better that 18'') angular resolution, NIKA2 is providing an unprecedented view
+         of the millimeter Universe.}      
+       \keywords{Submillimeter, Photometry, Method: observational, Cosmology: Cosmic Microwave Background}       
+   \maketitle
+%----------------------------------------------------------------------------------------
+%	1./ INTRODUCTION
+%----------------------------------------------------------------------------------------
+\section{Introduction}
+\label{se:intro}
+\input{Introduction.tex}
+
+
+%----------------------------------------------------------------------------------------
+%	2./ INSTRUMENT
+%----------------------------------------------------------------------------------------
+\section{General view of the instrument}
+\label{se:instru}
+\input{Instrument.tex}
+
+
+%----------------------------------------------------------------------------------------
+%	3./ Observing mode
+%----------------------------------------------------------------------------------------
+\section{Observations}
+\label{se:observations}
+\input{Observations.tex}
+
+
+%----------------------------------------------------------------------------------------
+%	4./ Data reduction
+%----------------------------------------------------------------------------------------
+\section{Data Reduction: from raw data to flux density maps}
+\label{se:dataproc}
+\input{Pipeline.tex}
+
+%----------------------------------------------------------------------------------------
+%	5./ Focal Plane Geometry
+%----------------------------------------------------------------------------------------
+\section{Focal Plane Reconstruction}
+\label{se:geometry}
+\input{FOV_Geometry.tex}
+
+%----------------------------------------------------------------------------------------
+%	6./ Beam Pattern
+%----------------------------------------------------------------------------------------
+\section{Beam Pattern}
+\label{se:beam}
+\input{Beam.tex}
+
+%----------------------------------------------------------------------------------------
+%	7./ Opacity derivation
+%----------------------------------------------------------------------------------------
+\section{Atmospheric opacity}
+\label{se:opacity}
+\input{Opacity.tex}
+
+%----------------------------------------------------------------------------------------
+%	8./ Calibration
+%----------------------------------------------------------------------------------------
+\section{Calibration}
+\label{se:calibration}
+\input{Calibration_1.tex}
+\input{Calibration_2.tex}
+
+%----------------------------------------------------------------------------------------
+%	9./ Photometry&Stability
+%----------------------------------------------------------------------------------------
+\section{Photometry \& Stability Assessment}
+\label{se:photometry}
+\input{Photometry.tex}
+
+%----------------------------------------------------------------------------------------
+%	10./ Sensitivity
+%----------------------------------------------------------------------------------------
+\section{Sensitivity}
+\label{se:sensitivity}
+\input{Sensitivity.tex}
+
+
+%  CONCLU
+%-------------------------------------------------------------------
+\section{Summary and conclusions}
+\label{se:summary}
+
+\begin{table*}[!thbp]
+\caption{Summary of the main characteristics describing NIKA2 measured performance}
+\label{tab:nika2summary}
+\centering    
+\begin{tabular}{rrrcl}
+  \hline\hline
+  \noalign{\smallskip}
+    & Array 1\&3 & Array 2 & & Reference \\
+    \noalign{\smallskip}
+    \hline
+    \noalign{\smallskip}
+    Reference Wavelength  [mm]  & 1.15  & 2.00   &  & \\
+    Reference Frequency  [GHz]  & 260  & 150   &  & Sect.~\ref{se:photometric_system}  \\
+    Frequency [GHz]             &  254.7\&257.4  & 150.9 &  & Sect.~\ref{se:instru_bandpass}  \\
+    Bandwidth         [GHz]     &   49.2\&48.0   & 40.7  &  & \\
+    \hline
+    \noalign{\smallskip}
+    Number of designed detectors                   &  1140\&1140 &    616  & & Sect.~\ref{se:array}\\
+    Number of valid detectors\tablefootmark{a}     &  952\&961   &    553  & & Sect.~\ref{se:avg_kidpar}\\
+    Fraction of valid detectors [$\%$]             &  84        &     90  & & \\
+    Pixel size in beam sampling unit\tablefootmark{b}\hspace{3mm} [$\lambda/D$] & 1.1 &  0.87 & & Sect.~\ref{se:grid_distortion} \\
+    \hline
+    \noalign{\smallskip}
+    FWHM\tablefootmark{c}\hspace{3mm} [arcsec]    &  $11.1 \pm 0.2$  &  $17.6 \pm 0.1$  & & Sect.~\ref{se:mainbeam}\\
+    Beam efficiency\tablefootmark{d}\hspace{3mm} [$\%$] &  $55 \pm 3$   &  $77 \pm 2$  &  & Sect.~\ref{se:beam_efficiency}\\
+    Rms FWHM across the FOV [arcsec]              &    0.6        &      0.6        & & \citet{Adam2018} \\
+    \hline
+    \noalign{\smallskip}
+    Reference FWHM\tablefootmark{e}\hspace{3mm} [arcsec]          & $12.5$     &   $18.5$  &  & Sect.~\ref{se:photometric_system}\\
+    Reference Beam efficiency\tablefootmark{f}\hspace{3mm}  [\% ] & $70 \pm 4$ & $85 \pm 3$ &  & Sect.~\ref{se:extended_source_calib}\\
+    \hline
+    \noalign{\smallskip}
+    Rms pointing error    [arcsec]               & $<3$ &  $<3$  & & Sect.~\ref{se:pointing} \\
+    \hline
+    \noalign{\smallskip}
+    Absolute calibration uncertainty [\%]      &   5         & 5 & & Sect.~\ref{se:photometry_criteria}, App.~\ref{se:ref_flux_uranus_neptune} \\
+    Systematic calibration uncertainty\tablefootmark{g}\hspace{3mm}  [\%]      &    0.6        & 0.3 & & Sect.~\ref{se:def_systematic_errors} \\
+    Rms calibration uncertainty [\%]                   &   5.7       &     3.0       & & Sect.~\ref{se:photometry_baseline} \\
+    \hline
+    \noalign{\smallskip}
+    $\alpha$ noise integration in time\tablefootmark{h}\hspace{3mm}  & 0.5 & 0.5 & & Sect.~\ref{se:nefd_results} \\
+    \hline
+    \noalign{\smallskip}
+    NEFD\tablefootmark{i}\hspace{3mm} [$\rm{mJy} \cdot \rm{s}^{1/2}$]  & $30 \pm 3$  & $9 \pm 1$ &  & Sect.~\ref{se:nefd_results}\\
+    M$_{\rm{s}}$\tablefootmark{j}\hspace{3mm} [arcmin$^2 \cdot
+      \rm{mJy}^{-2} \cdot \rm{h}^{-1}$] & $111 \pm 11$  &  $1388 \pm 174$ &  & \\
+    \hline
+  \end{tabular}
+  \tablefoot{ \\
+    \tablefoottext{a}{Number of usable detectors, which have been selected in at least two FOV reconstructions}
+    \tablefoottext{b}{Calculated from real array pixel size [2.75\,mm / 2.0\,mm] and unvignetted entrance pupil diameter [27\,m]}
+    \tablefoottext{c}{Full-width at half-maximum of the main beam using the combined results of three methods}
+    \tablefoottext{d}{Ratio between the main beam power and the total beam power up to a radius of 180''}
+    \tablefoottext{e}{Full-width at half-maximum of the beam used in our reference photometric system}
+    \tablefoottext{f}{Ratio between the reference FWHM beam power and the total beam power up to a radius of 180''}    \tablefoottext{f}{Systematic calibration uncertainties due to the opacity correction using the {\tt corrected skydip} method estimated at the reference IRAM \trentemetre\ winter observing conditions: 2\,mm pwv, $60^o$ elevation} 
+    \tablefoottext{h}{Effective power law of noise reduction with integration time}
+    \tablefoottext{i}{NEFD at zero opacity}
+    \tablefoottext{j}{Mapping speed at zero opacity}
+    
+  }
+\end{table*}
+
+{\lp We have presented NIKA2 performance at the IRAM
+  \trentemetre\ telescope. It has been evaluated with a
+  \baseline\ calibration method that goes from
+  observations and raw data to measured flux densities.
+  In the \baseline\ calibration photometric system, the flux
+  density of point-like sources are measured as the amplitude estimates
+  of a fixed-width Gaussian of FWHM of $12.5''$ and $18.5''$ at the
+$150$ and $260\,\rm{GHz}$ reference frequency, respectively.
+
+  This method relies on three main analysis choices. First the
+  atmospheric and instrumental correlated noises are corrected using a
+  simple and robust method based on the subtraction of a series of
+  the average temporal signals of the most correlated detectors. The
+  atmospheric opacity is estimated using an improved version of 
+  the method proposed in \citet{Catalano2014} and used in
+  \citet{Adam2018}, which is based on the use of
+  NIKA2 as an in-band total-power taumeter. Finally a scan selection
+  based on the observation time is performed and retains 16 hours
+  of observation a day in order to mitigate the effect beam size
+  variations due to anomalous refraction of the atmosphere and
+  partial illumination of the \trentemetre\ telescope that mainly
+  impact the afternoon observations. We have also considered the pros
+  and cons of alternative methods, which may in the future lead to even
+  better calibration accuracy and stability.}
+
+The performance of the NIKA2 camera has been assessed using a large
+number of observations of primary and secondary calibrators and faint
+sources that have been acquired during three observational campaigns
+over one year. The data set spans the whole range of observing
+elevation and atmospheric conditions encountered on-site.
+The main characteristics that define the NIKA2 performance are
+summarized in Table~\ref{tab:nika2summary}. We highlight the main
+points in the following.
+
+\begin{enumerate}
+\item %\emph{FOV reconstruction}:
+  All designed KIDs detect the
+  signal at least in some observation
+  scans. We conservatively retain only the most stable KIDs, which are
+  immune to the cross-talking effect and yield good signal-to-noise
+  measurement. 
+  We report valid KID fractions of $84\%$
+  for the $1\,\rm{mm}$ channel arrays and $90\%$ for Array 2. The other
+  KIDs, which do not meet the validity criterion, are randomly
+  distributed across the FOV, so that the whole $6.5\,\rm{arcmin}$ FOV is
+  covered.
+  \vspace{1mm}
+\item %\emph{Beam Properties:}
+  The main beam is well described with a 2D
+  Gaussian of FWHM of $11.1''$ for the $1\,\rm{mm}$ channel arrays
+  and $17.6''$ for Array 2, with uncertainties of $0.2''$ for the
+  combination of Array 1$\&$3 and of $0.1''$ for Array 2.
+  Comparing the main beam fit to the measured full beam up to a radius of $180''$, we have derived the
+  main beam efficiency. We found main beam
+  efficiencies of $55 \pm 3 \%$ at $1\,\rm{mm}$ and $77 \pm 2 \%$ at
+  $2\,\rm{mm}$.
+  {\lp These results show that a significant fraction of the power is received
+    outside the main beam. This underlying,
+    extended, low-level beam pattern shows a complex structure of error 
+    beams, rings, and spokes.}
+  Using individual maps per KID, \citet{Adam2018} reported an rms
+  dispersion of the main beam FWHM across the FOV of about $0.6''$ at
+  both wavelengths. This is consistent with the measured curvature of
+  the best focus surface across the FOV. 
+  {\lp We also provide the reference beam efficiencies, which are the
+    fixed-width Gaussian beam efficiencies, up to a radius
+    of 180'', that allow taking into account the power stemming from
+    outside the reference beam.} 
+  % calib
+  \vspace{1mm}
+\item %\emph{Calibration uncertainties:}
+  We have evaluated the rms calibration uncertainties using 264 
+  scans of sources whose flux density is above about one Jy. We find rms calibration
+  uncertainties of about $6\%$ at $1\,\rm{mm}$ and about $3\%$ at
+  $2\,\rm{mm}$, which are state-of-the-art performance for a
+  ground-based millimeter-wave instrument. The absolute
+  calibration uncertainties are of $5\%$ and the systematic
+  calibration uncertainties evaluated at the IRAM
+  \trentemetre\ reference Winter observing conditions are
+  below $1\%$ in both channels.
+   \vspace{1mm}
+  % noise&sensitivity
+\item %\emph{Sensitivity:}
+  The noise does well integrate as the square root of the integration time. We
+  have derived robust estimate of the NEFD using more than a thousand scans
+  encompassing a large range of observing conditions. We found NEFD at zero
+  atmospheric opacity of $30 \pm 3\,\rm{mJy}\cdot s^{1/2}$ at $1\, \rm{mm}$ and
+  $9 \pm 1\,\rm{mJy}\cdot s^{1/2}$ at $2\, \rm{mm}$.
+  The NEFD estimates demonstrates the high-sensitivity of
+  the KID arrays of NIKA2. 
+  The instrumental sensitivity at $1\,\rm{mm}$
+  is however currently mainly limited by the non-optimal transmission of
+  the air-gap dichroic plate%component% mirror ? filter ? element ? 
+  , mostly prominent in one polarisation component
+  (A1) but affecting the other (A3) as well.
+  In addition to the dichroic upgrade, further possible areas of
+  improvements for the $1\,\rm{mm}$ observation channel are: 1)
+  improve the data processing and in particular the noise
+  decorrelation methods, 2) increase the bandwidth of the $1\,\rm{mm}$
+  arrays (subjected to the improvement of the dichroic) and 3)
+  upgrade the surface of the telescope.
+   \vspace{1mm}
+\item  NIKA2 mapping capabilities are better represented by evaluating the
+  mapping speed, which is defined as the sky area that is covered in one
+  hour of observation with a noise level of $1\,\rm{mJy}$. We found
+  mapping speeds at zero atmospheric opacity of $111$ and
+  $1388\, \rm{arcmin}^2 \cdot \rm{mJy}^{-2} \cdot \rm{h}^{-1}$ at
+  $1\, \rm{mm}$ and  $2\, \rm{mm}$, respectively. NIKA2 mapping speed is thus at
+  least an order of magnitude better than the previous generation of IRAM
+ \trentemetre\ telescope resident continuum cameras~\citep{Catalano2014, Staguhn2011_GISMO, Kreysa1999}.
+  
+\end{enumerate}
+
+
+We conclude that NIKA2 has unique capabilities in fast dual-band
+mapping at tens arcsecond resolution. {\lp It is currently available to the
+whole community and will operate at the IRAM \trentemetre\ telescope
+at least for the next decade.}
+NIKA2 performance meet the requirements
+to address a large range of science topics in astrophysics and
+cosmology. 
+
+
+\begin{acknowledgements}
+  We would like to thank the IRAM staff for their support during the
+  numerous campaigns. 
+  The NIKA2 dilution cryostat has been designed and built at the Institut N\'eel. 
+  In particular, we acknowledge the crucial contribution of the Cryogenics Group, and 
+  in particular Gregory Garde, Henri Rodenas, Jean Paul Leggeri, Philippe Camus. 
+  This work has been partially funded by the Foundation Nanoscience
+  Grenoble, the LabEx FOCUS ANR-11-LABX-0013 and the ANR under the
+  contracts "MKIDS", "NIKA" and ANR-15-CE31-0017. This work is
+  supported by the French National Research Agency in the framework of
+  the "Investissements d’avenir” program (ANR-15-IDEX-02).
+  We have benefited from the support of the European Research Council Advanced
+  Grant ORISTARS under the European Union's Seventh Framework
+  Programme (Grant Agreement no. 291294). We acknowledge financial
+  support from the “Programme National de Cosmologie and Galaxies”
+  (PNCG) funded by CNRS/INSU-IN2P3-INP, CEA and CNES, France.
+  We acknowledge fundings from the ENIGMASS French LabEx (F. R.), the FOCUS French
+  LabEx doctoral fellowship programme (A.R.) and the CNES doctoral
+  fellowship program (A.R.). R. A. acknowledges support from
+  Spanish Ministerio de Econom\'ia and Competitividad (MINECO) through
+  grant number AYA2015-66211-C2-2. M.D.P. acknowledges support from
+  Sapienza Universita' di Roma thanks to Progetti di Ricerca Medi 2017,
+  prot. RM11715C81C4AD67. 
+\end{acknowledgements}
+
+% WARNING
+%-------------------------------------------------------------------
+% Please note that we have included the references to the file aa.dem in
+% order to compile it, but we ask you to:
+%
+% - use BibTeX with the regular commands:
+\bibliographystyle{bibtex/aa} % style aa.bst
+\bibliography{bibtex/NIKA2_biblio} % your references Yourfile.bib
+%
+% - join the .bib files when you upload your source files
+%-------------------------------------------------------------------
+
+\begin{appendix}
+  \section{Reference flux density of the calibrators}
+  \label{ap:ref_flux_calibrator}
+  \input{calibrator_flux_model.tex}
+  
+  \section{Reconstruction of the focal surfaces}
+  \label{ap:focus_surfaces}
+  \input{Focus_surfaces.tex}
+
+  \section{Photometric correction}
+  \label{se:photometric_correction}
+  \input{photometric_correction.tex}
+\end{appendix}
+
+%
+\end{document}

@@ -561,7 +561,7 @@ solid angle.
 of the beam pattern presented in Sect.~\ref{se:fullbeam}, which
 provide us with accurate representations of the main beam and of the
 first error beams. However, at angular scales greater than the radius
-of the noise decorrelation mask, which is equals to 90'', the
+of the noise decorrelation mask, that is 90'', the
 filtering effect induced by the data processing becomes
 non-neglectible (see also Sect.~\ref{se:dataproc}). Furthermore,
 heterodyne observations at the IRAM \trentemetre\ telescope
@@ -578,8 +578,8 @@ frontend observations~\citep{Carter2012}, as reported
 in \citet{Kramer2013}. These results came in two flavours.}
 
 {\rev First, the main beam and error beams are measured using observation toward
-the limbs of the Moon. As EMIR is equipped with antenna feed horns,
-which select the radiation illuminating the detectors, the
+the limbs of the Moon. As EMIR detectors were coupled to
+the \trentemetre\ telescope entrance pupil via corrugated horns, the
 contribution of the first error beam is significantly attenuated
 compared to the NIKA2 case. In fact, the first error beam measured by
 NIKA2 is not detected with EMIR, while the second error beam is
@@ -595,9 +595,9 @@ dependencies on the receiver instrument.}
 $F_{\rm{eff}}$ are derived using skydip scans with EMIR. There
 measurements allow us to estimate the far side lobes efficiencies,
 which receive two different contributions. The \emph{forward}
-spillover and scattering efficencies are $F_{\rm{eff}}$ subtracted
-from the main beam and error beams efficencies, and
-the \emph{rearward} spillover and scattering efficencies equal
+spillover and scattering efficencies are estimated as $F_{\rm{eff}}$
+subtracted from the main beam and error beams efficiencies, and
+the \emph{rearward} spillover and scattering efficiencies equal
 $1-F_{\rm{eff}}$~\citep{Kramer2013}.}
 
 {\rev To sum up, we estimate the solid angle of the total beam as
@@ -609,25 +609,37 @@ $1-F_{\rm{eff}}$~\citep{Kramer2013}.}
 \end{equation}
 where $B_{\nu}(r)$ is the normalised beam profile for the array $\nu$,
 as discussed in Sect.~\ref{se:fullbeam}, $\mathcal{A}_{\nu}^{(3)}$ and
-$\mathcal{A}_{\nu}^{(4)}$ are the amplitudes of third and fourth
-Gaussian error beams $G_{\nu}^{(3)}$ and $G_{\nu}^{(4)}$ measured with
-EMIR and extrapolated for the array $\nu$ following the presciption
-given in \citet{Kramer2013}, and $\Omega_{\rm{FSL}} (\nu)$ is the
-contribution of the far side lobes to the total solid angle of the
-array $\nu$, as derived from $F_{\rm{eff}}$ measurements.}   
+$\mathcal{A}_{\nu}^{(4)}$ are the amplitudes of the third and fourth
+Gaussian error beams $G_{\nu}^{(3)}$ and $G_{\nu}^{(4)}$,
+respectively, which are measured with EMIR and extrapolated for the
+array $\nu$ following the presciption given in \citet{Kramer2013}, and
+$\Omega_{\rm{FSL}} (\nu)$ is the contribution of the far side lobes to
+the total beam solid angle of the array $\nu$, as derived from
+$F_{\rm{eff}}$ measurements.}
 
-{\rev In addition, for the stability tests, we also compute the
+
+{\rev In addition, for cross-checks and stability tests, we also compute the
 total beam solid angle up to a maximum radius
 \begin{equation}
  \Omega_{r_{\rm{max}}} (\nu) = \int_0^{r_{\rm max}} B_{\nu}(r)  \,  2 \pi r dr, 
 \label{eq:omega_rmax}
 \end{equation}
 where $r_{\rm{max}}$ is taken as the greater radius for which the
-filtering effect of the data processing is neglectible.}
-We evaluate {\rev $\Omega_{90}$} from the measured beam profiles
+filtering effect of the data processing is neglectible.
+We take $r_{\rm{max}}$ as the radius of the noise decorrelation mask,
+which is 90'' and evaluate {\rev $\Omega_{90}$} from the measured beam profiles
 obtained using the {\tt UN75} data set (see Sect.~\ref{se:mainbeam_dataset}).
-The result is given in Table~\ref{tab:solid}.
-
+Results per observational campaigns, with uncertainties evaluated
+as the rms scatter on the average, are given in
+Table~\ref{tab:solid}. The $\Omega_{90}$ estimates are statistically
+compatible from one campaign to another with some variations of the
+average value due to the dispersion in the focus settings and
+atmopsheric conditions that prevail during each campaign. The combined
+results, based on the whole {\tt UN75} data set, are the
+inverse-variance weighted average of the $\Omega_{90}$ for the three
+campaigns, while the error bars are conservatively estimated as the
+maximum difference within $5\sigma$ divided by ten.}
+  
 \begin{table}[!h]
 \caption{Estimates of the solid angle of the beam up to a radius of
 {\rev $90''$, $\Omega_{90}$}, and rms uncertainties given in
@@ -648,17 +660,26 @@ Campaign  & nbs %& %\multicolumn{3}{c}{$\Omega_{\rm{tot}}$ (arcsec$^{2}$)} %& \m
 \hline
 \noalign{\smallskip}
 %N2R9     & 27  &  265$\pm$23    &  466$\pm$17 & 252$\pm$ 23 \\%&  1.80 $\pm$ 0.12    &  1.35 $\pm$ 0.05   &   1.74 $\pm$ 0.13   \\
-N2R9      & 27  &  265$\pm$23    &  252$\pm$23  & 259$\pm$18  & 466$\pm$17 \\
+N2R9      & 27  &  245$\pm$20    &  233$\pm$18  & 239$\pm$15  & 452$\pm$16 \\
 %N2R12    & 20  &  229$\pm$11    &  437$\pm$9 & 221$\pm$ 10 \\%&  1.71 $\pm$ 0.06   &  1.30 $\pm$ 0.02   &   1.68 $\pm$ 0.06   \\
-N2R12     & 20  &  229$\pm$11    &  221$\pm$10 &  225$\pm$9   & 437$\pm$9 \\
+N2R12     & 20  &  209$\pm$9    &  203$\pm$8 &  206$\pm$7   & 422$\pm$9 \\
 %N2R14    & 28  &  251$\pm$16    &  457$\pm$15 & 245$\pm$ 18 \\%&  1.73 $\pm$ 0.08   &  1.32 $\pm$ 0.03   &   1.72 $\pm$ 0.08   \\
-N2R14     & 28  &  251$\pm$16    &  245$\pm$18 & 248$\pm$15 & 457$\pm$15 \\
+N2R14     & 28  &  232$\pm$14    &  228$\pm$18 & 230$\pm$14 & 441$\pm$14 \\
 %Combined & 75  &  240$\pm$9    &  446$\pm$7 & 230$\pm$8 \\%&  1.74              &   1.32             &   1.71              \\
-Combined  & 75  &  240$\pm$10    &  230$\pm$10 & 235$\pm$9    &  446$\pm$9 \\
+Combined  & 75  &  219$\pm$18    &  211$\pm$16 & 215$\pm$14    &  432$\pm$17 \\
 \noalign{\smallskip}
 \hline
 \end{tabular}
 \end{table}
+
+% email de JFL le 21/11/2019 
+%............................A1..............A3......A1&A3..........A2........
+%R09 (27sc)    | 245±20 | 233±18 | 239±15  | 452±16 |
+%R012 (20sc)  | 209±9   | 203±8  | 206±7    | 422±9  |
+%R014 (28sc)  | 232±14 | 228±18 | 230±14  | 441±14 |
+%comb (75sc) | 229±9  | 221±8   | 225±6    | 438±8  |
+%
+%  pour la combinaison, voir Pipeline/Scr/Reference/Beams/FullBeam/measure_beam_efficiency.pro
 
 
 
@@ -684,53 +705,64 @@ Combined  & 75  &  240$\pm$10    &  230$\pm$10 & 235$\pm$9    &  446$\pm$9 \\
 %point-like or compact sources that are largely encompassed
 %within a $180''$-radius.}
 
-{\lp The main beam efficiency up to a radius of $180''$ is computed as
+
+{\rev The main beam solid angle is evaluated from the main beam (mb) FWHM, as
+$\Omega_{\rm{mb}} = 2 \pi\,  \sigma_{\rm{mb}}^2$, where
+FWHM$ =2\sqrt{2\ln{2}}\, \sigma_{\rm{mb}}$. The main beam efficiency
 \begin{equation}
-\rm{BE}_{180} = \frac{\Omega_{\rm{mb}}}{\Omega_{180}},
+\rm{BE} = \frac{\Omega_{\rm{mb}}}{\Omega_{\rm{tot}}}
 \end{equation}
-}
-using both the {\tt UN75} and the {\tt BM12} data sets, as presented in
-Sect.~\ref{se:mainbeam_dataset}. We compare the results based on three
-estimates of the total beam and main beam solid angles: 
+is evaluated using both the {\tt UN75} and the {\tt BM12} data sets,
+as presented in Sect.~\ref{se:mainbeam_dataset}.} For cross-checks, we
+compare the results based on three estimates of the total beam and
+main beam solid angles:
 \begin{itemize}
   \item{{\tt BE1} relies on the best-fitting parameters of the
-    three-Gaussian model of the full beam to derive the two solid
-    angles. The main beam solid angle thus corresponds to the volume
-    enclosed by the first Gaussian, as obtained using {\tt Prof-3G};}
-  \item{{\tt BE2} consists in using $\Omega_{180}$ measurements as
-    total beam solid angle estimates, while $\Omega_{\rm{mb}}$ is
+    three-Gaussian model of the full beam, as given in
+    Eq.~\ref{eq:3gauss}, to derive both the main beam solid angle and
+    the two first errors beam contributions to the total beam solid
+    angle. The main beam solid angle thus corresponds to the volume
+    enclosed by the first Gaussian, as obtained using {\tt Prof-3G},
+    while the normalised beam profile in Eq.~\ref{eq:omega_tot} is the
+    normalised best-fitting $B_{3G}(r)$;}
+  \item{{\tt BE2} consists in using the normalised beam profile
+    measurements from the {\tt UN75} data set to estimate
+    $\Omega_{\rm{tot}}$, while $\Omega_{\rm{mb}}$ is
     derived with the FWHM obtained using {\tt Prof-1G} (see
     Sect.~\ref{se:mainbeam_methods});}
-  \item{{\tt BE3} is similar to {\tt BE2} but the main beam FWHM is
-    derived using {\tt Map-1G}.}  
+  \item{{\tt BE3} is similar to {\tt BE2} but relies on the {\tt BM12}
+    data set, while the main beam FWHM is derived using {\tt Map-1G}.}  
 \end{itemize}
+For all methods, the contributions of the third and fourth error beams
+and of the far side lobes, which enters in Eq.~\ref{eq:omega_tot}, are
+the same. 
 
-The beam efficiency estimates using the three methods are gathered
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+The main beam efficiency estimates using the three methods are gathered
 in Table~\ref{tab:beam_efficiency}: central values and error
 bars are evaluated as the median and the rms error of the
-estimates on individual \bms\ respectively. A robust evaluation of the
-beam efficiency uncertainties is obtained using the rms error estimates
-for {\tt BE2}, which are based on the {\tt UN75} date set. We combined the
-results of the three methods using an error-weighted average. Rms
-errors of {\tt BE1$\&$BE3}, which rely on 12 scans, are conservatively
-increased to be at least equal to {\tt BE2} rms errors beforehand.
-%By contrast, error
-%estimates for {\tt BE1$\&$BE3} rely on 12 scans and are thus less
-%robust. We combined the results of the three methods using an error-weighted
-%average. {\tt BE2} rms errors are conservatively used as a lower
-%limit of the error estimates for all methods.
-
-Using the combined results, as given in
-Table~\ref{tab:beam_efficiency}, we report main beam efficiencies of
-$55 \pm 3 \%$ at $1\,\rm{mm}$ and  $77 \pm 2 \%$ at $2\,\rm{mm}$.
-{\lp Using IRAM \trentemetre\ telescope EMIR frontend
-observations~\citep{Carter2012}, \citet{Kramer2013} found main
-beam efficiency of $59\%$ at $230\,\rm{GHz}$ and of $74\%$ at
-$145\,\rm{GHz}$ accounting for the beam solid angle stemming from
-radii greater than $180''$. Having slightly lower main beam
-efficiencies with respect to EMIR is expected
-since EMIR detectors were coupled to the \trentemetre\ telescope
-entrance pupil via corrugated horns, unlike the NIKA2 ones.} 
+estimates on individual observation scans, respectively.
+{\rev We combined the results of the three methods using an
+error-weighted average. The rms uncertainties are conservatively
+computed as one tens of the maximum difference between measurements
+within $5\sigma$. Uncertainties on the third and fourth error beams
+contributions and on the \trentemetre\ telescope forward
+efficiencies, as reported in \citet{Greve1998,Kramer2013}, are
+accounted for in the main beam efficiency uncertainties given in
+Table~\ref{tab:beam_efficiency}.}
+Using the combined results, we report main beam efficiencies of
+{\rev $48 \pm 4 \%$ at $1\,\rm{mm}$ and  $63 \pm 3 \%$ at $2\,\rm{mm}$.}
+%{\lp Using IRAM \trentemetre\ telescope EMIR frontend
+%observations~\citep{Carter2012}, \citet{Kramer2013} found main
+%beam efficiency of $59\%$ at $230\,\rm{GHz}$ and of $74\%$ at
+%$145\,\rm{GHz}$ accounting for the beam solid angle stemming from
+%radii greater than $180''$. Having slightly lower main beam
+%efficiencies with respect to EMIR is expected
+%since EMIR detectors were coupled to the \trentemetre\ telescope
+%entrance pupil via corrugated horns, unlike the NIKA2 ones.} 
   
 %res1 = [0.54, 0.54, 0.53, 0.74]
 %res2 = [0.55, 0.56, 0.55, 0.76]
@@ -744,7 +776,9 @@ entrance pupil via corrugated horns, unlike the NIKA2 ones.}
 %for i = 0, 3 do print, sqrt(1d0/ total(1d0/sig[i, *]^2))
 
 \begin{table}[!h]
-  \caption[]{Main beam efficiencies up to a radius of $180''$ given in percent.}
+  \caption[]{Main beam efficiency estimated for each array or array
+  combination, using three different methods, and the combined
+  results, given in percent.}
   \label{tab:beam_efficiency}
   \centering
   \begin{tabular}{l cccc}
@@ -757,10 +791,14 @@ entrance pupil via corrugated horns, unlike the NIKA2 ones.}
     \noalign{\smallskip}
     \hline
     \noalign{\smallskip}
-    {\tt BE1}  &  $54 \pm 3$  & $54 \pm 4$  &  $53 \pm 3$  &  $74 \pm 4$  \\
-    {\tt BE2}  &  $55 \pm 3$  & $56 \pm 3$  &  $56 \pm 3$  &  $76 \pm 2$  \\
-    {\tt BE3}  &  $59 \pm 7$  & $58 \pm 4$  &  $59 \pm 4$  &  $80 \pm 1$  \\
-    combined   &  $55 \pm 3$  & $56 \pm 3$  &  $55 \pm 3$  &  $77 \pm 2$  \\
+    %{\tt BE1}  &  $54 \pm 3$  & $54 \pm 4$  &  $53 \pm 3$  &  $74 \pm 4$  \\
+    %{\tt BE2}  &  $55 \pm 3$  & $56 \pm 3$  &  $56 \pm 3$  &  $76 \pm 2$  \\
+    %{\tt BE3}  &  $59 \pm 7$  & $58 \pm 4$  &  $59 \pm 4$  &  $80 \pm 1$  \\
+    %combined   &  $55 \pm 3$  & $56 \pm 3$  &  $55 \pm 3$  &  $77 \pm 2$  \\
+    {\tt BE1}  &  $46 \pm 3$  & $47 \pm 4$  &  $47 \pm 3$  &  $62 \pm 3$  \\
+    {\tt BE2}  &  $47 \pm 5$  & $48 \pm 5$  &  $47 \pm 4$  &  $64 \pm 4$  \\
+    {\tt BE3}  &  $49 \pm 4$  & $50 \pm 4$  &  $50 \pm 4$  &  $64 \pm 3$  \\
+    combined   &  $47 \pm 4$  & $48 \pm 4$  &  $48 \pm 4$  &  $63 \pm 3$  \\
     \noalign{\smallskip}
     \hline
   \end{tabular}
@@ -770,6 +808,8 @@ entrance pupil via corrugated horns, unlike the NIKA2 ones.}
   %  \tablefoottext{c}{based on {\tt Map 1G} main beam FWHM} 
  % }
 \end{table}
+
+{\rev Finally, } 
 
 %We note a
 %mild improvement of the beam efficiency between the N2R9 campaign and
@@ -842,34 +882,30 @@ entrance pupil via corrugated horns, unlike the NIKA2 ones.}
 %measured in Sect.~\ref{se:mainbeam} and the three-Gaussian error beams
 %as reported in \citet{Kramer2013}.  
 %
-%\begin{table}[!h]
-%\caption{Estimates of the contribution to the beam solid angle
-%integrated in varying range of radii. $\Omega_{180}$ include all beam
-%contributions up to a radius of $180''$ as measured in NIKA2
-%maps. $\Omega_{180<r<390}^{\rm{mb+eb}}$ and
-%$\Omega_{>180}^{\rm{mb+eb}}$ account for the main beam and error beam
-%contributions integrated $180''$ to $390''$ and from $180''$ to
-%$4\pi$, respectively. $\Omega^{\rm{frss}}$ account for the forward and
-%rearward spillover and scattering efficiencies integrated over
-%$4\pi$. All solid angles are given in arcsec$^{2}$. }
-%\label{tab:solid_corr}
-%\centering
-%\begin{tabular}{lcc}
-%\hline\hline
-%\noalign{\smallskip}
-%&  A1\&A3 & A2 \\
-%\noalign{\smallskip}
-%\hline
-%\noalign{\smallskip}
-%$\Omega_{180}$                  &   235 $\pm$  9 & 446 $\pm$  9 \\\noalign{\smallskip}
-%$\Omega_{180<r<390}^{\rm{mb+eb}}$  &   12          &   20       \\\noalign{\smallskip}
-%$\Omega_{>180}^{\rm{mb+eb}}$      &   21          &   41      \\\noalign{\smallskip}
-%$\Omega^{\rm{frss}}$             &   45          &   40      \\
-%\noalign{\smallskip}
-%\hline
-%\end{tabular}
-%\end{table}
-%}
+\begin{table}[!h]
+\caption{Estimates of the contribution to the beam solid angle. All solid angles are given in arcsec$^{2}$. }
+\label{tab:solid_corr}
+\centering
+\begin{tabular}{lcc}
+\hline\hline
+\noalign{\smallskip}
+&  A1\&A3 & A2 \\
+\noalign{\smallskip}
+\hline
+\noalign{\smallskip}
+$\Omega_{90}$        &    213 $\pm$  16 & 434 $\pm$ 17 \\\noalign{\smallskip}
+$\Omega_{\rm{hyb}}$   &    265 $\pm$  17 & 504 $\pm$ 15  \\\noalign{\smallskip}
+$\Omega_{\rm{tot}}$   &    291 $\pm$  26 & 540 $\pm$ 33  \\\noalign{\smallskip}
+\noalign{\smallskip}
+\hline
+\noalign{\smallskip}
+$\rm{BE}_{90}$       &   64 $\pm$  4 &  79 $\pm$ 1  \\\noalign{\smallskip}
+$\rm{BE}_{\rm{hyb}}$  &   53 $\pm$ 3 &   68 $\pm$ 2  \\\noalign{\smallskip}
+$\rm{BE}$            &   48 $\pm$ 4  &  63 $\pm$ 3  \\\noalign{\smallskip}
+\noalign{\smallskip}
+\hline
+\end{tabular}
+\end{table}
 %
 %The results are given in
 %Table~\ref{tab:solid_corr}, as well as the contribution to the beam

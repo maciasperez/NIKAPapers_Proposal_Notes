@@ -345,8 +345,9 @@ the rescaled TOI. {\rev This is achieved by deriving a mask per TOI
 from the pointing information (Sect.~\ref{se:ptg}), that is zero if
 the KID is close to the source, and unity otherwise. In the case of a
 point source, the mask consists in a disk of a minimum radius of 60''
-centered on the source, whereas for diffuse emission, tailored
-source-morphology-driven masks are build.}
+centered on the source, whereas for diffuse emission, tailored masks
+driven by the source morphology are build using iterative methods, as
+for example in~\citet{Ruppin2018}.}
 Second, instead of a single common mode subtraction to
 all KIDs, we estimate an accurate common mode for each
 KID. Calculating the KID-to-KID cross-correlation matrix, we
@@ -354,7 +355,21 @@ identify the most correlated KIDs. Then, we build an
 inverse noise weighted co-addition of the timelines of the %off-source
 KIDs that are the most correlated with the KID under
 concern. Furthermore, we have tested on simulations that this method
-does preserves the flux of {\lp point-like or moderately extended sources.}
+does preserves the flux of {\lp point-like or moderately extended
+sources.}
+\rev{Regarding diffuse emissions, the noise decorrelation induces a
+filtering effect at large angular scales that required to be corrected
+for to fully recover the large scale signal. A method to correct for the
+spatial filtering, which relies on the evaluation of the data
+processing transfer function using simulation, is
+described in~\citet{Adam2015}. The data processing transfer function
+depends on the morphological properties of the extended source under
+concern, and requires to construct \emph{a minima} a toy model of the
+source in order to inject synthetic signal in the simulation. An
+example of the data processing transfer function for
+NIKA2 observation toward a galaxy cluster is given
+in~\citet{Ruppin2018}, evidencing a prominent filtering at
+angular scales larger than the 6.5' diameter FOV.} 
 % Regarding very extended sources (over more
 %than a few arcminutes), the noise decorrelation requires iterative or
 %more evolved methods, as will be discussed in \citet{Ponthieu2019}.}

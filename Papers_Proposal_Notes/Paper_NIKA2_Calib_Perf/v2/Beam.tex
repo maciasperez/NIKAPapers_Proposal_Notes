@@ -602,21 +602,22 @@ $1-F_{\rm{eff}}$~\citep{Kramer2013}.}
 
 {\rev To sum up, we estimate the solid angle of the total beam as
 \begin{equation}
-  \Omega_{\rm{tot}}(\nu) = \int_0^{2\pi} \left( B_{\nu}(r)
+  \Omega_{\rm{tot}}(\nu) = \int_0^{2\pi} \left( \tilde{B}_{\nu}(r)
   + \mathcal{A}_{\nu}^{(3)} G_{\nu}^{(3)}(r) + \mathcal{A}_{\nu}^{(4)}
   G_{\nu}^{(4)}(r) \right)  2 \pi r dr  \, + \,  \Omega_{\rm{FSL}} (\nu),
   \label{eq:omega_tot}
 \end{equation}
-where $B_{\nu}(r)$ is the normalised beam profile for the array $\nu$,
-as discussed in Sect.~\ref{se:fullbeam}, $\mathcal{A}_{\nu}^{(3)}$ and
-$\mathcal{A}_{\nu}^{(4)}$ are the amplitudes of the third and fourth
-Gaussian error beams $G_{\nu}^{(3)}$ and $G_{\nu}^{(4)}$,
-respectively, which are measured with EMIR and extrapolated for the
-array $\nu$ following the presciption given in \citet{Kramer2013}, and
-$\Omega_{\rm{FSL}} (\nu)$ is the contribution of the far side lobes to
-the total beam solid angle of the array $\nu$, as derived from
-$F_{\rm{eff}}$ measurements.}
-
+where $\tilde{B}_{\nu}(r)$ is the normalised beam profile $B_{\nu}(r)$
+for the array $\nu$, as discussed in Sect.~\ref{se:fullbeam}, after
+rescaling with a factor of
+$(1-\mathcal{A}_{\nu}^{(3)}-\mathcal{A}_{\nu}^{(4)})$; 
+$\mathcal{A}_{\nu}^{(3)}$ and $\mathcal{A}_{\nu}^{(4)}$ are the
+amplitudes of the third and fourth Gaussian error beams
+$G_{\nu}^{(3)}$ and $G_{\nu}^{(4)}$, respectively, which are measured
+with EMIR and extrapolated for the array $\nu$ following the
+presciption given in \citet{Kramer2013}; $\Omega_{\rm{FSL}} (\nu)$ is
+the contribution of the far side lobes to the total beam solid angle
+of the array $\nu$, as derived from $F_{\rm{eff}}$ measurements.}
 
 {\rev In addition, for cross-checks and stability tests, we also compute the
 total beam solid angle up to a maximum radius
@@ -809,8 +810,6 @@ Using the combined results, we report main beam efficiencies of
  % }
 \end{table}
 
-{\rev Finally, } 
-
 %We note a
 %mild improvement of the beam efficiency between the N2R9 campaign and
 %the following campaigns. This could be due to the change of the method
@@ -883,7 +882,10 @@ Using the combined results, we report main beam efficiencies of
 %as reported in \citet{Kramer2013}.  
 %
 \begin{table}[!h]
-\caption{Estimates of the contribution to the beam solid angle. All solid angles are given in arcsec$^{2}$. }
+\caption{Estimates of the total beam solid angle and main beam
+efficiency including in turn further contributions to the full beam ranked by
+their angular scales (see text). All solid angles are given in arcsec$^{2}$,
+while the main beam efficiencies are in percent.}
 \label{tab:solid_corr}
 \centering
 \begin{tabular}{lcc}
@@ -907,6 +909,27 @@ $\rm{BE}$            &   48 $\pm$ 4  &  63 $\pm$ 3  \\\noalign{\smallskip}
 \end{tabular}
 \end{table}
 %
+
+{\rev Finally, we compute the total beam solid angle and main beam
+efficiency using the combinaison of the three previously described
+methods, in three cases that successively include larger angular scale
+contributions to the full beam: $\Omega_{90}$ and $\rm{BE}_{90}$ are
+the total beam solid angle and main beam efficiency integrated up to
+$90''$, which include the main beam and the two lower angular scales
+error beams, as measured in NIKA2 beam maps; $\Omega_{\rm{hyb}}$ and
+$\rm{BE}_{\rm{hyb}}$ further account for the third and fourth error
+beams, as derived from EMIR frontend measurements; $\Omega_{\rm{tot}}$
+and $\rm{BE}$ are the final estimates that comprize all beam
+contributions. The results are given in Table~\ref{tab:solid_corr} for
+the 1\,mm and 2\,mm channels. These give insight on the relative
+importance of the various contributions. For example, 18$\%$ and
+13$\%$ of the total beam solid angle stem from the two largest angular
+scale error beams, and 9$\%$ and 7$\%$ originate from the far side
+lobes at 1 and 2\,mm respectively.}
+
+
+
+
 %The results are given in
 %Table~\ref{tab:solid_corr}, as well as the contribution to the beam
 %solid angle of the forward and rearward spillover and scattering

@@ -14,11 +14,11 @@ in NIKA2 bands for these calibrators are given in
 Appendix~\ref{se:ref_flux_secondaries}. Then,
 we verify the stability of the photometry with
 respect to the atmospheric conditions using a large amount of
-observations toward a large variety of sources. 
+observations toward a large variety of {\rev point-like}
+sources. 
 
-The quality criteria used to assess the photometric
-capabilities and calibration results are defined in
-Sect.~\ref{se:photometry_criteria}.
+The quality criteria used to assess the photometric capabilities and
+calibration results are defined in Sect.~\ref{se:photometry_criteria}.
 In Sect.~\ref{se:photometry_baseline}, these criteria are evaluated
 for the baseline calibration, and in Sect.~\ref{se:photometry_others},
 we compare these results with other calibration method results before
@@ -33,9 +33,13 @@ summarizing the main results in Sect.~\ref{se:photometry_summary}.
 
 We assess the photometric performance by evaluating two
 quality criteria: first, the calibration bias checks the accuracy of
-the absolute calibration and then the calibration relative
-uncertainties test the stability of the flux densities. {\lp Finally,
-we review here the systematic uncertainties on the flux density.}
+the absolute calibration and then the {\rev point-source} rms
+calibration uncertainties test the stability of the flux
+densities. {\rev The stability of the full beam pattern at large
+angular scales, which impacts the stability of the diffuse emission
+flux density, is not tested here}. {\lp Finally, we review here the
+systematic uncertainties on the flux density.}
+
 
 \subsubsection{Calibration bias}
 \label{se:def_calibration_bias}
@@ -59,11 +63,10 @@ opacity derivation method. Likewise, we verify that the photometry is
 insensitive to optical variations by checking the stability of the
 calibration bias against the measured beam size.
 
-\subsubsection{Calibration rms uncertainties}
+\subsubsection{{\rev Point-source} rms calibration uncertainties}
 \label{se:def_calibration_rms_error}
-We evaluate the standard
-deviation of bright source measured-to-median flux density ratio
-$\sigma_{\nu}$ per array or array combination $\nu$.
+We evaluate the standard deviation of bright {\rev point-like} source
+measured-to-median flux density ratio $\sigma_{\nu}$ per array or array combination $\nu$.
 As the flux density of most of the considered sources is unknown a priori, we
 compare the flux density estimate in a single observation scan to the
 average flux density throughout an observation campaign. This method
@@ -93,15 +96,30 @@ origins. This includes the errors sourced by the \afternoon\ beam
 variations, the effect of the elevation, the uncertainties of the
 atmospheric opacity correction using either the {\tt skydip} or
 the {\tt taumeter} method and the atmospheric and instrumental noise
-residuals after the data reduction (Sect.~\ref{se:dataproc}).
+residuals after the data reduction (Sect.~\ref{se:dataproc}). {\rev
+However, as the data set comprizes point-like sources and because flux
+density measurements in the reference photometric system are immune to
+beam variations at large angular scales, we refer to the rms of the
+flux density ratios as point-source rms calibration uncertainties.}
+
+{\rev For extended sources and diffuse emission studies, the maps in
+Jy/beam units, where the beam refers to the reference beam, are
+converted to Jy/sr units using
+Eq.~\ref{eq:jybeam_to_jysr}. Propagating the uncertainty on the
+total beam solid angles, the reference beam efficiencies are estimated
+with a precision of 10$\%$ and 6$\%$ at 1 and 2\,mm,
+respectively, as reported in Table~\ref{tab:reference_beam_efficiency}
+in Sect.~\ref{se:extended_source_calib}. These uncertainties must be
+further accounted for in the error budget of diffuse emission studies.}
+
 
 \subsubsection{Absolute and systematic uncertainties}
 \label{se:def_systematic_errors}
 
-To account for all uncertainties, we must add to the rms calibration
-uncertainties the absolute calibration uncertainties and the
-systematic errors. The absolute uncertainty is the uncertainty on the
-primary calibrator flux density expectations. 
+To account for all uncertainties, we must add to the {\rev
+point-source} rms calibration uncertainties the absolute calibration
+uncertainties and the systematic errors. The absolute uncertainty is
+the uncertainty on the primary calibrator flux density expectations. 
 %To obtain an estimate of the
 %total absolute calibration uncertainties, the rms errors must be added in quadrature
 %with systematic uncertainties that do not depend on the observing
@@ -144,6 +162,7 @@ Eq.~\ref{eq:color_correction}. These
 uncertainties depend on the source SED but are negligible in most of
 the cases. In particular, for MWC349, we find uncertainties below 0.1\% at
 both wavelengths.}
+
 
 
 

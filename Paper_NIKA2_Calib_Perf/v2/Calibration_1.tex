@@ -195,52 +195,34 @@ source $\alpha_{\rm{s}}$ in Table~\ref{tab:mod}.
 \subsubsection{Extended sources}
 \label{se:extended_source_calib}
 
-{\lp The Jy/beam units map $M_{\rm{s}}(\theta, \phi)$ can not be used
-directly to perform aperture photometry or to obtain the flux density
-of extended sources. We first need to convert
-$M_{\rm{s}}(\theta, \phi)$ in a map in Jy/sr,
-$M_{\rm{ap}}(\theta, \phi)$, taking into account the full beam
-pattern, as discussed in Sect.~\ref{se:beam_efficiency}. 
-%For aperture photometry or for extended sources, the map calibrated in
-%Jy/beam $M_{\rm{s}}(\theta, \phi)$ must be converted in a
-%map in Jy/sr $M_{\rm{ap}}(\theta, \phi)$,
+{\rev For the sake of studying the diffuse emission or
+performing aperture photometry, maps given in Jy/beam units, which
+are a relevant system of units for point sources, need to be converted
+in Jy/sr. To that aim, we need to take into account the full beam
+pattern, as discussed in Sect.~\ref{se:beam_efficiency}.}   
+%{\lp The Jy/beam units map $M_{\rm{s}}(\theta, \phi)$ can not be used
+%directly to perform aperture photometry or to obtain the flux density
+%of extended sources. We first need to convert
+%$M_{\rm{s}}(\theta, \phi)$ in a map in Jy/sr,
+%$M_{\rm{ap}}(\theta, \phi)$, taking into account the full beam
+%pattern, as discussed in Sect.~\ref{se:beam_efficiency}. 
 First we correct with the solid angle enclosed in the
 reference fixed-width Gaussian beam $\Omega_{0} = 2\pi \sigma_0^2$ to
-obtain Jy/sr. Then, to account for the signal in the total beam
-pattern, we further correct with the reference beam
-efficiency BE$_{0}$, which is defined as the ratio of 
-$\Omega_{0}$ and the measured solid angle of the total
-beam $\Omega_{\rm{tot}}$. To summarize, the map in Jy/sr relates to
-the map in Jy/beam using
+obtain a map homogeneous to Jy/sr. Then, to account for the signal in
+the total beam pattern, we further correct with the reference beam
+efficiency BE$_{0}$. As defined as the ratio of $\Omega_{0}$ and the
+total beam solid angle $\Omega_{\rm{tot}}$, BE$_{0}$ represents the
+fraction of the full beam solid angle that is enclosed in the solid
+angle sustained by the reference beam. To summarize, the map in Jy/sr
+$M(\theta, \phi)$ relates to the map in Jy/beam
+$M_{\rm{s}}(\theta, \phi)$ using
+%
 \begin{equation}
-M_{\rm{ap}}(\theta, \phi) = \frac{\rm{BE}_{0}}{\Omega_{0}} \, M_{\rm{s}}(\theta, \phi).
-\end{equation}}
-
-{\lp
-%For the aperture photometry of point-like source and for the
-%photometry of moderately extended sources,
-In Table~\ref{tab:reference_beam_efficiency}, we provide the reference
-beam efficiencies estimated up to a radius of $180''$, which are
-computed as the ratio between $\Omega_{0}$ and
-$\Omega_{180}$ (see Sect.~\ref{se:beam_efficiency}). To account for the power stemming from radii
-ranging from $180''$ to a cutting radius $r_{\rm{c}}$, we estimate 
-correcting factors $\eta_{r_{\rm{c}}}$ to these reference beam
-efficiencies, defined as  
-\begin{equation}
-\eta_{r_{\rm{c}}} = \left( 1 + \frac{\Omega_{180<r<r_{\rm{c}}}}{\Omega_{180}} \right)^{-1}.
+M(\theta, \phi) = \frac{\rm{BE}_{0}}{\Omega_{0}} \, M_{\rm{s}}(\theta, \phi).
 \end{equation}
-We give the correcting factor $\eta_{390}$ accounting for the main
-beam and error beams contributions up to $6.5'$
-using $\Omega_{180<r<390}^{\rm{mb+eb}}$, as given in
-Table~\ref{tab:solid_corr}, as well as the correcting factor
-$\eta_{\rm{tot}}$ accounting for the total beam
-solid angle using Eq.~\ref{eq:omega_beam_4pi}. These correcting
-factors are given in Table~\ref{tab:reference_beam_efficiency}.
-}
-
+%
 \begin{table}[!htbp]
-  \caption[]{Reference beam efficiencies for Array 1, Array 3, Array
-    1\&3 and Array 2}
+  \caption[]{Reference beam efficiencies for Array 1, Array 3, Array 1\&3 and Array 2}
   \label{tab:reference_beam_efficiency}
   \centering    
   \begin{tabular}{lrrrr}
@@ -250,18 +232,67 @@ factors are given in Table~\ref{tab:reference_beam_efficiency}.
     \noalign{\smallskip}
     \hline
     \noalign{\smallskip}
-    FWHM$_{0}$ [arcsec]          &  $12.5$   &  $12.5$  &   $12.5$  &   $18.5$  \\
-    BE$_{0}$\tablefootmark{a}\hspace{3mm}  [\% ] & $70 \pm 4$ & $72 \pm 4$ & $70 \pm 4$ & $85 \pm 3$ \\
-    \noalign{\smallskip}
-    $\eta_{390}$\hspace{3mm}  & $0.95$ & $0.95$ & $0.95$ & $0.96$ \\
-    $\eta_{\rm{tot}}$\hspace{3mm}  & $0.78$ & $0.78$ & $0.78$ & $0.85$ \\
-    \noalign{\smallskip}
+    FWHM$_{0}$ [arcsec]          & $12.5$     &  $12.5$     & $12.5$     & $18.5$     \\
+    BE$_{0}$   [\% ]             & $60 \pm 6$ &  $61 \pm 6$ & $61 \pm 6$ & $72 \pm 4$ \\
+        \noalign{\smallskip}
     \hline
   \end{tabular}
-  \tablefoot{ \\
-    \tablefoottext{a}{Reference Beam Efficiency, estimated as the ratio between the reference FWHM beam power and the total beam power up to a radius of 180 arcsec} 
-  }
 \end{table}
+%
+{\rev In Table~\ref{tab:reference_beam_efficiency}, we provide the
+estimates of the reference beam efficiency, which are derived from the
+measured $\Omega_{\rm{tot}}$ as given in
+Sect.~\ref{se:beam_efficiency}. Propagating the uncertainty on the
+total beam solid angles, the reference beam efficiencies are estimated
+with a precision of 10$\%$ and 6$\%$ at 1 and 2\,mm
+respectively. These uncertainties must be accounted for in the error
+budget after conversion of the maps from Jy/beam to Jy/sr units.}
+
+
+%{\lp
+%In Table~\ref{tab:reference_beam_efficiency}, we provide the reference
+%beam efficiencies estimated up to a radius of $180''$, which are
+%computed as the ratio between $\Omega_{0}$ and
+%$\Omega_{180}$ (see Sect.~\ref{se:beam_efficiency}). To account for the power stemming from radii
+%ranging from $180''$ to a cutting radius $r_{\rm{c}}$, we estimate 
+%correcting factors $\eta_{r_{\rm{c}}}$ to these reference beam
+%efficiencies, defined as  
+%\begin{equation}
+%\eta_{r_{\rm{c}}} = \left( 1 + \frac{\Omega_{180<r<r_{\rm{c}}}}{\Omega_{180}} \right)^{-1}.
+%\end{equation}
+%We give the correcting factor $\eta_{390}$ accounting for the main
+%beam and error beams contributions up to $6.5'$
+%using $\Omega_{180<r<390}^{\rm{mb+eb}}$, as given in
+%Table~\ref{tab:solid_corr}, as well as the correcting factor
+%$\eta_{\rm{tot}}$ accounting for the total beam
+%solid angle using Eq.~\ref{eq:omega_beam_4pi}. These correcting
+%factors are given in Table~\ref{tab:reference_beam_efficiency}.
+%}
+
+%\begin{table}[!htbp]
+%  \caption[]{Reference beam efficiencies for Array 1, Array 3, Array
+%    1\&3 and Array 2}
+%  \label{tab:reference_beam_efficiency}
+%  \centering    
+%  \begin{tabular}{lrrrr}
+%    \hline\hline
+%    \noalign{\smallskip}
+%    & A1 & A3  & A1\&3 & A2 \\
+%    \noalign{\smallskip}
+%    \hline
+%    \noalign{\smallskip}
+%    FWHM$_{0}$ [arcsec]          &  $12.5$   &  $12.5$  &   $12.5$  &   $18.5$  \\
+%    BE$_{0}$\tablefootmark{a}\hspace{3mm}  [\% ] & $70 \pm 4$ & $72 \pm 4$ & $70 \pm 4$ & $85 \pm 3$ \\
+%    \noalign{\smallskip}
+%    $\eta_{390}$\hspace{3mm}  & $0.95$ & $0.95$ & $0.95$ & $0.96$ \\
+%    $\eta_{\rm{tot}}$\hspace{3mm}  & $0.78$ & $0.78$ & $0.78$ & $0.85$ \\
+%    \noalign{\smallskip}
+%    \hline
+%  \end{tabular}
+%  \tablefoot{ \\
+%    \tablefoottext{a}{Reference Beam Efficiency, estimated as the ratio between the reference FWHM beam power and the total beam power up to a radius of 180 arcsec} 
+%  }
+%\end{table}
 
 
 \subsubsection{Calibration procedure}

@@ -234,16 +234,16 @@
          valid detectors
          at $150$ and $260\,\rm{GHz}$, respectively. The beam pattern
          is characterized by a FWHM of $17.6'' \pm 0.2''$
-         and  $11.1''\pm 0.1''$, and a beam efficiency of
-         $77\% \pm 2\%$ and $55\% \pm 3\%$
+         and  $11.1''\pm 0.1''$, and a main beam efficiency of
+         {\rev $48\% \pm 4\%$} and {\rev $63\% \pm 3\%$}
          at $150$ and $260\,\rm{GHz}$, respectively.
-         The rms {\rev point-source} calibration uncertainties are about $3\%$ at $150\,\rm{GHz}$ 
+         The {\rev point-source} rms calibration uncertainties are about $3\%$ at $150\,\rm{GHz}$ 
          and $6\%$ at $260\,\rm{GHz}$. This demonstrates
          the accuracy of the methods that we have deployed to correct
          for atmospheric attenuation. {\lp The absolute
            calibration uncertainties are of $5\%$ and the systematic
            calibration uncertainties evaluated at the IRAM
-           \trentemetre\ reference Winter observing conditions {\rev for point sources} are
+           \trentemetre\ reference Winter observing conditions are
            below $1\%$ in both channels.}
          The noise equivalent
          flux density (NEFD) at $150$ and $260\,\rm{GHz}$ are of
@@ -364,12 +364,12 @@
     \hline
     \noalign{\smallskip}
     FWHM\tablefootmark{c}\hspace{3mm} [arcsec]    &  $11.1 \pm 0.2$  &  $17.6 \pm 0.1$  & & Sect.~\ref{se:mainbeam}\\
-    Beam efficiency\tablefootmark{d}\hspace{3mm} [$\%$] &  $55 \pm 3$   &  $77 \pm 2$  &  & Sect.~\ref{se:beam_efficiency}\\
+    Main beam efficiency\tablefootmark{d}\hspace{3mm} [$\%$] & {\rev  $48 \pm 4$}   &  {\rev $63 \pm 3$}  &  & Sect.~\ref{se:beam_efficiency}\\
     Rms FWHM across the FOV [arcsec]              &    0.6        &      0.6        & & \citet{Adam2018} \\
     \hline
     \noalign{\smallskip}
     Reference FWHM\tablefootmark{e}\hspace{3mm} [arcsec]          & $12.5$     &   $18.5$  &  & Sect.~\ref{se:photometric_system}\\
-    Reference Beam efficiency\tablefootmark{f}\hspace{3mm}  [\% ] & $70 \pm 4$ & $85 \pm 3$ &  & Sect.~\ref{se:extended_source_calib}\\
+    Reference beam efficiency\tablefootmark{f}\hspace{3mm}  [\% ] & {\rev $61 \pm 6$} & {\rev $72 \pm 4$} &  & Sect.~\ref{se:extended_source_calib}\\
     \hline
     \noalign{\smallskip}
     Rms pointing error    [arcsec]               & $<3$ &  $<3$  & & Sect.~\ref{se:pointing} \\
@@ -377,7 +377,7 @@
     \noalign{\smallskip}
     Absolute calibration uncertainty [\%]      &   5         & 5 & & Sect.~\ref{se:photometry_criteria}, App.~\ref{se:ref_flux_uranus_neptune} \\
     Systematic calibration uncertainty\tablefootmark{g}\hspace{3mm}  [\%]      &    0.6        & 0.3 & & Sect.~\ref{se:def_systematic_errors} \\
-    Rms calibration uncertainty [\%]                   &   5.7       &     3.0       & & Sect.~\ref{se:photometry_baseline} \\
+    {\rev Point-source} rms calibration uncertainty [\%]                   &   5.7       &     3.0       & & Sect.~\ref{se:photometry_baseline} \\
     \hline
     \noalign{\smallskip}
     $\alpha$ noise integration in time\tablefootmark{h}\hspace{3mm}  & 0.5 & 0.5 & & Sect.~\ref{se:nefd_results} \\
@@ -392,9 +392,14 @@
     \tablefoottext{a}{Number of usable detectors, which have been selected in at least two FOV reconstructions}
     \tablefoottext{b}{Calculated from real array pixel size [2.75\,mm / 2.0\,mm] and unvignetted entrance pupil diameter [27\,m]}
     \tablefoottext{c}{Full-width at half-maximum of the main beam using the combined results of three methods}
-    \tablefoottext{d}{Ratio between the main beam power and the total beam power up to a radius of 180''}
+    \tablefoottext{d}{Ratio between the main beam and the total
+      beam solid angles including large angular scale error beams and far
+      side lobes}
     \tablefoottext{e}{Full-width at half-maximum of the beam used in our reference photometric system}
-    \tablefoottext{f}{Ratio between the reference FWHM beam power and the total beam power up to a radius of 180''}    \tablefoottext{f}{Systematic calibration uncertainties due to the opacity correction using the {\tt corrected skydip} method estimated at the reference IRAM \trentemetre\ winter observing conditions: 2\,mm pwv, $60^o$ elevation} 
+    \tablefoottext{f}{Ratio between the reference FWHM beam and the
+      total beam solid angles including large angular scale error beams and far
+      side lobes}
+    \tablefoottext{f}{Systematic calibration uncertainties due to the opacity correction using the {\tt corrected skydip} method estimated at the reference IRAM \trentemetre\ winter observing conditions: 2\,mm pwv, $60^o$ elevation} 
     \tablefoottext{h}{Effective power law of noise reduction with integration time}
     \tablefoottext{i}{NEFD at zero opacity}
     \tablefoottext{j}{Mapping speed at zero opacity}
@@ -429,8 +434,9 @@ $150$ and $260\,\rm{GHz}$ reference frequency, respectively.
 
 The performance of the NIKA2 camera has been assessed using a large
 number of observations of primary and secondary calibrators and faint
-sources that have been acquired during three observational campaigns
-over one year. The data set spans the whole range of observing
+ sources that have been acquired during three
+observational campaigns over one year. The data set spans the whole
+range of observing
 elevation and atmospheric conditions encountered on-site.
 The main characteristics that define the NIKA2 performance are
 summarized in Table~\ref{tab:nika2summary}. We highlight the main
@@ -454,30 +460,38 @@ points in the following.
   Gaussian of FWHM of $11.1''$ for the $1\,\rm{mm}$ channel arrays
   and $17.6''$ for Array 2, with uncertainties of $0.2''$ for the
   combination of Array 1$\&$3 and of $0.1''$ for Array 2.
-  Comparing the main beam fit to the measured full beam up to a radius of $180''$, we have derived the
-  main beam efficiency. We found main beam
-  efficiencies of $55 \pm 3 \%$ at $1\,\rm{mm}$ and $77 \pm 2 \%$ at
+  %Comparing the main beam fit to the measured full beam up to a radius of $180''$, we have derived the
+  %main beam efficiency.
+  {\rev Comparing the main beam fit to the measured full beam, and 
+    including large angular scale contributions from IRAM
+    \trentemetre\ telescope heterodyne measurements, we have derived the
+  main beam efficiency.}
+  We found main beam
+  efficiencies of {\rev $48 \pm 4 \%$} at $1\,\rm{mm}$ and {\rev $63 \pm 3 \%$} at
   $2\,\rm{mm}$.
   {\lp These results show that a significant fraction of the power is received
     outside the main beam. This underlying,
     extended, low-level beam pattern shows a complex structure of error 
-    beams, rings, and spokes.}
+    beams, rings, spokes, {\rev and far side lobes}.}
   Using individual maps per KID, \citet{Adam2018} reported an rms
   dispersion of the main beam FWHM across the FOV of about $0.6''$ at
   both wavelengths. This is consistent with the measured curvature of
   the best focus surface across the FOV. 
   {\lp We also provide the reference beam efficiencies, which are the
-    fixed-width Gaussian beam efficiencies, up to a radius
-    of 180'', that allow taking into account the power stemming from
-    outside the reference beam.} 
+    fixed-width Gaussian beam efficiencies, that allow taking into
+    account the power stemming from outside the reference beam, {\rev
+      as needed for studying the diffuse emission.}} 
   % calib
   \vspace{1mm}
 \item %\emph{Calibration uncertainties:}
   We have evaluated the rms calibration uncertainties using 264 
-  scans of sources whose flux density is above about one Jy. We find rms calibration
+  scans of {\rev point-like} sources whose flux density is above about
+  one Jy. We find {\rev point-source} rms calibration
   uncertainties of about $6\%$ at $1\,\rm{mm}$ and about $3\%$ at
   $2\,\rm{mm}$, which are state-of-the-art performance for a
-  ground-based millimeter-wave instrument. The absolute
+  ground-based millimeter-wave instrument. {\rev The rms calibration
+    uncertainties for the diffuse emission must further include the
+    uncertainties on the reference beam efficiencies.} The absolute
   calibration uncertainties are of $5\%$ and the systematic
   calibration uncertainties evaluated at the IRAM
   \trentemetre\ reference Winter observing conditions are

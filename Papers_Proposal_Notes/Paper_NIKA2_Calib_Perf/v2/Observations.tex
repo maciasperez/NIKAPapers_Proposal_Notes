@@ -336,7 +336,11 @@ of the atmospheric conditions through an observation campaign.}
 
 A \bm\ scan is a raster scan in (az,el) coordinates tailored to map a
 bright compact source, often a planet, with steps of 4.8'', that are
-small enough to meet Nyquist sampling of the 1\,mm beam for each KID. A scan of 
+small enough
+%to meet Nyquist sampling of the 1\,mm beam for each KID.
+{\rev to ensure a half-beam sampling, which gives around 90\% fidelity, for
+each KID.} 
+A scan of 
 $13\times7.8$~arcmin$^2$ is acquired either with the telescope
 performing a series of continuous slews at fixed elevation or at fixed azimuth. 
 A continuous scanning slew defines a subscan. 
@@ -357,11 +361,13 @@ During subscans, the telescope moves at
 %fast as possible to minimize atmospheric contamination and the
 %necessity to keep subscans no shorter than 10\,s (telescope antenna 
 %constraint).
-The need to have Nyquist sampling of 11'' beams along the
-scan direction translates into a maximum speed of 97\,arcsec/s
-for our nominal acquisition rate of 23.8\,Hz and is thus met with
-margins. For the sake of scanning efficiency with the \trentemetre\
-telescope, the minimal duration for subscans is 10\,s. For \bm\ scans,
+%The need to have Nyquist sampling of 11'' beams
+{\rev The need to have high-fidelity sampling of 11'' beams 
+along the scan direction translates into a maximum speed of
+97\,arcsec/s, which ensures to have 2.7 samples per beam, for our nominal
+acquisition rate of 23.8\,Hz,} and is thus met with margins. For the
+sake of scanning efficiency with the \trentemetre\ telescope, the minimal duration for
+subscans is 10\,s. For \bm\ scans,
 subscans last 12\,s and the entire scan lasts about 25\,min.%, which is short enough
 %to minimize the contribution of the atmospheric fluctuations. 
 % Alessandro advice: cancel the following part of the sentence: not true in absolute

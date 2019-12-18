@@ -559,15 +559,15 @@ solid angle.
 
 {\rev To estimate the total beam solid angle, we primarily use the maps
 of the beam pattern presented in Sect.~\ref{se:fullbeam}, which
-provide us with accurate representations of the main beam and of the
-first error beams. However, at angular scales greater than the radius
-of the noise decorrelation mask, that is 90'', the
+provide us with accurate representation of the main beam and of the
+first error beams. However, at angular scales larger than the radius
+of the noise decorrelation mask, 90'', the
 filtering effect induced by the data processing becomes
 non negligible (see also Sect.~\ref{se:dataproc}). Furthermore,
 heterodyne observations at the IRAM \trentemetre\ telescope
-toward the lunar edge and the measure of forward beam efficiency using
+toward the lunar edge and estimates of the forward beam efficiency using
 skydips show that a significant fraction of the full beam stems
-from angular scales much greater than $90''$~\citep{Greve1998,
+from angular scales much larger than $90''$~\citep{Greve1998,
 Kramer2013}. Thus, the accurate assessment of the total beam solid
 angle requires to account for the filtering effect and the large
 angular scales contributions. To that aim, we resort to an hybrid
@@ -577,8 +577,8 @@ IRAM \trentemetre\ telescope beam pattern characterization using EMIR
 frontend observations~\citep{Carter2012}, as reported
 in \citet{Kramer2013}. These results came in two flavours.}
 
-{\rev First, the main beam and error beams are measured using observation toward
-the limbs of the Moon. As EMIR detectors were coupled to
+{\rev First, the main beam and error beams are measured using
+observations toward the limbs of the Moon. As EMIR detectors were coupled to
 the \trentemetre\ telescope entrance pupil via corrugated horns, the
 contribution of the first error beam is significantly attenuated
 compared to the NIKA2 case. In fact, the first error beam measured by
@@ -602,9 +602,13 @@ $1-F_{\rm{eff}}$~\citep{Kramer2013}.}
 
 {\rev To sum up, we estimate the solid angle of the total beam as
 \begin{equation}
-  \Omega_{\rm{tot}}(\nu) = \int_0^{2\pi} \left( \tilde{B}_{\nu}(r)
+\begin{split}
+  \Omega_{\rm{tot}}(\nu) =& \int_0^{2\pi} \left( \tilde{B}_{\nu}(r)
   + \mathcal{A}_{\nu}^{(3)} G_{\nu}^{(3)}(r) + \mathcal{A}_{\nu}^{(4)}
-  G_{\nu}^{(4)}(r) \right)  2 \pi r dr  \, + \,  \Omega_{\rm{FSL}} (\nu),
+  G_{\nu}^{(4)}(r) \right)  2 \pi r dr  \\
+  &+ \,  \Omega_{\rm{FSL}}
+  (\nu),
+  \end{split}
   \label{eq:omega_tot}
 \end{equation}
 where $\tilde{B}_{\nu}(r)$ is the normalised beam profile $B_{\nu}(r)$
@@ -625,7 +629,7 @@ total beam solid angle up to a maximum radius
  \Omega_{r_{\rm{max}}} (\nu) = \int_0^{r_{\rm max}} B_{\nu}(r)  \,  2 \pi r dr, 
 \label{eq:omega_rmax}
 \end{equation}
-where $r_{\rm{max}}$ is taken as the greater radius for which the
+where $r_{\rm{max}}$ is taken as the largest radius for which the
 filtering effect of the data processing has no significant impact.
 We take $r_{\rm{max}}$ as the radius of the noise decorrelation mask,
 which is 90'' and evaluate {\rev $\Omega_{90}$} from the measured beam profiles
@@ -639,7 +643,7 @@ atmopsheric conditions that prevail during each campaign. The combined
 results, based on the whole {\tt UN75} data set, are the
 inverse-variance weighted average of the $\Omega_{90}$ for the three
 campaigns, while the error bars are conservatively estimated as the
-maximum difference within $5\sigma$ divided by ten.}
+maximum half-difference between the $\Omega_{90}$ estimates.}
   
 \begin{table}[!h]
 \caption{Estimates of the solid angle of the beam up to a radius of
@@ -667,7 +671,7 @@ N2R12     & 20  &  209$\pm$9    &  203$\pm$8 &  206$\pm$7   & 422$\pm$9 \\
 %N2R14    & 28  &  251$\pm$16    &  457$\pm$15 & 245$\pm$ 18 \\%&  1.73 $\pm$ 0.08   &  1.32 $\pm$ 0.03   &   1.72 $\pm$ 0.08   \\
 N2R14     & 28  &  232$\pm$14    &  228$\pm$18 & 230$\pm$14 & 441$\pm$14 \\
 %Combined & 75  &  240$\pm$9    &  446$\pm$7 & 230$\pm$8 \\%&  1.74              &   1.32             &   1.71              \\
-Combined  & 75  &  219$\pm$18    &  211$\pm$16 & 215$\pm$14    &  432$\pm$17 \\
+Combined  & 75  &  219$\pm$18    &  211$\pm$15   & 215$\pm$17    &  432$\pm$15 \\
 \noalign{\smallskip}
 \hline
 \end{tabular}
@@ -745,17 +749,19 @@ the same.
 The main beam efficiency estimates using the three methods are gathered
 in Table~\ref{tab:beam_efficiency}: central values and error
 bars are evaluated as the median and the rms error of the
-estimates on individual observation scans, respectively.
-{\rev We combined the results of the three methods using an
-error-weighted average. The rms uncertainties are conservatively
-computed as one tens of the maximum difference between measurements
-within $5\sigma$. Uncertainties on the third and fourth error beams
-contributions and on the \trentemetre\ telescope forward
-efficiencies, as reported in \citet{Greve1998,Kramer2013}, are
-accounted for in the main beam efficiency uncertainties given in
-Table~\ref{tab:beam_efficiency}.}
+estimates on individual observation scans, respectively. 
+{\rev We combined the results of the three methods, which are in
+agreement with each others, using an inverse variance-weighted
+average and a quadratic mean of the rms uncertainties. 
+%The rms uncertainties are conservatively
+%computed using the maximum half-difference measurements.
+The main beam efficiency uncertainties, as given in
+Table~\ref{tab:beam_efficiency}, also include uncertainties on the
+third and fourth error beam contributions and on the \trentemetre\
+telescope forward efficiencies, as reported
+in \citet{Greve1998, Kramer2013}.}
 Using the combined results, we report main beam efficiencies of
-{\rev $48 \pm 4 \%$ at $1\,\rm{mm}$ and  $63 \pm 3 \%$ at $2\,\rm{mm}$.}
+{\rev $47 \pm 3 \%$ at $1\,\rm{mm}$ and  $64 \pm 3 \%$ at $2\,\rm{mm}$.}
 %{\lp Using IRAM \trentemetre\ telescope EMIR frontend
 %observations~\citep{Carter2012}, \citet{Kramer2013} found main
 %beam efficiency of $59\%$ at $230\,\rm{GHz}$ and of $74\%$ at
@@ -796,10 +802,10 @@ Using the combined results, we report main beam efficiencies of
     %{\tt BE2}  &  $55 \pm 3$  & $56 \pm 3$  &  $56 \pm 3$  &  $76 \pm 2$  \\
     %{\tt BE3}  &  $59 \pm 7$  & $58 \pm 4$  &  $59 \pm 4$  &  $80 \pm 1$  \\
     %combined   &  $55 \pm 3$  & $56 \pm 3$  &  $55 \pm 3$  &  $77 \pm 2$  \\
-    {\tt BE1}  &  $46 \pm 3$  & $47 \pm 4$  &  $47 \pm 3$  &  $62 \pm 3$  \\
-    {\tt BE2}  &  $47 \pm 5$  & $48 \pm 5$  &  $47 \pm 4$  &  $64 \pm 4$  \\
-    {\tt BE3}  &  $49 \pm 4$  & $50 \pm 4$  &  $50 \pm 4$  &  $64 \pm 3$  \\
-    combined   &  $47 \pm 4$  & $48 \pm 4$  &  $48 \pm 4$  &  $63 \pm 3$  \\
+    {\tt BE1}  &  $46 \pm 2$  & $47 \pm 2$  &  $47 \pm 3$  &  $62 \pm 3$  \\
+    {\tt BE2}  &  $45 \pm 4$  & $46 \pm 4$  &  $45 \pm 4$  &  $63 \pm 3$  \\
+    {\tt BE3}  &  $49 \pm 3$  & $50 \pm 3$  &  $50 \pm 3$  &  $64 \pm 2$  \\
+    combined   &  $47 \pm 3$  & $48 \pm 3$  &  $47 \pm 3$  &  $64 \pm 3$  \\
     \noalign{\smallskip}
     \hline
   \end{tabular}
@@ -809,6 +815,9 @@ Using the combined results, we report main beam efficiencies of
   %  \tablefoottext{c}{based on {\tt Map 1G} main beam FWHM} 
  % }
 \end{table}
+
+% ERREUR RELATIVE : 5% @ 150GHz et 8% @ 260GHz
+
 
 %We note a
 %mild improvement of the beam efficiency between the N2R9 campaign and
@@ -881,6 +890,8 @@ Using the combined results, we report main beam efficiencies of
 %measured in Sect.~\ref{se:mainbeam} and the three-Gaussian error beams
 %as reported in \citet{Kramer2013}.  
 %
+% measure_beam_efficiency.pro
+%
 \begin{table}[!h]
 \caption{Estimates of the total beam solid angle and main beam
 efficiency including in turn further contributions to the full beam ranked by
@@ -895,17 +906,18 @@ while the main beam efficiencies are in percent.}
 \noalign{\smallskip}
 \hline
 \noalign{\smallskip}
-$\Omega_{90}$        &    213 $\pm$  16 & 434 $\pm$ 17 \\\noalign{\smallskip}
-$\Omega_{\rm{hyb}}$   &    265 $\pm$  18 & 504 $\pm$ 15  \\\noalign{\smallskip}
-$\Omega_{\rm{tot}}$   &    291 $\pm$  28 & 540 $\pm$ 33  \\\noalign{\smallskip}
+$\Omega_{90}$        &    211 $\pm$  12 & 434 $\pm$ 13 \\\noalign{\smallskip}
+$\Omega_{\rm{hyb}}$   &    264 $\pm$  13 & 504 $\pm$ 13  \\\noalign{\smallskip}
+$\Omega_{\rm{tot}}$   &    290 $\pm$  14 & 541 $\pm$ 18  \\\noalign{\smallskip}
 \noalign{\smallskip}
 \hline
 \noalign{\smallskip}
-$\rm{BE}_{90}$       &   64 $\pm$  4 &  79 $\pm$ 1  \\\noalign{\smallskip}
-$\rm{BE}_{\rm{hyb}}$  &   53 $\pm$ 3 &   68 $\pm$ 2  \\\noalign{\smallskip}
-$\rm{BE}$            &   48 $\pm$ 4  &  63 $\pm$ 3  \\\noalign{\smallskip}
+$\rm{BE}_{90}$       &   64 $\pm$ 5  &  80 $\pm$ 3  \\\noalign{\smallskip}
+$\rm{BE}_{\rm{hyb}}$  &   52 $\pm$ 3  &  69 $\pm$ 2  \\\noalign{\smallskip}
+$\rm{BE}$            &  47  $\pm$ 3  &  64 $\pm$ 3  \\\noalign{\smallskip}
 \noalign{\smallskip}
 \hline
+\label{tab:solid_corr}
 \end{tabular}
 \end{table}
 %
@@ -919,10 +931,10 @@ $90''$, which include the main beam and the two lower angular scales
 error beams, as measured in NIKA2 beam maps; $\Omega_{\rm{hyb}}$ and
 $\rm{BE}_{\rm{hyb}}$ further account for the third and fourth error
 beams, as derived from EMIR frontend measurements; $\Omega_{\rm{tot}}$
-and $\rm{BE}$ are the final estimates that comprize all beam
+and $\rm{BE}$ are the final estimates that comprise all beam
 contributions. The results are given in Table~\ref{tab:solid_corr} for
 the 1\,mm and 2\,mm channels. These give insight on the relative
-importance of the contributions at various angluar scales. For
+importance of the contributions at various angular scales. For
 example, 18$\%$ and 13$\%$ of the total beam solid angle stem mainly
 from the two largest error beams integrated at angular
 scales larger than 90'', and 9$\%$ and 7$\%$ originate from the far

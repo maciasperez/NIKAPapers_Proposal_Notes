@@ -89,7 +89,7 @@ observation of calibration sources which spans a large range of air
 masses. This method has the advantages of not relying on atmospheric
 model nor on the bandpass measurements in laboratory.
 We use a series of 64 scans of MWC349, which consists of the
-\baseline selected subset of scans from the 68 available scans for
+\baseline\ selected subset of scans from the 68 available scans for
 this source during N2R9.
 It constitutes an homogeneous data set in flux density but
 heterogeneous in atmospheric conditions: zenith opacities at
@@ -100,7 +100,8 @@ frequency of Array 1, 2, 3 and the combination of Arrays 1 and 3, are estimated
 from the $225\,\rm{GHz}$ \taumeter\ median-filtered linear-based opacity
 estimates $\tau_{225}$ as
 \begin{equation}  
-  \tau_\nu =  a_\nu^{225}\tau_{225} + b_\nu^{225}.          
+  \tau_\nu =  a_\nu^{225}\tau_{225} + b_\nu^{225}.
+  \label{eq:taumeter_model}
 \end{equation}
 The parameters $a_\nu^{225}$ and $b_\nu^{225}$ are fitted
 to the data set so that the source flux density %to ensure
@@ -151,9 +152,18 @@ Table.~\ref{tab:tau225-to-taunika}. The quoted errors
 $\Delta a_\nu^{225}$ and $\Delta b_\nu^{225}$ are 1-$\sigma$ errors of
 the fit.
 
+{\rev We note that the atmospheric opacity correction using {\tt
+taumeter} opacities yield stable flux density measurements with
+respect to the atmospheric transmission by construct, as we will
+verify in Sect.~\ref{se:photometry}. This means that the best-fitting
+parameters of the model in Eq.~\ref{eq:taumeter_model} also correct
+for any line-of-sight opacity dependent systematic effects on the flux
+densities, as it will be further discussed in
+Sect.~\ref{se:corrected-skydip} and Sect.~\ref{se:opacity_tests}.}
+
 Because the IRAM \taumeter\ observes at a fixed azimuth, the
 {\tt taumeter} opacities are not the line-of-sight opacities
-for the observation scans. As this will be verified in
+for the observation scans. As this will be checked in
 Sect.~\ref{se:photometry}, this induces larger rms errors of
 the top-of-the-atmosphere flux density estimates compared to
 opacity correction methods that relies on NIKA2 skydip-based
@@ -466,18 +476,16 @@ robustness against atmospheric opacity conditions.
 The exact physical origin for the discrepancy of the empirical factor
 $a_\nu^{\rm{skydip}}$ from the expected unity value {\lp for the
 $1\,\rm{mm}$ wavebands} is currently under investigation.
-{\lp Beside the $c_1^k$-to-$\taunu$ degeneracy and the effect
-of the variation of the atmospheric temperature, possible explanations
-also include a ground pick-up effect. Indeed a fraction of the beam
-detects radiation from the ground, as evidenced by forward
-efficiency measurements using heterodyne front-ends (see
-Sect.~\ref{se:beam_efficiency}).}
+{\rev Beside the $c_1^k$-to-$\taunu$ degeneracy and the effect
+of the variation of the atmospheric temperature, other explanations
+include effects that are not directly related to the atmospheric
+opacity derivation, as the empirical factor is measured on the flux
+densities.} 
 %First, the possible explanations include a deviation
 %from the opacity-to-resonance model of Eq.~\ref{eq:skydip},
 %, a limit in the validity of the underlying assumptions (e.g. plane-parallel atmosphere,
 %constant temperature) or a ground pick-up effect.
-However,
-the stability of the flux densities corrected using the
+However, the stability of the flux densities corrected using the
 {\tt corrected skydip} opacities {\lp and the results consistency using
 several observation campaigns}, as discussed in
 Sect.~\ref{se:photometry}, constitutes a validation of this approach.
@@ -493,7 +501,7 @@ correlation between the {\tt skydip} $\taunu$ estimates $\taunu^{\rm{skydip}}$
 and the median-filtered time-stamped IRAM $225\,\rm{GHz}$ \taumeter\ 
 zenith opacities $\tau_{225}$, as described in
 Sect.~\ref{se:taumeter-method}, for a series of scans
-of Uranus and MWC349 acquired during the {\emph reference} observation
+of Uranus and MWC349 acquired during the \emph{reference} observation
 campaigns. As guidelines,
 we also show the predicted correlations using an ATM model integrated
 in the NIKA2 bandpasses and in the $225\,\rm{GHz}$ band. {\lp The
@@ -501,10 +509,16 @@ $\taunu^{\rm{skydip}}$ to $\tau_{225}$ correlation relations are
 consistent within statistical errors for the three campaigns.}
 At 1\,mm they are also in agreement with the ATM model expectations,
 while at 2\,mm the ATM model underestimates the measured {\tt skydip}
-$\taunu$. {\lp Using the correction described in
-Sect.~\ref{se:corrected-skydip}, the ATM
-model consistently underestimates the {\tt corrected skydip} opacity
-estimates at both wavelengths.}
+$\taunu$. {\rev Possible explanations include a ground pick-up effect,
+which would have comparatively more impact on the opacity derivation
+at 2\,mm, where the atmosphere is more transparent, than at
+1\,mm. Indeed a fraction of the beam detects radiation from the
+ground, as evidenced by forward efficiency measurements using
+heterodyne front-ends (see Sect.~\ref{se:beam_efficiency}).}
+%{\lp Using the correction described in
+%Sect.~\ref{se:corrected-skydip}, the ATM
+%model consistently underestimates the {\tt corrected skydip} opacity
+%estimates at both wavelengths.}
 % tau_correctedskydip = 1.3 tau_225^ATM
 %At 2\,mm, more
 %dispersion is observed between each correlation relations although

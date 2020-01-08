@@ -57,10 +57,25 @@ To derive the Nasmyth coordinates from the
 provided $(\az_t,\elev_t)$ and $(\Delta\az_t,\Delta\elev_t)$
 coordinates, we build the following quantities at time~$t$:
 
-\begin{eqnarray}
-\Delta x_t &=& \cos\elev_t \, \Delta\az_t^{\rm{ref}} - \sin \elev_t \, \Delta \elev_t^{\rm{ref}} \nonumber \\
-\Delta y_t &=& \sin\elev_t \, \Delta\az_t^{\rm{ref}} + \cos \elev_t \, \Delta \elev_t^{\rm{ref}} \nonumber
-\end{eqnarray}
+%\begin{eqnarray}
+%\Delta x_t &=& \cos\elev_t \, \Delta\az_t^{\rm{ref}} - \sin \elev_t \, \Delta \elev_t^{\rm{ref}} \nonumber \\
+%\Delta y_t &=& \sin\elev_t \, \Delta\az_t^{\rm{ref}} + \cos \elev_t \, \Delta \elev_t^{\rm{ref}} \nonumber
+%\end{eqnarray}
+
+\begin{equation}
+\left( {\begin{array}{c}
+\Delta x_t\\
+\Delta y_t \\
+\end{array}} \right) = 
+\left( {\begin{array}{cc}
+\cos\elev_t & - \sin\elev_t  \\
+\sin \elev_t & \cos \elev_t \\
+\end{array}} \right)
+\left( {\begin{array}{c}
+\Delta \az_t^{\rm{ref}}\\
+\Delta \elev_t^{\rm{ref}} \\
+\end{array}} \right)
+\end{equation}
 
 Note that $\Delta\az_t^{\rm{ref}}$ is already corrected by the $\cos\elev_t^{\rm{ref}}$ factor to
 have orthonormal coordinates in the tangent plane of the sky and be immune to
@@ -87,10 +102,27 @@ $(x,y)$ coordinates (independent of time).
 
 To convert from Nasmyth offsets to $(\az,\elev)$ offsets, we apply the
 following rotation:
-\begin{eqnarray}
-\Delta\az^k_t &=&  \cos\elev_t \, \Delta x^k + \sin\elev_t \, \Delta y^k, \nonumber\\
-\Delta\elev^k_t &=& -\sin\elev_t \, \Delta x^k + \cos\elev_t \, \Delta y^k, \nonumber
-\end{eqnarray}
+%
+%\begin{eqnarray}
+%\Delta\az^k_t &=&  \cos\elev_t \, \Delta x^k + \sin\elev_t \, \Delta y^k, \nonumber\\
+%\Delta\elev^k_t &=& -\sin\elev_t \, \Delta x^k + \cos\elev_t \, \Delta y^k, \nonumber
+%\end{eqnarray}
+%
+\begin{equation}
+\left( {\begin{array}{c}
+\Delta \az^k_t\\
+\Delta \elev^k_t\\
+\end{array}} \right) = 
+\left( {\begin{array}{cc}
+\cos\elev_t & \sin\elev_t  \\
+-\sin \elev_t & \cos \elev_t \\
+\end{array}} \right)
+\left( {\begin{array}{c}
+\Delta x^k\\
+\Delta y^k\\
+\end{array}} \right)
+\end{equation}
+%
 where $k$ is a KID index. Adding these offsets to
 $(\Delta \az_t^{\rm{ref}}, \Delta \elev_t^{\rm{ref}})$ gives the
 absolute pointing of each KID in these coordinates.}
@@ -100,13 +132,16 @@ a first estimate of the KID FWHM, ellipticity and sensitivity.
 We apply a first KID selection by removing outliers to the statistics
 on these parameters. We also discard manually KIDs that show a
 cross-talk counterpart on their map. We repeat this
-procedure using the {\emph baseline} TOI decorrelation method instead of the
+procedure using the \emph{baseline} TOI decorrelation method instead of the
 median filter. Specifically, we apply the \cmoneb\ noise subtraction
 presented in Sect.~\ref{se:dataproc} to the KID timelines, which are
 then used to produce maps per KID. Therefore this alleviates the flux loss
-induced by the median filter and ensures that each timeline is treated
-in the same way as the scientific observation will. A second iteration
-of the KID selection is performed.} 
+induced by the median filter.}% and ensures that each timeline is treated
+%in the same way as the scientific observation will.
+{\rev This also ensures that the \bms\ are treated in the same way as
+the scientific observation scans will.} Finally, a second iteration of
+the KID selection is performed.
+
 
 %\paragraph{Step 2.} With these offsets, it is already possible to
 %produce maps from the combination of all detectors. However, for
@@ -273,7 +308,7 @@ the grid step in arcseconds gives compatible effective focal lengths
 of about $42.4\pm0.3\,\rm{m}$ at both observing wavelengths.} The sampling is above $\lambda/D$ at
 1\,mm, assuming a 27\,m effective diameter aperture. Note that
 the rotation angle between the array and the Nasmyth
-coordinates was designed as $76.2^{\rm{o}}$, ess than two degrees
+coordinates was designed as $76.2^{\rm{o}}$, less than two degrees
 away from what is observed.
 
 

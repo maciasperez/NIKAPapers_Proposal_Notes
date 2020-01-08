@@ -45,23 +45,23 @@ where $f_{\rm{sam}}$ is the sampling frequency and $\langle
 H_{\rm{p}}\rangle_{\rm{center}}$ is the average of the hit map taken in a disk
 of radius of one FWHM to be immune to shot noise statistics in individual map
 pixels. Correcting this quantity from the density of detectors per map pixel at
-the same time, gives the on-source \emph{detector} integration time, in other
+the same time, gives the on-source integration time per beam, in other
 words, the time when the source is actually being observed, by at least one
 detector:
 
 \begin{equation}
-  t_{\rm{det}} = t_{\rm{center}}\, \frac{g^2}{\Delta r^2}\,,
+  t_{\rm{beam}} = t_{\rm{center}}\, \frac{g^2}{\Delta r^2}\,,
 \label{eq:t_det}
 \end{equation}
 
 where $g$ is the center-to-center distance between adjacent KIDs in the FOV
-(Sect.~\ref{se:grid_distortion}). $t_{\rm{det}}$ matches the total duration of
+(Sect.~\ref{se:grid_distortion}). $t_{\rm{beam}}$ matches the total duration of
 the scan if the scanning strategy is designed so that the source is always in
 the FOV and if the FOV is full of valid KIDs. The NEFD is defined
 using the previous quantities as 
 
 \begin{equation}
-  \rm{NEFD} = \sigma \sqrt{t_{\rm{det}}}\, 
+  \rm{NEFD} = \sigma \sqrt{t_{\rm{beam}}}\, 
 \label{eq:nefd_def}
 \end{equation}
 
@@ -126,7 +126,7 @@ analysis of multiple scans without combining them.
 According to Eq.~\ref{eq:nefd_def} and Eq.~\ref{eq:nefd_tau_el}, if a
 source was observed under stable atmospheric conditions, the flux
 uncertainty would scale directly like
-$t_{\rm{det}}^{-1/2}$. Using long-time integration observation on a
+$t_{\rm{beam}}^{-1/2}$. Using long-time integration observation on a
 source, this relation provides both a way to estimate the NEFD and to
 check that the noise does integrate down as expected with the integration
 time. To that aim, we produce a series of maps, as described in Sect.~\ref{se:map_projection},
@@ -135,10 +135,13 @@ scans, and perform a photometric analysis on each map according to
 Sect.~\ref{se:photometry}. However, in practice, in particular for
 integrations of several hours, observing conditions do change.
 Since all the scans are not acquired in the same conditions of
-atmospheric opacity and observing elevation, they
-do not contribute with the same weight to the co-addition. In such
-case, an effective integration time for the co-addition of $n$ scans
-is defined as
+atmospheric opacity and observing elevation, {\rev they will not need
+the same atmospheric opacity correction, nor have
+the same level of atmospheric noise residuals after the noise
+decorrelation, as described in Sect.~\ref{se:toi_proc}}, and hence,
+they do not contribute with the same weight to
+the co-addition. In such case, an effective integration time for the
+co-addition of $n$ scans is defined as
 %
 \begin{equation}
 t_{\rm{eff}}(n) = \sum_{i=1}^{n}\, t_i\,  e^{-2\taunu^i\, x_i},

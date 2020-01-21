@@ -12,7 +12,8 @@
 \label{se:overview_calibration}
 
 La calibration consiste à mesurer un ensemble de propriétés et de
-paramètres des détecteurs. Elle s'articule en plusieurs étapes, qui
+paramètres des détecteurs, afin de passer du signal brut à une carte
+exprimée dans une unité physique. Elle s'articule en plusieurs étapes, qui
 seront détaillées dans les sections suivantes, et qui comprennent:
 \begin{itemize}
   \item{La reconstruction du pointage. Cette étape, qui présente
@@ -378,16 +379,16 @@ Sect.~\ref{se:pipeline}, puis elles sont normalisées et recentrées avant d'êt
 co-additionnées. Les cartes finales mettent au jour la structure du
 lobe sur quelques minutes d'arc, les plus grandes échelles angulaires
 étant filtrées par la méthode d'analyse. Elles révèlent une structure
-complexe incluant 1) le lobe principal (point central) et les premiers
+complexe incluant le lobe principal (point central) et les premiers
 lobe d'erreur et lobes lointains du télescope, visibles au centre à un
-niveau jusqu'à -20 décibel, 2) un anneau de rayon environ 110'',
+niveau jusqu'à -20 décibel; un anneau de rayon environ 110'',
 visible à un niveau bien plus faible (-30\,dB) à 1\,mm, et qui
 tirerait son origine de la diffraction par les jointures des panneaux
-composant le miroir primaire~\citep{Greve2010}, 3) deux diagonales,
+composant le miroir primaire~\citep{Greve2010}; deux diagonales,
 visibles également vers -30\,dB sur la carte à 2\,mm, créées par la
 diffraction par la structure (quadrupode) supportant le miroir
-secondaire, 4) d'autres petites structures à des niveaux situés en
-deçà de -20\,dB, d'origine incertaines, ayant très peu d'impact sur
+secondaire; d'autres petites structures à des niveaux situés en
+deçà de -20\,dB, d'origine incertaine, ayant très peu d'impact sur
 les observations.
 
 
@@ -407,8 +408,8 @@ le profil du lobe est bien mesuré jusqu'à un rayon d'environ
 
 \begin{figure}[!thbp]
   \centering
-   \includegraphics[clip, width=0.45\linewidth]{Figures/NIKA2/plot_profiles_dB_1mm.pdf}
-   \includegraphics[clip, width=0.45\linewidth]{Figures/NIKA2/plot_profiles_dB_a2.pdf}
+   \includegraphics[clip, width=0.49\linewidth]{Figures/NIKA2/plot_profiles_dB_1mm.pdf}
+   \includegraphics[clip, width=0.49\linewidth]{Figures/NIKA2/plot_profiles_dB_a2.pdf}
    \caption[Stability of the beam profile]{Profiles radiaux des lobes
      à 1\,mm (à gauche) et 2\,mm (à droite) tracés en décibels en
      fonction de la distance radiale au centre du lobe. Les points
@@ -472,8 +473,8 @@ dépendant de la transmission atmosphérique.
 %
 \begin{figure}[!thbp]
 \begin{center}
-  \includegraphics[clip, width=0.4\textwidth]{Figures/NIKA2/plot_FWHM_vs_atmtrans_mb_radius_binning2_1mm.pdf}
-  \includegraphics[clip, width=0.4\textwidth]{Figures/NIKA2/plot_FWHM_vs_atmtrans_mb_radius_binning2_a2.pdf}
+  \includegraphics[clip, width=0.45\textwidth]{Figures/NIKA2/plot_FWHM_vs_atmtrans_mb_radius_binning2_1mm.pdf}
+  \includegraphics[clip, width=0.45\textwidth]{Figures/NIKA2/plot_FWHM_vs_atmtrans_mb_radius_binning2_a2.pdf}
   \caption[Main Beam FWHM]{Estimations de la largeur à mi-hauteur
     (FWHM) du lobe principal modélisé par une gaussienne, pour la bande à 1\,mm
     (à gauche) et à 2\,mm (à droite). Les FWHM sont mesurées à partir
@@ -501,53 +502,61 @@ L'efficacité du lobe principal est définie comme l'angle solide
 sous-tendu par le lobe principal rapporté à l'angle solide du lobe
 total. L'angle solide du lobe principal (\emph{main beam}) se calcule
 directement à partir de la FWHM suivant $\Omega_{\rm{mb}} = 2\pi\,
-(8\ln{2} \, \rm{FWHM}^2)$. L'angle solide du lobe
-total jusqu'à une distance radiale maximale $r_{\rm{max}}$ est évalué suivant
+(8\ln{2} \, \rm{FWHM}^2)$.
+
+Pour évaluer le lobe total, dont les contributions sous-dominantes
+s'étendent sur la quasi-totalité de la sphère, nous avons recours à
+une méthode hybride. Pour la partie centrale, nous utilisons la carte
+du lobe telle qu'elle est présentée à la Sect.~\ref{se:fullbeam},
+tandis que pour les contributions aux grandes distances radiales, nous
+nous fondons sur les observations dédiées au lobe du télescope de 30-m
+réalisées avec le \emph{Eight Mixer
+  Receiver}~\citep[EMIR][]{Carter2012}, l'instrument hétérodyne du
+télescope de 30-m. Deux types d'observations ont été effectuées pour
+capturer différentes contributions. Tout d'abord, le lobe principal et
+les lobes d'erreur ont été mesurés à partir d'observations des limbes
+de la Lune avec EMIR~\citep{Kramer2013}. Avec cette technique, les
+troisièmes et quatrièmes lobes d'erreur, qui correspondent aux défauts
+d'alignement et aux déformations des panneaux formant le miroir
+primaire, ont été bien mesurés par EMIR, tandis qu'ils sont fortement
+filtrés dans la carte de lobe de NIKA2. Deuxièmement, les
+contributions aux grandes échelles angulaires à l'efficacité, issues
+du \emph{spillover} (lumière parasite issue de l'atmosphère et du sol)
+et de Ruze (effet des écarts de la surface du miroir primaire à la
+forme parabolique), ont été évaluées à partir d'observations de type
+{\tt skydip} avec EMIR. \'A partir de ces mesures d'efficacités, est 
+dérivée la contribution des lobes lointains au lobe
+total~\citep{Kramer2013}.
+
+Ainsi, l'angle solide du lobe total est évalué suivant
 \begin{equation}
-  \Omega_{r_{\rm{max}}}(\nu) = \int_0^{r_{max}} B_{\nu}(r) \,  2 \pi r dr
+  \Omega_{\rm{tot}}(\nu) = \int_0^{2\pi} \left( \tilde{B}_{\nu}(r)
+  + \mathcal{A}_{\nu}^{(3)} G_{\nu}^{(3)}(r) + \mathcal{A}_{\nu}^{(4)}
+  G_{\nu}^{(4)}(r) \right)  2 \pi r dr + \,  \Omega_{\rm{FSL}} (\nu),
   \label{eq:omega_rmax}
 \end{equation}
-à partir du profil normalisé du lobe total $B_{\nu}(r)$ pour la
-matrice $\nu$. Nous le mesurons dans les cartes produites à partir de
-{\tt beammaps} vers une source ponctuelle jusqu'à
-$r_{\rm{max}}=180''$. Cette limite est imposée à la fois par la
-stratégie de balayage, qui détermine l'homogénéité et le niveau de
-bruit dans les cartes, et par le filtrage des grandes échelles
-angulaires induit par le \emph{pipeline} d'analyse
-(Sect.~\ref{se:pipeline}). \`A partir des mesures du profil du lobe
-total et de la FWHM du lobe principal, nous estimons une efficacité de
-$55 \pm 3\%$ à 260\,GHz et de $77 \pm 2\%$ à 150\,GHz.
+où $\tilde{B}_{\nu}(r)$ est le profil du lobe total
+$B_{\nu}(r)$ pour la matrice $\nu$, tel qu'il est mesuré dans les
+cartes de lobe de la Sect.~\ref{se:fullbeam}, après normalisation par un facteur 
+$(1-\mathcal{A}_{\nu}^{(3)}-\mathcal{A}_{\nu}^{(4)})$;
+$\mathcal{A}_{\nu}^{(3)}$ et $\mathcal{A}_{\nu}^{(4)}$ étant les
+amplitudes des troisièmes et quatrièmes lobes d'erreur, modélisés par
+des Gaussiennes $G_{\nu}^{(3)}$ and $G_{\nu}^{(4)}$,
+respectivement. Ces paramètres correspondent aux mesures d'EMIR
+extrapolées pour chaque matrice $\nu$ suivant la prescription donnée
+dans \citet{Kramer2013}. $\Omega_{\rm{FSL}} (\nu)$ représente la
+contribution des lobes lointains dérivée des mesures de l'efficacité
+du télescope avec EMIR.
 
-Des études dédiées au lobe du télescope de 30-m ont qu'une
-fraction significative du lobe se situe à des distances radiales au-delà
-de 180''~\citep{Greve1998, Kramer2013}. Dans \citet{Kramer2013}, le
-profil du lobe total a été mesuré à partir d'observations des limbes
-de la Lune et modélisé par un lobe principal et trois lobes d'erreurs
-gaussiens. Cette étude évalue également les contributions aux grandes échelles
-angulaires à l'efficacité, issues du \emph{spillover}
-(lumière parasite issue de l'atmosphère et du sol) et de Ruze (effet
-des écarts de la surface du miroir primaire à la forme parabolique), à
-partir d'observations de type {\tt skydip} effectuées avec le
-\emph{Eight Mixer Receiver} (EMIR, \citet{Carter2012}),
-l'instrument hétérodyne installé au télescope de 30-m. En nous fondant
-sur ces résultats, nous évaluons l'angle solide du lobe total comme
-\begin{equation}
-  \Omega_{\rm{tot}} = \Omega_{180} + \Omega_{>180}^{\rm{mb+eb}} +
-  \Omega^{\rm{frss}},
-  \label{eq:omega_tot}
-\end{equation}
-où $\Omega_{180}$ est la mesure de l'angle solide du lobe total
-jusqu'à 180'' estimée en utilisant Eq.~\ref{eq:omega_rmax},
-$\Omega_{>180}^{\rm{mb+eb}}$ est la contribution des distances
-radiales $>180''$ à l'angle solide issue du lobe principal (mb) et des
-lobes d'erreur (eb) modélisés suivant~\citet{Kramer2013}, et
-$\Omega^{\rm{frss}}$ représente les contributions du \emph{spillover}
-et de la dispersion de Ruze. Ces différents termes sont évalués
-dans~\citet{Perotto2019}. Chacun représente entre 7 et 15\% de l'angle
-solide total. Cette caractérisation de l'angle solide total
-est nécessaire à l'étude des sources diffuses ou aux mesures de flux
-par photométrie d'ouverture, comme discuté plus loin, à la
-Sect.~\ref{se:calibration}.
+En utilisant ce modèle, nous estimons une efficacité du lobe principal de
+$47 \pm 3\%$ à 260\,GHz et de $64 \pm 3\%$ à 150\,GHz. Il est
+intéressant de noter que les troisième et quatrièmes lobes d'erreur
+intégrés à des distances radiales $>90''$ contribuent pour 13\% de
+l'angle solide total à 150\,GHz et pour 18\% à 260\,GHz, tandis que la
+contribution des lobes lointains s'élève respectivement à 7\% et 9\% à 150 et
+260\,GHz. Cette caractérisation de l'angle solide total est nécessaire
+à l'étude des sources diffuses ou aux mesures de flux par photométrie
+d'ouverture, comme discuté plus loin, à la Sect.~\ref{se:calibration}.
 
 
 \subsection{Variation journalière}
@@ -968,22 +977,22 @@ de couleur comme détaillé dans~\citet{Perotto2019}.
 
 \subsubsection{Le flux des sources diffuses}
 
-Pour l'études des sources diffuses, les cartes calibrées en Jy/beam
-doivent être corrigées de l'angle solide du lobe total, dont une
-estimation est donnée à la Sect.~\ref{se:mainbeam}. Dans
-\citet{Perotto2019}, nous distinguons deux corrections. Tout d'abord,
-les cartes sont exprimées en Jy/sr en normalisant par l'angle solide sous-tendu
-par la gaussienne de référence, $\Omega_0 = 2\pi \, \sigma_0^2$, avec
-$\sigma_0 = 1/(2\sqrt{2 \log{2}})\, \rm{FWHM}_0$. Puis, nous prenons
-en compte la fraction de flux contenue dans le lobe total en
-corrigeant par l'efficacité de la gaussienne de référence, définie par
-$\rm{BE}_{0}$ $=$ $\Omega_{0}$ $/$ $\Omega_{\rm{tot}}$.
-L'estimation de l'efficacité
-de référence utilise l'évaluation des différentes contributions à
-$\Omega_{\rm{tot}}$, comme décrit à la
-Sect.~\ref{se:beam}. L'efficacité de référence et les facteurs
-correctifs à appliquer en fonction de l'étendue de la source
-considérée, sont fournis dans~\citet{Perotto2019}.
+Les Jy/beam sont les unités naturelles pour l'étude des sources
+ponctuelles. En revanche, des cartes exprimées en Jy/sr sont
+nécessaires pour l'étude des sources diffuses ou pour utiliser une
+photométrie d'ouverture. 
+Dans \citet{Perotto2019}, cette conversion est réalisée en deux
+temps. Tout d'abord, les cartes en Jy/beam sont normalisées
+par l'angle solide sous-tendu par la gaussienne de référence,
+$\Omega_0 = 2\pi \, \sigma_0^2$, avec $\sigma_0 = 1/(2\sqrt{2
+  \log{2}})\, \rm{FWHM}_0$. Nous avons alors des unités homogènes aux
+Jy/sr. Puis, nous prenons en compte la fraction de flux contenue dans
+le lobe total en corrigeant par l'efficacité de la gaussienne de
+référence, définie par $\rm{BE}_{0}$ $=$ $\Omega_{0}$ $/$ $\Omega_{\rm{tot}}$.
+L'estimation de l'efficacité de référence utilise l'évaluation de
+l'angle solide du lobe total $\Omega_{\rm{tot}}$, comme décrit à la
+Sect.~\ref{se:beam}. L'efficacité de référence et l'incertitude
+associée sont données dans~\citet{Perotto2019}.
 
 
 \subsection{Les gains des détecteurs}

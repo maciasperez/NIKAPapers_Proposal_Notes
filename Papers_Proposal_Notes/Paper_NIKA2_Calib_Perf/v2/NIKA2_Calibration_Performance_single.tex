@@ -18,8 +18,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{txfonts}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\usepackage[draft]{hyperref}
-%\usepackage[colorlinks, citecolor=blue, linkcolor=magenta]{hyperref}
+%\usepackage{hyperref}
+\usepackage[colorlinks, citecolor=blue, linkcolor=magenta]{hyperref}
 % To add links in your PDF file, use the package "hyperref"
 % with options according to your LaTeX or PDFLaTeX drivers.
 %
@@ -249,14 +249,16 @@
          mapping speeds of $1388 \pm 174$ and
          $111 \pm 11 \, \rm{arcmin}^2\cdot \rm{mJy}^{-2}\cdot
          \rm{h}^{-1}$
-         at $150$ and $260\,\rm{GHz}$.}
-       % conclusions heading (optional), leave it empty if necessary 
+        at $150$ and $260\,\rm{GHz}$.}
+       %conclusions heading (optional), leave it empty if necessary 
        {With these unique capabilities of fast dual-band mapping at
          high (better that 18'') angular resolution, NIKA2 is providing an unprecedented view
          of the millimetre Universe.}      
        \keywords{Instrumentation: photometers, Methods: observational, Methods: data analysis, Submillimeter: general, Cosmology: large-scale structure of Universe, ISM: general }
+        \nopagebreak
+       \maketitle
        
-   \maketitle
+        
 %----------------------------------------------------------------------------------------
 %	1./ INTRODUCTION
 %----------------------------------------------------------------------------------------
@@ -1512,6 +1514,36 @@ is reported in Table.~\ref{tab:eta_used}.
   \end{tabular}
 \end{table}
 
+%
+\begin{figure*}[!thbp] 
+\begin{center}
+\includegraphics[clip=true, trim={0.1cm, 0cm, 3cm, 2cm},width=0.235\textwidth]{Figures/Lobe_map_Combo_1_dB_16.pdf}
+\includegraphics[clip=true, trim={1cm, 0cm, 3cm, 2cm},width=0.225\textwidth]{Figures/Lobe_map_Combo_3_dB_16.pdf}
+\includegraphics[clip=true, trim={1cm, 0cm, 3cm, 2cm},width=0.225\textwidth]{Figures/Lobe_map_Combo_1MM_dB_16.pdf}
+\includegraphics[clip=true, trim={1cm, 0cm, 0cm, 1cm},width=0.27\textwidth]{Figures/Lobe_map_Combo_2_dB_bar_16.pdf}
+\caption[Noticeable features of NIKA2 beam pattern.]{From left
+to right, beam maps of A1, A3, the combination of the $1\,\rm{mm}$ arrays (A1$\&$3) and the
+$2\,\rm{mm}$ array (A2) are shown in decibel. These maps, which
+consist of the normalized combination of four {\tt beammap} scans of
+bright point-like sources, are in horizontal coordinates. {\rev They
+represent a zoom in the inner part of larger maps that cover a
+sky area which extends over $10'$.} 
+The solid lines and arrows highlight some noticeable features.
+Red circle in the A1 map (first panel): diffraction ring seen in 1-mm maps
+(the spokes are presumably caused by radial and azimuthal panel
+buckling \citep{Greve2010}; Orthogonal yellow lines in the A2 map
+(rightmost panel): diffraction pattern caused by the quadrupod
+secondary support structure (prominently
+seen in A2 map); Yellow arrows in the A3 map (third panel):
+pattern of 3 spikes seen in $1\,\rm{mm}$ maps of unknown origin; Yellow
+arrows in A2 map (fourth panel): four symmetrical spikes of the
+first sidelobes; Pink ellipses: four spikes seen in A2 maps.}
+\label{fig:features}
+\end{center}
+\end{figure*}
+%
+
+
 Practically, for the production of flux density maps, we perform
 further selection of the valid KIDs using a conservative noise level
 threshold of the KIDs at the \emph{low level processing}, as discussed in
@@ -1540,6 +1572,8 @@ performance assessment.
 %----------------------------------------------------------------------------------------
 %	6./ Beam Pattern
 %----------------------------------------------------------------------------------------
+
+
 \section{Beam Pattern}
 \label{se:beam}
 %\input{Beam.tex}
@@ -1589,33 +1623,6 @@ processing to become non negligible for angular scales larger than
 correlated noise subtraction process (see Sect.~\ref{se:toi_proc}).}
 The contributions to the beam pattern that stem from larger angular scales are
 further discussed in Sect.~\ref{se:beam_efficiency}.} 
-
-\begin{figure*}[!thbp] 
-\begin{center}
-\includegraphics[clip=true, trim={0.1cm, 0cm, 3cm, 2cm},width=0.235\textwidth]{Figures/Lobe_map_Combo_1_dB_16.pdf}
-\includegraphics[clip=true, trim={1cm, 0cm, 3cm, 2cm},width=0.225\textwidth]{Figures/Lobe_map_Combo_3_dB_16.pdf}
-\includegraphics[clip=true, trim={1cm, 0cm, 3cm, 2cm},width=0.225\textwidth]{Figures/Lobe_map_Combo_1MM_dB_16.pdf}
-\includegraphics[clip=true, trim={1cm, 0cm, 0cm, 1cm},width=0.27\textwidth]{Figures/Lobe_map_Combo_2_dB_bar_16.pdf}
-\caption[Noticeable features of NIKA2 beam pattern.]{From left
-to right, beam maps of A1, A3, the combination of the $1\,\rm{mm}$ arrays (A1$\&$3) and the
-$2\,\rm{mm}$ array (A2) are shown in decibel. These maps, which
-consist of the normalized combination of four {\tt beammap} scans of
-bright point-like sources, are in horizontal coordinates. {\rev They
-represent a zoom in the inner part of larger maps that cover a
-sky area which extends over $10'$.} 
-The solid lines and arrows highlight some noticeable features.
-Red circle in the A1 map (first panel): diffraction ring seen in 1-mm maps
-(the spokes are presumably caused by radial and azimuthal panel
-buckling \citep{Greve2010}; Orthogonal yellow lines in the A2 map
-(rightmost panel): diffraction pattern caused by the quadrupod
-secondary support structure (prominently
-seen in A2 map); Yellow arrows in the A3 map (third panel):
-pattern of 3 spikes seen in $1\,\rm{mm}$ maps of unknown origin; Yellow
-arrows in A2 map (fourth panel): four symmetrical spikes of the
-first sidelobes; Pink ellipses: four spikes seen in A2 maps.}
-\label{fig:features}
-\end{center}
-\end{figure*}
 
 The NIKA2 beam maps reveal some noticeable features, which are
 shown in Fig.~\ref{fig:features}. Ranging from strong and/or extended to
@@ -3286,7 +3293,9 @@ perform robustness tests as in Sect.~\ref{se:photometry}.
 
 
 %----------------------------------------------------------------------------------------
-%	9./ Photometry&Stability
+%
+%    9./ Photometry&Stability
+%
 %----------------------------------------------------------------------------------------
 \section{Photometry \& Stability Assessment}
 \label{se:photometry}
@@ -3398,6 +3407,45 @@ respectively, as reported in Table~\ref{tab:reference_beam_efficiency}
 in Sect.~\ref{se:extended_source_calib}. These uncertainties must be
 further accounted for in the error budget of diffuse emission studies.}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                              bias
+\begin{figure}[!thbp]
+  \begin{center}
+    \begin{overpic}[clip=true, trim={0.9cm, 0.2cm, 0, 0.6cm},width=0.532\linewidth]{Figures/plot_flux_density_ratio_MWC349_obstau_corrected_skydip_narrow_1mm.pdf}
+      \put(20,60){\footnotesize {\tt Baseline}}
+    \end{overpic}
+    \includegraphics[clip=true, trim={1.8cm, 0.2cm, 0.5cm, 0.7cm},width=0.457\linewidth]{Figures/plot_flux_density_ratio_MWC349_obstau_corrected_skydip_narrow_a2.pdf}
+    \begin{overpic}[clip=true, trim={0.9cm, 0.2cm, 0, 0.6cm},width=0.532\linewidth]{Figures/plot_flux_density_ratio_MWC349_obstau_tau225_narrow_1mm.pdf}
+      \put(20,60){\footnotesize {\tt Taumeter}}
+    \end{overpic}
+    \includegraphics[clip=true, trim={1.8cm, 0.2cm, 0.5cm, 0.7cm},width=0.457\linewidth]{Figures/plot_flux_density_ratio_MWC349_obstau_tau225_narrow_a2.pdf}
+    \begin{overpic}[clip=true, trim={0.9cm, 0.2cm, 0, 0.6cm},width=0.532\linewidth]{Figures/plot_flux_density_ratio_MWC349_obstau_skydip_narrow_1mm.pdf}
+      \put(20,60){\footnotesize {\tt Skydip}}
+    \end{overpic}
+    \includegraphics[clip=true, trim={1.8cm, 0.2cm, 0.5cm, 0.7cm},width=0.457\linewidth]{Figures/plot_flux_density_ratio_MWC349_obstau_skydip_narrow_a2.pdf}
+    \begin{overpic}[clip=true, trim={0.9cm, 0.2cm, 0, 0.6cm},width=0.532\linewidth]{Figures/plot_flux_density_ratio_MWC349_obstau_corrected_skydip_photocorr_demo_narrow_1mm.pdf}
+      \put(20,60){\footnotesize {\tt PC-demo}}
+    \end{overpic}
+    \includegraphics[clip=true, trim={1.8cm, 0.2cm, 0.5cm, 0.7cm},width=0.457\linewidth]{Figures/plot_flux_density_ratio_MWC349_obstau_corrected_skydip_photocorr_demo_narrow_a2.pdf}
+    \begin{overpic}[clip=true, trim={0.9cm, 0.4cm, 0, 0.6cm},width=0.532\linewidth]{Figures/plot_flux_density_ratio_MWC349_obstau_corrected_skydip_photocorr_pointing_narrow_1mm.pdf}
+      \put(20,60){\footnotesize {\tt PC-point}}
+    \end{overpic}
+    \includegraphics[clip=true, trim={1.8cm, 0.4cm, 0.5cm, 0.7cm},width=0.457\linewidth]{Figures/plot_flux_density_ratio_MWC349_obstau_corrected_skydip_photocorr_pointing_narrow_a2.pdf}
+    \vspace{-0.3cm}
+    \caption[Calibration bias comparison]{Comparison of the
+        calibration bias for five calibration methods using
+          observations of MWC349.
+       The measured-to-expected flux density ratio is shown as a
+      function of the atmospheric transmission for the baseline method
+      (first row) as well as for methods using the {\tt taumeter} (second
+      row) and {\tt skydip} (third) opacity correction, and for methods
+      resorting to the {\tt PC-demo} (fourth) and {\tt PC-point} (fifth)
+      photometric corrections. Dashed lines
+      show the flux density ratio rms errors.}
+    \label{fig:mwc349_obstau_others}
+  \end{center}
+\end{figure}
+%
 
 \subsubsection{Absolute and systematic uncertainties}
 \label{se:def_systematic_errors}
@@ -3467,45 +3515,7 @@ Array 2 as a function of the atmospheric transmission
 $\exp \left( - \taunu \, x \right)$. No significant dependency of the
 calibration bias on the atmospheric transmission is observed. 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                              bias
-\begin{figure}[!thbp]
-  \begin{center}
-    \begin{overpic}[clip=true, trim={0.9cm, 0.2cm, 0, 0.6cm},width=0.532\linewidth]{Figures/plot_flux_density_ratio_MWC349_obstau_corrected_skydip_narrow_1mm.pdf}
-      \put(20,60){\footnotesize {\tt Baseline}}
-    \end{overpic}
-    \includegraphics[clip=true, trim={1.8cm, 0.2cm, 0.5cm, 0.7cm},width=0.457\linewidth]{Figures/plot_flux_density_ratio_MWC349_obstau_corrected_skydip_narrow_a2.pdf}
-    \begin{overpic}[clip=true, trim={0.9cm, 0.2cm, 0, 0.6cm},width=0.532\linewidth]{Figures/plot_flux_density_ratio_MWC349_obstau_tau225_narrow_1mm.pdf}
-      \put(20,60){\footnotesize {\tt Taumeter}}
-    \end{overpic}
-    \includegraphics[clip=true, trim={1.8cm, 0.2cm, 0.5cm, 0.7cm},width=0.457\linewidth]{Figures/plot_flux_density_ratio_MWC349_obstau_tau225_narrow_a2.pdf}
-    \begin{overpic}[clip=true, trim={0.9cm, 0.2cm, 0, 0.6cm},width=0.532\linewidth]{Figures/plot_flux_density_ratio_MWC349_obstau_skydip_narrow_1mm.pdf}
-      \put(20,60){\footnotesize {\tt Skydip}}
-    \end{overpic}
-    \includegraphics[clip=true, trim={1.8cm, 0.2cm, 0.5cm, 0.7cm},width=0.457\linewidth]{Figures/plot_flux_density_ratio_MWC349_obstau_skydip_narrow_a2.pdf}
-    \begin{overpic}[clip=true, trim={0.9cm, 0.2cm, 0, 0.6cm},width=0.532\linewidth]{Figures/plot_flux_density_ratio_MWC349_obstau_corrected_skydip_photocorr_demo_narrow_1mm.pdf}
-      \put(20,60){\footnotesize {\tt PC-demo}}
-    \end{overpic}
-    \includegraphics[clip=true, trim={1.8cm, 0.2cm, 0.5cm, 0.7cm},width=0.457\linewidth]{Figures/plot_flux_density_ratio_MWC349_obstau_corrected_skydip_photocorr_demo_narrow_a2.pdf}
-    \begin{overpic}[clip=true, trim={0.9cm, 0.4cm, 0, 0.6cm},width=0.532\linewidth]{Figures/plot_flux_density_ratio_MWC349_obstau_corrected_skydip_photocorr_pointing_narrow_1mm.pdf}
-      \put(20,60){\footnotesize {\tt PC-point}}
-    \end{overpic}
-    \includegraphics[clip=true, trim={1.8cm, 0.4cm, 0.5cm, 0.7cm},width=0.457\linewidth]{Figures/plot_flux_density_ratio_MWC349_obstau_corrected_skydip_photocorr_pointing_narrow_a2.pdf}
-    \vspace{-0.3cm}
-    \caption[Calibration bias comparison]{Comparison of the
-        calibration bias for five calibration methods using
-          observations of MWC349.
-       The measured-to-expected flux density ratio is shown as a
-      function of the atmospheric transmission for the baseline method
-      (first row) as well as for methods using the {\tt taumeter} (second
-      row) and {\tt skydip} (third) opacity correction, and for methods
-      resorting to the {\tt PC-demo} (fourth) and {\tt PC-point} (fifth)
-      photometric corrections. Dashed lines
-      show the flux density ratio rms errors.}
-    \label{fig:mwc349_obstau_others}
-  \end{center}
-\end{figure}
-%
+
 Table~\ref{tab:baseline-photometry} gathers the calibration bias
 estimates for the three observation campaigns and for all the scans.
 In the $1\,\rm{mm}$ band, we find

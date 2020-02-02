@@ -49,7 +49,7 @@ seront détaillées dans les sections suivantes, et qui comprennent:
     absolue (Sect.~\ref{se:calibration})}
 \end{itemize}
 
-A l'issu de ces étapes, les résultats de la calibration sont compilés
+A l'issue de ces étapes, les résultats de la calibration sont compilés
 dans un fichier unique, rassemblant toutes les informations sur les
 KID. Ce fichier, appelé \emph{kidpar}, contient donc les données de
 pointage, la sélection, les paramètres de réponse à l'atmosphère et
@@ -83,7 +83,7 @@ décrite à la Sect.~\ref{se:rawdata}. Ensuite, sont créés des masques
 afin de couper les données non-utilisables pour l'exploitation
 scientifique. Tout d'abord, sont détectés les impacts de rayons
 cosmiques. \'Etant donné les constantes de temps très courtes des
-KID, un rayon cosmique n'affecte q'un seul échantillon de données,
+KID, un rayon cosmique n'affecte qu'un seul échantillon de données,
 qui est alors masqué. Sont également masquées, les TOI des KID exclus
 de la sélection de détecteurs réalisée lors de la calibration, et
 les TOI des KID bruités, définis comme les KID dont la rms du bruit
@@ -151,7 +151,7 @@ l'émission étendue. En revanche, la décorrélation MCP préserve bien le
 signal des sources compactes. 
 
 \subsubsection{Création de cartes} En utilisant les données de
-pointages, les TOI calibrées et débruitées de tous les KID valides
+pointages, les TOI calibrées et dé-bruitées de tous les KID valides
 d'une même matrice sont projetées tangentiellement dans une grille
 régulière sur le ciel pour former une carte de densité de flux par
 matrice. La résolution des cartes est choisie suffisamment haute
@@ -282,13 +282,38 @@ plan focal et la FWHM du lobe résultent d'une moyenne des mesures
 effectuées sur l'ensemble des {\tt beammap}. Cette géométrie moyenne
 est montrée à la figure~\ref{fig:avg_fov_color}.
 
+%\begin{figure}[!thbp]
+%\begin{center}
+%\includegraphics[trim=3cm 14cm 6cm 4cm, clip=true, width=0.32\linewidth]{Figures/NIKA2/A1_fwhm_color_count.pdf}
+%\includegraphics[trim=2cm 14cm 5cm 4cm, clip=true,width=0.45\linewidth]{Figures/A1_positions.pdf}
+%\includegraphics[trim=3cm 14cm 6cm 4cm, clip=true, width=0.32\linewidth]{Figures/NIKA2/A3_fwhm_color_count.pdf}
+%\includegraphics[trim=2cm 14cm 5cm 4cm, clip=true,width=0.45\linewidth]{Figures/A3_positions.pdf}
+%\includegraphics[trim=3cm 14cm 6cm 4cm, clip=true, width=0.32\linewidth]{Figures/NIKA2/A2_fwhm_color_count.pdf}
+%\includegraphics[trim=2cm 14cm 5cm 4cm, clip=true,width=0.45\linewidth]{Figures/A2_positions.pdf}
+%\caption[La sélection des KID]{Géométrie moyenne des matrices A1, A3
+%  et A2. Chacune des figures montre la position des détecteurs
+%  dans le plan focal, en secondes d'arc, ainsi que leur lobe modélisé par une
+%  gaussienne elliptique. Elles incluent les détecteurs qui ont été sélectionnés
+%  dans au moins deux analyses de {\tt beammaps}, correspondant à 952,
+%  961, and 553 KID pour A1, A3 et A2, respectivement.
+%  Les couleurs indiquent le nombre de fois qu'un KID a été
+%  sélectionné, depuis le bleu pour les KID sélectionnés dans deux
+%  analyses, jusqu'au rouge pour les KID sélectionnés dans les dix
+%  analyses (en passant par bleu ciel (3/10),
+%  cyan (4/10), céladon (5/10), vert (6/10), vert-jaune (7/10), jaune (8/10), orange (9/10)) 
+%  Les cercles en lignes interrompues correspondent à des disques de
+%  diamètres 5,5\,arcmin and 6,5\,arcmin.}
+%\label{fig:avg_fov_color}
+%\end{center}
+%\end{figure}
+
 \begin{figure}[!thbp]
 \begin{center}
-\includegraphics[trim=3cm 14cm 6cm 4cm, clip=true, width=0.32\linewidth]{Figures/NIKA2/A1_fwhm_color_count.pdf}
+\includegraphics[trim=3cm 14cm 6cm 4cm, clip=true, width=0.45\linewidth]{Figures/NIKA2/A1_fwhm_color_count.pdf}
 %\includegraphics[trim=2cm 14cm 5cm 4cm, clip=true,width=0.45\linewidth]{Figures/A1_positions.pdf}
-\includegraphics[trim=3cm 14cm 6cm 4cm, clip=true, width=0.32\linewidth]{Figures/NIKA2/A3_fwhm_color_count.pdf}
+\includegraphics[trim=3cm 14cm 6cm 4cm, clip=true, width=0.45\linewidth]{Figures/NIKA2/A3_fwhm_color_count.pdf}
 %\includegraphics[trim=2cm 14cm 5cm 4cm, clip=true,width=0.45\linewidth]{Figures/A3_positions.pdf}
-\includegraphics[trim=3cm 14cm 6cm 4cm, clip=true, width=0.32\linewidth]{Figures/NIKA2/A2_fwhm_color_count.pdf}
+\includegraphics[trim=3cm 14cm 6cm 4cm, clip=true, width=0.45\linewidth]{Figures/NIKA2/A2_fwhm_color_count.pdf}
 %\includegraphics[trim=2cm 14cm 5cm 4cm, clip=true,width=0.45\linewidth]{Figures/A2_positions.pdf}
 \caption[La sélection des KID]{Géométrie moyenne des matrices A1, A3
   et A2. Chacune des figures montre la position des détecteurs
@@ -306,7 +331,7 @@ est montrée à la figure~\ref{fig:avg_fov_color}.
 \label{fig:avg_fov_color}
 \end{center}
 \end{figure}
-
+%
 La sélection finale est obtenue par comptage du nombre
 de fois qu'un KID a été sélectionné dans un ensemble de {\tt
   beammaps}. Le résultat de ce comptage est symbolisé par les couleurs
@@ -361,11 +386,11 @@ La structure du lobe total est mise en évidence en combinant plusieurs
   matrice à 2\,mm (A2) en décibels. Ces cartes sont construites à
   partir d'une combinaison de {\tt beammaps} vers des sources
   ponctuelles brillantes; elles sont en coordonnées horizontales et
-  couvrent une zone du ciel de $10'$ de coté. En plus du lobe pricipal
+  couvrent une zone du ciel de $10'$ de coté. En plus du lobe principal
   et des premiers lobes d'erreur et lobes lointains au centre, elles
   présentent plusieurs structures notables (comme l'anneau de
   diffraction à 1\,mm, les figures de diffraction par les pieds
-  supportants le miroir secondaire à 2\,mm) qui sont commentées dans le
+  supportant le miroir secondaire à 2\,mm) qui sont commentées dans le
   texte.}
 \label{fig:features}
 \end{center}
@@ -408,10 +433,10 @@ le profil du lobe est bien mesuré jusqu'à un rayon d'environ
 
 \begin{figure}[!thbp]
   \centering
-   \includegraphics[clip, width=0.49\linewidth]{Figures/NIKA2/plot_profiles_dB_1mm.pdf}
-   \includegraphics[clip, width=0.49\linewidth]{Figures/NIKA2/plot_profiles_dB_a2.pdf}
+   \includegraphics[clip, width=0.65\linewidth]{Figures/NIKA2/plot_profiles_dB_1mm.pdf}
+   \includegraphics[clip, width=0.65\linewidth]{Figures/NIKA2/plot_profiles_dB_a2.pdf}
    \caption[Stability of the beam profile]{Profiles radiaux des lobes
-     à 1\,mm (à gauche) et 2\,mm (à droite) tracés en décibels en
+     à 1\,mm (en haut) et 2\,mm (en bas) tracés en décibels en
      fonction de la distance radiale au centre du lobe. Les points
      correspondent à la mesure du profile du lobe pour une série de 18
      {\tt beammaps} vers des sources compactes brillantes observés
@@ -832,7 +857,7 @@ les mesures des bandes passantes de NIKA2 prévues au télescope de
      $\taunu$ mesuré par NIKA2 après calibration avec les {\tt
        skydips}, noté $\tau_{\rm{skydip}}$, et de l'opacité mesuré par
      le tau-mètre à 225\,Ghz après interpolation au moment du scan et
-     filtrage, $\tau_{225}$. La correlation $\tau_{\rm{skydip}}$ -
+     filtrage, $\tau_{225}$. La corrélation $\tau_{\rm{skydip}}$ -
      $\tau_{225}$ est tracée pour une série de scans de calibrateurs
      observés lors des trois campagnes de référence. Un modèle de
      corrélation obtenu en intégrant un modèle ATM dans les bandes
@@ -940,7 +965,7 @@ lobe) ou 1D (un profil) a été envisagé (et testé). Il s'accompagne
 toutefois de difficultés, telles la dépendance aux conditions
 d'observation (par exemple, la focalisation du télescope) et au
 rapport signal-sur-bruit des données, qui détermine le niveau de
-significance de la mesure des lobes secondaires. En revanche, nous
+signifiance de la mesure des lobes secondaires. En revanche, nous
 avons vérifié, sur des simulations et sur les données, qu'un modèle
 simple du lobe assure une bonne stabilité des mesures de densité de
 flux. Nous modélisons les cartes d'une source ponctuelle par une gaussienne
@@ -1001,7 +1026,7 @@ associée sont données dans~\citet{Perotto2019}.
 En pratique, les calibrations relative et absolue sont réalisées
 conjointement par l'estimation des gains des détecteurs lors de
 l'analyse d'une {\tt beammap} vers un calibrateur primaire. Comme
-décrit à la Sect.~\ref{se:FOV_geometry}, dans une procédure de
+décrit à la Sect.~\ref{se:fov_geometry}, dans une procédure de
 reconstruction du plan focal, les données brutes en Hz sont projetées
 pour construire des cartes individuelles par KID pour chaque
 matrice. L'amplitude de la gaussienne de
@@ -1065,7 +1090,7 @@ amplitude, affectant environ un tiers des KIDs situés dans un
 croissant à gauche de la matrice. Les distributions des gains relatifs
 pour chaque matrice sont présentées en bas de la
 figure~\ref{fig:avg_mbff}. La distribution pour A1 est
-significativement élargie, et cet élargissement est dù aux gains des
+significativement élargie, et cet élargissement est dû aux gains des
 détecteurs situés dans le tiers gauche du champ de vue. Les KIDs de
 cette zone, qui pour un même signal (Jy) ont une réponse en Hz
 moindre, semblent obscurcis. Par ailleurs, nous avons vérifié que cet
@@ -1243,7 +1268,7 @@ crucial est de mesurer précisément la FWHM du lobe même pour les
 observations de sources diffuses ou faibles. Un tel suivi requiert des
 observations dédiées, par exemple un scan OTF vers une source
 ponctuelle brillante toutes les heures. Pour valider la méthode avant
-une éventuelle mise en oeuvre d'observations dédiées, nous avons
+une éventuelle mise en œuvre d'observations dédiées, nous avons
 proposé d'effectuer ce suivi des FWHM à partir des {\tt
   pointages}. Ces scans (Sect.~\ref{se:pointing}) sont effectués
 environ toutes les heures, vers des sources ponctuelles brillantes;
@@ -1333,23 +1358,7 @@ nous utilisons $\sigma_\nu$ pour évaluer l'erreur de calibration RMS.
         0.6cm},width=0.45\linewidth]{Figures/NIKA2/plot_flux_density_ratio_obstau_allbright_obsdate_corrected_skydip_rescaled_1mm.pdf}
     \hfill
     \includegraphics[clip=true, trim={0.9cm, 0, 0.5cm, 0.6cm},width=0.45\linewidth]{Figures/NIKA2/plot_flux_density_ratio_obstau_allbright_obsdate_corrected_skydip_rescaled_a2.pdf} 
-    \caption[Baseline calibration rms error estimate]{Baseline
-      rms calibration uncertainties. The
-      measured-to-median flux density ratio of bright sources is
-      plotted as a function of the atmospheric transmission
-      color-coded according to the UT
-      observation time of the scans for the combination of A1$\&$A3
-      (top pannel)
-      and for A2 (bottom pannel).
-      The inner dashed lines from either sides of the
-      unity-ratio line show the rms errors, which
-      are less than 6\% at $1\,\rm{mm}$ and 3\% at $2\,\rm{mm}$, while
-      the outer dashed lines show the $95\%$ confidence level contours.
-      The lowest flux ratio data points correspond to some of the
-      scans acquired during daytime between 8:00 UT and 15:00 UT
-      hours (yellow and red), while the scans acquired during nighttime
-      between 22:00 UT and 7:00 UT yield data points (dark blue)
-      well distributed within the rms error with a few outliers.}
+    \caption[Baseline calibration rms error estimate]{Incertitudes RMS de la calibration \emph{baseline}. La figure présente le rapport entre les densités de flux mesurées et la densité de flux médiane pour un ensemble de sources brillantes, en fonction de la transmission atmosphérique, pour la combinaison des matrices A1$\&$A3 (panneau de gauche) et pour la matrice A2 (panneau de droite). Le code de couleur indique l'heure d'observation UT du scan. Les lignes pointillées, de part et d'autre de la ligne continue correspondant à un rapport unité, indiquent l'erreur RMS pour les lignes les plus internes et l'intervalle à $95\%$ de niveau de confiance pour les plus externes. On note que les points dont le rapport de flux est le plus faible correspondent à des observations effectuées pendant la journée entre 8:00 et 15:00 UT (en jaune et rouge), tandis que les observations de nuit, entre 22:00 et 7:00 UT correspondent à des points de mesures en accord avec la médiane dans les barres d'erreur RMS avec peu de points aberrants.}
     \label{fig:allbright_rms_corrected_skydip}
   \end{center}
 \end{figure}

@@ -9,7 +9,7 @@
 %\documentclass[longauth]{aa} % for the long lists of affiliations 
 %\documentclass[letter]{aa} % for the letters 
 %\documentclass[bibyear]{aa} % if the references are not structured 
-%                              according to the author-year natbib style
+%                     according to the author-year natbib style
 %
 \documentclass[traditionalabstract]{aa}  
 %
@@ -2229,11 +2229,9 @@ ii) {\tt skydip} consists of using NIKA2 as a total-power \taumeter\
 by resorting to a series of {\tt skydip} scans;
 iii) {\tt corrected skydip} is a modified
 version of the {\tt skydip} method that minimises the dependence of the
-estimated flux density on the opacity.
-None of the methods i) rely on an ATM model nor on any
+estimated flux density on the opacity. None of the methods i) rely on an ATM model nor on any
 hypothesis on the atmospheric contents for the sake of robustness or
-ii) use the laboratory measurements of the bandpass (see 
-Sect.~\ref{se:instru_bandpass}) for more accuracy.  
+ii) use the laboratory measurements of the bandpass (see Sect.~\ref{se:instru_bandpass}) for more accuracy.  
 
 Section~\ref{se:taumeter-method} presents the {\tt taumeter} method. The 
 {\tt skydip} method is described in Sect~\ref{se:skydip-method}, and
@@ -2250,14 +2248,14 @@ minutes, it performs elevation scans at fixed azimuth
 to monitor the atmospheric opacity.
 The IRAM science support
 team provides us with time-stamped zenith opacities at $225\,\rm{GHz}$
-$\tau_{225}$, as derived from the \taumeter\ measurements. The
-$\tau_{225}$ estimates come in two different flavours:\LEt{Are you sure this is the term you'd like to use? I corrected it previously, but perhaps, seeing as it is repeated, I'm  missing something?} one relying
+$\tau_{225}$, as derived from the \taumeter\ measurements. Two different
+$\tau_{225}$ estimates are available: one relying
 on a linear model, and the other on an exponential fitting model. They
 are then filtered by removing outliers and by using a threshold on
 goodness-of-fit criteria.
 Based on IRAM experience, we use the linear fit and filtered $\tau_{225}$
 data for the NIKA2 analysis. The time-stamped $\tau_{225}$ estimates,
-which are sampled about every four minutes, are interpolated to the time
+which are thus sampled about every four minutes, are interpolated to the time
 of the NIKA2 scans (we consider the time of the middle of the
 scan). To cross-check, we also produce a smooth version of time-stamped
 $\tau_{225}$ data by
@@ -2330,7 +2328,7 @@ Table.~\ref{tab:tau225-to-taunika}. The quoted errors
 $\Delta a_\nu^{225}$ and $\Delta b_\nu^{225}$ are 1-$\sigma$ errors of
 the fit.
 
-{\rev We note that the atmospheric opacity correction using {\tt
+{\rev We highlight that the atmospheric opacity correction using {\tt
 taumeter} opacities yields stable flux density measurements with
 respect to the atmospheric transmission by construction, as we
 verify in Sect.~\ref{se:photometry}. This means that the best-fitting
@@ -2341,8 +2339,8 @@ Sect.~\ref{se:corrected-skydip} and Sect.~\ref{se:opacity_tests}.}
 
 Because the IRAM \taumeter\ observes at a fixed azimuth, the
 {\tt taumeter} opacities are not the line-of-sight opacities
-for the observation scans. This is checked in
-Sect.~\ref{se:photometry}, and it induces larger rms errors of
+for the observation scans. As a result, as is checked in
+Sect.~\ref{se:photometry}, it induces larger rms errors of
 the top-of-the-atmosphere flux density estimates compared to
 opacity correction methods that rely on NIKA2 skydip-based
 measurements. The {\tt taumeter} method can thus be used
@@ -2416,7 +2414,7 @@ fitting procedure.
 \caption[]{Example of global skydip fit for a KID.
 Each square point represents one step in a skydip (made of eleven
 elevation steps). A series of 12 {\tt skydip} scans are jointly used,
-spanning zenith opacities from 0.15 to 0.50 {\lp in the $1\rm{-mm}$ band}. The horizontal axis gives the sky
+spanning zenith opacities from 0.15 to 0.50 {\lp in the $1$-mm band}. The horizontal axis gives the sky
 effective temperature $T_{\rm{sky}} = T_{\rm{atm}}[1-e^{-\taunu\, x}]$ in Kelvins, where $\taunu$ is the
 skydip zenith opacity found in the fit. The vertical axis shows the relative
 resonance frequency of the KID with respect to 1.9\,GHz, given in MHz. The blue line is the linear
@@ -2433,7 +2431,7 @@ $1\times 10^{-3}$ at 2\,mm.}
 Once the $\taunu$ values are estimated for each {\tt skydip} (as the average over the
 blocks), we compute, while fixing the $\taunu$, the $c_0^k$ and $c_1^k$
 final values for each KID $k$ with a linear fit. We thus retrieve
-the coefficients of all the KIDs ,even though some of them could not
+the coefficients of all the KIDs, even though some of them could not
 contribute to the $\taunu$ determination. 
 
 {\lp We have observed that the  $c_0^k$ and $c_1^k$ coefficients vary
@@ -2462,7 +2460,7 @@ The {\tt skydip} opacity derivation requires a
 sizeable amount of {\tt skydip} scans --
 typically ten to twenty -- that i) span the whole opacity range, and
 ii) avoid highly perturbed atmosphere to meet the plane-parallel
-atmosphere assumption. To that aim, we performed\LEt{?? - reminder to review tenses} a {\tt skydip}
+atmosphere assumption. To that aim, we perform a {\tt skydip}
 scan twice a day during a scientific campaign. Then, the ($c_0^k$, $c_1^k$)
 determination process relies on a selection of the {\tt skydip} scans.
 
@@ -2508,13 +2506,12 @@ Median $dT$ is the median of the average $df_{\rm{reso}}^k$ in Kelvin over all t
 array. With these two indicators in hand, we discard the {\tt skydip} scans
 that are noisy or that yield a poor fit by applying the following selection
 criteria:
-\LEt{Again, I don't think this necessarily requires bullet points}
 \begin{itemize}
 \item Median $\rm{rms} < 1.5 \times 10^{4}~\rm{Hz}$
 \item Median $dT < 1.6~\rm{K}$
 \end{itemize}
 
-The threshold values have been determined using the set of 44 {\tt skydip}
+The threshold values were determined using the set of 44 {\tt skydip}
 scans of N2R9. The Median rms cut corresponds to twice the median of
 this quantity per {\tt skydip} scan, whereas the Median $dT$ cut is twice
 the standard deviation of Median $dT$ over the {\tt skydip} scans.
@@ -2538,7 +2535,7 @@ the 'v2' label data points in Fig.~\ref{fig:skydipselection}.
     \end{overpic}
     \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.3\textwidth]{Figures/Opacity_correl_skydip_vs_tau_a3.pdf}
     \begin{overpic}[clip=true, trim={-0.3cm, -0.3cm, 0, 0}, width=0.3\textwidth]{Figures/Opacity_skydip_to_taumeter_vs_elev_1mm.pdf}
-      \put(0,70){\footnotesize b)\LEt{Not sure where this fits? - Perhaps the formatting is clearer on your side?  }}
+      \put(0,70){\footnotesize b)}
     \end{overpic}
     \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.3\textwidth]{Figures/Opacity_correl_skydip_vs_tau_1mm.pdf}
     \includegraphics[clip=true, trim={0, -0.3cm, -0.3cm, 0}, width=0.3\textwidth]{Figures/Opacity_correl_skydip_vs_tau_a2.pdf}
@@ -2559,7 +2556,7 @@ the 'v2' label data points in Fig.~\ref{fig:skydipselection}.
 \end{figure*}
 %
 The stability of the ($c_0^k$, $c_1^k$) parameters, and hence the
-{\tt skydip} opacity estimates, have been tested against the
+{\tt skydip} opacity estimates, were tested against the
 choice of the selection criteria. We found that the $\taunu$
 estimates are robust against the {\tt skydip} scan selection as long as the
 selection includes good {\tt skydip} scans in high opacity condition
@@ -2588,7 +2585,7 @@ Eq.~\ref{eq:skydip}. Degeneracies between $c_1^k$ parameters, the
 atmospheric temperature, and $\taunu$ can translate into a
 scaling factor in the fitted skydip opacities
 $\taunu^{\rm{skydip}}$. To take this effect into account, }  
-we use the flux stability estimators described in
+we used the flux stability estimators described in
 Sect.~\ref{se:taumeter-method} to fit a correction to $\taunu^{\rm{skydip}}$ such as
 \begin{equation}  
   \taunu =  a_\nu^{\rm{skydip}}\taunu^{\rm{skydip}}.
@@ -2600,11 +2597,11 @@ $1.36 \pm 0.04$,
 $1.23 \pm 0.02$,
 $1.27 \pm 0.03,$ and
 $1.03 \pm 0.03$ for A1, A3, A1$\&$A3, and A2, respectively.
-Moreover, we test for an additional offset in the
+Moreover, we tested for an additional offset in the
 correcting relation of the {\tt skydip} opacities given in
-Eq.~\ref{eq:corrected_skydip}. We find best-fitting correcting factors
+Eq.~\ref{eq:corrected_skydip}. We found best-fitting correcting factors
 in agreement with the best-fit values estimated using the single-parameter
-correcting relation, whereas the best-fit offsets are compatible with
+correcting relation, whereas the best-fit offsets were compatible with
 zero at both wavelengths. We conclude that correcting the {\tt skydip}
 opacity estimates for a normalisation as given in
 Eq.~\ref{eq:corrected_skydip} is sufficient to ensure flux density
@@ -2612,7 +2609,7 @@ robustness against atmospheric opacity conditions.
 
 The exact physical origin for the discrepancy of the empirical factor
 $a_\nu^{\rm{skydip}}$ from the expected unity value {\lp for the
-$1\rm{-mm}$ wavebands} is currently under investigation.
+$1$-mm wavebands} is currently under investigation.
 {\rev Besides the $c_1^k$-to-$\taunu$ degeneracy and the effect
 of the variation of the atmospheric temperature, other explanations
 include effects that are not directly related to the atmospheric
@@ -2627,14 +2624,14 @@ Sect.~\ref{se:photometry}, constitutes a validation of this approach.
 \subsection{Opacity estimate consistency checks}
 \label{se:opacity_tests}
 
-Firstly, we test the stability of the {\tt skydip} opacities from one
+Firstly, we tested the stability of the {\tt skydip} opacities from one
 observation campaign to
 another. The a) panels in Fig.~\ref{fig:skydip-to-taumeter-correl} show the
 correlation between the {\tt skydip} $\taunu$ estimates $\taunu^{\rm{skydip}}$
 and the median-filtered time-stamped IRAM $225\,\rm{GHz}$ \taumeter\ 
 zenith opacities $\tau_{225}$, as described in
 Sect.~\ref{se:taumeter-method}, for a series of scans
-of Uranus and MWC349 acquired during the \emph{reference} observation
+of Uranus and MWC349 acquired during the Reference observation
 campaigns. As guidelines,
 we also show the predicted correlations using an ATM model integrated
 in the NIKA2 bandpasses and in the $225\,\rm{GHz}$ band. {\lp The
@@ -2657,7 +2654,7 @@ future using \emph{in-situ} bandpass measurements with a
 dedicated Martin-Pupplett spectrometer.}
 
 
-We further check the robustness of $\taunu^{\rm{skydip}}$ against the
+We further checked the robustness of $\taunu^{\rm{skydip}}$ against the
 observing elevation. 
 Panel b) in Fig.~\ref{fig:skydip-to-taumeter-correl} shows the ratio of NIKA2
 {\tt skydip} opacities to the $225\,\rm{GHz}$ \taumeter\ opacities as a function of
@@ -2743,10 +2740,10 @@ We parametrise the primary calibrator flux density as
 $S_{\rm{c}}(\nu) = S_{\rm{c}}(\nu_0)\, f(\nu/\nu_{0})$, where $f(\nu/\nu_{0})$
 encloses the spectral dependence, 
 as a function of a reference frequency $\nu_{0}$ that we choose
-arbitrarily to be: $\nu_{0} = 150$~GHz for the $2\rm{-mm}$ array, and
-$\nu_{0}= 260$~GHz for both $1\rm{-mm}$ arrays. After projecting the raw
+arbitrarily to be: $\nu_{0} = 150$~GHz for the $2$-mm array, and
+$\nu_{0}= 260$~GHz for both $1$-mm arrays. After projecting the raw
 data (in units of the KID resonance frequency shift, $\rm Hz$) of a
-calibrator {\sl c} on the sky, we model the calibrator raw map as a
+calibrator $\rm{c}$ on the sky, we model the calibrator raw map as a
 fixed-width 2D Gaussian
 \begin{equation}
   R_{\rm{c}}(\theta, \phi)  = A_{\rm{c}} \, e^{-\frac{\theta^{2}}{2\sigma_{0}^{2}}},
@@ -2754,8 +2751,8 @@ fixed-width 2D Gaussian
 \end{equation}
 {\lp where $A_{\rm{c}}$ is the amplitude of the 
 Gaussian in Hz,} and $\sigma_{0}$ is derived from the
-reference FWHM, labelled FWHM$_{0}$, which is $12.5''$ for the $1\rm{-mm}$
-arrays and $18.5''$ for the $2\rm{-mm}$ array. These values have
+reference FWHM, labelled FWHM$_{0}$, which is $12.5''$ for the $1$-mm
+arrays and $18.5''$ for the $2$-mm array. These values have
 been chosen larger than the main-beam values, as reported in
 Sect.~\ref{se:beam}, to account for a fraction of the signal stemming from
 the first error beam and first side lobes.
@@ -2763,10 +2760,10 @@ Both the reference frequency, $\nu_0$, and the reference FWHM, FWHM$_{0}$, defin
 our reference photometric system, as summarised in Table~\ref{tab:definitions}.
 
 The absolute calibration coefficients are estimated from observations
-of primary calibrators $c$, as the ratio of
+of primary calibrators $\rm{c}$, as the ratio of
 the calibrator flux density expectations at the reference frequency
 $S_{\rm{c}}(\nu_0)$ and $A_{\rm{c}}$. Then, for any observed point-like source
-{\sl s} of projected map $R_{\rm{s}}(\theta,\phi)$ in Hz, the map
+$\rm{s}$ of projected map $R_{\rm{s}}(\theta,\phi)$ in Hz, the map
 \begin{equation}
   M_{\rm{s}}(\theta, \phi) = \frac{S_{\rm{c}} (\nu_{0})}{A_{\rm{c}}}
   R_{\rm{s}}(\theta,\phi)
@@ -2831,8 +2828,8 @@ source $\alpha_{\rm{s}}$ in Table~\ref{tab:mod}.
 \subsubsection{Extended sources}
 \label{se:extended_source_calib}
 
-{\rev While study-of-point sources are usually performed with maps given in
-Jy/beam unit, diffuse emission studies or aperture photometry ones
+{\rev While point-source studies are usually performed with maps given in
+Jy/beam unit, diffuse-emission studies or aperture photometry ones
 require map expressed in Jy/sr. To that aim, we need to take into
 account the full-beam pattern, as discussed in Sect.~\ref{se:beam_efficiency}.}
 Firstly, we correct, with the solid angle enclosed in the
@@ -2901,7 +2898,7 @@ flux density rescaling factor using a series of observations of
 Uranus or Neptune. After the first step of the calibration is
 performed, the KID TOI is projected into a calibrated map $M_\nu$, as
 described in Sect.~\ref{se:dataproc}, where $\nu$ stands for the three
-arrays and the $1\rm{-mm}$ array combination, and the atmospheric attenuation
+arrays and the $1$-mm array combination, and the atmospheric attenuation
 is corrected. For each of the calibrator observation scans, we
 compute the ratio between the expected calibrator flux density
 $S_{\rm{c}}(\nu_{0})$ and the measured calibrator flux density in $M_\nu$, which
@@ -2925,7 +2922,7 @@ calibration.
 %---------------------------------------------------------------------
 \subsection{Relative calibration \& flat fields}
 \label{se:flat_field}
-While absolute calibration of each KID also \emph{de facto\LEt{Reminder to remove italics where necessary}} provides
+While absolute calibration of each KID also de facto provides
 relative calibration, the latter is interesting in itself to
 characterise the instrument. We focus on this aspect in this
 section.

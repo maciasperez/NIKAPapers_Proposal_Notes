@@ -4353,14 +4353,14 @@ These models provide the planet brightness temperature in the
 Rayleigh-Jeans approximation as a function of the frequency. The
 resulting flux density of the primary calibrator is therefore 
 \begin{equation}
-S_c(\nu_0) = \Omega \, \frac{2 \nu_0^{2} k T_{RJ}}{c^2,}
+S_c(\nu_0) = \Omega \, \frac{2 \nu_0^{2} k T_{RJ}}{c^2},
 \end{equation}
 where $\Omega$ is the solid angle of the planet on the sky, %Following
 %\citet{Bendo2013} and correcting their equation 12
 which can be calculated using
 %
 \begin{equation}
-\Omega = \pi \frac{r_{e} r_{p-a}}{D^{2,}} 
+\Omega = \pi\, \frac{r_{e}\, r_{p-a}}{D^{2}}, 
 \label{eq:omega}
 \end{equation}
 where $r_{e}$ is the equatorial radius of the planet and $r_{p-a}$ is
@@ -4370,7 +4370,7 @@ planet. $r_{p-a}$ can be computed from the sub-observer latitude $\phi$
 planet equatorial reference frame) and the polar radius of the
 planet $r_{p}$ as
 \begin{equation}
-r_{p-a} = \sqrt{r_{p}^2 \cos^{2}\phi + r_{e}^2 \sin^{2} \phi.}
+r_{p-a} = \sqrt{r_{p}^2 \cos^{2}\phi + r_{e}^2 \sin^{2} \phi}.
 \end{equation}
 
 The planets' ephemerides are obtained using the
@@ -4381,27 +4381,26 @@ reference frequencies of the NIKA2 bandpasses.
 
 \begin{table}[!ht]
 \begin{center}
-\begin{tabular}{|c|c|c|}
-\hline
+\begin{tabular}{lcc}
+\hline\hline
+\noalign{\smallskip}
      & Uranus & Neptune \\
 \hline
+\noalign{\smallskip}
 $r_{e}$ [km]  & 25559 & 24764 \\ 
-\hline
 $r_{p}$ [km]  & 24973 & 24341  \\
-\hline
 $\phi$         & Ob-lat & Ob-lat \\
-\hline
 $D$   [AU]    & delta   & delta \\
 \hline
 \end{tabular}
 \end{center}
 \caption[Primary calibrator flux models]{Physical quantities used for Uranus and Neptune flux
   computations (equation~\ref{eq:omega}. Ob-lat and delta are quantities 
-  tabulated by NASA Horizons system as a function of the date}
+  tabulated by NASA Horizons system as a function of the date.}
 \label{tab:planetphysparam}
 \end{table}
 
-The Uranus and Neptune models are compared to 
+The Uranus and Neptune models were compared to 
 observations of these planets with the \emph{Planck}
 satellite~\citep{PLCK-LII}.
 
@@ -4409,7 +4408,7 @@ For Uranus, the model used in the comparison
 is the ESA V2, and it is found to over-predict by $4\,\rm{K}$ (about 4\%) the
 observed RJ temperature at 143\,GHz, to agree at 217\,GHz, and
 to under-predict at 353\,GHz. For the NIKA2 calibration, we used the ESA
-model V4, which predicted\LEt{A reminder to check \textit{present vs past} tenses. Please revert back if I'm mistaken here.} a flux respectively -3.3\%, 0.3\%, and 4.7\% higher in the
+model V4, which predicted a flux respectively -3.3\%, 0.3\%, and 4.7\% higher in the
 143, 217, and 353\,GHz bands, that correspond to a few percent accuracy
 with respect to \emph{Planck} observations.
 
@@ -4479,23 +4478,25 @@ wavelengths to optical was also presented in~\citet{Hafez2008}. {\lp
 \rm{GHz}$. Moreover, flux density measurements at 90 GHz over 20 years
 with the \trentemetre\ telescope are presented in \citet{Kramer2008}.}
 The flux densities were extrapolated to 150 and 260 GHz, and the
-modelled decrease since 1992 is included.
+modelled decrease since 1992 was included.
 
 All these expected flux densities extrapolated from the literature are
 summarised in Table~\ref{tab:flux_ref_sec}.
 
 \begin{table*}[!thbp]
-  \caption[Reference flux densities of secondary calibrators]{Reference flux densities of secondary calibrators at the NIKA2 reference frequencies 150 and 260 GHz. Uncertainties of flux densities extrapolated
+  \caption[Reference flux densities of secondary calibrators]{Reference flux densities of secondary calibrators at the NIKA2 reference frequencies 150 and 260~GHz. Uncertainties of flux densities extrapolated
     at 150 and 260 GHz include contribution of the uncertainty on the spectral index $\alpha$, which is defined as $S_{\nu} \propto \nu^{\alpha}$.}
   \label{tab:flux_ref_sec}
   \centering    
-  \begin{tabular}{|l|c|c|c|l|}
+  \begin{tabular}{lcccl}
     \hline\hline
-    \multicolumn{1}{|c}{}  & \multicolumn{3}{|c}{flux  densities (Jy)} & \multicolumn{1}{|c|}{}  \\
+    \noalign{\smallskip}
+    \multicolumn{1}{c}{}  & \multicolumn{2}{l}{Flux  densities (Jy)} & \multicolumn{2}{c}{}  \\
+    %\hline
+    \noalign{\smallskip}
+    &    Array 1 \& 3   &  Array 2          & $\alpha$   &    Reference  \\
     \hline
-    &    A1 \& A3       &  A2             &            &   Ref. \\
-    &  260 GHz          &  150 GHz        & $\alpha$ &      \\
-    \hline
+    \noalign{\smallskip}
     MWC349A   &   $2.06\pm0.04$  &  $1.48\pm0.02$ &  $+0.60\pm0.01$      &  PdBI \& NOEMA monitoring  \\
     NGC7027  &   $3.46\pm0.11$   &  $4.26\pm0.24$  &  $-0.34\pm0.10$     &  \citet{Hoare1992}      \\
     CRL2688  &   $2.91\pm0.23$   &  $0.76\pm0.14$  &  $+2.44\pm0.18$     &  \citet{Dempsey2013_SCUBA2} \\
@@ -4506,7 +4507,7 @@ summarised in Table~\ref{tab:flux_ref_sec}.
 Measured flux densities, however, are determined over the broad
 bandwidth of each array and so must be colour-corrected to be compared
 to the expected flux densities of Table~\ref{tab:flux_ref_sec}.  For
-this purpose, we have derived colour corrections for sources with spectral
+this purpose, we derived colour corrections for sources with spectral
 indices $\alpha$ comprised between -2 and +4 in Table~\ref{tab:mod}. %\ref{ap:color_correction_JFL}.
 Evidently, this effect can be a few percent for MWC349, NGC7027, and CRL2688.
 
@@ -4518,24 +4519,24 @@ Evidently, this effect can be a few percent for MWC349, NGC7027, and CRL2688.
   \label{ap:focus_surfaces}
   %\input{Focus_surfaces.tex}
 
-Owing to the NIKA2 $6.5~\rm{arcmin}$ FOV, the focus is expected to
+Owing to the NIKA2 $6.5'$ FOV, the focus is expected to
 slightly change across the FOV, defining curved focal surfaces at the
 location of the three arrays. Therefore, beam patterns are expected to
 show some scatter across the FOV accordingly to the focal
 surfaces. Although all the detectors on a flat array cannot be
 individually focalised, an optimal axial focus of the telescope can be
-found to maximise the number of detectors at the best focus, and hence they
+found in order to maximise the number of detectors at the best focus, and hence to
 maximise the resolution of the NIKA2 maps.
 This optimal focus setting is obtained by measuring the focus at the
-centre of the arrays as described in Sect.~\ref{se:axial_focus} and applies
-a focus shift of $-0.2\,\rm{mm}$, which is 
+centre of the arrays as described in Sect.~\ref{se:axial_focus} and by applying
+a focus shift of $-0.2\,\rm{mm}$. This shift value is 
 predicted using ZEMAX simulations and verified by measuring
 the focus surfaces as described in the following.
 
 \begin{figure*}[!thbp]
 \begin{center}
   \includegraphics[trim={0, 9.5cm, 0, 9.5cm}, clip=true, width=\linewidth]{Figures/fov_focus_mv_5.png}
-\caption[Focus surfaces]{Focus surface of A1, A3, and A2 arrays from left to
+\caption[Focus surfaces]{Focus surface of A1, A3, and A2 from left to
   right. In this example, the focus estimates rely on the maximisation of the flux
   density. On each plot, the x and y axis are the Nasmyth offsets
   with regard to the centre of the array in arcseconds, while the colour-code represents
@@ -4546,25 +4547,25 @@ the focus surfaces as described in the following.
 
 \subsection{Method}
 
-We estimate NIKA2 focal surfaces by means of a sequence of five \bms\ of bright
+We estimated NIKA2 focal surfaces by means of a sequence of five \bms\ of bright
 point-like sources, typically planets or bright quasars, for various
 axial positions $z$ of the telescope sub-reflector around its nominal
 position, which is the optimal axial focus $z_{\rm{opt}}$. 
-The axial position is changed in steps of $0.6~\rm{mm}$ to probe a large
+The axial position was changed in steps of $0.6~\rm{mm}$ to probe a large
 focus range for measuring even the extreme variation of the focus surfaces,
 namely $z \in \{-1.2, -0.6, 0, 0.6, 1.2 \} + z_{\rm{opt}}$.  Each
-\bm\ is analysed using the data reduction pipeline, as described in
+\bm\ was analysed using the data reduction pipeline, as described in
 Sect.~\ref{se:dataproc}, and $4''$-resolution individual maps per KID
 are produced. 
 Therefore, a series of
-five maps at various focus positions is available for each detector, from which
-the best focus is estimated as described in Sect.~\ref{se:axial_focus}. The
-ensemble of the relative focus estimate per KIDs with respect to the best focus
+five maps at various focus positions was available for each detector, from which
+the best focus was estimated as described in Sect.~\ref{se:axial_focus}. The
+ensemble of the focus estimate per KIDs relative to the best focus
 at the centre of the array constitutes the focus surface. An accurate estimate
-of the centre focus is obtained as the weighted average focus estimate of the
+of the centre focus is obtained as the weighted-average focus estimate of the
 KIDs lying in a $30''$ radius around the geometrical centre of the array. This
-average does not induce any sizeable bias thanks to the flatness of the focus
-surface in the innermost regions. To test robustness, we consider three focus
+average does not induce any significant bias thanks to the flatness of the focus
+surface in the innermost regions. To test robustness, we considered three focus
 estimates: the first two are the same as discussed in
 Sect.~\ref{se:axial_focus} -- namely i) $\hat z_{\rm{fwhm}}$ the focus that
 minimises the geometrical FWHM, and ii) $\hat z_{\rm{peak}}$ the focus that
@@ -4579,12 +4580,12 @@ results against the exact choice of the beam fitting function.
 
 Nine defocused \bm\ sequences were acquired, including incomplete
 sequences and sequences hindered by poor atmospheric conditions. To
-check for systematic effect, a focus measurement is performed
+check for systematic effect, a focus measurement was performed
 immediately before and after the \bm\ sequence. Using these
 measurements, the central focus drift between the starting time and the
-end of the sequence is estimated. 
+end of the sequence was estimated. 
 We select sequences that i) comprise at least four scans (four
-z-focus steps), ii) have been observed with a zenith opacity at $225\,\rm{GHz}$ (as indicated by
+z-focus steps), ii) were observed with a zenith opacity at $225\,\rm{GHz}$ (as indicated by
 the IRAM \taumeter) below 0.5, and iii) have a maximum central focus
 drift of $0.5~\rm{mm}$. These criteria preserve five sequences from which focus
 surfaces can be reconstructed, %. Namely, we consider the sequences
@@ -4615,7 +4616,7 @@ with uncertainties
 We present NIKA2 focus surfaces per array obtained, as in
 Eq.~\ref{eq:mv_focus_surf}, for the method of flux density maximisation  
 in Fig.~\ref{fig:focus-surfaces}.
-We further check that the three flavours\LEt{Please change if you did so previously} of focus estimators provide
+We further check that the three focus estimators provide
 us with focus surfaces per array that are in good agreement with each
 other. Furthermore, they have a non-axisymmetrical flattened bowl
 shape, which is well-consistent with expectations from optical
@@ -4663,12 +4664,12 @@ Sect.~\ref{se:data_selection}, to mitigate the impact of
 the \afternoon\ variation effect, as evidenced in Sect.~\ref{se:beam_variation}.
 By contrast, in this section, we
 address the issue of calibrating even during the observing periods
-impacted by the \afternoon\ beam variation effect. We discuss an
+impacted by the \afternoon\ beam-variation effect. We discuss an
 alternative calibration method that
 relies on a photometric correction depending on the beam size.
-{\lp The key idea is to perform a joint monitoring of flux estimates
-  using the fixed-width Gaussian amplitude and the beam size.}
-The objective is both to cross-check the \baseline\ calibration results
+{\lp The key idea is to perform a joint monitoring of i) flux estimates
+  using the fixed-width Gaussian amplitude and ii) the beam size.}
+The objective is both to cross-check the \baseline\ -calibration results
 using more observation scans, and to anticipate future developments
 that could be deployed if an accurate beam monitoring is performed.
 
@@ -4687,16 +4688,16 @@ estimator in the reference photometric system (Sect.~\ref{se:photometric_system}
 $M(\theta,\phi)$ reads
 
 \begin{equation}
-  \hat{S}  = \int \int M(\theta, \phi)\, e^{-\frac{d(\theta,\phi)^{2}}{2\sigma_{0}^{2}}} \sin \theta d\theta d\phi\,,
+  \hat{S}  = \int \int M(\theta, \phi)\, \exp{\left(-\frac{d(\theta,\phi)^{2}}{2\sigma_{0}^{2}}\right)}\,  \sin \theta d\theta d\phi\,,
   \label{eq:flux_density_estimator}
 \end{equation}
 
 where $d(\theta,\phi)$ is the angular distance and $\sigma_0$
-corresponds to FWHM$_0$
+corresponds to FWHM$_0$, 
 %, which we recall,
 %is $12.5''$ for the $1\,\rm{mm}$ arrays and $18.5''$ for
 %the $2\,\rm{mm}$ array
-, as defined in Table~\ref{tab:definitions}.
+as defined in Table~\ref{tab:definitions}.
 
 Modelling the map of a point-like source with a single Gaussian of
 width $\sigma$ and of amplitude $\mathcal{A}$ as
@@ -4737,14 +4738,14 @@ where the photometric correction is
 \end{equation} 
 so that $f(\sigma) = 1$ if $\sigma=\sigma_\star$.
 
-Fig.~\ref{fig:f_sigma} shows how $f(\sigma)$ varies with the actual beam width
+Figure~\ref{fig:f_sigma} shows how $f(\sigma)$ varies with the actual beam width
 and for two choices of $\sigma_\star$ depending on the flux of the observed source.
 
 \begin{figure}[ht!]
   \begin{center}
     \includegraphics[clip=true, trim={0.9cm, 0.1cm, 0.5cm, 0.5cm}, width=0.4725\textwidth]{Figures/photometric_correction_function_1Jy.pdf}
-    \caption[Photometric correction]{Magnitude of beam photometric
-      correction $f(\sigma)$ as a function of the actual FWHM, at 1\,mm (blue)
+    \caption[Photometric correction]{Magnitude of the photometric
+      correction $f(\sigma)$ of the beam-variation effect as a function of the actual FWHM, at 1\,mm (blue)
       and 2\,mm (red). Thick lines correspond to a choice of $\sigma_\star$
       derived on a very bright source like Uranus. Thin lines are for sources of
       1\,Jy at 1 and 2\,mm.}
@@ -4754,7 +4755,7 @@ and for two choices of $\sigma_\star$ depending on the flux of the observed sour
 
 
 The beam size in stable atmospheric conditions $\sigma_\star$ is
-determined by fitting the 2D Gaussian beam on the series of scans of
+determined by fitting 2D Gaussian beam on the series of scans of
 source with varying flux densities that were used for the beam
 characterisation in Sect.~\ref{se:mainbeam}. However, $\sigma_\star$
 is not equivalent to the main beam's Gaussian size since the side lobes
@@ -4768,8 +4769,8 @@ lobes and error beams, which are above the noise level, in the Gaussian fit.
 \label{ap:beam_monitoring}
 
 The photometric correction thus relies on the measuring of the current beam size
-$\sigma$. The induced uncertainties on the flux density measurements depend on
-the precision of the beam size determination. Here we
+$\sigma$. The induced uncertainties on the flux-density measurements depend on
+the precision of the beam-size determination. Here we
 consider two methods to monitor the beam size.
 
 The temperature-induced beam size variation is primarily monitored
@@ -4779,9 +4780,9 @@ as presented in Sect.~\ref{se:beam_variation}.
 For a finer sampling of the observation time, we also consider using
 the pointing scans for beam monitoring. As discussed in
 Sect.~\ref{se:pointing}, the telescope pointing is
-monitored on a hourly basis during an observation using {\tt pointing}
-scans. As these scans consist of two sub-scans in azimuth and
-an elevation of about 10 seconds of integration time each, they
+monitored on a hourly basis during a science-purpose observation using {\tt pointing}
+scans. As these scans consist of two sub-scans in azimuth and two others
+in elevation, of about 10 seconds of integration time each, they
 can also be used to make a map of the pointing source. For each campaign,
 we thus have hundreds of maps of mostly point-like bright
 sources, which can also be used to monitor the beam size. 
@@ -4796,14 +4797,14 @@ are discarded from the analysis.
 % anomalous refraction
 For each {\tt pointing}, we also seek signs of atmospheric
 anomalous refraction. There are
-enough KIDs per observation band to make an independent map using only
+enough KIDs per arrays to make an independent map using only
 one sub-scan, such as ten seconds of integration time.
 For each of the four cross sub-scans, we thus estimate the position of the best
 2D Gaussian that fits the map. We compute the deviation between each
 sub-scan-derived position and the best-fit position using the entire
 scan. An anomalous refraction event is detected when the difference is
 above $2.5''$ for at least one subscan. We find that the \afternoon\
-beam size variation effect is due to anomalous refraction for
+beam-size variation effect is due to anomalous refraction for
 between one third and one half of the scans, as reported in
 Sect.~\ref{se:beam_variation}.
 
@@ -4818,8 +4819,7 @@ fact that only the innermost KIDs in the array see the source.
 To mitigate the dispersion, the time-stamped
 pointing-based FWHM
 %$_{\rm{geom}}$
-is filtered with a running median on a 70-minute
-width time window. Then, the FWHM %$_{\rm{geom}}$
+is filtered with a running median on a 70-minute-width time window. Then, the FWHM %$_{\rm{geom}}$
 at the time of the considered scans is
 interpolated from the median-filtered pointing-based FWHM.%$_{\rm{geom}}$.
 %
@@ -4845,7 +4845,7 @@ estimates for the same data set: on one hand the best-fit FWHM %$_{\rm{geom}}$
 estimates on the OTF-scan map, and on the other hand the interpolation from
 the pointing-based FWHM %$_{\rm{geom}}$
 monitoring. The two estimates show the same global variations as a
-function of the UT hours. They are very much in agreement with each
+function of the UT hours. They are in agreement with each
 other, although the pointing-based estimates have more dispersion and
 a few outliers, as expected.
 
@@ -4855,7 +4855,7 @@ a few outliers, as expected.
 We perform two case studies that correspond to the two beam monitoring
 methods discussed above.\\
 
-\noindent \emph{Demonstration case} \LEt{Reminder to remove italics}This method, referred to as {\tt PC-demo} hereinafter, uses a
+\subsubsection{Demonstration case} This method, referred to as {\tt PC-demo} hereinafter, uses a
 photometric correction based on the beam monitoring with bright source
 scans. Both the 2D Gaussian FWHM fit and the FWHM$_0$ photometry are performed
 on the map of the source. This method thus applies only to point-like sources
@@ -4884,11 +4884,11 @@ and MWC349 scans, we found $\delta_{\rm{FWHM}} = 0.4''$ at
 distributes with half due to Uranus finite extension and the
 other half stemming from the side lobes.\\
 
-\noindent \emph{Practical case using pointing scans} This method,
+\subsubsection{Practical case using pointing scans} This method,
 named {\tt PC-point} hereinafter, performs a photometric correction based on the beam monitoring with
-pointing scans. 
+{\tt pointing} scans. 
 Unlike {\tt PC-demo}, this method is usable even for sources fainter than
-about one Jy \nico{but relies on interpolations between beam width estimates on
+about one Jy \nico{but relies on interpolations between beam-width estimates on
   other scans}. For Uranus, this value is corrected for the diameter size, as it is in
 Sect.~\ref{se:mainbeam_results}. No other FWHM offset correction is needed since
 pointing scan maps have a low signal-to-noise ratio, which prevents the
@@ -4924,7 +4924,7 @@ Appendix~\ref{se:photometric_correction_method}.
   with photometric correction. The ratio of 
       Uranus' measured flux densities to expectations as a function of the
       measured 2D Gaussian beam FWHM is shown for the $1$-mm array
-      combination (left column) and for array 2 (right column) after absolute
+      combination (left column) and for Array 2 (right column) after absolute
       calibration using (\emph{first row}) the {\tt PC-demo} and (\emph{second
         row}) the {\tt PC-point} photometric corrections. These plots
       include all Uranus scans acquired during N2R9, N2R12, and N2R14
@@ -4964,8 +4964,8 @@ wavelengths.
   \noalign{\smallskip}
 %  \multicolumn{2}{c}{}  &  \multicolumn{5}{|c|}{Methods} \\\cline{3-7}
   \multicolumn{2}{c}{}  &  \baseline\  & TM\tablefootmark{a}  &  SD\tablefootmark{b} & PC-d\tablefootmark{c} & PC-p\tablefootmark{d}  \\
+  \hline
   \noalign{\smallskip}
-  \hline\hline
    \multicolumn{2}{c}{$\#$ scans} & 26    &       26  &    26    &    38           &    38 \\ 
   \hline
   \noalign{\smallskip}

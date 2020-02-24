@@ -23,10 +23,13 @@
 %\usepackage{flushend}
 %\usepackage[T1]{fontenc}\\
 \bibpunct{(}{)}{;}{a}{}{,}
-\bibliographystyle{aa}
+
+\usepackage[style=numeric,maxcitenames=2,
+backend=biber,natbib=true]{biblatex}
+
 
 \begin{document}
-\title{Improved mm-wavelength interferometry for kinetic inductance detectors}
+\title{Improved mm-wavelength interferometry for Kinetic Inductance Detectors}
 
 \author{A. Fasano \inst{\ref{Neel}},\thanks{Corresponding author: Alessandro Fasano, \url{alessandro.fasano@neel.cnrs.fr}}
 	\and M. Aguiar \inst{\ref{IAC}} 
@@ -87,39 +90,41 @@
 \abstract{
 
 \emph{Context.} 
-Major features demanded for instruments in contemporary cosmology are: high mapping speed to cover large portion of the sky and multi-frequency capability for the components separation. In order to simultaneously satisfy the two conditions it is possible to design large arrays of photo noise limited detectors that garatees a high fill-factor and sesitivity. In addition it is desiderable to adopt an interferometer that preserves the large FoV technique that allows wide instantaneous Field of View (FoV). In this framework we developed KISS (KIDs Interferometer Spectrum Survey), a spectrometric-imager dedicated to the secondary anisotropies of the Cosmic Microwave Background (CMB).
+Major features demanded for instruments in contemporary cosmology are high mapping speed to cover large portion of the sky and multi-frequency capability for the components separation. In order to simultaneously satisfy the two conditions it is possible to design large arrays of photo noise limited detectors that garatee a high fill-factor and sensitivity. In addition it is desiderable to adopt an interferometer that that allows wide instantaneous Field of View (FoV). In this framework we developed KISS (KIDs Interferometer Spectrum Survey), a spectrometric-imager dedicated to the secondary anisotropies of the Cosmic Microwave Background (CMB).
 
-\emph{Method.} We exploit a Fourier Transform Spectrometer (FTS) with a double-array sensitive to all the interested band: each pixel receive the whole EM signal and the interferometric technique reconstructs the spectrum. The single interferometric figure must be acquired with a stable background to properly convert it in a spectrum where the noise does not become indistinguishable from the signal. Especially for ground-based experiments case like KISS, the atmosphere background fluctuations require to use low time-constant detectors and fast FTS technology. KISS adopts, for this purpose, two arrays of Kinetic Inductance Detector (KID) coupled to a Martin Puplett Interferometer (MPI).
+\emph{Method.} We exploit a Fourier Transform Spectrometer (FTS) with a double-array sensitive to all the interested band: each pixel receives the whole EM signal and the interferometric technique reconstructs the spectrum the instrument is installed in QUIJOTE telescope in Tenerife. The single interferometric figure must be acquired with a stable background to properly convert it in a spectrum where the noise does not become indistinguishable from the signal. Especially for ground-based experiments, the atmosphere background fluctuations require to use low time-constant detectors and fast FTS technology. KISS adopts, for this purpose, two arrays of Kinetic Inductance Detector (KID) coupled to a Martin Puplett Interferometer (MPI).
 
-\emph{Aims.} In this paper we describe the solution adopted to improve the conversion accuracy of the instrument.
+\emph{Aims.} In this paper we describe the solution adopted to improve the conversion accuracy of the instrument from I,Q to Hz signal to overcome to non-linear response.
 
-\emph{Results.} We first demonstrate the feasibility of this technique with a simulation. We, then, study the performance of such technique for the modulation and the tuning, applying it to real on-sky observations. The acquisition technique has been qualified during the commissioning campaign during Summer 2019 in Tenerife. It represents a solution for fast multi-frequency acquisition experiments exploiting KID based interferometer.
+\emph{Results.} We first demonstrate the feasibility of this technique with a simulation. We, then, study the performance of such technique, applying it to on-sky observations. The acquisition technique has been qualified during the commissioning campaign during 2019/2020 in Tenerife. It represents a solution for fast interferometers acquisition experiments exploiting KID based interferometer.
 
 }
+
+\keyword{instrumentation: detectors - methods: observational simulation - telescopes - techniques: photometry, interferometry}
 	
 \maketitle
 
 \section{Introduction}
 
-Foregrounds subtraction and components separation in mm-wavelength astronomy require simultaneous observation at different frequencies. This scenario suggests the choice of FTS: this technique exploits the interference of light rather than separate the wavelengths and, compared to competitors (on-chip (\cite{deshima}) and grating (\cite{grating}) spectroscopy), allows larger instantaneous FoV.
+Foregrounds subtraction and components separation in mm-wavelength astronomy require simultaneous observation. This scenario suggests the choice of FTS: this technique exploits the interference of light rather than separate the wavelengths and, compared to competitors (on-chip (\cite{deshima}) and grating (\cite{grating}) spectroscopy) allows larger instantaneous FoV.
 
 KISS is a fast spectrometer based on KID (for an overview see \cite{kids}) and installed at the 2.25 m QUIJOTE telescope (see \cite{fasano-ltd} and \cite{fasano-nika2} for the instrument description). Firstly, as in the past for FIRAS (\cite{FIRAS}), the selection of the FTS for the will of developing an instrument fells on a MPI: an interferometer that measures the difference between the powers of two input beams (\cite{mpi}). The MPI transposes the observing frequencies paradigm from time to spacial domain and allows to use a conversion source: an ideal choice for precise measurements.
 Secondly, the necessity to go fast on data acquisition makes suitable to choose fast detectors like KID. Taking in consideration these premises, using a ``brute-force'' acquisition technique, where you stock all the information available, would result on a huge data production. Starting from this scenario, it is desirable to adopt a smart solution that minimises the amount of data.
-In the case of dual band photometers, such as ground-based NIKA \cite{Monfardini_2010:NIKA} and NIKA2 \cite{nika2}, the acquisition rate at 23.48 Hz allows to average the points and obtain a conversion, for KISS the premises are different it is a spectrometer and it fast integrates to avoid atmospheric contamination. It cannot, thus, average because of the rapid background fluctuations.
+In the case of dual band photometers, such as ground-based NIKA \cite{Monfardini_2010:NIKA} and NIKA2 \cite{nika2}, the acquisition rate at 23.48 Hz allows to average the points and obtain a conversion, for KISS the premises are different: it is a spectrometer. It cannot average because of the rapid background fluctuations and the interferometric signal that is an equivalent multi-channel photometer at 4 Hz.
 
 In sec.~\ref{sec:kid} we describe the KID and we show the properties of KISS arrays. 
 In sec.~\ref{sec:photo} we introduce the method used in past for NIKA2 for conversion and tuning. In the same section, it is described the new method for KISS, the data implementation and the algorithm.
-In the sec.~\ref{sec:results}  we show two results: the observational simulation and the application of the method on real data. In the end, we apply the conversion to on-sky data.
+In the sec.~\ref{sec:results}  we show two results: the observational simulation and the application of the method on real data. In the sec.~\ref{subsec:moon} we apply the conversion to on-sky data.
 
 \section{KID properties}
 \label{sec:kid}
 
-The KID a is high quality factor superconducting resonator exploited as detector in mm-wavelength. It is based on the change of kinetic inductance with an incoming radiation, that is inversely proportional to the density of Cooper pairs. It is read-out by a bias line injecting a tone at its correspondence resonant frequency; at this peculiar frequency, in fact, the coupling between the resonator and the readout line results in an energy absorption, aka band-stop filtering. Its time constant is fixed by the recombination time of the quasi-particles (few $10$ $\mu s$). This represents a major advantage with respect to competitors that are, indeed, a factor $\gtrsim$10 slower.
+The KID a is high quality factor superconducting resonator exploited as detector in mm-wavelength. It is based on the change of kinetic inductance with an incoming radiation, that is inversely proportional to the density of Cooper pairs. It is read-out by a bias line injecting a tone at its correspondence resonant frequency; at this peculiar frequency, in fact, the coupling between the resonator and the readout line results in an energy absorption, aka band-stop filtering that can be monitored. Its time constant is fixed by the recombination time of the quasi-particles (few $10$ $\mu s$). This represents a major advantage with respect to competitors that are, indeed, a factor $\gtrsim$10 slower.
 
 The $S_{21}$ signal (output/input ratio) related to the KID detector is studied in the complex plane In-phase and Quadrature $(I,Q)$, where the resonance shape corresponds to a circle.
 The conversion of the $(I,Q)$ signal to absorbed optical power is one of the most difficult challenge using KID and it represents a different issue to readout, e.g., thermal detectors (bolometer, TES et cetera).
 
-We use the following  values to characterise the resonator: the resonance frequency ($f_0$), the internal quality factor ($Q_i$) and the coupling quality factor ($Q_c$). In order to fit the resonance we to use the skewed Lorentzian profile \cite{Gao}:
+We use the following  values to characterise the resonator: the resonance frequency ($f_0$), the internal quality factor ($Q_i$) and the coupling quality factor ($Q_c$). In order to fit the resonance we use the skewed Lorentzian profile \cite{Gao}:
 
 \begin{equation}
 \left|S_{21}(f)\right|= A+B(f-f_0)+\frac{C+D(f-f_0)}{1+4Q_{tot}^2\cfrac{(f-f_0)^2}{f_0^2}} \text{ ,}
@@ -384,7 +389,7 @@ In this subsection we show the results obtained from the commissioning campaign 
 
 \noindent Operatively, the circular fit showed in fig. \ref{fig:circle} is used in two different ways and represents a crucial tool during the observations, as well as for the data analysis. Firstly, during the observation, it gives an important visual quick-look feedback to understand if the conversion is correctly working. Secondly, it is one of the first step in the conversion algorithm for the physical data analysis, as already described in subsec.~\ref{conv}.
 
-The first result, that we can compare with the simulation, is reported in fig. \ref{fig:calfact}: it is the conversion factor estimated as a function of sample during a sky observation. Every point corresponds to a data block (sampled at 5 Hz).
+The first result, that we can compare with the simulation, is reported in fig. \ref{fig:calfact}: it is the conversion factor estimated as a function of sample time during a sky observation. Every point corresponds to a data block (sampled at 5 Hz).
 
 \begin{figure}[htf]
 	\centering
@@ -428,7 +433,7 @@ Here we assume the background fluctuation, as seen in fig.~\ref{fig:cal_bck}, as
 	\label{tab:sigma_sig}
 \end{table}
 
-Starting from this paradigm we can, thus, compare the results of the simulation with on sky observations. From the simulation we know that here is a $\lesssim 3\%$ variation of the conversion factor each kelvin background fluctuation, as shown in fig. \ref{fig:cal_bck}. What we notice on sky (fig. \ref{fig:calfact}) is a fluctuation $\sigma/\mu\sim6\%$, where $\sigma$ is the standard deviation and $\mu$ the mean value of the conversion factor. We can conclude that during a typical $\sim$4 degree scan we have temperature fluctuation of the sky $\lesssim 2$ K.
+Starting from this paradigm we can compare the results of the simulation with on sky observations. From the simulation we know that there is a $\lesssim 3\%$ variation of the conversion factor each kelvin background fluctuation, as shown in fig. \ref{fig:cal_bck}. What we notice on sky (fig. \ref{fig:calfact}) is a fluctuation $\sigma/\mu\sim6\%$, where $\sigma$ is the standard deviation and $\mu$ the mean value of the conversion factor. We can conclude that during a typical $\sim$4 degree scan we have temperature fluctuation of the sky $\lesssim 2$ K.
 
 Secondly, what we need to state that the acquisition/data-reduction system is qualified for the instrument is to observe the capability of the conversion to adapt to different background (analogously to the autotuning of NIKA/NIKA2 described in subsec.~\ref{sec:tuning}). For this purpose, we take three consecutive maps at increasing elevation: we plot the $(I,Q)$ data of the first subscan for each map observing the behaviour of the acquisition referring the circular fit to the first tuning (corresponding to the first map). The result is shown in fig. \ref{fig:autotuning}.
 
@@ -457,9 +462,11 @@ Secondly, what we need to state that the acquisition/data-reduction system is qu
 
 \section{Conclusions and Perspectives}
 \label{sec:conclu}
-The purpose of this paper is to demonstrate and explain the new conversion technique for mm-wavelength interferometric experiment exploiting kinetic inductance detectors. As previously mentioned, this algorithm is naturally implementable for all those kind of instruments that will aim to exploit KID-based interferometers: a worthwhile solution for the contemporary and future multi-wavelength astronomy. Although KISS represents a standalone instrument to make science, it opens future perspectives for larger arrays experiments, like CONCERTO \cite{concerto}. Specifically for these cases, in fact, our new algorithm will minimise the data production and contain the inflation on the electronics specifications.
+The purpose of this paper is to demonstrate and explain the new conversion technique for mm-wavelength interferometric experiment exploiting KID. As previously mentioned, this algorithm is naturally implementable for all those kind of instruments that will aim to exploit KID-based interferometers: a worthwhile solution for the contemporary and future multi-wavelength astronomy. Although KISS represents a standalone instrument to make science, it opens future perspectives for larger arrays experiments, like CONCERTO \cite{concerto}. Specifically for these cases, in fact, our new algorithm will minimise the data production, contain the inflation on the electronics specifications and allow KID exploitation for interferometry.
 
-\bibliography{bibliography}
+%\bibliography{bibliography}
+
+\printbibliography
 
 \end{document}
 

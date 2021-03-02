@@ -20,7 +20,7 @@
 %
 %------------------------------------------------------------------------------
 %
-\documentclass[11pt,a4paper,twoside,graphicx,color]{article}
+\documentclass[10pt,a4paper,twoside,graphicx,color]{article}
 %
 \usepackage[margin=2cm]{geometry}
 \usepackage[pdftex]{graphicx}
@@ -30,7 +30,7 @@
 \usepackage[numbers]{natbib}
 \setlength{\bibsep}{0.0pt}
 \usepackage{amssymb}
-
+\usepackage{hyperref}
 \newcommand{\ccor}[1]{\textcolor{red}{#1}}
 
 \bibpunct{(}{)}{;}{a}{}{,} % to follow the A&A style
@@ -100,7 +100,7 @@ the Cosmic Microwave Background with the hot electrons is called the
 Sunyaev-Zel'dovich (SZ) effect (\cite{SZ1972}). It produces a
 brightness decrement at the cluster location at the NIKA2 wavelength
 of 2~mm.  The {\sl Planck} satellite (\cite{PSZ2}), ACT
-(\cite{Hasselfield}) and SPT (\cite{Bleem2014}) have produced the
+(\cite{Hasselfield2013}) and SPT (\cite{Bleem2014}) have produced the
 biggest catalogs of SZ observations, with thousands of clusters being
 measured. The millimetre observations are complementary to X-rays. The
 X-ray emissivity is mostly proportional to the square of the density,
@@ -110,10 +110,8 @@ cluster. In combination, the two measurements allow disentangling the
 density and temperature parameters. At intermediate redshifts (0.15 to
 0.3), the clusters have been well observed by X-ray satellites. But
 the SZ picture offers a less biased view of the baryonic content of a
-cluster. \\
-
+cluster. 
 %Large SZ cluster surveys, such as those by the ACT (e.g., Hincks et al. 2010 and Marriage et al. 2011), SPT (e.g. Vanderlinde et al. 2010, Carlstrom et al. 2011, Williamson et al. 2011 and Reichardt et al. 2013) and {\sl Planck} (e.g. Tauber et al. 2010 and {\sl Planck} Collaboration et al. 2011) 
-
 Fig.~\ref{Fig:AllSky} shows all the clusters of galaxies detected by
 {\sl Planck}: they are everywhere on the sky and therefore constitute
 perfect targets for a time-filler ground-based follow-up survey which
@@ -158,14 +156,15 @@ sample of clusters. From these profiles and X-ray data from
 XMM-Newton, one can infer the baryonic mass (dominated by the hot
 plasma outside the galaxies) and the total mass of the cluster, via
 the hydrostatic hypothesis, in combination with X-ray and {\sl Planck}
-data. 4-- Inhomogeneities can reveal shocks and substructures which
-can be correlated with low-frequency radio surveys (relics, and so on)
-as LOFAR, and, in the future, SKA. This is revealing the dynamics and
-agregation of clusters within their supercluster environment. The main
-goal of this proposal is to make a {\sl Planck} ground-based followup,
-with maps at high angular resolution of a large sample of the center
-of individual clusters. The {\sl Planck} measurement suffers from the
-very imperfect knowledge of the cluster size and central details
+data. 4-- Inhomogeneities can reveal AGN feedback, shocks, X-ray bubbles and
+substructures which can be correlated with X-rays and low-frequency
+radio surveys (relics, and so on) as LOFAR, and, in the future,
+SKA. This is revealing the dynamics and agregation of clusters within
+their supercluster environment. The main goal of this proposal is to
+make a {\sl Planck} ground-based followup, with maps at high angular
+resolution of a large sample of the center of individual clusters. The
+{\sl Planck} measurement suffers from the very imperfect knowledge of
+the cluster size and central details
 (\cite{Planck2013PressProf}). This could potentially improve the
 accuracy of the {\sl Planck} cosmological constraints coming from
 clusters of galaxies.
@@ -253,7 +252,10 @@ with the observation of 5~clusters, each of them with a duration of
 4~hours. We therefore request {\bf 20~hours} of observations with
 NIKA2, using only the weather conditions where standard NIKA2
 proposals cannot be scheduled. This project could be a pathfinder
-projects for other large-scale 2~mm mapping projects.
+projects for other large-scale 2~mm mapping projects. The team has a
+lot of experience in the data reduction of SZ observations of clusters
+of galaxies with NIKA and NIKA2, and reuse of available IDL sofware is
+planned (\href{https://ipag.osug.fr/nika2/Publications.html}{NIKA2 consortium publications}).
 
 The table of clusters for the whole survey is made of 400 entries
 (Fig.~\ref{Fig:RelTau} right). Of course, any source which is being
@@ -272,103 +274,6 @@ our (slight) frustration, as regular NIKA2 observers, of not using
 NIKA2 for some lenghty duration because of the opacity
 constraints. This survey does not ``cost'' much and would optimize the
 use of the NIKA2 instrument with a direct public legacy.\\
-
-Table of  clusters (unfenced), among which, 5 will be selected for the Demo proposal\\
-name, redshift, coordinates (J2000)\\
-A520,  0.202, 04h54m19s,   +02d56.8m,	73.579133, 2.946893 \\
-A665,  0.182, 08h30m45s,   +65d52.9m,	127.688306, 65.882026\\
-A773,  0.216, 09h17m59s,   +51d42.4m,	139.497459, 51.706411\\
-A1413, 0.142, 11h55m18.9s, +23d24m31s,	178.828750, 23.408611\\
-A1689, 0.183, 13h11m29.5s, -01d20m17s,	197.872917, -1.338056\\
-A1835, 0.252, 14h01m02.3s, +02d52m48s,	210.259583, 2.880000\\
-A2163, 0.202, 16h15m34s,   -06d07.4m,   243.892221, -6.123970\\
-A2218, 0.176, 16h35m52.4s, +66d12m52s,	248.968333, 66.214444\\
-
-\begin{figure}[b]
-  \begin{center}
-   %\includegraphics[width=0.9\columnwidth]{./Figures/Cat_all_colors_cr_DouspisEtAlCrop.pdf}
-\includegraphics[width=0.45\columnwidth]{./Figures/Cat_all_colors_cr_DouspisEtAlCrop.pdf}
-   \includegraphics[width=0.45\columnwidth]{./Figures/slide_8crop.pdf}
-  \end{center}
-\caption{{\bf Left:} Visualization of an all-sky map of SZ clusters of galaxies, in galactic coordinates. Each dot is a cluster. Bigger dots are too extended for the present program. {\bf Right: } A sample of SZ maps obtained with OVRO/BIMA. \cite{Reese2002}}
-
-\label{Fig:AllSky}
-\end{figure}
-
-%\begin{figure}
-%  \begin{center}
-%   \includegraphics[width=0.4\columnwidth]{./Figures/slide_8crop.pdf}
-%  \end{center}
-%\caption{A sample of SZ maps obtained with OVRO/BIMA. Carlstrom et al.}
-%\label{Fig:OVRO}
-%\end{figure}
-
-%\begin{figure}
-%  \begin{center}
-% \includegraphics[width=0.9\columnwidth]{./Figures/PressureProfilePlanckXMM.pdf}
-%  \end{center}
-%\caption{Radial profile of the pressure in a standard {\sl Planck} cluster. The inner part is not well-known in SZ mode. The horizontal axis corresponds to 5~arcmin at 1. Cool core clusters differ in the center from non-cool-core clusters.}
-%\label{Fig:PlanckXMM}
-%\end{figure}
-
-\begin{figure}
-  \begin{center}
-   \includegraphics[width=0.4\columnwidth]{./Figures/0355+508_merge_meth120I_iter2_source_detect2mm.pdf}
-  \end{center}
-\caption{One square-degree NIKA2 map obtained with a fast raster
-scan. It is centered on a typical 30~m pointing source.  The map covers more a one-degree square. It is made by
-co-adding 4 scans, each scan covering the total area either at +45 or -45 degrees from azimuth. This test case was obtained, just before enabling a polarization commissionning session, when the opacity was 0.57 at 1~mm and 0.33 at 2~mm for an elevation of 34~degrees, conditions which are far from acceptable for normal scientific observations. The scan speed was 150~arcsecond/s to cover 60~arcminutes per subscan (times 21~subscans to cover 60 arcmin in the cross direction). The scan duration was 10~minutes. The central source is well detected with a 2.8~Jy flux at 2~mm and a FWHM of less than 18~arcseconds, {\sl i.e.} no beam smearing effect from the scan speed and the same flux as with a normal intensity speed map. A serendipitous source of about $46\pm6\,\mathrm{mJy}$ is found within 5~arcsecond of a Radio and WISE Source (WISEA J035933.92+511521.2 has a 1.4~GHz flux of 24~mJy)}
-\label{Fig:1sqdegMap}
-
-\end{figure}
-
-\begin{figure}
-  \begin{center}
-   \includegraphics[width=0.45\columnwidth]{./Figures/Arsenal_SZprofile.pdf}
-   \includegraphics[width=0.45\columnwidth]{./Figures/PressureProfilePlanckXMM.pdf}
-  \end{center}
-  \caption{{\bf Left} Radial profile of the pressure in a standard
-    {\sl Planck} cluster. The inner part is not well-known in SZ
-    mode. The horizontal axis corresponds to 5~arcmin at 1. Cool core
-    clusters differ in the center from non-cool-core clusters.  {\bf
-      Right} Radial profile of the SZ effect for a massive cluster
-    (typically A2163) with a core radius of one arcminute. Two models
-    are shown, the $\beta$ one being in black (derived from SZ data by
-    \cite{Reese2002}) and the X-ray derived model from
-    \cite{Arnaud2010} in yellow. Error bars for NIKA2 measurements in
-    annuli are shown as diamonds (after 2 hours of observations). The
-    recovery of large angular scales will be more difficult beyond the
-    dashed line (8~arcmin diameter). {\sl Planck} clusters are on
-    average less bright (2 to 10 times) than the example shown
-    (A2163). The integration time will be modulated with each
-    cluster.}
-  
-\label{Fig:SZprofile}
-\end{figure}
-   
-\begin{figure}
-  \begin{center}
-   \includegraphics[width=0.35\columnwidth]{./Figures/RelTau2004Crop.pdf}
-\includegraphics[width=0.35\columnwidth]{./Figures/Arsenal_SZclusters.pdf}
-  \end{center}
-  \caption{{\bf Left} Relative distribution of 225~GHz taumeter
-    opacities during the 2003/2004 period. IRAM document.  {\bf Right}
-    Distribution in the integrated Compton parameters of the 400~{\sl
-      Planck} clusters detected above 3~$\sigma$ and with a
-    declination above -15~degrees. No redshift selection was made
-    here. }
-\label{Fig:RelTau}
-\end{figure}
-
-%\begin{figure}
-%  \begin{center}
-%   %\includegraphics[width=0.9\columnwidth]{./Figures/Arsenal_SZclusters.pdf}
-%  \end{center}
-%\caption{ Distribution in the integrated Compton parameters of the %400~{\sl Planck} clusters detected above 3~$\sigma$ and with a %declination above -15~degrees. No redshift selection was made here.}
-%\label{Fig:DistribClusters}
-%\end{figure}
-
-
 % Bibliography and bibfile
 \def\aj{AJ}%
           % Astronomical Journal
@@ -486,8 +391,115 @@ co-adding 4 scans, each scan covering the total area either at +45 or -45 degree
 \let\apjlett=\apjl
 \let\apjsupp=\apjs
 \let\applopt=\ao
-
 \bibliography{biblio}
+
+Table of  clusters (unfenced according to CDS), among which, 5 will be selected for the Demo proposal\\
+name, redshift, coordinates (J2000)\\
+A520,  0.202, 04h54m19s,   +02d56.8m,	73.579133, 2.946893 \\
+A665,  0.182, 08h30m45s,   +65d52.9m,	127.688306, 65.882026\\
+A773,  0.216, 09h17m59s,   +51d42.4m,	139.497459, 51.706411\\
+A1413, 0.142, 11h55m18.9s, +23d24m31s,	178.828750, 23.408611\\
+A1689, 0.183, 13h11m29.5s, -01d20m17s,	197.872917, -1.338056\\
+A1835, 0.252, 14h01m02.3s, +02d52m48s,	210.259583, 2.880000\\
+A2163, 0.202, 16h15m34s,   -06d07.4m,   243.892221, -6.123970\\
+A2218, 0.176, 16h35m52.4s, +66d12m52s,	248.968333, 66.214444\\
+
+\begin{figure}
+  \begin{center}
+   %\includegraphics[width=0.9\columnwidth]{./Figures/Cat_all_colors_cr_DouspisEtAlCrop.pdf}
+\includegraphics[width=0.45\columnwidth]{./Figures/Cat_all_colors_cr_DouspisEtAlCrop.pdf}
+   \includegraphics[width=0.45\columnwidth]{./Figures/slide_8crop.pdf}
+  \end{center}
+\caption{{\bf Left:} Visualization of an all-sky map of SZ clusters of galaxies, in galactic coordinates. Each dot is a cluster. Bigger dots are too extended for the present program. {\bf Right: } A sample of SZ maps obtained with OVRO/BIMA. \cite{Reese2002}}
+
+\label{Fig:AllSky}
+\end{figure}
+
+%\begin{figure}
+%  \begin{center}
+%   \includegraphics[width=0.4\columnwidth]{./Figures/slide_8crop.pdf}
+%  \end{center}
+%\caption{A sample of SZ maps obtained with OVRO/BIMA. Carlstrom et al.}
+%\label{Fig:OVRO}
+%\end{figure}
+
+%\begin{figure}
+%  \begin{center}
+% \includegraphics[width=0.9\columnwidth]{./Figures/PressureProfilePlanckXMM.pdf}
+%  \end{center}
+%\caption{Radial profile of the pressure in a standard {\sl Planck} cluster. The inner part is not well-known in SZ mode. The horizontal axis corresponds to 5~arcmin at 1. Cool core clusters differ in the center from non-cool-core clusters.}
+%\label{Fig:PlanckXMM}
+%\end{figure}
+
+\begin{figure}
+  \begin{center}
+   \includegraphics[width=0.3\columnwidth]{./Figures/0355+508_merge_meth120I_iter2_source_detect2mmCrop.pdf}
+  \end{center}
+\caption{One square-degree NIKA2 map obtained with a fast raster
+  scan. It is centered on a typical 30~m pointing source.  The map
+  covers more a one-degree square. It is made by co-adding 4 scans,
+  each scan covering the total area either at +45 or -45 degrees from
+  azimuth. This test case was obtained, just before enabling a
+  polarization commissionning session, when the opacity was 0.57 at
+  1~mm and 0.33 at 2~mm for an elevation of 34~degrees, conditions
+  which are far from acceptable for normal scientific
+  observations. The scan speed was 150~arcsecond/s to cover
+  60~arcminutes per subscan (times 21~subscans to cover 60 arcmin in
+  the cross direction). The scan duration was 10~minutes. The central
+  source is well detected with a 2.8~Jy flux at 2~mm and a FWHM of
+  less than 18~arcseconds, {\sl i.e.} no beam smearing effect from the
+  scan speed and the same flux as with a normal intensity speed map. A
+  serendipitous source of about $46\pm6\,\mathrm{mJy}$ is found within
+  5~arcsecond of a Radio and WISE Source (WISEA J035933.92+511521.2
+  has a 1.4~GHz flux of 24~mJy)}
+\label{Fig:1sqdegMap}
+
+\end{figure}
+
+\begin{figure}
+  \begin{center}
+   \includegraphics[width=0.45\columnwidth]{./Figures/Arsenal_SZprofile.pdf}
+   \includegraphics[width=0.45\columnwidth]{./Figures/PressureProfilePlanckXMM.pdf}
+  \end{center}
+  \caption{{\bf Left}~Radial profile of the SZ effect for a massive
+    cluster (typically A2163) with a core radius of one arcminute. Two
+    models are shown, the $\beta$ one being in black (derived from SZ
+    data by \cite{Reese2002}) and the X-ray derived model from
+    \cite{Arnaud2010} in yellow. Error bars for NIKA2 measurements in
+    annuli are shown as diamonds (after 2 hours of observations). The
+    recovery of large angular scales will be more difficult beyond the
+    dashed line (8~arcmin diameter). {\sl Planck} clusters are on
+    average less bright (2 to 10 times) than the example shown
+    (A2163). The integration time will be modulated with each
+    cluster. {\bf Right}~Radial profile of the pressure in a standard
+    {\sl Planck} cluster. The inner part is not well-known in SZ
+    mode. The horizontal axis corresponds to 5~arcmin at
+    $R_{500}$. Cool core clusters differ in the center from
+    non-cool-core clusters.}
+  
+\label{Fig:SZprofile}
+\end{figure}
+   
+\begin{figure}
+  \begin{center}
+   \includegraphics[width=0.95\columnwidth]{./Figures/RelTau2004AndSZclustersCrop.pdf}
+  \end{center}
+  \caption{{\bf Left}~Relative distribution of 225~GHz taumeter
+    opacities during the 2003/2004 period. IRAM document.  {\bf
+      Right}~Distribution in the integrated Compton parameters of the
+    400~{\sl Planck} clusters detected above 3~$\sigma$ and with a
+    declination above -15~degrees. No redshift selection was made
+    here. }
+\label{Fig:RelTau}
+\end{figure}
+
+%\begin{figure}
+%  \begin{center}
+%   %\includegraphics[width=0.9\columnwidth]{./Figures/Arsenal_SZclusters.pdf}
+%  \end{center}
+%\caption{ Distribution in the integrated Compton parameters of the %400~{\sl Planck} clusters detected above 3~$\sigma$ and with a %declination above -15~degrees. No redshift selection was made here.}
+%\label{Fig:DistribClusters}
+%\end{figure}
 
 
 

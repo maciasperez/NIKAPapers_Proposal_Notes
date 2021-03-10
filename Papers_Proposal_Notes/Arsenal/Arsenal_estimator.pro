@@ -15,7 +15,9 @@ print,20.E-4/60/sqrt(0.7)*sqrt(7)/sqrt(2) ; 7.5E-5 per beam in 2 hours
 print,20.E-4/60/sqrt(0.7)*sqrt(7)/sqrt(5) ; 5E-5 per beam in 5 hours
 
 print, 20E-3/12/sqrt(3600)*sqrt(0.7)
-print, 20E-3/12/sqrt(3600)*sqrt(0.7)*sqrt(7/2.)
+print, 20E-3/12/sqrt(3600)*sqrt(0.7)*sqrt(7/2.) ; in y
+print, 20E-3/sqrt(3600)*sqrt(0.7)*sqrt(7/2.) ; in mJy
+
 
 ; Number of hours
 frac = 0.25

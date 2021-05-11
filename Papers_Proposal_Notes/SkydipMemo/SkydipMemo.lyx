@@ -1,0 +1,842 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement h
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+
+\noun on
+FXavier Désert, N.
+ Ponthieu, Work memo on skydip in NIKA2 idl pipeline, May 2021
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\begin_layout Section
+The problem
+\end_layout
+
+\begin_layout Standard
+The skydips are processed all together for a given campaign.
+ They give very accurate results for the opacity measurements (1% precision)
+ but there is one nagging question which is the ratio 
+\begin_inset Formula $\tau_{2}/\tau_{3}$
+\end_inset
+
+ between the 2 and 1
+\begin_inset space ~
+\end_inset
+
+mm channels.
+ This ratio is above the ATM predicted ratio by almost a factor almost 50
+\begin_inset space ~
+\end_inset
+
+%.
+ Here is the evidence on Fig.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:situation"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename calibration_main_plot_summary_N2R50Final2_extract.pdf
+	width 100text%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Standard output of the IDL pipeline skydip reduction, here for the run N2R50
+ (20 scans)
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:situation"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Here we remind the equations for skydips to understand a possible way out.
+\end_layout
+
+\begin_layout Standard
+The resonance frequency 
+\begin_inset Formula $f_{r}$
+\end_inset
+
+ is linearly related to the total power on the kid, as represented by the
+ equivalent temperature 
+\begin_inset Formula $T_{sky}$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+f_{r}=f_{0}-B\,T_{sky}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $f_{0}$
+\end_inset
+
+ is the zero-load frequency and 
+\begin_inset Formula $B$
+\end_inset
+
+ is the response to total beam in 
+\begin_inset Formula $\mathrm{Hz/K}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The equivalent sky temperature is proportional to the total power on the
+ Kid so that:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+T_{sky}=T_{atm}\frac{\int d\nu\,b_{\nu}(1-\exp(-\tau_{\nu}/\sin el)}{\int d\nu\,b_{\nu}},
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $T_{atm}$
+\end_inset
+
+ is the mean atmosphere temperature (usually taken as a fiducial temperature
+ of 270
+\begin_inset space ~
+\end_inset
+
+K), 
+\begin_inset Formula $b_{\nu}$
+\end_inset
+
+ is the transmission (including the RJ 
+\begin_inset Formula $\nu^{2}$
+\end_inset
+
+ which is compensated by the étendue), 
+\begin_inset Formula $\tau_{\nu}$
+\end_inset
+
+ is the zenith sky opacity and 
+\begin_inset Formula $el$
+\end_inset
+
+ is the current skydip elevation (and the airmass is 
+\begin_inset Formula $am=1/\sin el$
+\end_inset
+
+).
+ In the standard skydip hypothesis, the opacity is rather constant across
+ the filtering bandpass of the Kid (including the filters) so that we can
+ drop the integral and get: 
+\begin_inset Formula 
+\[
+T_{sky}\backsimeq T_{atm}(1-\exp(-\tau/\sin el)).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+If the opacity is small, the degeneracy of the response 
+\begin_inset Formula $B$
+\end_inset
+
+ with the opacity 
+\begin_inset Formula $\tau$
+\end_inset
+
+ is large.
+ When 
+\begin_inset Formula $\tau$
+\end_inset
+
+ is large, one can distinguish (with a non-linear fit) the influence of
+ the response and the opacity.
+ 
+\end_layout
+
+\begin_layout Section
+Testing hypotheses
+\end_layout
+
+\begin_layout Standard
+Here we numerically try to twist the modeling hypotheses in order to be
+ compatible with the skydip data.
+\end_layout
+
+\begin_layout Subsection
+Attempt 1
+\end_layout
+
+\begin_layout Standard
+Fig.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:at1"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows (top-left) the NIKA2 bandpasses, along with the atmospheric oxygen
+ (green) and the water vapour (yellow) opacities.
+ On the top-right the integrand of the atmosphere emission times the transmissio
+n 
+\begin_inset Formula $b_{\nu}(1-\exp(-\tau_{\nu}/\sin el)$
+\end_inset
+
+, is shown (oxygen and water separated).
+ Oxygen is contributing to the lower frequencies whereas the water vapor
+ contributes to the higher frequencies.
+ The bottom-right figure (black curve) shows the expected behaviour of the
+ 2 to 1-mm opacity ratio.
+ At low opacities, it rises because the oxygen becomes the dominant factor
+ and oxygen contributes to the 2
+\begin_inset space ~
+\end_inset
+
+mm more than to the 1
+\begin_inset space ~
+\end_inset
+
+mm.
+ This is the trend seen in the real data (dots), but they disagree wildly
+ at large opacities (the ratio is 20% higher than expected (thin black curve)
+ at large opacities).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename Test_skydipModified.jpg
+	width 100text%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Modified modeling of the bandpasses.
+ The 2mm bandpass is modified with a Heaviside-like function at 0.13 between
+ 170 and 220
+\begin_inset space ~
+\end_inset
+
+GHz.
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:at1"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+The bottom-left figure shows one way out.
+ We trick the bandpass (black curve).
+ In that case the strong water vapour line at 180
+\begin_inset space ~
+\end_inset
+
+GHz increases the opacity.
+ By playing with the cutoff frequency (220
+\begin_inset space ~
+\end_inset
+
+GHz) and the level of the leak (0.13) we fit reasonably well the data points
+ on the bottom-right plot with the yellow thin curve.
+ The problem is really that now the modified 2
+\begin_inset space ~
+\end_inset
+
+mm bandpass is way off the bandpass measurements.
+ We retain from that that there is a real issue in the 2mm band.
+ The problem is even worse than the thin yellow curve suggests because each
+ black dot is the result of one skydip analysis.
+ It is not just the opacity at 2mm against the 1mm opacity: the whole airmass
+ range from 60 down to 18 degrees is used.
+ We have simulated that in a non-linear fit where the opacity is the only
+ unknown and the results are shown as thick lines (called exact).
+ The yellow thick curve is obtained for the modified bandpass.
+ It is close to the black curve and not anymore to the data.
+ What is happening is that we `average' the opacity to the right with a
+ range of 2 to 3 in opacity.
+ Thus this is lower (thick yellow curve) than the thin yellow curve.
+ So we are back to square one.
+\end_layout
+
+\begin_layout Subsection
+Attempt 2
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename Test_skydipModified2.jpg
+	width 100text%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+The 2mm bandpass is modified by adding the 1mm bandpass.
+ REDO figure
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:at2"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ Here, in Fig.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:at2"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, we have added 70% of the 1mm bandpass to the 2mm bandpass.
+ The idea could be that some 1
+\begin_inset space ~
+\end_inset
+
+mm light does not follow the expected optical path and somehow reaches the
+ 2
+\begin_inset space ~
+\end_inset
+
+mm detectors.
+ The correction factor is really outrageous and, again, would have been
+ measured with the lab bandpass measurement.
+\end_layout
+
+\begin_layout Subsection
+Attempt 3
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename Test_skydipModified3.jpg
+	width 100text%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Modified modeling of the bandpasses.
+ The 2mm bandpass is modified by adding a `leak' of 30
+\begin_inset space ~
+\end_inset
+
+% between 300 and 350
+\begin_inset space ~
+\end_inset
+
+GHz.
+ REDO
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:at3"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ Here, in Fig.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:at3"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, we have added some 850
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset Formula $\mu m$
+\end_inset
+
+ transmission.
+ Results are poor.
+\end_layout
+
+\begin_layout Subsection
+Attempt 4
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename Test_skydipModified4.jpg
+	width 100text%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+A large spillover is added to band 2.
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:at4"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ Here, in Fig.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:at4"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, we assume that there is a large spillover at 2
+\begin_inset space ~
+\end_inset
+
+mm.
+ This is how we model that effect: 
+\begin_inset Formula 
+\[
+T_{sky}=T_{atm}\frac{\int d\nu\,b_{\nu}(1-\exp(-\tau_{\nu}/\sin el)}{\int d\nu\,b_{\nu}}(1-\alpha\cos el)+\alpha\cos elT_{ground},
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ is the spillover factor (we fit at 15
+\begin_inset space ~
+\end_inset
+
+%) and 
+\begin_inset Formula $T_{ground}$
+\end_inset
+
+ is the Earth emission temperature entering the telescope (we took 
+\begin_inset Formula $T_{ground}=T_{atm}$
+\end_inset
+
+).
+ The fit is poor.
+\end_layout
+
+\begin_layout Subsection
+Attempt 5
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename Test_skydipModified5.jpg
+	width 100text%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Modified modeling of the bandpasses.
+ The 2mm bandpass is tilted to high-frequency by a centered power-law with
+ an exponent of 2.
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:at5"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ There could have been a misinterpretation of the integrand of the skydip
+ equation so we model a tilt in the bandpass with a power-law correction
+ factor in 
+\begin_inset Formula $(\frac{\nu}{150\,\mathrm{GHz}})^{2}$
+\end_inset
+
+.
+ That does not help (see Fig.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:at5"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Subsection
+Attempt 6
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename Test_skydipModified6.jpg
+	width 100text%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+The water emissivity is changed by a factor 1.55 in the 2
+\begin_inset space ~
+\end_inset
+
+mm band.
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:at6"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ In the case in Fig.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:at6"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, the (continuum) emissivity of the water vapour is increased by 1.55 in
+ the 2
+\begin_inset space ~
+\end_inset
+
+mm band (we left the 1
+\begin_inset space ~
+\end_inset
+
+mm band untouched for simplicity).
+ Here the fit is acceptable.
+ The rationale here is to say that the continuum is produced by the wings
+ of the lines.
+ If somehow the lines are broader than thought (in particular the 180
+\begin_inset space ~
+\end_inset
+
+GHz line), then the continuum (typically going as 
+\begin_inset Formula $\nu^{2}$
+\end_inset
+
+) could have a bigger value than the one taken in the model.
+ The width of atmospheric lines comes from pressure-broadening.
+ The standard Pardo ATM model may be under-estimating the 2
+\begin_inset space ~
+\end_inset
+
+mm continuum.
+ In that case, the opacity correction that is done in the IDL pipeline remains
+ correct.
+\end_layout
+
+\begin_layout Standard
+We have tried to modify the oxygen band at 118
+\begin_inset space ~
+\end_inset
+
+GHz or the water vapour line at 182
+\begin_inset space ~
+\end_inset
+
+GHz but this cannot reproduce the data because the lines are near the edge
+ of the bandpass.
+\end_layout
+
+\begin_layout Section
+Conclusions
+\end_layout
+
+\begin_layout Standard
+We have made several attempts at reconciling the measured opacities with
+ the ATM+bandpass model.
+ Nothing works! except if we accept to modify the 2
+\begin_inset space ~
+\end_inset
+
+mm continuum water vapour emissivity upward by a 1.55 factor.
+ The 1
+\begin_inset space ~
+\end_inset
+
+mm emissivity must be left untouched.
+ This discussion does not address the opacity ratio observed between array
+ 1 and 3 at 1
+\begin_inset space ~
+\end_inset
+
+mm.
+\end_layout
+
+\end_body
+\end_document
